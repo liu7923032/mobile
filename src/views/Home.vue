@@ -1,19 +1,22 @@
 <template>
-	<div class="container-fluid">
-		<div class="toolbar">
-			<span class="glyphicon glyphicon-menu-hamburger" @click="showMenu"></span>
-			<p class="text-title">{{title}}</p>
-		</div>
+		<toolbar :text="title">
+			<span class="glyphicon glyphicon-menu-hamburger" slot="leftBtn" @click="showMenu"></span>
+		</toolbar>
 		<div class="container-fluid">
 			
 		</div>
-	</div>
 </template>
 
 <script lang="babel">
-
-	export default {
-		data(){
+	import ToolBar from 'src/components/ToolBar.vue'
+	export default 	{
+		created(){
+			console.log("home is created")
+		},
+		components:{
+	    	toolbar:ToolBar
+	    },
+		data() {
 			return {
 				title:'首页'
 			}
@@ -24,6 +27,7 @@
 	        }
 	    }
 	}
+
 </script>
 
 <style>

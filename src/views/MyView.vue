@@ -1,22 +1,23 @@
 <template>
-	<div class="container-fluid">
-		<div class="toolbar">
-			<span class="glyphicon glyphicon-arrow-left" @click="back"></span>
-			<p class="text-title">{{title}}</p>
-		</div>
+
+		<toolbar :text="title">
+			<span class="glyphicon glyphicon-arrow-left" @click="back" slot="leftBtn"></span>
+		</toolbar>
 		<div class="container-fluid">
 			
 		</div>
-	</div>
 </template>
 
 <script lang="babel">
-
+import ToolBar from 'src/components/ToolBar.vue'
 	export default {
 		data(){
 			return {
 				title:'我的地盘'
 			}
+		},
+		components:{
+			toolbar:ToolBar
 		},
 	    methods: {
 	        back() {

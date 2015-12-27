@@ -7,36 +7,15 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="./src/public/css/bootstrap.min.css">
     <style>
-    .glyphicon {
-        margin-left: 15px;
-        font-size: 24px;
-        color: whitesmoke;
-        float: left;
-    }
+   
     
-    .text-title {
-        text-align: center;
-        vertical-align: middle;
-        font-size: 20px;
-        color: whitesmoke;
-    }
-    
-    .toolbar {
-        height: 48px;
-        width: 100%;
-        background-color: #3D82C4;
-        padding-top: 10px;
-    }
-    
-    .container-fluid {
-        padding: 0px;
-    }
+  
     </style>
 </head>
 
 <body>
     <div id="app">
-        <router-view class="view"  keep-alive :transition="effect" transition-mode="out-in"></router-view>
+        <router-view  keep-alive  transition-mode="out-in"></router-view>
         <aside :show.sync="isShow" placement="left" header="菜单">
             <ul class="list-group">
                 <li class="list-group-item"><a v-link="{ path: '/home' }">惦记我</a></li>
