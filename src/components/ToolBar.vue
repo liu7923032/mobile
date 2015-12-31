@@ -42,14 +42,14 @@
             align-content: space-between;
             
         }
-        .toolbar p{
-            font-size: 16px;
-            font-weight: bold;
-            
-        }
-        .toolbar span{
-            font-size: 24px;
-            margin:0px 5px;
-            color: whitesmoke;
-        }
+    .toolbar p{
+        font-size: 16px;
+        font-weight: bold;
+        
+    }
+    .toolbar span{
+        font-size: 24px;
+        margin:0px 5px;
+        color: whitesmoke;
+    }
 </style>
