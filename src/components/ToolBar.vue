@@ -1,8 +1,9 @@
 <template>
-	<div class="toolbar">
-		<slot name="leftBtn"></slot>
-		<p class="text-title">aaa</p>
-	</div>
+     <div class="toolbar">
+        <slot name="leftBtn"></slot>
+        <p class="text-title">{{text}}</p>
+        <slot name="rightBtn"></slot>
+    </div>
 </template>
 
 <script lang="babel">
@@ -13,7 +14,7 @@
 		props:{
 			text:{
 				type:String,
-				default:""
+				default:"未知列表"
 			}
 		},
 		data(){
@@ -25,25 +26,30 @@
 </script>
 
 <style>
-    .text-title {
-        text-align: center;
-        vertical-align: middle;
-        font-size: 20px;
-        color: whitesmoke;
-    }
     
     .toolbar {
-        height: 48px;
-        width: 100%;
-        background-color: #3D82C4;
-        padding: 10px;
-        
-    }
-    
-    .toolbar span{
-    	font-size: 28px;
-    	margin-left: 5px;
-    	color: whitesmoke;
-    	float: left;
-    }
+            display: flex;
+            display: -webkit-flex;
+            width: 100%;
+            background-color: whitesmoke;
+            height: 44px;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            align-items: center;
+            align-content: space-between;
+            
+        }
+        .toolbar p{
+            font-size: 16px;
+            font-weight: bold;
+            
+        }
+        .toolbar span{
+            font-size: 24px;
+            margin:0px 5px;
+            color: whitesmoke;
+        }
 </style>
