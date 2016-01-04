@@ -1,10 +1,11 @@
 <template>
-	<ul class="tabs-nav">
+	<ul class="nav-tabs">
 			<li v-for="(index,item) in tabItems" 
 			:class="{'nav_active':activieIndex===index}" 
 			@click="switchTab(index)" 
 			transition="nav_swtchtranstion" >{{item.title}}</li>
 	</ul>
+	<div class="tabs_line"></div>
 	<div class="tabs_content">
 		<div v-for="(index,item) in tabItems" v-show="activieIndex===index">{{
 				item.content
@@ -15,6 +16,11 @@
 <script lang="babel">
 	
 	export default {
+		created(){
+			var docWidth=document.body.offsetWidth;
+			this.lineWidth=docWidth/this.tabItems.length;
+			document.querySelectorAll('.tabs_line')[0].style.width=lineWidth+"px";
+		},
 		props:{
 			tabsItem:{
 				type:Array,
@@ -25,10 +31,17 @@
 				default:0
 			}
 		},
+		data(){
+			return {
+				lineWidth:0;
+			}
+		},
 		methods:{
 			//点击tabs
 			switchTab(index){
 				this.activieIndex=index;
+				var leftWidth=index*lineWidth;
+				document.querySelectorAll('.tabs_line')[0].style.transform="translateX("+leftWidth+"px)";
 			}
 		}
 	}
@@ -64,7 +77,6 @@
 		
 		.nav-tabs .nav_active {
 			color: darkorange;
-			border-bottom: 2px solid darkorange;
 		}
 
 		.nav-tabs .nav_link {
@@ -73,4 +85,13 @@
 		
 		
 
+		.tabs_line {
+			display: flex;
+			height: 3px;
+			width: 300px;
+			margin-top: -3px;
+			background-color: darkorange;
+			transition: transform 0.4s;
+			width: 0px;
+		}
 </style>
