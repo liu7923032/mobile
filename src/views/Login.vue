@@ -1,0 +1,21 @@
+<template>
+	
+</template>
+
+
+<script>
+	export default {
+		data(){
+			return {
+				gongHao:'',
+				pwd:''
+			}
+		},
+		methods:{
+			login(){
+				//向服务器发起请登录请求
+
+			}
+		}
+	}
+</script>

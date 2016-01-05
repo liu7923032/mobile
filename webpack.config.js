@@ -3,7 +3,7 @@ var webpack = require('webpack')
 var path = require('path')
 
 module.exports = {
-    entry: './src/main.js',
+    entry: ['./src/main.js'],
     output: {
         path: './dist',
         publicPath: 'dist/',
@@ -33,7 +33,8 @@ module.exports = {
     babel: {
         presets: ['es2015', 'stage-0'],
         plugins: ['transform-runtime']
-    }
+    },
+    plugins:[]
 }
 
 if (process.env.NODE_ENV === 'production') {
