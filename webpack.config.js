@@ -1,5 +1,9 @@
 var webpack = require('webpack')
 
+
+//独立样式文件
+// var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 var path = require('path')
 
 module.exports = {
@@ -24,7 +28,7 @@ module.exports = {
         }, {
             // edit this for additional asset file types
             test: /\.js$/,
-            exclude: /node_modules|vue\/src|vue-router\/|vue-loader\/|vue-hot-reload-api\//,
+            exclude: /node_modules|vue\/dist/,
             loader: 'babel'
         }]
     },
@@ -33,7 +37,8 @@ module.exports = {
     babel: {
         presets: ['es2015', 'stage-0'],
         plugins: ['transform-runtime']
-    }
+    },
+    plugins:[]
 }
 
 if (process.env.NODE_ENV === 'production') {

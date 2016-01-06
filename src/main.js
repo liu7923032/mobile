@@ -1,16 +1,17 @@
 import Vue from 'vue'
 
 import Router from 'vue-router'
-import myView from './views/MyView.vue'
-import
-homeView
-from './views/Home.vue'
-import {  aside } from 'vue-strap'
 
+import routerMap from './routers'
+
+import FastClick from 'fastclick'
+//加载触摸插件
+import VueTouch from './plugns/vTouch'
 
     // 1:创建启动的版本
 
 Vue.use(Router)
+Vue.use(VueTouch)
 
 var router = new Router({
         hashbang: true,
@@ -20,17 +21,8 @@ var router = new Router({
 })
     // 路由器需要一个根组件。
     // 出于演示的目的，这里使用一个空的组件，直接使用 HTML 作为应用的模板
-var App = Vue.extend({
-	data() {
-        return {
-            isShow: false,
-            effect:'fade'
-		}
-	},
-	components: {
-	    aside
-	}
-})
+var App = Vue.extend({});
+
 
 
 
@@ -42,22 +34,31 @@ var App = Vue.extend({
 // 每条路由规则应该映射到一个组件。这里的“组件”可以是一个使用 Vue.extend
 // 创建的组件构造函数，也可以是一个组件选项对象。
 // 稍后我们会讲解嵌套路由
-router.map({
-    '/user': {
-        component: myView
-    },
-    '/home': {
-        component: homeView
+//注册路由
+routerMap(router);
+
+// router.redirect({
+// 	"*":'/home'
+// })
+
+
+
+//权限检查
+router.beforeEach(transition => {
+    //处理左侧滚动不影响右边
+    // $("html, body, #page").removeClass("scroll-hide");
+    FastClick.attach(document.body);
+
+    if (transition.to.auth) {
+        if (localStorage.userId) {
+            transition.next();
+        } else {
+            var redirect = encodeURIComponent(transition.to.path);
+            transition.redirect('/login?redirect=' + redirect);
+        }
+    } else {
+        transition.next();
     }
-})
-
-
-router.redirect({
-	"*":'/home'
-})
-
-router.afterEach(function(transition) {
-    console.log('成功浏览到: ' + transition.to.path)
 })
 
 

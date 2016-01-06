@@ -46,29 +46,34 @@
 
 	'use strict';
 	
-	var _vue = __webpack_require__(4);
+	var _vue = __webpack_require__(1);
 	
 	var _vue2 = _interopRequireDefault(_vue);
 	
-	var _vueRouter = __webpack_require__(6);
+	var _vueRouter = __webpack_require__(3);
 	
 	var _vueRouter2 = _interopRequireDefault(_vueRouter);
 	
-	var _MyView = __webpack_require__(7);
+	var _routers = __webpack_require__(4);
 	
-	var _MyView2 = _interopRequireDefault(_MyView);
+	var _routers2 = _interopRequireDefault(_routers);
 	
-	var _Home = __webpack_require__(17);
+	var _fastclick = __webpack_require__(38);
 	
-	var _Home2 = _interopRequireDefault(_Home);
+	var _fastclick2 = _interopRequireDefault(_fastclick);
 	
-	var _vueStrap = __webpack_require__(22);
+	var _vTouch = __webpack_require__(39);
+	
+	var _vTouch2 = _interopRequireDefault(_vTouch);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// 1:创建启动的版本
 	
 	_vue2.default.use(_vueRouter2.default);
+	//加载触摸插件
+	
+	_vue2.default.use(_vTouch2.default);
 	
 	var router = new _vueRouter2.default({
 	    hashbang: true,
@@ -78,18 +83,7 @@
 	});
 	// 路由器需要一个根组件。
 	// 出于演示的目的，这里使用一个空的组件，直接使用 HTML 作为应用的模板
-	var App = _vue2.default.extend({
-	    data: function data() {
-	        return {
-	            isShow: false,
-	            effect: 'fade'
-	        };
-	    },
-	
-	    components: {
-	        aside: _vueStrap.aside
-	    }
-	});
+	var App = _vue2.default.extend({});
 	
 	// 创建一个路由器实例
 	// 创建实例时可以传入配置参数进行定制，为保持简单，这里使用默认配置
@@ -98,21 +92,29 @@
 	// 每条路由规则应该映射到一个组件。这里的“组件”可以是一个使用 Vue.extend
 	// 创建的组件构造函数，也可以是一个组件选项对象。
 	// 稍后我们会讲解嵌套路由
-	router.map({
-	    '/user': {
-	        component: _MyView2.default
-	    },
-	    '/home': {
-	        component: _Home2.default
+	//注册路由
+	(0, _routers2.default)(router);
+	
+	// router.redirect({
+	// 	"*":'/home'
+	// })
+	
+	//权限检查
+	router.beforeEach(function (transition) {
+	    //处理左侧滚动不影响右边
+	    // $("html, body, #page").removeClass("scroll-hide");
+	    _fastclick2.default.attach(document.body);
+	
+	    if (transition.to.auth) {
+	        if (localStorage.userId) {
+	            transition.next();
+	        } else {
+	            var redirect = encodeURIComponent(transition.to.path);
+	            transition.redirect('/login?redirect=' + redirect);
+	        }
+	    } else {
+	        transition.next();
 	    }
-	});
-	
-	router.redirect({
-	    "*": '/home'
-	});
-	
-	router.afterEach(function (transition) {
-	    console.log('成功浏览到: ' + transition.to.path);
 	});
 	
 	// 现在我们可以启动应用了！
@@ -120,10 +122,7 @@
 	router.start(App, '#app');
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */
+/* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/*!
@@ -9554,10 +9553,10 @@
 	}
 	
 	module.exports = Vue;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 5 */
+/* 2 */
 /***/ function(module, exports) {
 
 	// shim for using process in browser
@@ -9654,7 +9653,7 @@
 
 
 /***/ },
-/* 6 */
+/* 3 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -12193,118 +12192,95 @@
 	module.exports = Router;
 
 /***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(8)
-	
-	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(16)
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile\\src\\views\\MyView.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-	  }
-	})()}
-
-/***/ },
-/* 8 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	    value: true
 	});
 	
-	var _ToolBar = __webpack_require__(9);
+	exports.default = function (router) {
+	    router.map({
+	        '/': { //首页
+	            name: 'home',
+	            component: __webpack_require__(5)
+	        },
+	        '/home': {
+	            name: 'home',
+	            component: __webpack_require__(5)
+	        },
+	        '/project': {
+	            name: 'project',
+	            component: __webpack_require__(32)
+	        },
+	        '/worklog': {
+	            name: 'worklog',
+	            component: __webpack_require__(5)
+	        },
+	        '/userinfo': {
+	            name: 'userinfo',
+	            component: __webpack_require__(33),
+	            auth: true
+	        },
+	        '/workflow': {
+	            name: 'workflow',
+	            component: __webpack_require__(34)
+	        },
+	        '/login': {
+	            name: 'login',
+	            component: __webpack_require__(35)
+	        },
+	        /* 404路由 */
+	        '*': {
+	            component: __webpack_require__(5)
+	        }
 	
-	var _ToolBar2 = _interopRequireDefault(_ToolBar);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-		data: function data() {
-			return {
-				title: '我的地盘'
-			};
-		},
-	
-		components: {
-			toolbar: _ToolBar2.default
-		},
-		methods: {
-			back: function back() {
-				history.back();
-			}
-		},
-		route: {
-			activate: function activate() {
-				this.$root.isShow = false;
-			}
-		}
+	    });
 	};
-	// </script>
-	// <template>
-
-	// 		<toolbar :text="title">
-
-	// 			<span class="glyphicon glyphicon-arrow-left" @click="back" slot="leftBtn"></span>
-
-	// 		</toolbar>
-
-	// 		<div class="container-fluid">
-
-	// 		</div>
-
-	// </template>
-
-	// <script lang="babel">
 
 /***/ },
-/* 9 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(10)
-	module.exports = __webpack_require__(14)
-	
+	var __vue_script__, __vue_template__
+	__webpack_require__(6)
+	__vue_script__ = __webpack_require__(10)
+	__vue_template__ = __webpack_require__(31)
+	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(15)
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile\\src\\components\\ToolBar.vue"
+	  var id = "E:\\workspace\\mobile\\src\\views\\Home.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	    hotAPI.update(id, module.exports, __vue_template__)
 	  }
 	})()}
 
 /***/ },
-/* 10 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(11);
+	var content = __webpack_require__(7);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(13)(content, {});
+	var update = __webpack_require__(9)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-008eefb2&file=ToolBar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ToolBar.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-008eefb2&file=ToolBar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ToolBar.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-df6ab942&file=Home.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-df6ab942&file=Home.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -12314,21 +12290,21 @@
 	}
 
 /***/ },
-/* 11 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(12)();
+	exports = module.exports = __webpack_require__(8)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, ".toolbar {\r\n            display: -webkit-box;\r\n            display: -ms-flexbox;\r\n            display: flex;\r\n            display: -webkit-flex;\r\n            width: 100%;\r\n            background-color: whitesmoke;\r\n            height: 44px;\r\n            -webkit-flex-flow: row nowrap;\r\n                -ms-flex-flow: row nowrap;\r\n                    flex-flow: row nowrap;\r\n            -webkit-box-pack: justify;\r\n            -webkit-justify-content: space-between;\r\n                -ms-flex-pack: justify;\r\n                    justify-content: space-between;\r\n            position: absolute;\r\n            left: 0px;\r\n            top: 0px;\r\n            -webkit-box-align: center;\r\n            -webkit-align-items: center;\r\n                -ms-flex-align: center;\r\n                    align-items: center;\r\n            -webkit-align-content: space-between;\r\n                -ms-flex-line-pack: justify;\r\n                    align-content: space-between;\r\n            \r\n        }\r\n    .toolbar p{\r\n        font-size: 16px;\r\n        font-weight: bold;\r\n        \r\n    }\r\n    .toolbar span{\r\n        font-size: 24px;\r\n        margin:0px 5px;\r\n        color: whitesmoke;\r\n    }", ""]);
+	exports.push([module.id, "\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Home.vue","sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
-/* 12 */
+/* 8 */
 /***/ function(module, exports) {
 
 	/*
@@ -12384,7 +12360,7 @@
 
 
 /***/ },
-/* 13 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -12522,13 +12498,6 @@
 		return styleElement;
 	}
 	
-	function createLinkElement(options) {
-		var linkElement = document.createElement("link");
-		linkElement.rel = "stylesheet";
-		insertStyleElement(options, linkElement);
-		return linkElement;
-	}
-	
 	function addStyle(obj, options) {
 		var styleElement, update, remove;
 	
@@ -12537,19 +12506,6 @@
 			styleElement = singletonElement || (singletonElement = createStyleElement(options));
 			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
 			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
-		} else if(obj.sourceMap &&
-			typeof URL === "function" &&
-			typeof URL.createObjectURL === "function" &&
-			typeof URL.revokeObjectURL === "function" &&
-			typeof Blob === "function" &&
-			typeof btoa === "function") {
-			styleElement = createLinkElement(options);
-			update = updateLink.bind(null, styleElement);
-			remove = function() {
-				removeStyleElement(styleElement);
-				if(styleElement.href)
-					URL.revokeObjectURL(styleElement.href);
-			};
 		} else {
 			styleElement = createStyleElement(options);
 			update = applyToTag.bind(null, styleElement);
@@ -12602,11 +12558,19 @@
 		var media = obj.media;
 		var sourceMap = obj.sourceMap;
 	
-		if(media) {
-			styleElement.setAttribute("media", media)
+		if (media) {
+			styleElement.setAttribute("media", media);
 		}
 	
-		if(styleElement.styleSheet) {
+		if (sourceMap) {
+			// https://developer.chrome.com/devtools/docs/javascript-debugging
+			// this makes source maps inside style tags work properly in Chrome
+			css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */';
+			// http://stackoverflow.com/a/26603875
+			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		}
+	
+		if (styleElement.styleSheet) {
 			styleElement.styleSheet.cssText = css;
 		} else {
 			while(styleElement.firstChild) {
@@ -12615,26 +12579,172 @@
 			styleElement.appendChild(document.createTextNode(css));
 		}
 	}
+
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 	
-	function updateLink(linkElement, obj) {
-		var css = obj.css;
-		var media = obj.media;
-		var sourceMap = obj.sourceMap;
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
 	
-		if(sourceMap) {
-			// http://stackoverflow.com/a/26603875
-			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	var _ToolBar = __webpack_require__(11);
+	
+	var _ToolBar2 = _interopRequireDefault(_ToolBar);
+	
+	var _Sidebar = __webpack_require__(16);
+	
+	var _Sidebar2 = _interopRequireDefault(_Sidebar);
+	
+	var _NavTabs = __webpack_require__(26);
+	
+	var _NavTabs2 = _interopRequireDefault(_NavTabs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+		created: function created() {
+			console.log("home is created");
+			//计算tab的长度
+			var width = document.body.offsetWidth - 30;
+			this.tabWidth = width / this.tabItems.length;
+		},
+	
+		components: {
+			toolbar: _ToolBar2.default,
+			sidebar: _Sidebar2.default,
+			navtabs: _NavTabs2.default
+		},
+		props: {},
+		data: function data() {
+			return {
+				title: '首页',
+				menuItems: [{
+					text: '系统首页',
+					link: 'home',
+					icon: 'icon-home'
+				}, {
+					text: '个人信息',
+					link: 'userinfo',
+					icon: 'icon-user'
+				}, {
+					text: '我的项目',
+					link: 'project',
+					icon: 'icon-tasks'
+				}, {
+					text: '工作日志',
+					link: 'worklog',
+					icon: 'icon-calendar'
+				}, {
+					text: '流程信息',
+					link: 'worklog',
+					icon: 'icon-exchange'
+				}],
+				showMenu: false,
+				tabItems: [{
+					title: '通知', content: '啊啊啊通知'
+				}, {
+					title: '公告', content: '啊啊啊公告'
+				}, {
+					title: '制度', content: '啊啊啊制度'
+				}],
+				tabWidth: 0
+			};
+		},
+	
+		methods: {
+			openMenu: function openMenu() {
+				this.showMenu = !this.showMenu;
+			},
+			refresh: function refresh() {
+				//刷新当前页面
+			}
 		}
+	};
 	
-		var blob = new Blob([css], { type: "text/css" });
+	// </script>
+
+	// <style >
+
+	// </style>
+	// <template>
+	// 		<toolbar :text="title">
+	// 			<span class="glyphicon glyphicon-menu-hamburger" slot="leftBtn" @click="openMenu"></span>
+	//             <span class="icon-refresh" slot="rightBtn" @click="refresh"></span>
+	// 		</toolbar>
+	// 		<navtabs :tab-items="tabItems" :underline="tabWidth">
+	// 		</navtabs>
+	// 		<sidebar :menu-items="menuItems" :show-menu.sync="showMenu" >
+
+	// 		</sidebar>
+	// </template>
+
+	// <script lang="babel">
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(12)
+	__vue_script__ = __webpack_require__(14)
+	__vue_template__ = __webpack_require__(15)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile\\src\\components\\ToolBar.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
-		var oldSrc = linkElement.href;
-	
-		linkElement.href = URL.createObjectURL(blob);
-	
-		if(oldSrc)
-			URL.revokeObjectURL(oldSrc);
+	// load the styles
+	var content = __webpack_require__(13);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(9)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-008eefb2&file=ToolBar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ToolBar.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-008eefb2&file=ToolBar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ToolBar.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
 	}
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(8)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\n.toolbar {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    display: -webkit-flex;\n    width: 100%;\n    background-color: rgba(255, 255, 255, 0.95);\n    height: 44px;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-box-pack: justify;\n    -webkit-justify-content: space-between;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-align-content: center;\n        -ms-flex-line-pack: center;\n            align-content: center;\n    box-shadow:0 0 4px rgba(0, 0, 0, 0.25);\n}\n\n\n.toolbar div{\n    font-size: 16px;\n    font-weight: bold;\n    text-align: center;\n    vertical-align: middle;\n    \n}\n.toolbar span{\n    font-size: 24px;\n    margin:0px 10px;\n    color: #595959;\n    cursor: pointer;\n}\n\n.toolbar span:active{\n    color:darkorange;\n}\n", "", {"version":3,"sources":["/./src/components/ToolBar.vue?06e61f62"],"names":[],"mappings":";;AAwBA;IACA,qBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,sBAAA;IACA,YAAA;IACA,4CAAA;IACA,aAAA;IACA,8BAAA;QAAA,0BAAA;YAAA,sBAAA;IACA,0BAAA;IAAA,uCAAA;QAAA,uBAAA;YAAA,+BAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;IACA,8BAAA;QAAA,2BAAA;YAAA,sBAAA;IACA,uCAAA;CACA;;;AAGA;IACA,gBAAA;IACA,kBAAA;IACA,mBAAA;IACA,uBAAA;;CAEA;AACA;IACA,gBAAA;IACA,gBAAA;IACA,eAAA;IACA,gBAAA;CACA;;AAEA;IACA,iBAAA;CACA","file":"ToolBar.vue","sourcesContent":["<template>\r\n     <div class=\"toolbar\">\r\n        <slot name=\"leftBtn\"></slot>\r\n        <div class=\"text-title item\">{{text}}</div>\r\n        <slot name=\"rightBtn\"></slot>\r\n    </div>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\t// console.log(\"toolbar is created\");\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\ttext:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:\"未知列表\"\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\">\r\n    \r\n    .toolbar {\r\n        display: flex;\r\n        display: -webkit-flex;\r\n        width: 100%;\r\n        background-color: rgba(255, 255, 255, 0.95);\r\n        height: 44px;\r\n        flex-flow: row nowrap;\r\n        justify-content: space-between;\r\n        align-items: center;\r\n        align-content: center;\r\n        box-shadow:0 0 4px rgba(0, 0, 0, 0.25);\r\n    }\r\n\r\n   \r\n    .toolbar div{\r\n        font-size: 16px;\r\n        font-weight: bold;\r\n        text-align: center;\r\n        vertical-align: middle;\r\n        \r\n    }\r\n    .toolbar span{\r\n        font-size: 24px;\r\n        margin:0px 10px;\r\n        color: #595959;\r\n        cursor: pointer;\r\n    }\r\n    \r\n    .toolbar span:active{\r\n        color:darkorange;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
 
 
 /***/ },
@@ -12647,23 +12757,17 @@
 		value: true
 	});
 	// <template>
-	
 	//      <div class="toolbar">
-	
 	//         <slot name="leftBtn"></slot>
-	
-	//         <p class="text-title">{{text}}</p>
-	
+	//         <div class="text-title item">{{text}}</div>
 	//         <slot name="rightBtn"></slot>
-	
 	//     </div>
-	
 	// </template>
 	
 	// <script lang="babel">
 	exports.default = {
 		created: function created() {
-			console.log("toolbar is created");
+			// console.log("toolbar is created");
 		},
 	
 		props: {
@@ -12671,114 +12775,91 @@
 				type: String,
 				default: "未知列表"
 			}
-		},
-		data: function data() {
-			return {};
 		}
 	};
 	// </script>
 
-	// <style>
+	// <style type="text/css">
 
 	//     .toolbar {
+	//         display: flex;
+	//         display: -webkit-flex;
+	//         width: 100%;
+	//         background-color: rgba(255, 255, 255, 0.95);
+	//         height: 44px;
+	//         flex-flow: row nowrap;
+	//         justify-content: space-between;
+	//         align-items: center;
+	//         align-content: center;
+	//         box-shadow:0 0 4px rgba(0, 0, 0, 0.25);
+	//     }
 
-	//             display: flex;
-
-	//             display: -webkit-flex;
-
-	//             width: 100%;
-
-	//             background-color: whitesmoke;
-
-	//             height: 44px;
-
-	//             flex-flow: row nowrap;
-
-	//             justify-content: space-between;
-
-	//             position: absolute;
-
-	//             left: 0px;
-
-	//             top: 0px;
-
-	//             align-items: center;
-
-	//             align-content: space-between;
-
-	//         }
-
-	//     .toolbar p{
-
+	//     .toolbar div{
 	//         font-size: 16px;
-
 	//         font-weight: bold;
+	//         text-align: center;
+	//         vertical-align: middle;
 
 	//     }
-
 	//     .toolbar span{
-
 	//         font-size: 24px;
-
-	//         margin:0px 5px;
-
-	//         color: whitesmoke;
-
+	//         margin:0px 10px;
+	//         color: #595959;
+	//         cursor: pointer;
 	//     }
 
+	//     .toolbar span:active{
+	//         color:darkorange;
+	//     }
 	// </style>
 
 /***/ },
 /* 15 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"toolbar\">\r\n        <slot name=\"leftBtn\"></slot>\r\n        <p class=\"text-title\">{{text}}</p>\r\n        <slot name=\"rightBtn\"></slot>\r\n    </div>";
+	module.exports = "\n <div class=\"toolbar\">\n    <slot name=\"leftBtn\"></slot>\n    <div class=\"text-title item\">{{text}}</div>\n    <slot name=\"rightBtn\"></slot>\n</div>\n";
 
 /***/ },
 /* 16 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "<toolbar :text=\"title\">\r\n\t\t\t<span class=\"glyphicon glyphicon-arrow-left\" @click=\"back\" slot=\"leftBtn\"></span>\r\n\t\t</toolbar>\r\n\t\t<div class=\"container-fluid\">\r\n\t\t\t\r\n\t\t</div>";
+	var __vue_script__, __vue_template__
+	__webpack_require__(17)
+	__vue_script__ = __webpack_require__(19)
+	__vue_template__ = __webpack_require__(25)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile\\src\\components\\Sidebar.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
 
 /***/ },
 /* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(18)
-	module.exports = __webpack_require__(20)
-	
-	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(21)
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile\\src\\views\\Home.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-	  }
-	})()}
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(19);
+	var content = __webpack_require__(18);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(13)(content, {});
+	var update = __webpack_require__(9)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-df6ab942&file=Home.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-df6ab942&file=Home.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-17c997a8&file=Sidebar.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Sidebar.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-17c997a8&file=Sidebar.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Sidebar.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -12788,21 +12869,21 @@
 	}
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(12)();
+	exports = module.exports = __webpack_require__(8)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, "\n\n\n\tul[_v-17c997a8]{\n\t\tpadding: 0px;\n\t\tmargin: 0px;\n\t}\n\t.page-cover[_v-17c997a8] {\n\t    position: fixed;\n\t    top: 0;\n\t    right: 0;\n\t    bottom: 0;\n\t    left: 0;\n\t    background: rgba(0, 0, 0, .4);\n\t    z-index: 7;\n\t}\n\t.nav-list[_v-17c997a8]{\n\t\tposition: fixed;\n\t    top: 0;\n\t    bottom: 0;\n\t    left: -200px;\n\t    width: 200px;\n\t    background-color: #fff;\n\t    color: #313131;\n\t    -webkit-transition: all .3s ease;\n\t    transition: all .3s ease;\n\t    z-index: 99;\n\t    \n\t}\n\t.showside[_v-17c997a8] {\n\t   -webkit-transform: translateX(200px);\n\t           transform: translateX(200px);\n\t}\n\t\n\n\n\t/*侧边栏列表*/\n\t.list-ul[_v-17c997a8] {\n\t    margin: 0 24px;\n\t    border-top: 1px solid #d4d4d4;\n\t    overflow: hidden;\n\t    padding-top: 9%;\n\t    list-style-type: none;\n\t    \n\t}\n\n\t.list-ul>li[_v-17c997a8] {\n        font-size: 14px;\n        font-weight: 200;\n        padding: 9% 0;\n        text-align: left;\n        text-indent: 1px;\n        line-height: 15px;\n        color: #7f8c8d;\n        display: block;\n    }\n\n\t .list-ul>li[_v-17c997a8]:before{\n        color: #2c3e50;\n        margin: 0 20px;\n        font-size: 14px;\n    }\n\n    .list-ul>li[_v-17c997a8]:last-child {\n        margin-bottom: 50px;\n    }\n\n    .list-ul>.line[_v-17c997a8]{\n        border-top: 1px solid #d4d4d4;\n    }\n    .list-ul>a[_v-17c997a8] {\n        display: block;\n        color: #313131;\n    }\n", "", {"version":3,"sources":["/./src/components/Sidebar.vue?2270fc93"],"names":[],"mappings":";;;CAgDA;EACA,aAAA;EACA,YAAA;EACA;CACA;KACA,gBAAA;KACA,OAAA;KACA,SAAA;KACA,UAAA;KACA,QAAA;KACA,8BAAA;KACA,WAAA;EACA;CACA;EACA,gBAAA;KACA,OAAA;KACA,UAAA;KACA,aAAA;KACA,aAAA;KACA,uBAAA;KACA,eAAA;KACA,iCAAA;KAAA,yBAAA;KACA,YAAA;;EAEA;CACA;IACA,qCAAA;YAAA,6BAAA;EACA;;;;CAIA,SAAA;CACA;KACA,eAAA;KACA,8BAAA;KACA,iBAAA;KACA,gBAAA;KACA,sBAAA;;EAEA;;CAEA;QACA,gBAAA;QACA,iBAAA;QACA,cAAA;QACA,iBAAA;QACA,iBAAA;QACA,kBAAA;QACA,eAAA;QACA,eAAA;KACA;;EAEA;QACA,eAAA;QACA,eAAA;QACA,gBAAA;KACA;;IAEA;QACA,oBAAA;KACA;;IAEA;QACA,8BAAA;KACA;IACA;QACA,eAAA;QACA,eAAA;KACA","file":"Sidebar.vue","sourcesContent":["<template>\r\n\t<div class=\"page-cover\" v-if=\"showMenu\" @click=\"showCover\">\r\n\t</div>\r\n\r\n\t <section id=\"sideBar\" class=\"nav-list\" :class=\"{'showside':showMenu}\" >\r\n\t    <userheader></userheader>\r\n        <ul class=\"list-ul\">\r\n        \t<li v-for=\"item in menuItems\"  :class=\"item.icon\" v-link=\"{'name':item.link}\" @click=\"enterPage()\">{{item.text}}</li>\r\n        </ul>\r\n    </section>\r\n</template>\r\n\r\n<script type=\"text/javascript\">\r\n\r\n\timport UserHeader from './UserHeader.vue';\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\tconsole.log(\"进入sidebar\");\r\n\r\n\t\t},\r\n\t\treplace:true,\r\n\t\tprops:{\r\n\t\t\tmenuItems:{\r\n\t\t\t\ttype:Array,\r\n\t\t\t\tdefault:[]\r\n\t\t\t},\r\n\t\t\tshowMenu:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tshowCover(){\r\n\t\t\t\tthis.showMenu=!this.showMenu;\r\n\t\t\t},\r\n\t\t\tenterPage(){\r\n\t\t\t\talert('1');\r\n\t\t\t}\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tuserheader:UserHeader\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\r\n\r\n\tul{\r\n\t\tpadding: 0px;\r\n\t\tmargin: 0px;\r\n\t}\r\n\t.page-cover {\r\n\t    position: fixed;\r\n\t    top: 0;\r\n\t    right: 0;\r\n\t    bottom: 0;\r\n\t    left: 0;\r\n\t    background: rgba(0, 0, 0, .4);\r\n\t    z-index: 7;\r\n\t}\r\n\t.nav-list{\r\n\t\tposition: fixed;\r\n\t    top: 0;\r\n\t    bottom: 0;\r\n\t    left: -200px;\r\n\t    width: 200px;\r\n\t    background-color: #fff;\r\n\t    color: #313131;\r\n\t    transition: all .3s ease;\r\n\t    z-index: 99;\r\n\t    \r\n\t}\r\n\t.showside {\r\n\t   transform: translateX(200px);\r\n\t}\r\n\t\r\n\r\n\r\n\t/*侧边栏列表*/\r\n\t.list-ul {\r\n\t    margin: 0 24px;\r\n\t    border-top: 1px solid #d4d4d4;\r\n\t    overflow: hidden;\r\n\t    padding-top: 9%;\r\n\t    list-style-type: none;\r\n\t    \r\n\t}\r\n\r\n\t.list-ul>li {\r\n        font-size: 14px;\r\n        font-weight: 200;\r\n        padding: 9% 0;\r\n        text-align: left;\r\n        text-indent: 1px;\r\n        line-height: 15px;\r\n        color: #7f8c8d;\r\n        display: block;\r\n    }\r\n\r\n\t .list-ul>li:before{\r\n        color: #2c3e50;\r\n        margin: 0 20px;\r\n        font-size: 14px;\r\n    }\r\n\r\n    .list-ul>li:last-child {\r\n        margin-bottom: 50px;\r\n    }\r\n\r\n    .list-ul>.line{\r\n        border-top: 1px solid #d4d4d4;\r\n    }\r\n    .list-ul>a {\r\n        display: block;\r\n        color: #313131;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12811,4176 +12892,4322 @@
 		value: true
 	});
 	
-	var _ToolBar = __webpack_require__(9);
+	var _UserHeader = __webpack_require__(20);
 	
-	var _ToolBar2 = _interopRequireDefault(_ToolBar);
+	var _UserHeader2 = _interopRequireDefault(_UserHeader);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
 		created: function created() {
-			console.log("home is created");
+			console.log("进入sidebar");
 		},
 	
-		components: {
-			toolbar: _ToolBar2.default
-		},
-		data: function data() {
-			return {
-				title: '首页'
-			};
-		},
-	
-		methods: {
-			showMenu: function showMenu() {
-				this.$root.isShow = true;
+		replace: true,
+		props: {
+			menuItems: {
+				type: Array,
+				default: []
+			},
+			showMenu: {
+				type: Boolean,
+				default: false
 			}
+		},
+		methods: {
+			showCover: function showCover() {
+				this.showMenu = !this.showMenu;
+			},
+			enterPage: function enterPage() {
+				alert('1');
+			}
+		},
+		components: {
+			userheader: _UserHeader2.default
 		}
 	};
-	
 	// </script>
 
-	// <style>
+	// <style type="text/css" scoped>
 
+	// 	ul{
+	// 		padding: 0px;
+	// 		margin: 0px;
+	// 	}
+	// 	.page-cover {
+	// 	    position: fixed;
+	// 	    top: 0;
+	// 	    right: 0;
+	// 	    bottom: 0;
+	// 	    left: 0;
+	// 	    background: rgba(0, 0, 0, .4);
+	// 	    z-index: 7;
+	// 	}
+	// 	.nav-list{
+	// 		position: fixed;
+	// 	    top: 0;
+	// 	    bottom: 0;
+	// 	    left: -200px;
+	// 	    width: 200px;
+	// 	    background-color: #fff;
+	// 	    color: #313131;
+	// 	    transition: all .3s ease;
+	// 	    z-index: 99;
+
+	// 	}
+	// 	.showside {
+	// 	   transform: translateX(200px);
+	// 	}
+
+	// 	/*侧边栏列表*/
+	// 	.list-ul {
+	// 	    margin: 0 24px;
+	// 	    border-top: 1px solid #d4d4d4;
+	// 	    overflow: hidden;
+	// 	    padding-top: 9%;
+	// 	    list-style-type: none;
+
+	// 	}
+
+	// 	.list-ul>li {
+	//         font-size: 14px;
+	//         font-weight: 200;
+	//         padding: 9% 0;
+	//         text-align: left;
+	//         text-indent: 1px;
+	//         line-height: 15px;
+	//         color: #7f8c8d;
+	//         display: block;
+	//     }
+
+	// 	 .list-ul>li:before{
+	//         color: #2c3e50;
+	//         margin: 0 20px;
+	//         font-size: 14px;
+	//     }
+
+	//     .list-ul>li:last-child {
+	//         margin-bottom: 50px;
+	//     }
+
+	//     .list-ul>.line{
+	//         border-top: 1px solid #d4d4d4;
+	//     }
+	//     .list-ul>a {
+	//         display: block;
+	//         color: #313131;
+	//     }
 	// </style>
+	/* generated by vue-loader */
 	// <template>
+	// 	<div class="page-cover" v-if="showMenu" @click="showCover">
+	// 	</div>
 
-	// 		<toolbar :text="title">
-
-	// 			<span class="glyphicon glyphicon-menu-hamburger" slot="leftBtn" @click="showMenu"></span>
-
-	// 		</toolbar>
-
-	// 		<div class="container-fluid">
-
-	// 		</div>
-
+	// 	 <section id="sideBar" class="nav-list" :class="{'showside':showMenu}" >
+	// 	    <userheader></userheader>
+	//         <ul class="list-ul">
+	//         	<li v-for="item in menuItems"  :class="item.icon" v-link="{'name':item.link}" @click="enterPage()">{{item.text}}</li>
+	//         </ul>
+	//     </section>
 	// </template>
 
-	// <script lang="babel">
+	// <script type="text/javascript">
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(21)
+	__vue_script__ = __webpack_require__(23)
+	__vue_template__ = __webpack_require__(24)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile\\src\\components\\UserHeader.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
 
 /***/ },
 /* 21 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "<toolbar :text=\"title\">\r\n\t\t\t<span class=\"glyphicon glyphicon-menu-hamburger\" slot=\"leftBtn\" @click=\"showMenu\"></span>\r\n\t\t</toolbar>\r\n\t\t<div class=\"container-fluid\">\r\n\t\t\t\r\n\t\t</div>";
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(22);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(9)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-7fa4d89c&file=UserHeader.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./UserHeader.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-7fa4d89c&file=UserHeader.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./UserHeader.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
 
 /***/ },
 /* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
-	(function webpackUniversalModuleDefinition(root, factory) {
-		if(true)
-			module.exports = factory();
-		else if(typeof define === 'function' && define.amd)
-			define([], factory);
-		else if(typeof exports === 'object')
-			exports["VueStrap"] = factory();
-		else
-			root["VueStrap"] = factory();
-	})(this, function() {
-	return /******/ (function(modules) { // webpackBootstrap
-	/******/ 	// The module cache
-	/******/ 	var installedModules = {};
-	/******/
-	/******/ 	// The require function
-	/******/ 	function __webpack_require__(moduleId) {
-	/******/
-	/******/ 		// Check if module is in cache
-	/******/ 		if(installedModules[moduleId])
-	/******/ 			return installedModules[moduleId].exports;
-	/******/
-	/******/ 		// Create a new module (and put it into the cache)
-	/******/ 		var module = installedModules[moduleId] = {
-	/******/ 			exports: {},
-	/******/ 			id: moduleId,
-	/******/ 			loaded: false
-	/******/ 		};
-	/******/
-	/******/ 		// Execute the module function
-	/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-	/******/
-	/******/ 		// Flag the module as loaded
-	/******/ 		module.loaded = true;
-	/******/
-	/******/ 		// Return the exports of the module
-	/******/ 		return module.exports;
-	/******/ 	}
-	/******/
-	/******/
-	/******/ 	// expose the modules object (__webpack_modules__)
-	/******/ 	__webpack_require__.m = modules;
-	/******/
-	/******/ 	// expose the module cache
-	/******/ 	__webpack_require__.c = installedModules;
-	/******/
-	/******/ 	// __webpack_public_path__
-	/******/ 	__webpack_require__.p = "";
-	/******/
-	/******/ 	// Load entry module and return exports
-	/******/ 	return __webpack_require__(0);
-	/******/ })
-	/************************************************************************/
-	/******/ ([
-	/* 0 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		
-		var _Alert = __webpack_require__(23);
-		
-		var _Alert2 = _interopRequireDefault(_Alert);
-		
-		var _Carousel = __webpack_require__(30);
-		
-		var _Carousel2 = _interopRequireDefault(_Carousel);
-		
-		var _Slider = __webpack_require__(74);
-		
-		var _Slider2 = _interopRequireDefault(_Slider);
-		
-		var _Accordion = __webpack_require__(77);
-		
-		var _Accordion2 = _interopRequireDefault(_Accordion);
-		
-		var _Affix = __webpack_require__(80);
-		
-		var _Affix2 = _interopRequireDefault(_Affix);
-		
-		var _Aside = __webpack_require__(85);
-		
-		var _Aside2 = _interopRequireDefault(_Aside);
-		
-		var _checkboxGroup = __webpack_require__(91);
-		
-		var _checkboxGroup2 = _interopRequireDefault(_checkboxGroup);
-		
-		var _checkboxBtn = __webpack_require__(94);
-		
-		var _checkboxBtn2 = _interopRequireDefault(_checkboxBtn);
-		
-		var _Datepicker = __webpack_require__(97);
-		
-		var _Datepicker2 = _interopRequireDefault(_Datepicker);
-		
-		var _Dropdown = __webpack_require__(102);
-		
-		var _Dropdown2 = _interopRequireDefault(_Dropdown);
-		
-		var _Modal = __webpack_require__(105);
-		
-		var _Modal2 = _interopRequireDefault(_Modal);
-		
-		var _Option = __webpack_require__(110);
-		
-		var _Option2 = _interopRequireDefault(_Option);
-		
-		var _Panel = __webpack_require__(115);
-		
-		var _Panel2 = _interopRequireDefault(_Panel);
-		
-		var _Popover = __webpack_require__(120);
-		
-		var _Popover2 = _interopRequireDefault(_Popover);
-		
-		var _Progressbar = __webpack_require__(126);
-		
-		var _Progressbar2 = _interopRequireDefault(_Progressbar);
-		
-		var _radioBtn = __webpack_require__(129);
-		
-		var _radioBtn2 = _interopRequireDefault(_radioBtn);
-		
-		var _radioGroup = __webpack_require__(132);
-		
-		var _radioGroup2 = _interopRequireDefault(_radioGroup);
-		
-		var _Select = __webpack_require__(135);
-		
-		var _Select2 = _interopRequireDefault(_Select);
-		
-		var _Tab = __webpack_require__(149);
-		
-		var _Tab2 = _interopRequireDefault(_Tab);
-		
-		var _Tabset = __webpack_require__(154);
-		
-		var _Tabset2 = _interopRequireDefault(_Tabset);
-		
-		var _Tooltip = __webpack_require__(159);
-		
-		var _Tooltip2 = _interopRequireDefault(_Tooltip);
-		
-		var _Typeahead = __webpack_require__(164);
-		
-		var _Typeahead2 = _interopRequireDefault(_Typeahead);
-		
-		function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-		
-		var VueStrap = {
-		  alert: _Alert2.default,
-		  carousel: _Carousel2.default,
-		  slider: _Slider2.default,
-		  accordion: _Accordion2.default,
-		  affix: _Affix2.default,
-		  aside: _Aside2.default,
-		  checkboxBtn: _checkboxBtn2.default,
-		  checkboxGroup: _checkboxGroup2.default,
-		  datepicker: _Datepicker2.default,
-		  dropdown: _Dropdown2.default,
-		  modal: _Modal2.default,
-		  option: _Option2.default,
-		  panel: _Panel2.default,
-		  popover: _Popover2.default,
-		  progressbar: _Progressbar2.default,
-		  radioGroup: _radioGroup2.default,
-		  radioBtn: _radioBtn2.default,
-		  select: _Select2.default,
-		  tab: _Tab2.default,
-		  tabset: _Tabset2.default,
-		  tooltip: _Tooltip2.default,
-		  typeahead: _Typeahead2.default
-		};
-		
-		module.exports = VueStrap;
-	
-	/***/ },
-	/* 1 */,
-	/* 2 */,
-	/* 3 */,
-	/* 4 */,
-	/* 5 */,
-	/* 6 */,
-	/* 7 */,
-	/* 8 */,
-	/* 9 */,
-	/* 10 */,
-	/* 11 */,
-	/* 12 */,
-	/* 13 */,
-	/* 14 */,
-	/* 15 */,
-	/* 16 */,
-	/* 17 */,
-	/* 18 */,
-	/* 19 */,
-	/* 20 */,
-	/* 21 */,
-	/* 22 */,
-	/* 23 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(24)
-		module.exports = __webpack_require__(28)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(29)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Alert.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Alert.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Alert.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Alert.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Alert.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 24 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// style-loader: Adds some css to the DOM by adding a <style> tag
-		
-		// load the styles
-		var content = __webpack_require__(25);
-		if(typeof content === 'string') content = [[module.id, content, '']];
-		// add the styles to the DOM
-		var update = __webpack_require__(27)(content, {});
-		if(content.locals) module.exports = content.locals;
-		// Hot Module Replacement
-		if(false) {
-			// When the styles change, update the <style> tags
-			if(!content.locals) {
-				module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-cc8c6960&file=Alert.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Alert.vue", function() {
-					var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-cc8c6960&file=Alert.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Alert.vue");
-					if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-					update(newContent);
-				});
-			}
-			// When the module is disposed, remove the <style> tags
-			module.hot.dispose(function() { update(); });
-		}
-	
-	/***/ },
-	/* 25 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		exports = module.exports = __webpack_require__(26)();
-		// imports
-		
-		
-		// module
-		exports.push([module.id, ".fade-transition {\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n}\n.fade-enter,\n.fade-leave {\n  opacity: 0;\n}\n.alert.top {\n  position: fixed;\n  top: 30px;\n  margin: 0 auto;\n  left: 0;\n  right: 0;\n  z-index: 2;\n}\n.alert.top-right {\n  position: fixed;\n  top: 30px;\n  right: 50px;\n  z-index: 2;\n}", ""]);
-		
-		// exports
-	
-	
-	/***/ },
-	/* 26 */
-	/***/ function(module, exports) {
-	
-		/*
-			MIT License http://www.opensource.org/licenses/mit-license.php
-			Author Tobias Koppers @sokra
-		*/
-		// css base code, injected by the css-loader
-		module.exports = function() {
-			var list = [];
-		
-			// return the list of modules as css string
-			list.toString = function toString() {
-				var result = [];
-				for(var i = 0; i < this.length; i++) {
-					var item = this[i];
-					if(item[2]) {
-						result.push("@media " + item[2] + "{" + item[1] + "}");
-					} else {
-						result.push(item[1]);
-					}
-				}
-				return result.join("");
-			};
-		
-			// import a list of modules into the list
-			list.i = function(modules, mediaQuery) {
-				if(typeof modules === "string")
-					modules = [[null, modules, ""]];
-				var alreadyImportedModules = {};
-				for(var i = 0; i < this.length; i++) {
-					var id = this[i][0];
-					if(typeof id === "number")
-						alreadyImportedModules[id] = true;
-				}
-				for(i = 0; i < modules.length; i++) {
-					var item = modules[i];
-					// skip already imported module
-					// this implementation is not 100% perfect for weird media query combinations
-					//  when a module is imported multiple times with different media queries.
-					//  I hope this will never occur (Hey this way we have smaller bundles)
-					if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-						if(mediaQuery && !item[2]) {
-							item[2] = mediaQuery;
-						} else if(mediaQuery) {
-							item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-						}
-						list.push(item);
-					}
-				}
-			};
-			return list;
-		};
-	
-	
-	/***/ },
-	/* 27 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		/*
-			MIT License http://www.opensource.org/licenses/mit-license.php
-			Author Tobias Koppers @sokra
-		*/
-		var stylesInDom = {},
-			memoize = function(fn) {
-				var memo;
-				return function () {
-					if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-					return memo;
-				};
-			},
-			isOldIE = memoize(function() {
-				return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
-			}),
-			getHeadElement = memoize(function () {
-				return document.head || document.getElementsByTagName("head")[0];
-			}),
-			singletonElement = null,
-			singletonCounter = 0,
-			styleElementsInsertedAtTop = [];
-		
-		module.exports = function(list, options) {
-			if(false) {
-				if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-			}
-		
-			options = options || {};
-			// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-			// tags it will allow on a page
-			if (typeof options.singleton === "undefined") options.singleton = isOldIE();
-		
-			// By default, add <style> tags to the bottom of <head>.
-			if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
-		
-			var styles = listToStyles(list);
-			addStylesToDom(styles, options);
-		
-			return function update(newList) {
-				var mayRemove = [];
-				for(var i = 0; i < styles.length; i++) {
-					var item = styles[i];
-					var domStyle = stylesInDom[item.id];
-					domStyle.refs--;
-					mayRemove.push(domStyle);
-				}
-				if(newList) {
-					var newStyles = listToStyles(newList);
-					addStylesToDom(newStyles, options);
-				}
-				for(var i = 0; i < mayRemove.length; i++) {
-					var domStyle = mayRemove[i];
-					if(domStyle.refs === 0) {
-						for(var j = 0; j < domStyle.parts.length; j++)
-							domStyle.parts[j]();
-						delete stylesInDom[domStyle.id];
-					}
-				}
-			};
-		}
-		
-		function addStylesToDom(styles, options) {
-			for(var i = 0; i < styles.length; i++) {
-				var item = styles[i];
-				var domStyle = stylesInDom[item.id];
-				if(domStyle) {
-					domStyle.refs++;
-					for(var j = 0; j < domStyle.parts.length; j++) {
-						domStyle.parts[j](item.parts[j]);
-					}
-					for(; j < item.parts.length; j++) {
-						domStyle.parts.push(addStyle(item.parts[j], options));
-					}
-				} else {
-					var parts = [];
-					for(var j = 0; j < item.parts.length; j++) {
-						parts.push(addStyle(item.parts[j], options));
-					}
-					stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-				}
-			}
-		}
-		
-		function listToStyles(list) {
-			var styles = [];
-			var newStyles = {};
-			for(var i = 0; i < list.length; i++) {
-				var item = list[i];
-				var id = item[0];
-				var css = item[1];
-				var media = item[2];
-				var sourceMap = item[3];
-				var part = {css: css, media: media, sourceMap: sourceMap};
-				if(!newStyles[id])
-					styles.push(newStyles[id] = {id: id, parts: [part]});
-				else
-					newStyles[id].parts.push(part);
-			}
-			return styles;
-		}
-		
-		function insertStyleElement(options, styleElement) {
-			var head = getHeadElement();
-			var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
-			if (options.insertAt === "top") {
-				if(!lastStyleElementInsertedAtTop) {
-					head.insertBefore(styleElement, head.firstChild);
-				} else if(lastStyleElementInsertedAtTop.nextSibling) {
-					head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
-				} else {
-					head.appendChild(styleElement);
-				}
-				styleElementsInsertedAtTop.push(styleElement);
-			} else if (options.insertAt === "bottom") {
-				head.appendChild(styleElement);
-			} else {
-				throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
-			}
-		}
-		
-		function removeStyleElement(styleElement) {
-			styleElement.parentNode.removeChild(styleElement);
-			var idx = styleElementsInsertedAtTop.indexOf(styleElement);
-			if(idx >= 0) {
-				styleElementsInsertedAtTop.splice(idx, 1);
-			}
-		}
-		
-		function createStyleElement(options) {
-			var styleElement = document.createElement("style");
-			styleElement.type = "text/css";
-			insertStyleElement(options, styleElement);
-			return styleElement;
-		}
-		
-		function createLinkElement(options) {
-			var linkElement = document.createElement("link");
-			linkElement.rel = "stylesheet";
-			insertStyleElement(options, linkElement);
-			return linkElement;
-		}
-		
-		function addStyle(obj, options) {
-			var styleElement, update, remove;
-		
-			if (options.singleton) {
-				var styleIndex = singletonCounter++;
-				styleElement = singletonElement || (singletonElement = createStyleElement(options));
-				update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
-				remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
-			} else if(obj.sourceMap &&
-				typeof URL === "function" &&
-				typeof URL.createObjectURL === "function" &&
-				typeof URL.revokeObjectURL === "function" &&
-				typeof Blob === "function" &&
-				typeof btoa === "function") {
-				styleElement = createLinkElement(options);
-				update = updateLink.bind(null, styleElement);
-				remove = function() {
-					removeStyleElement(styleElement);
-					if(styleElement.href)
-						URL.revokeObjectURL(styleElement.href);
-				};
-			} else {
-				styleElement = createStyleElement(options);
-				update = applyToTag.bind(null, styleElement);
-				remove = function() {
-					removeStyleElement(styleElement);
-				};
-			}
-		
-			update(obj);
-		
-			return function updateStyle(newObj) {
-				if(newObj) {
-					if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
-						return;
-					update(obj = newObj);
-				} else {
-					remove();
-				}
-			};
-		}
-		
-		var replaceText = (function () {
-			var textStore = [];
-		
-			return function (index, replacement) {
-				textStore[index] = replacement;
-				return textStore.filter(Boolean).join('\n');
-			};
-		})();
-		
-		function applyToSingletonTag(styleElement, index, remove, obj) {
-			var css = remove ? "" : obj.css;
-		
-			if (styleElement.styleSheet) {
-				styleElement.styleSheet.cssText = replaceText(index, css);
-			} else {
-				var cssNode = document.createTextNode(css);
-				var childNodes = styleElement.childNodes;
-				if (childNodes[index]) styleElement.removeChild(childNodes[index]);
-				if (childNodes.length) {
-					styleElement.insertBefore(cssNode, childNodes[index]);
-				} else {
-					styleElement.appendChild(cssNode);
-				}
-			}
-		}
-		
-		function applyToTag(styleElement, obj) {
-			var css = obj.css;
-			var media = obj.media;
-			var sourceMap = obj.sourceMap;
-		
-			if(media) {
-				styleElement.setAttribute("media", media)
-			}
-		
-			if(styleElement.styleSheet) {
-				styleElement.styleSheet.cssText = css;
-			} else {
-				while(styleElement.firstChild) {
-					styleElement.removeChild(styleElement.firstChild);
-				}
-				styleElement.appendChild(document.createTextNode(css));
-			}
-		}
-		
-		function updateLink(linkElement, obj) {
-			var css = obj.css;
-			var media = obj.media;
-			var sourceMap = obj.sourceMap;
-		
-			if(sourceMap) {
-				// http://stackoverflow.com/a/26603875
-				css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-			}
-		
-			var blob = new Blob([css], { type: "text/css" });
-		
-			var oldSrc = linkElement.href;
-		
-			linkElement.href = URL.createObjectURL(blob);
-		
-			if(oldSrc)
-				URL.revokeObjectURL(oldSrc);
-		}
-	
-	
-	/***/ },
-	/* 28 */
-	/***/ function(module, exports) {
-	
-		"use strict";
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		exports.default = {
-		  props: {
-		    type: {
-		      type: String
-		    },
-		    dismissable: {
-		      type: Boolean,
-		      default: false
-		    },
-		    show: {
-		      type: Boolean,
-		      default: true,
-		      twoWay: true
-		    },
-		    duration: {
-		      type: Number,
-		      default: 0
-		    },
-		    width: {
-		      type: String
-		    },
-		    placement: {
-		      type: String
-		    }
-		  },
-		  watch: {
-		    show: function show(val) {
-		      var _this = this;
-		
-		      if (this._timeout) clearTimeout(this._timeout);
-		      if (val && !!this.duration) {
-		        this._timeout = setTimeout(function () {
-		          return _this.show = false;
-		        }, this.duration);
-		      }
-		    }
-		  }
-		};
-	
-	/***/ },
-	/* 29 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div\n    v-show=\"show\"\n    v-bind:class=\"{\n      'alert':\t\ttrue,\n      'alert-success':(type == 'success'),\n      'alert-warning':(type == 'warning'),\n      'alert-info':\t(type == 'info'),\n      'alert-danger':\t(type == 'danger'),\n      'top': \t\t\t(placement === 'top'),\n      'top-right': \t(placement === 'top-right')\n    }\"\n    transition=\"fade\"\n    v-bind:style=\"{width:width}\"\n    role=\"alert\">\n    <button v-show=\"dismissable\" type=\"button\" class=\"close\"\n      @click=\"show = false\">\n      <span>&times;</span>\n    </button>\n    <slot></slot>\n  </div>";
-	
-	/***/ },
-	/* 30 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(31)
-		module.exports = __webpack_require__(33)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(73)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Carousel.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Carousel.vue","-!vue-html!./../node_modules/vue-loader/lib/template-rewriter.js?id=_v-1ce6791c&file=Carousel.vue!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Carousel.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Carousel.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/template-rewriter.js?id=_v-1ce6791c&file=Carousel.vue!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Carousel.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 31 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// style-loader: Adds some css to the DOM by adding a <style> tag
-		
-		// load the styles
-		var content = __webpack_require__(32);
-		if(typeof content === 'string') content = [[module.id, content, '']];
-		// add the styles to the DOM
-		var update = __webpack_require__(27)(content, {});
-		if(content.locals) module.exports = content.locals;
-		// Hot Module Replacement
-		if(false) {
-			// When the styles change, update the <style> tags
-			if(!content.locals) {
-				module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-1ce6791c&file=Carousel.vue&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Carousel.vue", function() {
-					var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-1ce6791c&file=Carousel.vue&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Carousel.vue");
-					if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-					update(newContent);
-				});
-			}
-			// When the module is disposed, remove the <style> tags
-			module.hot.dispose(function() { update(); });
-		}
-	
-	/***/ },
-	/* 32 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		exports = module.exports = __webpack_require__(26)();
-		// imports
-		
-		
-		// module
-		exports.push([module.id, ".carousel-control[_v-1ce6791c] {\n    cursor: pointer;\n  }", ""]);
-		
-		// exports
-	
-	
-	/***/ },
-	/* 33 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		
-		var _toConsumableArray2 = __webpack_require__(34);
-		
-		var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-		
-		var _EventListener = __webpack_require__(72);
-		
-		var _EventListener2 = _interopRequireDefault(_EventListener);
-		
-		function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-		
-		exports.default = {
-		  props: {
-		    indicators: {
-		      type: Boolean,
-		      default: true
-		    },
-		    controls: {
-		      type: Boolean,
-		      default: true
-		    },
-		    interval: {
-		      type: Number,
-		      default: 5000
-		    }
-		  },
-		  components: {
-		    'indicator': {
-		      inherit: true,
-		      template: '<li v-for="i in indicator" @click="handleIndicatorClick($index)" v-bind:class="{\'active\':$index === activeIndex}"</li>',
-		      methods: {
-		        handleIndicatorClick: function handleIndicatorClick(index) {
-		          if (this.isAnimating) return false;
-		          this.isAnimating = true;
-		          this.activeIndex = index;
-		        }
-		      }
-		    }
-		  },
-		  data: function data() {
-		    return {
-		      indicator: [],
-		      activeIndex: 0,
-		      isAnimating: false
-		    };
-		  },
-		
-		  computed: {
-		    slider: function slider() {
-		      return this.$el.querySelectorAll('.item');
-		    }
-		  },
-		  watch: {
-		    activeIndex: function activeIndex(newVal, oldVal) {
-		      newVal > oldVal ? this.slide('left', newVal, oldVal) : this.slide('right', newVal, oldVal);
-		    }
-		  },
-		  methods: {
-		    slide: function slide(direction, selected, prev) {
-		      var _this = this;
-		
-		      if (this._prevSelectedEvent) this._prevSelectedEvent.remove();
-		      if (this._selectedEvent) this._selectedEvent.remove();
-		
-		      var prevSelectedEl = this.slider[prev];
-		      var selectedEl = this.slider[selected];
-		      var transitionendFn = function transitionendFn() {
-		        [].concat((0, _toConsumableArray3.default)(_this.slider)).forEach(function (el) {
-		          return el.className = 'item';
-		        });
-		        selectedEl.classList.add('active');
-		        _this.isAnimating = false;
-		      };
-		
-		      direction === 'left' ? selectedEl.classList.add('next') : selectedEl.classList.add('prev');
-		      // request property that requires layout to force a layout
-		      var x = selectedEl.clientHeight;
-		      this._prevSelectedEvent = _EventListener2.default.listen(prevSelectedEl, 'transitionend', transitionendFn);
-		      this._selectedEvent = _EventListener2.default.listen(selectedEl, 'transitionend', transitionendFn);
-		      prevSelectedEl.classList.add(direction);
-		      selectedEl.classList.add(direction);
-		    },
-		    nextClick: function nextClick() {
-		      if (this.isAnimating) return false;
-		      this.isAnimating = true;
-		      this.activeIndex + 1 < this.slider.length ? this.activeIndex += 1 : this.activeIndex = 0;
-		    },
-		    prevClick: function prevClick() {
-		      if (this.isAnimating) return false;
-		      this.isAnimating = true;
-		      this.activeIndex === 0 ? this.activeIndex = this.slider.length - 1 : this.activeIndex -= 1;
-		    }
-		  },
-		  ready: function ready() {
-		    var _this2 = this;
-		
-		    var intervalID = null;
-		    var el = this.$el;
-		    function intervalManager(flag, func, time) {
-		      flag ? intervalID = setInterval(func, time) : clearInterval(intervalID);
-		    }
-		    if (!!this.interval) {
-		      intervalManager(true, this.nextClick, this.interval);
-		      el.addEventListener('mouseenter', function () {
-		        return intervalManager(false);
-		      });
-		      el.addEventListener('mouseleave', function () {
-		        return intervalManager(true, _this2.nextClick, _this2.interval);
-		      });
-		    }
-		  }
-		};
-	
-	/***/ },
-	/* 34 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		"use strict";
-		
-		var _from = __webpack_require__(35);
-		
-		var _from2 = _interopRequireDefault(_from);
-		
-		function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-		
-		exports.default = function (arr) {
-		  if (Array.isArray(arr)) {
-		    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
-		      arr2[i] = arr[i];
-		    }
-		
-		    return arr2;
-		  } else {
-		    return (0, _from2.default)(arr);
-		  }
-		};
-		
-		exports.__esModule = true;
-	
-	/***/ },
-	/* 35 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		module.exports = { "default": __webpack_require__(36), __esModule: true };
-	
-	/***/ },
-	/* 36 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(37);
-		__webpack_require__(61);
-		module.exports = __webpack_require__(45).Array.from;
-	
-	/***/ },
-	/* 37 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		var $at  = __webpack_require__(38)(true);
-		
-		// 21.1.3.27 String.prototype[@@iterator]()
-		__webpack_require__(41)(String, 'String', function(iterated){
-		  this._t = String(iterated); // target
-		  this._i = 0;                // next index
-		// 21.1.5.2.1 %StringIteratorPrototype%.next()
-		}, function(){
-		  var O     = this._t
-		    , index = this._i
-		    , point;
-		  if(index >= O.length)return {value: undefined, done: true};
-		  point = $at(O, index);
-		  this._i += point.length;
-		  return {value: point, done: false};
-		});
-	
-	/***/ },
-	/* 38 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		var toInteger = __webpack_require__(39)
-		  , defined   = __webpack_require__(40);
-		// true  -> String#at
-		// false -> String#codePointAt
-		module.exports = function(TO_STRING){
-		  return function(that, pos){
-		    var s = String(defined(that))
-		      , i = toInteger(pos)
-		      , l = s.length
-		      , a, b;
-		    if(i < 0 || i >= l)return TO_STRING ? '' : undefined;
-		    a = s.charCodeAt(i);
-		    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
-		      ? TO_STRING ? s.charAt(i) : a
-		      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
-		  };
-		};
-	
-	/***/ },
-	/* 39 */
-	/***/ function(module, exports) {
-	
-		// 7.1.4 ToInteger
-		var ceil  = Math.ceil
-		  , floor = Math.floor;
-		module.exports = function(it){
-		  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
-		};
-	
-	/***/ },
-	/* 40 */
-	/***/ function(module, exports) {
-	
-		// 7.2.1 RequireObjectCoercible(argument)
-		module.exports = function(it){
-		  if(it == undefined)throw TypeError("Can't call method on  " + it);
-		  return it;
-		};
-	
-	/***/ },
-	/* 41 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		var LIBRARY        = __webpack_require__(42)
-		  , $export        = __webpack_require__(43)
-		  , redefine       = __webpack_require__(48)
-		  , hide           = __webpack_require__(49)
-		  , has            = __webpack_require__(54)
-		  , Iterators      = __webpack_require__(55)
-		  , $iterCreate    = __webpack_require__(56)
-		  , setToStringTag = __webpack_require__(57)
-		  , getProto       = __webpack_require__(50).getProto
-		  , ITERATOR       = __webpack_require__(58)('iterator')
-		  , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
-		  , FF_ITERATOR    = '@@iterator'
-		  , KEYS           = 'keys'
-		  , VALUES         = 'values';
-		
-		var returnThis = function(){ return this; };
-		
-		module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED){
-		  $iterCreate(Constructor, NAME, next);
-		  var getMethod = function(kind){
-		    if(!BUGGY && kind in proto)return proto[kind];
-		    switch(kind){
-		      case KEYS: return function keys(){ return new Constructor(this, kind); };
-		      case VALUES: return function values(){ return new Constructor(this, kind); };
-		    } return function entries(){ return new Constructor(this, kind); };
-		  };
-		  var TAG        = NAME + ' Iterator'
-		    , DEF_VALUES = DEFAULT == VALUES
-		    , VALUES_BUG = false
-		    , proto      = Base.prototype
-		    , $native    = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT]
-		    , $default   = $native || getMethod(DEFAULT)
-		    , methods, key;
-		  // Fix native
-		  if($native){
-		    var IteratorPrototype = getProto($default.call(new Base));
-		    // Set @@toStringTag to native iterators
-		    setToStringTag(IteratorPrototype, TAG, true);
-		    // FF fix
-		    if(!LIBRARY && has(proto, FF_ITERATOR))hide(IteratorPrototype, ITERATOR, returnThis);
-		    // fix Array#{values, @@iterator}.name in V8 / FF
-		    if(DEF_VALUES && $native.name !== VALUES){
-		      VALUES_BUG = true;
-		      $default = function values(){ return $native.call(this); };
-		    }
-		  }
-		  // Define iterator
-		  if((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])){
-		    hide(proto, ITERATOR, $default);
-		  }
-		  // Plug for library
-		  Iterators[NAME] = $default;
-		  Iterators[TAG]  = returnThis;
-		  if(DEFAULT){
-		    methods = {
-		      values:  DEF_VALUES  ? $default : getMethod(VALUES),
-		      keys:    IS_SET      ? $default : getMethod(KEYS),
-		      entries: !DEF_VALUES ? $default : getMethod('entries')
-		    };
-		    if(FORCED)for(key in methods){
-		      if(!(key in proto))redefine(proto, key, methods[key]);
-		    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
-		  }
-		  return methods;
-		};
-	
-	/***/ },
-	/* 42 */
-	/***/ function(module, exports) {
-	
-		module.exports = true;
-	
-	/***/ },
-	/* 43 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		var global    = __webpack_require__(44)
-		  , core      = __webpack_require__(45)
-		  , ctx       = __webpack_require__(46)
-		  , PROTOTYPE = 'prototype';
-		
-		var $export = function(type, name, source){
-		  var IS_FORCED = type & $export.F
-		    , IS_GLOBAL = type & $export.G
-		    , IS_STATIC = type & $export.S
-		    , IS_PROTO  = type & $export.P
-		    , IS_BIND   = type & $export.B
-		    , IS_WRAP   = type & $export.W
-		    , exports   = IS_GLOBAL ? core : core[name] || (core[name] = {})
-		    , target    = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE]
-		    , key, own, out;
-		  if(IS_GLOBAL)source = name;
-		  for(key in source){
-		    // contains in native
-		    own = !IS_FORCED && target && key in target;
-		    if(own && key in exports)continue;
-		    // export native or passed
-		    out = own ? target[key] : source[key];
-		    // prevent global pollution for namespaces
-		    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
-		    // bind timers to global for call from export context
-		    : IS_BIND && own ? ctx(out, global)
-		    // wrap global constructors for prevent change them in library
-		    : IS_WRAP && target[key] == out ? (function(C){
-		      var F = function(param){
-		        return this instanceof C ? new C(param) : C(param);
-		      };
-		      F[PROTOTYPE] = C[PROTOTYPE];
-		      return F;
-		    // make static versions for prototype methods
-		    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
-		    if(IS_PROTO)(exports[PROTOTYPE] || (exports[PROTOTYPE] = {}))[key] = out;
-		  }
-		};
-		// type bitmap
-		$export.F = 1;  // forced
-		$export.G = 2;  // global
-		$export.S = 4;  // static
-		$export.P = 8;  // proto
-		$export.B = 16; // bind
-		$export.W = 32; // wrap
-		module.exports = $export;
-	
-	/***/ },
-	/* 44 */
-	/***/ function(module, exports) {
-	
-		// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-		var global = module.exports = typeof window != 'undefined' && window.Math == Math
-		  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
-		if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
-	
-	/***/ },
-	/* 45 */
-	/***/ function(module, exports) {
-	
-		var core = module.exports = {version: '1.2.6'};
-		if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
-	
-	/***/ },
-	/* 46 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// optional / simple context binding
-		var aFunction = __webpack_require__(47);
-		module.exports = function(fn, that, length){
-		  aFunction(fn);
-		  if(that === undefined)return fn;
-		  switch(length){
-		    case 1: return function(a){
-		      return fn.call(that, a);
-		    };
-		    case 2: return function(a, b){
-		      return fn.call(that, a, b);
-		    };
-		    case 3: return function(a, b, c){
-		      return fn.call(that, a, b, c);
-		    };
-		  }
-		  return function(/* ...args */){
-		    return fn.apply(that, arguments);
-		  };
-		};
-	
-	/***/ },
-	/* 47 */
-	/***/ function(module, exports) {
-	
-		module.exports = function(it){
-		  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
-		  return it;
-		};
-	
-	/***/ },
-	/* 48 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		module.exports = __webpack_require__(49);
-	
-	/***/ },
-	/* 49 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		var $          = __webpack_require__(50)
-		  , createDesc = __webpack_require__(51);
-		module.exports = __webpack_require__(52) ? function(object, key, value){
-		  return $.setDesc(object, key, createDesc(1, value));
-		} : function(object, key, value){
-		  object[key] = value;
-		  return object;
-		};
-	
-	/***/ },
-	/* 50 */
-	/***/ function(module, exports) {
-	
-		var $Object = Object;
-		module.exports = {
-		  create:     $Object.create,
-		  getProto:   $Object.getPrototypeOf,
-		  isEnum:     {}.propertyIsEnumerable,
-		  getDesc:    $Object.getOwnPropertyDescriptor,
-		  setDesc:    $Object.defineProperty,
-		  setDescs:   $Object.defineProperties,
-		  getKeys:    $Object.keys,
-		  getNames:   $Object.getOwnPropertyNames,
-		  getSymbols: $Object.getOwnPropertySymbols,
-		  each:       [].forEach
-		};
-	
-	/***/ },
-	/* 51 */
-	/***/ function(module, exports) {
-	
-		module.exports = function(bitmap, value){
-		  return {
-		    enumerable  : !(bitmap & 1),
-		    configurable: !(bitmap & 2),
-		    writable    : !(bitmap & 4),
-		    value       : value
-		  };
-		};
-	
-	/***/ },
-	/* 52 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// Thank's IE8 for his funny defineProperty
-		module.exports = !__webpack_require__(53)(function(){
-		  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
-		});
-	
-	/***/ },
-	/* 53 */
-	/***/ function(module, exports) {
-	
-		module.exports = function(exec){
-		  try {
-		    return !!exec();
-		  } catch(e){
-		    return true;
-		  }
-		};
-	
-	/***/ },
-	/* 54 */
-	/***/ function(module, exports) {
-	
-		var hasOwnProperty = {}.hasOwnProperty;
-		module.exports = function(it, key){
-		  return hasOwnProperty.call(it, key);
-		};
-	
-	/***/ },
-	/* 55 */
-	/***/ function(module, exports) {
-	
-		module.exports = {};
-	
-	/***/ },
-	/* 56 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		var $              = __webpack_require__(50)
-		  , descriptor     = __webpack_require__(51)
-		  , setToStringTag = __webpack_require__(57)
-		  , IteratorPrototype = {};
-		
-		// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-		__webpack_require__(49)(IteratorPrototype, __webpack_require__(58)('iterator'), function(){ return this; });
-		
-		module.exports = function(Constructor, NAME, next){
-		  Constructor.prototype = $.create(IteratorPrototype, {next: descriptor(1, next)});
-		  setToStringTag(Constructor, NAME + ' Iterator');
-		};
-	
-	/***/ },
-	/* 57 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		var def = __webpack_require__(50).setDesc
-		  , has = __webpack_require__(54)
-		  , TAG = __webpack_require__(58)('toStringTag');
-		
-		module.exports = function(it, tag, stat){
-		  if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
-		};
-	
-	/***/ },
-	/* 58 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		var store  = __webpack_require__(59)('wks')
-		  , uid    = __webpack_require__(60)
-		  , Symbol = __webpack_require__(44).Symbol;
-		module.exports = function(name){
-		  return store[name] || (store[name] =
-		    Symbol && Symbol[name] || (Symbol || uid)('Symbol.' + name));
-		};
-	
-	/***/ },
-	/* 59 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		var global = __webpack_require__(44)
-		  , SHARED = '__core-js_shared__'
-		  , store  = global[SHARED] || (global[SHARED] = {});
-		module.exports = function(key){
-		  return store[key] || (store[key] = {});
-		};
-	
-	/***/ },
-	/* 60 */
-	/***/ function(module, exports) {
-	
-		var id = 0
-		  , px = Math.random();
-		module.exports = function(key){
-		  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
-		};
-	
-	/***/ },
-	/* 61 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		var ctx         = __webpack_require__(46)
-		  , $export     = __webpack_require__(43)
-		  , toObject    = __webpack_require__(62)
-		  , call        = __webpack_require__(63)
-		  , isArrayIter = __webpack_require__(66)
-		  , toLength    = __webpack_require__(67)
-		  , getIterFn   = __webpack_require__(68);
-		$export($export.S + $export.F * !__webpack_require__(71)(function(iter){ Array.from(iter); }), 'Array', {
-		  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
-		  from: function from(arrayLike/*, mapfn = undefined, thisArg = undefined*/){
-		    var O       = toObject(arrayLike)
-		      , C       = typeof this == 'function' ? this : Array
-		      , $$      = arguments
-		      , $$len   = $$.length
-		      , mapfn   = $$len > 1 ? $$[1] : undefined
-		      , mapping = mapfn !== undefined
-		      , index   = 0
-		      , iterFn  = getIterFn(O)
-		      , length, result, step, iterator;
-		    if(mapping)mapfn = ctx(mapfn, $$len > 2 ? $$[2] : undefined, 2);
-		    // if object isn't iterable or it's array with default iterator - use simple case
-		    if(iterFn != undefined && !(C == Array && isArrayIter(iterFn))){
-		      for(iterator = iterFn.call(O), result = new C; !(step = iterator.next()).done; index++){
-		        result[index] = mapping ? call(iterator, mapfn, [step.value, index], true) : step.value;
-		      }
-		    } else {
-		      length = toLength(O.length);
-		      for(result = new C(length); length > index; index++){
-		        result[index] = mapping ? mapfn(O[index], index) : O[index];
-		      }
-		    }
-		    result.length = index;
-		    return result;
-		  }
-		});
-	
-	
-	/***/ },
-	/* 62 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// 7.1.13 ToObject(argument)
-		var defined = __webpack_require__(40);
-		module.exports = function(it){
-		  return Object(defined(it));
-		};
-	
-	/***/ },
-	/* 63 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// call something on iterator step with safe closing on error
-		var anObject = __webpack_require__(64);
-		module.exports = function(iterator, fn, value, entries){
-		  try {
-		    return entries ? fn(anObject(value)[0], value[1]) : fn(value);
-		  // 7.4.6 IteratorClose(iterator, completion)
-		  } catch(e){
-		    var ret = iterator['return'];
-		    if(ret !== undefined)anObject(ret.call(iterator));
-		    throw e;
-		  }
-		};
-	
-	/***/ },
-	/* 64 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		var isObject = __webpack_require__(65);
-		module.exports = function(it){
-		  if(!isObject(it))throw TypeError(it + ' is not an object!');
-		  return it;
-		};
-	
-	/***/ },
-	/* 65 */
-	/***/ function(module, exports) {
-	
-		module.exports = function(it){
-		  return typeof it === 'object' ? it !== null : typeof it === 'function';
-		};
-	
-	/***/ },
-	/* 66 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// check on default Array iterator
-		var Iterators  = __webpack_require__(55)
-		  , ITERATOR   = __webpack_require__(58)('iterator')
-		  , ArrayProto = Array.prototype;
-		
-		module.exports = function(it){
-		  return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
-		};
-	
-	/***/ },
-	/* 67 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// 7.1.15 ToLength
-		var toInteger = __webpack_require__(39)
-		  , min       = Math.min;
-		module.exports = function(it){
-		  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
-		};
-	
-	/***/ },
-	/* 68 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		var classof   = __webpack_require__(69)
-		  , ITERATOR  = __webpack_require__(58)('iterator')
-		  , Iterators = __webpack_require__(55);
-		module.exports = __webpack_require__(45).getIteratorMethod = function(it){
-		  if(it != undefined)return it[ITERATOR]
-		    || it['@@iterator']
-		    || Iterators[classof(it)];
-		};
-	
-	/***/ },
-	/* 69 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// getting tag from 19.1.3.6 Object.prototype.toString()
-		var cof = __webpack_require__(70)
-		  , TAG = __webpack_require__(58)('toStringTag')
-		  // ES3 wrong here
-		  , ARG = cof(function(){ return arguments; }()) == 'Arguments';
-		
-		module.exports = function(it){
-		  var O, T, B;
-		  return it === undefined ? 'Undefined' : it === null ? 'Null'
-		    // @@toStringTag case
-		    : typeof (T = (O = Object(it))[TAG]) == 'string' ? T
-		    // builtinTag case
-		    : ARG ? cof(O)
-		    // ES3 arguments fallback
-		    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
-		};
-	
-	/***/ },
-	/* 70 */
-	/***/ function(module, exports) {
-	
-		var toString = {}.toString;
-		
-		module.exports = function(it){
-		  return toString.call(it).slice(8, -1);
-		};
-	
-	/***/ },
-	/* 71 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		var ITERATOR     = __webpack_require__(58)('iterator')
-		  , SAFE_CLOSING = false;
-		
-		try {
-		  var riter = [7][ITERATOR]();
-		  riter['return'] = function(){ SAFE_CLOSING = true; };
-		  Array.from(riter, function(){ throw 2; });
-		} catch(e){ /* empty */ }
-		
-		module.exports = function(exec, skipClosing){
-		  if(!skipClosing && !SAFE_CLOSING)return false;
-		  var safe = false;
-		  try {
-		    var arr  = [7]
-		      , iter = arr[ITERATOR]();
-		    iter.next = function(){ safe = true; };
-		    arr[ITERATOR] = function(){ return iter; };
-		    exec(arr);
-		  } catch(e){ /* empty */ }
-		  return safe;
-		};
-	
-	/***/ },
-	/* 72 */
-	/***/ function(module, exports) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		var EventListener = {
-		  /**
-		   * Listen to DOM events during the bubble phase.
-		   *
-		   * @param {DOMEventTarget} target DOM element to register listener on.
-		   * @param {string} eventType Event type, e.g. 'click' or 'mouseover'.
-		   * @param {function} callback Callback function.
-		   * @return {object} Object with a `remove` method.
-		   */
-		
-		  listen: function listen(target, eventType, callback) {
-		    if (target.addEventListener) {
-		      target.addEventListener(eventType, callback, false);
-		      return {
-		        remove: function remove() {
-		          target.removeEventListener(eventType, callback, false);
-		        }
-		      };
-		    } else if (target.attachEvent) {
-		      target.attachEvent('on' + eventType, callback);
-		      return {
-		        remove: function remove() {
-		          target.detachEvent('on' + eventType, callback);
-		        }
-		      };
-		    }
-		  }
-		};
-		
-		exports.default = EventListener;
-	
-	/***/ },
-	/* 73 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div class=\"carousel slide\" data-ride=\"carousel\" _v-1ce6791c=\"\">\n  <!-- Indicators -->\n  <ol class=\"carousel-indicators\" v-show=\"indicators\" _v-1ce6791c=\"\">\n    <indicator _v-1ce6791c=\"\"></indicator>\n  </ol>\n  <!-- Wrapper for slides -->\n  <div class=\"carousel-inner\" role=\"listbox\" _v-1ce6791c=\"\">\n    <slot _v-1ce6791c=\"\"></slot>\n  </div>\n  <!-- Controls -->\n  <a v-show=\"controls\" class=\"left carousel-control\" @click=\"prevClick\" _v-1ce6791c=\"\">\n    <span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\" _v-1ce6791c=\"\"></span>\n    <span class=\"sr-only\" _v-1ce6791c=\"\">Previous</span>\n  </a>\n  <a v-show=\"controls\" class=\"right carousel-control\" @click=\"nextClick\" _v-1ce6791c=\"\">\n    <span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\" _v-1ce6791c=\"\"></span>\n    <span class=\"sr-only\" _v-1ce6791c=\"\">Next</span>\n  </a>\n</div>";
-	
-	/***/ },
-	/* 74 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		module.exports = __webpack_require__(75)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(76)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Slider.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Slider.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Slider.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Slider.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Slider.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 75 */
-	/***/ function(module, exports) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		exports.default = {
-		  data: function data() {
-		    return {
-		      index: 0,
-		      show: false
-		    };
-		  },
-		
-		  computed: {
-		    show: function show() {
-		      return this.$parent.activeIndex === this.index;
-		    }
-		  },
-		  ready: function ready() {
-		    for (var c in this.$parent.$children) {
-		      if (this.$parent.$children[c].$el == this.$el) {
-		        this.index = c;
-		        break;
-		      }
-		    }
-		    //this.index = [...this.$el.parentNode.children].indexOf(this.$el)
-		    this.$parent.indicator.push(this.index);
-		    if (this.index === 0) {
-		      this.$el.classList.add('active');
-		    }
-		  }
-		};
-	
-	/***/ },
-	/* 76 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div class=\"item\">\n    <slot></slot>\n  </div>";
-	
-	/***/ },
-	/* 77 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		module.exports = __webpack_require__(78)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(79)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Accordion.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Accordion.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Accordion.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Accordion.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Accordion.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 78 */
-	/***/ function(module, exports) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		exports.default = {
-		  props: {
-		    oneAtATime: {
-		      type: Boolean,
-		      default: false
-		    }
-		  },
-		  created: function created() {
-		    var _this = this;
-		
-		    this.$on('isOpenEvent', function (child) {
-		      if (_this.oneAtATime) {
-		        _this.$children.forEach(function (item) {
-		          if (child !== item) {
-		            item.isOpen = false;
-		          }
-		        });
-		      }
-		    });
-		  }
-		};
-	
-	/***/ },
-	/* 79 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div class=\"panel-group\">\n    <slot></slot>\n  </div>";
-	
-	/***/ },
-	/* 80 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(81)
-		module.exports = __webpack_require__(83)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(84)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Affix.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Affix.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Affix.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Affix.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Affix.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 81 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// style-loader: Adds some css to the DOM by adding a <style> tag
-		
-		// load the styles
-		var content = __webpack_require__(82);
-		if(typeof content === 'string') content = [[module.id, content, '']];
-		// add the styles to the DOM
-		var update = __webpack_require__(27)(content, {});
-		if(content.locals) module.exports = content.locals;
-		// Hot Module Replacement
-		if(false) {
-			// When the styles change, update the <style> tags
-			if(!content.locals) {
-				module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-5035b9c4&file=Affix.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Affix.vue", function() {
-					var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-5035b9c4&file=Affix.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Affix.vue");
-					if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-					update(newContent);
-				});
-			}
-			// When the module is disposed, remove the <style> tags
-			module.hot.dispose(function() { update(); });
-		}
-	
-	/***/ },
-	/* 82 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		exports = module.exports = __webpack_require__(26)();
-		// imports
-		
-		
-		// module
-		exports.push([module.id, ".vue-affix {\n    position: fixed;\n  }", ""]);
-		
-		// exports
-	
-	
-	/***/ },
-	/* 83 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		
-		var _EventListener = __webpack_require__(72);
-		
-		var _EventListener2 = _interopRequireDefault(_EventListener);
-		
-		function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-		
-		exports.default = {
-		  props: {
-		    offset: {
-		      type: Number,
-		      default: 0
-		    }
-		  },
-		  data: function data() {
-		    return {
-		      affixed: false,
-		      styles: {}
-		    };
-		  },
-		
-		  methods: {
-		    scrolling: function scrolling() {
-		      var scrollTop = this.getScroll(window, true);
-		      var elementOffset = this.getOffset(this.$el);
-		      if (!this.affixed && scrollTop > elementOffset.top) {
-		        this.affixed = true;
-		        this.styles = {
-		          top: this.offset + 'px',
-		          left: elementOffset.left + 'px',
-		          width: this.$el.offsetWidth + 'px'
-		        };
-		      }
-		      if (this.affixed && scrollTop < elementOffset.top) {
-		        this.affixed = false;
-		        this.styles = {};
-		      }
-		    },
-		
-		    // from https://github.com/ant-design/ant-design/blob/master/components/affix/index.jsx#L20
-		    getScroll: function getScroll(w, top) {
-		      var ret = w['page' + (top ? 'Y' : 'X') + 'Offset'];
-		      var method = 'scroll' + (top ? 'Top' : 'Left');
-		      if (typeof ret !== 'number') {
-		        var d = w.document;
-		        // ie6,7,8 standard mode
-		        ret = d.documentElement[method];
-		        if (typeof ret !== 'number') {
-		          // quirks mode
-		          ret = d.body[method];
-		        }
-		      }
-		      return ret;
-		    },
-		    getOffset: function getOffset(element) {
-		      var rect = element.getBoundingClientRect();
-		      var body = document.body;
-		      var clientTop = element.clientTop || body.clientTop || 0;
-		      var clientLeft = element.clientLeft || body.clientLeft || 0;
-		      var scrollTop = this.getScroll(window, true);
-		      var scrollLeft = this.getScroll(window);
-		      return {
-		        top: rect.top + scrollTop - clientTop,
-		        left: rect.left + scrollLeft - clientLeft
-		      };
-		    }
-		  },
-		  ready: function ready() {
-		    this._scrollEvent = _EventListener2.default.listen(window, 'scroll', this.scrolling);
-		    this._resizeEvent = _EventListener2.default.listen(window, 'resize', this.scrolling);
-		  },
-		  beforeDestroy: function beforeDestroy() {
-		    if (this._scrollEvent) {
-		      this._scrollEvent.remove();
-		    }
-		    if (this._resizeEvent) {
-		      this._resizeEvent.remove();
-		    }
-		  }
-		};
-	
-	/***/ },
-	/* 84 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div>\n<div v-bind:class=\"{'vue-affix': affixed}\"\n  v-bind:style=\"styles\">\n  <slot></slot>\n</div>\n</div>";
-	
-	/***/ },
-	/* 85 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(86)
-		module.exports = __webpack_require__(88)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(90)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Aside.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Aside.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Aside.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Aside.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Aside.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 86 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// style-loader: Adds some css to the DOM by adding a <style> tag
-		
-		// load the styles
-		var content = __webpack_require__(87);
-		if(typeof content === 'string') content = [[module.id, content, '']];
-		// add the styles to the DOM
-		var update = __webpack_require__(27)(content, {});
-		if(content.locals) module.exports = content.locals;
-		// Hot Module Replacement
-		if(false) {
-			// When the styles change, update the <style> tags
-			if(!content.locals) {
-				module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-2bc3b92c&file=Aside.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Aside.vue", function() {
-					var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-2bc3b92c&file=Aside.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Aside.vue");
-					if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-					update(newContent);
-				});
-			}
-			// When the module is disposed, remove the <style> tags
-			module.hot.dispose(function() { update(); });
-		}
-	
-	/***/ },
-	/* 87 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		exports = module.exports = __webpack_require__(26)();
-		// imports
-		
-		
-		// module
-		exports.push([module.id, ".aside-open {\n    -webkit-transition: -webkit-transform 0.3s;\n    transition: -webkit-transform 0.3s;\n    transition: transform 0.3s;\n    transition: transform 0.3s, -webkit-transform 0.3s;\n  }\n  .aside-open.has-push-right {\n    -webkit-transform: translateX(-300px);\n        -ms-transform: translateX(-300px);\n            transform: translateX(-300px);\n  }\n  .aside {\n      position: fixed;\n      top: 0;\n      bottom: 0;\n      z-index: 1049;\n      overflow: auto;\n      background: #fff;\n  }\n  .aside.left {\n    left: 0;\n    right: auto;\n  }\n  .aside.right {\n    left: auto;\n    right: 0;\n  }\n\n  .slideleft-enter {\n    -webkit-animation:slideleft-in .3s;\n            animation:slideleft-in .3s;\n  }\n  .slideleft-leave {\n    -webkit-animation:slideleft-out .3s;\n            animation:slideleft-out .3s;\n  }\n  @-webkit-keyframes slideleft-in {\n    0% {\n      -webkit-transform: translateX(-100%);\n              transform: translateX(-100%);\n      opacity: 0;\n    }\n    100% {\n      -webkit-transform: translateX(0);\n              transform: translateX(0);\n      opacity: 1;\n    }\n  }\n  @keyframes slideleft-in {\n    0% {\n      -webkit-transform: translateX(-100%);\n              transform: translateX(-100%);\n      opacity: 0;\n    }\n    100% {\n      -webkit-transform: translateX(0);\n              transform: translateX(0);\n      opacity: 1;\n    }\n  }\n  @-webkit-keyframes slideleft-out {\n    0% {\n      -webkit-transform: translateX(0);\n              transform: translateX(0);\n      opacity: 1;\n    }\n    100% {\n      -webkit-transform: translateX(-100%);\n              transform: translateX(-100%);\n      opacity: 0;\n    }\n  }\n  @keyframes slideleft-out {\n    0% {\n      -webkit-transform: translateX(0);\n              transform: translateX(0);\n      opacity: 1;\n    }\n    100% {\n      -webkit-transform: translateX(-100%);\n              transform: translateX(-100%);\n      opacity: 0;\n    }\n  }\n  .slideright-enter {\n    -webkit-animation:slideright-in .3s;\n            animation:slideright-in .3s;\n  }\n  .slideright-leave {\n    -webkit-animation:slideright-out .3s;\n            animation:slideright-out .3s;\n  }\n  @-webkit-keyframes slideright-in {\n    0% {\n      -webkit-transform: translateX(100%);\n              transform: translateX(100%);\n      opacity: 0;\n    }\n    100% {\n      -webkit-transform: translateX(0);\n              transform: translateX(0);\n      opacity: 1;\n    }\n  }\n  @keyframes slideright-in {\n    0% {\n      -webkit-transform: translateX(100%);\n              transform: translateX(100%);\n      opacity: 0;\n    }\n    100% {\n      -webkit-transform: translateX(0);\n              transform: translateX(0);\n      opacity: 1;\n    }\n  }\n  @-webkit-keyframes slideright-out {\n    0% {\n      -webkit-transform: translateX(0);\n              transform: translateX(0);\n      opacity: 1;\n    }\n    100% {\n      -webkit-transform: translateX(100%);\n              transform: translateX(100%);\n      opacity: 0;\n    }\n  }\n  @keyframes slideright-out {\n    0% {\n      -webkit-transform: translateX(0);\n              transform: translateX(0);\n      opacity: 1;\n    }\n    100% {\n      -webkit-transform: translateX(100%);\n              transform: translateX(100%);\n      opacity: 0;\n    }\n  }\n\n  .aside:focus {\n      outline: 0\n  }\n\n  @media (max-width: 991px) {\n      .aside {\n          min-width:240px\n      }\n  }\n\n  .aside.left {\n      right: auto;\n      left: 0\n  }\n\n  .aside.right {\n      right: 0;\n      left: auto\n  }\n\n  .aside .aside-dialog .aside-header {\n      border-bottom: 1px solid #e5e5e5;\n      min-height: 16.43px;\n      padding: 6px 15px;\n      background: #337ab7;\n      color: #fff\n  }\n\n  .aside .aside-dialog .aside-header .close {\n      margin-right: -8px;\n      padding: 4px 8px;\n      color: #fff;\n      font-size: 25px;\n      opacity: .8\n  }\n\n  .aside .aside-dialog .aside-body {\n      position: relative;\n      padding: 15px\n  }\n\n  .aside .aside-dialog .aside-footer {\n      padding: 15px;\n      text-align: right;\n      border-top: 1px solid #e5e5e5\n  }\n\n  .aside .aside-dialog .aside-footer .btn+.btn {\n      margin-left: 5px;\n      margin-bottom: 0\n  }\n\n  .aside .aside-dialog .aside-footer .btn-group .btn+.btn {\n      margin-left: -1px\n  }\n\n  .aside .aside-dialog .aside-footer .btn-block+.btn-block {\n      margin-left: 0\n  }\n\n  .aside-backdrop {\n      position: fixed;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      z-index: 1040;\n      opacity: 0;\n      -webkit-transition: opacity .3s ease;\n      transition: opacity .3s ease;\n      background-color: #000\n  }\n\n\n  .aside-backdrop.in {\n      opacity: .5;\n      filter: alpha(opacity=50)\n  }", ""]);
-		
-		// exports
-	
-	
-	/***/ },
-	/* 88 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		
-		var _EventListener = __webpack_require__(72);
-		
-		var _EventListener2 = _interopRequireDefault(_EventListener);
-		
-		var _getScrollBarWidth = __webpack_require__(89);
-		
-		var _getScrollBarWidth2 = _interopRequireDefault(_getScrollBarWidth);
-		
-		function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-		
-		exports.default = {
-		  props: {
-		    show: {
-		      type: Boolean,
-		      require: true,
-		      twoWay: true
-		    },
-		    placement: {
-		      type: String,
-		      default: 'right'
-		    },
-		    header: {
-		      type: String
-		    },
-		    width: {
-		      type: Number,
-		      default: '320'
-		    }
-		  },
-		  watch: {
-		    show: function show(val) {
-		      var backdrop = document.createElement('div');
-		      var body = document.body;
-		      backdrop.className = 'aside-backdrop';
-		      var scrollBarWidth = (0, _getScrollBarWidth2.default)();
-		      if (val) {
-		        body.appendChild(backdrop);
-		        body.classList.add('modal-open');
-		        if (scrollBarWidth !== 0) {
-		          body.style.paddingRight = scrollBarWidth + 'px';
-		        }
-		        // request property that requires layout to force a layout
-		        var x = backdrop.clientHeight;
-		        backdrop.className += ' in';
-		        this._clickEvent = _EventListener2.default.listen(backdrop, 'click', this.close);
-		      } else {
-		        if (this._clickEvent) this._clickEvent.remove();
-		        backdrop = document.querySelector('.aside-backdrop');
-		        backdrop.className = 'aside-backdrop';
-		        setTimeout(function () {
-		          body.classList.remove('modal-open');
-		          body.style.paddingRight = '0';
-		          body.removeChild(backdrop);
-		        }, 300);
-		      }
-		    }
-		  },
-		  methods: {
-		    close: function close() {
-		      this.show = false;
-		    }
-		  }
-		};
-	
-	/***/ },
-	/* 89 */
-	/***/ function(module, exports) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		
-		exports.default = function () {
-		  var inner = document.createElement('p');
-		  inner.style.width = '100%';
-		  inner.style.height = '200px';
-		
-		  var outer = document.createElement('div');
-		  outer.style.position = 'absolute';
-		  outer.style.top = '0px';
-		  outer.style.left = '0px';
-		  outer.style.visibility = 'hidden';
-		  outer.style.width = '200px';
-		  outer.style.height = '150px';
-		  outer.style.overflow = 'hidden';
-		  outer.appendChild(inner);
-		
-		  document.body.appendChild(outer);
-		  var w1 = inner.offsetWidth;
-		  outer.style.overflow = 'scroll';
-		  var w2 = inner.offsetWidth;
-		  if (w1 === w2) w2 = outer.clientWidth;
-		
-		  document.body.removeChild(outer);
-		
-		  return w1 - w2;
-		};
-	
-	/***/ },
-	/* 90 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div class=\"aside\"\n    v-bind:style=\"{width:width + 'px'}\"\n    v-bind:class=\"{\n    left:placement === 'left',\n    right:placement === 'right'\n    }\"\n    v-show=\"show\"\n    :transition=\"(this.placement === 'left') ? 'slideleft' : 'slideright'\">\n    <div class=\"aside-dialog\">\n      <div class=\"aside-content\">\n        <div class=\"aside-header\">\n          <button type=\"button\" class=\"close\" @click='close'><span>&times;</span></button>\n          <h4 class=\"aside-title\">{{header}}</h4>\n        </div>\n        <div class=\"aside-body\">\n          <slot></slot>\n        </div>\n      </div>\n    </div>\n  </div>";
-	
-	/***/ },
-	/* 91 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		module.exports = __webpack_require__(92)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(93)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./checkboxGroup.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./checkboxGroup.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./checkboxGroup.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./checkboxGroup.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./checkboxGroup.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 92 */
-	/***/ function(module, exports) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		exports.default = {
-		  props: {
-		    value: {
-		      type: Array,
-		      default: function _default() {
-		        return [];
-		      }
-		    },
-		    type: {
-		      type: String,
-		      default: 'default'
-		    }
-		  }
-		};
-	
-	/***/ },
-	/* 93 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div class=\"btn-group\" data-toggle=\"buttons\">\n    <slot></slot>\n  </div>";
-	
-	/***/ },
-	/* 94 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		module.exports = __webpack_require__(95)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(96)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./checkboxBtn.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./checkboxBtn.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./checkboxBtn.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./checkboxBtn.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./checkboxBtn.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 95 */
-	/***/ function(module, exports) {
-	
-		"use strict";
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		exports.default = {
-		  props: {
-		    value: {
-		      type: String
-		    },
-		    checked: {
-		      type: Boolean,
-		      default: false
-		    }
-		  },
-		  computed: {
-		    type: function type() {
-		      return this.$parent.type;
-		    }
-		  },
-		  methods: {
-		    handleClick: function handleClick() {
-		      var parent = this.$parent;
-		      var index = parent.value.indexOf(this.value);
-		      index === -1 ? parent.value.push(this.value) : parent.value.splice(index, 1);
-		      this.checked = !this.checked;
-		    }
-		  },
-		  created: function created() {
-		    if (this.checked) this.$parent.value.push(this.value);
-		  }
-		};
-	
-	/***/ },
-	/* 96 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<label class=\"btn\"\n  v-bind:class=\"{\n    'active':checked,\n    'btn-success':type == 'success',\n    'btn-warning':type == 'warning',\n    'btn-info':type == 'info',\n    'btn-danger':type == 'danger',\n    'btn-default':type == 'default',\n    'btn-primary':type == 'primary'\n  }\">\n\n    <input type=\"checkbox\" autocomplete=\"off\"\n    :checked=\"checked\"\n    @click=\"handleClick\"\n    />\n\n    <slot></slot>\n  </label>";
-	
-	/***/ },
-	/* 97 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(98)
-		module.exports = __webpack_require__(100)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(101)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Datepicker.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Datepicker.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Datepicker.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Datepicker.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Datepicker.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 98 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// style-loader: Adds some css to the DOM by adding a <style> tag
-		
-		// load the styles
-		var content = __webpack_require__(99);
-		if(typeof content === 'string') content = [[module.id, content, '']];
-		// add the styles to the DOM
-		var update = __webpack_require__(27)(content, {});
-		if(content.locals) module.exports = content.locals;
-		// Hot Module Replacement
-		if(false) {
-			// When the styles change, update the <style> tags
-			if(!content.locals) {
-				module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-663cce78&file=Datepicker.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Datepicker.vue", function() {
-					var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-663cce78&file=Datepicker.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Datepicker.vue");
-					if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-					update(newContent);
-				});
-			}
-			// When the module is disposed, remove the <style> tags
-			module.hot.dispose(function() { update(); });
-		}
-	
-	/***/ },
-	/* 99 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		exports = module.exports = __webpack_require__(26)();
-		// imports
-		
-		
-		// module
-		exports.push([module.id, ".datepicker{\n    position: relative;\n    display: inline-block;\n}\n\n.datepicker-popup{\n    position: absolute;\n    border: 1px solid #ccc;\n    border-radius: 5px;\n    background: #fff;\n    margin-top: 2px;\n    z-index: 1000;\n    box-shadow: 0 6px 12px rgba(0,0,0,0.175);\n}\n.datepicker-inner{\n    width: 218px;\n\n}\n.datepicker-body{\n    padding: 10px 10px;\n}\n.datepicker-ctrl p,\n.datepicker-ctrl span,\n.datepicker-body span{\n    display: inline-block;\n    width: 28px;\n    line-height: 28px;\n    height: 28px;\n    border-radius: 4px;\n}\n.datepicker-ctrl p {\n    width: 65%;\n}\n.datepicker-ctrl span {\n  position: absolute;\n}\n.datepicker-body span {\n  text-align: center;\n}\n.datepicker-mouthRange span{\n  width: 48px;\n  height: 50px;\n  line-height: 45px;\n}\n.datepicker-item-disable {\n  background-color: white!important;\n  cursor: not-allowed!important;\n}\n.decadeRange span:first-child,\n.decadeRange span:last-child,\n.datepicker-item-disable,\n.datepicker-item-gray{\n    color: #999;\n}\n\n.datepicker-dateRange-item-active:hover,\n.datepicker-dateRange-item-active {\n    background: rgb(50, 118, 177)!important;\n    color: white!important;\n}\n.datepicker-mouthRange {\n  margin-top: 10px\n}\n.datepicker-mouthRange span,\n.datepicker-ctrl span,\n.datepicker-ctrl p,\n.datepicker-dateRange span {\n  cursor: pointer;\n}\n.datepicker-mouthRange span:hover,\n.datepicker-ctrl p:hover,\n.datepicker-ctrl i:hover,\n.datepicker-dateRange span:hover,\n.datepicker-dateRange-item-hover {\n    background-color : #eeeeee;\n}\n\n.datepicker-weekRange span{\n    font-weight: bold;\n}\n.datepicker-label{\n    background-color: #f8f8f8;\n    font-weight: 700;\n    padding: 7px 0;\n    text-align: center;\n}\n.datepicker-ctrl{\n    position: relative;\n    height: 30px;\n    line-height: 30px;\n    font-weight: bold;\n    text-align: center;\n}\n.month-btn{\n  font-weight: bold;\n  -webkit-user-select:none;\n    -moz-user-select:none;\n    -ms-user-select:none;\n    user-select:none;\n}\n.datepicker-preBtn{\n    left: 2px;\n}\n.datepicker-nextBtn{\n    right: 2px;\n}", ""]);
-		
-		// exports
-	
-	
-	/***/ },
-	/* 100 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		
-		var _EventListener = __webpack_require__(72);
-		
-		var _EventListener2 = _interopRequireDefault(_EventListener);
-		
-		function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-		
-		exports.default = {
-		  props: {
-		    value: {
-		      type: String,
-		      twoWay: true
-		    },
-		    format: {
-		      default: 'MMMM/dd/yyyy'
-		    },
-		    disabledDaysOfWeek: {
-		      type: Array,
-		      default: function _default() {
-		        return [];
-		      }
-		    },
-		    width: {
-		      type: String,
-		      default: '200px'
-		    }
-		  },
-		  data: function data() {
-		    return {
-		      weekRange: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-		      dateRange: [],
-		      decadeRange: [],
-		      currDate: new Date(),
-		      displayDayView: false,
-		      displayMouthView: false,
-		      displayYearView: false,
-		      mouthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-		    };
-		  },
-		
-		  watch: {
-		    currDate: function currDate() {
-		      this.getDateRange();
-		    }
-		  },
-		  methods: {
-		    close: function close() {
-		      this.displayDayView = this.displayMouthView = this.displayMouthView = false;
-		    },
-		    inputClick: function inputClick() {
-		      if (this.displayMouthView || this.displayYearView) {
-		        this.displayDayView = false;
-		      } else {
-		        this.displayDayView = !this.displayDayView;
-		      }
-		    },
-		    preNextDecadeClick: function preNextDecadeClick(flag) {
-		      var year = this.currDate.getFullYear();
-		      var mouths = this.currDate.getMonth();
-		      var date = this.currDate.getDate();
-		
-		      if (flag === 0) {
-		        this.currDate = new Date(year - 10, mouths, date);
-		      } else {
-		        this.currDate = new Date(year + 10, mouths, date);
-		      }
-		    },
-		    preNextMonthClick: function preNextMonthClick(flag) {
-		      var year = this.currDate.getFullYear();
-		      var month = this.currDate.getMonth();
-		      var date = this.currDate.getDate();
-		
-		      if (flag === 0) {
-		        var preMonth = this.getYearMonth(year, month - 1);
-		        this.currDate = new Date(preMonth.year, preMonth.month, date);
-		      } else {
-		        var nextMonth = this.getYearMonth(year, month + 1);
-		        this.currDate = new Date(nextMonth.year, nextMonth.month, date);
-		      }
-		    },
-		    preNextYearClick: function preNextYearClick(flag) {
-		      var year = this.currDate.getFullYear();
-		      var mouths = this.currDate.getMonth();
-		      var date = this.currDate.getDate();
-		
-		      if (flag === 0) {
-		        this.currDate = new Date(year - 1, mouths, date);
-		      } else {
-		        this.currDate = new Date(year + 1, mouths, date);
-		      }
-		    },
-		    yearSelect: function yearSelect(year) {
-		      this.displayYearView = false;
-		      this.displayMouthView = true;
-		      this.currDate = new Date(year, this.currDate.getMonth(), this.currDate.getDate());
-		    },
-		    daySelect: function daySelect(date, el) {
-		      if (el.$el.classList[0] === 'datepicker-item-disable') {
-		        return false;
-		      } else {
-		        this.currDate = date;
-		        this.value = this.stringify(this.currDate);
-		        this.displayDayView = false;
-		      }
-		    },
-		    switchMouthView: function switchMouthView() {
-		      this.displayDayView = false;
-		      this.displayMouthView = true;
-		    },
-		    switchDecadeView: function switchDecadeView() {
-		      this.displayMouthView = false;
-		      this.displayYearView = true;
-		    },
-		    mouthSelect: function mouthSelect(index) {
-		      this.displayMouthView = false;
-		      this.displayDayView = true;
-		      this.currDate = new Date(this.currDate.getFullYear(), index, this.currDate.getDate());
-		    },
-		    getYearMonth: function getYearMonth(year, month) {
-		      if (month > 11) {
-		        year++;
-		        month = 0;
-		      } else if (month < 0) {
-		        year--;
-		        month = 11;
-		      }
-		      return { year: year, month: month };
-		    },
-		    stringifyDecadeHeader: function stringifyDecadeHeader(date) {
-		      var yearStr = date.getFullYear().toString();
-		      var firstYearOfDecade = yearStr.substring(0, yearStr.length - 1) + 0;
-		      var lastYearOfDecade = parseInt(firstYearOfDecade, 10) + 10;
-		      return firstYearOfDecade + '-' + lastYearOfDecade;
-		    },
-		    stringifyDayHeader: function stringifyDayHeader(date) {
-		      return this.mouthNames[date.getMonth()] + ' ' + date.getFullYear();
-		    },
-		    parseMouth: function parseMouth(date) {
-		      return this.mouthNames[date.getMonth()];
-		    },
-		    stringifyYearHeader: function stringifyYearHeader(date) {
-		      return date.getFullYear();
-		    },
-		    stringify: function stringify(date) {
-		      var format = arguments.length <= 1 || arguments[1] === undefined ? this.format : arguments[1];
-		
-		      var year = date.getFullYear();
-		      var month = date.getMonth() + 1;
-		      var day = date.getDate();
-		      var mouthName = this.parseMouth(date);
-		
-		      return format.replace(/yyyy/g, year).replace(/MMMM/g, mouthName).replace(/MMM/g, mouthName.substring(0, 3)).replace(/MM/g, ('0' + month).slice(-2)).replace(/dd/g, ('0' + day).slice(-2)).replace(/yy/g, year).replace(/M(?!a)/g, month).replace(/d/g, day);
-		    },
-		    parse: function parse(str) {
-		      var date = new Date(str);
-		      return isNaN(date.getFullYear()) ? null : date;
-		    },
-		    getDayCount: function getDayCount(year, month) {
-		      var dict = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-		
-		      if (month === 1) {
-		        if (year % 400 === 0 || year % 4 === 0 && year % 100 !== 0) {
-		          return 29;
-		        }
-		        return 28;
-		      }
-		
-		      return dict[month];
-		    },
-		    getDateRange: function getDateRange() {
-		      var _this = this;
-		
-		      this.dateRange = [];
-		      this.decadeRange = [];
-		      var time = {
-		        year: this.currDate.getFullYear(),
-		        month: this.currDate.getMonth(),
-		        day: this.currDate.getDate()
-		      };
-		      var yearStr = time.year.toString();
-		      var firstYearOfDecade = yearStr.substring(0, yearStr.length - 1) + 0 - 1;
-		      for (var i = 0; i < 12; i++) {
-		        this.decadeRange.push({
-		          text: firstYearOfDecade + i
-		        });
-		      }
-		
-		      var currMonthFirstDay = new Date(time.year, time.month, 1);
-		      var firstDayWeek = currMonthFirstDay.getDay() + 1;
-		      if (firstDayWeek === 0) {
-		        firstDayWeek = 7;
-		      }
-		      var dayCount = this.getDayCount(time.year, time.month);
-		      if (firstDayWeek > 1) {
-		        var preMonth = this.getYearMonth(time.year, time.month - 1);
-		        var prevMonthDayCount = this.getDayCount(preMonth.year, preMonth.month);
-		        for (var i = 1; i < firstDayWeek; i++) {
-		          var dayText = prevMonthDayCount - firstDayWeek + i + 1;
-		          this.dateRange.push({
-		            text: dayText,
-		            date: new Date(preMonth.year, preMonth.month, dayText),
-		            sclass: 'datepicker-item-gray'
-		          });
-		        }
-		      }
-		
-		      var _loop = function _loop(i) {
-		        var date = new Date(time.year, time.month, i);
-		        var week = date.getDay();
-		        var sclass = '';
-		        _this.disabledDaysOfWeek.forEach(function (el) {
-		          if (week === parseInt(el, 10)) sclass = 'datepicker-item-disable';
-		        });
-		
-		        if (i === time.day) {
-		          if (_this.value) {
-		            var valueDate = _this.parse(_this.value);
-		            if (valueDate) {
-		              if (valueDate.getFullYear() === time.year && valueDate.getMonth() === time.month) {
-		                sclass = 'datepicker-dateRange-item-active';
-		              }
-		            }
-		          }
-		        }
-		        _this.dateRange.push({
-		          text: i,
-		          date: date,
-		          sclass: sclass
-		        });
-		      };
-		
-		      for (var i = 1; i <= dayCount; i++) {
-		        _loop(i);
-		      }
-		
-		      if (this.dateRange.length < 42) {
-		        var nextMonthNeed = 42 - this.dateRange.length;
-		        var nextMonth = this.getYearMonth(time.year, time.month + 1);
-		
-		        for (var i = 1; i <= nextMonthNeed; i++) {
-		          this.dateRange.push({
-		            text: i,
-		            date: new Date(nextMonth.year, nextMonth.month, i),
-		            sclass: 'datepicker-item-gray'
-		          });
-		        }
-		      }
-		    }
-		  },
-		  ready: function ready() {
-		    var _this2 = this;
-		
-		    this.$dispatch('child-created', this);
-		    this.currDate = this.parse(this.value) || this.parse(new Date());
-		    this._closeEvent = _EventListener2.default.listen(window, 'click', function (e) {
-		      if (!_this2.$el.contains(e.target)) _this2.close();
-		    });
-		  },
-		  beforeDestroy: function beforeDestroy() {
-		    if (this._closeEvent) this._closeEvent.remove();
-		  }
-		};
-	
-	/***/ },
-	/* 101 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div class=\"datepicker\">\n    <input class=\"form-control datepicker-input\" type=\"text\"\n    v-bind:style=\"{width:width}\"\n    @click=\"inputClick\"\n    v-model=\"value\"/>\n      <div class=\"datepicker-popup\" v-show=\"displayDayView\">\n          <div class=\"datepicker-inner\">\n              <div class=\"datepicker-body\">\n                  <div class=\"datepicker-ctrl\">\n                      <span class=\"month-btn datepicker-preBtn\" @click=\"preNextMonthClick(0)\">&lt;</span>\n                      <span class=\"month-btn datepicker-nextBtn\" @click=\"preNextMonthClick(1)\">&gt;</span>\n                      <p @click=\"switchMouthView\">\n                      {{stringifyDayHeader(currDate)}}\n                      </p>\n                  </div>\n                  <div class=\"datepicker-weekRange\">\n                      <span v-for=\"w in weekRange\">{{w}}</span>\n                  </div>\n                  <div class=\"datepicker-dateRange\">\n                      <span v-for=\"d in dateRange\" v-bind:class=\"d.sclass\" @click=\"daySelect(d.date,this)\">{{d.text}}</span>\n                  </div>\n              </div>\n          </div>\n      </div>\n      <div class=\"datepicker-popup\" v-show=\"displayMouthView\">\n        <div class=\"datepicker-inner\">\n            <div class=\"datepicker-body\">\n                <div class=\"datepicker-ctrl\">\n                    <span class=\"month-btn datepicker-preBtn\" @click=\"preNextYearClick(0)\">&lt;</span>\n                    <span class=\"month-btn datepicker-nextBtn\" @click=\"preNextYearClick(1)\">&gt;</span>\n                    <p @click=\"switchDecadeView\">\n                    {{stringifyYearHeader(currDate)}}\n                    </p>\n                </div>\n                <div class=\"datepicker-mouthRange\">\n                \t<template v-for=\"m in mouthNames\">\n\t                    <span   v-bind:class=\"{'datepicker-dateRange-item-active':\n\t\t\t                    (this.mouthNames[this.parse(this.value).getMonth()]  === m) &&\n\t\t\t                    this.currDate.getFullYear() === this.parse(this.value).getFullYear()}\"\n\t\t\t                    @click=\"mouthSelect($index)\"\n\t                    >\n\t                      {{m.substr(0,3)}}\n\t                    </span>\n                    </template>\n                </div>\n            </div>\n        </div>\n      </div>\n      <div class=\"datepicker-popup\" v-show=\"displayYearView\">\n        <div class=\"datepicker-inner\">\n            <div class=\"datepicker-body\">\n                <div class=\"datepicker-ctrl\">\n                    <span class=\"month-btn datepicker-preBtn\" @click=\"preNextDecadeClick(0)\">&lt;</span>\n                    <span class=\"month-btn datepicker-nextBtn\" @click=\"preNextDecadeClick(1)\">&gt;</span>\n                    <p>\n                    {{stringifyDecadeHeader(currDate)}}\n                    </p>\n                </div>\n                <div class=\"datepicker-mouthRange decadeRange\">\n                \t<template v-for=\"decade in decadeRange\">\n                \t\t<span v-bind:class=\"{'datepicker-dateRange-item-active':\n\t\t                    this.parse(this.value).getFullYear() === decade.text}\"\n\t                    @click.stop=\"yearSelect(decade.text)\">\n\t                      {{decade.text}}\n\t                    </span>\n\t\t\t\t\t</template>\n                </div>\n            </div>\n        </div>\n      </div>\n</div>";
-	
-	/***/ },
-	/* 102 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		module.exports = __webpack_require__(103)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(104)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Dropdown.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Dropdown.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Dropdown.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Dropdown.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Dropdown.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 103 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		
-		var _EventListener = __webpack_require__(72);
-		
-		var _EventListener2 = _interopRequireDefault(_EventListener);
-		
-		function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-		
-		exports.default = {
-		  methods: {
-		    toggleDropdown: function toggleDropdown(e) {
-		      e.preventDefault();
-		      this.$el.classList.toggle('open');
-		    }
-		  },
-		  ready: function ready() {
-		    var el = this.$el;
-		    var toggle = el.querySelector('[data-toggle="dropdown"]');
-		    if (toggle) {
-		      toggle.style.borderRadius = '4px';
-		      toggle.addEventListener('click', this.toggleDropdown);
-		    }
-		    this._closeEvent = _EventListener2.default.listen(window, 'click', function (e) {
-		      if (!el.contains(e.target)) el.classList.remove('open');
-		    });
-		  },
-		  beforeDestroy: function beforeDestroy() {
-		    if (this._closeEvent) this._closeEvent.remove();
-		  }
-		};
-	
-	/***/ },
-	/* 104 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div class=\"btn-group\">\n    <slot></slot>\n    <slot name=\"dropdown-menu\"></slot>\n  </div>";
-	
-	/***/ },
-	/* 105 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(106)
-		module.exports = __webpack_require__(108)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(109)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Modal.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Modal.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Modal.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Modal.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Modal.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 106 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// style-loader: Adds some css to the DOM by adding a <style> tag
-		
-		// load the styles
-		var content = __webpack_require__(107);
-		if(typeof content === 'string') content = [[module.id, content, '']];
-		// add the styles to the DOM
-		var update = __webpack_require__(27)(content, {});
-		if(content.locals) module.exports = content.locals;
-		// Hot Module Replacement
-		if(false) {
-			// When the styles change, update the <style> tags
-			if(!content.locals) {
-				module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-72392c21&file=Modal.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Modal.vue", function() {
-					var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-72392c21&file=Modal.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Modal.vue");
-					if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-					update(newContent);
-				});
-			}
-			// When the module is disposed, remove the <style> tags
-			module.hot.dispose(function() { update(); });
-		}
-	
-	/***/ },
-	/* 107 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		exports = module.exports = __webpack_require__(26)();
-		// imports
-		
-		
-		// module
-		exports.push([module.id, ".modal {\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n}\n.modal.in {\n  background-color: rgba(0,0,0,0.5);\n}\n.modal.zoom .modal-dialog {\n    -webkit-transform: scale(0.1);\n    -ms-transform: scale(0.1);\n    transform: scale(0.1);\n    top: 300px;\n    opacity: 0;\n    -webkit-transition: all 0.3s;\n    transition: all 0.3s;\n}\n.modal.zoom.in .modal-dialog {\n    -webkit-transform: scale(1);\n    -ms-transform: scale(1);\n    transform: scale(1);\n    -webkit-transform: translate3d(0, -300px, 0);\n    transform: translate3d(0, -300px, 0);\n    opacity: 1;\n}", ""]);
-		
-		// exports
-	
-	
-	/***/ },
-	/* 108 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		
-		var _getScrollBarWidth = __webpack_require__(89);
-		
-		var _getScrollBarWidth2 = _interopRequireDefault(_getScrollBarWidth);
-		
-		var _EventListener = __webpack_require__(72);
-		
-		var _EventListener2 = _interopRequireDefault(_EventListener);
-		
-		function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-		
-		exports.default = {
-		  props: {
-		    title: {
-		      type: String,
-		      default: ''
-		    },
-		    show: {
-		      require: true,
-		      type: Boolean,
-		      twoWay: true
-		    },
-		    width: {
-		      type: Number,
-		      default: 600
-		    },
-		    callback: {
-		      type: Function,
-		      default: function _default() {}
-		    },
-		    effect: {
-		      type: String,
-		      default: 'fade'
-		    },
-		    backdrop: {
-		      type: Boolean,
-		      default: true
-		    }
-		  },
-		  watch: {
-		    show: function show(val) {
-		      var _this = this;
-		
-		      var el = this.$el;
-		      var body = document.body;
-		      var scrollBarWidth = (0, _getScrollBarWidth2.default)();
-		      if (val) {
-		        el.querySelector('.modal-content').focus();
-		        el.style.display = 'block';
-		        setTimeout(function () {
-		          return el.classList.add('in');
-		        }, 0);
-		        body.classList.add('modal-open');
-		        if (scrollBarWidth !== 0) {
-		          body.style.paddingRight = scrollBarWidth + 'px';
-		        }
-		        if (this.backdrop) {
-		          this._blurModalContentEvent = _EventListener2.default.listen(this.$el, 'click', function (e) {
-		            if (e.target === el) _this.show = false;
-		          });
-		        }
-		      } else {
-		        if (this._blurModalContentEvent) this._blurModalContentEvent.remove();
-		        el.classList.remove('in');
-		        setTimeout(function () {
-		          el.style.display = 'none';
-		          body.classList.remove('modal-open');
-		          body.style.paddingRight = '0';
-		        }, 300);
-		      }
-		    }
-		  },
-		  methods: {
-		    close: function close() {
-		      this.show = false;
-		    }
-		  }
-		};
-	
-	/***/ },
-	/* 109 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div class=\"modal fade\" role=\"dialog\"\n    v-bind:class=\"{\n    'fade':effect === 'fade',\n    'zoom':effect === 'zoom'\n    }\"\n    >\n    <div class=\"modal-dialog\" role=\"document\"\n      v-bind:style=\"{'width': width + 'px'}\">\n      <div class=\"modal-content\">\n        <slot name=\"modal-header\">\n          <div class=\"modal-header\">\n            <button type=\"button\" class=\"close\" @click=\"close\"><span>&times;</span></button>\n            <h4 class=\"modal-title\" >{{title}}</h4>\n          </div>\n        </slot>\n        <slot name=\"modal-body\">\n          <div class=\"modal-body\"></div>\n        </slot>\n        <slot name=\"modal-footer\">\n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-default\" @click=\"close\">Close</button>\n            <button type=\"button\" class=\"btn btn-primary\" @click=\"callback\">Save changes</button>\n          </div>\n        </slot>\n      </div>\n    </div>\n  </div>";
-	
-	/***/ },
-	/* 110 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(111)
-		module.exports = __webpack_require__(113)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(114)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Option.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Option.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Option.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Option.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Option.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 111 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// style-loader: Adds some css to the DOM by adding a <style> tag
-		
-		// load the styles
-		var content = __webpack_require__(112);
-		if(typeof content === 'string') content = [[module.id, content, '']];
-		// add the styles to the DOM
-		var update = __webpack_require__(27)(content, {});
-		if(content.locals) module.exports = content.locals;
-		// Hot Module Replacement
-		if(false) {
-			// When the styles change, update the <style> tags
-			if(!content.locals) {
-				module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-7f8c06b1&file=Option.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Option.vue", function() {
-					var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-7f8c06b1&file=Option.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Option.vue");
-					if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-					update(newContent);
-				});
-			}
-			// When the module is disposed, remove the <style> tags
-			module.hot.dispose(function() { update(); });
-		}
-	
-	/***/ },
-	/* 112 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		exports = module.exports = __webpack_require__(26)();
-		// imports
-		
-		
-		// module
-		exports.push([module.id, "a span.check-mark {\n    position: absolute;\n    display: inline-block;\n    right: 15px;\n    margin-top: 5px;\n  }", ""]);
-		
-		// exports
-	
-	
-	/***/ },
-	/* 113 */
-	/***/ function(module, exports) {
-	
-		"use strict";
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		exports.default = {
-		  props: {
-		    value: {
-		      type: String
-		    }
-		  },
-		  data: function data() {
-		    return {
-		      chosen: false
-		    };
-		  },
-		
-		  computed: {
-		    chosen: function chosen() {
-		      return this.$parent.value.indexOf(this.value) !== -1 ? true : false;
-		    }
-		  },
-		  methods: {
-		    handleClick: function handleClick() {
-		      var parent = this.$parent;
-		      var index = parent.value.indexOf(this.value);
-		      if (parent.multiple) {
-		        index === -1 ? parent.value.push(this.value) : parent.value.splice(index, 1);
-		      } else {
-		        parent.value = [];
-		        parent.value.push(this.value);
-		        parent.show = false;
-		      }
-		    }
-		  }
-		};
-	
-	/***/ },
-	/* 114 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<li style=\"position:relative\">\n    <a @mousedown.prevent=\"handleClick\" style=\"cursor:pointer\">\n      <slot></slot>\n      <slot name=\"span\">\n        {{value}}\n      </slot>\n      <span class=\"glyphicon glyphicon-ok check-mark\" v-show=\"chosen\"></span>\n    </a>\n  </li>";
-	
-	/***/ },
-	/* 115 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(116)
-		module.exports = __webpack_require__(118)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(119)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Panel.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Panel.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Panel.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Panel.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Panel.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 116 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// style-loader: Adds some css to the DOM by adding a <style> tag
-		
-		// load the styles
-		var content = __webpack_require__(117);
-		if(typeof content === 'string') content = [[module.id, content, '']];
-		// add the styles to the DOM
-		var update = __webpack_require__(27)(content, {});
-		if(content.locals) module.exports = content.locals;
-		// Hot Module Replacement
-		if(false) {
-			// When the styles change, update the <style> tags
-			if(!content.locals) {
-				module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-cef09010&file=Panel.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Panel.vue", function() {
-					var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-cef09010&file=Panel.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Panel.vue");
-					if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-					update(newContent);
-				});
-			}
-			// When the module is disposed, remove the <style> tags
-			module.hot.dispose(function() { update(); });
-		}
-	
-	/***/ },
-	/* 117 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		exports = module.exports = __webpack_require__(26)();
-		// imports
-		
-		
-		// module
-		exports.push([module.id, ".accordion-toggle {\n  cursor: pointer;\n}\n\n.collapse-transition {\n-webkit-transition: max-height .5s ease;\ntransition: max-height .5s ease;\noverflow: hidden;\n}\n\n.collapse-enter, .collapse-leave {\n  max-height: 0!important;\n}", ""]);
-		
-		// exports
-	
-	
-	/***/ },
-	/* 118 */
-	/***/ function(module, exports) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		exports.default = {
-		  props: {
-		    isOpen: {
-		      type: Boolean,
-		      default: false
-		    },
-		    header: {
-		      type: String
-		    }
-		  },
-		  data: function data() {
-		    return {
-		      height: 0
-		    };
-		  },
-		
-		  methods: {
-		    toggleIsOpen: function toggleIsOpen() {
-		      this.isOpen = !this.isOpen;
-		      this.$dispatch('isOpenEvent', this);
-		    }
-		  },
-		  ready: function ready() {
-		    var panel = this.$els.panel;
-		    panel.style.display = 'block';
-		    this.height = panel.offsetHeight;
-		    panel.style.maxHeight = this.height + 'px';
-		    if (!this.isOpen) panel.style.display = 'none';
-		  }
-		};
-	
-	/***/ },
-	/* 119 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div class=\"panel panel-default\">\n    <div class=\"panel-heading\">\n      <h4 class=\"panel-title\">\n        <a class=\"accordion-toggle\"\n          @click=\"toggleIsOpen()\">\n           {{ header }}\n        </a>\n      </h4>\n    </div>\n    <div class=\"panel-collapse\"\n      v-el:panel\n      v-show=\"isOpen\"\n      transition=\"collapse\"\n    >\n      <div class=\"panel-body\">\n        <slot></slot>\n      </div>\n    </div>\n  </div>";
-	
-	/***/ },
-	/* 120 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(121)
-		module.exports = __webpack_require__(123)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(125)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Popover.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Popover.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Popover.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Popover.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Popover.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 121 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// style-loader: Adds some css to the DOM by adding a <style> tag
-		
-		// load the styles
-		var content = __webpack_require__(122);
-		if(typeof content === 'string') content = [[module.id, content, '']];
-		// add the styles to the DOM
-		var update = __webpack_require__(27)(content, {});
-		if(content.locals) module.exports = content.locals;
-		// Hot Module Replacement
-		if(false) {
-			// When the styles change, update the <style> tags
-			if(!content.locals) {
-				module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-d15a25ce&file=Popover.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Popover.vue", function() {
-					var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-d15a25ce&file=Popover.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Popover.vue");
-					if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-					update(newContent);
-				});
-			}
-			// When the module is disposed, remove the <style> tags
-			module.hot.dispose(function() { update(); });
-		}
-	
-	/***/ },
-	/* 122 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		exports = module.exports = __webpack_require__(26)();
-		// imports
-		
-		
-		// module
-		exports.push([module.id, ".scale-transition,\n.fade-transition {\n  display: block;\n}\n.scale-enter {\n  -webkit-animation:scale-in 0.15s ease-in;\n          animation:scale-in 0.15s ease-in;\n}\n.scale-leave {\n  -webkit-animation:scale-out 0.15s ease-out;\n          animation:scale-out 0.15s ease-out;\n}\n@-webkit-keyframes scale-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    opacity: 0;\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    opacity: 1;\n  }\n}\n@keyframes scale-in {\n  0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    opacity: 0;\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    opacity: 1;\n  }\n}\n@-webkit-keyframes scale-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    opacity: 0;\n  }\n}\n@keyframes scale-out {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n    opacity: 0;\n  }\n}", ""]);
-		
-		// exports
-	
-	
-	/***/ },
-	/* 123 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		
-		var _popoverMixins = __webpack_require__(124);
-		
-		var _popoverMixins2 = _interopRequireDefault(_popoverMixins);
-		
-		function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-		
-		exports.default = {
-		  mixins: [_popoverMixins2.default]
-		};
-	
-	/***/ },
-	/* 124 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		
-		var _EventListener = __webpack_require__(72);
-		
-		var _EventListener2 = _interopRequireDefault(_EventListener);
-		
-		function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-		
-		var PopoverMixin = {
-		  props: {
-		    trigger: {
-		      type: String,
-		      default: 'click'
-		    },
-		    effect: {
-		      type: String,
-		      default: 'fadein'
-		    },
-		    title: {
-		      type: String
-		    },
-		    content: {
-		      type: String
-		    },
-		    header: {
-		      type: Boolean,
-		      default: true
-		    },
-		    placement: {
-		      type: String
-		    }
-		  },
-		  data: function data() {
-		    return {
-		      position: {
-		        top: 0,
-		        left: 0
-		      },
-		      show: true
-		    };
-		  },
-		
-		  methods: {
-		    toggle: function toggle() {
-		      this.show = !this.show;
-		    }
-		  },
-		  ready: function ready() {
-		    var _this = this;
-		
-		    if (!this.$els.popover) return console.error("Couldn't find popover v-el in your component that uses popoverMixin.");
-		    var popover = this.$els.popover;
-		    var triger = this.$els.trigger.children[0];
-		    if (this.trigger === 'hover') {
-		      this._mouseenterEvent = _EventListener2.default.listen(triger, 'mouseenter', function () {
-		        return _this.show = true;
-		      });
-		      this._mouseleaveEvent = _EventListener2.default.listen(triger, 'mouseleave', function () {
-		        return _this.show = false;
-		      });
-		    } else if (this.trigger === 'focus') {
-		      this._focusEvent = _EventListener2.default.listen(triger, 'focus', function () {
-		        return _this.show = true;
-		      });
-		      this._blurEvent = _EventListener2.default.listen(triger, 'blur', function () {
-		        return _this.show = false;
-		      });
-		    } else {
-		      this._clickEvent = _EventListener2.default.listen(triger, 'click', this.toggle);
-		    }
-		
-		    switch (this.placement) {
-		      case 'top':
-		        this.position.left = triger.offsetLeft - popover.offsetWidth / 2 + triger.offsetWidth / 2;
-		        this.position.top = triger.offsetTop - popover.offsetHeight;
-		        break;
-		      case 'left':
-		        this.position.left = triger.offsetLeft - popover.offsetWidth;
-		        this.position.top = triger.offsetTop + triger.offsetHeight / 2 - popover.offsetHeight / 2;
-		        break;
-		      case 'right':
-		        this.position.left = triger.offsetLeft + triger.offsetWidth;
-		        this.position.top = triger.offsetTop + triger.offsetHeight / 2 - popover.offsetHeight / 2;
-		        break;
-		      case 'bottom':
-		        this.position.left = triger.offsetLeft - popover.offsetWidth / 2 + triger.offsetWidth / 2;
-		        this.position.top = triger.offsetTop + triger.offsetHeight;
-		        break;
-		      default:
-		        console.log('Wrong placement prop');
-		    }
-		    popover.style.top = this.position.top + 'px';
-		    popover.style.left = this.position.left + 'px';
-		    popover.style.display = 'none';
-		    this.show = !this.show;
-		  },
-		  beforeDestroy: function beforeDestroy() {
-		    if (this._blurEvent) {
-		      this._blurEvent.remove();
-		      this._focusEvent.remove();
-		    }
-		    if (this._mouseenterEvent) {
-		      this._mouseenterEvent.remove();
-		      this._mouseleaveEvent.remove();
-		    }
-		    if (this._clickEvent) this._clickEvent.remove();
-		  }
-		};
-		
-		exports.default = PopoverMixin;
-	
-	/***/ },
-	/* 125 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<span v-el:trigger>\n    <slot>\n    </slot>\n  </span>\n  <div class=\"popover\"\n    v-bind:class=\"{\n    'top':placement === 'top',\n    'left':placement === 'left',\n    'right':placement === 'right',\n    'bottom':placement === 'bottom'\n    }\"\n    v-el:popover\n    v-show=\"show\"\n    :transition=\"effect\">\n      <div class=\"arrow\"></div>\n      <h3 class=\"popover-title\" v-show=\"header\">{{title}}</h3>\n      <div class=\"popover-content\">\n        {{{content}}}\n      </div>\n  </div>";
-	
-	/***/ },
-	/* 126 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		module.exports = __webpack_require__(127)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(128)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Progressbar.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Progressbar.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Progressbar.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Progressbar.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Progressbar.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 127 */
-	/***/ function(module, exports) {
-	
-		"use strict";
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		exports.default = {
-		  props: {
-		    now: {
-		      type: Number,
-		      require: true
-		    },
-		    label: {
-		      type: Boolean,
-		      default: false
-		    },
-		    type: {
-		      type: String
-		    },
-		    striped: {
-		      type: Boolean,
-		      default: false
-		    },
-		    animated: {
-		      type: Boolean,
-		      default: false
-		    }
-		  }
-		};
-	
-	/***/ },
-	/* 128 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div role=\"progressbar\"\n    v-bind:class=\"{\n    'progress-bar' : true,\n    'progress-bar-success':type == 'success',\n    'progress-bar-warning':type == 'warning',\n    'progress-bar-info':type == 'info',\n    'progress-bar-danger':type == 'danger',\n    'progress-bar-striped':striped,\n    'active':animated\n    }\"\n    v-bind:style=\"{width: now + '%'}\">\n    {{label ? now + '%':'' }}\n  </div>";
-	
-	/***/ },
-	/* 129 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		module.exports = __webpack_require__(130)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(131)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./radioBtn.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./radioBtn.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./radioBtn.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./radioBtn.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./radioBtn.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 130 */
-	/***/ function(module, exports) {
-	
-		"use strict";
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		exports.default = {
-		  props: {
-		    value: {
-		      type: String
-		    },
-		    checked: {
-		      type: Boolean,
-		      default: false
-		    }
-		  },
-		  computed: {
-		    type: function type() {
-		      return this.$parent.type;
-		    },
-		    active: function active() {
-		      return this.$parent.value === this.value;
-		    }
-		  },
-		  methods: {
-		    handleClick: function handleClick() {
-		      this.$parent.value = this.value;
-		    }
-		  },
-		  created: function created() {
-		    if (this.checked) this.$parent.value = this.value;
-		  }
-		};
-	
-	/***/ },
-	/* 131 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<label class=\"btn\"\n  v-bind:class=\"{\n    'active':active,\n    'btn-success':type == 'success',\n    'btn-warning':type == 'warning',\n    'btn-info':type == 'info',\n    'btn-danger':type == 'danger',\n    'btn-default':type == 'default',\n    'btn-primary':type == 'primary'\n  }\">\n\n    <input type=\"radio\" autocomplete=\"off\"\n      :checked=\"checked\"\n      @click=\"handleClick\"\n    />\n\n    <slot></slot>\n\n  </label>";
-	
-	/***/ },
-	/* 132 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		module.exports = __webpack_require__(133)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(134)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./radioGroup.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./radioGroup.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./radioGroup.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./radioGroup.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./radioGroup.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 133 */
-	/***/ function(module, exports) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		exports.default = {
-		  props: {
-		    value: {
-		      type: String,
-		      twoWay: true
-		    },
-		    type: {
-		      type: String,
-		      default: 'default'
-		    }
-		  }
-		};
-	
-	/***/ },
-	/* 134 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div class=\"btn-group\" data-toggle=\"buttons\">\n    <slot></slot>\n  </div>";
-	
-	/***/ },
-	/* 135 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(136)
-		module.exports = __webpack_require__(138)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(148)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Select.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Select.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Select.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Select.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Select.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 136 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// style-loader: Adds some css to the DOM by adding a <style> tag
-		
-		// load the styles
-		var content = __webpack_require__(137);
-		if(typeof content === 'string') content = [[module.id, content, '']];
-		// add the styles to the DOM
-		var update = __webpack_require__(27)(content, {});
-		if(content.locals) module.exports = content.locals;
-		// Hot Module Replacement
-		if(false) {
-			// When the styles change, update the <style> tags
-			if(!content.locals) {
-				module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6a0dd090&file=Select.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Select.vue", function() {
-					var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6a0dd090&file=Select.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Select.vue");
-					if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-					update(newContent);
-				});
-			}
-			// When the module is disposed, remove the <style> tags
-			module.hot.dispose(function() { update(); });
-		}
-	
-	/***/ },
-	/* 137 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		exports = module.exports = __webpack_require__(26)();
-		// imports
-		
-		
-		// module
-		exports.push([module.id, ".bs_searchbox {\n  padding: 4px 8px;\n}\n.btn-group .dropdown-menu .notify {\n  position: absolute;\n  bottom: 5px;\n  width: 96%;\n  margin: 0 2%;\n  min-height: 26px;\n  padding: 3px 5px;\n  background: #f5f5f5;\n  border: 1px solid #e3e3e3;\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.05);\n   pointer-events: none;\n  opacity: .9;\n}", ""]);
-		
-		// exports
-	
-	
-	/***/ },
-	/* 138 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		
-		var _getIterator2 = __webpack_require__(139);
-		
-		var _getIterator3 = _interopRequireDefault(_getIterator2);
-		
-		function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-		
-		exports.default = {
-		  props: {
-		    options: {
-		      type: Array,
-		      default: function _default() {
-		        return [];
-		      }
-		    },
-		    value: {
-		      twoWay: true,
-		      type: Array,
-		      default: function _default() {
-		        return [];
-		      }
-		    },
-		    placeholder: {
-		      type: String,
-		      default: 'Nothing Selected'
-		    },
-		    multiple: {
-		      type: Boolean,
-		      default: false
-		    },
-		    search: { // Allow searching (only works when options are provided)
-		      type: Boolean,
-		      default: false
-		    },
-		    limit: {
-		      type: Number,
-		      default: 1024
-		    }
-		  },
-		  data: function data() {
-		    return {
-		      searchText: null,
-		      show: false,
-		      showNotify: false
-		    };
-		  },
-		
-		  computed: {
-		    selectedItems: function selectedItems() {
-		      if (!this.options.length) {
-		        return this.value.join(',');
-		      } else {
-		        // we were given bunch of options, so pluck them out to display
-		        var foundItems = [];
-		        var _iteratorNormalCompletion = true;
-		        var _didIteratorError = false;
-		        var _iteratorError = undefined;
-		
-		        try {
-		          for (var _iterator = (0, _getIterator3.default)(this.options), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-		            var item = _step.value;
-		
-		            if (this.value.indexOf(item.value) !== -1) foundItems.push(item.label);
-		          }
-		        } catch (err) {
-		          _didIteratorError = true;
-		          _iteratorError = err;
-		        } finally {
-		          try {
-		            if (!_iteratorNormalCompletion && _iterator.return) {
-		              _iterator.return();
-		            }
-		          } finally {
-		            if (_didIteratorError) {
-		              throw _iteratorError;
-		            }
-		          }
-		        }
-		
-		        return foundItems.join(', ');
-		      }
-		    },
-		    showPlaceholder: function showPlaceholder() {
-		      return this.value.length <= 0;
-		    }
-		  },
-		  watch: {
-		    value: function value(val) {
-		      var _this = this;
-		
-		      var timeout = undefined;
-		      if (timeout) clearTimeout(timeout);
-		      if (val.length > this.limit) {
-		        this.showNotify = true;
-		        this.value.pop();
-		        timeout = setTimeout(function () {
-		          return _this.showNotify = false;
-		        }, 1000);
-		      }
-		    }
-		  },
-		  methods: {
-		    select: function select(v) {
-		      var index = this.value.indexOf(v);
-		      if (index === -1) this.value.push(v);else this.value.$remove(v);
-		    },
-		    toggleDropdown: function toggleDropdown() {
-		      this.show = !this.show;
-		    }
-		  }
-		};
-	
-	/***/ },
-	/* 139 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		module.exports = { "default": __webpack_require__(140), __esModule: true };
-	
-	/***/ },
-	/* 140 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(141);
-		__webpack_require__(37);
-		module.exports = __webpack_require__(147);
-	
-	/***/ },
-	/* 141 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(142);
-		var Iterators = __webpack_require__(55);
-		Iterators.NodeList = Iterators.HTMLCollection = Iterators.Array;
-	
-	/***/ },
-	/* 142 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		var addToUnscopables = __webpack_require__(143)
-		  , step             = __webpack_require__(144)
-		  , Iterators        = __webpack_require__(55)
-		  , toIObject        = __webpack_require__(145);
-		
-		// 22.1.3.4 Array.prototype.entries()
-		// 22.1.3.13 Array.prototype.keys()
-		// 22.1.3.29 Array.prototype.values()
-		// 22.1.3.30 Array.prototype[@@iterator]()
-		module.exports = __webpack_require__(41)(Array, 'Array', function(iterated, kind){
-		  this._t = toIObject(iterated); // target
-		  this._i = 0;                   // next index
-		  this._k = kind;                // kind
-		// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
-		}, function(){
-		  var O     = this._t
-		    , kind  = this._k
-		    , index = this._i++;
-		  if(!O || index >= O.length){
-		    this._t = undefined;
-		    return step(1);
-		  }
-		  if(kind == 'keys'  )return step(0, index);
-		  if(kind == 'values')return step(0, O[index]);
-		  return step(0, [index, O[index]]);
-		}, 'values');
-		
-		// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
-		Iterators.Arguments = Iterators.Array;
-		
-		addToUnscopables('keys');
-		addToUnscopables('values');
-		addToUnscopables('entries');
-	
-	/***/ },
-	/* 143 */
-	/***/ function(module, exports) {
-	
-		module.exports = function(){ /* empty */ };
-	
-	/***/ },
-	/* 144 */
-	/***/ function(module, exports) {
-	
-		module.exports = function(done, value){
-		  return {value: value, done: !!done};
-		};
-	
-	/***/ },
-	/* 145 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// to indexed object, toObject with fallback for non-array-like ES3 strings
-		var IObject = __webpack_require__(146)
-		  , defined = __webpack_require__(40);
-		module.exports = function(it){
-		  return IObject(defined(it));
-		};
-	
-	/***/ },
-	/* 146 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// fallback for non-array-like ES3 and non-enumerable old V8 strings
-		var cof = __webpack_require__(70);
-		module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
-		  return cof(it) == 'String' ? it.split('') : Object(it);
-		};
-	
-	/***/ },
-	/* 147 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		var anObject = __webpack_require__(64)
-		  , get      = __webpack_require__(68);
-		module.exports = __webpack_require__(45).getIterator = function(it){
-		  var iterFn = get(it);
-		  if(typeof iterFn != 'function')throw TypeError(it + ' is not iterable!');
-		  return anObject(iterFn.call(it));
-		};
-	
-	/***/ },
-	/* 148 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div class=\"btn-group\" v-bind:class=\"{open:show}\">\n    <button v-el:btn type=\"button\" class=\"btn btn-default dropdown-toggle\" \n      @click=\"toggleDropdown\"\n      @blur=\"show = (search ? show:false)\"\n    >\n      <span class=\"placeholder\" v-show=\"showPlaceholder\">{{placeholder}}</span>\n      <span class=\"content\">{{ selectedItems }}</span>\n      <span class=\"caret\"></span>\n    </button>\n    <ul class=\"dropdown-menu\">\n      <template v-if=\"options.length\">\n        <li v-if=\"search\" class=\"bs-searchbox\">\n          <input type=\"text\" placeholder=\"Search\" v-model=\"searchText\" class=\"form-control\" autocomplete=\"off\">\n        </li>\n        <li v-for=\"option in options | filterBy searchText \" v-bind:id=\"option.value\" style=\"position:relative\">\n          <a @mousedown.prevent=\"select(option.value)\" style=\"cursor:pointer\">\n            {{ option.label }}\n            <span class=\"glyphicon glyphicon-ok check-mark\" v-show=\"value.indexOf(option.value) !== -1\"></span>\n          </a>\n        </li>\n      </template>\n      <slot v-else></slot>\n      <div class=\"notify\" v-show=\"showNotify\" transition=\"fadein\">Limit reached ({{limit}} items max).</div>\n    </ul>\n  </div>";
-	
-	/***/ },
-	/* 149 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(150)
-		module.exports = __webpack_require__(152)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(153)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Tab.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Tab.vue","-!vue-html!./../node_modules/vue-loader/lib/template-rewriter.js?id=_v-0c89e409&file=Tab.vue!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Tab.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Tab.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/template-rewriter.js?id=_v-0c89e409&file=Tab.vue!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Tab.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 150 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// style-loader: Adds some css to the DOM by adding a <style> tag
-		
-		// load the styles
-		var content = __webpack_require__(151);
-		if(typeof content === 'string') content = [[module.id, content, '']];
-		// add the styles to the DOM
-		var update = __webpack_require__(27)(content, {});
-		if(content.locals) module.exports = content.locals;
-		// Hot Module Replacement
-		if(false) {
-			// When the styles change, update the <style> tags
-			if(!content.locals) {
-				module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-0c89e409&file=Tab.vue&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tab.vue", function() {
-					var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-0c89e409&file=Tab.vue&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tab.vue");
-					if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-					update(newContent);
-				});
-			}
-			// When the module is disposed, remove the <style> tags
-			module.hot.dispose(function() { update(); });
-		}
-	
-	/***/ },
-	/* 151 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		exports = module.exports = __webpack_require__(26)();
-		// imports
-		
-		
-		// module
-		exports.push([module.id, ".tab-content > .tab-pane[_v-0c89e409] {\n    display: block;\n  }", ""]);
-		
-		// exports
-	
-	
-	/***/ },
-	/* 152 */
-	/***/ function(module, exports) {
-	
-		"use strict";
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		exports.default = {
-		  props: {
-		    header: {
-		      type: String
-		    },
-		    disabled: {
-		      type: Boolean,
-		      default: false
-		    }
-		  },
-		  data: function data() {
-		    return {
-		      index: 0,
-		      show: false
-		    };
-		  },
-		
-		  computed: {
-		    show: function show() {
-		      return this.$parent.activeIndex == this.index;
-		    },
-		    transition: function transition() {
-		      return this.$parent.effect;
-		    }
-		  },
-		  created: function created() {
-		    this.$parent.renderData.push({
-		      header: this.header,
-		      disabled: this.disabled
-		    });
-		  },
-		  ready: function ready() {
-		    for (var c in this.$parent.$children) {
-		      if (this.$parent.$children[c].$el == this.$el) {
-		        this.index = c;
-		        break;
-		      }
-		    }
-		  }
-		};
-	
-	/***/ },
-	/* 153 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div role=\"tabpanel\" class=\"tab-pane\" v-bind:class=\"{hide:!show}\" v-show=\"show\" :transition=\"transition\" _v-0c89e409=\"\">\n    <slot _v-0c89e409=\"\"></slot>\n  </div>";
-	
-	/***/ },
-	/* 154 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(155)
-		module.exports = __webpack_require__(157)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(158)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Tabset.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Tabset.vue","-!vue-html!./../node_modules/vue-loader/lib/template-rewriter.js?id=_v-4765fae9&file=Tabset.vue!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Tabset.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Tabset.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/template-rewriter.js?id=_v-4765fae9&file=Tabset.vue!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Tabset.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 155 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// style-loader: Adds some css to the DOM by adding a <style> tag
-		
-		// load the styles
-		var content = __webpack_require__(156);
-		if(typeof content === 'string') content = [[module.id, content, '']];
-		// add the styles to the DOM
-		var update = __webpack_require__(27)(content, {});
-		if(content.locals) module.exports = content.locals;
-		// Hot Module Replacement
-		if(false) {
-			// When the styles change, update the <style> tags
-			if(!content.locals) {
-				module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-4765fae9&file=Tabset.vue&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tabset.vue", function() {
-					var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-4765fae9&file=Tabset.vue&scoped=true!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tabset.vue");
-					if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-					update(newContent);
-				});
-			}
-			// When the module is disposed, remove the <style> tags
-			module.hot.dispose(function() { update(); });
-		}
-	
-	/***/ },
-	/* 156 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		exports = module.exports = __webpack_require__(26)();
-		// imports
-		
-		
-		// module
-		exports.push([module.id, ".nav-tabs[_v-4765fae9] {\n    margin-bottom: 15px\n  }", ""]);
-		
-		// exports
-	
-	
-	/***/ },
-	/* 157 */
-	/***/ function(module, exports) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		exports.default = {
-		  props: {
-		    effect: {
-		      type: String,
-		      default: 'fadein'
-		    }
-		  },
-		  data: function data() {
-		    return {
-		      renderData: [],
-		      activeIndex: 0
-		    };
-		  },
-		
-		  methods: {
-		    handleTabListClick: function handleTabListClick(index, el) {
-		      if (!el.disabled) this.activeIndex = index;
-		    }
-		  }
-		};
-	
-	/***/ },
-	/* 158 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div _v-4765fae9=\"\">\n    <!-- Nav tabs -->\n     <ul class=\"nav nav-tabs\" role=\"tablist\" _v-4765fae9=\"\">\n            <li v-for=\"r in renderData\" v-bind:class=\"{\n                  'active': ($index === activeIndex),\n                  'disabled': r.disabled\n                }\" @click.prevent=\"handleTabListClick($index, r)\" :disabled=\"r.disabled\" _v-4765fae9=\"\">\n                <a href=\"#\" _v-4765fae9=\"\">{{r.header}}</a>\n            </li>\n     </ul>\n\n     <!-- Tab panes -->\n     <div class=\"tab-content\" v-el:tabcontent=\"\" _v-4765fae9=\"\">\n        <slot _v-4765fae9=\"\"></slot>\n     </div>\n  </div>";
-	
-	/***/ },
-	/* 159 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(160)
-		module.exports = __webpack_require__(162)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(163)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Tooltip.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Tooltip.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Tooltip.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Tooltip.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Tooltip.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 160 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// style-loader: Adds some css to the DOM by adding a <style> tag
-		
-		// load the styles
-		var content = __webpack_require__(161);
-		if(typeof content === 'string') content = [[module.id, content, '']];
-		// add the styles to the DOM
-		var update = __webpack_require__(27)(content, {});
-		if(content.locals) module.exports = content.locals;
-		// Hot Module Replacement
-		if(false) {
-			// When the styles change, update the <style> tags
-			if(!content.locals) {
-				module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-882f0112&file=Tooltip.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tooltip.vue", function() {
-					var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-882f0112&file=Tooltip.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tooltip.vue");
-					if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-					update(newContent);
-				});
-			}
-			// When the module is disposed, remove the <style> tags
-			module.hot.dispose(function() { update(); });
-		}
-	
-	/***/ },
-	/* 161 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		exports = module.exports = __webpack_require__(26)();
-		// imports
-		
-		
-		// module
-		exports.push([module.id, ".tooltip {\n    opacity: .9\n  }\n.fadein-enter {\n  -webkit-animation:fadein-in 0.3s ease-in;\n          animation:fadein-in 0.3s ease-in;\n}\n.fadein-leave {\n  -webkit-animation:fadein-out 0.3s ease-out;\n          animation:fadein-out 0.3s ease-out;\n}\n@-webkit-keyframes fadein-in {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@keyframes fadein-in {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@-webkit-keyframes fadein-out {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n@keyframes fadein-out {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}", ""]);
-		
-		// exports
-	
-	
-	/***/ },
-	/* 162 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		
-		var _popoverMixins = __webpack_require__(124);
-		
-		var _popoverMixins2 = _interopRequireDefault(_popoverMixins);
-		
-		function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-		
-		exports.default = {
-		  mixins: [_popoverMixins2.default],
-		  props: {
-		    trigger: {
-		      type: String,
-		      default: 'hover'
-		    },
-		    effect: {
-		      type: String,
-		      default: 'scale'
-		    }
-		  }
-		};
-	
-	/***/ },
-	/* 163 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<span v-el:trigger>\n    <slot>\n    </slot>\n  </span>\n  <div class=\"tooltip\"\n    v-bind:class=\"{\n    'top':    placement === 'top',\n    'left':   placement === 'left',\n    'right':  placement === 'right',\n    'bottom': placement === 'bottom'\n    }\"\n    v-el:popover\n    v-show=\"show\"\n    :transition=\"effect\"\n    role=\"tooltip\">\n    <div class=\"tooltip-arrow\"></div>\n    <div class=\"tooltip-inner\">\n      {{{content}}}\n    </div>\n  </div>";
-	
-	/***/ },
-	/* 164 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		__webpack_require__(165)
-		module.exports = __webpack_require__(167)
-		
-		if (module.exports.__esModule) module.exports = module.exports.default
-		;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(169)
-		if (false) {
-		(function () {
-		var hotAPI = require("vue-hot-reload-api")
-		hotAPI.install(require("vue"))
-		if (!hotAPI.compatible) return
-		var id = "-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Typeahead.vue"
-		hotAPI.createRecord(id, module.exports)
-		module.hot.accept(["-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Typeahead.vue","-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Typeahead.vue"], function () {
-		var newOptions = require("-!babel!./../node_modules/vue-loader/lib/selector.js?type=script&index=0!./Typeahead.vue")
-		if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-		var newTemplate = require("-!vue-html!./../node_modules/vue-loader/lib/selector.js?type=template&index=0!./Typeahead.vue")
-		hotAPI.update(id, newOptions, newTemplate)
-		})
-		})()
-		}
-	
-	/***/ },
-	/* 165 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		// style-loader: Adds some css to the DOM by adding a <style> tag
-		
-		// load the styles
-		var content = __webpack_require__(166);
-		if(typeof content === 'string') content = [[module.id, content, '']];
-		// add the styles to the DOM
-		var update = __webpack_require__(27)(content, {});
-		if(content.locals) module.exports = content.locals;
-		// Hot Module Replacement
-		if(false) {
-			// When the styles change, update the <style> tags
-			if(!content.locals) {
-				module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3ea9213b&file=Typeahead.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Typeahead.vue", function() {
-					var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3ea9213b&file=Typeahead.vue!./../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Typeahead.vue");
-					if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-					update(newContent);
-				});
-			}
-			// When the module is disposed, remove the <style> tags
-			module.hot.dispose(function() { update(); });
-		}
-	
-	/***/ },
-	/* 166 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		exports = module.exports = __webpack_require__(26)();
-		// imports
-		
-		
-		// module
-		exports.push([module.id, ".dropdown-menu > li > a {\n  cursor: pointer;\n}", ""]);
-		
-		// exports
-	
-	
-	/***/ },
-	/* 167 */
-	/***/ function(module, exports, __webpack_require__) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		  value: true
-		});
-		
-		var _callAjax = __webpack_require__(168);
-		
-		var _callAjax2 = _interopRequireDefault(_callAjax);
-		
-		function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-		
-		var typeahead = {
-		  created: function created() {
-		    this.items = this.primitiveData;
-		  },
-		
-		  partials: {
-		    'default': 'asdf<span v-html="item | highlight query"></span>'
-		  },
-		  props: {
-		    data: {
-		      type: Array
-		    },
-		    limit: {
-		      type: Number,
-		      default: 8
-		    },
-		    async: {
-		      type: String
-		    },
-		    template: {
-		      type: String
-		    },
-		    templateName: {
-		      type: String,
-		      default: 'default'
-		    },
-		    key: {
-		      type: String
-		    },
-		    matchCase: {
-		      type: Boolean,
-		      default: false
-		    },
-		    onHit: {
-		      type: Function,
-		      default: function _default(items) {
-		        this.reset();
-		        this.query = items;
-		      }
-		    },
-		    placeholder: {
-		      type: String
-		    }
-		  },
-		  data: function data() {
-		    return {
-		      query: '',
-		      showDropdown: false,
-		      noResults: true,
-		      current: 0,
-		      items: []
-		    };
-		  },
-		
-		  computed: {
-		    primitiveData: function primitiveData() {
-		      var _this = this;
-		
-		      if (this.data) {
-		        return this.data.filter(function (value) {
-		          value = _this.matchCase ? value : value.toLowerCase();
-		          return value.indexOf(_this.query) !== -1;
-		        }).slice(0, this.limit);
-		      }
-		    }
-		  },
-		  ready: function ready() {
-		    // register a partial:
-		    if (this.templateName && this.templateName !== 'default') {
-		      Vue.partial(this.templateName, this.template);
-		    }
-		  },
-		
-		  methods: {
-		    update: function update() {
-		      var _this2 = this;
-		
-		      if (!this.query) {
-		        this.reset();
-		        return false;
-		      }
-		      if (this.data) {
-		        this.items = this.primitiveData;
-		        this.showDropdown = this.items.length ? true : false;
-		      }
-		      if (this.async) {
-		        (0, _callAjax2.default)(this.async + this.query, function (data) {
-		          _this2.items = data[_this2.key].slice(0, _this2.limit);
-		          _this2.showDropdown = _this2.items.length ? true : false;
-		        });
-		      }
-		    },
-		    reset: function reset() {
-		      this.items = [];
-		      this.query = '';
-		      this.loading = false;
-		      this.showDropdown = false;
-		    },
-		    setActive: function setActive(index) {
-		      this.current = index;
-		    },
-		    isActive: function isActive(index) {
-		      return this.current === index;
-		    },
-		    hit: function hit(e) {
-		      console.log("e", e, "e.targetVm", e.targetVM);
-		      e.preventDefault();
-		      this.onHit(this.items[this.current], this);
-		    },
-		    up: function up() {
-		      if (this.current > 0) this.current--;
-		    },
-		    down: function down() {
-		      if (this.current < this.items.length - 1) this.current++;
-		    }
-		  },
-		  filters: {
-		    highlight: function highlight(value, phrase) {
-		      return value.replace(new RegExp('(' + phrase + ')', 'gi'), '<strong>$1</strong>');
-		    }
-		  }
-		};
-		exports.default = typeahead;
-	
-	/***/ },
-	/* 168 */
-	/***/ function(module, exports) {
-	
-		'use strict';
-		
-		Object.defineProperty(exports, "__esModule", {
-		    value: true
-		});
-		
-		exports.default = function (url, callback) {
-		    var httpRequest = new XMLHttpRequest();
-		    httpRequest.onreadystatechange = function () {
-		        if (httpRequest.readyState === 4) {
-		            if (httpRequest.status === 200) {
-		                var data = JSON.parse(httpRequest.responseText);
-		                if (callback) callback(data);
-		            }
-		        }
-		    };
-		    httpRequest.open('GET', url);
-		    httpRequest.send();
-		};
-	
-	/***/ },
-	/* 169 */
-	/***/ function(module, exports) {
-	
-		module.exports = "<div style=\"position: relative\"\n  v-bind:class=\"{'open':showDropdown}\"\n  >\n  <input type=\"text\" class=\"form-control\"\n    :placeholder=\"placeholder\"\n    autocomplete=\"off\"\n    v-model=\"query\"\n    @input=\"update\"\n    @keydown.up=\"up\"\n    @keydown.down=\"down\"\n    @keydown.enter= \"hit\"\n    @keydown.esc=\"reset\"\n    @blur=\"showDropdown = false\"\n  />\n  <ul class=\"dropdown-menu\" v-el:dropdown>\n    <li v-for=\"item in items\" v-bind:class=\"{'active': isActive($index)}\">\n      <a @mousedown.prevent=\"hit\" @mousemove=\"setActive($index)\">\n        <partial :name=\"templateName\"></partial>\n      </a>\n    </li> \n  </ul>\n</div>";
-	
-	/***/ }
-	/******/ ])
+	exports = module.exports = __webpack_require__(8)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n    /*侧边栏用户信息区域*/\n    .user-info {\n        padding: 10px;\n        font-size: 15px;\n        color: #313131;\n    }\n\n\t.nologin{\n\t\tline-height: 30px;\n        padding-left: 10px;\n        display: -webkit-box;\n        display: -webkit-flex;\n        display: -ms-flexbox;\n        display: flex;\n        display: -webkit-flexbox;\n        -webkit-flex-flow:row nowrap;\n            -ms-flex-flow:row nowrap;\n                flex-flow:row nowrap;\n        -webkit-box-pack:justify;\n        -webkit-justify-content:space-between;\n            -ms-flex-pack:justify;\n                justify-content:space-between;\n        margin: 0px 20px;\n        -webkit-box-align:center;\n        -webkit-align-items:center;\n            -ms-flex-align:center;\n                align-items:center;\n\t}\n\n\t.nologin>span:first-child{\n\t\twidth: 24px;\n        height: 24px;\n        content: '';\n        background: url(" + __webpack_require__(53) + ") no-repeat left center;\n      \tbackground-size: 24px 24px;\n\t}\n\n\n\n    /*已登录\n    /*.login-yes {\n        height: 100%;\n        background: url(\"../assets/images/components/go_next_icon.png\") no-repeat right center;\n        background-size: 6px 10px;\n        overflow: hidden;\n        position: relative;\n       \n    }\n\n \t.login-yes>.avertar {\n        width: 40px;\n        height: 40px;\n        background: url(\"../assets/images/components/user.png\") no-repeat center center;\n        background-size: 40px 40px;\n        border-radius: 20px;\n        overflow: hidden;\n        float: left;\n        \n    }*/*/\n\n\t.login-yes>.avertar>img {\n        width: 40px;\n        height: 40px;\n        display: block;\n    }\n\n    .login-yes>.info {\n        margin-left: 10px;\n        overflow: hidden;\n        float: left;\n    }\n\n    .login-yes>p {\n        width: 85px;\n        overflow: hidden;\n        white-space: nowrap;\n        text-overflow: ellipsis;\n        font-size: 12px;\n        line-height: 12px;\n        line-height: 40px;\n        \n    }\n    \n    .login-yes>p>.lh20 {\n        line-height: 20px;\n     }\n    /*.login-yes:after {\n        display: block;\n        background: url(\"../assets/images/components/go_icon.png\") no-repeat center right;\n        background-size: 7px 7px;\n    }*/\n", "", {"version":3,"sources":["/./src/components/UserHeader.vue?46f7a3c2"],"names":[],"mappings":";IAuCA,aAAA;IACA;QACA,cAAA;QACA,gBAAA;QACA,eAAA;KACA;;CAEA;EACA,kBAAA;QACA,mBAAA;QACA,qBAAA;QAAA,sBAAA;QAAA,qBAAA;QAAA,cAAA;QACA,yBAAA;QACA,6BAAA;YAAA,yBAAA;gBAAA,qBAAA;QACA,yBAAA;QAAA,sCAAA;YAAA,sBAAA;gBAAA,8BAAA;QACA,iBAAA;QACA,yBAAA;QAAA,2BAAA;YAAA,sBAAA;gBAAA,mBAAA;EACA;;CAEA;EACA,YAAA;QACA,aAAA;QACA,YAAA;QACA,gEAAA;OACA,2BAAA;EACA;;;;IAIA;;;;;;;;;;;;;;;;;;;OAmBA;;;QAGA,YAAA;QACA,aAAA;QACA,eAAA;KACA;;IAEA;QACA,kBAAA;QACA,iBAAA;QACA,YAAA;KACA;;IAEA;QACA,YAAA;QACA,iBAAA;QACA,oBAAA;QACA,wBAAA;QACA,gBAAA;QACA,kBAAA;QACA,kBAAA;;KAEA;;IAEA;QACA,kBAAA;MACA;IACA;;;;OAIA","file":"UserHeader.vue","sourcesContent":["<template>\r\n    <div class=\"user-info\">\r\n        <!-- 未登录 -->\r\n        <div class=\"nologin\" v-if=\"!loginname\">\r\n            <span ></span>\r\n            <span  @click=\"goEnter\"><a >登录</a></span>\r\n        </div>\r\n        <!-- 已登录 -->\r\n        <div class=\"login-yes\" v-if=\"loginname\" @click=\"goUser\">\r\n            <div class=\"avertar\"><img v-if=\"avatar_url\" :src=\"avatar_url\"></div>\r\n            <div class=\"info\">\r\n                <p v-if=\"loginname\" v-text=\"loginname\"></p>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    export default {\r\n        replace:true,\r\n        data () {\r\n            return {\r\n                loginname: localStorage.loginname || \"\",\r\n                avatar_url: localStorage.avatar_url || \"\"\r\n            }\r\n        },\r\n        methods:{\r\n            goEnter (){\r\n                var link = '/login?redirect='+ encodeURIComponent(this.$route.path);\r\n                this.$route.router.go(link);\r\n            },\r\n            goUser (){\r\n                this.$route.router.go({name:'user',params:{loginname:localStorage.loginname}});\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style type=\"text/css\">\r\n    /*侧边栏用户信息区域*/\r\n    .user-info {\r\n        padding: 10px;\r\n        font-size: 15px;\r\n        color: #313131;\r\n    }\r\n\r\n\t.nologin{\r\n\t\tline-height: 30px;\r\n        padding-left: 10px;\r\n        display: flex;\r\n        display: -webkit-flexbox;\r\n        flex-flow:row nowrap;\r\n        justify-content:space-between;\r\n        margin: 0px 20px;\r\n        align-items:center;\r\n\t}\r\n\r\n\t.nologin>span:first-child{\r\n\t\twidth: 24px;\r\n        height: 24px;\r\n        content: '';\r\n        background: url(\"../assets/images/components/login_icon.png\") no-repeat left center;\r\n      \tbackground-size: 24px 24px;\r\n\t}\r\n\r\n\r\n\r\n    /*已登录\r\n    /*.login-yes {\r\n        height: 100%;\r\n        background: url(\"../assets/images/components/go_next_icon.png\") no-repeat right center;\r\n        background-size: 6px 10px;\r\n        overflow: hidden;\r\n        position: relative;\r\n       \r\n    }\r\n\r\n \t.login-yes>.avertar {\r\n        width: 40px;\r\n        height: 40px;\r\n        background: url(\"../assets/images/components/user.png\") no-repeat center center;\r\n        background-size: 40px 40px;\r\n        border-radius: 20px;\r\n        overflow: hidden;\r\n        float: left;\r\n        \r\n    }*/*/\r\n\r\n\t.login-yes>.avertar>img {\r\n        width: 40px;\r\n        height: 40px;\r\n        display: block;\r\n    }\r\n\r\n    .login-yes>.info {\r\n        margin-left: 10px;\r\n        overflow: hidden;\r\n        float: left;\r\n    }\r\n\r\n    .login-yes>p {\r\n        width: 85px;\r\n        overflow: hidden;\r\n        white-space: nowrap;\r\n        text-overflow: ellipsis;\r\n        font-size: 12px;\r\n        line-height: 12px;\r\n        line-height: 40px;\r\n        \r\n    }\r\n    \r\n    .login-yes>p>.lh20 {\r\n        line-height: 20px;\r\n     }\r\n    /*.login-yes:after {\r\n        display: block;\r\n        background: url(\"../assets/images/components/go_icon.png\") no-repeat center right;\r\n        background-size: 7px 7px;\r\n    }*/\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 23 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
 	});
-	;
-	//# sourceMappingURL=vue-strap.js.map
+	// <template>
+	//     <div class="user-info">
+	//         <!-- 未登录 -->
+	//         <div class="nologin" v-if="!loginname">
+	//             <span ></span>
+	//             <span  @click="goEnter"><a >登录</a></span>
+	//         </div>
+	//         <!-- 已登录 -->
+	//         <div class="login-yes" v-if="loginname" @click="goUser">
+	//             <div class="avertar"><img v-if="avatar_url" :src="avatar_url"></div>
+	//             <div class="info">
+	//                 <p v-if="loginname" v-text="loginname"></p>
+	//             </div>
+	//         </div>
+	//     </div>
+	// </template>
+	
+	// <script>
+	exports.default = {
+	    replace: true,
+	    data: function data() {
+	        return {
+	            loginname: localStorage.loginname || "",
+	            avatar_url: localStorage.avatar_url || ""
+	        };
+	    },
+	
+	    methods: {
+	        goEnter: function goEnter() {
+	            var link = '/login?redirect=' + encodeURIComponent(this.$route.path);
+	            this.$route.router.go(link);
+	        },
+	        goUser: function goUser() {
+	            this.$route.router.go({ name: 'user', params: { loginname: localStorage.loginname } });
+	        }
+	    }
+	};
+	// </script>
+
+	// <style type="text/css">
+	//     /*侧边栏用户信息区域*/
+	//     .user-info {
+	//         padding: 10px;
+	//         font-size: 15px;
+	//         color: #313131;
+	//     }
+
+	// 	.nologin{
+	// 		line-height: 30px;
+	//         padding-left: 10px;
+	//         display: flex;
+	//         display: -webkit-flexbox;
+	//         flex-flow:row nowrap;
+	//         justify-content:space-between;
+	//         margin: 0px 20px;
+	//         align-items:center;
+	// 	}
+
+	// 	.nologin>span:first-child{
+	// 		width: 24px;
+	//         height: 24px;
+	//         content: '';
+	//         background: url("../assets/images/components/login_icon.png") no-repeat left center;
+	//       	background-size: 24px 24px;
+	// 	}
+
+	//     /*已登录
+	//     /*.login-yes {
+	//         height: 100%;
+	//         background: url("../assets/images/components/go_next_icon.png") no-repeat right center;
+	//         background-size: 6px 10px;
+	//         overflow: hidden;
+	//         position: relative;
+
+	//     }
+
+	//  	.login-yes>.avertar {
+	//         width: 40px;
+	//         height: 40px;
+	//         background: url("../assets/images/components/user.png") no-repeat center center;
+	//         background-size: 40px 40px;
+	//         border-radius: 20px;
+	//         overflow: hidden;
+	//         float: left;
+
+	//     }*/*/
+
+	// 	.login-yes>.avertar>img {
+	//         width: 40px;
+	//         height: 40px;
+	//         display: block;
+	//     }
+
+	//     .login-yes>.info {
+	//         margin-left: 10px;
+	//         overflow: hidden;
+	//         float: left;
+	//     }
+
+	//     .login-yes>p {
+	//         width: 85px;
+	//         overflow: hidden;
+	//         white-space: nowrap;
+	//         text-overflow: ellipsis;
+	//         font-size: 12px;
+	//         line-height: 12px;
+	//         line-height: 40px;
+
+	//     }
+
+	//     .login-yes>p>.lh20 {
+	//         line-height: 20px;
+	//      }
+	//     /*.login-yes:after {
+	//         display: block;
+	//         background: url("../assets/images/components/go_icon.png") no-repeat center right;
+	//         background-size: 7px 7px;
+	//     }*/
+	// </style>
+	/* generated by vue-loader */
+
+/***/ },
+/* 24 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"user-info\">\n    <!-- 未登录 -->\n    <div class=\"nologin\" v-if=\"!loginname\">\n        <span ></span>\n        <span  @click=\"goEnter\"><a >登录</a></span>\n    </div>\n    <!-- 已登录 -->\n    <div class=\"login-yes\" v-if=\"loginname\" @click=\"goUser\">\n        <div class=\"avertar\"><img v-if=\"avatar_url\" :src=\"avatar_url\"></div>\n        <div class=\"info\">\n            <p v-if=\"loginname\" v-text=\"loginname\"></p>\n        </div>\n    </div>\n</div>\n";
+
+/***/ },
+/* 25 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\t<div class=\"page-cover\" v-if=\"showMenu\" @click=\"showCover\" _v-17c997a8=\"\">\n\t</div>\n\n\t <section id=\"sideBar\" class=\"nav-list\" :class=\"{'showside':showMenu}\" _v-17c997a8=\"\">\n\t    <userheader _v-17c997a8=\"\"></userheader>\n        <ul class=\"list-ul\" _v-17c997a8=\"\">\n        \t<li v-for=\"item in menuItems\" :class=\"item.icon\" v-link=\"{'name':item.link}\" @click=\"enterPage()\" _v-17c997a8=\"\">{{item.text}}</li>\n        </ul>\n    </section>\n";
+
+/***/ },
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(27)
+	__vue_script__ = __webpack_require__(29)
+	__vue_template__ = __webpack_require__(30)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile\\src\\components\\NavTabs.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 27 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(28);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(9)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3e81cde6&file=NavTabs.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./NavTabs.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3e81cde6&file=NavTabs.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./NavTabs.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 28 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(8)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\n.nav-tabs[_v-3e81cde6] {\n\tmargin: 0px;\n\tpadding: 0px;\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\tdisplay: -webkit-flex;\n\t-webkit-flex-flow: row nowrap;\n\t    -ms-flex-flow: row nowrap;\n\t        flex-flow: row nowrap;\n\tlist-style-type: none;\n\tline-height: 35px;\n\tborder-bottom: 1px solid whitesmoke;\n\tpadding: 0 10px;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t    -ms-flex-align: center;\n\t        align-items: center;\n\t-webkit-align-content: center;\n\t    -ms-flex-line-pack: center;\n\t        align-content: center;\n\t-webkit-justify-content: space-around;\n\t    -ms-flex-pack: distribute;\n\t        justify-content: space-around;\n\tfont-size: 14px;\n\tfont-weight: bold;\n\t-webkit-box-flex: 1;\n\t-webkit-flex-grow: 1;\n\t    -ms-flex-positive: 1;\n\t        flex-grow: 1;\n}\n\n\n.nav-tabs>li[_v-3e81cde6] {\n\twidth: 100%;\n\ttext-align: center;\n\tvertical-align: middle;\n\tcursor: pointer;\n}\n\n.nav_active[_v-3e81cde6] {\n\tcolor: darkorange;\n}\n\n\n.tabs_line[_v-3e81cde6] {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\theight: 3px;\n\twidth: 300px;\n\tmargin-top: -3px;\n\tbackground-color: darkorange;\n\t-webkit-transition: all .3s ease;\n\ttransition: all .3s ease;\n\twidth: 0px;\n}\n", "", {"version":3,"sources":["/./src/components/NavTabs.vue?2882b256"],"names":[],"mappings":";;AAyDA;CACA,YAAA;CACA,aAAA;CACA,qBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,sBAAA;CACA,8BAAA;KAAA,0BAAA;SAAA,sBAAA;CACA,sBAAA;CACA,kBAAA;CACA,oCAAA;CACA,gBAAA;CACA,0BAAA;CAAA,4BAAA;KAAA,uBAAA;SAAA,oBAAA;CACA,8BAAA;KAAA,2BAAA;SAAA,sBAAA;CACA,sCAAA;KAAA,0BAAA;SAAA,8BAAA;CACA,gBAAA;CACA,kBAAA;CACA,oBAAA;CAAA,qBAAA;KAAA,qBAAA;SAAA,aAAA;CACA;;;AAGA;CACA,YAAA;CACA,mBAAA;CACA,uBAAA;CACA,gBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;;AAGA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,YAAA;CACA,aAAA;CACA,iBAAA;CACA,6BAAA;CACA,iCAAA;CAAA,yBAAA;CACA,WAAA;CACA","file":"NavTabs.vue","sourcesContent":["<template>\r\n\t<div class=\"container-fluid\">\r\n\t\t<ul class=\"nav-tabs\">\r\n\t\t\t\t<li v-for=\"(index,item) in tabItems\"\r\n\t\t\t\t:class=\"{'nav_active':selectIndex===index}\" \r\n\t\t\t\t@click=\"switchTab(index)\" \r\n\t\t\t\t >{{item.title}}</li>\r\n\t\t</ul>\r\n\t\t<div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\"></div>\r\n\t\t<div class=\"tabs_content\">\r\n\t\t\t<div v-for=\"(index,item) in tabItems\" v-show=\"selectIndex===index\">\r\n\t\t\t\t{{ item.content }}\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\tthis.selectIndex=this.activeIndex;\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\ttabItems:{\r\n\t\t\t\ttype:Array,\r\n\t\t\t\tdefault:[]\r\n\t\t\t},\r\n\t\t\tactiveIndex:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:0\r\n\t\t\t},\r\n\t\t\tunderline:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:100\r\n\t\t\t}\r\n\t\t},\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\t//当前选中的tab页面\r\n\t\t\t\tselectIndex:0\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\t//点击tabs\r\n\t\t\tswitchTab(index){\r\n\t\t\t\tthis.selectIndex=index;\r\n\t\t\t\tvar leftWidth=index*this.underline;\r\n\t\t\t\tdocument.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\t\t\r\n\t\t.nav-tabs {\r\n\t\t\tmargin: 0px;\r\n\t\t\tpadding: 0px;\r\n\t\t\tdisplay: flex;\r\n\t\t\tdisplay: -webkit-flex;\r\n\t\t\tflex-flow: row nowrap;\r\n\t\t\tlist-style-type: none;\r\n\t\t\tline-height: 35px;\r\n\t\t\tborder-bottom: 1px solid whitesmoke;\r\n\t\t\tpadding: 0 10px;\r\n\t\t\talign-items: center;\r\n\t\t\talign-content: center;\r\n\t\t\tjustify-content: space-around;\r\n\t\t\tfont-size: 14px;\r\n\t\t\tfont-weight: bold;\r\n\t\t\tflex-grow: 1;\r\n\t\t}\r\n\t\t\r\n\t\t\r\n\t\t.nav-tabs>li {\r\n\t\t\twidth: 100%;\r\n\t\t\ttext-align: center;\r\n\t\t\tvertical-align: middle;\r\n\t\t\tcursor: pointer;\r\n\t\t}\r\n\t\t\r\n\t\t.nav_active {\r\n\t\t\tcolor: darkorange;\r\n\t\t}\r\n\r\n\t\t\r\n\t\t.tabs_line {\r\n\t\t\tdisplay: flex;\r\n\t\t\theight: 3px;\r\n\t\t\twidth: 300px;\r\n\t\t\tmargin-top: -3px;\r\n\t\t\tbackground-color: darkorange;\r\n\t\t\ttransition: all .3s ease;\r\n\t\t\twidth: 0px;\r\n\t\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 29 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// <template>
+	// 	<div class="container-fluid">
+	// 		<ul class="nav-tabs">
+	// 				<li v-for="(index,item) in tabItems"
+	// 				:class="{'nav_active':selectIndex===index}"
+	// 				@click="switchTab(index)"
+	// 				 >{{item.title}}</li>
+	// 		</ul>
+	// 		<div class="tabs_line" v-bind:style="{ width:underline+ 'px' }"></div>
+	// 		<div class="tabs_content">
+	// 			<div v-for="(index,item) in tabItems" v-show="selectIndex===index">
+	// 				{{ item.content }}
+	// 			</div>
+	// 		</div>
+	// 	</div>
+	
+	// </template>
+	
+	// <script lang="babel">
+	
+	exports.default = {
+		created: function created() {
+			this.selectIndex = this.activeIndex;
+		},
+	
+		props: {
+			tabItems: {
+				type: Array,
+				default: []
+			},
+			activeIndex: {
+				type: Number,
+				default: 0
+			},
+			underline: {
+				type: Number,
+				default: 100
+			}
+		},
+		data: function data() {
+			return {
+				//当前选中的tab页面
+				selectIndex: 0
+			};
+		},
+	
+		methods: {
+			//点击tabs
+	
+			switchTab: function switchTab(index) {
+				this.selectIndex = index;
+				var leftWidth = index * this.underline;
+				document.querySelectorAll('.tabs_line')[0].style.transform = "translateX(" + leftWidth + "px)";
+			}
+		}
+	};
+	// </script>
+
+	// <style type="text/css" scoped>
+
+	// 		.nav-tabs {
+	// 			margin: 0px;
+	// 			padding: 0px;
+	// 			display: flex;
+	// 			display: -webkit-flex;
+	// 			flex-flow: row nowrap;
+	// 			list-style-type: none;
+	// 			line-height: 35px;
+	// 			border-bottom: 1px solid whitesmoke;
+	// 			padding: 0 10px;
+	// 			align-items: center;
+	// 			align-content: center;
+	// 			justify-content: space-around;
+	// 			font-size: 14px;
+	// 			font-weight: bold;
+	// 			flex-grow: 1;
+	// 		}
+
+	// 		.nav-tabs>li {
+	// 			width: 100%;
+	// 			text-align: center;
+	// 			vertical-align: middle;
+	// 			cursor: pointer;
+	// 		}
+
+	// 		.nav_active {
+	// 			color: darkorange;
+	// 		}
+
+	// 		.tabs_line {
+	// 			display: flex;
+	// 			height: 3px;
+	// 			width: 300px;
+	// 			margin-top: -3px;
+	// 			background-color: darkorange;
+	// 			transition: all .3s ease;
+	// 			width: 0px;
+	// 		}
+	// </style>
+
+/***/ },
+/* 30 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"container-fluid\" _v-3e81cde6=\"\">\n\t<ul class=\"nav-tabs\" _v-3e81cde6=\"\">\n\t\t\t<li v-for=\"(index,item) in tabItems\" :class=\"{'nav_active':selectIndex===index}\" @click=\"switchTab(index)\" _v-3e81cde6=\"\">{{item.title}}</li>\n\t</ul>\n\t<div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\" _v-3e81cde6=\"\"></div>\n\t<div class=\"tabs_content\" _v-3e81cde6=\"\">\n\t\t<div v-for=\"(index,item) in tabItems\" v-show=\"selectIndex===index\" _v-3e81cde6=\"\">\n\t\t\t{{ item.content }}\n\t\t</div>\n\t</div>\n</div>\n\n";
+
+/***/ },
+/* 31 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\t\t<toolbar :text=\"title\">\n\t\t\t<span class=\"glyphicon glyphicon-menu-hamburger\" slot=\"leftBtn\" @click=\"openMenu\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\"></span>\n\t\t</toolbar>\n\t\t<navtabs :tab-items=\"tabItems\" :underline=\"tabWidth\">\n\t\t</navtabs>\n\t\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" >\n\t\t\t\n\t\t</sidebar>\n";
+
+/***/ },
+/* 32 */
+/***/ function(module, exports) {
+
+	var __vue_script__, __vue_template__
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+
+
+/***/ },
+/* 33 */
+/***/ function(module, exports) {
+
+	var __vue_script__, __vue_template__
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+
+
+/***/ },
+/* 34 */
+/***/ function(module, exports) {
+
+	var __vue_script__, __vue_template__
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+
+
+/***/ },
+/* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(36)
+	__vue_template__ = __webpack_require__(37)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile\\src\\views\\Login.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 36 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// <template>
+	
+	// 	<div class="container">
+	// 		<div >
+	// 			<input type="text" name="">
+	// 		</div>
+	// 	</div>
+	// </template>
+	
+	// <script>
+	exports.default = {
+		data: function data() {
+			return {
+				gongHao: '',
+				pwd: ''
+			};
+		},
+	
+		methods: {
+			login: function login() {
+				//向服务器发起请登录请求
+	
+			}
+		}
+	};
+	// </script>
+	/* generated by vue-loader */
+
+/***/ },
+/* 37 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\n<div class=\"container\">\n\t<div >\n\t\t<input type=\"text\" name=\"\">\n\t</div>\n</div>\n";
+
+/***/ },
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
+		'use strict';
+	
+		/**
+		 * @preserve FastClick: polyfill to remove click delays on browsers with touch UIs.
+		 *
+		 * @codingstandard ftlabs-jsv2
+		 * @copyright The Financial Times Limited [All Rights Reserved]
+		 * @license MIT License (see LICENSE.txt)
+		 */
+	
+		/*jslint browser:true, node:true*/
+		/*global define, Event, Node*/
+	
+	
+		/**
+		 * Instantiate fast-clicking listeners on the specified layer.
+		 *
+		 * @constructor
+		 * @param {Element} layer The layer to listen on
+		 * @param {Object} [options={}] The options to override the defaults
+		 */
+		function FastClick(layer, options) {
+			var oldOnClick;
+	
+			options = options || {};
+	
+			/**
+			 * Whether a click is currently being tracked.
+			 *
+			 * @type boolean
+			 */
+			this.trackingClick = false;
+	
+	
+			/**
+			 * Timestamp for when click tracking started.
+			 *
+			 * @type number
+			 */
+			this.trackingClickStart = 0;
+	
+	
+			/**
+			 * The element being tracked for a click.
+			 *
+			 * @type EventTarget
+			 */
+			this.targetElement = null;
+	
+	
+			/**
+			 * X-coordinate of touch start event.
+			 *
+			 * @type number
+			 */
+			this.touchStartX = 0;
+	
+	
+			/**
+			 * Y-coordinate of touch start event.
+			 *
+			 * @type number
+			 */
+			this.touchStartY = 0;
+	
+	
+			/**
+			 * ID of the last touch, retrieved from Touch.identifier.
+			 *
+			 * @type number
+			 */
+			this.lastTouchIdentifier = 0;
+	
+	
+			/**
+			 * Touchmove boundary, beyond which a click will be cancelled.
+			 *
+			 * @type number
+			 */
+			this.touchBoundary = options.touchBoundary || 10;
+	
+	
+			/**
+			 * The FastClick layer.
+			 *
+			 * @type Element
+			 */
+			this.layer = layer;
+	
+			/**
+			 * The minimum time between tap(touchstart and touchend) events
+			 *
+			 * @type number
+			 */
+			this.tapDelay = options.tapDelay || 200;
+	
+			/**
+			 * The maximum time for a tap
+			 *
+			 * @type number
+			 */
+			this.tapTimeout = options.tapTimeout || 700;
+	
+			if (FastClick.notNeeded(layer)) {
+				return;
+			}
+	
+			// Some old versions of Android don't have Function.prototype.bind
+			function bind(method, context) {
+				return function() { return method.apply(context, arguments); };
+			}
+	
+	
+			var methods = ['onMouse', 'onClick', 'onTouchStart', 'onTouchMove', 'onTouchEnd', 'onTouchCancel'];
+			var context = this;
+			for (var i = 0, l = methods.length; i < l; i++) {
+				context[methods[i]] = bind(context[methods[i]], context);
+			}
+	
+			// Set up event handlers as required
+			if (deviceIsAndroid) {
+				layer.addEventListener('mouseover', this.onMouse, true);
+				layer.addEventListener('mousedown', this.onMouse, true);
+				layer.addEventListener('mouseup', this.onMouse, true);
+			}
+	
+			layer.addEventListener('click', this.onClick, true);
+			layer.addEventListener('touchstart', this.onTouchStart, false);
+			layer.addEventListener('touchmove', this.onTouchMove, false);
+			layer.addEventListener('touchend', this.onTouchEnd, false);
+			layer.addEventListener('touchcancel', this.onTouchCancel, false);
+	
+			// Hack is required for browsers that don't support Event#stopImmediatePropagation (e.g. Android 2)
+			// which is how FastClick normally stops click events bubbling to callbacks registered on the FastClick
+			// layer when they are cancelled.
+			if (!Event.prototype.stopImmediatePropagation) {
+				layer.removeEventListener = function(type, callback, capture) {
+					var rmv = Node.prototype.removeEventListener;
+					if (type === 'click') {
+						rmv.call(layer, type, callback.hijacked || callback, capture);
+					} else {
+						rmv.call(layer, type, callback, capture);
+					}
+				};
+	
+				layer.addEventListener = function(type, callback, capture) {
+					var adv = Node.prototype.addEventListener;
+					if (type === 'click') {
+						adv.call(layer, type, callback.hijacked || (callback.hijacked = function(event) {
+							if (!event.propagationStopped) {
+								callback(event);
+							}
+						}), capture);
+					} else {
+						adv.call(layer, type, callback, capture);
+					}
+				};
+			}
+	
+			// If a handler is already declared in the element's onclick attribute, it will be fired before
+			// FastClick's onClick handler. Fix this by pulling out the user-defined handler function and
+			// adding it as listener.
+			if (typeof layer.onclick === 'function') {
+	
+				// Android browser on at least 3.2 requires a new reference to the function in layer.onclick
+				// - the old one won't work if passed to addEventListener directly.
+				oldOnClick = layer.onclick;
+				layer.addEventListener('click', function(event) {
+					oldOnClick(event);
+				}, false);
+				layer.onclick = null;
+			}
+		}
+	
+		/**
+		* Windows Phone 8.1 fakes user agent string to look like Android and iPhone.
+		*
+		* @type boolean
+		*/
+		var deviceIsWindowsPhone = navigator.userAgent.indexOf("Windows Phone") >= 0;
+	
+		/**
+		 * Android requires exceptions.
+		 *
+		 * @type boolean
+		 */
+		var deviceIsAndroid = navigator.userAgent.indexOf('Android') > 0 && !deviceIsWindowsPhone;
+	
+	
+		/**
+		 * iOS requires exceptions.
+		 *
+		 * @type boolean
+		 */
+		var deviceIsIOS = /iP(ad|hone|od)/.test(navigator.userAgent) && !deviceIsWindowsPhone;
+	
+	
+		/**
+		 * iOS 4 requires an exception for select elements.
+		 *
+		 * @type boolean
+		 */
+		var deviceIsIOS4 = deviceIsIOS && (/OS 4_\d(_\d)?/).test(navigator.userAgent);
+	
+	
+		/**
+		 * iOS 6.0-7.* requires the target element to be manually derived
+		 *
+		 * @type boolean
+		 */
+		var deviceIsIOSWithBadTarget = deviceIsIOS && (/OS [6-7]_\d/).test(navigator.userAgent);
+	
+		/**
+		 * BlackBerry requires exceptions.
+		 *
+		 * @type boolean
+		 */
+		var deviceIsBlackBerry10 = navigator.userAgent.indexOf('BB10') > 0;
+	
+		/**
+		 * Determine whether a given element requires a native click.
+		 *
+		 * @param {EventTarget|Element} target Target DOM element
+		 * @returns {boolean} Returns true if the element needs a native click
+		 */
+		FastClick.prototype.needsClick = function(target) {
+			switch (target.nodeName.toLowerCase()) {
+	
+			// Don't send a synthetic click to disabled inputs (issue #62)
+			case 'button':
+			case 'select':
+			case 'textarea':
+				if (target.disabled) {
+					return true;
+				}
+	
+				break;
+			case 'input':
+	
+				// File inputs need real clicks on iOS 6 due to a browser bug (issue #68)
+				if ((deviceIsIOS && target.type === 'file') || target.disabled) {
+					return true;
+				}
+	
+				break;
+			case 'label':
+			case 'iframe': // iOS8 homescreen apps can prevent events bubbling into frames
+			case 'video':
+				return true;
+			}
+	
+			return (/\bneedsclick\b/).test(target.className);
+		};
+	
+	
+		/**
+		 * Determine whether a given element requires a call to focus to simulate click into element.
+		 *
+		 * @param {EventTarget|Element} target Target DOM element
+		 * @returns {boolean} Returns true if the element requires a call to focus to simulate native click.
+		 */
+		FastClick.prototype.needsFocus = function(target) {
+			switch (target.nodeName.toLowerCase()) {
+			case 'textarea':
+				return true;
+			case 'select':
+				return !deviceIsAndroid;
+			case 'input':
+				switch (target.type) {
+				case 'button':
+				case 'checkbox':
+				case 'file':
+				case 'image':
+				case 'radio':
+				case 'submit':
+					return false;
+				}
+	
+				// No point in attempting to focus disabled inputs
+				return !target.disabled && !target.readOnly;
+			default:
+				return (/\bneedsfocus\b/).test(target.className);
+			}
+		};
+	
+	
+		/**
+		 * Send a click event to the specified element.
+		 *
+		 * @param {EventTarget|Element} targetElement
+		 * @param {Event} event
+		 */
+		FastClick.prototype.sendClick = function(targetElement, event) {
+			var clickEvent, touch;
+	
+			// On some Android devices activeElement needs to be blurred otherwise the synthetic click will have no effect (#24)
+			if (document.activeElement && document.activeElement !== targetElement) {
+				document.activeElement.blur();
+			}
+	
+			touch = event.changedTouches[0];
+	
+			// Synthesise a click event, with an extra attribute so it can be tracked
+			clickEvent = document.createEvent('MouseEvents');
+			clickEvent.initMouseEvent(this.determineEventType(targetElement), true, true, window, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY, false, false, false, false, 0, null);
+			clickEvent.forwardedTouchEvent = true;
+			targetElement.dispatchEvent(clickEvent);
+		};
+	
+		FastClick.prototype.determineEventType = function(targetElement) {
+	
+			//Issue #159: Android Chrome Select Box does not open with a synthetic click event
+			if (deviceIsAndroid && targetElement.tagName.toLowerCase() === 'select') {
+				return 'mousedown';
+			}
+	
+			return 'click';
+		};
+	
+	
+		/**
+		 * @param {EventTarget|Element} targetElement
+		 */
+		FastClick.prototype.focus = function(targetElement) {
+			var length;
+	
+			// Issue #160: on iOS 7, some input elements (e.g. date datetime month) throw a vague TypeError on setSelectionRange. These elements don't have an integer value for the selectionStart and selectionEnd properties, but unfortunately that can't be used for detection because accessing the properties also throws a TypeError. Just check the type instead. Filed as Apple bug #15122724.
+			if (deviceIsIOS && targetElement.setSelectionRange && targetElement.type.indexOf('date') !== 0 && targetElement.type !== 'time' && targetElement.type !== 'month') {
+				length = targetElement.value.length;
+				targetElement.setSelectionRange(length, length);
+			} else {
+				targetElement.focus();
+			}
+		};
+	
+	
+		/**
+		 * Check whether the given target element is a child of a scrollable layer and if so, set a flag on it.
+		 *
+		 * @param {EventTarget|Element} targetElement
+		 */
+		FastClick.prototype.updateScrollParent = function(targetElement) {
+			var scrollParent, parentElement;
+	
+			scrollParent = targetElement.fastClickScrollParent;
+	
+			// Attempt to discover whether the target element is contained within a scrollable layer. Re-check if the
+			// target element was moved to another parent.
+			if (!scrollParent || !scrollParent.contains(targetElement)) {
+				parentElement = targetElement;
+				do {
+					if (parentElement.scrollHeight > parentElement.offsetHeight) {
+						scrollParent = parentElement;
+						targetElement.fastClickScrollParent = parentElement;
+						break;
+					}
+	
+					parentElement = parentElement.parentElement;
+				} while (parentElement);
+			}
+	
+			// Always update the scroll top tracker if possible.
+			if (scrollParent) {
+				scrollParent.fastClickLastScrollTop = scrollParent.scrollTop;
+			}
+		};
+	
+	
+		/**
+		 * @param {EventTarget} targetElement
+		 * @returns {Element|EventTarget}
+		 */
+		FastClick.prototype.getTargetElementFromEventTarget = function(eventTarget) {
+	
+			// On some older browsers (notably Safari on iOS 4.1 - see issue #56) the event target may be a text node.
+			if (eventTarget.nodeType === Node.TEXT_NODE) {
+				return eventTarget.parentNode;
+			}
+	
+			return eventTarget;
+		};
+	
+	
+		/**
+		 * On touch start, record the position and scroll offset.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.onTouchStart = function(event) {
+			var targetElement, touch, selection;
+	
+			// Ignore multiple touches, otherwise pinch-to-zoom is prevented if both fingers are on the FastClick element (issue #111).
+			if (event.targetTouches.length > 1) {
+				return true;
+			}
+	
+			targetElement = this.getTargetElementFromEventTarget(event.target);
+			touch = event.targetTouches[0];
+	
+			if (deviceIsIOS) {
+	
+				// Only trusted events will deselect text on iOS (issue #49)
+				selection = window.getSelection();
+				if (selection.rangeCount && !selection.isCollapsed) {
+					return true;
+				}
+	
+				if (!deviceIsIOS4) {
+	
+					// Weird things happen on iOS when an alert or confirm dialog is opened from a click event callback (issue #23):
+					// when the user next taps anywhere else on the page, new touchstart and touchend events are dispatched
+					// with the same identifier as the touch event that previously triggered the click that triggered the alert.
+					// Sadly, there is an issue on iOS 4 that causes some normal touch events to have the same identifier as an
+					// immediately preceeding touch event (issue #52), so this fix is unavailable on that platform.
+					// Issue 120: touch.identifier is 0 when Chrome dev tools 'Emulate touch events' is set with an iOS device UA string,
+					// which causes all touch events to be ignored. As this block only applies to iOS, and iOS identifiers are always long,
+					// random integers, it's safe to to continue if the identifier is 0 here.
+					if (touch.identifier && touch.identifier === this.lastTouchIdentifier) {
+						event.preventDefault();
+						return false;
+					}
+	
+					this.lastTouchIdentifier = touch.identifier;
+	
+					// If the target element is a child of a scrollable layer (using -webkit-overflow-scrolling: touch) and:
+					// 1) the user does a fling scroll on the scrollable layer
+					// 2) the user stops the fling scroll with another tap
+					// then the event.target of the last 'touchend' event will be the element that was under the user's finger
+					// when the fling scroll was started, causing FastClick to send a click event to that layer - unless a check
+					// is made to ensure that a parent layer was not scrolled before sending a synthetic click (issue #42).
+					this.updateScrollParent(targetElement);
+				}
+			}
+	
+			this.trackingClick = true;
+			this.trackingClickStart = event.timeStamp;
+			this.targetElement = targetElement;
+	
+			this.touchStartX = touch.pageX;
+			this.touchStartY = touch.pageY;
+	
+			// Prevent phantom clicks on fast double-tap (issue #36)
+			if ((event.timeStamp - this.lastClickTime) < this.tapDelay) {
+				event.preventDefault();
+			}
+	
+			return true;
+		};
+	
+	
+		/**
+		 * Based on a touchmove event object, check whether the touch has moved past a boundary since it started.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.touchHasMoved = function(event) {
+			var touch = event.changedTouches[0], boundary = this.touchBoundary;
+	
+			if (Math.abs(touch.pageX - this.touchStartX) > boundary || Math.abs(touch.pageY - this.touchStartY) > boundary) {
+				return true;
+			}
+	
+			return false;
+		};
+	
+	
+		/**
+		 * Update the last position.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.onTouchMove = function(event) {
+			if (!this.trackingClick) {
+				return true;
+			}
+	
+			// If the touch has moved, cancel the click tracking
+			if (this.targetElement !== this.getTargetElementFromEventTarget(event.target) || this.touchHasMoved(event)) {
+				this.trackingClick = false;
+				this.targetElement = null;
+			}
+	
+			return true;
+		};
+	
+	
+		/**
+		 * Attempt to find the labelled control for the given label element.
+		 *
+		 * @param {EventTarget|HTMLLabelElement} labelElement
+		 * @returns {Element|null}
+		 */
+		FastClick.prototype.findControl = function(labelElement) {
+	
+			// Fast path for newer browsers supporting the HTML5 control attribute
+			if (labelElement.control !== undefined) {
+				return labelElement.control;
+			}
+	
+			// All browsers under test that support touch events also support the HTML5 htmlFor attribute
+			if (labelElement.htmlFor) {
+				return document.getElementById(labelElement.htmlFor);
+			}
+	
+			// If no for attribute exists, attempt to retrieve the first labellable descendant element
+			// the list of which is defined here: http://www.w3.org/TR/html5/forms.html#category-label
+			return labelElement.querySelector('button, input:not([type=hidden]), keygen, meter, output, progress, select, textarea');
+		};
+	
+	
+		/**
+		 * On touch end, determine whether to send a click event at once.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.onTouchEnd = function(event) {
+			var forElement, trackingClickStart, targetTagName, scrollParent, touch, targetElement = this.targetElement;
+	
+			if (!this.trackingClick) {
+				return true;
+			}
+	
+			// Prevent phantom clicks on fast double-tap (issue #36)
+			if ((event.timeStamp - this.lastClickTime) < this.tapDelay) {
+				this.cancelNextClick = true;
+				return true;
+			}
+	
+			if ((event.timeStamp - this.trackingClickStart) > this.tapTimeout) {
+				return true;
+			}
+	
+			// Reset to prevent wrong click cancel on input (issue #156).
+			this.cancelNextClick = false;
+	
+			this.lastClickTime = event.timeStamp;
+	
+			trackingClickStart = this.trackingClickStart;
+			this.trackingClick = false;
+			this.trackingClickStart = 0;
+	
+			// On some iOS devices, the targetElement supplied with the event is invalid if the layer
+			// is performing a transition or scroll, and has to be re-detected manually. Note that
+			// for this to function correctly, it must be called *after* the event target is checked!
+			// See issue #57; also filed as rdar://13048589 .
+			if (deviceIsIOSWithBadTarget) {
+				touch = event.changedTouches[0];
+	
+				// In certain cases arguments of elementFromPoint can be negative, so prevent setting targetElement to null
+				targetElement = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset) || targetElement;
+				targetElement.fastClickScrollParent = this.targetElement.fastClickScrollParent;
+			}
+	
+			targetTagName = targetElement.tagName.toLowerCase();
+			if (targetTagName === 'label') {
+				forElement = this.findControl(targetElement);
+				if (forElement) {
+					this.focus(targetElement);
+					if (deviceIsAndroid) {
+						return false;
+					}
+	
+					targetElement = forElement;
+				}
+			} else if (this.needsFocus(targetElement)) {
+	
+				// Case 1: If the touch started a while ago (best guess is 100ms based on tests for issue #36) then focus will be triggered anyway. Return early and unset the target element reference so that the subsequent click will be allowed through.
+				// Case 2: Without this exception for input elements tapped when the document is contained in an iframe, then any inputted text won't be visible even though the value attribute is updated as the user types (issue #37).
+				if ((event.timeStamp - trackingClickStart) > 100 || (deviceIsIOS && window.top !== window && targetTagName === 'input')) {
+					this.targetElement = null;
+					return false;
+				}
+	
+				this.focus(targetElement);
+				this.sendClick(targetElement, event);
+	
+				// Select elements need the event to go through on iOS 4, otherwise the selector menu won't open.
+				// Also this breaks opening selects when VoiceOver is active on iOS6, iOS7 (and possibly others)
+				if (!deviceIsIOS || targetTagName !== 'select') {
+					this.targetElement = null;
+					event.preventDefault();
+				}
+	
+				return false;
+			}
+	
+			if (deviceIsIOS && !deviceIsIOS4) {
+	
+				// Don't send a synthetic click event if the target element is contained within a parent layer that was scrolled
+				// and this tap is being used to stop the scrolling (usually initiated by a fling - issue #42).
+				scrollParent = targetElement.fastClickScrollParent;
+				if (scrollParent && scrollParent.fastClickLastScrollTop !== scrollParent.scrollTop) {
+					return true;
+				}
+			}
+	
+			// Prevent the actual click from going though - unless the target node is marked as requiring
+			// real clicks or if it is in the whitelist in which case only non-programmatic clicks are permitted.
+			if (!this.needsClick(targetElement)) {
+				event.preventDefault();
+				this.sendClick(targetElement, event);
+			}
+	
+			return false;
+		};
+	
+	
+		/**
+		 * On touch cancel, stop tracking the click.
+		 *
+		 * @returns {void}
+		 */
+		FastClick.prototype.onTouchCancel = function() {
+			this.trackingClick = false;
+			this.targetElement = null;
+		};
+	
+	
+		/**
+		 * Determine mouse events which should be permitted.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.onMouse = function(event) {
+	
+			// If a target element was never set (because a touch event was never fired) allow the event
+			if (!this.targetElement) {
+				return true;
+			}
+	
+			if (event.forwardedTouchEvent) {
+				return true;
+			}
+	
+			// Programmatically generated events targeting a specific element should be permitted
+			if (!event.cancelable) {
+				return true;
+			}
+	
+			// Derive and check the target element to see whether the mouse event needs to be permitted;
+			// unless explicitly enabled, prevent non-touch click events from triggering actions,
+			// to prevent ghost/doubleclicks.
+			if (!this.needsClick(this.targetElement) || this.cancelNextClick) {
+	
+				// Prevent any user-added listeners declared on FastClick element from being fired.
+				if (event.stopImmediatePropagation) {
+					event.stopImmediatePropagation();
+				} else {
+	
+					// Part of the hack for browsers that don't support Event#stopImmediatePropagation (e.g. Android 2)
+					event.propagationStopped = true;
+				}
+	
+				// Cancel the event
+				event.stopPropagation();
+				event.preventDefault();
+	
+				return false;
+			}
+	
+			// If the mouse event is permitted, return true for the action to go through.
+			return true;
+		};
+	
+	
+		/**
+		 * On actual clicks, determine whether this is a touch-generated click, a click action occurring
+		 * naturally after a delay after a touch (which needs to be cancelled to avoid duplication), or
+		 * an actual click which should be permitted.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.onClick = function(event) {
+			var permitted;
+	
+			// It's possible for another FastClick-like library delivered with third-party code to fire a click event before FastClick does (issue #44). In that case, set the click-tracking flag back to false and return early. This will cause onTouchEnd to return early.
+			if (this.trackingClick) {
+				this.targetElement = null;
+				this.trackingClick = false;
+				return true;
+			}
+	
+			// Very odd behaviour on iOS (issue #18): if a submit element is present inside a form and the user hits enter in the iOS simulator or clicks the Go button on the pop-up OS keyboard the a kind of 'fake' click event will be triggered with the submit-type input element as the target.
+			if (event.target.type === 'submit' && event.detail === 0) {
+				return true;
+			}
+	
+			permitted = this.onMouse(event);
+	
+			// Only unset targetElement if the click is not permitted. This will ensure that the check for !targetElement in onMouse fails and the browser's click doesn't go through.
+			if (!permitted) {
+				this.targetElement = null;
+			}
+	
+			// If clicks are permitted, return true for the action to go through.
+			return permitted;
+		};
+	
+	
+		/**
+		 * Remove all FastClick's event listeners.
+		 *
+		 * @returns {void}
+		 */
+		FastClick.prototype.destroy = function() {
+			var layer = this.layer;
+	
+			if (deviceIsAndroid) {
+				layer.removeEventListener('mouseover', this.onMouse, true);
+				layer.removeEventListener('mousedown', this.onMouse, true);
+				layer.removeEventListener('mouseup', this.onMouse, true);
+			}
+	
+			layer.removeEventListener('click', this.onClick, true);
+			layer.removeEventListener('touchstart', this.onTouchStart, false);
+			layer.removeEventListener('touchmove', this.onTouchMove, false);
+			layer.removeEventListener('touchend', this.onTouchEnd, false);
+			layer.removeEventListener('touchcancel', this.onTouchCancel, false);
+		};
+	
+	
+		/**
+		 * Check whether FastClick is needed.
+		 *
+		 * @param {Element} layer The layer to listen on
+		 */
+		FastClick.notNeeded = function(layer) {
+			var metaViewport;
+			var chromeVersion;
+			var blackberryVersion;
+			var firefoxVersion;
+	
+			// Devices that don't support touch don't need FastClick
+			if (typeof window.ontouchstart === 'undefined') {
+				return true;
+			}
+	
+			// Chrome version - zero for other browsers
+			chromeVersion = +(/Chrome\/([0-9]+)/.exec(navigator.userAgent) || [,0])[1];
+	
+			if (chromeVersion) {
+	
+				if (deviceIsAndroid) {
+					metaViewport = document.querySelector('meta[name=viewport]');
+	
+					if (metaViewport) {
+						// Chrome on Android with user-scalable="no" doesn't need FastClick (issue #89)
+						if (metaViewport.content.indexOf('user-scalable=no') !== -1) {
+							return true;
+						}
+						// Chrome 32 and above with width=device-width or less don't need FastClick
+						if (chromeVersion > 31 && document.documentElement.scrollWidth <= window.outerWidth) {
+							return true;
+						}
+					}
+	
+				// Chrome desktop doesn't need FastClick (issue #15)
+				} else {
+					return true;
+				}
+			}
+	
+			if (deviceIsBlackBerry10) {
+				blackberryVersion = navigator.userAgent.match(/Version\/([0-9]*)\.([0-9]*)/);
+	
+				// BlackBerry 10.3+ does not require Fastclick library.
+				// https://github.com/ftlabs/fastclick/issues/251
+				if (blackberryVersion[1] >= 10 && blackberryVersion[2] >= 3) {
+					metaViewport = document.querySelector('meta[name=viewport]');
+	
+					if (metaViewport) {
+						// user-scalable=no eliminates click delay.
+						if (metaViewport.content.indexOf('user-scalable=no') !== -1) {
+							return true;
+						}
+						// width=device-width (or less than device-width) eliminates click delay.
+						if (document.documentElement.scrollWidth <= window.outerWidth) {
+							return true;
+						}
+					}
+				}
+			}
+	
+			// IE10 with -ms-touch-action: none or manipulation, which disables double-tap-to-zoom (issue #97)
+			if (layer.style.msTouchAction === 'none' || layer.style.touchAction === 'manipulation') {
+				return true;
+			}
+	
+			// Firefox version - zero for other browsers
+			firefoxVersion = +(/Firefox\/([0-9]+)/.exec(navigator.userAgent) || [,0])[1];
+	
+			if (firefoxVersion >= 27) {
+				// Firefox 27+ does not have tap delay if the content is not zoomable - https://bugzilla.mozilla.org/show_bug.cgi?id=922896
+	
+				metaViewport = document.querySelector('meta[name=viewport]');
+				if (metaViewport && (metaViewport.content.indexOf('user-scalable=no') !== -1 || document.documentElement.scrollWidth <= window.outerWidth)) {
+					return true;
+				}
+			}
+	
+			// IE11: prefixed -ms-touch-action is no longer supported and it's recomended to use non-prefixed version
+			// http://msdn.microsoft.com/en-us/library/windows/apps/Hh767313.aspx
+			if (layer.style.touchAction === 'none' || layer.style.touchAction === 'manipulation') {
+				return true;
+			}
+	
+			return false;
+		};
+	
+	
+		/**
+		 * Factory method for creating a FastClick object
+		 *
+		 * @param {Element} layer The layer to listen on
+		 * @param {Object} [options={}] The options to override the defaults
+		 */
+		FastClick.attach = function(layer, options) {
+			return new FastClick(layer, options);
+		};
+	
+	
+		if (true) {
+	
+			// AMD. Register as an anonymous module.
+			!(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
+				return FastClick;
+			}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else if (typeof module !== 'undefined' && module.exports) {
+			module.exports = FastClick.attach;
+			module.exports.FastClick = FastClick;
+		} else {
+			window.FastClick = FastClick;
+		}
+	}());
+
+
+/***/ },
+/* 39 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _keys = __webpack_require__(40);
+	
+	var _keys2 = _interopRequireDefault(_keys);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var vueTouch = {};
+	var Hammer =  true ? __webpack_require__(52) : window.Hammer;
+	var gestures = ['tap', 'pan', 'pinch', 'press', 'rotate', 'swipe'];
+	var customeEvents = {};
+	
+	vueTouch.install = function (Vue) {
+	
+	  Vue.directive('touch', {
+	
+	    isFn: true,
+	    acceptStatement: true,
+	
+	    bind: function bind() {
+	      if (!this.el.hammer) {
+	        this.el.hammer = new Hammer.Manager(this.el);
+	      }
+	      var mc = this.mc = this.el.hammer;
+	      // determine event type
+	      var event = this.arg;
+	      var recognizerType, recognizer;
+	
+	      if (customeEvents[event]) {
+	        // custom event
+	        var custom = customeEvents[event];
+	        recognizerType = custom.type;
+	        recognizer = new (Hammer[capitalize(recognizerType)])(custom);
+	        recognizer.recognizeWith(mc.recognizers);
+	        mc.add(recognizer);
+	      } else {
+	        // built-in event
+	
+	        for (var i = 0; i < gestures.length; i++) {
+	          if (event.indexOf(gestures[i]) === 0) {
+	            recognizerType = gestures[i];
+	            break;
+	          }
+	        }
+	        if (!recognizerType) {
+	          console.warn('Invalid v-touch event: ' + event);
+	          return;
+	        }
+	        recognizer = mc.get(recognizerType);
+	        if (!recognizer) {
+	          // add recognizer
+	          recognizer = new (Hammer[capitalize(recognizerType)])();
+	          // make sure multiple recognizers work together...
+	          recognizer.recognizeWith(mc.recognizers);
+	          mc.add(recognizer);
+	        }
+	      }
+	    },
+	
+	    update: function update(fn) {
+	      var mc = this.mc;
+	      var vm = this.vm;
+	      var event = this.arg;
+	      // teardown old handler
+	      if (this.handler) {
+	        mc.off(event, this.handler);
+	      }
+	      // define new handler
+	      this.handler = function (e) {
+	        e.targetVM = vm;
+	        fn.call(vm, e);
+	      };
+	      mc.on(event, this.handler);
+	    },
+	
+	    unbind: function unbind() {
+	      this.mc.off(this.arg, this.handler);
+	      if (!(0, _keys2.default)(this.mc.handlers).length) {
+	        this.mc.destroy();
+	        this.el.hammer = null;
+	      }
+	    }
+	
+	  });
+	};
+	
+	/**
+	 * Register a custom event.
+	 *
+	 * @param {String} event
+	 * @param {Object} options - a Hammer.js recognizer option object.
+	 *                           required fields:
+	 *                           - type: the base recognizer to use for this event
+	 */
+	
+	vueTouch.registerCustomEvent = function (event, options) {
+	  options.event = event;
+	  customeEvents[event] = options;
+	};
+	
+	function capitalize(str) {
+	  return str.charAt(0).toUpperCase() + str.slice(1);
+	}
+	
+	module.exports = vueTouch;
+
+/***/ },
+/* 40 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(41), __esModule: true };
+
+/***/ },
+/* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(42);
+	module.exports = __webpack_require__(48).Object.keys;
+
+/***/ },
+/* 42 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 19.1.2.14 Object.keys(O)
+	var toObject = __webpack_require__(43);
+	
+	__webpack_require__(45)('keys', function($keys){
+	  return function keys(it){
+	    return $keys(toObject(it));
+	  };
+	});
+
+/***/ },
+/* 43 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 7.1.13 ToObject(argument)
+	var defined = __webpack_require__(44);
+	module.exports = function(it){
+	  return Object(defined(it));
+	};
+
+/***/ },
+/* 44 */
+/***/ function(module, exports) {
+
+	// 7.2.1 RequireObjectCoercible(argument)
+	module.exports = function(it){
+	  if(it == undefined)throw TypeError("Can't call method on  " + it);
+	  return it;
+	};
+
+/***/ },
+/* 45 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// most Object methods by ES6 should accept primitives
+	var $export = __webpack_require__(46)
+	  , core    = __webpack_require__(48)
+	  , fails   = __webpack_require__(51);
+	module.exports = function(KEY, exec){
+	  var fn  = (core.Object || {})[KEY] || Object[KEY]
+	    , exp = {};
+	  exp[KEY] = exec(fn);
+	  $export($export.S + $export.F * fails(function(){ fn(1); }), 'Object', exp);
+	};
+
+/***/ },
+/* 46 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var global    = __webpack_require__(47)
+	  , core      = __webpack_require__(48)
+	  , ctx       = __webpack_require__(49)
+	  , PROTOTYPE = 'prototype';
+	
+	var $export = function(type, name, source){
+	  var IS_FORCED = type & $export.F
+	    , IS_GLOBAL = type & $export.G
+	    , IS_STATIC = type & $export.S
+	    , IS_PROTO  = type & $export.P
+	    , IS_BIND   = type & $export.B
+	    , IS_WRAP   = type & $export.W
+	    , exports   = IS_GLOBAL ? core : core[name] || (core[name] = {})
+	    , target    = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE]
+	    , key, own, out;
+	  if(IS_GLOBAL)source = name;
+	  for(key in source){
+	    // contains in native
+	    own = !IS_FORCED && target && key in target;
+	    if(own && key in exports)continue;
+	    // export native or passed
+	    out = own ? target[key] : source[key];
+	    // prevent global pollution for namespaces
+	    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
+	    // bind timers to global for call from export context
+	    : IS_BIND && own ? ctx(out, global)
+	    // wrap global constructors for prevent change them in library
+	    : IS_WRAP && target[key] == out ? (function(C){
+	      var F = function(param){
+	        return this instanceof C ? new C(param) : C(param);
+	      };
+	      F[PROTOTYPE] = C[PROTOTYPE];
+	      return F;
+	    // make static versions for prototype methods
+	    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+	    if(IS_PROTO)(exports[PROTOTYPE] || (exports[PROTOTYPE] = {}))[key] = out;
+	  }
+	};
+	// type bitmap
+	$export.F = 1;  // forced
+	$export.G = 2;  // global
+	$export.S = 4;  // static
+	$export.P = 8;  // proto
+	$export.B = 16; // bind
+	$export.W = 32; // wrap
+	module.exports = $export;
+
+/***/ },
+/* 47 */
+/***/ function(module, exports) {
+
+	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+	var global = module.exports = typeof window != 'undefined' && window.Math == Math
+	  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
+	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
+
+/***/ },
+/* 48 */
+/***/ function(module, exports) {
+
+	var core = module.exports = {version: '1.2.6'};
+	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
+
+/***/ },
+/* 49 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// optional / simple context binding
+	var aFunction = __webpack_require__(50);
+	module.exports = function(fn, that, length){
+	  aFunction(fn);
+	  if(that === undefined)return fn;
+	  switch(length){
+	    case 1: return function(a){
+	      return fn.call(that, a);
+	    };
+	    case 2: return function(a, b){
+	      return fn.call(that, a, b);
+	    };
+	    case 3: return function(a, b, c){
+	      return fn.call(that, a, b, c);
+	    };
+	  }
+	  return function(/* ...args */){
+	    return fn.apply(that, arguments);
+	  };
+	};
+
+/***/ },
+/* 50 */
+/***/ function(module, exports) {
+
+	module.exports = function(it){
+	  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
+	  return it;
+	};
+
+/***/ },
+/* 51 */
+/***/ function(module, exports) {
+
+	module.exports = function(exec){
+	  try {
+	    return !!exec();
+	  } catch(e){
+	    return true;
+	  }
+	};
+
+/***/ },
+/* 52 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.6 - 2015-12-23
+	 * http://hammerjs.github.io/
+	 *
+	 * Copyright (c) 2015 Jorik Tangelder;
+	 * Licensed under the  license */
+	(function(window, document, exportName, undefined) {
+	  'use strict';
+	
+	var VENDOR_PREFIXES = ['', 'webkit', 'Moz', 'MS', 'ms', 'o'];
+	var TEST_ELEMENT = document.createElement('div');
+	
+	var TYPE_FUNCTION = 'function';
+	
+	var round = Math.round;
+	var abs = Math.abs;
+	var now = Date.now;
+	
+	/**
+	 * set a timeout with a given scope
+	 * @param {Function} fn
+	 * @param {Number} timeout
+	 * @param {Object} context
+	 * @returns {number}
+	 */
+	function setTimeoutContext(fn, timeout, context) {
+	    return setTimeout(bindFn(fn, context), timeout);
+	}
+	
+	/**
+	 * if the argument is an array, we want to execute the fn on each entry
+	 * if it aint an array we don't want to do a thing.
+	 * this is used by all the methods that accept a single and array argument.
+	 * @param {*|Array} arg
+	 * @param {String} fn
+	 * @param {Object} [context]
+	 * @returns {Boolean}
+	 */
+	function invokeArrayArg(arg, fn, context) {
+	    if (Array.isArray(arg)) {
+	        each(arg, context[fn], context);
+	        return true;
+	    }
+	    return false;
+	}
+	
+	/**
+	 * walk objects and arrays
+	 * @param {Object} obj
+	 * @param {Function} iterator
+	 * @param {Object} context
+	 */
+	function each(obj, iterator, context) {
+	    var i;
+	
+	    if (!obj) {
+	        return;
+	    }
+	
+	    if (obj.forEach) {
+	        obj.forEach(iterator, context);
+	    } else if (obj.length !== undefined) {
+	        i = 0;
+	        while (i < obj.length) {
+	            iterator.call(context, obj[i], i, obj);
+	            i++;
+	        }
+	    } else {
+	        for (i in obj) {
+	            obj.hasOwnProperty(i) && iterator.call(context, obj[i], i, obj);
+	        }
+	    }
+	}
+	
+	/**
+	 * wrap a method with a deprecation warning and stack trace
+	 * @param {Function} method
+	 * @param {String} name
+	 * @param {String} message
+	 * @returns {Function} A new function wrapping the supplied method.
+	 */
+	function deprecate(method, name, message) {
+	    var deprecationMessage = 'DEPRECATED METHOD: ' + name + '\n' + message + ' AT \n';
+	    return function() {
+	        var e = new Error('get-stack-trace');
+	        var stack = e && e.stack ? e.stack.replace(/^[^\(]+?[\n$]/gm, '')
+	            .replace(/^\s+at\s+/gm, '')
+	            .replace(/^Object.<anonymous>\s*\(/gm, '{anonymous}()@') : 'Unknown Stack Trace';
+	
+	        var log = window.console && (window.console.warn || window.console.log);
+	        if (log) {
+	            log.call(window.console, deprecationMessage, stack);
+	        }
+	        return method.apply(this, arguments);
+	    };
+	}
+	
+	/**
+	 * extend object.
+	 * means that properties in dest will be overwritten by the ones in src.
+	 * @param {Object} target
+	 * @param {...Object} objects_to_assign
+	 * @returns {Object} target
+	 */
+	var assign;
+	if (typeof Object.assign !== 'function') {
+	    assign = function assign(target) {
+	        if (target === undefined || target === null) {
+	            throw new TypeError('Cannot convert undefined or null to object');
+	        }
+	
+	        var output = Object(target);
+	        for (var index = 1; index < arguments.length; index++) {
+	            var source = arguments[index];
+	            if (source !== undefined && source !== null) {
+	                for (var nextKey in source) {
+	                    if (source.hasOwnProperty(nextKey)) {
+	                        output[nextKey] = source[nextKey];
+	                    }
+	                }
+	            }
+	        }
+	        return output;
+	    };
+	} else {
+	    assign = Object.assign;
+	}
+	
+	/**
+	 * extend object.
+	 * means that properties in dest will be overwritten by the ones in src.
+	 * @param {Object} dest
+	 * @param {Object} src
+	 * @param {Boolean=false} [merge]
+	 * @returns {Object} dest
+	 */
+	var extend = deprecate(function extend(dest, src, merge) {
+	    var keys = Object.keys(src);
+	    var i = 0;
+	    while (i < keys.length) {
+	        if (!merge || (merge && dest[keys[i]] === undefined)) {
+	            dest[keys[i]] = src[keys[i]];
+	        }
+	        i++;
+	    }
+	    return dest;
+	}, 'extend', 'Use `assign`.');
+	
+	/**
+	 * merge the values from src in the dest.
+	 * means that properties that exist in dest will not be overwritten by src
+	 * @param {Object} dest
+	 * @param {Object} src
+	 * @returns {Object} dest
+	 */
+	var merge = deprecate(function merge(dest, src) {
+	    return extend(dest, src, true);
+	}, 'merge', 'Use `assign`.');
+	
+	/**
+	 * simple class inheritance
+	 * @param {Function} child
+	 * @param {Function} base
+	 * @param {Object} [properties]
+	 */
+	function inherit(child, base, properties) {
+	    var baseP = base.prototype,
+	        childP;
+	
+	    childP = child.prototype = Object.create(baseP);
+	    childP.constructor = child;
+	    childP._super = baseP;
+	
+	    if (properties) {
+	        assign(childP, properties);
+	    }
+	}
+	
+	/**
+	 * simple function bind
+	 * @param {Function} fn
+	 * @param {Object} context
+	 * @returns {Function}
+	 */
+	function bindFn(fn, context) {
+	    return function boundFn() {
+	        return fn.apply(context, arguments);
+	    };
+	}
+	
+	/**
+	 * let a boolean value also be a function that must return a boolean
+	 * this first item in args will be used as the context
+	 * @param {Boolean|Function} val
+	 * @param {Array} [args]
+	 * @returns {Boolean}
+	 */
+	function boolOrFn(val, args) {
+	    if (typeof val == TYPE_FUNCTION) {
+	        return val.apply(args ? args[0] || undefined : undefined, args);
+	    }
+	    return val;
+	}
+	
+	/**
+	 * use the val2 when val1 is undefined
+	 * @param {*} val1
+	 * @param {*} val2
+	 * @returns {*}
+	 */
+	function ifUndefined(val1, val2) {
+	    return (val1 === undefined) ? val2 : val1;
+	}
+	
+	/**
+	 * addEventListener with multiple events at once
+	 * @param {EventTarget} target
+	 * @param {String} types
+	 * @param {Function} handler
+	 */
+	function addEventListeners(target, types, handler) {
+	    each(splitStr(types), function(type) {
+	        target.addEventListener(type, handler, false);
+	    });
+	}
+	
+	/**
+	 * removeEventListener with multiple events at once
+	 * @param {EventTarget} target
+	 * @param {String} types
+	 * @param {Function} handler
+	 */
+	function removeEventListeners(target, types, handler) {
+	    each(splitStr(types), function(type) {
+	        target.removeEventListener(type, handler, false);
+	    });
+	}
+	
+	/**
+	 * find if a node is in the given parent
+	 * @method hasParent
+	 * @param {HTMLElement} node
+	 * @param {HTMLElement} parent
+	 * @return {Boolean} found
+	 */
+	function hasParent(node, parent) {
+	    while (node) {
+	        if (node == parent) {
+	            return true;
+	        }
+	        node = node.parentNode;
+	    }
+	    return false;
+	}
+	
+	/**
+	 * small indexOf wrapper
+	 * @param {String} str
+	 * @param {String} find
+	 * @returns {Boolean} found
+	 */
+	function inStr(str, find) {
+	    return str.indexOf(find) > -1;
+	}
+	
+	/**
+	 * split string on whitespace
+	 * @param {String} str
+	 * @returns {Array} words
+	 */
+	function splitStr(str) {
+	    return str.trim().split(/\s+/g);
+	}
+	
+	/**
+	 * find if a array contains the object using indexOf or a simple polyFill
+	 * @param {Array} src
+	 * @param {String} find
+	 * @param {String} [findByKey]
+	 * @return {Boolean|Number} false when not found, or the index
+	 */
+	function inArray(src, find, findByKey) {
+	    if (src.indexOf && !findByKey) {
+	        return src.indexOf(find);
+	    } else {
+	        var i = 0;
+	        while (i < src.length) {
+	            if ((findByKey && src[i][findByKey] == find) || (!findByKey && src[i] === find)) {
+	                return i;
+	            }
+	            i++;
+	        }
+	        return -1;
+	    }
+	}
+	
+	/**
+	 * convert array-like objects to real arrays
+	 * @param {Object} obj
+	 * @returns {Array}
+	 */
+	function toArray(obj) {
+	    return Array.prototype.slice.call(obj, 0);
+	}
+	
+	/**
+	 * unique array with objects based on a key (like 'id') or just by the array's value
+	 * @param {Array} src [{id:1},{id:2},{id:1}]
+	 * @param {String} [key]
+	 * @param {Boolean} [sort=False]
+	 * @returns {Array} [{id:1},{id:2}]
+	 */
+	function uniqueArray(src, key, sort) {
+	    var results = [];
+	    var values = [];
+	    var i = 0;
+	
+	    while (i < src.length) {
+	        var val = key ? src[i][key] : src[i];
+	        if (inArray(values, val) < 0) {
+	            results.push(src[i]);
+	        }
+	        values[i] = val;
+	        i++;
+	    }
+	
+	    if (sort) {
+	        if (!key) {
+	            results = results.sort();
+	        } else {
+	            results = results.sort(function sortUniqueArray(a, b) {
+	                return a[key] > b[key];
+	            });
+	        }
+	    }
+	
+	    return results;
+	}
+	
+	/**
+	 * get the prefixed property
+	 * @param {Object} obj
+	 * @param {String} property
+	 * @returns {String|Undefined} prefixed
+	 */
+	function prefixed(obj, property) {
+	    var prefix, prop;
+	    var camelProp = property[0].toUpperCase() + property.slice(1);
+	
+	    var i = 0;
+	    while (i < VENDOR_PREFIXES.length) {
+	        prefix = VENDOR_PREFIXES[i];
+	        prop = (prefix) ? prefix + camelProp : property;
+	
+	        if (prop in obj) {
+	            return prop;
+	        }
+	        i++;
+	    }
+	    return undefined;
+	}
+	
+	/**
+	 * get a unique id
+	 * @returns {number} uniqueId
+	 */
+	var _uniqueId = 1;
+	function uniqueId() {
+	    return _uniqueId++;
+	}
+	
+	/**
+	 * get the window object of an element
+	 * @param {HTMLElement} element
+	 * @returns {DocumentView|Window}
+	 */
+	function getWindowForElement(element) {
+	    var doc = element.ownerDocument || element;
+	    return (doc.defaultView || doc.parentWindow || window);
+	}
+	
+	var MOBILE_REGEX = /mobile|tablet|ip(ad|hone|od)|android/i;
+	
+	var SUPPORT_TOUCH = ('ontouchstart' in window);
+	var SUPPORT_POINTER_EVENTS = prefixed(window, 'PointerEvent') !== undefined;
+	var SUPPORT_ONLY_TOUCH = SUPPORT_TOUCH && MOBILE_REGEX.test(navigator.userAgent);
+	
+	var INPUT_TYPE_TOUCH = 'touch';
+	var INPUT_TYPE_PEN = 'pen';
+	var INPUT_TYPE_MOUSE = 'mouse';
+	var INPUT_TYPE_KINECT = 'kinect';
+	
+	var COMPUTE_INTERVAL = 25;
+	
+	var INPUT_START = 1;
+	var INPUT_MOVE = 2;
+	var INPUT_END = 4;
+	var INPUT_CANCEL = 8;
+	
+	var DIRECTION_NONE = 1;
+	var DIRECTION_LEFT = 2;
+	var DIRECTION_RIGHT = 4;
+	var DIRECTION_UP = 8;
+	var DIRECTION_DOWN = 16;
+	
+	var DIRECTION_HORIZONTAL = DIRECTION_LEFT | DIRECTION_RIGHT;
+	var DIRECTION_VERTICAL = DIRECTION_UP | DIRECTION_DOWN;
+	var DIRECTION_ALL = DIRECTION_HORIZONTAL | DIRECTION_VERTICAL;
+	
+	var PROPS_XY = ['x', 'y'];
+	var PROPS_CLIENT_XY = ['clientX', 'clientY'];
+	
+	/**
+	 * create new input type manager
+	 * @param {Manager} manager
+	 * @param {Function} callback
+	 * @returns {Input}
+	 * @constructor
+	 */
+	function Input(manager, callback) {
+	    var self = this;
+	    this.manager = manager;
+	    this.callback = callback;
+	    this.element = manager.element;
+	    this.target = manager.options.inputTarget;
+	
+	    // smaller wrapper around the handler, for the scope and the enabled state of the manager,
+	    // so when disabled the input events are completely bypassed.
+	    this.domHandler = function(ev) {
+	        if (boolOrFn(manager.options.enable, [manager])) {
+	            self.handler(ev);
+	        }
+	    };
+	
+	    this.init();
+	
+	}
+	
+	Input.prototype = {
+	    /**
+	     * should handle the inputEvent data and trigger the callback
+	     * @virtual
+	     */
+	    handler: function() { },
+	
+	    /**
+	     * bind the events
+	     */
+	    init: function() {
+	        this.evEl && addEventListeners(this.element, this.evEl, this.domHandler);
+	        this.evTarget && addEventListeners(this.target, this.evTarget, this.domHandler);
+	        this.evWin && addEventListeners(getWindowForElement(this.element), this.evWin, this.domHandler);
+	    },
+	
+	    /**
+	     * unbind the events
+	     */
+	    destroy: function() {
+	        this.evEl && removeEventListeners(this.element, this.evEl, this.domHandler);
+	        this.evTarget && removeEventListeners(this.target, this.evTarget, this.domHandler);
+	        this.evWin && removeEventListeners(getWindowForElement(this.element), this.evWin, this.domHandler);
+	    }
+	};
+	
+	/**
+	 * create new input type manager
+	 * called by the Manager constructor
+	 * @param {Hammer} manager
+	 * @returns {Input}
+	 */
+	function createInputInstance(manager) {
+	    var Type;
+	    var inputClass = manager.options.inputClass;
+	
+	    if (inputClass) {
+	        Type = inputClass;
+	    } else if (SUPPORT_POINTER_EVENTS) {
+	        Type = PointerEventInput;
+	    } else if (SUPPORT_ONLY_TOUCH) {
+	        Type = TouchInput;
+	    } else if (!SUPPORT_TOUCH) {
+	        Type = MouseInput;
+	    } else {
+	        Type = TouchMouseInput;
+	    }
+	    return new (Type)(manager, inputHandler);
+	}
+	
+	/**
+	 * handle input events
+	 * @param {Manager} manager
+	 * @param {String} eventType
+	 * @param {Object} input
+	 */
+	function inputHandler(manager, eventType, input) {
+	    var pointersLen = input.pointers.length;
+	    var changedPointersLen = input.changedPointers.length;
+	    var isFirst = (eventType & INPUT_START && (pointersLen - changedPointersLen === 0));
+	    var isFinal = (eventType & (INPUT_END | INPUT_CANCEL) && (pointersLen - changedPointersLen === 0));
+	
+	    input.isFirst = !!isFirst;
+	    input.isFinal = !!isFinal;
+	
+	    if (isFirst) {
+	        manager.session = {};
+	    }
+	
+	    // source event is the normalized value of the domEvents
+	    // like 'touchstart, mouseup, pointerdown'
+	    input.eventType = eventType;
+	
+	    // compute scale, rotation etc
+	    computeInputData(manager, input);
+	
+	    // emit secret event
+	    manager.emit('hammer.input', input);
+	
+	    manager.recognize(input);
+	    manager.session.prevInput = input;
+	}
+	
+	/**
+	 * extend the data with some usable properties like scale, rotate, velocity etc
+	 * @param {Object} manager
+	 * @param {Object} input
+	 */
+	function computeInputData(manager, input) {
+	    var session = manager.session;
+	    var pointers = input.pointers;
+	    var pointersLength = pointers.length;
+	
+	    // store the first input to calculate the distance and direction
+	    if (!session.firstInput) {
+	        session.firstInput = simpleCloneInputData(input);
+	    }
+	
+	    // to compute scale and rotation we need to store the multiple touches
+	    if (pointersLength > 1 && !session.firstMultiple) {
+	        session.firstMultiple = simpleCloneInputData(input);
+	    } else if (pointersLength === 1) {
+	        session.firstMultiple = false;
+	    }
+	
+	    var firstInput = session.firstInput;
+	    var firstMultiple = session.firstMultiple;
+	    var offsetCenter = firstMultiple ? firstMultiple.center : firstInput.center;
+	
+	    var center = input.center = getCenter(pointers);
+	    input.timeStamp = now();
+	    input.deltaTime = input.timeStamp - firstInput.timeStamp;
+	
+	    input.angle = getAngle(offsetCenter, center);
+	    input.distance = getDistance(offsetCenter, center);
+	
+	    computeDeltaXY(session, input);
+	    input.offsetDirection = getDirection(input.deltaX, input.deltaY);
+	
+	    var overallVelocity = getVelocity(input.deltaTime, input.deltaX, input.deltaY);
+	    input.overallVelocityX = overallVelocity.x;
+	    input.overallVelocityY = overallVelocity.y;
+	    input.overallVelocity = (abs(overallVelocity.x) > abs(overallVelocity.y)) ? overallVelocity.x : overallVelocity.y;
+	
+	    input.scale = firstMultiple ? getScale(firstMultiple.pointers, pointers) : 1;
+	    input.rotation = firstMultiple ? getRotation(firstMultiple.pointers, pointers) : 0;
+	
+	    input.maxPointers = !session.prevInput ? input.pointers.length : ((input.pointers.length >
+	        session.prevInput.maxPointers) ? input.pointers.length : session.prevInput.maxPointers);
+	
+	    computeIntervalInputData(session, input);
+	
+	    // find the correct target
+	    var target = manager.element;
+	    if (hasParent(input.srcEvent.target, target)) {
+	        target = input.srcEvent.target;
+	    }
+	    input.target = target;
+	}
+	
+	function computeDeltaXY(session, input) {
+	    var center = input.center;
+	    var offset = session.offsetDelta || {};
+	    var prevDelta = session.prevDelta || {};
+	    var prevInput = session.prevInput || {};
+	
+	    if (input.eventType === INPUT_START || prevInput.eventType === INPUT_END) {
+	        prevDelta = session.prevDelta = {
+	            x: prevInput.deltaX || 0,
+	            y: prevInput.deltaY || 0
+	        };
+	
+	        offset = session.offsetDelta = {
+	            x: center.x,
+	            y: center.y
+	        };
+	    }
+	
+	    input.deltaX = prevDelta.x + (center.x - offset.x);
+	    input.deltaY = prevDelta.y + (center.y - offset.y);
+	}
+	
+	/**
+	 * velocity is calculated every x ms
+	 * @param {Object} session
+	 * @param {Object} input
+	 */
+	function computeIntervalInputData(session, input) {
+	    var last = session.lastInterval || input,
+	        deltaTime = input.timeStamp - last.timeStamp,
+	        velocity, velocityX, velocityY, direction;
+	
+	    if (input.eventType != INPUT_CANCEL && (deltaTime > COMPUTE_INTERVAL || last.velocity === undefined)) {
+	        var deltaX = input.deltaX - last.deltaX;
+	        var deltaY = input.deltaY - last.deltaY;
+	
+	        var v = getVelocity(deltaTime, deltaX, deltaY);
+	        velocityX = v.x;
+	        velocityY = v.y;
+	        velocity = (abs(v.x) > abs(v.y)) ? v.x : v.y;
+	        direction = getDirection(deltaX, deltaY);
+	
+	        session.lastInterval = input;
+	    } else {
+	        // use latest velocity info if it doesn't overtake a minimum period
+	        velocity = last.velocity;
+	        velocityX = last.velocityX;
+	        velocityY = last.velocityY;
+	        direction = last.direction;
+	    }
+	
+	    input.velocity = velocity;
+	    input.velocityX = velocityX;
+	    input.velocityY = velocityY;
+	    input.direction = direction;
+	}
+	
+	/**
+	 * create a simple clone from the input used for storage of firstInput and firstMultiple
+	 * @param {Object} input
+	 * @returns {Object} clonedInputData
+	 */
+	function simpleCloneInputData(input) {
+	    // make a simple copy of the pointers because we will get a reference if we don't
+	    // we only need clientXY for the calculations
+	    var pointers = [];
+	    var i = 0;
+	    while (i < input.pointers.length) {
+	        pointers[i] = {
+	            clientX: round(input.pointers[i].clientX),
+	            clientY: round(input.pointers[i].clientY)
+	        };
+	        i++;
+	    }
+	
+	    return {
+	        timeStamp: now(),
+	        pointers: pointers,
+	        center: getCenter(pointers),
+	        deltaX: input.deltaX,
+	        deltaY: input.deltaY
+	    };
+	}
+	
+	/**
+	 * get the center of all the pointers
+	 * @param {Array} pointers
+	 * @return {Object} center contains `x` and `y` properties
+	 */
+	function getCenter(pointers) {
+	    var pointersLength = pointers.length;
+	
+	    // no need to loop when only one touch
+	    if (pointersLength === 1) {
+	        return {
+	            x: round(pointers[0].clientX),
+	            y: round(pointers[0].clientY)
+	        };
+	    }
+	
+	    var x = 0, y = 0, i = 0;
+	    while (i < pointersLength) {
+	        x += pointers[i].clientX;
+	        y += pointers[i].clientY;
+	        i++;
+	    }
+	
+	    return {
+	        x: round(x / pointersLength),
+	        y: round(y / pointersLength)
+	    };
+	}
+	
+	/**
+	 * calculate the velocity between two points. unit is in px per ms.
+	 * @param {Number} deltaTime
+	 * @param {Number} x
+	 * @param {Number} y
+	 * @return {Object} velocity `x` and `y`
+	 */
+	function getVelocity(deltaTime, x, y) {
+	    return {
+	        x: x / deltaTime || 0,
+	        y: y / deltaTime || 0
+	    };
+	}
+	
+	/**
+	 * get the direction between two points
+	 * @param {Number} x
+	 * @param {Number} y
+	 * @return {Number} direction
+	 */
+	function getDirection(x, y) {
+	    if (x === y) {
+	        return DIRECTION_NONE;
+	    }
+	
+	    if (abs(x) >= abs(y)) {
+	        return x < 0 ? DIRECTION_LEFT : DIRECTION_RIGHT;
+	    }
+	    return y < 0 ? DIRECTION_UP : DIRECTION_DOWN;
+	}
+	
+	/**
+	 * calculate the absolute distance between two points
+	 * @param {Object} p1 {x, y}
+	 * @param {Object} p2 {x, y}
+	 * @param {Array} [props] containing x and y keys
+	 * @return {Number} distance
+	 */
+	function getDistance(p1, p2, props) {
+	    if (!props) {
+	        props = PROPS_XY;
+	    }
+	    var x = p2[props[0]] - p1[props[0]],
+	        y = p2[props[1]] - p1[props[1]];
+	
+	    return Math.sqrt((x * x) + (y * y));
+	}
+	
+	/**
+	 * calculate the angle between two coordinates
+	 * @param {Object} p1
+	 * @param {Object} p2
+	 * @param {Array} [props] containing x and y keys
+	 * @return {Number} angle
+	 */
+	function getAngle(p1, p2, props) {
+	    if (!props) {
+	        props = PROPS_XY;
+	    }
+	    var x = p2[props[0]] - p1[props[0]],
+	        y = p2[props[1]] - p1[props[1]];
+	    return Math.atan2(y, x) * 180 / Math.PI;
+	}
+	
+	/**
+	 * calculate the rotation degrees between two pointersets
+	 * @param {Array} start array of pointers
+	 * @param {Array} end array of pointers
+	 * @return {Number} rotation
+	 */
+	function getRotation(start, end) {
+	    return getAngle(end[1], end[0], PROPS_CLIENT_XY) + getAngle(start[1], start[0], PROPS_CLIENT_XY);
+	}
+	
+	/**
+	 * calculate the scale factor between two pointersets
+	 * no scale is 1, and goes down to 0 when pinched together, and bigger when pinched out
+	 * @param {Array} start array of pointers
+	 * @param {Array} end array of pointers
+	 * @return {Number} scale
+	 */
+	function getScale(start, end) {
+	    return getDistance(end[0], end[1], PROPS_CLIENT_XY) / getDistance(start[0], start[1], PROPS_CLIENT_XY);
+	}
+	
+	var MOUSE_INPUT_MAP = {
+	    mousedown: INPUT_START,
+	    mousemove: INPUT_MOVE,
+	    mouseup: INPUT_END
+	};
+	
+	var MOUSE_ELEMENT_EVENTS = 'mousedown';
+	var MOUSE_WINDOW_EVENTS = 'mousemove mouseup';
+	
+	/**
+	 * Mouse events input
+	 * @constructor
+	 * @extends Input
+	 */
+	function MouseInput() {
+	    this.evEl = MOUSE_ELEMENT_EVENTS;
+	    this.evWin = MOUSE_WINDOW_EVENTS;
+	
+	    this.allow = true; // used by Input.TouchMouse to disable mouse events
+	    this.pressed = false; // mousedown state
+	
+	    Input.apply(this, arguments);
+	}
+	
+	inherit(MouseInput, Input, {
+	    /**
+	     * handle mouse events
+	     * @param {Object} ev
+	     */
+	    handler: function MEhandler(ev) {
+	        var eventType = MOUSE_INPUT_MAP[ev.type];
+	
+	        // on start we want to have the left mouse button down
+	        if (eventType & INPUT_START && ev.button === 0) {
+	            this.pressed = true;
+	        }
+	
+	        if (eventType & INPUT_MOVE && ev.which !== 1) {
+	            eventType = INPUT_END;
+	        }
+	
+	        // mouse must be down, and mouse events are allowed (see the TouchMouse input)
+	        if (!this.pressed || !this.allow) {
+	            return;
+	        }
+	
+	        if (eventType & INPUT_END) {
+	            this.pressed = false;
+	        }
+	
+	        this.callback(this.manager, eventType, {
+	            pointers: [ev],
+	            changedPointers: [ev],
+	            pointerType: INPUT_TYPE_MOUSE,
+	            srcEvent: ev
+	        });
+	    }
+	});
+	
+	var POINTER_INPUT_MAP = {
+	    pointerdown: INPUT_START,
+	    pointermove: INPUT_MOVE,
+	    pointerup: INPUT_END,
+	    pointercancel: INPUT_CANCEL,
+	    pointerout: INPUT_CANCEL
+	};
+	
+	// in IE10 the pointer types is defined as an enum
+	var IE10_POINTER_TYPE_ENUM = {
+	    2: INPUT_TYPE_TOUCH,
+	    3: INPUT_TYPE_PEN,
+	    4: INPUT_TYPE_MOUSE,
+	    5: INPUT_TYPE_KINECT // see https://twitter.com/jacobrossi/status/480596438489890816
+	};
+	
+	var POINTER_ELEMENT_EVENTS = 'pointerdown';
+	var POINTER_WINDOW_EVENTS = 'pointermove pointerup pointercancel';
+	
+	// IE10 has prefixed support, and case-sensitive
+	if (window.MSPointerEvent && !window.PointerEvent) {
+	    POINTER_ELEMENT_EVENTS = 'MSPointerDown';
+	    POINTER_WINDOW_EVENTS = 'MSPointerMove MSPointerUp MSPointerCancel';
+	}
+	
+	/**
+	 * Pointer events input
+	 * @constructor
+	 * @extends Input
+	 */
+	function PointerEventInput() {
+	    this.evEl = POINTER_ELEMENT_EVENTS;
+	    this.evWin = POINTER_WINDOW_EVENTS;
+	
+	    Input.apply(this, arguments);
+	
+	    this.store = (this.manager.session.pointerEvents = []);
+	}
+	
+	inherit(PointerEventInput, Input, {
+	    /**
+	     * handle mouse events
+	     * @param {Object} ev
+	     */
+	    handler: function PEhandler(ev) {
+	        var store = this.store;
+	        var removePointer = false;
+	
+	        var eventTypeNormalized = ev.type.toLowerCase().replace('ms', '');
+	        var eventType = POINTER_INPUT_MAP[eventTypeNormalized];
+	        var pointerType = IE10_POINTER_TYPE_ENUM[ev.pointerType] || ev.pointerType;
+	
+	        var isTouch = (pointerType == INPUT_TYPE_TOUCH);
+	
+	        // get index of the event in the store
+	        var storeIndex = inArray(store, ev.pointerId, 'pointerId');
+	
+	        // start and mouse must be down
+	        if (eventType & INPUT_START && (ev.button === 0 || isTouch)) {
+	            if (storeIndex < 0) {
+	                store.push(ev);
+	                storeIndex = store.length - 1;
+	            }
+	        } else if (eventType & (INPUT_END | INPUT_CANCEL)) {
+	            removePointer = true;
+	        }
+	
+	        // it not found, so the pointer hasn't been down (so it's probably a hover)
+	        if (storeIndex < 0) {
+	            return;
+	        }
+	
+	        // update the event in the store
+	        store[storeIndex] = ev;
+	
+	        this.callback(this.manager, eventType, {
+	            pointers: store,
+	            changedPointers: [ev],
+	            pointerType: pointerType,
+	            srcEvent: ev
+	        });
+	
+	        if (removePointer) {
+	            // remove from the store
+	            store.splice(storeIndex, 1);
+	        }
+	    }
+	});
+	
+	var SINGLE_TOUCH_INPUT_MAP = {
+	    touchstart: INPUT_START,
+	    touchmove: INPUT_MOVE,
+	    touchend: INPUT_END,
+	    touchcancel: INPUT_CANCEL
+	};
+	
+	var SINGLE_TOUCH_TARGET_EVENTS = 'touchstart';
+	var SINGLE_TOUCH_WINDOW_EVENTS = 'touchstart touchmove touchend touchcancel';
+	
+	/**
+	 * Touch events input
+	 * @constructor
+	 * @extends Input
+	 */
+	function SingleTouchInput() {
+	    this.evTarget = SINGLE_TOUCH_TARGET_EVENTS;
+	    this.evWin = SINGLE_TOUCH_WINDOW_EVENTS;
+	    this.started = false;
+	
+	    Input.apply(this, arguments);
+	}
+	
+	inherit(SingleTouchInput, Input, {
+	    handler: function TEhandler(ev) {
+	        var type = SINGLE_TOUCH_INPUT_MAP[ev.type];
+	
+	        // should we handle the touch events?
+	        if (type === INPUT_START) {
+	            this.started = true;
+	        }
+	
+	        if (!this.started) {
+	            return;
+	        }
+	
+	        var touches = normalizeSingleTouches.call(this, ev, type);
+	
+	        // when done, reset the started state
+	        if (type & (INPUT_END | INPUT_CANCEL) && touches[0].length - touches[1].length === 0) {
+	            this.started = false;
+	        }
+	
+	        this.callback(this.manager, type, {
+	            pointers: touches[0],
+	            changedPointers: touches[1],
+	            pointerType: INPUT_TYPE_TOUCH,
+	            srcEvent: ev
+	        });
+	    }
+	});
+	
+	/**
+	 * @this {TouchInput}
+	 * @param {Object} ev
+	 * @param {Number} type flag
+	 * @returns {undefined|Array} [all, changed]
+	 */
+	function normalizeSingleTouches(ev, type) {
+	    var all = toArray(ev.touches);
+	    var changed = toArray(ev.changedTouches);
+	
+	    if (type & (INPUT_END | INPUT_CANCEL)) {
+	        all = uniqueArray(all.concat(changed), 'identifier', true);
+	    }
+	
+	    return [all, changed];
+	}
+	
+	var TOUCH_INPUT_MAP = {
+	    touchstart: INPUT_START,
+	    touchmove: INPUT_MOVE,
+	    touchend: INPUT_END,
+	    touchcancel: INPUT_CANCEL
+	};
+	
+	var TOUCH_TARGET_EVENTS = 'touchstart touchmove touchend touchcancel';
+	
+	/**
+	 * Multi-user touch events input
+	 * @constructor
+	 * @extends Input
+	 */
+	function TouchInput() {
+	    this.evTarget = TOUCH_TARGET_EVENTS;
+	    this.targetIds = {};
+	
+	    Input.apply(this, arguments);
+	}
+	
+	inherit(TouchInput, Input, {
+	    handler: function MTEhandler(ev) {
+	        var type = TOUCH_INPUT_MAP[ev.type];
+	        var touches = getTouches.call(this, ev, type);
+	        if (!touches) {
+	            return;
+	        }
+	
+	        this.callback(this.manager, type, {
+	            pointers: touches[0],
+	            changedPointers: touches[1],
+	            pointerType: INPUT_TYPE_TOUCH,
+	            srcEvent: ev
+	        });
+	    }
+	});
+	
+	/**
+	 * @this {TouchInput}
+	 * @param {Object} ev
+	 * @param {Number} type flag
+	 * @returns {undefined|Array} [all, changed]
+	 */
+	function getTouches(ev, type) {
+	    var allTouches = toArray(ev.touches);
+	    var targetIds = this.targetIds;
+	
+	    // when there is only one touch, the process can be simplified
+	    if (type & (INPUT_START | INPUT_MOVE) && allTouches.length === 1) {
+	        targetIds[allTouches[0].identifier] = true;
+	        return [allTouches, allTouches];
+	    }
+	
+	    var i,
+	        targetTouches,
+	        changedTouches = toArray(ev.changedTouches),
+	        changedTargetTouches = [],
+	        target = this.target;
+	
+	    // get target touches from touches
+	    targetTouches = allTouches.filter(function(touch) {
+	        return hasParent(touch.target, target);
+	    });
+	
+	    // collect touches
+	    if (type === INPUT_START) {
+	        i = 0;
+	        while (i < targetTouches.length) {
+	            targetIds[targetTouches[i].identifier] = true;
+	            i++;
+	        }
+	    }
+	
+	    // filter changed touches to only contain touches that exist in the collected target ids
+	    i = 0;
+	    while (i < changedTouches.length) {
+	        if (targetIds[changedTouches[i].identifier]) {
+	            changedTargetTouches.push(changedTouches[i]);
+	        }
+	
+	        // cleanup removed touches
+	        if (type & (INPUT_END | INPUT_CANCEL)) {
+	            delete targetIds[changedTouches[i].identifier];
+	        }
+	        i++;
+	    }
+	
+	    if (!changedTargetTouches.length) {
+	        return;
+	    }
+	
+	    return [
+	        // merge targetTouches with changedTargetTouches so it contains ALL touches, including 'end' and 'cancel'
+	        uniqueArray(targetTouches.concat(changedTargetTouches), 'identifier', true),
+	        changedTargetTouches
+	    ];
+	}
+	
+	/**
+	 * Combined touch and mouse input
+	 *
+	 * Touch has a higher priority then mouse, and while touching no mouse events are allowed.
+	 * This because touch devices also emit mouse events while doing a touch.
+	 *
+	 * @constructor
+	 * @extends Input
+	 */
+	function TouchMouseInput() {
+	    Input.apply(this, arguments);
+	
+	    var handler = bindFn(this.handler, this);
+	    this.touch = new TouchInput(this.manager, handler);
+	    this.mouse = new MouseInput(this.manager, handler);
+	}
+	
+	inherit(TouchMouseInput, Input, {
+	    /**
+	     * handle mouse and touch events
+	     * @param {Hammer} manager
+	     * @param {String} inputEvent
+	     * @param {Object} inputData
+	     */
+	    handler: function TMEhandler(manager, inputEvent, inputData) {
+	        var isTouch = (inputData.pointerType == INPUT_TYPE_TOUCH),
+	            isMouse = (inputData.pointerType == INPUT_TYPE_MOUSE);
+	
+	        // when we're in a touch event, so  block all upcoming mouse events
+	        // most mobile browser also emit mouseevents, right after touchstart
+	        if (isTouch) {
+	            this.mouse.allow = false;
+	        } else if (isMouse && !this.mouse.allow) {
+	            return;
+	        }
+	
+	        // reset the allowMouse when we're done
+	        if (inputEvent & (INPUT_END | INPUT_CANCEL)) {
+	            this.mouse.allow = true;
+	        }
+	
+	        this.callback(manager, inputEvent, inputData);
+	    },
+	
+	    /**
+	     * remove the event listeners
+	     */
+	    destroy: function destroy() {
+	        this.touch.destroy();
+	        this.mouse.destroy();
+	    }
+	});
+	
+	var PREFIXED_TOUCH_ACTION = prefixed(TEST_ELEMENT.style, 'touchAction');
+	var NATIVE_TOUCH_ACTION = PREFIXED_TOUCH_ACTION !== undefined;
+	
+	// magical touchAction value
+	var TOUCH_ACTION_COMPUTE = 'compute';
+	var TOUCH_ACTION_AUTO = 'auto';
+	var TOUCH_ACTION_MANIPULATION = 'manipulation'; // not implemented
+	var TOUCH_ACTION_NONE = 'none';
+	var TOUCH_ACTION_PAN_X = 'pan-x';
+	var TOUCH_ACTION_PAN_Y = 'pan-y';
+	
+	/**
+	 * Touch Action
+	 * sets the touchAction property or uses the js alternative
+	 * @param {Manager} manager
+	 * @param {String} value
+	 * @constructor
+	 */
+	function TouchAction(manager, value) {
+	    this.manager = manager;
+	    this.set(value);
+	}
+	
+	TouchAction.prototype = {
+	    /**
+	     * set the touchAction value on the element or enable the polyfill
+	     * @param {String} value
+	     */
+	    set: function(value) {
+	        // find out the touch-action by the event handlers
+	        if (value == TOUCH_ACTION_COMPUTE) {
+	            value = this.compute();
+	        }
+	
+	        if (NATIVE_TOUCH_ACTION && this.manager.element.style) {
+	            this.manager.element.style[PREFIXED_TOUCH_ACTION] = value;
+	        }
+	        this.actions = value.toLowerCase().trim();
+	    },
+	
+	    /**
+	     * just re-set the touchAction value
+	     */
+	    update: function() {
+	        this.set(this.manager.options.touchAction);
+	    },
+	
+	    /**
+	     * compute the value for the touchAction property based on the recognizer's settings
+	     * @returns {String} value
+	     */
+	    compute: function() {
+	        var actions = [];
+	        each(this.manager.recognizers, function(recognizer) {
+	            if (boolOrFn(recognizer.options.enable, [recognizer])) {
+	                actions = actions.concat(recognizer.getTouchAction());
+	            }
+	        });
+	        return cleanTouchActions(actions.join(' '));
+	    },
+	
+	    /**
+	     * this method is called on each input cycle and provides the preventing of the browser behavior
+	     * @param {Object} input
+	     */
+	    preventDefaults: function(input) {
+	        // not needed with native support for the touchAction property
+	        if (NATIVE_TOUCH_ACTION) {
+	            return;
+	        }
+	
+	        var srcEvent = input.srcEvent;
+	        var direction = input.offsetDirection;
+	
+	        // if the touch action did prevented once this session
+	        if (this.manager.session.prevented) {
+	            srcEvent.preventDefault();
+	            return;
+	        }
+	
+	        var actions = this.actions;
+	        var hasNone = inStr(actions, TOUCH_ACTION_NONE);
+	        var hasPanY = inStr(actions, TOUCH_ACTION_PAN_Y);
+	        var hasPanX = inStr(actions, TOUCH_ACTION_PAN_X);
+	
+	        if (hasNone) {
+	            //do not prevent defaults if this is a tap gesture
+	
+	            var isTapPointer = input.pointers.length === 1;
+	            var isTapMovement = input.distance < 2;
+	            var isTapTouchTime = input.deltaTime < 250;
+	
+	            if (isTapPointer && isTapMovement && isTapTouchTime) {
+	                return;
+	            }
+	        }
+	
+	        if (hasPanX && hasPanY) {
+	            // `pan-x pan-y` means browser handles all scrolling/panning, do not prevent
+	            return;
+	        }
+	
+	        if (hasNone ||
+	            (hasPanY && direction & DIRECTION_HORIZONTAL) ||
+	            (hasPanX && direction & DIRECTION_VERTICAL)) {
+	            return this.preventSrc(srcEvent);
+	        }
+	    },
+	
+	    /**
+	     * call preventDefault to prevent the browser's default behavior (scrolling in most cases)
+	     * @param {Object} srcEvent
+	     */
+	    preventSrc: function(srcEvent) {
+	        this.manager.session.prevented = true;
+	        srcEvent.preventDefault();
+	    }
+	};
+	
+	/**
+	 * when the touchActions are collected they are not a valid value, so we need to clean things up. *
+	 * @param {String} actions
+	 * @returns {*}
+	 */
+	function cleanTouchActions(actions) {
+	    // none
+	    if (inStr(actions, TOUCH_ACTION_NONE)) {
+	        return TOUCH_ACTION_NONE;
+	    }
+	
+	    var hasPanX = inStr(actions, TOUCH_ACTION_PAN_X);
+	    var hasPanY = inStr(actions, TOUCH_ACTION_PAN_Y);
+	
+	    // if both pan-x and pan-y are set (different recognizers
+	    // for different directions, e.g. horizontal pan but vertical swipe?)
+	    // we need none (as otherwise with pan-x pan-y combined none of these
+	    // recognizers will work, since the browser would handle all panning
+	    if (hasPanX && hasPanY) {
+	        return TOUCH_ACTION_NONE;
+	    }
+	
+	    // pan-x OR pan-y
+	    if (hasPanX || hasPanY) {
+	        return hasPanX ? TOUCH_ACTION_PAN_X : TOUCH_ACTION_PAN_Y;
+	    }
+	
+	    // manipulation
+	    if (inStr(actions, TOUCH_ACTION_MANIPULATION)) {
+	        return TOUCH_ACTION_MANIPULATION;
+	    }
+	
+	    return TOUCH_ACTION_AUTO;
+	}
+	
+	/**
+	 * Recognizer flow explained; *
+	 * All recognizers have the initial state of POSSIBLE when a input session starts.
+	 * The definition of a input session is from the first input until the last input, with all it's movement in it. *
+	 * Example session for mouse-input: mousedown -> mousemove -> mouseup
+	 *
+	 * On each recognizing cycle (see Manager.recognize) the .recognize() method is executed
+	 * which determines with state it should be.
+	 *
+	 * If the recognizer has the state FAILED, CANCELLED or RECOGNIZED (equals ENDED), it is reset to
+	 * POSSIBLE to give it another change on the next cycle.
+	 *
+	 *               Possible
+	 *                  |
+	 *            +-----+---------------+
+	 *            |                     |
+	 *      +-----+-----+               |
+	 *      |           |               |
+	 *   Failed      Cancelled          |
+	 *                          +-------+------+
+	 *                          |              |
+	 *                      Recognized       Began
+	 *                                         |
+	 *                                      Changed
+	 *                                         |
+	 *                                  Ended/Recognized
+	 */
+	var STATE_POSSIBLE = 1;
+	var STATE_BEGAN = 2;
+	var STATE_CHANGED = 4;
+	var STATE_ENDED = 8;
+	var STATE_RECOGNIZED = STATE_ENDED;
+	var STATE_CANCELLED = 16;
+	var STATE_FAILED = 32;
+	
+	/**
+	 * Recognizer
+	 * Every recognizer needs to extend from this class.
+	 * @constructor
+	 * @param {Object} options
+	 */
+	function Recognizer(options) {
+	    this.options = assign({}, this.defaults, options || {});
+	
+	    this.id = uniqueId();
+	
+	    this.manager = null;
+	
+	    // default is enable true
+	    this.options.enable = ifUndefined(this.options.enable, true);
+	
+	    this.state = STATE_POSSIBLE;
+	
+	    this.simultaneous = {};
+	    this.requireFail = [];
+	}
+	
+	Recognizer.prototype = {
+	    /**
+	     * @virtual
+	     * @type {Object}
+	     */
+	    defaults: {},
+	
+	    /**
+	     * set options
+	     * @param {Object} options
+	     * @return {Recognizer}
+	     */
+	    set: function(options) {
+	        assign(this.options, options);
+	
+	        // also update the touchAction, in case something changed about the directions/enabled state
+	        this.manager && this.manager.touchAction.update();
+	        return this;
+	    },
+	
+	    /**
+	     * recognize simultaneous with an other recognizer.
+	     * @param {Recognizer} otherRecognizer
+	     * @returns {Recognizer} this
+	     */
+	    recognizeWith: function(otherRecognizer) {
+	        if (invokeArrayArg(otherRecognizer, 'recognizeWith', this)) {
+	            return this;
+	        }
+	
+	        var simultaneous = this.simultaneous;
+	        otherRecognizer = getRecognizerByNameIfManager(otherRecognizer, this);
+	        if (!simultaneous[otherRecognizer.id]) {
+	            simultaneous[otherRecognizer.id] = otherRecognizer;
+	            otherRecognizer.recognizeWith(this);
+	        }
+	        return this;
+	    },
+	
+	    /**
+	     * drop the simultaneous link. it doesnt remove the link on the other recognizer.
+	     * @param {Recognizer} otherRecognizer
+	     * @returns {Recognizer} this
+	     */
+	    dropRecognizeWith: function(otherRecognizer) {
+	        if (invokeArrayArg(otherRecognizer, 'dropRecognizeWith', this)) {
+	            return this;
+	        }
+	
+	        otherRecognizer = getRecognizerByNameIfManager(otherRecognizer, this);
+	        delete this.simultaneous[otherRecognizer.id];
+	        return this;
+	    },
+	
+	    /**
+	     * recognizer can only run when an other is failing
+	     * @param {Recognizer} otherRecognizer
+	     * @returns {Recognizer} this
+	     */
+	    requireFailure: function(otherRecognizer) {
+	        if (invokeArrayArg(otherRecognizer, 'requireFailure', this)) {
+	            return this;
+	        }
+	
+	        var requireFail = this.requireFail;
+	        otherRecognizer = getRecognizerByNameIfManager(otherRecognizer, this);
+	        if (inArray(requireFail, otherRecognizer) === -1) {
+	            requireFail.push(otherRecognizer);
+	            otherRecognizer.requireFailure(this);
+	        }
+	        return this;
+	    },
+	
+	    /**
+	     * drop the requireFailure link. it does not remove the link on the other recognizer.
+	     * @param {Recognizer} otherRecognizer
+	     * @returns {Recognizer} this
+	     */
+	    dropRequireFailure: function(otherRecognizer) {
+	        if (invokeArrayArg(otherRecognizer, 'dropRequireFailure', this)) {
+	            return this;
+	        }
+	
+	        otherRecognizer = getRecognizerByNameIfManager(otherRecognizer, this);
+	        var index = inArray(this.requireFail, otherRecognizer);
+	        if (index > -1) {
+	            this.requireFail.splice(index, 1);
+	        }
+	        return this;
+	    },
+	
+	    /**
+	     * has require failures boolean
+	     * @returns {boolean}
+	     */
+	    hasRequireFailures: function() {
+	        return this.requireFail.length > 0;
+	    },
+	
+	    /**
+	     * if the recognizer can recognize simultaneous with an other recognizer
+	     * @param {Recognizer} otherRecognizer
+	     * @returns {Boolean}
+	     */
+	    canRecognizeWith: function(otherRecognizer) {
+	        return !!this.simultaneous[otherRecognizer.id];
+	    },
+	
+	    /**
+	     * You should use `tryEmit` instead of `emit` directly to check
+	     * that all the needed recognizers has failed before emitting.
+	     * @param {Object} input
+	     */
+	    emit: function(input) {
+	        var self = this;
+	        var state = this.state;
+	
+	        function emit(event) {
+	            self.manager.emit(event, input);
+	        }
+	
+	        // 'panstart' and 'panmove'
+	        if (state < STATE_ENDED) {
+	            emit(self.options.event + stateStr(state));
+	        }
+	
+	        emit(self.options.event); // simple 'eventName' events
+	
+	        if (input.additionalEvent) { // additional event(panleft, panright, pinchin, pinchout...)
+	            emit(input.additionalEvent);
+	        }
+	
+	        // panend and pancancel
+	        if (state >= STATE_ENDED) {
+	            emit(self.options.event + stateStr(state));
+	        }
+	    },
+	
+	    /**
+	     * Check that all the require failure recognizers has failed,
+	     * if true, it emits a gesture event,
+	     * otherwise, setup the state to FAILED.
+	     * @param {Object} input
+	     */
+	    tryEmit: function(input) {
+	        if (this.canEmit()) {
+	            return this.emit(input);
+	        }
+	        // it's failing anyway
+	        this.state = STATE_FAILED;
+	    },
+	
+	    /**
+	     * can we emit?
+	     * @returns {boolean}
+	     */
+	    canEmit: function() {
+	        var i = 0;
+	        while (i < this.requireFail.length) {
+	            if (!(this.requireFail[i].state & (STATE_FAILED | STATE_POSSIBLE))) {
+	                return false;
+	            }
+	            i++;
+	        }
+	        return true;
+	    },
+	
+	    /**
+	     * update the recognizer
+	     * @param {Object} inputData
+	     */
+	    recognize: function(inputData) {
+	        // make a new copy of the inputData
+	        // so we can change the inputData without messing up the other recognizers
+	        var inputDataClone = assign({}, inputData);
+	
+	        // is is enabled and allow recognizing?
+	        if (!boolOrFn(this.options.enable, [this, inputDataClone])) {
+	            this.reset();
+	            this.state = STATE_FAILED;
+	            return;
+	        }
+	
+	        // reset when we've reached the end
+	        if (this.state & (STATE_RECOGNIZED | STATE_CANCELLED | STATE_FAILED)) {
+	            this.state = STATE_POSSIBLE;
+	        }
+	
+	        this.state = this.process(inputDataClone);
+	
+	        // the recognizer has recognized a gesture
+	        // so trigger an event
+	        if (this.state & (STATE_BEGAN | STATE_CHANGED | STATE_ENDED | STATE_CANCELLED)) {
+	            this.tryEmit(inputDataClone);
+	        }
+	    },
+	
+	    /**
+	     * return the state of the recognizer
+	     * the actual recognizing happens in this method
+	     * @virtual
+	     * @param {Object} inputData
+	     * @returns {Const} STATE
+	     */
+	    process: function(inputData) { }, // jshint ignore:line
+	
+	    /**
+	     * return the preferred touch-action
+	     * @virtual
+	     * @returns {Array}
+	     */
+	    getTouchAction: function() { },
+	
+	    /**
+	     * called when the gesture isn't allowed to recognize
+	     * like when another is being recognized or it is disabled
+	     * @virtual
+	     */
+	    reset: function() { }
+	};
+	
+	/**
+	 * get a usable string, used as event postfix
+	 * @param {Const} state
+	 * @returns {String} state
+	 */
+	function stateStr(state) {
+	    if (state & STATE_CANCELLED) {
+	        return 'cancel';
+	    } else if (state & STATE_ENDED) {
+	        return 'end';
+	    } else if (state & STATE_CHANGED) {
+	        return 'move';
+	    } else if (state & STATE_BEGAN) {
+	        return 'start';
+	    }
+	    return '';
+	}
+	
+	/**
+	 * direction cons to string
+	 * @param {Const} direction
+	 * @returns {String}
+	 */
+	function directionStr(direction) {
+	    if (direction == DIRECTION_DOWN) {
+	        return 'down';
+	    } else if (direction == DIRECTION_UP) {
+	        return 'up';
+	    } else if (direction == DIRECTION_LEFT) {
+	        return 'left';
+	    } else if (direction == DIRECTION_RIGHT) {
+	        return 'right';
+	    }
+	    return '';
+	}
+	
+	/**
+	 * get a recognizer by name if it is bound to a manager
+	 * @param {Recognizer|String} otherRecognizer
+	 * @param {Recognizer} recognizer
+	 * @returns {Recognizer}
+	 */
+	function getRecognizerByNameIfManager(otherRecognizer, recognizer) {
+	    var manager = recognizer.manager;
+	    if (manager) {
+	        return manager.get(otherRecognizer);
+	    }
+	    return otherRecognizer;
+	}
+	
+	/**
+	 * This recognizer is just used as a base for the simple attribute recognizers.
+	 * @constructor
+	 * @extends Recognizer
+	 */
+	function AttrRecognizer() {
+	    Recognizer.apply(this, arguments);
+	}
+	
+	inherit(AttrRecognizer, Recognizer, {
+	    /**
+	     * @namespace
+	     * @memberof AttrRecognizer
+	     */
+	    defaults: {
+	        /**
+	         * @type {Number}
+	         * @default 1
+	         */
+	        pointers: 1
+	    },
+	
+	    /**
+	     * Used to check if it the recognizer receives valid input, like input.distance > 10.
+	     * @memberof AttrRecognizer
+	     * @param {Object} input
+	     * @returns {Boolean} recognized
+	     */
+	    attrTest: function(input) {
+	        var optionPointers = this.options.pointers;
+	        return optionPointers === 0 || input.pointers.length === optionPointers;
+	    },
+	
+	    /**
+	     * Process the input and return the state for the recognizer
+	     * @memberof AttrRecognizer
+	     * @param {Object} input
+	     * @returns {*} State
+	     */
+	    process: function(input) {
+	        var state = this.state;
+	        var eventType = input.eventType;
+	
+	        var isRecognized = state & (STATE_BEGAN | STATE_CHANGED);
+	        var isValid = this.attrTest(input);
+	
+	        // on cancel input and we've recognized before, return STATE_CANCELLED
+	        if (isRecognized && (eventType & INPUT_CANCEL || !isValid)) {
+	            return state | STATE_CANCELLED;
+	        } else if (isRecognized || isValid) {
+	            if (eventType & INPUT_END) {
+	                return state | STATE_ENDED;
+	            } else if (!(state & STATE_BEGAN)) {
+	                return STATE_BEGAN;
+	            }
+	            return state | STATE_CHANGED;
+	        }
+	        return STATE_FAILED;
+	    }
+	});
+	
+	/**
+	 * Pan
+	 * Recognized when the pointer is down and moved in the allowed direction.
+	 * @constructor
+	 * @extends AttrRecognizer
+	 */
+	function PanRecognizer() {
+	    AttrRecognizer.apply(this, arguments);
+	
+	    this.pX = null;
+	    this.pY = null;
+	}
+	
+	inherit(PanRecognizer, AttrRecognizer, {
+	    /**
+	     * @namespace
+	     * @memberof PanRecognizer
+	     */
+	    defaults: {
+	        event: 'pan',
+	        threshold: 10,
+	        pointers: 1,
+	        direction: DIRECTION_ALL
+	    },
+	
+	    getTouchAction: function() {
+	        var direction = this.options.direction;
+	        var actions = [];
+	        if (direction & DIRECTION_HORIZONTAL) {
+	            actions.push(TOUCH_ACTION_PAN_Y);
+	        }
+	        if (direction & DIRECTION_VERTICAL) {
+	            actions.push(TOUCH_ACTION_PAN_X);
+	        }
+	        return actions;
+	    },
+	
+	    directionTest: function(input) {
+	        var options = this.options;
+	        var hasMoved = true;
+	        var distance = input.distance;
+	        var direction = input.direction;
+	        var x = input.deltaX;
+	        var y = input.deltaY;
+	
+	        // lock to axis?
+	        if (!(direction & options.direction)) {
+	            if (options.direction & DIRECTION_HORIZONTAL) {
+	                direction = (x === 0) ? DIRECTION_NONE : (x < 0) ? DIRECTION_LEFT : DIRECTION_RIGHT;
+	                hasMoved = x != this.pX;
+	                distance = Math.abs(input.deltaX);
+	            } else {
+	                direction = (y === 0) ? DIRECTION_NONE : (y < 0) ? DIRECTION_UP : DIRECTION_DOWN;
+	                hasMoved = y != this.pY;
+	                distance = Math.abs(input.deltaY);
+	            }
+	        }
+	        input.direction = direction;
+	        return hasMoved && distance > options.threshold && direction & options.direction;
+	    },
+	
+	    attrTest: function(input) {
+	        return AttrRecognizer.prototype.attrTest.call(this, input) &&
+	            (this.state & STATE_BEGAN || (!(this.state & STATE_BEGAN) && this.directionTest(input)));
+	    },
+	
+	    emit: function(input) {
+	
+	        this.pX = input.deltaX;
+	        this.pY = input.deltaY;
+	
+	        var direction = directionStr(input.direction);
+	
+	        if (direction) {
+	            input.additionalEvent = this.options.event + direction;
+	        }
+	        this._super.emit.call(this, input);
+	    }
+	});
+	
+	/**
+	 * Pinch
+	 * Recognized when two or more pointers are moving toward (zoom-in) or away from each other (zoom-out).
+	 * @constructor
+	 * @extends AttrRecognizer
+	 */
+	function PinchRecognizer() {
+	    AttrRecognizer.apply(this, arguments);
+	}
+	
+	inherit(PinchRecognizer, AttrRecognizer, {
+	    /**
+	     * @namespace
+	     * @memberof PinchRecognizer
+	     */
+	    defaults: {
+	        event: 'pinch',
+	        threshold: 0,
+	        pointers: 2
+	    },
+	
+	    getTouchAction: function() {
+	        return [TOUCH_ACTION_NONE];
+	    },
+	
+	    attrTest: function(input) {
+	        return this._super.attrTest.call(this, input) &&
+	            (Math.abs(input.scale - 1) > this.options.threshold || this.state & STATE_BEGAN);
+	    },
+	
+	    emit: function(input) {
+	        if (input.scale !== 1) {
+	            var inOut = input.scale < 1 ? 'in' : 'out';
+	            input.additionalEvent = this.options.event + inOut;
+	        }
+	        this._super.emit.call(this, input);
+	    }
+	});
+	
+	/**
+	 * Press
+	 * Recognized when the pointer is down for x ms without any movement.
+	 * @constructor
+	 * @extends Recognizer
+	 */
+	function PressRecognizer() {
+	    Recognizer.apply(this, arguments);
+	
+	    this._timer = null;
+	    this._input = null;
+	}
+	
+	inherit(PressRecognizer, Recognizer, {
+	    /**
+	     * @namespace
+	     * @memberof PressRecognizer
+	     */
+	    defaults: {
+	        event: 'press',
+	        pointers: 1,
+	        time: 251, // minimal time of the pointer to be pressed
+	        threshold: 9 // a minimal movement is ok, but keep it low
+	    },
+	
+	    getTouchAction: function() {
+	        return [TOUCH_ACTION_AUTO];
+	    },
+	
+	    process: function(input) {
+	        var options = this.options;
+	        var validPointers = input.pointers.length === options.pointers;
+	        var validMovement = input.distance < options.threshold;
+	        var validTime = input.deltaTime > options.time;
+	
+	        this._input = input;
+	
+	        // we only allow little movement
+	        // and we've reached an end event, so a tap is possible
+	        if (!validMovement || !validPointers || (input.eventType & (INPUT_END | INPUT_CANCEL) && !validTime)) {
+	            this.reset();
+	        } else if (input.eventType & INPUT_START) {
+	            this.reset();
+	            this._timer = setTimeoutContext(function() {
+	                this.state = STATE_RECOGNIZED;
+	                this.tryEmit();
+	            }, options.time, this);
+	        } else if (input.eventType & INPUT_END) {
+	            return STATE_RECOGNIZED;
+	        }
+	        return STATE_FAILED;
+	    },
+	
+	    reset: function() {
+	        clearTimeout(this._timer);
+	    },
+	
+	    emit: function(input) {
+	        if (this.state !== STATE_RECOGNIZED) {
+	            return;
+	        }
+	
+	        if (input && (input.eventType & INPUT_END)) {
+	            this.manager.emit(this.options.event + 'up', input);
+	        } else {
+	            this._input.timeStamp = now();
+	            this.manager.emit(this.options.event, this._input);
+	        }
+	    }
+	});
+	
+	/**
+	 * Rotate
+	 * Recognized when two or more pointer are moving in a circular motion.
+	 * @constructor
+	 * @extends AttrRecognizer
+	 */
+	function RotateRecognizer() {
+	    AttrRecognizer.apply(this, arguments);
+	}
+	
+	inherit(RotateRecognizer, AttrRecognizer, {
+	    /**
+	     * @namespace
+	     * @memberof RotateRecognizer
+	     */
+	    defaults: {
+	        event: 'rotate',
+	        threshold: 0,
+	        pointers: 2
+	    },
+	
+	    getTouchAction: function() {
+	        return [TOUCH_ACTION_NONE];
+	    },
+	
+	    attrTest: function(input) {
+	        return this._super.attrTest.call(this, input) &&
+	            (Math.abs(input.rotation) > this.options.threshold || this.state & STATE_BEGAN);
+	    }
+	});
+	
+	/**
+	 * Swipe
+	 * Recognized when the pointer is moving fast (velocity), with enough distance in the allowed direction.
+	 * @constructor
+	 * @extends AttrRecognizer
+	 */
+	function SwipeRecognizer() {
+	    AttrRecognizer.apply(this, arguments);
+	}
+	
+	inherit(SwipeRecognizer, AttrRecognizer, {
+	    /**
+	     * @namespace
+	     * @memberof SwipeRecognizer
+	     */
+	    defaults: {
+	        event: 'swipe',
+	        threshold: 10,
+	        velocity: 0.3,
+	        direction: DIRECTION_HORIZONTAL | DIRECTION_VERTICAL,
+	        pointers: 1
+	    },
+	
+	    getTouchAction: function() {
+	        return PanRecognizer.prototype.getTouchAction.call(this);
+	    },
+	
+	    attrTest: function(input) {
+	        var direction = this.options.direction;
+	        var velocity;
+	
+	        if (direction & (DIRECTION_HORIZONTAL | DIRECTION_VERTICAL)) {
+	            velocity = input.overallVelocity;
+	        } else if (direction & DIRECTION_HORIZONTAL) {
+	            velocity = input.overallVelocityX;
+	        } else if (direction & DIRECTION_VERTICAL) {
+	            velocity = input.overallVelocityY;
+	        }
+	
+	        return this._super.attrTest.call(this, input) &&
+	            direction & input.offsetDirection &&
+	            input.distance > this.options.threshold &&
+	            input.maxPointers == this.options.pointers &&
+	            abs(velocity) > this.options.velocity && input.eventType & INPUT_END;
+	    },
+	
+	    emit: function(input) {
+	        var direction = directionStr(input.offsetDirection);
+	        if (direction) {
+	            this.manager.emit(this.options.event + direction, input);
+	        }
+	
+	        this.manager.emit(this.options.event, input);
+	    }
+	});
+	
+	/**
+	 * A tap is ecognized when the pointer is doing a small tap/click. Multiple taps are recognized if they occur
+	 * between the given interval and position. The delay option can be used to recognize multi-taps without firing
+	 * a single tap.
+	 *
+	 * The eventData from the emitted event contains the property `tapCount`, which contains the amount of
+	 * multi-taps being recognized.
+	 * @constructor
+	 * @extends Recognizer
+	 */
+	function TapRecognizer() {
+	    Recognizer.apply(this, arguments);
+	
+	    // previous time and center,
+	    // used for tap counting
+	    this.pTime = false;
+	    this.pCenter = false;
+	
+	    this._timer = null;
+	    this._input = null;
+	    this.count = 0;
+	}
+	
+	inherit(TapRecognizer, Recognizer, {
+	    /**
+	     * @namespace
+	     * @memberof PinchRecognizer
+	     */
+	    defaults: {
+	        event: 'tap',
+	        pointers: 1,
+	        taps: 1,
+	        interval: 300, // max time between the multi-tap taps
+	        time: 250, // max time of the pointer to be down (like finger on the screen)
+	        threshold: 9, // a minimal movement is ok, but keep it low
+	        posThreshold: 10 // a multi-tap can be a bit off the initial position
+	    },
+	
+	    getTouchAction: function() {
+	        return [TOUCH_ACTION_MANIPULATION];
+	    },
+	
+	    process: function(input) {
+	        var options = this.options;
+	
+	        var validPointers = input.pointers.length === options.pointers;
+	        var validMovement = input.distance < options.threshold;
+	        var validTouchTime = input.deltaTime < options.time;
+	
+	        this.reset();
+	
+	        if ((input.eventType & INPUT_START) && (this.count === 0)) {
+	            return this.failTimeout();
+	        }
+	
+	        // we only allow little movement
+	        // and we've reached an end event, so a tap is possible
+	        if (validMovement && validTouchTime && validPointers) {
+	            if (input.eventType != INPUT_END) {
+	                return this.failTimeout();
+	            }
+	
+	            var validInterval = this.pTime ? (input.timeStamp - this.pTime < options.interval) : true;
+	            var validMultiTap = !this.pCenter || getDistance(this.pCenter, input.center) < options.posThreshold;
+	
+	            this.pTime = input.timeStamp;
+	            this.pCenter = input.center;
+	
+	            if (!validMultiTap || !validInterval) {
+	                this.count = 1;
+	            } else {
+	                this.count += 1;
+	            }
+	
+	            this._input = input;
+	
+	            // if tap count matches we have recognized it,
+	            // else it has began recognizing...
+	            var tapCount = this.count % options.taps;
+	            if (tapCount === 0) {
+	                // no failing requirements, immediately trigger the tap event
+	                // or wait as long as the multitap interval to trigger
+	                if (!this.hasRequireFailures()) {
+	                    return STATE_RECOGNIZED;
+	                } else {
+	                    this._timer = setTimeoutContext(function() {
+	                        this.state = STATE_RECOGNIZED;
+	                        this.tryEmit();
+	                    }, options.interval, this);
+	                    return STATE_BEGAN;
+	                }
+	            }
+	        }
+	        return STATE_FAILED;
+	    },
+	
+	    failTimeout: function() {
+	        this._timer = setTimeoutContext(function() {
+	            this.state = STATE_FAILED;
+	        }, this.options.interval, this);
+	        return STATE_FAILED;
+	    },
+	
+	    reset: function() {
+	        clearTimeout(this._timer);
+	    },
+	
+	    emit: function() {
+	        if (this.state == STATE_RECOGNIZED) {
+	            this._input.tapCount = this.count;
+	            this.manager.emit(this.options.event, this._input);
+	        }
+	    }
+	});
+	
+	/**
+	 * Simple way to create a manager with a default set of recognizers.
+	 * @param {HTMLElement} element
+	 * @param {Object} [options]
+	 * @constructor
+	 */
+	function Hammer(element, options) {
+	    options = options || {};
+	    options.recognizers = ifUndefined(options.recognizers, Hammer.defaults.preset);
+	    return new Manager(element, options);
+	}
+	
+	/**
+	 * @const {string}
+	 */
+	Hammer.VERSION = '2.0.6';
+	
+	/**
+	 * default settings
+	 * @namespace
+	 */
+	Hammer.defaults = {
+	    /**
+	     * set if DOM events are being triggered.
+	     * But this is slower and unused by simple implementations, so disabled by default.
+	     * @type {Boolean}
+	     * @default false
+	     */
+	    domEvents: false,
+	
+	    /**
+	     * The value for the touchAction property/fallback.
+	     * When set to `compute` it will magically set the correct value based on the added recognizers.
+	     * @type {String}
+	     * @default compute
+	     */
+	    touchAction: TOUCH_ACTION_COMPUTE,
+	
+	    /**
+	     * @type {Boolean}
+	     * @default true
+	     */
+	    enable: true,
+	
+	    /**
+	     * EXPERIMENTAL FEATURE -- can be removed/changed
+	     * Change the parent input target element.
+	     * If Null, then it is being set the to main element.
+	     * @type {Null|EventTarget}
+	     * @default null
+	     */
+	    inputTarget: null,
+	
+	    /**
+	     * force an input class
+	     * @type {Null|Function}
+	     * @default null
+	     */
+	    inputClass: null,
+	
+	    /**
+	     * Default recognizer setup when calling `Hammer()`
+	     * When creating a new Manager these will be skipped.
+	     * @type {Array}
+	     */
+	    preset: [
+	        // RecognizerClass, options, [recognizeWith, ...], [requireFailure, ...]
+	        [RotateRecognizer, {enable: false}],
+	        [PinchRecognizer, {enable: false}, ['rotate']],
+	        [SwipeRecognizer, {direction: DIRECTION_HORIZONTAL}],
+	        [PanRecognizer, {direction: DIRECTION_HORIZONTAL}, ['swipe']],
+	        [TapRecognizer],
+	        [TapRecognizer, {event: 'doubletap', taps: 2}, ['tap']],
+	        [PressRecognizer]
+	    ],
+	
+	    /**
+	     * Some CSS properties can be used to improve the working of Hammer.
+	     * Add them to this method and they will be set when creating a new Manager.
+	     * @namespace
+	     */
+	    cssProps: {
+	        /**
+	         * Disables text selection to improve the dragging gesture. Mainly for desktop browsers.
+	         * @type {String}
+	         * @default 'none'
+	         */
+	        userSelect: 'none',
+	
+	        /**
+	         * Disable the Windows Phone grippers when pressing an element.
+	         * @type {String}
+	         * @default 'none'
+	         */
+	        touchSelect: 'none',
+	
+	        /**
+	         * Disables the default callout shown when you touch and hold a touch target.
+	         * On iOS, when you touch and hold a touch target such as a link, Safari displays
+	         * a callout containing information about the link. This property allows you to disable that callout.
+	         * @type {String}
+	         * @default 'none'
+	         */
+	        touchCallout: 'none',
+	
+	        /**
+	         * Specifies whether zooming is enabled. Used by IE10>
+	         * @type {String}
+	         * @default 'none'
+	         */
+	        contentZooming: 'none',
+	
+	        /**
+	         * Specifies that an entire element should be draggable instead of its contents. Mainly for desktop browsers.
+	         * @type {String}
+	         * @default 'none'
+	         */
+	        userDrag: 'none',
+	
+	        /**
+	         * Overrides the highlight color shown when the user taps a link or a JavaScript
+	         * clickable element in iOS. This property obeys the alpha value, if specified.
+	         * @type {String}
+	         * @default 'rgba(0,0,0,0)'
+	         */
+	        tapHighlightColor: 'rgba(0,0,0,0)'
+	    }
+	};
+	
+	var STOP = 1;
+	var FORCED_STOP = 2;
+	
+	/**
+	 * Manager
+	 * @param {HTMLElement} element
+	 * @param {Object} [options]
+	 * @constructor
+	 */
+	function Manager(element, options) {
+	    this.options = assign({}, Hammer.defaults, options || {});
+	
+	    this.options.inputTarget = this.options.inputTarget || element;
+	
+	    this.handlers = {};
+	    this.session = {};
+	    this.recognizers = [];
+	
+	    this.element = element;
+	    this.input = createInputInstance(this);
+	    this.touchAction = new TouchAction(this, this.options.touchAction);
+	
+	    toggleCssProps(this, true);
+	
+	    each(this.options.recognizers, function(item) {
+	        var recognizer = this.add(new (item[0])(item[1]));
+	        item[2] && recognizer.recognizeWith(item[2]);
+	        item[3] && recognizer.requireFailure(item[3]);
+	    }, this);
+	}
+	
+	Manager.prototype = {
+	    /**
+	     * set options
+	     * @param {Object} options
+	     * @returns {Manager}
+	     */
+	    set: function(options) {
+	        assign(this.options, options);
+	
+	        // Options that need a little more setup
+	        if (options.touchAction) {
+	            this.touchAction.update();
+	        }
+	        if (options.inputTarget) {
+	            // Clean up existing event listeners and reinitialize
+	            this.input.destroy();
+	            this.input.target = options.inputTarget;
+	            this.input.init();
+	        }
+	        return this;
+	    },
+	
+	    /**
+	     * stop recognizing for this session.
+	     * This session will be discarded, when a new [input]start event is fired.
+	     * When forced, the recognizer cycle is stopped immediately.
+	     * @param {Boolean} [force]
+	     */
+	    stop: function(force) {
+	        this.session.stopped = force ? FORCED_STOP : STOP;
+	    },
+	
+	    /**
+	     * run the recognizers!
+	     * called by the inputHandler function on every movement of the pointers (touches)
+	     * it walks through all the recognizers and tries to detect the gesture that is being made
+	     * @param {Object} inputData
+	     */
+	    recognize: function(inputData) {
+	        var session = this.session;
+	        if (session.stopped) {
+	            return;
+	        }
+	
+	        // run the touch-action polyfill
+	        this.touchAction.preventDefaults(inputData);
+	
+	        var recognizer;
+	        var recognizers = this.recognizers;
+	
+	        // this holds the recognizer that is being recognized.
+	        // so the recognizer's state needs to be BEGAN, CHANGED, ENDED or RECOGNIZED
+	        // if no recognizer is detecting a thing, it is set to `null`
+	        var curRecognizer = session.curRecognizer;
+	
+	        // reset when the last recognizer is recognized
+	        // or when we're in a new session
+	        if (!curRecognizer || (curRecognizer && curRecognizer.state & STATE_RECOGNIZED)) {
+	            curRecognizer = session.curRecognizer = null;
+	        }
+	
+	        var i = 0;
+	        while (i < recognizers.length) {
+	            recognizer = recognizers[i];
+	
+	            // find out if we are allowed try to recognize the input for this one.
+	            // 1.   allow if the session is NOT forced stopped (see the .stop() method)
+	            // 2.   allow if we still haven't recognized a gesture in this session, or the this recognizer is the one
+	            //      that is being recognized.
+	            // 3.   allow if the recognizer is allowed to run simultaneous with the current recognized recognizer.
+	            //      this can be setup with the `recognizeWith()` method on the recognizer.
+	            if (session.stopped !== FORCED_STOP && ( // 1
+	                    !curRecognizer || recognizer == curRecognizer || // 2
+	                    recognizer.canRecognizeWith(curRecognizer))) { // 3
+	                recognizer.recognize(inputData);
+	            } else {
+	                recognizer.reset();
+	            }
+	
+	            // if the recognizer has been recognizing the input as a valid gesture, we want to store this one as the
+	            // current active recognizer. but only if we don't already have an active recognizer
+	            if (!curRecognizer && recognizer.state & (STATE_BEGAN | STATE_CHANGED | STATE_ENDED)) {
+	                curRecognizer = session.curRecognizer = recognizer;
+	            }
+	            i++;
+	        }
+	    },
+	
+	    /**
+	     * get a recognizer by its event name.
+	     * @param {Recognizer|String} recognizer
+	     * @returns {Recognizer|Null}
+	     */
+	    get: function(recognizer) {
+	        if (recognizer instanceof Recognizer) {
+	            return recognizer;
+	        }
+	
+	        var recognizers = this.recognizers;
+	        for (var i = 0; i < recognizers.length; i++) {
+	            if (recognizers[i].options.event == recognizer) {
+	                return recognizers[i];
+	            }
+	        }
+	        return null;
+	    },
+	
+	    /**
+	     * add a recognizer to the manager
+	     * existing recognizers with the same event name will be removed
+	     * @param {Recognizer} recognizer
+	     * @returns {Recognizer|Manager}
+	     */
+	    add: function(recognizer) {
+	        if (invokeArrayArg(recognizer, 'add', this)) {
+	            return this;
+	        }
+	
+	        // remove existing
+	        var existing = this.get(recognizer.options.event);
+	        if (existing) {
+	            this.remove(existing);
+	        }
+	
+	        this.recognizers.push(recognizer);
+	        recognizer.manager = this;
+	
+	        this.touchAction.update();
+	        return recognizer;
+	    },
+	
+	    /**
+	     * remove a recognizer by name or instance
+	     * @param {Recognizer|String} recognizer
+	     * @returns {Manager}
+	     */
+	    remove: function(recognizer) {
+	        if (invokeArrayArg(recognizer, 'remove', this)) {
+	            return this;
+	        }
+	
+	        recognizer = this.get(recognizer);
+	
+	        // let's make sure this recognizer exists
+	        if (recognizer) {
+	            var recognizers = this.recognizers;
+	            var index = inArray(recognizers, recognizer);
+	
+	            if (index !== -1) {
+	                recognizers.splice(index, 1);
+	                this.touchAction.update();
+	            }
+	        }
+	
+	        return this;
+	    },
+	
+	    /**
+	     * bind event
+	     * @param {String} events
+	     * @param {Function} handler
+	     * @returns {EventEmitter} this
+	     */
+	    on: function(events, handler) {
+	        var handlers = this.handlers;
+	        each(splitStr(events), function(event) {
+	            handlers[event] = handlers[event] || [];
+	            handlers[event].push(handler);
+	        });
+	        return this;
+	    },
+	
+	    /**
+	     * unbind event, leave emit blank to remove all handlers
+	     * @param {String} events
+	     * @param {Function} [handler]
+	     * @returns {EventEmitter} this
+	     */
+	    off: function(events, handler) {
+	        var handlers = this.handlers;
+	        each(splitStr(events), function(event) {
+	            if (!handler) {
+	                delete handlers[event];
+	            } else {
+	                handlers[event] && handlers[event].splice(inArray(handlers[event], handler), 1);
+	            }
+	        });
+	        return this;
+	    },
+	
+	    /**
+	     * emit event to the listeners
+	     * @param {String} event
+	     * @param {Object} data
+	     */
+	    emit: function(event, data) {
+	        // we also want to trigger dom events
+	        if (this.options.domEvents) {
+	            triggerDomEvent(event, data);
+	        }
+	
+	        // no handlers, so skip it all
+	        var handlers = this.handlers[event] && this.handlers[event].slice();
+	        if (!handlers || !handlers.length) {
+	            return;
+	        }
+	
+	        data.type = event;
+	        data.preventDefault = function() {
+	            data.srcEvent.preventDefault();
+	        };
+	
+	        var i = 0;
+	        while (i < handlers.length) {
+	            handlers[i](data);
+	            i++;
+	        }
+	    },
+	
+	    /**
+	     * destroy the manager and unbinds all events
+	     * it doesn't unbind dom events, that is the user own responsibility
+	     */
+	    destroy: function() {
+	        this.element && toggleCssProps(this, false);
+	
+	        this.handlers = {};
+	        this.session = {};
+	        this.input.destroy();
+	        this.element = null;
+	    }
+	};
+	
+	/**
+	 * add/remove the css properties as defined in manager.options.cssProps
+	 * @param {Manager} manager
+	 * @param {Boolean} add
+	 */
+	function toggleCssProps(manager, add) {
+	    var element = manager.element;
+	    if (!element.style) {
+	        return;
+	    }
+	    each(manager.options.cssProps, function(value, name) {
+	        element.style[prefixed(element.style, name)] = add ? value : '';
+	    });
+	}
+	
+	/**
+	 * trigger dom event
+	 * @param {String} event
+	 * @param {Object} data
+	 */
+	function triggerDomEvent(event, data) {
+	    var gestureEvent = document.createEvent('Event');
+	    gestureEvent.initEvent(event, true, true);
+	    gestureEvent.gesture = data;
+	    data.target.dispatchEvent(gestureEvent);
+	}
+	
+	assign(Hammer, {
+	    INPUT_START: INPUT_START,
+	    INPUT_MOVE: INPUT_MOVE,
+	    INPUT_END: INPUT_END,
+	    INPUT_CANCEL: INPUT_CANCEL,
+	
+	    STATE_POSSIBLE: STATE_POSSIBLE,
+	    STATE_BEGAN: STATE_BEGAN,
+	    STATE_CHANGED: STATE_CHANGED,
+	    STATE_ENDED: STATE_ENDED,
+	    STATE_RECOGNIZED: STATE_RECOGNIZED,
+	    STATE_CANCELLED: STATE_CANCELLED,
+	    STATE_FAILED: STATE_FAILED,
+	
+	    DIRECTION_NONE: DIRECTION_NONE,
+	    DIRECTION_LEFT: DIRECTION_LEFT,
+	    DIRECTION_RIGHT: DIRECTION_RIGHT,
+	    DIRECTION_UP: DIRECTION_UP,
+	    DIRECTION_DOWN: DIRECTION_DOWN,
+	    DIRECTION_HORIZONTAL: DIRECTION_HORIZONTAL,
+	    DIRECTION_VERTICAL: DIRECTION_VERTICAL,
+	    DIRECTION_ALL: DIRECTION_ALL,
+	
+	    Manager: Manager,
+	    Input: Input,
+	    TouchAction: TouchAction,
+	
+	    TouchInput: TouchInput,
+	    MouseInput: MouseInput,
+	    PointerEventInput: PointerEventInput,
+	    TouchMouseInput: TouchMouseInput,
+	    SingleTouchInput: SingleTouchInput,
+	
+	    Recognizer: Recognizer,
+	    AttrRecognizer: AttrRecognizer,
+	    Tap: TapRecognizer,
+	    Pan: PanRecognizer,
+	    Swipe: SwipeRecognizer,
+	    Pinch: PinchRecognizer,
+	    Rotate: RotateRecognizer,
+	    Press: PressRecognizer,
+	
+	    on: addEventListeners,
+	    off: removeEventListeners,
+	    each: each,
+	    merge: merge,
+	    extend: extend,
+	    assign: assign,
+	    inherit: inherit,
+	    bindFn: bindFn,
+	    prefixed: prefixed
+	});
+	
+	// this prevents errors when Hammer is loaded in the presence of an AMD
+	//  style loader but by script tag, not by the loader.
+	var freeGlobal = (typeof window !== 'undefined' ? window : (typeof self !== 'undefined' ? self : {})); // jshint ignore:line
+	freeGlobal.Hammer = Hammer;
+	
+	if (true) {
+	    !(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
+	        return Hammer;
+	    }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else if (typeof module != 'undefined' && module.exports) {
+	    module.exports = Hammer;
+	} else {
+	    window[exportName] = Hammer;
+	}
+	
+	})(window, document, 'Hammer');
+
+
+/***/ },
+/* 53 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "login_icon.png?76c0f3299044482b9c022de20671e5a5";
 
 /***/ }
 /******/ ]);
