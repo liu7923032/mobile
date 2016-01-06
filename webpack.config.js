@@ -1,5 +1,9 @@
 var webpack = require('webpack')
 
+
+//独立样式文件
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 var path = require('path')
 
 module.exports = {
@@ -9,14 +13,18 @@ module.exports = {
         publicPath: 'dist/',
         filename: 'dist.js'
     },
-    resolve: {
-        root: path.resolve('./')
-    },
+    // resolve: {
+    //     root: path.resolve('./')
+    // },
     watch: true,
     module: {
         loaders: [{
             test: /\.vue$/,
             loader: 'vue'
+        }, {
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract(
+                "style-loader", "css-loader?sourceMap!cssnext-loader")
         }, {
             // edit this for additional asset file types
             test: /\.(png|jpg|gif)$/,

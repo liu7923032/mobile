@@ -1,16 +1,23 @@
 <template>
-	   <section id="sideBar" class="nav-list" :class="{'show':showMenu}">
-        <userinfo></userinfo>
+	<div class="page-cover" v-if="showMenu" @click="showCover">
+	</div>
+
+	 <section id="sideBar" class="nav-list" :class="{'showside':showMenu}" >
+	    <userheader></userheader>
         <ul class="list-ul">
-        	<li v-for="item in menuItems" class="item.icon" v-link="{'name':item.link}">{{item.text}}</li>
+        	<li v-for="item in menuItems"  :class="item.icon" v-link="{'name':item.link}" @click="enterPage()">{{item.text}}</li>
         </ul>
     </section>
 </template>
 
 <script type="text/javascript">
 
-	import UserInfo from './UserInfo.vue';
+	import UserHeader from './UserHeader.vue';
 	export default {
+		created(){
+			console.log("进入sidebar");
+
+		},
 		replace:true,
 		props:{
 			menuItems:{
@@ -22,13 +29,36 @@
 				default:false
 			}
 		},
+		methods:{
+			showCover(){
+				this.showMenu=!this.showMenu;
+			},
+			enterPage(){
+				alert('1');
+			}
+		},
 		components:{
-			userinfo:UserInfo
+			userheader:UserHeader
 		}
 	}
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
+
+
+	ul{
+		padding: 0px;
+		margin: 0px;
+	}
+	.page-cover {
+	    position: fixed;
+	    top: 0;
+	    right: 0;
+	    bottom: 0;
+	    left: 0;
+	    background: rgba(0, 0, 0, .4);
+	    z-index: 7;
+	}
 	.nav-list{
 		position: fixed;
 	    top: 0;
@@ -41,10 +71,10 @@
 	    z-index: 99;
 	    
 	}
-	.nav-list .show{
+	.showside {
 	   transform: translateX(200px);
 	}
-
+	
 
 
 	/*侧边栏列表*/
@@ -53,6 +83,7 @@
 	    border-top: 1px solid #d4d4d4;
 	    overflow: hidden;
 	    padding-top: 9%;
+	    list-style-type: none;
 	    
 	}
 
@@ -64,12 +95,17 @@
         text-indent: 1px;
         line-height: 15px;
         color: #7f8c8d;
-        &:last-child {
-            margin-bottom: 50px;
-        }
-        &:before{
-            color: #2c3e50;
-        }
+        display: block;
+    }
+
+	 .list-ul>li:before{
+        color: #2c3e50;
+        margin: 0 20px;
+        font-size: 14px;
+    }
+
+    .list-ul>li:last-child {
+        margin-bottom: 50px;
     }
 
     .list-ul>.line{

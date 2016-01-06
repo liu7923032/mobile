@@ -5,10 +5,13 @@ import Router from 'vue-router'
 import routerMap from './routers'
 
 import FastClick from 'fastclick'
+//加载触摸插件
+import VueTouch from './plugns/vTouch'
 
     // 1:创建启动的版本
 
 Vue.use(Router)
+Vue.use(VueTouch)
 
 var router = new Router({
         hashbang: true,

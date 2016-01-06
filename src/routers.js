@@ -10,10 +10,22 @@ export default function(router){
             name:'home',
             component:require('./views/Home.vue')
         },
-        '/userInfo':{
-            name:'userInfo',
-            component:require('./views/MyView.vue'),
+        '/project':{
+            name:'project',
+            component:require('./views/Project.vue')
+        },
+        '/worklog':{
+            name:'worklog',
+            component:require('./views/Home.vue')
+        },
+        '/userinfo':{
+            name:'userinfo',
+            component:require('./views/UserInfo.vue'),
             auth:true
+        },
+        '/workflow':{
+            name:'workflow',
+            component:require('./views/WorkFlow.vue')
         },
         '/login':{
             name:'login',
@@ -21,7 +33,7 @@ export default function(router){
         },
         /* 404路由 */
         '*': {
-            component: require('./views/MyView.vue')
+            component: require('./views/Home.vue')
         }
         
     })

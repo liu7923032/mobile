@@ -26,12 +26,13 @@
         display: flex;
         display: -webkit-flex;
         width: 100%;
-        background-color: whitesmoke;
+        background-color: rgba(255, 255, 255, 0.95);
         height: 44px;
         flex-flow: row nowrap;
         justify-content: space-between;
         align-items: center;
         align-content: center;
+        box-shadow:0 0 4px rgba(0, 0, 0, 0.25);
     }
 
    
@@ -45,7 +46,8 @@
     .toolbar span{
         font-size: 24px;
         margin:0px 10px;
-        color: black;
+        color: #595959;
+        cursor: pointer;
     }
     
     .toolbar span:active{

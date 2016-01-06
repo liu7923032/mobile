@@ -1,5 +1,10 @@
 <template>
 	
+	<div class="container">
+		<div >
+			<input type="text" name="">
+		</div>
+	</div>
 </template>
 
 

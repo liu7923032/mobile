@@ -1,20 +1,20 @@
 <template>
     <div class="user-info">
         <!-- 未登录 -->
-        <ul class="login-no" v-if="!loginname">
-            <li class="login" @click="goEnter"><a >登录</a></li>
-        </ul>
+        <div class="nologin" v-if="!loginname">
+            <span ></span>
+            <span  @click="goEnter"><a >登录</a></span>
+        </div>
         <!-- 已登录 -->
         <div class="login-yes" v-if="loginname" @click="goUser">
-            <div class="avertar">
-            	<img v-if="avatar_url" :src="avatar_url">
-            </div>
+            <div class="avertar"><img v-if="avatar_url" :src="avatar_url"></div>
             <div class="info">
                 <p v-if="loginname" v-text="loginname"></p>
             </div>
         </div>
     </div>
 </template>
+
 <script>
     export default {
         replace:true,
@@ -44,37 +44,27 @@
         color: #313131;
     }
 
-    /*未登录*/
-    .login-no {
-        overflow: hidden;
-        margin: 8px 9px;
-    }
-
-    .login-no>li{
-    	float: right;
-        height: 24px;
-        line-height: 24px;
+	.nologin{
+		line-height: 24px;
         padding-left: 34px;
-        position: relative;
-            
-    }
-    .login-no>li:before {
-        width: 24px;
+        display: flex;
+        display: -webkit-flexbox;
+        flex-flow:row nowrap;
+        justify-content:space-between;
+	}
+
+	.nologin>span:first-child{
+		width: 24px;
         height: 24px;
         content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
-	.login-no>.login {
-	 	 float: left;
+        background: url("../assets/images/components/login_icon.png") no-repeat left center;
+      	background-size: 24px 24px;
 	}
-	.login-no>.login:before {
-      background: url("../assets/images/components/login_icon.png") no-repeat left center;
-      background-size: 24px 24px;
-    }
-    /*已登录*/
-    .login-yes {
+
+
+
+    /*已登录
+    /*.login-yes {
         height: 100%;
         background: url("../assets/images/components/go_next_icon.png") no-repeat right center;
         background-size: 6px 10px;
@@ -91,17 +81,21 @@
         border-radius: 20px;
         overflow: hidden;
         float: left;
-        &>img {
-            width: 40px;
-            height: 40px;
-            display: block;
-        }
+        
+    }*/*/
+
+	.login-yes>.avertar>img {
+        width: 40px;
+        height: 40px;
+        display: block;
     }
+
     .login-yes>.info {
         margin-left: 10px;
         overflow: hidden;
         float: left;
     }
+
     .login-yes>p {
         width: 85px;
         overflow: hidden;
@@ -116,9 +110,9 @@
     .login-yes>p>.lh20 {
         line-height: 20px;
      }
-    .login-yes:after {
+    /*.login-yes:after {
         display: block;
         background: url("../assets/images/components/go_icon.png") no-repeat center right;
         background-size: 7px 7px;
-    }
+    }*/
 </style>

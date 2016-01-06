@@ -1,54 +1,60 @@
 <template>
-	<ul class="nav-tabs">
-			<li v-for="(index,item) in tabItems" 
-			:class="{'nav_active':activieIndex===index}" 
-			@click="switchTab(index)" 
-			transition="nav_swtchtranstion" >{{item.title}}</li>
-	</ul>
-	<div class="tabs_line"></div>
-	<div class="tabs_content">
-		<div v-for="(index,item) in tabItems" v-show="activieIndex===index">{{
-				item.content
-			}}</div>
+	<div class="container-fluid">
+		<ul class="nav-tabs">
+				<li v-for="(index,item) in tabItems"
+				:class="{'nav_active':selectIndex===index}" 
+				@click="switchTab(index)" 
+				 >{{item.title}}</li>
+		</ul>
+		<div class="tabs_line" v-bind:style="{ width:underline+ 'px' }"></div>
+		<div class="tabs_content">
+			<div v-for="(index,item) in tabItems" v-show="selectIndex===index">
+				{{ item.content }}
+			</div>
+		</div>
 	</div>
+
 </template>
 
 <script lang="babel">
 	
 	export default {
 		created(){
-			var docWidth=document.body.offsetWidth;
-			this.lineWidth=docWidth/this.tabItems.length;
-			document.querySelectorAll('.tabs_line')[0].style.width=lineWidth+"px";
+			this.selectIndex=this.activeIndex;
 		},
 		props:{
-			tabsItem:{
+			tabItems:{
 				type:Array,
 				default:[]
 			},
 			activeIndex:{
 				type:Number,
 				default:0
+			},
+			underline:{
+				type:Number,
+				default:100
 			}
 		},
 		data(){
 			return {
-				lineWidth:0;
+				//当前选中的tab页面
+				selectIndex:0
 			}
 		},
 		methods:{
 			//点击tabs
 			switchTab(index){
-				this.activieIndex=index;
-				var leftWidth=index*lineWidth;
+				this.selectIndex=index;
+				var leftWidth=index*this.underline;
 				document.querySelectorAll('.tabs_line')[0].style.transform="translateX("+leftWidth+"px)";
 			}
 		}
 	}
 </script>
 
-<style type="text/css">
-
+<style type="text/css" scoped>
+		
 		.nav-tabs {
 			margin: 0px;
 			padding: 0px;
@@ -56,7 +62,7 @@
 			display: -webkit-flex;
 			flex-flow: row nowrap;
 			list-style-type: none;
-			line-height: 30px;
+			line-height: 35px;
 			border-bottom: 1px solid whitesmoke;
 			padding: 0 10px;
 			align-items: center;
@@ -75,23 +81,18 @@
 			cursor: pointer;
 		}
 		
-		.nav-tabs .nav_active {
+		.nav_active {
 			color: darkorange;
 		}
 
-		.nav-tabs .nav_link {
-			color: black;
-		}
 		
-		
-
 		.tabs_line {
 			display: flex;
 			height: 3px;
 			width: 300px;
 			margin-top: -3px;
 			background-color: darkorange;
-			transition: transform 0.4s;
+			transition: all .3s ease;
 			width: 0px;
 		}
 </style>
