@@ -58,7 +58,7 @@
 	
 	var _MyView2 = _interopRequireDefault(_MyView);
 	
-	var _Home = __webpack_require__(10);
+	var _Home = __webpack_require__(17);
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
@@ -127,7 +127,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/*!
-	 * Vue.js v1.0.11
+	 * Vue.js v1.0.13
 	 * (c) 2015 Evan You
 	 * Released under the MIT License.
 	 */
@@ -975,22 +975,10 @@
 	  }
 	}
 	
-	/**
-	 * Replace all interpolation tags in a piece of text.
-	 *
-	 * @param {String} text
-	 * @return {String}
-	 */
-	
-	function removeTags(text) {
-	  return text.replace(tagRE, '');
-	}
-	
 	var text$1 = Object.freeze({
 	  compileRegex: compileRegex,
 	  parseText: parseText,
-	  tokensToExp: tokensToExp,
-	  removeTags: removeTags
+	  tokensToExp: tokensToExp
 	});
 	
 	var delimiters = ['{{', '}}'];
@@ -1377,7 +1365,7 @@
 	
 	function setClass(el, cls) {
 	  /* istanbul ignore if */
-	  if (isIE9 && el.hasOwnProperty('className')) {
+	  if (isIE9 && !(el instanceof SVGElement)) {
 	    el.className = cls;
 	  } else {
 	    el.setAttribute('class', cls);
@@ -1578,6 +1566,7 @@
 	}
 	
 	var commonTagRE = /^(div|p|span|img|a|b|i|br|ul|ol|li|h1|h2|h3|h4|h5|h6|code|pre|table|th|td|tr|form|label|input|select|option|nav|article|section|header|footer)$/;
+	var reservedTagRE = /^(slot|partial|component)$/;
 	
 	/**
 	 * Check if an element is a component, if yes return its
@@ -1591,7 +1580,7 @@
 	function checkComponentAttr(el, options) {
 	  var tag = el.tagName.toLowerCase();
 	  var hasAttrs = el.hasAttributes();
-	  if (!commonTagRE.test(tag) && tag !== 'component') {
+	  if (!commonTagRE.test(tag) && !reservedTagRE.test(tag)) {
 	    if (resolveAsset(options, 'components', tag)) {
 	      return { id: tag };
 	    } else {
@@ -1642,6 +1631,7 @@
 	
 	function initProp(vm, prop, value) {
 	  var key = prop.path;
+	  value = coerceProp(prop, value);
 	  vm[key] = vm._data[key] = assertProp(prop, value) ? value : undefined;
 	}
 	
@@ -1697,6 +1687,23 @@
 	    }
 	  }
 	  return true;
+	}
+	
+	/**
+	 * Force parsing value with coerce option.
+	 *
+	 * @param {*} value
+	 * @param {Object} options
+	 * @return {*}
+	 */
+	
+	function coerceProp(prop, value) {
+	  var coerce = prop.options.coerce;
+	  if (!coerce) {
+	    return value;
+	  }
+	  // coerce is a function
+	  return coerce(value);
 	}
 	
 	function formatType(val) {
@@ -1884,8 +1891,8 @@
 	    var ids = Object.keys(components);
 	    for (var i = 0, l = ids.length; i < l; i++) {
 	      var key = ids[i];
-	      if (commonTagRE.test(key)) {
-	        process.env.NODE_ENV !== 'production' && warn('Do not use built-in HTML elements as component ' + 'id: ' + key);
+	      if (commonTagRE.test(key) || reservedTagRE.test(key)) {
+	        process.env.NODE_ENV !== 'production' && warn('Do not use built-in or reserved HTML elements as component ' + 'id: ' + key);
 	        continue;
 	      }
 	      def = components[key];
@@ -2072,7 +2079,7 @@
 	
 	def(arrayProto, '$set', function $set(index, val) {
 	  if (index >= this.length) {
-	    this.length = index + 1;
+	    this.length = Number(index) + 1;
 	  }
 	  return this.splice(index, 1, val)[0];
 	});
@@ -2188,8 +2195,7 @@
 	
 	Observer.prototype.walk = function (obj) {
 	  var keys = Object.keys(obj);
-	  var i = keys.length;
-	  while (i--) {
+	  for (var i = 0, l = keys.length; i < l; i++) {
 	    this.convert(keys[i], obj[keys[i]]);
 	  }
 	};
@@ -2201,8 +2207,7 @@
 	 */
 	
 	Observer.prototype.observeArray = function (items) {
-	  var i = items.length;
-	  while (i--) {
+	  for (var i = 0, l = items.length; i < l; i++) {
 	    observe(items[i]);
 	  }
 	};
@@ -2266,10 +2271,8 @@
 	 */
 	
 	function copyAugment(target, src, keys) {
-	  var i = keys.length;
-	  var key;
-	  while (i--) {
-	    key = keys[i];
+	  for (var i = 0, l = keys.length; i < l; i++) {
+	    var key = keys[i];
 	    def(target, key, src[key]);
 	  }
 	}
@@ -2405,6 +2408,7 @@
 		replace: replace,
 		on: on$1,
 		off: off,
+		setClass: setClass,
 		addClass: addClass,
 		removeClass: removeClass,
 		extractContent: extractContent,
@@ -2420,7 +2424,9 @@
 		checkComponentAttr: checkComponentAttr,
 		initProp: initProp,
 		assertProp: assertProp,
+		coerceProp: coerceProp,
 		commonTagRE: commonTagRE,
+		reservedTagRE: reservedTagRE,
 		get warn () { return warn; }
 	});
 	
@@ -3348,11 +3354,11 @@
 	  if (this.active) {
 	    var value = this.get();
 	    if (value !== this.value ||
-	    // Deep watchers and Array watchers should fire even
+	    // Deep watchers and watchers on Object/Arrays should fire even
 	    // when the value is the same, because the value may
 	    // have mutated; but only do so if this is a
 	    // non-shallow update (caused by a vm digest).
-	    (isArray(value) || this.deep) && !this.shallow) {
+	    (isObject(value) || this.deep) && !this.shallow) {
 	      // set new value
 	      var oldValue = this.value;
 	      this.value = value;
@@ -3450,7 +3456,7 @@
 	var cloak = {
 	  bind: function bind() {
 	    var el = this.el;
-	    this.vm.$once('hook:compiled', function () {
+	    this.vm.$once('pre-hook:compiled', function () {
 	      el.removeAttribute('v-cloak');
 	    });
 	  }
@@ -3462,9 +3468,20 @@
 	  }
 	};
 	
+	var ON = 700;
+	var MODEL = 800;
+	var BIND = 850;
+	var TRANSITION = 1100;
+	var EL = 1500;
+	var COMPONENT = 1500;
+	var PARTIAL = 1750;
+	var SLOT = 1750;
+	var FOR = 2000;
+	var IF = 2000;
+	
 	var el = {
 	
-	  priority: 1500,
+	  priority: EL,
 	
 	  bind: function bind() {
 	    /* istanbul ignore if */
@@ -3598,13 +3615,12 @@
 	var xlinkNS = 'http://www.w3.org/1999/xlink';
 	var xlinkRE = /^xlink:/;
 	
-	// these input element attributes should also set their
-	// corresponding properties
-	var inputProps = {
-	  value: 1,
-	  checked: 1,
-	  selected: 1
-	};
+	// check for attributes that prohibit interpolations
+	var disallowedInterpAttrRE = /^v-|^:|^@|^(is|transition|transition-mode|debounce|track-by|stagger|enter-stagger|leave-stagger)$/;
+	
+	// these attributes should also set their corresponding properties
+	// because they only affect the initial state of the element
+	var attrWithPropsRE = /^(value|checked|selected|muted)$/;
 	
 	// these attributes should set a hidden property for
 	// binding v-model to object values
@@ -3614,12 +3630,9 @@
 	  'false-value': '_falseValue'
 	};
 	
-	// check for attributes that prohibit interpolations
-	var disallowedInterpAttrRE = /^v-|^:|^@|^(is|transition|transition-mode|debounce|track-by|stagger|enter-stagger|leave-stagger)$/;
-	
 	var bind = {
 	
-	  priority: 850,
+	  priority: BIND,
 	
 	  bind: function bind() {
 	    var attr = this.arg;
@@ -3669,34 +3682,43 @@
 	  handleObject: style.handleObject,
 	
 	  handleSingle: function handleSingle(attr, value) {
-	    if (inputProps[attr] && attr in this.el) {
-	      this.el[attr] = attr === 'value' ? value || '' : // IE9 will set input.value to "null" for null...
-	      value;
+	    var el = this.el;
+	    var interp = this.descriptor.interp;
+	    if (!interp && attrWithPropsRE.test(attr) && attr in el) {
+	      el[attr] = attr === 'value' ? value == null // IE9 will set input.value to "null" for null...
+	      ? '' : value : value;
 	    }
 	    // set model props
 	    var modelProp = modelProps[attr];
-	    if (modelProp) {
-	      this.el[modelProp] = value;
+	    if (!interp && modelProp) {
+	      el[modelProp] = value;
 	      // update v-model if present
-	      var model = this.el.__v_model;
+	      var model = el.__v_model;
 	      if (model) {
 	        model.listener();
 	      }
 	    }
 	    // do not set value attribute for textarea
-	    if (attr === 'value' && this.el.tagName === 'TEXTAREA') {
-	      this.el.removeAttribute(attr);
+	    if (attr === 'value' && el.tagName === 'TEXTAREA') {
+	      el.removeAttribute(attr);
 	      return;
 	    }
 	    // update attribute
 	    if (value != null && value !== false) {
-	      if (xlinkRE.test(attr)) {
-	        this.el.setAttributeNS(xlinkNS, attr, value);
+	      if (attr === 'class') {
+	        // handle edge case #1960:
+	        // class interpolation should not overwrite Vue transition class
+	        if (el.__v_trans) {
+	          value += ' ' + el.__v_trans.id + '-transition';
+	        }
+	        setClass(el, value);
+	      } else if (xlinkRE.test(attr)) {
+	        el.setAttributeNS(xlinkNS, attr, value);
 	      } else {
-	        this.el.setAttribute(attr, value);
+	        el.setAttribute(attr, value);
 	      }
 	    } else {
-	      this.el.removeAttribute(attr);
+	      el.removeAttribute(attr);
 	    }
 	  }
 	};
@@ -3752,7 +3774,7 @@
 	var on = {
 	
 	  acceptStatement: true,
-	  priority: 700,
+	  priority: ON,
 	
 	  bind: function bind() {
 	    // deal with iframes
@@ -4052,13 +4074,18 @@
 	      });
 	      this.on('blur', function () {
 	        self.focused = false;
-	        self.listener();
+	        // do not sync value after fragment removal (#2017)
+	        if (!self._frag || self._frag.inserted) {
+	          self.rawListener();
+	        }
 	      });
 	    }
 	
 	    // Now attach the main listener
-	    this.listener = function () {
-	      if (composing) return;
+	    this.listener = this.rawListener = function () {
+	      if (composing || !self._bound) {
+	        return;
+	      }
 	      var val = number || isRange ? toNumber(el.value) : el.value;
 	      self.set(val);
 	      // force update on next tick to avoid lock & same value
@@ -4138,7 +4165,7 @@
 	
 	var model = {
 	
-	  priority: 800,
+	  priority: MODEL,
 	  twoWay: true,
 	  handlers: handlers,
 	  params: ['lazy', 'number', 'debounce'],
@@ -4222,9 +4249,14 @@
 	  },
 	
 	  apply: function apply(el, value) {
-	    applyTransition(el, value ? 1 : -1, function () {
+	    if (inDoc(el)) {
+	      applyTransition(el, value ? 1 : -1, toggle, this.vm);
+	    } else {
+	      toggle();
+	    }
+	    function toggle() {
 	      el.style.display = value ? '' : 'none';
-	    }, this.vm);
+	    }
 	  }
 	};
 	
@@ -4259,7 +4291,7 @@
 	}
 	
 	var tagRE$1 = /<([\w:]+)/;
-	var entityRE = /&\w+;|&#\d+;|&#x[\dA-F]+;/;
+	var entityRE = /&#?\w+?;/;
 	
 	/**
 	 * Convert a string template to a DocumentFragment.
@@ -4705,7 +4737,7 @@
 	
 	var vIf = {
 	
-	  priority: 2000,
+	  priority: IF,
 	
 	  bind: function bind() {
 	    var el = this.el;
@@ -4768,7 +4800,7 @@
 	
 	var vFor = {
 	
-	  priority: 2000,
+	  priority: FOR,
 	
 	  params: ['track-by', 'stagger', 'enter-stagger', 'leave-stagger'],
 	
@@ -5763,7 +5795,7 @@
 	
 	var transition = {
 	
-	  priority: 1100,
+	  priority: TRANSITION,
 	
 	  update: function update(id, oldId) {
 	    var el = this.el;
@@ -5794,6 +5826,7 @@
 	    var twoWay = prop.mode === bindingModes.TWO_WAY;
 	
 	    var parentWatcher = this.parentWatcher = new Watcher(parent, parentKey, function (val) {
+	      val = coerceProp(prop, val);
 	      if (assertProp(prop, val)) {
 	        child[childKey] = val;
 	      }
@@ -5813,7 +5846,7 @@
 	      // important: defer the child watcher creation until
 	      // the created hook (after data observation)
 	      var self = this;
-	      child.$once('hook:created', function () {
+	      child.$once('pre-hook:created', function () {
 	        self.childWatcher = new Watcher(child, childKey, function (val) {
 	          parentWatcher.set(val);
 	        }, {
@@ -5836,7 +5869,7 @@
 	
 	var component = {
 	
-	  priority: 1500,
+	  priority: COMPONENT,
 	
 	  params: ['keep-alive', 'transition-mode', 'inline-template'],
 	
@@ -7029,12 +7062,8 @@
 	    // attribute interpolations
 	    if (tokens) {
 	      value = tokensToExp(tokens);
-	      if (name === 'class') {
-	        pushDir('class', internalDirectives['class'], true);
-	      } else {
-	        arg = name;
-	        pushDir('bind', publicDirectives.bind, true);
-	      }
+	      arg = name;
+	      pushDir('bind', publicDirectives.bind, true);
 	      // warn against mixing mustaches with v-bind
 	      if (process.env.NODE_ENV !== 'production') {
 	        if (name === 'class' && Array.prototype.some.call(attrs, function (attr) {
@@ -7695,6 +7724,7 @@
 	   */
 	
 	  Vue.prototype._callHook = function (hook) {
+	    this.$emit('pre-hook:' + hook);
 	    var handlers = this.$options[hook];
 	    if (handlers) {
 	      for (var i = 0, j = handlers.length; i < j; i++) {
@@ -7771,13 +7801,7 @@
 	  // remove attribute
 	  if ((name !== 'cloak' || this.vm._isCompiled) && this.el && this.el.removeAttribute) {
 	    var attr = descriptor.attr || 'v-' + name;
-	    if (attr !== 'class') {
-	      this.el.removeAttribute(attr);
-	    } else {
-	      // for class interpolations, only remove the parts that
-	      // need to be interpolated.
-	      this.el.className = removeTags(this.el.className).trim().replace(/\s+/g, ' ');
-	    }
+	    this.el.removeAttribute(attr);
 	  }
 	
 	  // copy def properties
@@ -7795,6 +7819,7 @@
 	  if (this.bind) {
 	    this.bind();
 	  }
+	  this._bound = true;
 	
 	  if (this.literal) {
 	    this.update && this.update(descriptor.raw);
@@ -7830,7 +7855,6 @@
 	      this.update(watcher.value);
 	    }
 	  }
-	  this._bound = true;
 	};
 	
 	/**
@@ -7887,7 +7911,8 @@
 	      called = true;
 	    }
 	  }, {
-	    immediate: true
+	    immediate: true,
+	    user: false
 	  });(this._paramUnwatchFns || (this._paramUnwatchFns = [])).push(unwatch);
 	};
 	
@@ -8050,6 +8075,11 @@
 	    var original = el;
 	    el = transclude(el, options);
 	    this._initElement(el);
+	
+	    // handle v-pre on root node (#2026)
+	    if (el.nodeType === 1 && getAttr(el, 'v-pre') !== null) {
+	      return;
+	    }
 	
 	    // root is always compiled per-instance, because
 	    // container attrs and props can be different every time.
@@ -8478,8 +8508,8 @@
 	      } else {
 	        /* istanbul ignore if */
 	        if (process.env.NODE_ENV !== 'production') {
-	          if (type === 'component' && commonTagRE.test(id)) {
-	            warn('Do not use built-in HTML elements as component ' + 'id: ' + id);
+	          if (type === 'component' && (commonTagRE.test(id) || reservedTagRE.test(id))) {
+	            warn('Do not use built-in or reserved HTML elements as component ' + 'id: ' + id);
 	          }
 	        }
 	        if (type === 'component' && isPlainObject(definition)) {
@@ -8571,7 +8601,8 @@
 	    var watcher = new Watcher(vm, expOrFn, cb, {
 	      deep: options && options.deep,
 	      sync: options && options.sync,
-	      filters: parsed && parsed.filters
+	      filters: parsed && parsed.filters,
+	      user: !options || options.user !== false
 	    });
 	    if (options && options.immediate) {
 	      cb.call(vm, watcher.value);
@@ -9335,7 +9366,7 @@
 	
 	var partial = {
 	
-	  priority: 1750,
+	  priority: PARTIAL,
 	
 	  params: ['name'],
 	
@@ -9386,7 +9417,7 @@
 	
 	var slot = {
 	
-	  priority: 1750,
+	  priority: SLOT,
 	
 	  bind: function bind() {
 	    var host = this.vm;
@@ -9491,7 +9522,7 @@
 	  partial: partial
 	};
 	
-	Vue.version = '1.0.11';
+	Vue.version = '1.0.13';
 	
 	/**
 	 * Vue and every constructor that extends Vue has an
@@ -12168,7 +12199,7 @@
 	module.exports = __webpack_require__(8)
 	
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(9)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(16)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
@@ -12191,7 +12222,7 @@
 		value: true
 	});
 	
-	var _ToolBar = __webpack_require__(16);
+	var _ToolBar = __webpack_require__(9);
 	
 	var _ToolBar2 = _interopRequireDefault(_ToolBar);
 	
@@ -12237,24 +12268,18 @@
 
 /***/ },
 /* 9 */
-/***/ function(module, exports) {
-
-	module.exports = "<toolbar :text=\"title\">\r\n\t\t\t<span class=\"glyphicon glyphicon-arrow-left\" @click=\"back\" slot=\"leftBtn\"></span>\r\n\t\t</toolbar>\r\n\t\t<div class=\"container-fluid\">\r\n\t\t\t\r\n\t\t</div>";
-
-/***/ },
-/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(11)
-	module.exports = __webpack_require__(15)
+	__webpack_require__(10)
+	module.exports = __webpack_require__(14)
 	
 	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(21)
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(15)
 	if (false) {(function () {  module.hot.accept()
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile\\src\\views\\Home.vue"
+	  var id = "E:\\workspace\\mobile\\src\\components\\ToolBar.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -12263,23 +12288,23 @@
 	})()}
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(12);
+	var content = __webpack_require__(11);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(14)(content, {});
+	var update = __webpack_require__(13)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-df6ab942&file=Home.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-df6ab942&file=Home.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-008eefb2&file=ToolBar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ToolBar.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-008eefb2&file=ToolBar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ToolBar.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -12289,21 +12314,21 @@
 	}
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(13)();
+	exports = module.exports = __webpack_require__(12)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, ".toolbar {\r\n            display: -webkit-box;\r\n            display: -ms-flexbox;\r\n            display: flex;\r\n            display: -webkit-flex;\r\n            width: 100%;\r\n            background-color: whitesmoke;\r\n            height: 44px;\r\n            -webkit-flex-flow: row nowrap;\r\n                -ms-flex-flow: row nowrap;\r\n                    flex-flow: row nowrap;\r\n            -webkit-box-pack: justify;\r\n            -webkit-justify-content: space-between;\r\n                -ms-flex-pack: justify;\r\n                    justify-content: space-between;\r\n            position: absolute;\r\n            left: 0px;\r\n            top: 0px;\r\n            -webkit-box-align: center;\r\n            -webkit-align-items: center;\r\n                -ms-flex-align: center;\r\n                    align-items: center;\r\n            -webkit-align-content: space-between;\r\n                -ms-flex-line-pack: justify;\r\n                    align-content: space-between;\r\n            \r\n        }\r\n    .toolbar p{\r\n        font-size: 16px;\r\n        font-weight: bold;\r\n        \r\n    }\r\n    .toolbar span{\r\n        font-size: 24px;\r\n        margin:0px 5px;\r\n        color: whitesmoke;\r\n    }", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports) {
 
 	/*
@@ -12359,7 +12384,7 @@
 
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -12613,7 +12638,171 @@
 
 
 /***/ },
+/* 14 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// <template>
+	
+	//      <div class="toolbar">
+	
+	//         <slot name="leftBtn"></slot>
+	
+	//         <p class="text-title">{{text}}</p>
+	
+	//         <slot name="rightBtn"></slot>
+	
+	//     </div>
+	
+	// </template>
+	
+	// <script lang="babel">
+	exports.default = {
+		created: function created() {
+			console.log("toolbar is created");
+		},
+	
+		props: {
+			text: {
+				type: String,
+				default: "未知列表"
+			}
+		},
+		data: function data() {
+			return {};
+		}
+	};
+	// </script>
+
+	// <style>
+
+	//     .toolbar {
+
+	//             display: flex;
+
+	//             display: -webkit-flex;
+
+	//             width: 100%;
+
+	//             background-color: whitesmoke;
+
+	//             height: 44px;
+
+	//             flex-flow: row nowrap;
+
+	//             justify-content: space-between;
+
+	//             position: absolute;
+
+	//             left: 0px;
+
+	//             top: 0px;
+
+	//             align-items: center;
+
+	//             align-content: space-between;
+
+	//         }
+
+	//     .toolbar p{
+
+	//         font-size: 16px;
+
+	//         font-weight: bold;
+
+	//     }
+
+	//     .toolbar span{
+
+	//         font-size: 24px;
+
+	//         margin:0px 5px;
+
+	//         color: whitesmoke;
+
+	//     }
+
+	// </style>
+
+/***/ },
 /* 15 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"toolbar\">\r\n        <slot name=\"leftBtn\"></slot>\r\n        <p class=\"text-title\">{{text}}</p>\r\n        <slot name=\"rightBtn\"></slot>\r\n    </div>";
+
+/***/ },
+/* 16 */
+/***/ function(module, exports) {
+
+	module.exports = "<toolbar :text=\"title\">\r\n\t\t\t<span class=\"glyphicon glyphicon-arrow-left\" @click=\"back\" slot=\"leftBtn\"></span>\r\n\t\t</toolbar>\r\n\t\t<div class=\"container-fluid\">\r\n\t\t\t\r\n\t\t</div>";
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(18)
+	module.exports = __webpack_require__(20)
+	
+	if (module.exports.__esModule) module.exports = module.exports.default
+	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(21)
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile\\src\\views\\Home.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+	  }
+	})()}
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(19);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(13)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-df6ab942&file=Home.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-df6ab942&file=Home.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(12)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12622,7 +12811,7 @@
 		value: true
 	});
 	
-	var _ToolBar = __webpack_require__(16);
+	var _ToolBar = __webpack_require__(9);
 	
 	var _ToolBar2 = _interopRequireDefault(_ToolBar);
 	
@@ -12669,152 +12858,6 @@
 	// </template>
 
 	// <script lang="babel">
-
-/***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(17)
-	module.exports = __webpack_require__(19)
-	
-	if (module.exports.__esModule) module.exports = module.exports.default
-	;(typeof module.exports === "function" ? module.exports.options : module.exports).template = __webpack_require__(20)
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile\\src\\components\\ToolBar.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
-	  }
-	})()}
-
-/***/ },
-/* 17 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(18);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(14)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-008eefb2&file=ToolBar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ToolBar.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-008eefb2&file=ToolBar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ToolBar.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(13)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, ".text-title {\r\n        text-align: center;\r\n        vertical-align: middle;\r\n        font-size: 20px;\r\n        color: whitesmoke;\r\n    }\r\n    \r\n    .toolbar {\r\n        height: 48px;\r\n        width: 100%;\r\n        background-color: #3D82C4;\r\n        padding: 10px;\r\n        \r\n    }\r\n    \r\n    .toolbar span{\r\n    \tfont-size: 28px;\r\n    \tmargin-left: 5px;\r\n    \tcolor: whitesmoke;\r\n    \tfloat: left;\r\n    }", ""]);
-	
-	// exports
-
-
-/***/ },
-/* 19 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	// <template>
-	
-	// 	<div class="toolbar">
-	
-	// 		<slot name="leftBtn"></slot>
-	
-	// 		<p class="text-title">aaa</p>
-	
-	// 	</div>
-	
-	// </template>
-	
-	// <script lang="babel">
-	exports.default = {
-		created: function created() {
-			console.log("toolbar is created");
-		},
-	
-		props: {
-			text: {
-				type: String,
-				default: ""
-			}
-		},
-		data: function data() {
-			return {};
-		}
-	};
-	// </script>
-
-	// <style>
-
-	//     .text-title {
-
-	//         text-align: center;
-
-	//         vertical-align: middle;
-
-	//         font-size: 20px;
-
-	//         color: whitesmoke;
-
-	//     }
-
-	//     .toolbar {
-
-	//         height: 48px;
-
-	//         width: 100%;
-
-	//         background-color: #3D82C4;
-
-	//         padding: 10px;
-
-	//     }
-
-	//     .toolbar span{
-
-	//     	font-size: 28px;
-
-	//     	margin-left: 5px;
-
-	//     	color: whitesmoke;
-
-	//     	float: left;
-
-	//     }
-
-	// </style>
-
-/***/ },
-/* 20 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"toolbar\">\r\n\t\t<slot name=\"leftBtn\"></slot>\r\n\t\t<p class=\"text-title\">aaa</p>\r\n\t</div>";
 
 /***/ },
 /* 21 */
