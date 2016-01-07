@@ -5,7 +5,7 @@
 	 <section id="sideBar" class="nav-list" :class="{'showside':showMenu}" >
 	    <userheader></userheader>
         <ul class="list-ul">
-        	<li v-for="item in menuItems"  :class="item.icon" v-link="{'name':item.link}" @click="enterPage()">{{item.text}}</li>
+        	<li v-for="item in menuItems"  :class="item.icon" v-link="{'name':item.link}" >{{item.text}}</li>
         </ul>
         <ul class="loginout">
         	<li   class="icon-comments" v-link="{'name':comment}" >问题反馈</li>
@@ -37,9 +37,6 @@
 			showCover(){
 				this.showMenu=!this.showMenu;
 			},
-			enterPage(){
-				alert('1');
-			},
 			loginOut(){
 				//系统退出
 			}
@@ -64,7 +61,7 @@
 	    bottom: 0;
 	    left: 0;
 	    background: rgba(0, 0, 0, .4);
-	    z-index: 7;
+	    z-index: 100;
 	}
 	.nav-list{
 		position: fixed;

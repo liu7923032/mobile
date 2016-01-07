@@ -20,8 +20,7 @@ export default function(router){
         },
         '/userinfo':{
             name:'userinfo',
-            component:require('./views/UserInfo.vue'),
-            auth:true
+            component:require('./views/UserInfo.vue')
         },
         '/workflow':{
             name:'workflow',

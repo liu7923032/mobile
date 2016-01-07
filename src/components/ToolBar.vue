@@ -37,17 +37,22 @@
 
    
     .toolbar div{
-        font-size: 16px;
+        font-size: 18px;
         font-weight: bold;
         text-align: center;
         vertical-align: middle;
         
     }
+
     .toolbar span{
-        font-size: 24px;
+        font-size: 20px;
         margin:0px 10px;
         color: #595959;
         cursor: pointer;
+    }
+
+    .toolbar span{
+        margin-right: 10px;
     }
     
     .toolbar span:active{

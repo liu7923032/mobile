@@ -1,5 +1,5 @@
 <template>
-	<div class="modal" v-if="isModal">
+	<div class="modal" v-if="loading">
         <div class="spinner">
             <div class="spinnerBar1"></div>
             <div class="spinnerBar2"></div>
@@ -14,10 +14,14 @@
 <script lang="babel">
 	
 	export default {
+        created(){
+            console.log("loading is created")
+            console.log(this.loading);
+        },
 		props:{
-			isModal:{
+			loading:{
 				type:Boolean,
-				default:false;
+				default:false
 			}
 		}
 	}
@@ -27,7 +31,7 @@
 
 <style>
 	
-	.madal{
+	.modal{
 		display: flex;
         flex-flow: row nowrap;
         justify-content: center;
@@ -35,16 +39,16 @@
         width: 100%;
         align-items:  center;
         position: absolute;
-        visibility: hidden;
+        /*visibility: hidden;*/
         left: 0;
         top: 0;
-        z-index: 9000;
+        z-index: 100;
         background-color: rgba(153,153,153,0.5);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */
 	}
 
 
 
-	  .spinner {
+	   .spinner {
             width: 100px;
             height: 60px;
             font-size: 10px;
