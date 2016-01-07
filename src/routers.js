@@ -31,6 +31,11 @@ export default function(router){
             name:'login',
             component:require('./views/Login.vue')
         },
+        '/comment':{
+            name:'comment',
+            component:require('./views/Comment.vue')
+        },
+
         /* 404路由 */
         '*': {
             component: require('./views/Home.vue')

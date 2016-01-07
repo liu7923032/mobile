@@ -6,10 +6,12 @@
             <span  @click="goEnter"><a >登录</a></span>
         </div>
         <!-- 已登录 -->
-        <div class="login-yes" v-if="loginname" @click="goUser">
-            <div class="avertar"><img v-if="avatar_url" :src="avatar_url"></div>
+        <div class="login" v-if="loginname" @click="goUser">
+            <div class="avertar">
+            	<img v-if="avatar_url" :src="avatar_url">
+            </div>
             <div class="info">
-                <p v-if="loginname" v-text="loginname"></p>
+                <span v-if="loginname" v-text="loginname"></span>
             </div>
         </div>
     </div>
@@ -20,8 +22,10 @@
         replace:true,
         data () {
             return {
-                loginname: localStorage.loginname || "",
-                avatar_url: localStorage.avatar_url || ""
+                // loginname: localStorage.loginname || "",
+                // avatar_url: localStorage.avatar_url || ""
+                loginname:"张三",
+                avatar_url:''
             }
         },
         methods:{
@@ -30,13 +34,13 @@
                 this.$route.router.go(link);
             },
             goUser (){
-                this.$route.router.go({name:'user',params:{loginname:localStorage.loginname}});
+                this.$route.router.go({name:'userinfo',params:{loginname:this.loginname}});
             }
         }
     }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
     /*侧边栏用户信息区域*/
     .user-info {
         padding: 10px;
@@ -65,40 +69,38 @@
 
 
 
-    /*已登录
-    /*.login-yes {
-        height: 100%;
-        background: url("../assets/images/components/go_next_icon.png") no-repeat right center;
-        background-size: 6px 10px;
-        overflow: hidden;
-        position: relative;
-       
+    /*//已登录*/
+    .login {
+    	line-height: 30px;
+        padding-left: 10px;
+        display: flex;
+        display: -webkit-flexbox;
+        flex-flow:row nowrap;
+        justify-content:space-between;
+        margin: 0px 20px;
+        align-items:center;
+        cursor: pointer;
     }
 
- 	.login-yes>.avertar {
+ 	.login>.avertar {
         width: 40px;
         height: 40px;
         background: url("../assets/images/components/user.png") no-repeat center center;
         background-size: 40px 40px;
         border-radius: 20px;
         overflow: hidden;
-        float: left;
-        
-    }*/*/
+    }
 
-	.login-yes>.avertar>img {
+	.login>.avertar>img {
         width: 40px;
         height: 40px;
-        display: block;
     }
 
-    .login-yes>.info {
+    .login>.info {
         margin-left: 10px;
         overflow: hidden;
-        float: left;
     }
-
-    .login-yes>p {
+    .login>span {
         width: 85px;
         overflow: hidden;
         white-space: nowrap;
@@ -109,7 +111,7 @@
         
     }
     
-    .login-yes>p>.lh20 {
+    .login>span>.lh20 {
         line-height: 20px;
      }
     /*.login-yes:after {

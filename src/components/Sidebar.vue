@@ -7,6 +7,10 @@
         <ul class="list-ul">
         	<li v-for="item in menuItems"  :class="item.icon" v-link="{'name':item.link}" @click="enterPage()">{{item.text}}</li>
         </ul>
+        <ul class="loginout">
+        	<li   class="icon-comments" v-link="{'name':comment}" >问题反馈</li>
+        	<li   class="icon-off" @click="loginOut">退出系统</li>
+        </ul>
     </section>
 </template>
 
@@ -35,6 +39,9 @@
 			},
 			enterPage(){
 				alert('1');
+			},
+			loginOut(){
+				//系统退出
 			}
 		},
 		components:{
@@ -69,7 +76,7 @@
 	    color: #313131;
 	    transition: all .3s ease;
 	    z-index: 99;
-	    
+
 	}
 	.showside {
 	   transform: translateX(200px);
@@ -78,7 +85,7 @@
 
 
 	/*侧边栏列表*/
-	.list-ul {
+	.list-ul,.loginout{
 	    margin: 0 24px;
 	    border-top: 1px solid #d4d4d4;
 	    overflow: hidden;
@@ -87,7 +94,7 @@
 	    
 	}
 
-	.list-ul>li {
+	.list-ul>li,.loginout>li {
         font-size: 14px;
         font-weight: 200;
         padding: 9% 0;
@@ -96,9 +103,16 @@
         line-height: 15px;
         color: #7f8c8d;
         display: block;
+        cursor: pointer;
     }
 
-	 .list-ul>li:before{
+    .list-ul>li:active,.loginout>li:active {
+       background-color: darkorange;
+       color: red;
+    }
+
+
+	 .list-ul>li:before,.loginout>li:before{
         color: #2c3e50;
         margin: 0 20px;
         font-size: 14px;

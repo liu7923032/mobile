@@ -58,11 +58,11 @@
 	
 	var _routers2 = _interopRequireDefault(_routers);
 	
-	var _fastclick = __webpack_require__(38);
+	var _fastclick = __webpack_require__(39);
 	
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 	
-	var _vTouch = __webpack_require__(39);
+	var _vTouch = __webpack_require__(40);
 	
 	var _vTouch2 = _interopRequireDefault(_vTouch);
 	
@@ -12213,7 +12213,7 @@
 	        },
 	        '/project': {
 	            name: 'project',
-	            component: __webpack_require__(32)
+	            component: __webpack_require__(33)
 	        },
 	        '/worklog': {
 	            name: 'worklog',
@@ -12221,17 +12221,22 @@
 	        },
 	        '/userinfo': {
 	            name: 'userinfo',
-	            component: __webpack_require__(33),
+	            component: __webpack_require__(34),
 	            auth: true
 	        },
 	        '/workflow': {
 	            name: 'workflow',
-	            component: __webpack_require__(34)
+	            component: __webpack_require__(35)
 	        },
 	        '/login': {
 	            name: 'login',
-	            component: __webpack_require__(35)
+	            component: __webpack_require__(36)
 	        },
+	        '/comment': {
+	            name: 'comment',
+	            component: __webpack_require__(59)
+	        },
+	
 	        /* 404路由 */
 	        '*': {
 	            component: __webpack_require__(5)
@@ -12247,7 +12252,7 @@
 	var __vue_script__, __vue_template__
 	__webpack_require__(6)
 	__vue_script__ = __webpack_require__(10)
-	__vue_template__ = __webpack_require__(31)
+	__vue_template__ = __webpack_require__(32)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -12255,7 +12260,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile\\src\\views\\Home.vue"
+	  var id = "E:\\workspace\\mobile-dev\\src\\views\\Home.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -12279,8 +12284,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-df6ab942&file=Home.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-df6ab942&file=Home.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ecc3dad2&file=Home.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ecc3dad2&file=Home.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -12599,7 +12604,7 @@
 	
 	var _Sidebar2 = _interopRequireDefault(_Sidebar);
 	
-	var _NavTabs = __webpack_require__(26);
+	var _NavTabs = __webpack_require__(27);
 	
 	var _NavTabs2 = _interopRequireDefault(_NavTabs);
 	
@@ -12699,7 +12704,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile\\src\\components\\ToolBar.vue"
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\ToolBar.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -12723,8 +12728,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-008eefb2&file=ToolBar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ToolBar.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-008eefb2&file=ToolBar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ToolBar.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-11253f5f&file=ToolBar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ToolBar.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-11253f5f&file=ToolBar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ToolBar.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -12826,7 +12831,7 @@
 	var __vue_script__, __vue_template__
 	__webpack_require__(17)
 	__vue_script__ = __webpack_require__(19)
-	__vue_template__ = __webpack_require__(25)
+	__vue_template__ = __webpack_require__(26)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -12834,7 +12839,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile\\src\\components\\Sidebar.vue"
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Sidebar.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -12858,8 +12863,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-17c997a8&file=Sidebar.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Sidebar.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-17c997a8&file=Sidebar.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Sidebar.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-29364ee0&file=Sidebar.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Sidebar.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-29364ee0&file=Sidebar.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Sidebar.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -12877,7 +12882,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n\n\tul[_v-17c997a8]{\n\t\tpadding: 0px;\n\t\tmargin: 0px;\n\t}\n\t.page-cover[_v-17c997a8] {\n\t    position: fixed;\n\t    top: 0;\n\t    right: 0;\n\t    bottom: 0;\n\t    left: 0;\n\t    background: rgba(0, 0, 0, .4);\n\t    z-index: 7;\n\t}\n\t.nav-list[_v-17c997a8]{\n\t\tposition: fixed;\n\t    top: 0;\n\t    bottom: 0;\n\t    left: -200px;\n\t    width: 200px;\n\t    background-color: #fff;\n\t    color: #313131;\n\t    -webkit-transition: all .3s ease;\n\t    transition: all .3s ease;\n\t    z-index: 99;\n\t    \n\t}\n\t.showside[_v-17c997a8] {\n\t   -webkit-transform: translateX(200px);\n\t           transform: translateX(200px);\n\t}\n\t\n\n\n\t/*侧边栏列表*/\n\t.list-ul[_v-17c997a8] {\n\t    margin: 0 24px;\n\t    border-top: 1px solid #d4d4d4;\n\t    overflow: hidden;\n\t    padding-top: 9%;\n\t    list-style-type: none;\n\t    \n\t}\n\n\t.list-ul>li[_v-17c997a8] {\n        font-size: 14px;\n        font-weight: 200;\n        padding: 9% 0;\n        text-align: left;\n        text-indent: 1px;\n        line-height: 15px;\n        color: #7f8c8d;\n        display: block;\n    }\n\n\t .list-ul>li[_v-17c997a8]:before{\n        color: #2c3e50;\n        margin: 0 20px;\n        font-size: 14px;\n    }\n\n    .list-ul>li[_v-17c997a8]:last-child {\n        margin-bottom: 50px;\n    }\n\n    .list-ul>.line[_v-17c997a8]{\n        border-top: 1px solid #d4d4d4;\n    }\n    .list-ul>a[_v-17c997a8] {\n        display: block;\n        color: #313131;\n    }\n", "", {"version":3,"sources":["/./src/components/Sidebar.vue?2270fc93"],"names":[],"mappings":";;;CAgDA;EACA,aAAA;EACA,YAAA;EACA;CACA;KACA,gBAAA;KACA,OAAA;KACA,SAAA;KACA,UAAA;KACA,QAAA;KACA,8BAAA;KACA,WAAA;EACA;CACA;EACA,gBAAA;KACA,OAAA;KACA,UAAA;KACA,aAAA;KACA,aAAA;KACA,uBAAA;KACA,eAAA;KACA,iCAAA;KAAA,yBAAA;KACA,YAAA;;EAEA;CACA;IACA,qCAAA;YAAA,6BAAA;EACA;;;;CAIA,SAAA;CACA;KACA,eAAA;KACA,8BAAA;KACA,iBAAA;KACA,gBAAA;KACA,sBAAA;;EAEA;;CAEA;QACA,gBAAA;QACA,iBAAA;QACA,cAAA;QACA,iBAAA;QACA,iBAAA;QACA,kBAAA;QACA,eAAA;QACA,eAAA;KACA;;EAEA;QACA,eAAA;QACA,eAAA;QACA,gBAAA;KACA;;IAEA;QACA,oBAAA;KACA;;IAEA;QACA,8BAAA;KACA;IACA;QACA,eAAA;QACA,eAAA;KACA","file":"Sidebar.vue","sourcesContent":["<template>\r\n\t<div class=\"page-cover\" v-if=\"showMenu\" @click=\"showCover\">\r\n\t</div>\r\n\r\n\t <section id=\"sideBar\" class=\"nav-list\" :class=\"{'showside':showMenu}\" >\r\n\t    <userheader></userheader>\r\n        <ul class=\"list-ul\">\r\n        \t<li v-for=\"item in menuItems\"  :class=\"item.icon\" v-link=\"{'name':item.link}\" @click=\"enterPage()\">{{item.text}}</li>\r\n        </ul>\r\n    </section>\r\n</template>\r\n\r\n<script type=\"text/javascript\">\r\n\r\n\timport UserHeader from './UserHeader.vue';\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\tconsole.log(\"进入sidebar\");\r\n\r\n\t\t},\r\n\t\treplace:true,\r\n\t\tprops:{\r\n\t\t\tmenuItems:{\r\n\t\t\t\ttype:Array,\r\n\t\t\t\tdefault:[]\r\n\t\t\t},\r\n\t\t\tshowMenu:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tshowCover(){\r\n\t\t\t\tthis.showMenu=!this.showMenu;\r\n\t\t\t},\r\n\t\t\tenterPage(){\r\n\t\t\t\talert('1');\r\n\t\t\t}\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tuserheader:UserHeader\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\r\n\r\n\tul{\r\n\t\tpadding: 0px;\r\n\t\tmargin: 0px;\r\n\t}\r\n\t.page-cover {\r\n\t    position: fixed;\r\n\t    top: 0;\r\n\t    right: 0;\r\n\t    bottom: 0;\r\n\t    left: 0;\r\n\t    background: rgba(0, 0, 0, .4);\r\n\t    z-index: 7;\r\n\t}\r\n\t.nav-list{\r\n\t\tposition: fixed;\r\n\t    top: 0;\r\n\t    bottom: 0;\r\n\t    left: -200px;\r\n\t    width: 200px;\r\n\t    background-color: #fff;\r\n\t    color: #313131;\r\n\t    transition: all .3s ease;\r\n\t    z-index: 99;\r\n\t    \r\n\t}\r\n\t.showside {\r\n\t   transform: translateX(200px);\r\n\t}\r\n\t\r\n\r\n\r\n\t/*侧边栏列表*/\r\n\t.list-ul {\r\n\t    margin: 0 24px;\r\n\t    border-top: 1px solid #d4d4d4;\r\n\t    overflow: hidden;\r\n\t    padding-top: 9%;\r\n\t    list-style-type: none;\r\n\t    \r\n\t}\r\n\r\n\t.list-ul>li {\r\n        font-size: 14px;\r\n        font-weight: 200;\r\n        padding: 9% 0;\r\n        text-align: left;\r\n        text-indent: 1px;\r\n        line-height: 15px;\r\n        color: #7f8c8d;\r\n        display: block;\r\n    }\r\n\r\n\t .list-ul>li:before{\r\n        color: #2c3e50;\r\n        margin: 0 20px;\r\n        font-size: 14px;\r\n    }\r\n\r\n    .list-ul>li:last-child {\r\n        margin-bottom: 50px;\r\n    }\r\n\r\n    .list-ul>.line{\r\n        border-top: 1px solid #d4d4d4;\r\n    }\r\n    .list-ul>a {\r\n        display: block;\r\n        color: #313131;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n\n\tul[_v-29364ee0]{\n\t\tpadding: 0px;\n\t\tmargin: 0px;\n\t}\n\t.page-cover[_v-29364ee0] {\n\t    position: fixed;\n\t    top: 0;\n\t    right: 0;\n\t    bottom: 0;\n\t    left: 0;\n\t    background: rgba(0, 0, 0, .4);\n\t    z-index: 7;\n\t}\n\t.nav-list[_v-29364ee0]{\n\t\tposition: fixed;\n\t    top: 0;\n\t    bottom: 0;\n\t    left: -200px;\n\t    width: 200px;\n\t    background-color: #fff;\n\t    color: #313131;\n\t    -webkit-transition: all .3s ease;\n\t    transition: all .3s ease;\n\t    z-index: 99;\n\n\t}\n\t.showside[_v-29364ee0] {\n\t   -webkit-transform: translateX(200px);\n\t           transform: translateX(200px);\n\t}\n\t\n\n\n\t/*侧边栏列表*/\n\t.list-ul[_v-29364ee0],.loginout[_v-29364ee0]{\n\t    margin: 0 24px;\n\t    border-top: 1px solid #d4d4d4;\n\t    overflow: hidden;\n\t    padding-top: 9%;\n\t    list-style-type: none;\n\t    \n\t}\n\n\t.list-ul>li[_v-29364ee0],.loginout>li[_v-29364ee0] {\n        font-size: 14px;\n        font-weight: 200;\n        padding: 9% 0;\n        text-align: left;\n        text-indent: 1px;\n        line-height: 15px;\n        color: #7f8c8d;\n        display: block;\n        cursor: pointer;\n    }\n\n    .list-ul>li[_v-29364ee0]:active,.loginout>li[_v-29364ee0]:active {\n       background-color: darkorange;\n       color: red;\n    }\n\n\n\t .list-ul>li[_v-29364ee0]:before,.loginout>li[_v-29364ee0]:before{\n        color: #2c3e50;\n        margin: 0 20px;\n        font-size: 14px;\n    }\n\n    .list-ul>li[_v-29364ee0]:last-child {\n        margin-bottom: 50px;\n    }\n\n    .list-ul>.line[_v-29364ee0]{\n        border-top: 1px solid #d4d4d4;\n    }\n    .list-ul>a[_v-29364ee0] {\n        display: block;\n        color: #313131;\n    }\n", "", {"version":3,"sources":["/./src/components/Sidebar.vue?b82c58ac"],"names":[],"mappings":";;;CAuDA;EACA,aAAA;EACA,YAAA;EACA;CACA;KACA,gBAAA;KACA,OAAA;KACA,SAAA;KACA,UAAA;KACA,QAAA;KACA,8BAAA;KACA,WAAA;EACA;CACA;EACA,gBAAA;KACA,OAAA;KACA,UAAA;KACA,aAAA;KACA,aAAA;KACA,uBAAA;KACA,eAAA;KACA,iCAAA;KAAA,yBAAA;KACA,YAAA;;EAEA;CACA;IACA,qCAAA;YAAA,6BAAA;EACA;;;;CAIA,SAAA;CACA;KACA,eAAA;KACA,8BAAA;KACA,iBAAA;KACA,gBAAA;KACA,sBAAA;;EAEA;;CAEA;QACA,gBAAA;QACA,iBAAA;QACA,cAAA;QACA,iBAAA;QACA,iBAAA;QACA,kBAAA;QACA,eAAA;QACA,eAAA;QACA,gBAAA;KACA;;IAEA;OACA,6BAAA;OACA,WAAA;KACA;;;EAGA;QACA,eAAA;QACA,eAAA;QACA,gBAAA;KACA;;IAEA;QACA,oBAAA;KACA;;IAEA;QACA,8BAAA;KACA;IACA;QACA,eAAA;QACA,eAAA;KACA","file":"Sidebar.vue","sourcesContent":["<template>\r\n\t<div class=\"page-cover\" v-if=\"showMenu\" @click=\"showCover\">\r\n\t</div>\r\n\r\n\t <section id=\"sideBar\" class=\"nav-list\" :class=\"{'showside':showMenu}\" >\r\n\t    <userheader></userheader>\r\n        <ul class=\"list-ul\">\r\n        \t<li v-for=\"item in menuItems\"  :class=\"item.icon\" v-link=\"{'name':item.link}\" @click=\"enterPage()\">{{item.text}}</li>\r\n        </ul>\r\n        <ul class=\"loginout\">\r\n        \t<li   class=\"icon-comments\" v-link=\"{'name':comment}\" >问题反馈</li>\r\n        \t<li   class=\"icon-off\" @click=\"loginOut\">退出系统</li>\r\n        </ul>\r\n    </section>\r\n</template>\r\n\r\n<script type=\"text/javascript\">\r\n\r\n\timport UserHeader from './UserHeader.vue';\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\tconsole.log(\"进入sidebar\");\r\n\r\n\t\t},\r\n\t\treplace:true,\r\n\t\tprops:{\r\n\t\t\tmenuItems:{\r\n\t\t\t\ttype:Array,\r\n\t\t\t\tdefault:[]\r\n\t\t\t},\r\n\t\t\tshowMenu:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tshowCover(){\r\n\t\t\t\tthis.showMenu=!this.showMenu;\r\n\t\t\t},\r\n\t\t\tenterPage(){\r\n\t\t\t\talert('1');\r\n\t\t\t},\r\n\t\t\tloginOut(){\r\n\t\t\t\t//系统退出\r\n\t\t\t}\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tuserheader:UserHeader\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\r\n\r\n\tul{\r\n\t\tpadding: 0px;\r\n\t\tmargin: 0px;\r\n\t}\r\n\t.page-cover {\r\n\t    position: fixed;\r\n\t    top: 0;\r\n\t    right: 0;\r\n\t    bottom: 0;\r\n\t    left: 0;\r\n\t    background: rgba(0, 0, 0, .4);\r\n\t    z-index: 7;\r\n\t}\r\n\t.nav-list{\r\n\t\tposition: fixed;\r\n\t    top: 0;\r\n\t    bottom: 0;\r\n\t    left: -200px;\r\n\t    width: 200px;\r\n\t    background-color: #fff;\r\n\t    color: #313131;\r\n\t    transition: all .3s ease;\r\n\t    z-index: 99;\r\n\r\n\t}\r\n\t.showside {\r\n\t   transform: translateX(200px);\r\n\t}\r\n\t\r\n\r\n\r\n\t/*侧边栏列表*/\r\n\t.list-ul,.loginout{\r\n\t    margin: 0 24px;\r\n\t    border-top: 1px solid #d4d4d4;\r\n\t    overflow: hidden;\r\n\t    padding-top: 9%;\r\n\t    list-style-type: none;\r\n\t    \r\n\t}\r\n\r\n\t.list-ul>li,.loginout>li {\r\n        font-size: 14px;\r\n        font-weight: 200;\r\n        padding: 9% 0;\r\n        text-align: left;\r\n        text-indent: 1px;\r\n        line-height: 15px;\r\n        color: #7f8c8d;\r\n        display: block;\r\n        cursor: pointer;\r\n    }\r\n\r\n    .list-ul>li:active,.loginout>li:active {\r\n       background-color: darkorange;\r\n       color: red;\r\n    }\r\n\r\n\r\n\t .list-ul>li:before,.loginout>li:before{\r\n        color: #2c3e50;\r\n        margin: 0 20px;\r\n        font-size: 14px;\r\n    }\r\n\r\n    .list-ul>li:last-child {\r\n        margin-bottom: 50px;\r\n    }\r\n\r\n    .list-ul>.line{\r\n        border-top: 1px solid #d4d4d4;\r\n    }\r\n    .list-ul>a {\r\n        display: block;\r\n        color: #313131;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -12920,6 +12925,9 @@
 			},
 			enterPage: function enterPage() {
 				alert('1');
+			},
+			loginOut: function loginOut() {
+				//系统退出
 			}
 		},
 		components: {
@@ -12960,7 +12968,7 @@
 	// 	}
 
 	// 	/*侧边栏列表*/
-	// 	.list-ul {
+	// 	.list-ul,.loginout{
 	// 	    margin: 0 24px;
 	// 	    border-top: 1px solid #d4d4d4;
 	// 	    overflow: hidden;
@@ -12969,7 +12977,7 @@
 
 	// 	}
 
-	// 	.list-ul>li {
+	// 	.list-ul>li,.loginout>li {
 	//         font-size: 14px;
 	//         font-weight: 200;
 	//         padding: 9% 0;
@@ -12978,9 +12986,15 @@
 	//         line-height: 15px;
 	//         color: #7f8c8d;
 	//         display: block;
+	//         cursor: pointer;
 	//     }
 
-	// 	 .list-ul>li:before{
+	//     .list-ul>li:active,.loginout>li:active {
+	//        background-color: darkorange;
+	//        color: red;
+	//     }
+
+	// 	 .list-ul>li:before,.loginout>li:before{
 	//         color: #2c3e50;
 	//         margin: 0 20px;
 	//         font-size: 14px;
@@ -13008,6 +13022,10 @@
 	//         <ul class="list-ul">
 	//         	<li v-for="item in menuItems"  :class="item.icon" v-link="{'name':item.link}" @click="enterPage()">{{item.text}}</li>
 	//         </ul>
+	//         <ul class="loginout">
+	//         	<li   class="icon-comments" v-link="{'name':comment}" >问题反馈</li>
+	//         	<li   class="icon-off" @click="loginOut">退出系统</li>
+	//         </ul>
 	//     </section>
 	// </template>
 
@@ -13018,9 +13036,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(21)
-	__vue_script__ = __webpack_require__(23)
-	__vue_template__ = __webpack_require__(24)
+	__webpack_require__(56)
+	__vue_script__ = __webpack_require__(24)
+	__vue_template__ = __webpack_require__(58)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -13028,7 +13046,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile\\src\\components\\UserHeader.vue"
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\UserHeader.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -13037,50 +13055,18 @@
 	})()}
 
 /***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(22);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(9)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-7fa4d89c&file=UserHeader.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./UserHeader.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-7fa4d89c&file=UserHeader.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./UserHeader.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 22 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(8)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n    /*侧边栏用户信息区域*/\n    .user-info {\n        padding: 10px;\n        font-size: 15px;\n        color: #313131;\n    }\n\n\t.nologin{\n\t\tline-height: 30px;\n        padding-left: 10px;\n        display: -webkit-box;\n        display: -webkit-flex;\n        display: -ms-flexbox;\n        display: flex;\n        display: -webkit-flexbox;\n        -webkit-flex-flow:row nowrap;\n            -ms-flex-flow:row nowrap;\n                flex-flow:row nowrap;\n        -webkit-box-pack:justify;\n        -webkit-justify-content:space-between;\n            -ms-flex-pack:justify;\n                justify-content:space-between;\n        margin: 0px 20px;\n        -webkit-box-align:center;\n        -webkit-align-items:center;\n            -ms-flex-align:center;\n                align-items:center;\n\t}\n\n\t.nologin>span:first-child{\n\t\twidth: 24px;\n        height: 24px;\n        content: '';\n        background: url(" + __webpack_require__(53) + ") no-repeat left center;\n      \tbackground-size: 24px 24px;\n\t}\n\n\n\n    /*已登录\n    /*.login-yes {\n        height: 100%;\n        background: url(\"../assets/images/components/go_next_icon.png\") no-repeat right center;\n        background-size: 6px 10px;\n        overflow: hidden;\n        position: relative;\n       \n    }\n\n \t.login-yes>.avertar {\n        width: 40px;\n        height: 40px;\n        background: url(\"../assets/images/components/user.png\") no-repeat center center;\n        background-size: 40px 40px;\n        border-radius: 20px;\n        overflow: hidden;\n        float: left;\n        \n    }*/*/\n\n\t.login-yes>.avertar>img {\n        width: 40px;\n        height: 40px;\n        display: block;\n    }\n\n    .login-yes>.info {\n        margin-left: 10px;\n        overflow: hidden;\n        float: left;\n    }\n\n    .login-yes>p {\n        width: 85px;\n        overflow: hidden;\n        white-space: nowrap;\n        text-overflow: ellipsis;\n        font-size: 12px;\n        line-height: 12px;\n        line-height: 40px;\n        \n    }\n    \n    .login-yes>p>.lh20 {\n        line-height: 20px;\n     }\n    /*.login-yes:after {\n        display: block;\n        background: url(\"../assets/images/components/go_icon.png\") no-repeat center right;\n        background-size: 7px 7px;\n    }*/\n", "", {"version":3,"sources":["/./src/components/UserHeader.vue?46f7a3c2"],"names":[],"mappings":";IAuCA,aAAA;IACA;QACA,cAAA;QACA,gBAAA;QACA,eAAA;KACA;;CAEA;EACA,kBAAA;QACA,mBAAA;QACA,qBAAA;QAAA,sBAAA;QAAA,qBAAA;QAAA,cAAA;QACA,yBAAA;QACA,6BAAA;YAAA,yBAAA;gBAAA,qBAAA;QACA,yBAAA;QAAA,sCAAA;YAAA,sBAAA;gBAAA,8BAAA;QACA,iBAAA;QACA,yBAAA;QAAA,2BAAA;YAAA,sBAAA;gBAAA,mBAAA;EACA;;CAEA;EACA,YAAA;QACA,aAAA;QACA,YAAA;QACA,gEAAA;OACA,2BAAA;EACA;;;;IAIA;;;;;;;;;;;;;;;;;;;OAmBA;;;QAGA,YAAA;QACA,aAAA;QACA,eAAA;KACA;;IAEA;QACA,kBAAA;QACA,iBAAA;QACA,YAAA;KACA;;IAEA;QACA,YAAA;QACA,iBAAA;QACA,oBAAA;QACA,wBAAA;QACA,gBAAA;QACA,kBAAA;QACA,kBAAA;;KAEA;;IAEA;QACA,kBAAA;MACA;IACA;;;;OAIA","file":"UserHeader.vue","sourcesContent":["<template>\r\n    <div class=\"user-info\">\r\n        <!-- 未登录 -->\r\n        <div class=\"nologin\" v-if=\"!loginname\">\r\n            <span ></span>\r\n            <span  @click=\"goEnter\"><a >登录</a></span>\r\n        </div>\r\n        <!-- 已登录 -->\r\n        <div class=\"login-yes\" v-if=\"loginname\" @click=\"goUser\">\r\n            <div class=\"avertar\"><img v-if=\"avatar_url\" :src=\"avatar_url\"></div>\r\n            <div class=\"info\">\r\n                <p v-if=\"loginname\" v-text=\"loginname\"></p>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    export default {\r\n        replace:true,\r\n        data () {\r\n            return {\r\n                loginname: localStorage.loginname || \"\",\r\n                avatar_url: localStorage.avatar_url || \"\"\r\n            }\r\n        },\r\n        methods:{\r\n            goEnter (){\r\n                var link = '/login?redirect='+ encodeURIComponent(this.$route.path);\r\n                this.$route.router.go(link);\r\n            },\r\n            goUser (){\r\n                this.$route.router.go({name:'user',params:{loginname:localStorage.loginname}});\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style type=\"text/css\">\r\n    /*侧边栏用户信息区域*/\r\n    .user-info {\r\n        padding: 10px;\r\n        font-size: 15px;\r\n        color: #313131;\r\n    }\r\n\r\n\t.nologin{\r\n\t\tline-height: 30px;\r\n        padding-left: 10px;\r\n        display: flex;\r\n        display: -webkit-flexbox;\r\n        flex-flow:row nowrap;\r\n        justify-content:space-between;\r\n        margin: 0px 20px;\r\n        align-items:center;\r\n\t}\r\n\r\n\t.nologin>span:first-child{\r\n\t\twidth: 24px;\r\n        height: 24px;\r\n        content: '';\r\n        background: url(\"../assets/images/components/login_icon.png\") no-repeat left center;\r\n      \tbackground-size: 24px 24px;\r\n\t}\r\n\r\n\r\n\r\n    /*已登录\r\n    /*.login-yes {\r\n        height: 100%;\r\n        background: url(\"../assets/images/components/go_next_icon.png\") no-repeat right center;\r\n        background-size: 6px 10px;\r\n        overflow: hidden;\r\n        position: relative;\r\n       \r\n    }\r\n\r\n \t.login-yes>.avertar {\r\n        width: 40px;\r\n        height: 40px;\r\n        background: url(\"../assets/images/components/user.png\") no-repeat center center;\r\n        background-size: 40px 40px;\r\n        border-radius: 20px;\r\n        overflow: hidden;\r\n        float: left;\r\n        \r\n    }*/*/\r\n\r\n\t.login-yes>.avertar>img {\r\n        width: 40px;\r\n        height: 40px;\r\n        display: block;\r\n    }\r\n\r\n    .login-yes>.info {\r\n        margin-left: 10px;\r\n        overflow: hidden;\r\n        float: left;\r\n    }\r\n\r\n    .login-yes>p {\r\n        width: 85px;\r\n        overflow: hidden;\r\n        white-space: nowrap;\r\n        text-overflow: ellipsis;\r\n        font-size: 12px;\r\n        line-height: 12px;\r\n        line-height: 40px;\r\n        \r\n    }\r\n    \r\n    .login-yes>p>.lh20 {\r\n        line-height: 20px;\r\n     }\r\n    /*.login-yes:after {\r\n        display: block;\r\n        background: url(\"../assets/images/components/go_icon.png\") no-repeat center right;\r\n        background-size: 7px 7px;\r\n    }*/\r\n</style>"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
+/* 21 */,
+/* 22 */,
 /* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "login_icon.png?76c0f3299044482b9c022de20671e5a5";
+
+/***/ },
+/* 24 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -13093,10 +13079,12 @@
 	//             <span  @click="goEnter"><a >登录</a></span>
 	//         </div>
 	//         <!-- 已登录 -->
-	//         <div class="login-yes" v-if="loginname" @click="goUser">
-	//             <div class="avertar"><img v-if="avatar_url" :src="avatar_url"></div>
+	//         <div class="login" v-if="loginname" @click="goUser">
+	//             <div class="avertar">
+	//             	<img v-if="avatar_url" :src="avatar_url">
+	//             </div>
 	//             <div class="info">
-	//                 <p v-if="loginname" v-text="loginname"></p>
+	//                 <span v-if="loginname" v-text="loginname"></span>
 	//             </div>
 	//         </div>
 	//     </div>
@@ -13107,8 +13095,10 @@
 	    replace: true,
 	    data: function data() {
 	        return {
-	            loginname: localStorage.loginname || "",
-	            avatar_url: localStorage.avatar_url || ""
+	            // loginname: localStorage.loginname || "",
+	            // avatar_url: localStorage.avatar_url || ""
+	            loginname: "张三",
+	            avatar_url: ''
 	        };
 	    },
 	
@@ -13118,13 +13108,13 @@
 	            this.$route.router.go(link);
 	        },
 	        goUser: function goUser() {
-	            this.$route.router.go({ name: 'user', params: { loginname: localStorage.loginname } });
+	            this.$route.router.go({ name: 'userinfo', params: { loginname: this.loginname } });
 	        }
 	    }
 	};
 	// </script>
 
-	// <style type="text/css">
+	// <style type="text/css" scoped>
 	//     /*侧边栏用户信息区域*/
 	//     .user-info {
 	//         padding: 10px;
@@ -13151,40 +13141,38 @@
 	//       	background-size: 24px 24px;
 	// 	}
 
-	//     /*已登录
-	//     /*.login-yes {
-	//         height: 100%;
-	//         background: url("../assets/images/components/go_next_icon.png") no-repeat right center;
-	//         background-size: 6px 10px;
-	//         overflow: hidden;
-	//         position: relative;
-
+	//     /*//已登录*/
+	//     .login {
+	//     	line-height: 30px;
+	//         padding-left: 10px;
+	//         display: flex;
+	//         display: -webkit-flexbox;
+	//         flex-flow:row nowrap;
+	//         justify-content:space-between;
+	//         margin: 0px 20px;
+	//         align-items:center;
+	//         cursor: pointer;
 	//     }
 
-	//  	.login-yes>.avertar {
+	//  	.login>.avertar {
 	//         width: 40px;
 	//         height: 40px;
 	//         background: url("../assets/images/components/user.png") no-repeat center center;
 	//         background-size: 40px 40px;
 	//         border-radius: 20px;
 	//         overflow: hidden;
-	//         float: left;
+	//     }
 
-	//     }*/*/
-
-	// 	.login-yes>.avertar>img {
+	// 	.login>.avertar>img {
 	//         width: 40px;
 	//         height: 40px;
-	//         display: block;
 	//     }
 
-	//     .login-yes>.info {
+	//     .login>.info {
 	//         margin-left: 10px;
 	//         overflow: hidden;
-	//         float: left;
 	//     }
-
-	//     .login-yes>p {
+	//     .login>span {
 	//         width: 85px;
 	//         overflow: hidden;
 	//         white-space: nowrap;
@@ -13195,7 +13183,7 @@
 
 	//     }
 
-	//     .login-yes>p>.lh20 {
+	//     .login>span>.lh20 {
 	//         line-height: 20px;
 	//      }
 	//     /*.login-yes:after {
@@ -13207,25 +13195,20 @@
 	/* generated by vue-loader */
 
 /***/ },
-/* 24 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<div class=\"user-info\">\n    <!-- 未登录 -->\n    <div class=\"nologin\" v-if=\"!loginname\">\n        <span ></span>\n        <span  @click=\"goEnter\"><a >登录</a></span>\n    </div>\n    <!-- 已登录 -->\n    <div class=\"login-yes\" v-if=\"loginname\" @click=\"goUser\">\n        <div class=\"avertar\"><img v-if=\"avatar_url\" :src=\"avatar_url\"></div>\n        <div class=\"info\">\n            <p v-if=\"loginname\" v-text=\"loginname\"></p>\n        </div>\n    </div>\n</div>\n";
-
-/***/ },
-/* 25 */
-/***/ function(module, exports) {
-
-	module.exports = "\n\t<div class=\"page-cover\" v-if=\"showMenu\" @click=\"showCover\" _v-17c997a8=\"\">\n\t</div>\n\n\t <section id=\"sideBar\" class=\"nav-list\" :class=\"{'showside':showMenu}\" _v-17c997a8=\"\">\n\t    <userheader _v-17c997a8=\"\"></userheader>\n        <ul class=\"list-ul\" _v-17c997a8=\"\">\n        \t<li v-for=\"item in menuItems\" :class=\"item.icon\" v-link=\"{'name':item.link}\" @click=\"enterPage()\" _v-17c997a8=\"\">{{item.text}}</li>\n        </ul>\n    </section>\n";
-
-/***/ },
+/* 25 */,
 /* 26 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\t<div class=\"page-cover\" v-if=\"showMenu\" @click=\"showCover\" _v-29364ee0=\"\">\n\t</div>\n\n\t <section id=\"sideBar\" class=\"nav-list\" :class=\"{'showside':showMenu}\" _v-29364ee0=\"\">\n\t    <userheader _v-29364ee0=\"\"></userheader>\n        <ul class=\"list-ul\" _v-29364ee0=\"\">\n        \t<li v-for=\"item in menuItems\" :class=\"item.icon\" v-link=\"{'name':item.link}\" @click=\"enterPage()\" _v-29364ee0=\"\">{{item.text}}</li>\n        </ul>\n        <ul class=\"loginout\" _v-29364ee0=\"\">\n        \t<li class=\"icon-comments\" v-link=\"{'name':comment}\" _v-29364ee0=\"\">问题反馈</li>\n        \t<li class=\"icon-off\" @click=\"loginOut\" _v-29364ee0=\"\">退出系统</li>\n        </ul>\n    </section>\n";
+
+/***/ },
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(27)
-	__vue_script__ = __webpack_require__(29)
-	__vue_template__ = __webpack_require__(30)
+	__webpack_require__(28)
+	__vue_script__ = __webpack_require__(30)
+	__vue_template__ = __webpack_require__(31)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -13233,7 +13216,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile\\src\\components\\NavTabs.vue"
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\NavTabs.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -13242,13 +13225,13 @@
 	})()}
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(28);
+	var content = __webpack_require__(29);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(9)(content, {});
@@ -13257,8 +13240,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3e81cde6&file=NavTabs.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./NavTabs.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3e81cde6&file=NavTabs.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./NavTabs.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-1ba85f76&file=NavTabs.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./NavTabs.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-1ba85f76&file=NavTabs.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./NavTabs.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -13268,7 +13251,7 @@
 	}
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(8)();
@@ -13276,13 +13259,13 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n.nav-tabs[_v-3e81cde6] {\n\tmargin: 0px;\n\tpadding: 0px;\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\tdisplay: -webkit-flex;\n\t-webkit-flex-flow: row nowrap;\n\t    -ms-flex-flow: row nowrap;\n\t        flex-flow: row nowrap;\n\tlist-style-type: none;\n\tline-height: 35px;\n\tborder-bottom: 1px solid whitesmoke;\n\tpadding: 0 10px;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t    -ms-flex-align: center;\n\t        align-items: center;\n\t-webkit-align-content: center;\n\t    -ms-flex-line-pack: center;\n\t        align-content: center;\n\t-webkit-justify-content: space-around;\n\t    -ms-flex-pack: distribute;\n\t        justify-content: space-around;\n\tfont-size: 14px;\n\tfont-weight: bold;\n\t-webkit-box-flex: 1;\n\t-webkit-flex-grow: 1;\n\t    -ms-flex-positive: 1;\n\t        flex-grow: 1;\n}\n\n\n.nav-tabs>li[_v-3e81cde6] {\n\twidth: 100%;\n\ttext-align: center;\n\tvertical-align: middle;\n\tcursor: pointer;\n}\n\n.nav_active[_v-3e81cde6] {\n\tcolor: darkorange;\n}\n\n\n.tabs_line[_v-3e81cde6] {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\theight: 3px;\n\twidth: 300px;\n\tmargin-top: -3px;\n\tbackground-color: darkorange;\n\t-webkit-transition: all .3s ease;\n\ttransition: all .3s ease;\n\twidth: 0px;\n}\n", "", {"version":3,"sources":["/./src/components/NavTabs.vue?2882b256"],"names":[],"mappings":";;AAyDA;CACA,YAAA;CACA,aAAA;CACA,qBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,sBAAA;CACA,8BAAA;KAAA,0BAAA;SAAA,sBAAA;CACA,sBAAA;CACA,kBAAA;CACA,oCAAA;CACA,gBAAA;CACA,0BAAA;CAAA,4BAAA;KAAA,uBAAA;SAAA,oBAAA;CACA,8BAAA;KAAA,2BAAA;SAAA,sBAAA;CACA,sCAAA;KAAA,0BAAA;SAAA,8BAAA;CACA,gBAAA;CACA,kBAAA;CACA,oBAAA;CAAA,qBAAA;KAAA,qBAAA;SAAA,aAAA;CACA;;;AAGA;CACA,YAAA;CACA,mBAAA;CACA,uBAAA;CACA,gBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;;AAGA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,YAAA;CACA,aAAA;CACA,iBAAA;CACA,6BAAA;CACA,iCAAA;CAAA,yBAAA;CACA,WAAA;CACA","file":"NavTabs.vue","sourcesContent":["<template>\r\n\t<div class=\"container-fluid\">\r\n\t\t<ul class=\"nav-tabs\">\r\n\t\t\t\t<li v-for=\"(index,item) in tabItems\"\r\n\t\t\t\t:class=\"{'nav_active':selectIndex===index}\" \r\n\t\t\t\t@click=\"switchTab(index)\" \r\n\t\t\t\t >{{item.title}}</li>\r\n\t\t</ul>\r\n\t\t<div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\"></div>\r\n\t\t<div class=\"tabs_content\">\r\n\t\t\t<div v-for=\"(index,item) in tabItems\" v-show=\"selectIndex===index\">\r\n\t\t\t\t{{ item.content }}\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\tthis.selectIndex=this.activeIndex;\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\ttabItems:{\r\n\t\t\t\ttype:Array,\r\n\t\t\t\tdefault:[]\r\n\t\t\t},\r\n\t\t\tactiveIndex:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:0\r\n\t\t\t},\r\n\t\t\tunderline:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:100\r\n\t\t\t}\r\n\t\t},\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\t//当前选中的tab页面\r\n\t\t\t\tselectIndex:0\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\t//点击tabs\r\n\t\t\tswitchTab(index){\r\n\t\t\t\tthis.selectIndex=index;\r\n\t\t\t\tvar leftWidth=index*this.underline;\r\n\t\t\t\tdocument.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\t\t\r\n\t\t.nav-tabs {\r\n\t\t\tmargin: 0px;\r\n\t\t\tpadding: 0px;\r\n\t\t\tdisplay: flex;\r\n\t\t\tdisplay: -webkit-flex;\r\n\t\t\tflex-flow: row nowrap;\r\n\t\t\tlist-style-type: none;\r\n\t\t\tline-height: 35px;\r\n\t\t\tborder-bottom: 1px solid whitesmoke;\r\n\t\t\tpadding: 0 10px;\r\n\t\t\talign-items: center;\r\n\t\t\talign-content: center;\r\n\t\t\tjustify-content: space-around;\r\n\t\t\tfont-size: 14px;\r\n\t\t\tfont-weight: bold;\r\n\t\t\tflex-grow: 1;\r\n\t\t}\r\n\t\t\r\n\t\t\r\n\t\t.nav-tabs>li {\r\n\t\t\twidth: 100%;\r\n\t\t\ttext-align: center;\r\n\t\t\tvertical-align: middle;\r\n\t\t\tcursor: pointer;\r\n\t\t}\r\n\t\t\r\n\t\t.nav_active {\r\n\t\t\tcolor: darkorange;\r\n\t\t}\r\n\r\n\t\t\r\n\t\t.tabs_line {\r\n\t\t\tdisplay: flex;\r\n\t\t\theight: 3px;\r\n\t\t\twidth: 300px;\r\n\t\t\tmargin-top: -3px;\r\n\t\t\tbackground-color: darkorange;\r\n\t\t\ttransition: all .3s ease;\r\n\t\t\twidth: 0px;\r\n\t\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n.nav-tabs[_v-1ba85f76] {\n\tmargin: 0px;\n\tpadding: 0px;\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\tdisplay: -webkit-flex;\n\t-webkit-flex-flow: row nowrap;\n\t    -ms-flex-flow: row nowrap;\n\t        flex-flow: row nowrap;\n\tlist-style-type: none;\n\tline-height: 35px;\n\tborder-bottom: 1px solid whitesmoke;\n\tpadding: 0 10px;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t    -ms-flex-align: center;\n\t        align-items: center;\n\t-webkit-align-content: center;\n\t    -ms-flex-line-pack: center;\n\t        align-content: center;\n\t-webkit-justify-content: space-around;\n\t    -ms-flex-pack: distribute;\n\t        justify-content: space-around;\n\tfont-size: 14px;\n\tfont-weight: bold;\n\t-webkit-box-flex: 1;\n\t-webkit-flex-grow: 1;\n\t    -ms-flex-positive: 1;\n\t        flex-grow: 1;\n}\n\n\n.nav-tabs>li[_v-1ba85f76] {\n\twidth: 100%;\n\ttext-align: center;\n\tvertical-align: middle;\n\tcursor: pointer;\n}\n\n.nav_active[_v-1ba85f76] {\n\tcolor: darkorange;\n}\n\n\n.tabs_line[_v-1ba85f76] {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\theight: 3px;\n\twidth: 300px;\n\tmargin-top: -3px;\n\tbackground-color: darkorange;\n\t-webkit-transition: all .3s ease;\n\ttransition: all .3s ease;\n\twidth: 0px;\n}\n", "", {"version":3,"sources":["/./src/components/NavTabs.vue?2882b256"],"names":[],"mappings":";;AAyDA;CACA,YAAA;CACA,aAAA;CACA,qBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,sBAAA;CACA,8BAAA;KAAA,0BAAA;SAAA,sBAAA;CACA,sBAAA;CACA,kBAAA;CACA,oCAAA;CACA,gBAAA;CACA,0BAAA;CAAA,4BAAA;KAAA,uBAAA;SAAA,oBAAA;CACA,8BAAA;KAAA,2BAAA;SAAA,sBAAA;CACA,sCAAA;KAAA,0BAAA;SAAA,8BAAA;CACA,gBAAA;CACA,kBAAA;CACA,oBAAA;CAAA,qBAAA;KAAA,qBAAA;SAAA,aAAA;CACA;;;AAGA;CACA,YAAA;CACA,mBAAA;CACA,uBAAA;CACA,gBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;;AAGA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,YAAA;CACA,aAAA;CACA,iBAAA;CACA,6BAAA;CACA,iCAAA;CAAA,yBAAA;CACA,WAAA;CACA","file":"NavTabs.vue","sourcesContent":["<template>\r\n\t<div class=\"container-fluid\">\r\n\t\t<ul class=\"nav-tabs\">\r\n\t\t\t\t<li v-for=\"(index,item) in tabItems\"\r\n\t\t\t\t:class=\"{'nav_active':selectIndex===index}\" \r\n\t\t\t\t@click=\"switchTab(index)\" \r\n\t\t\t\t >{{item.title}}</li>\r\n\t\t</ul>\r\n\t\t<div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\"></div>\r\n\t\t<div class=\"tabs_content\">\r\n\t\t\t<div v-for=\"(index,item) in tabItems\" v-show=\"selectIndex===index\">\r\n\t\t\t\t{{ item.content }}\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\tthis.selectIndex=this.activeIndex;\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\ttabItems:{\r\n\t\t\t\ttype:Array,\r\n\t\t\t\tdefault:[]\r\n\t\t\t},\r\n\t\t\tactiveIndex:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:0\r\n\t\t\t},\r\n\t\t\tunderline:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:100\r\n\t\t\t}\r\n\t\t},\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\t//当前选中的tab页面\r\n\t\t\t\tselectIndex:0\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\t//点击tabs\r\n\t\t\tswitchTab(index){\r\n\t\t\t\tthis.selectIndex=index;\r\n\t\t\t\tvar leftWidth=index*this.underline;\r\n\t\t\t\tdocument.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\t\t\r\n\t\t.nav-tabs {\r\n\t\t\tmargin: 0px;\r\n\t\t\tpadding: 0px;\r\n\t\t\tdisplay: flex;\r\n\t\t\tdisplay: -webkit-flex;\r\n\t\t\tflex-flow: row nowrap;\r\n\t\t\tlist-style-type: none;\r\n\t\t\tline-height: 35px;\r\n\t\t\tborder-bottom: 1px solid whitesmoke;\r\n\t\t\tpadding: 0 10px;\r\n\t\t\talign-items: center;\r\n\t\t\talign-content: center;\r\n\t\t\tjustify-content: space-around;\r\n\t\t\tfont-size: 14px;\r\n\t\t\tfont-weight: bold;\r\n\t\t\tflex-grow: 1;\r\n\t\t}\r\n\t\t\r\n\t\t\r\n\t\t.nav-tabs>li {\r\n\t\t\twidth: 100%;\r\n\t\t\ttext-align: center;\r\n\t\t\tvertical-align: middle;\r\n\t\t\tcursor: pointer;\r\n\t\t}\r\n\t\t\r\n\t\t.nav_active {\r\n\t\t\tcolor: darkorange;\r\n\t\t}\r\n\r\n\t\t\r\n\t\t.tabs_line {\r\n\t\t\tdisplay: flex;\r\n\t\t\theight: 3px;\r\n\t\t\twidth: 300px;\r\n\t\t\tmargin-top: -3px;\r\n\t\t\tbackground-color: darkorange;\r\n\t\t\ttransition: all .3s ease;\r\n\t\t\twidth: 0px;\r\n\t\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -13391,26 +13374,16 @@
 	// </style>
 
 /***/ },
-/* 30 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<div class=\"container-fluid\" _v-3e81cde6=\"\">\n\t<ul class=\"nav-tabs\" _v-3e81cde6=\"\">\n\t\t\t<li v-for=\"(index,item) in tabItems\" :class=\"{'nav_active':selectIndex===index}\" @click=\"switchTab(index)\" _v-3e81cde6=\"\">{{item.title}}</li>\n\t</ul>\n\t<div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\" _v-3e81cde6=\"\"></div>\n\t<div class=\"tabs_content\" _v-3e81cde6=\"\">\n\t\t<div v-for=\"(index,item) in tabItems\" v-show=\"selectIndex===index\" _v-3e81cde6=\"\">\n\t\t\t{{ item.content }}\n\t\t</div>\n\t</div>\n</div>\n\n";
-
-/***/ },
 /* 31 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t\t<toolbar :text=\"title\">\n\t\t\t<span class=\"glyphicon glyphicon-menu-hamburger\" slot=\"leftBtn\" @click=\"openMenu\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\"></span>\n\t\t</toolbar>\n\t\t<navtabs :tab-items=\"tabItems\" :underline=\"tabWidth\">\n\t\t</navtabs>\n\t\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" >\n\t\t\t\n\t\t</sidebar>\n";
+	module.exports = "\n<div class=\"container-fluid\" _v-1ba85f76=\"\">\n\t<ul class=\"nav-tabs\" _v-1ba85f76=\"\">\n\t\t\t<li v-for=\"(index,item) in tabItems\" :class=\"{'nav_active':selectIndex===index}\" @click=\"switchTab(index)\" _v-1ba85f76=\"\">{{item.title}}</li>\n\t</ul>\n\t<div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\" _v-1ba85f76=\"\"></div>\n\t<div class=\"tabs_content\" _v-1ba85f76=\"\">\n\t\t<div v-for=\"(index,item) in tabItems\" v-show=\"selectIndex===index\" _v-1ba85f76=\"\">\n\t\t\t{{ item.content }}\n\t\t</div>\n\t</div>\n</div>\n\n";
 
 /***/ },
 /* 32 */
 /***/ function(module, exports) {
 
-	var __vue_script__, __vue_template__
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-
+	module.exports = "\n\t\t<toolbar :text=\"title\">\n\t\t\t<span class=\"glyphicon glyphicon-menu-hamburger\" slot=\"leftBtn\" @click=\"openMenu\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\"></span>\n\t\t</toolbar>\n\t\t<navtabs :tab-items=\"tabItems\" :underline=\"tabWidth\">\n\t\t</navtabs>\n\t\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" >\n\t\t\t\n\t\t</sidebar>\n";
 
 /***/ },
 /* 33 */
@@ -13434,11 +13407,21 @@
 
 /***/ },
 /* 35 */
+/***/ function(module, exports) {
+
+	var __vue_script__, __vue_template__
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+
+
+/***/ },
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(36)
-	__vue_template__ = __webpack_require__(37)
+	__vue_script__ = __webpack_require__(37)
+	__vue_template__ = __webpack_require__(38)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -13446,7 +13429,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile\\src\\views\\Login.vue"
+	  var id = "E:\\workspace\\mobile-dev\\src\\views\\Login.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -13455,7 +13438,7 @@
 	})()}
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -13492,13 +13475,13 @@
 	/* generated by vue-loader */
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\n<div class=\"container\">\n\t<div >\n\t\t<input type=\"text\" name=\"\">\n\t</div>\n</div>\n";
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
@@ -14345,19 +14328,19 @@
 
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _keys = __webpack_require__(40);
+	var _keys = __webpack_require__(41);
 	
 	var _keys2 = _interopRequireDefault(_keys);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var vueTouch = {};
-	var Hammer =  true ? __webpack_require__(52) : window.Hammer;
+	var Hammer =  true ? __webpack_require__(53) : window.Hammer;
 	var gestures = ['tap', 'pan', 'pinch', 'press', 'rotate', 'swipe'];
 	var customeEvents = {};
 	
@@ -14381,7 +14364,7 @@
 	        // custom event
 	        var custom = customeEvents[event];
 	        recognizerType = custom.type;
-	        recognizer = new (Hammer[capitalize(recognizerType)])(custom);
+	        recognizer = new Hammer[capitalize(recognizerType)](custom);
 	        recognizer.recognizeWith(mc.recognizers);
 	        mc.add(recognizer);
 	      } else {
@@ -14400,7 +14383,7 @@
 	        recognizer = mc.get(recognizerType);
 	        if (!recognizer) {
 	          // add recognizer
-	          recognizer = new (Hammer[capitalize(recognizerType)])();
+	          recognizer = new Hammer[capitalize(recognizerType)]();
 	          // make sure multiple recognizers work together...
 	          recognizer.recognizeWith(mc.recognizers);
 	          mc.add(recognizer);
@@ -14456,43 +14439,43 @@
 	module.exports = vueTouch;
 
 /***/ },
-/* 40 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(41), __esModule: true };
-
-/***/ },
 /* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(42);
-	module.exports = __webpack_require__(48).Object.keys;
+	module.exports = { "default": __webpack_require__(42), __esModule: true };
 
 /***/ },
 /* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
+	__webpack_require__(43);
+	module.exports = __webpack_require__(49).Object.keys;
+
+/***/ },
+/* 43 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(43);
+	var toObject = __webpack_require__(44);
 	
-	__webpack_require__(45)('keys', function($keys){
+	__webpack_require__(46)('keys', function($keys){
 	  return function keys(it){
 	    return $keys(toObject(it));
 	  };
 	});
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
-	var defined = __webpack_require__(44);
+	var defined = __webpack_require__(45);
 	module.exports = function(it){
 	  return Object(defined(it));
 	};
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -14502,13 +14485,13 @@
 	};
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(46)
-	  , core    = __webpack_require__(48)
-	  , fails   = __webpack_require__(51);
+	var $export = __webpack_require__(47)
+	  , core    = __webpack_require__(49)
+	  , fails   = __webpack_require__(52);
 	module.exports = function(KEY, exec){
 	  var fn  = (core.Object || {})[KEY] || Object[KEY]
 	    , exp = {};
@@ -14517,12 +14500,12 @@
 	};
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(47)
-	  , core      = __webpack_require__(48)
-	  , ctx       = __webpack_require__(49)
+	var global    = __webpack_require__(48)
+	  , core      = __webpack_require__(49)
+	  , ctx       = __webpack_require__(50)
 	  , PROTOTYPE = 'prototype';
 	
 	var $export = function(type, name, source){
@@ -14568,7 +14551,7 @@
 	module.exports = $export;
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -14577,18 +14560,18 @@
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports) {
 
 	var core = module.exports = {version: '1.2.6'};
 	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(50);
+	var aFunction = __webpack_require__(51);
 	module.exports = function(fn, that, length){
 	  aFunction(fn);
 	  if(that === undefined)return fn;
@@ -14609,7 +14592,7 @@
 	};
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -14618,7 +14601,7 @@
 	};
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports) {
 
 	module.exports = function(exec){
@@ -14630,7 +14613,7 @@
 	};
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.6 - 2015-12-23
@@ -17204,10 +17187,67 @@
 
 
 /***/ },
-/* 53 */
+/* 54 */,
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "login_icon.png?76c0f3299044482b9c022de20671e5a5";
+	module.exports = __webpack_require__.p + "user.png?f95d81473c5e661b988fb30f31e36621";
+
+/***/ },
+/* 56 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(57);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(9)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3a023664&file=UserHeader.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./UserHeader.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3a023664&file=UserHeader.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./UserHeader.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 57 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(8)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n    /*侧边栏用户信息区域*/\n    .user-info[_v-3a023664] {\n        padding: 10px;\n        font-size: 15px;\n        color: #313131;\n    }\n\n\t.nologin[_v-3a023664]{\n\t\tline-height: 30px;\n        padding-left: 10px;\n        display: -webkit-box;\n        display: -webkit-flex;\n        display: -ms-flexbox;\n        display: flex;\n        display: -webkit-flexbox;\n        -webkit-flex-flow:row nowrap;\n            -ms-flex-flow:row nowrap;\n                flex-flow:row nowrap;\n        -webkit-box-pack:justify;\n        -webkit-justify-content:space-between;\n            -ms-flex-pack:justify;\n                justify-content:space-between;\n        margin: 0px 20px;\n        -webkit-box-align:center;\n        -webkit-align-items:center;\n            -ms-flex-align:center;\n                align-items:center;\n\t}\n\n\t.nologin>span[_v-3a023664]:first-child{\n\t\twidth: 24px;\n        height: 24px;\n        content: '';\n        background: url(" + __webpack_require__(23) + ") no-repeat left center;\n      \tbackground-size: 24px 24px;\n\t}\n\n\n\n    /*//已登录*/\n    .login[_v-3a023664] {\n    \tline-height: 30px;\n        padding-left: 10px;\n        display: -webkit-box;\n        display: -webkit-flex;\n        display: -ms-flexbox;\n        display: flex;\n        display: -webkit-flexbox;\n        -webkit-flex-flow:row nowrap;\n            -ms-flex-flow:row nowrap;\n                flex-flow:row nowrap;\n        -webkit-box-pack:justify;\n        -webkit-justify-content:space-between;\n            -ms-flex-pack:justify;\n                justify-content:space-between;\n        margin: 0px 20px;\n        -webkit-box-align:center;\n        -webkit-align-items:center;\n            -ms-flex-align:center;\n                align-items:center;\n        cursor: pointer;\n    }\n\n \t.login>.avertar[_v-3a023664] {\n        width: 40px;\n        height: 40px;\n        background: url(" + __webpack_require__(55) + ") no-repeat center center;\n        background-size: 40px 40px;\n        border-radius: 20px;\n        overflow: hidden;\n    }\n\n\t.login>.avertar>img[_v-3a023664] {\n        width: 40px;\n        height: 40px;\n    }\n\n    .login>.info[_v-3a023664] {\n        margin-left: 10px;\n        overflow: hidden;\n    }\n    .login>span[_v-3a023664] {\n        width: 85px;\n        overflow: hidden;\n        white-space: nowrap;\n        text-overflow: ellipsis;\n        font-size: 12px;\n        line-height: 12px;\n        line-height: 40px;\n        \n    }\n    \n    .login>span>.lh20[_v-3a023664] {\n        line-height: 20px;\n     }\n    /*.login-yes:after {\n        display: block;\n        background: url(\"../assets/images/components/go_icon.png\") no-repeat center right;\n        background-size: 7px 7px;\n    }*/\n", "", {"version":3,"sources":["/./src/components/UserHeader.vue?8fdb6e68"],"names":[],"mappings":";IA2CA,aAAA;IACA;QACA,cAAA;QACA,gBAAA;QACA,eAAA;KACA;;CAEA;EACA,kBAAA;QACA,mBAAA;QACA,qBAAA;QAAA,sBAAA;QAAA,qBAAA;QAAA,cAAA;QACA,yBAAA;QACA,6BAAA;YAAA,yBAAA;gBAAA,qBAAA;QACA,yBAAA;QAAA,sCAAA;YAAA,sBAAA;gBAAA,8BAAA;QACA,iBAAA;QACA,yBAAA;QAAA,2BAAA;YAAA,sBAAA;gBAAA,mBAAA;EACA;;CAEA;EACA,YAAA;QACA,aAAA;QACA,YAAA;QACA,gEAAA;OACA,2BAAA;EACA;;;;IAIA,SAAA;IACA;KACA,kBAAA;QACA,mBAAA;QACA,qBAAA;QAAA,sBAAA;QAAA,qBAAA;QAAA,cAAA;QACA,yBAAA;QACA,6BAAA;YAAA,yBAAA;gBAAA,qBAAA;QACA,yBAAA;QAAA,sCAAA;YAAA,sBAAA;gBAAA,8BAAA;QACA,iBAAA;QACA,yBAAA;QAAA,2BAAA;YAAA,sBAAA;gBAAA,mBAAA;QACA,gBAAA;KACA;;EAEA;QACA,YAAA;QACA,aAAA;QACA,kEAAA;QACA,2BAAA;QACA,oBAAA;QACA,iBAAA;KACA;;CAEA;QACA,YAAA;QACA,aAAA;KACA;;IAEA;QACA,kBAAA;QACA,iBAAA;KACA;IACA;QACA,YAAA;QACA,iBAAA;QACA,oBAAA;QACA,wBAAA;QACA,gBAAA;QACA,kBAAA;QACA,kBAAA;;KAEA;;IAEA;QACA,kBAAA;MACA;IACA;;;;OAIA","file":"UserHeader.vue","sourcesContent":["<template>\r\n    <div class=\"user-info\">\r\n        <!-- 未登录 -->\r\n        <div class=\"nologin\" v-if=\"!loginname\">\r\n            <span ></span>\r\n            <span  @click=\"goEnter\"><a >登录</a></span>\r\n        </div>\r\n        <!-- 已登录 -->\r\n        <div class=\"login\" v-if=\"loginname\" @click=\"goUser\">\r\n            <div class=\"avertar\">\r\n            \t<img v-if=\"avatar_url\" :src=\"avatar_url\">\r\n            </div>\r\n            <div class=\"info\">\r\n                <span v-if=\"loginname\" v-text=\"loginname\"></span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    export default {\r\n        replace:true,\r\n        data () {\r\n            return {\r\n                // loginname: localStorage.loginname || \"\",\r\n                // avatar_url: localStorage.avatar_url || \"\"\r\n                loginname:\"张三\",\r\n                avatar_url:''\r\n            }\r\n        },\r\n        methods:{\r\n            goEnter (){\r\n                var link = '/login?redirect='+ encodeURIComponent(this.$route.path);\r\n                this.$route.router.go(link);\r\n            },\r\n            goUser (){\r\n                this.$route.router.go({name:'userinfo',params:{loginname:this.loginname}});\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n    /*侧边栏用户信息区域*/\r\n    .user-info {\r\n        padding: 10px;\r\n        font-size: 15px;\r\n        color: #313131;\r\n    }\r\n\r\n\t.nologin{\r\n\t\tline-height: 30px;\r\n        padding-left: 10px;\r\n        display: flex;\r\n        display: -webkit-flexbox;\r\n        flex-flow:row nowrap;\r\n        justify-content:space-between;\r\n        margin: 0px 20px;\r\n        align-items:center;\r\n\t}\r\n\r\n\t.nologin>span:first-child{\r\n\t\twidth: 24px;\r\n        height: 24px;\r\n        content: '';\r\n        background: url(\"../assets/images/components/login_icon.png\") no-repeat left center;\r\n      \tbackground-size: 24px 24px;\r\n\t}\r\n\r\n\r\n\r\n    /*//已登录*/\r\n    .login {\r\n    \tline-height: 30px;\r\n        padding-left: 10px;\r\n        display: flex;\r\n        display: -webkit-flexbox;\r\n        flex-flow:row nowrap;\r\n        justify-content:space-between;\r\n        margin: 0px 20px;\r\n        align-items:center;\r\n        cursor: pointer;\r\n    }\r\n\r\n \t.login>.avertar {\r\n        width: 40px;\r\n        height: 40px;\r\n        background: url(\"../assets/images/components/user.png\") no-repeat center center;\r\n        background-size: 40px 40px;\r\n        border-radius: 20px;\r\n        overflow: hidden;\r\n    }\r\n\r\n\t.login>.avertar>img {\r\n        width: 40px;\r\n        height: 40px;\r\n    }\r\n\r\n    .login>.info {\r\n        margin-left: 10px;\r\n        overflow: hidden;\r\n    }\r\n    .login>span {\r\n        width: 85px;\r\n        overflow: hidden;\r\n        white-space: nowrap;\r\n        text-overflow: ellipsis;\r\n        font-size: 12px;\r\n        line-height: 12px;\r\n        line-height: 40px;\r\n        \r\n    }\r\n    \r\n    .login>span>.lh20 {\r\n        line-height: 20px;\r\n     }\r\n    /*.login-yes:after {\r\n        display: block;\r\n        background: url(\"../assets/images/components/go_icon.png\") no-repeat center right;\r\n        background-size: 7px 7px;\r\n    }*/\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 58 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"user-info\" _v-3a023664=\"\">\n    <!-- 未登录 -->\n    <div class=\"nologin\" v-if=\"!loginname\" _v-3a023664=\"\">\n        <span _v-3a023664=\"\"></span>\n        <span @click=\"goEnter\" _v-3a023664=\"\"><a _v-3a023664=\"\">登录</a></span>\n    </div>\n    <!-- 已登录 -->\n    <div class=\"login\" v-if=\"loginname\" @click=\"goUser\" _v-3a023664=\"\">\n        <div class=\"avertar\" _v-3a023664=\"\">\n        \t<img v-if=\"avatar_url\" :src=\"avatar_url\" _v-3a023664=\"\">\n        </div>\n        <div class=\"info\" _v-3a023664=\"\">\n            <span v-if=\"loginname\" v-text=\"loginname\" _v-3a023664=\"\"></span>\n        </div>\n    </div>\n</div>\n";
+
+/***/ },
+/* 59 */
+/***/ function(module, exports) {
+
+	var __vue_script__, __vue_template__
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+
 
 /***/ }
 /******/ ]);
