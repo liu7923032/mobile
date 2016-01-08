@@ -1,0 +1,17 @@
+
+/*将默认边距去掉*/
+html,body,ul,table,tr,td{
+    margin: 0px;
+    padding: 0px;
+}
+
+/*添加模态框*/
+.page-cover{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .4);
+    z-index: 10;
+}

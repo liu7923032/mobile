@@ -1,6 +1,6 @@
 <template>
 		<toolbar :text="title">
-			<span class="glyphicon glyphicon-menu-hamburger" slot="leftBtn" @click="openMenu"></span>
+			<span class="icon-reorder" slot="leftBtn" @click="openMenu"></span>
             <span class="icon-refresh" slot="rightBtn" @click="refresh"></span>
 		</toolbar>
 		<navtabs :tab-items="tabItems" :underline="tabWidth">

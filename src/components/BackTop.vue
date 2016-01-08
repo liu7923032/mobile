@@ -27,7 +27,7 @@
         }
     }
 </script>
-<style>
+<style type="text/css">
     .icon-top {
         position: fixed;
         right: 10px;

@@ -58,11 +58,11 @@
 	
 	var _routers2 = _interopRequireDefault(_routers);
 	
-	var _fastclick = __webpack_require__(45);
+	var _fastclick = __webpack_require__(50);
 	
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 	
-	var _vTouch = __webpack_require__(46);
+	var _vTouch = __webpack_require__(51);
 	
 	var _vTouch2 = _interopRequireDefault(_vTouch);
 	
@@ -12225,15 +12225,15 @@
 	        },
 	        '/workflow': {
 	            name: 'workflow',
-	            component: __webpack_require__(40)
+	            component: __webpack_require__(45)
 	        },
 	        '/login': {
 	            name: 'login',
-	            component: __webpack_require__(41)
+	            component: __webpack_require__(46)
 	        },
 	        '/comment': {
 	            name: 'comment',
-	            component: __webpack_require__(44)
+	            component: __webpack_require__(49)
 	        },
 	
 	        /* 404路由 */
@@ -12676,7 +12676,7 @@
 	// </style>
 	// <template>
 	// 		<toolbar :text="title">
-	// 			<span class="glyphicon glyphicon-menu-hamburger" slot="leftBtn" @click="openMenu"></span>
+	// 			<span class="icon-reorder" slot="leftBtn" @click="openMenu"></span>
 	//             <span class="icon-refresh" slot="rightBtn" @click="refresh"></span>
 	// 		</toolbar>
 	// 		<navtabs :tab-items="tabItems" :underline="tabWidth">
@@ -12886,7 +12886,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n\n\tul[_v-29364ee0]{\n\t\tpadding: 0px;\n\t\tmargin: 0px;\n\t}\n\t.page-cover[_v-29364ee0] {\n\t    position: fixed;\n\t    top: 0;\n\t    right: 0;\n\t    bottom: 0;\n\t    left: 0;\n\t    background: rgba(0, 0, 0, .4);\n\t    z-index: 100;\n\t}\n\t.nav-list[_v-29364ee0]{\n\t\tposition: fixed;\n\t    top: 0;\n\t    bottom: 0;\n\t    left: -200px;\n\t    width: 200px;\n\t    background-color: #fff;\n\t    color: #313131;\n\t    -webkit-transition: all .3s ease;\n\t    transition: all .3s ease;\n\t    z-index: 99;\n\n\t}\n\t.showside[_v-29364ee0] {\n\t   -webkit-transform: translateX(200px);\n\t           transform: translateX(200px);\n\t}\n\t\n\n\n\t/*侧边栏列表*/\n\t.list-ul[_v-29364ee0],.loginout[_v-29364ee0]{\n\t    margin: 0 24px;\n\t    border-top: 1px solid #d4d4d4;\n\t    overflow: hidden;\n\t    padding-top: 9%;\n\t    list-style-type: none;\n\t    \n\t}\n\n\t.list-ul>li[_v-29364ee0],.loginout>li[_v-29364ee0] {\n        font-size: 14px;\n        font-weight: 200;\n        padding: 9% 0;\n        text-align: left;\n        text-indent: 1px;\n        line-height: 15px;\n        color: #7f8c8d;\n        display: block;\n        cursor: pointer;\n    }\n\n    .list-ul>li[_v-29364ee0]:active,.loginout>li[_v-29364ee0]:active {\n       background-color: darkorange;\n       color: red;\n    }\n\n\n\t .list-ul>li[_v-29364ee0]:before,.loginout>li[_v-29364ee0]:before{\n        color: #2c3e50;\n        margin: 0 20px;\n        font-size: 14px;\n    }\n\n    .list-ul>li[_v-29364ee0]:last-child {\n        margin-bottom: 50px;\n    }\n\n    .list-ul>.line[_v-29364ee0]{\n        border-top: 1px solid #d4d4d4;\n    }\n    .list-ul>a[_v-29364ee0] {\n        display: block;\n        color: #313131;\n    }\n", "", {"version":3,"sources":["/./src/components/Sidebar.vue?4c8d24eb"],"names":[],"mappings":";;;CAoDA;EACA,aAAA;EACA,YAAA;EACA;CACA;KACA,gBAAA;KACA,OAAA;KACA,SAAA;KACA,UAAA;KACA,QAAA;KACA,8BAAA;KACA,aAAA;EACA;CACA;EACA,gBAAA;KACA,OAAA;KACA,UAAA;KACA,aAAA;KACA,aAAA;KACA,uBAAA;KACA,eAAA;KACA,iCAAA;KAAA,yBAAA;KACA,YAAA;;EAEA;CACA;IACA,qCAAA;YAAA,6BAAA;EACA;;;;CAIA,SAAA;CACA;KACA,eAAA;KACA,8BAAA;KACA,iBAAA;KACA,gBAAA;KACA,sBAAA;;EAEA;;CAEA;QACA,gBAAA;QACA,iBAAA;QACA,cAAA;QACA,iBAAA;QACA,iBAAA;QACA,kBAAA;QACA,eAAA;QACA,eAAA;QACA,gBAAA;KACA;;IAEA;OACA,6BAAA;OACA,WAAA;KACA;;;EAGA;QACA,eAAA;QACA,eAAA;QACA,gBAAA;KACA;;IAEA;QACA,oBAAA;KACA;;IAEA;QACA,8BAAA;KACA;IACA;QACA,eAAA;QACA,eAAA;KACA","file":"Sidebar.vue","sourcesContent":["<template>\r\n\t<div class=\"page-cover\" v-if=\"showMenu\" @click=\"showCover\">\r\n\t</div>\r\n\r\n\t <section id=\"sideBar\" class=\"nav-list\" :class=\"{'showside':showMenu}\" >\r\n\t    <userheader></userheader>\r\n        <ul class=\"list-ul\">\r\n        \t<li v-for=\"item in menuItems\"  :class=\"item.icon\" v-link=\"{'name':item.link}\" >{{item.text}}</li>\r\n        </ul>\r\n        <ul class=\"loginout\">\r\n        \t<li   class=\"icon-comments\" v-link=\"{'name':comment}\" >问题反馈</li>\r\n        \t<li   class=\"icon-off\" @click=\"loginOut\">退出系统</li>\r\n        </ul>\r\n    </section>\r\n</template>\r\n\r\n<script type=\"text/javascript\">\r\n\r\n\timport UserHeader from './UserHeader.vue';\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\tconsole.log(\"进入sidebar\");\r\n\r\n\t\t},\r\n\t\treplace:true,\r\n\t\tprops:{\r\n\t\t\tmenuItems:{\r\n\t\t\t\ttype:Array,\r\n\t\t\t\tdefault:[]\r\n\t\t\t},\r\n\t\t\tshowMenu:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tshowCover(){\r\n\t\t\t\tthis.showMenu=!this.showMenu;\r\n\t\t\t},\r\n\t\t\tloginOut(){\r\n\t\t\t\t//系统退出\r\n\t\t\t}\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tuserheader:UserHeader\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\r\n\r\n\tul{\r\n\t\tpadding: 0px;\r\n\t\tmargin: 0px;\r\n\t}\r\n\t.page-cover {\r\n\t    position: fixed;\r\n\t    top: 0;\r\n\t    right: 0;\r\n\t    bottom: 0;\r\n\t    left: 0;\r\n\t    background: rgba(0, 0, 0, .4);\r\n\t    z-index: 100;\r\n\t}\r\n\t.nav-list{\r\n\t\tposition: fixed;\r\n\t    top: 0;\r\n\t    bottom: 0;\r\n\t    left: -200px;\r\n\t    width: 200px;\r\n\t    background-color: #fff;\r\n\t    color: #313131;\r\n\t    transition: all .3s ease;\r\n\t    z-index: 99;\r\n\r\n\t}\r\n\t.showside {\r\n\t   transform: translateX(200px);\r\n\t}\r\n\t\r\n\r\n\r\n\t/*侧边栏列表*/\r\n\t.list-ul,.loginout{\r\n\t    margin: 0 24px;\r\n\t    border-top: 1px solid #d4d4d4;\r\n\t    overflow: hidden;\r\n\t    padding-top: 9%;\r\n\t    list-style-type: none;\r\n\t    \r\n\t}\r\n\r\n\t.list-ul>li,.loginout>li {\r\n        font-size: 14px;\r\n        font-weight: 200;\r\n        padding: 9% 0;\r\n        text-align: left;\r\n        text-indent: 1px;\r\n        line-height: 15px;\r\n        color: #7f8c8d;\r\n        display: block;\r\n        cursor: pointer;\r\n    }\r\n\r\n    .list-ul>li:active,.loginout>li:active {\r\n       background-color: darkorange;\r\n       color: red;\r\n    }\r\n\r\n\r\n\t .list-ul>li:before,.loginout>li:before{\r\n        color: #2c3e50;\r\n        margin: 0 20px;\r\n        font-size: 14px;\r\n    }\r\n\r\n    .list-ul>li:last-child {\r\n        margin-bottom: 50px;\r\n    }\r\n\r\n    .list-ul>.line{\r\n        border-top: 1px solid #d4d4d4;\r\n    }\r\n    .list-ul>a {\r\n        display: block;\r\n        color: #313131;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n\n\tul[_v-29364ee0]{\n\t\tpadding: 0px;\n\t\tmargin: 0px;\n\t}\n\t.page-cover[_v-29364ee0] {\n\t  \n\t}\n\t.nav-list[_v-29364ee0]{\n\t\tposition: fixed;\n\t    top: 0;\n\t    bottom: 0;\n\t    left: -200px;\n\t    width: 200px;\n\t    background-color: #fff;\n\t    color: #313131;\n\t    -webkit-transition: all .3s ease;\n\t    transition: all .3s ease;\n\t    z-index: 99;\n\n\t}\n\t.showside[_v-29364ee0] {\n\t   -webkit-transform: translateX(200px);\n\t           transform: translateX(200px);\n\t}\n\t\n\n\n\t/*侧边栏列表*/\n\t.list-ul[_v-29364ee0],.loginout[_v-29364ee0]{\n\t    margin: 0 24px;\n\t    border-top: 1px solid #d4d4d4;\n\t    overflow: hidden;\n\t    padding-top: 9%;\n\t    list-style-type: none;\n\t    \n\t}\n\n\t.list-ul>li[_v-29364ee0],.loginout>li[_v-29364ee0] {\n        font-size: 14px;\n        font-weight: 200;\n        padding: 9% 0;\n        text-align: left;\n        text-indent: 1px;\n        line-height: 15px;\n        color: #7f8c8d;\n        display: block;\n        cursor: pointer;\n    }\n\n    .list-ul>li[_v-29364ee0]:active,.loginout>li[_v-29364ee0]:active {\n       background-color: darkorange;\n       color: red;\n    }\n\n\n\t .list-ul>li[_v-29364ee0]:before,.loginout>li[_v-29364ee0]:before{\n        color: #2c3e50;\n        margin: 0 20px;\n        font-size: 14px;\n    }\n\n    .list-ul>li[_v-29364ee0]:last-child {\n        margin-bottom: 50px;\n    }\n\n    .list-ul>.line[_v-29364ee0]{\n        border-top: 1px solid #d4d4d4;\n    }\n    .list-ul>a[_v-29364ee0] {\n        display: block;\n        color: #313131;\n    }\n", "", {"version":3,"sources":["/./src/components/Sidebar.vue?510424d9"],"names":[],"mappings":";;;CA4EA;EACA,aAAA;EACA,YAAA;EACA;CACA;;EAEA;CACA;EACA,gBAAA;KACA,OAAA;KACA,UAAA;KACA,aAAA;KACA,aAAA;KACA,uBAAA;KACA,eAAA;KACA,iCAAA;KAAA,yBAAA;KACA,YAAA;;EAEA;CACA;IACA,qCAAA;YAAA,6BAAA;EACA;;;;CAIA,SAAA;CACA;KACA,eAAA;KACA,8BAAA;KACA,iBAAA;KACA,gBAAA;KACA,sBAAA;;EAEA;;CAEA;QACA,gBAAA;QACA,iBAAA;QACA,cAAA;QACA,iBAAA;QACA,iBAAA;QACA,kBAAA;QACA,eAAA;QACA,eAAA;QACA,gBAAA;KACA;;IAEA;OACA,6BAAA;OACA,WAAA;KACA;;;EAGA;QACA,eAAA;QACA,eAAA;QACA,gBAAA;KACA;;IAEA;QACA,oBAAA;KACA;;IAEA;QACA,8BAAA;KACA;IACA;QACA,eAAA;QACA,eAAA;KACA","file":"Sidebar.vue","sourcesContent":["<template>\r\n\t<!-- <div class=\"page-cover\" v-if=\"showMenu\" @click=\"showCover\">\r\n\t</div> -->\r\n\r\n\t <section id=\"sideBar\" class=\"nav-list\" :class=\"{'showside':showMenu}\" >\r\n\t    <userheader></userheader>\r\n        <ul class=\"list-ul\">\r\n        \t<li v-for=\"item in menuItems\"  :class=\"item.icon\" v-link=\"{'name':item.link}\" >{{item.text}}</li>\r\n        </ul>\r\n        <ul class=\"loginout\">\r\n        \t<li   class=\"icon-comments\" v-link=\"{'name':comment}\" >问题反馈</li>\r\n        \t<li   class=\"icon-off\" @click=\"loginOut\">退出系统</li>\r\n        </ul>\r\n    </section>\r\n</template>\r\n\r\n<script type=\"text/javascript\">\r\n\r\n\timport UserHeader from './UserHeader.vue';\r\n\timport EventListener from './utils/EventListener.js'\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\tconsole.log(\"进入sidebar\");\r\n\r\n\t\t},\r\n\t\treplace:true,\r\n\t\tprops:{\r\n\t\t\tmenuItems:{\r\n\t\t\t\ttype:Array,\r\n\t\t\t\tdefault:[]\r\n\t\t\t},\r\n\t\t\tshowMenu:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tshowCover(){\r\n\t\t\t\tthis.showMenu=!this.showMenu;\r\n\t\t\t},\r\n\t\t\tloginOut(){\r\n\t\t\t\t//系统退出\r\n\t\t\t}\r\n\t\t},\r\n        watch:{\r\n          'showMenu':(val,oldValue)=>{\r\n          \tvar body=document.body;\r\n              if(val){\r\n                  //添加模态框\r\n                  body.classList.addClass('page-cover');\r\n                  //给对象注册时间\r\n                  this._blurModalContentEvent = EventListener.listen(this.$el, 'click', (e)=> {\r\n\t\t            if (e.target === el) this.show = false\r\n\t\t          })\r\n              }else{\r\n              \t \tif (this._blurModalContentEvent) {\r\n              \t \t\tthis._blurModalContentEvent.remove()\r\n              \t \t}\r\n\t\t\t          // el.classList.remove('in')\r\n\t\t\t          setTimeout(()=> {\r\n\t\t\t            // el.style.display = 'none'\r\n\t\t\t            body.classList.remove('page-cover')\r\n\t\t\t            // body.style.paddingRight = '0'\r\n\t\t\t          }, 300)\r\n              }\r\n          }\r\n        },\r\n\t\tcomponents:{\r\n\t\t\tuserheader:UserHeader\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\r\n\r\n\tul{\r\n\t\tpadding: 0px;\r\n\t\tmargin: 0px;\r\n\t}\r\n\t.page-cover {\r\n\t  \r\n\t}\r\n\t.nav-list{\r\n\t\tposition: fixed;\r\n\t    top: 0;\r\n\t    bottom: 0;\r\n\t    left: -200px;\r\n\t    width: 200px;\r\n\t    background-color: #fff;\r\n\t    color: #313131;\r\n\t    transition: all .3s ease;\r\n\t    z-index: 99;\r\n\r\n\t}\r\n\t.showside {\r\n\t   transform: translateX(200px);\r\n\t}\r\n\t\r\n\r\n\r\n\t/*侧边栏列表*/\r\n\t.list-ul,.loginout{\r\n\t    margin: 0 24px;\r\n\t    border-top: 1px solid #d4d4d4;\r\n\t    overflow: hidden;\r\n\t    padding-top: 9%;\r\n\t    list-style-type: none;\r\n\t    \r\n\t}\r\n\r\n\t.list-ul>li,.loginout>li {\r\n        font-size: 14px;\r\n        font-weight: 200;\r\n        padding: 9% 0;\r\n        text-align: left;\r\n        text-indent: 1px;\r\n        line-height: 15px;\r\n        color: #7f8c8d;\r\n        display: block;\r\n        cursor: pointer;\r\n    }\r\n\r\n    .list-ul>li:active,.loginout>li:active {\r\n       background-color: darkorange;\r\n       color: red;\r\n    }\r\n\r\n\r\n\t .list-ul>li:before,.loginout>li:before{\r\n        color: #2c3e50;\r\n        margin: 0 20px;\r\n        font-size: 14px;\r\n    }\r\n\r\n    .list-ul>li:last-child {\r\n        margin-bottom: 50px;\r\n    }\r\n\r\n    .list-ul>.line{\r\n        border-top: 1px solid #d4d4d4;\r\n    }\r\n    .list-ul>a {\r\n        display: block;\r\n        color: #313131;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -12895,7 +12895,7 @@
 /* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -12905,7 +12905,29 @@
 	
 	var _UserHeader2 = _interopRequireDefault(_UserHeader);
 	
+	var _EventListener = __webpack_require__(65);
+	
+	var _EventListener2 = _interopRequireDefault(_EventListener);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// <template>
+	// 	<!-- <div class="page-cover" v-if="showMenu" @click="showCover">
+	// 	</div> -->
+	
+	// 	 <section id="sideBar" class="nav-list" :class="{'showside':showMenu}" >
+	// 	    <userheader></userheader>
+	//         <ul class="list-ul">
+	//         	<li v-for="item in menuItems"  :class="item.icon" v-link="{'name':item.link}" >{{item.text}}</li>
+	//         </ul>
+	//         <ul class="loginout">
+	//         	<li   class="icon-comments" v-link="{'name':comment}" >问题反馈</li>
+	//         	<li   class="icon-off" @click="loginOut">退出系统</li>
+	//         </ul>
+	//     </section>
+	// </template>
+	
+	// <script type="text/javascript">
 	
 	exports.default = {
 		created: function created() {
@@ -12931,6 +12953,29 @@
 				//系统退出
 			}
 		},
+		watch: {
+			'showMenu': function showMenu(val, oldValue) {
+				var body = document.body;
+				if (val) {
+					//添加模态框
+					body.classList.addClass('page-cover');
+					//给对象注册时间
+					undefined._blurModalContentEvent = _EventListener2.default.listen(undefined.$el, 'click', function (e) {
+						if (e.target === el) undefined.show = false;
+					});
+				} else {
+					if (undefined._blurModalContentEvent) {
+						undefined._blurModalContentEvent.remove();
+					}
+					// el.classList.remove('in')
+					setTimeout(function () {
+						// el.style.display = 'none'
+						body.classList.remove('page-cover');
+						// body.style.paddingRight = '0'
+					}, 300);
+				}
+			}
+		},
 		components: {
 			userheader: _UserHeader2.default
 		}
@@ -12944,13 +12989,7 @@
 	// 		margin: 0px;
 	// 	}
 	// 	.page-cover {
-	// 	    position: fixed;
-	// 	    top: 0;
-	// 	    right: 0;
-	// 	    bottom: 0;
-	// 	    left: 0;
-	// 	    background: rgba(0, 0, 0, .4);
-	// 	    z-index: 100;
+
 	// 	}
 	// 	.nav-list{
 	// 		position: fixed;
@@ -13014,23 +13053,6 @@
 	//     }
 	// </style>
 	/* generated by vue-loader */
-	// <template>
-	// 	<div class="page-cover" v-if="showMenu" @click="showCover">
-	// 	</div>
-
-	// 	 <section id="sideBar" class="nav-list" :class="{'showside':showMenu}" >
-	// 	    <userheader></userheader>
-	//         <ul class="list-ul">
-	//         	<li v-for="item in menuItems"  :class="item.icon" v-link="{'name':item.link}" >{{item.text}}</li>
-	//         </ul>
-	//         <ul class="loginout">
-	//         	<li   class="icon-comments" v-link="{'name':comment}" >问题反馈</li>
-	//         	<li   class="icon-off" @click="loginOut">退出系统</li>
-	//         </ul>
-	//     </section>
-	// </template>
-
-	// <script type="text/javascript">
 
 /***/ },
 /* 20 */
@@ -13249,7 +13271,7 @@
 /* 27 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t<div class=\"page-cover\" v-if=\"showMenu\" @click=\"showCover\" _v-29364ee0=\"\">\n\t</div>\n\n\t <section id=\"sideBar\" class=\"nav-list\" :class=\"{'showside':showMenu}\" _v-29364ee0=\"\">\n\t    <userheader _v-29364ee0=\"\"></userheader>\n        <ul class=\"list-ul\" _v-29364ee0=\"\">\n        \t<li v-for=\"item in menuItems\" :class=\"item.icon\" v-link=\"{'name':item.link}\" _v-29364ee0=\"\">{{item.text}}</li>\n        </ul>\n        <ul class=\"loginout\" _v-29364ee0=\"\">\n        \t<li class=\"icon-comments\" v-link=\"{'name':comment}\" _v-29364ee0=\"\">问题反馈</li>\n        \t<li class=\"icon-off\" @click=\"loginOut\" _v-29364ee0=\"\">退出系统</li>\n        </ul>\n    </section>\n";
+	module.exports = "\n\t<!-- <div class=\"page-cover\" v-if=\"showMenu\" @click=\"showCover\">\n\t</div> -->\n\n\t <section id=\"sideBar\" class=\"nav-list\" :class=\"{'showside':showMenu}\" _v-29364ee0=\"\">\n\t    <userheader _v-29364ee0=\"\"></userheader>\n        <ul class=\"list-ul\" _v-29364ee0=\"\">\n        \t<li v-for=\"item in menuItems\" :class=\"item.icon\" v-link=\"{'name':item.link}\" _v-29364ee0=\"\">{{item.text}}</li>\n        </ul>\n        <ul class=\"loginout\" _v-29364ee0=\"\">\n        \t<li class=\"icon-comments\" v-link=\"{'name':comment}\" _v-29364ee0=\"\">问题反馈</li>\n        \t<li class=\"icon-off\" @click=\"loginOut\" _v-29364ee0=\"\">退出系统</li>\n        </ul>\n    </section>\n";
 
 /***/ },
 /* 28 */
@@ -13433,7 +13455,7 @@
 /* 33 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t\t<toolbar :text=\"title\">\n\t\t\t<span class=\"glyphicon glyphicon-menu-hamburger\" slot=\"leftBtn\" @click=\"openMenu\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\"></span>\n\t\t</toolbar>\n\t\t<navtabs :tab-items=\"tabItems\" :underline=\"tabWidth\">\n\t\t</navtabs>\n\t\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" >\n\t\t\t\n\t\t</sidebar>\n";
+	module.exports = "\n\t\t<toolbar :text=\"title\">\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\"></span>\n\t\t</toolbar>\n\t\t<navtabs :tab-items=\"tabItems\" :underline=\"tabWidth\">\n\t\t</navtabs>\n\t\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" >\n\t\t\t\n\t\t</sidebar>\n";
 
 /***/ },
 /* 34 */
@@ -13452,7 +13474,7 @@
 	var __vue_script__, __vue_template__
 	__webpack_require__(36)
 	__vue_script__ = __webpack_require__(38)
-	__vue_template__ = __webpack_require__(39)
+	__vue_template__ = __webpack_require__(44)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -13522,7 +13544,7 @@
 	
 	var _ToolBar2 = _interopRequireDefault(_ToolBar);
 	
-	var _Loading = __webpack_require__(60);
+	var _Loading = __webpack_require__(39);
 	
 	var _Loading2 = _interopRequireDefault(_Loading);
 	
@@ -13590,12 +13612,198 @@
 
 /***/ },
 /* 39 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(40)
+	__vue_script__ = __webpack_require__(42)
+	__vue_template__ = __webpack_require__(43)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Loading.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 40 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(41);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(9)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-33df34c0&file=Loading.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Loading.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-33df34c0&file=Loading.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Loading.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(8)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\t\n\t.modal{\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -webkit-flex;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n        -webkit-flex-flow: row nowrap;\n            -ms-flex-flow: row nowrap;\n                flex-flow: row nowrap;\n        -webkit-box-pack: center;\n        -webkit-justify-content: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        height:100%;\n        width: 100%;\n        -webkit-box-align:  center;\n        -webkit-align-items:  center;\n            -ms-flex-align:  center;\n                align-items:  center;\n        position: absolute;\n        /*visibility: hidden;*/\n        left: 0;\n        top: 0;\n        z-index: 100;\n        background-color: rgba(153,153,153,0.5);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */\n\t}\n\n\n\n\t   .spinner {\n            width: 100px;\n            height: 60px;\n            font-size: 10px;\n        }\n        \n        .spinner > div {\n            background-color: limegreen;\n            height: 100%;\n            width: 6px;\n            display: inline-block;\n            -webkit-animation: stretchdelay 1.2s infinite ease-in-out;\n            animation: stretchdelay 1.2s infinite ease-in-out;\n        }\n        \n        .spinner .spinnerBar2 {\n            -webkit-animation-delay: -1.1s;\n            animation-delay: -1.1s;\n        }\n        \n        .spinner .spinnerBar3 {\n            -webkit-animation-delay: -1.0s;\n            animation-delay: -1.0s;\n        }\n        \n        .spinner .spinnerBar4 {\n            -webkit-animation-delay: -0.9s;\n            animation-delay: -0.9s;\n        }\n        \n        .spinner .spinnerBar5 {\n            -webkit-animation-delay: -0.8s;\n            animation-delay: -0.8s;\n        }\n        \n        @-webkit-keyframes stretchdelay {\n            0%,\n            40%,\n            100% {\n                -webkit-transform: scaleY(0.4)\n            }\n            20% {\n                -webkit-transform: scaleY(1.0)\n            }\n        }\n        \n        @keyframes stretchdelay {\n            0%,\n            40%,\n            100% {\n                transform: scaleY(0.4);\n                -webkit-transform: scaleY(0.4);\n            }\n            20% {\n                transform: scaleY(1.0);\n                -webkit-transform: scaleY(1.0);\n            }\n        }\n\n", "", {"version":3,"sources":["/./src/components/Loading.vue?05b09125"],"names":[],"mappings":";;CAiCA;EACA,qBAAA;EAAA,sBAAA;EAAA,qBAAA;EAAA,cAAA;QACA,8BAAA;YAAA,0BAAA;gBAAA,sBAAA;QACA,yBAAA;QAAA,gCAAA;YAAA,sBAAA;gBAAA,wBAAA;QACA,YAAA;QACA,YAAA;QACA,2BAAA;QAAA,6BAAA;YAAA,wBAAA;gBAAA,qBAAA;QACA,mBAAA;QACA,uBAAA;QACA,QAAA;QACA,OAAA;QACA,aAAA;QACA,wCAAA,0CAAA;EACA;;;;IAIA;YACA,aAAA;YACA,aAAA;YACA,gBAAA;SACA;;QAEA;YACA,4BAAA;YACA,aAAA;YACA,WAAA;YACA,sBAAA;YACA,0DAAA;YACA,kDAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA;;;gBAGA,8BAAA;aACA;YACA;gBACA,8BAAA;aACA;SACA;;QAEA;YACA;;;gBAGA,uBAAA;gBACA,+BAAA;aACA;YACA;gBACA,uBAAA;gBACA,+BAAA;aACA;SACA","file":"Loading.vue","sourcesContent":["<template>\r\n\t<div class=\"modal\" v-if=\"loading\">\r\n        <div class=\"spinner\">\r\n            <div class=\"spinnerBar1\"></div>\r\n            <div class=\"spinnerBar2\"></div>\r\n            <div class=\"spinnerBar3\"></div>\r\n            <div class=\"spinnerBar4\"></div>\r\n            <div class=\"spinnerBar5\"></div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n        created(){\r\n            console.log(\"loading is created\")\r\n            console.log(this.loading);\r\n        },\r\n\t\tprops:{\r\n\t\t\tloading:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n</script>\r\n\r\n\r\n<style>\r\n\t\r\n\t.modal{\r\n\t\tdisplay: flex;\r\n        flex-flow: row nowrap;\r\n        justify-content: center;\r\n        height:100%;\r\n        width: 100%;\r\n        align-items:  center;\r\n        position: absolute;\r\n        /*visibility: hidden;*/\r\n        left: 0;\r\n        top: 0;\r\n        z-index: 100;\r\n        background-color: rgba(153,153,153,0.5);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */\r\n\t}\r\n\r\n\r\n\r\n\t   .spinner {\r\n            width: 100px;\r\n            height: 60px;\r\n            font-size: 10px;\r\n        }\r\n        \r\n        .spinner > div {\r\n            background-color: limegreen;\r\n            height: 100%;\r\n            width: 6px;\r\n            display: inline-block;\r\n            -webkit-animation: stretchdelay 1.2s infinite ease-in-out;\r\n            animation: stretchdelay 1.2s infinite ease-in-out;\r\n        }\r\n        \r\n        .spinner .spinnerBar2 {\r\n            -webkit-animation-delay: -1.1s;\r\n            animation-delay: -1.1s;\r\n        }\r\n        \r\n        .spinner .spinnerBar3 {\r\n            -webkit-animation-delay: -1.0s;\r\n            animation-delay: -1.0s;\r\n        }\r\n        \r\n        .spinner .spinnerBar4 {\r\n            -webkit-animation-delay: -0.9s;\r\n            animation-delay: -0.9s;\r\n        }\r\n        \r\n        .spinner .spinnerBar5 {\r\n            -webkit-animation-delay: -0.8s;\r\n            animation-delay: -0.8s;\r\n        }\r\n        \r\n        @-webkit-keyframes stretchdelay {\r\n            0%,\r\n            40%,\r\n            100% {\r\n                -webkit-transform: scaleY(0.4)\r\n            }\r\n            20% {\r\n                -webkit-transform: scaleY(1.0)\r\n            }\r\n        }\r\n        \r\n        @keyframes stretchdelay {\r\n            0%,\r\n            40%,\r\n            100% {\r\n                transform: scaleY(0.4);\r\n                -webkit-transform: scaleY(0.4);\r\n            }\r\n            20% {\r\n                transform: scaleY(1.0);\r\n                -webkit-transform: scaleY(1.0);\r\n            }\r\n        }\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 42 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	        value: true
+	});
+	// <template>
+	// 	<div class="modal" v-if="loading">
+	//         <div class="spinner">
+	//             <div class="spinnerBar1"></div>
+	//             <div class="spinnerBar2"></div>
+	//             <div class="spinnerBar3"></div>
+	//             <div class="spinnerBar4"></div>
+	//             <div class="spinnerBar5"></div>
+	//         </div>
+	//     </div>
+	// </template>
+	
+	// <script lang="babel">
+	
+	exports.default = {
+	        created: function created() {
+	                console.log("loading is created");
+	                console.log(this.loading);
+	        },
+	
+	        props: {
+	                loading: {
+	                        type: Boolean,
+	                        default: false
+	                }
+	        }
+	};
+	
+	// </script>
+
+	// <style>
+
+	// 	.modal{
+	// 		display: flex;
+	//         flex-flow: row nowrap;
+	//         justify-content: center;
+	//         height:100%;
+	//         width: 100%;
+	//         align-items:  center;
+	//         position: absolute;
+	//         /*visibility: hidden;*/
+	//         left: 0;
+	//         top: 0;
+	//         z-index: 100;
+	//         background-color: rgba(153,153,153,0.5);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */
+	// 	}
+
+	// 	   .spinner {
+	//             width: 100px;
+	//             height: 60px;
+	//             font-size: 10px;
+	//         }
+
+	//         .spinner > div {
+	//             background-color: limegreen;
+	//             height: 100%;
+	//             width: 6px;
+	//             display: inline-block;
+	//             -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+	//             animation: stretchdelay 1.2s infinite ease-in-out;
+	//         }
+
+	//         .spinner .spinnerBar2 {
+	//             -webkit-animation-delay: -1.1s;
+	//             animation-delay: -1.1s;
+	//         }
+
+	//         .spinner .spinnerBar3 {
+	//             -webkit-animation-delay: -1.0s;
+	//             animation-delay: -1.0s;
+	//         }
+
+	//         .spinner .spinnerBar4 {
+	//             -webkit-animation-delay: -0.9s;
+	//             animation-delay: -0.9s;
+	//         }
+
+	//         .spinner .spinnerBar5 {
+	//             -webkit-animation-delay: -0.8s;
+	//             animation-delay: -0.8s;
+	//         }
+
+	//         @-webkit-keyframes stretchdelay {
+	//             0%,
+	//             40%,
+	//             100% {
+	//                 -webkit-transform: scaleY(0.4)
+	//             }
+	//             20% {
+	//                 -webkit-transform: scaleY(1.0)
+	//             }
+	//         }
+
+	//         @keyframes stretchdelay {
+	//             0%,
+	//             40%,
+	//             100% {
+	//                 transform: scaleY(0.4);
+	//                 -webkit-transform: scaleY(0.4);
+	//             }
+	//             20% {
+	//                 transform: scaleY(1.0);
+	//                 -webkit-transform: scaleY(1.0);
+	//             }
+	//         }
+
+	// </style>
+
+/***/ },
+/* 43 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\t<div class=\"modal\" v-if=\"loading\">\n        <div class=\"spinner\">\n            <div class=\"spinnerBar1\"></div>\n            <div class=\"spinnerBar2\"></div>\n            <div class=\"spinnerBar3\"></div>\n            <div class=\"spinnerBar4\"></div>\n            <div class=\"spinnerBar5\"></div>\n        </div>\n    </div>\n";
+
+/***/ },
+/* 44 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<toolbar text=\"个人主页\">\n\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back\">返回</span>\n\t<span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"loadUserInfo\"></span>\n</toolbar>\n<div>\n\t\n</div>\n\n<loading :loading=\"isload\"></loading>\n";
 
 /***/ },
-/* 40 */
+/* 45 */
 /***/ function(module, exports) {
 
 	var __vue_script__, __vue_template__
@@ -13605,12 +13813,12 @@
 
 
 /***/ },
-/* 41 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(42)
-	__vue_template__ = __webpack_require__(43)
+	__vue_script__ = __webpack_require__(47)
+	__vue_template__ = __webpack_require__(48)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -13627,7 +13835,7 @@
 	})()}
 
 /***/ },
-/* 42 */
+/* 47 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -13664,13 +13872,13 @@
 	/* generated by vue-loader */
 
 /***/ },
-/* 43 */
+/* 48 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\n<div class=\"container\">\n\t<div >\n\t\t<input type=\"text\" name=\"\">\n\t</div>\n</div>\n";
 
 /***/ },
-/* 44 */
+/* 49 */
 /***/ function(module, exports) {
 
 	var __vue_script__, __vue_template__
@@ -13680,7 +13888,7 @@
 
 
 /***/ },
-/* 45 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
@@ -14527,19 +14735,19 @@
 
 
 /***/ },
-/* 46 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _keys = __webpack_require__(47);
+	var _keys = __webpack_require__(52);
 	
 	var _keys2 = _interopRequireDefault(_keys);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var vueTouch = {};
-	var Hammer =  true ? __webpack_require__(59) : window.Hammer;
+	var Hammer =  true ? __webpack_require__(64) : window.Hammer;
 	var gestures = ['tap', 'pan', 'pinch', 'press', 'rotate', 'swipe'];
 	var customeEvents = {};
 	
@@ -14638,43 +14846,43 @@
 	module.exports = vueTouch;
 
 /***/ },
-/* 47 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(48), __esModule: true };
+	module.exports = { "default": __webpack_require__(53), __esModule: true };
 
 /***/ },
-/* 48 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(49);
-	module.exports = __webpack_require__(55).Object.keys;
+	__webpack_require__(54);
+	module.exports = __webpack_require__(60).Object.keys;
 
 /***/ },
-/* 49 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(50);
+	var toObject = __webpack_require__(55);
 	
-	__webpack_require__(52)('keys', function($keys){
+	__webpack_require__(57)('keys', function($keys){
 	  return function keys(it){
 	    return $keys(toObject(it));
 	  };
 	});
 
 /***/ },
-/* 50 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
-	var defined = __webpack_require__(51);
+	var defined = __webpack_require__(56);
 	module.exports = function(it){
 	  return Object(defined(it));
 	};
 
 /***/ },
-/* 51 */
+/* 56 */
 /***/ function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -14684,13 +14892,13 @@
 	};
 
 /***/ },
-/* 52 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(53)
-	  , core    = __webpack_require__(55)
-	  , fails   = __webpack_require__(58);
+	var $export = __webpack_require__(58)
+	  , core    = __webpack_require__(60)
+	  , fails   = __webpack_require__(63);
 	module.exports = function(KEY, exec){
 	  var fn  = (core.Object || {})[KEY] || Object[KEY]
 	    , exp = {};
@@ -14699,12 +14907,12 @@
 	};
 
 /***/ },
-/* 53 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(54)
-	  , core      = __webpack_require__(55)
-	  , ctx       = __webpack_require__(56)
+	var global    = __webpack_require__(59)
+	  , core      = __webpack_require__(60)
+	  , ctx       = __webpack_require__(61)
 	  , PROTOTYPE = 'prototype';
 	
 	var $export = function(type, name, source){
@@ -14750,7 +14958,7 @@
 	module.exports = $export;
 
 /***/ },
-/* 54 */
+/* 59 */
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -14759,18 +14967,18 @@
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
-/* 55 */
+/* 60 */
 /***/ function(module, exports) {
 
 	var core = module.exports = {version: '1.2.6'};
 	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ },
-/* 56 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(57);
+	var aFunction = __webpack_require__(62);
 	module.exports = function(fn, that, length){
 	  aFunction(fn);
 	  if(that === undefined)return fn;
@@ -14791,7 +14999,7 @@
 	};
 
 /***/ },
-/* 57 */
+/* 62 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -14800,7 +15008,7 @@
 	};
 
 /***/ },
-/* 58 */
+/* 63 */
 /***/ function(module, exports) {
 
 	module.exports = function(exec){
@@ -14812,7 +15020,7 @@
 	};
 
 /***/ },
-/* 59 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.6 - 2015-12-23
@@ -17386,190 +17594,44 @@
 
 
 /***/ },
-/* 60 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__webpack_require__(61)
-	__vue_script__ = __webpack_require__(63)
-	__vue_template__ = __webpack_require__(64)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Loading.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 61 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(62);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(9)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-33df34c0&file=Loading.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Loading.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-33df34c0&file=Loading.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Loading.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 62 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(8)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n\t\n\t.modal{\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -webkit-flex;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n        -webkit-flex-flow: row nowrap;\n            -ms-flex-flow: row nowrap;\n                flex-flow: row nowrap;\n        -webkit-box-pack: center;\n        -webkit-justify-content: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        height:100%;\n        width: 100%;\n        -webkit-box-align:  center;\n        -webkit-align-items:  center;\n            -ms-flex-align:  center;\n                align-items:  center;\n        position: absolute;\n        /*visibility: hidden;*/\n        left: 0;\n        top: 0;\n        z-index: 100;\n        background-color: rgba(153,153,153,0.5);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */\n\t}\n\n\n\n\t   .spinner {\n            width: 100px;\n            height: 60px;\n            font-size: 10px;\n        }\n        \n        .spinner > div {\n            background-color: limegreen;\n            height: 100%;\n            width: 6px;\n            display: inline-block;\n            -webkit-animation: stretchdelay 1.2s infinite ease-in-out;\n            animation: stretchdelay 1.2s infinite ease-in-out;\n        }\n        \n        .spinner .spinnerBar2 {\n            -webkit-animation-delay: -1.1s;\n            animation-delay: -1.1s;\n        }\n        \n        .spinner .spinnerBar3 {\n            -webkit-animation-delay: -1.0s;\n            animation-delay: -1.0s;\n        }\n        \n        .spinner .spinnerBar4 {\n            -webkit-animation-delay: -0.9s;\n            animation-delay: -0.9s;\n        }\n        \n        .spinner .spinnerBar5 {\n            -webkit-animation-delay: -0.8s;\n            animation-delay: -0.8s;\n        }\n        \n        @-webkit-keyframes stretchdelay {\n            0%,\n            40%,\n            100% {\n                -webkit-transform: scaleY(0.4)\n            }\n            20% {\n                -webkit-transform: scaleY(1.0)\n            }\n        }\n        \n        @keyframes stretchdelay {\n            0%,\n            40%,\n            100% {\n                transform: scaleY(0.4);\n                -webkit-transform: scaleY(0.4);\n            }\n            20% {\n                transform: scaleY(1.0);\n                -webkit-transform: scaleY(1.0);\n            }\n        }\n\n", "", {"version":3,"sources":["/./src/components/Loading.vue?05b09125"],"names":[],"mappings":";;CAiCA;EACA,qBAAA;EAAA,sBAAA;EAAA,qBAAA;EAAA,cAAA;QACA,8BAAA;YAAA,0BAAA;gBAAA,sBAAA;QACA,yBAAA;QAAA,gCAAA;YAAA,sBAAA;gBAAA,wBAAA;QACA,YAAA;QACA,YAAA;QACA,2BAAA;QAAA,6BAAA;YAAA,wBAAA;gBAAA,qBAAA;QACA,mBAAA;QACA,uBAAA;QACA,QAAA;QACA,OAAA;QACA,aAAA;QACA,wCAAA,0CAAA;EACA;;;;IAIA;YACA,aAAA;YACA,aAAA;YACA,gBAAA;SACA;;QAEA;YACA,4BAAA;YACA,aAAA;YACA,WAAA;YACA,sBAAA;YACA,0DAAA;YACA,kDAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA;;;gBAGA,8BAAA;aACA;YACA;gBACA,8BAAA;aACA;SACA;;QAEA;YACA;;;gBAGA,uBAAA;gBACA,+BAAA;aACA;YACA;gBACA,uBAAA;gBACA,+BAAA;aACA;SACA","file":"Loading.vue","sourcesContent":["<template>\r\n\t<div class=\"modal\" v-if=\"loading\">\r\n        <div class=\"spinner\">\r\n            <div class=\"spinnerBar1\"></div>\r\n            <div class=\"spinnerBar2\"></div>\r\n            <div class=\"spinnerBar3\"></div>\r\n            <div class=\"spinnerBar4\"></div>\r\n            <div class=\"spinnerBar5\"></div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n        created(){\r\n            console.log(\"loading is created\")\r\n            console.log(this.loading);\r\n        },\r\n\t\tprops:{\r\n\t\t\tloading:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n</script>\r\n\r\n\r\n<style>\r\n\t\r\n\t.modal{\r\n\t\tdisplay: flex;\r\n        flex-flow: row nowrap;\r\n        justify-content: center;\r\n        height:100%;\r\n        width: 100%;\r\n        align-items:  center;\r\n        position: absolute;\r\n        /*visibility: hidden;*/\r\n        left: 0;\r\n        top: 0;\r\n        z-index: 100;\r\n        background-color: rgba(153,153,153,0.5);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */\r\n\t}\r\n\r\n\r\n\r\n\t   .spinner {\r\n            width: 100px;\r\n            height: 60px;\r\n            font-size: 10px;\r\n        }\r\n        \r\n        .spinner > div {\r\n            background-color: limegreen;\r\n            height: 100%;\r\n            width: 6px;\r\n            display: inline-block;\r\n            -webkit-animation: stretchdelay 1.2s infinite ease-in-out;\r\n            animation: stretchdelay 1.2s infinite ease-in-out;\r\n        }\r\n        \r\n        .spinner .spinnerBar2 {\r\n            -webkit-animation-delay: -1.1s;\r\n            animation-delay: -1.1s;\r\n        }\r\n        \r\n        .spinner .spinnerBar3 {\r\n            -webkit-animation-delay: -1.0s;\r\n            animation-delay: -1.0s;\r\n        }\r\n        \r\n        .spinner .spinnerBar4 {\r\n            -webkit-animation-delay: -0.9s;\r\n            animation-delay: -0.9s;\r\n        }\r\n        \r\n        .spinner .spinnerBar5 {\r\n            -webkit-animation-delay: -0.8s;\r\n            animation-delay: -0.8s;\r\n        }\r\n        \r\n        @-webkit-keyframes stretchdelay {\r\n            0%,\r\n            40%,\r\n            100% {\r\n                -webkit-transform: scaleY(0.4)\r\n            }\r\n            20% {\r\n                -webkit-transform: scaleY(1.0)\r\n            }\r\n        }\r\n        \r\n        @keyframes stretchdelay {\r\n            0%,\r\n            40%,\r\n            100% {\r\n                transform: scaleY(0.4);\r\n                -webkit-transform: scaleY(0.4);\r\n            }\r\n            20% {\r\n                transform: scaleY(1.0);\r\n                -webkit-transform: scaleY(1.0);\r\n            }\r\n        }\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 63 */
+/* 65 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	        value: true
+	  value: true
 	});
-	// <template>
-	// 	<div class="modal" v-if="loading">
-	//         <div class="spinner">
-	//             <div class="spinnerBar1"></div>
-	//             <div class="spinnerBar2"></div>
-	//             <div class="spinnerBar3"></div>
-	//             <div class="spinnerBar4"></div>
-	//             <div class="spinnerBar5"></div>
-	//         </div>
-	//     </div>
-	// </template>
+	var EventListener = {
+	  /**
+	   * Listen to DOM events during the bubble phase.
+	   *
+	   * @param {DOMEventTarget} target DOM element to register listener on.
+	   * @param {string} eventType Event type, e.g. 'click' or 'mouseover'.
+	   * @param {function} callback Callback function.
+	   * @return {object} Object with a `remove` method.
+	   */
 	
-	// <script lang="babel">
-	
-	exports.default = {
-	        created: function created() {
-	                console.log("loading is created");
-	                console.log(this.loading);
-	        },
-	
-	        props: {
-	                loading: {
-	                        type: Boolean,
-	                        default: false
-	                }
+	  listen: function listen(target, eventType, callback) {
+	    if (target.addEventListener) {
+	      target.addEventListener(eventType, callback, false);
+	      return {
+	        remove: function remove() {
+	          target.removeEventListener(eventType, callback, false);
 	        }
+	      };
+	    } else if (target.attachEvent) {
+	      target.attachEvent('on' + eventType, callback);
+	      return {
+	        remove: function remove() {
+	          target.detachEvent('on' + eventType, callback);
+	        }
+	      };
+	    }
+	  }
 	};
 	
-	// </script>
-
-	// <style>
-
-	// 	.modal{
-	// 		display: flex;
-	//         flex-flow: row nowrap;
-	//         justify-content: center;
-	//         height:100%;
-	//         width: 100%;
-	//         align-items:  center;
-	//         position: absolute;
-	//         /*visibility: hidden;*/
-	//         left: 0;
-	//         top: 0;
-	//         z-index: 100;
-	//         background-color: rgba(153,153,153,0.5);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */
-	// 	}
-
-	// 	   .spinner {
-	//             width: 100px;
-	//             height: 60px;
-	//             font-size: 10px;
-	//         }
-
-	//         .spinner > div {
-	//             background-color: limegreen;
-	//             height: 100%;
-	//             width: 6px;
-	//             display: inline-block;
-	//             -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
-	//             animation: stretchdelay 1.2s infinite ease-in-out;
-	//         }
-
-	//         .spinner .spinnerBar2 {
-	//             -webkit-animation-delay: -1.1s;
-	//             animation-delay: -1.1s;
-	//         }
-
-	//         .spinner .spinnerBar3 {
-	//             -webkit-animation-delay: -1.0s;
-	//             animation-delay: -1.0s;
-	//         }
-
-	//         .spinner .spinnerBar4 {
-	//             -webkit-animation-delay: -0.9s;
-	//             animation-delay: -0.9s;
-	//         }
-
-	//         .spinner .spinnerBar5 {
-	//             -webkit-animation-delay: -0.8s;
-	//             animation-delay: -0.8s;
-	//         }
-
-	//         @-webkit-keyframes stretchdelay {
-	//             0%,
-	//             40%,
-	//             100% {
-	//                 -webkit-transform: scaleY(0.4)
-	//             }
-	//             20% {
-	//                 -webkit-transform: scaleY(1.0)
-	//             }
-	//         }
-
-	//         @keyframes stretchdelay {
-	//             0%,
-	//             40%,
-	//             100% {
-	//                 transform: scaleY(0.4);
-	//                 -webkit-transform: scaleY(0.4);
-	//             }
-	//             20% {
-	//                 transform: scaleY(1.0);
-	//                 -webkit-transform: scaleY(1.0);
-	//             }
-	//         }
-
-	// </style>
-
-/***/ },
-/* 64 */
-/***/ function(module, exports) {
-
-	module.exports = "\n\t<div class=\"modal\" v-if=\"loading\">\n        <div class=\"spinner\">\n            <div class=\"spinnerBar1\"></div>\n            <div class=\"spinnerBar2\"></div>\n            <div class=\"spinnerBar3\"></div>\n            <div class=\"spinnerBar4\"></div>\n            <div class=\"spinnerBar5\"></div>\n        </div>\n    </div>\n";
+	exports.default = EventListener;
 
 /***/ }
 /******/ ]);

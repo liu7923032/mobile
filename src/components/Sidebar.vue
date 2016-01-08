@@ -1,6 +1,6 @@
 <template>
-	<div class="page-cover" v-if="showMenu" @click="showCover">
-	</div>
+	<!-- <div class="page-cover" v-if="showMenu" @click="showCover">
+	</div> -->
 
 	 <section id="sideBar" class="nav-list" :class="{'showside':showMenu}" >
 	    <userheader></userheader>
@@ -17,6 +17,7 @@
 <script type="text/javascript">
 
 	import UserHeader from './UserHeader.vue';
+	import EventListener from './utils/EventListener.js'
 	export default {
 		created(){
 			console.log("进入sidebar");
@@ -41,6 +42,29 @@
 				//系统退出
 			}
 		},
+        watch:{
+          'showMenu':(val,oldValue)=>{
+          	var body=document.body;
+              if(val){
+                  //添加模态框
+                  body.classList.addClass('page-cover');
+                  //给对象注册时间
+                  this._blurModalContentEvent = EventListener.listen(this.$el, 'click', (e)=> {
+		            if (e.target === el) this.show = false
+		          })
+              }else{
+              	 	if (this._blurModalContentEvent) {
+              	 		this._blurModalContentEvent.remove()
+              	 	}
+			          // el.classList.remove('in')
+			          setTimeout(()=> {
+			            // el.style.display = 'none'
+			            body.classList.remove('page-cover')
+			            // body.style.paddingRight = '0'
+			          }, 300)
+              }
+          }
+        },
 		components:{
 			userheader:UserHeader
 		}
@@ -55,13 +79,7 @@
 		margin: 0px;
 	}
 	.page-cover {
-	    position: fixed;
-	    top: 0;
-	    right: 0;
-	    bottom: 0;
-	    left: 0;
-	    background: rgba(0, 0, 0, .4);
-	    z-index: 100;
+	  
 	}
 	.nav-list{
 		position: fixed;
