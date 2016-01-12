@@ -3,7 +3,6 @@
         <div class="dlg-content fade" :class="{'in':show}" :style="{width:dlgWidth+'px'}">
             <div class="dlg-header">
                 <span>{{title}}</span>
-                <span class="icon-remove" @click="close"></span>
             </div>
             <div class="dlg-body">
                 <slot name="dlg-body"></slot>
@@ -93,7 +92,7 @@
             border-bottom: 1px solid lightgray;
             display: flex;
             display: -webkit-flex;
-            justify-content: space-between;
+            justify-content: center;
             cursor: pointer;
         }
         
