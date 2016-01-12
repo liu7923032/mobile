@@ -4,10 +4,13 @@
 		<span class="icon-refresh" slot="rightBtn" @click="loadUserInfo"></span>
 	</toolbar>
 	<div>
-		
+		<input type="button" @click="showDialog" value="显示模态框"> 
 	</div>
 
 	<loading :loading="isload"></loading>
+	<dialog :show.sync="isShowDialog" :title="dialogTitle" v-on:child-confirm="confirm">
+		<div slot="dlg-body">hahah</div>
+	</dialog>
 </template>
 
 
@@ -15,13 +18,14 @@
 	
 	import ToolBar from '../components/ToolBar.vue'
 	import Loading from '../components/Loading.vue'
+	import Dialog from '../components/Dialog.vue'
 	export default {
 		created(){
 			//加载远程数据
 			//1:显示加载动画
 			setTimeout(()=>{
 				this.isload=false;
-			}, 2000 );
+			}, 1000 );
 		},
 		props:{
 
@@ -35,17 +39,26 @@
 				this.isload=true;
 				setTimeout(()=>{
 					this.isload=false;
-				}, 2000 );
+				}, 1000 );
+			},
+			showDialog(){
+					this.isShowDialog=!this.isShowDialog;
+			},
+			confirm(){
+				alert("子组件触发了事件")
 			}
 		},
 		data(){
 			return {
-				isload:true
+				isload:true,
+				isShowDialog:false,
+				dialogTitle:'测试'
 			}
 		},
 		components:{
 			toolbar:ToolBar,
-			loading:Loading
+			loading:Loading,
+			dialog:Dialog
 		}
 
 	}
