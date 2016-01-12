@@ -3,9 +3,9 @@
 		<span class="icon-chevron-left" slot="leftBtn" @click="back">返回</span>
 		<span class="icon-refresh" slot="rightBtn" @click="loadUserInfo"></span>
 	</toolbar>
-	<div>
-		<input type="button" @click="showDialog" value="显示模态框"> 
-	</div>
+	<section >
+		<input type="button" @click="showDialog">
+	</section>
 
 	<loading :loading="isload"></loading>
 	<dialog :show.sync="isShowDialog" :title="dialogTitle" v-on:child-confirm="confirm">

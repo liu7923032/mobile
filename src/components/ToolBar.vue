@@ -33,9 +33,6 @@
         align-items: center;
         align-content: center;
         box-shadow:0 0 4px rgba(0, 0, 0, 0.25);
-        position: fixed;
-        left: 0;
-        top: 0;
     }
 
    

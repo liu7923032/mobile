@@ -3,7 +3,7 @@
 			<span class="icon-reorder" slot="leftBtn" @click="openMenu"></span>
             <span class="icon-refresh" slot="rightBtn" @click="refresh"></span>
 		</toolbar>
-		<navtabs :tab-items="tabItems" :underline="tabWidth" style="margin-top:44px;">
+		<navtabs :tab-items="tabItems" :underline="tabWidth" >
 		</navtabs>
 		<sidebar :menu-items="menuItems" :show-menu.sync="showMenu" >
 			
