@@ -5,6 +5,8 @@
 	</toolbar>
 	<section >
 		<input type="button" @click="showDialog">
+
+		<datepicker></datepicker>
 	</section>
 
 	<loading :loading="isload"></loading>
@@ -19,6 +21,7 @@
 	import ToolBar from '../components/ToolBar.vue'
 	import Loading from '../components/Loading.vue'
 	import Dialog from '../components/Dialog.vue'
+	import DatePicker from '../components/DatePicker.vue'
 	export default {
 		created(){
 			//加载远程数据
@@ -58,7 +61,8 @@
 		components:{
 			toolbar:ToolBar,
 			loading:Loading,
-			dialog:Dialog
+			dialog:Dialog,
+			datepicker:DatePicker
 		}
 
 	}

@@ -58,11 +58,11 @@
 	
 	var _routers2 = _interopRequireDefault(_routers);
 	
-	var _fastclick = __webpack_require__(56);
+	var _fastclick = __webpack_require__(61);
 	
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 	
-	var _vTouch = __webpack_require__(57);
+	var _vTouch = __webpack_require__(62);
 	
 	var _vTouch2 = _interopRequireDefault(_vTouch);
 	
@@ -12225,15 +12225,15 @@
 	        },
 	        '/workflow': {
 	            name: 'workflow',
-	            component: __webpack_require__(51)
+	            component: __webpack_require__(56)
 	        },
 	        '/login': {
 	            name: 'login',
-	            component: __webpack_require__(52)
+	            component: __webpack_require__(57)
 	        },
 	        '/comment': {
 	            name: 'comment',
-	            component: __webpack_require__(55)
+	            component: __webpack_require__(60)
 	        },
 	
 	        /* 404路由 */
@@ -12679,7 +12679,7 @@
 	// 			<span class="icon-reorder" slot="leftBtn" @click="openMenu"></span>
 	//             <span class="icon-refresh" slot="rightBtn" @click="refresh"></span>
 	// 		</toolbar>
-	// 		<navtabs :tab-items="tabItems" :underline="tabWidth" style="margin-top:44px;">
+	// 		<navtabs :tab-items="tabItems" :underline="tabWidth" >
 	// 		</navtabs>
 	// 		<sidebar :menu-items="menuItems" :show-menu.sync="showMenu" >
 
@@ -12746,7 +12746,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n.toolbar {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    display: -webkit-flex;\n    width: 100%;\n    background-color: rgba(255, 255, 255, 0.95);\n    height: 44px;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-box-pack: justify;\n    -webkit-justify-content: space-between;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-align-content: center;\n        -ms-flex-line-pack: center;\n            align-content: center;\n    box-shadow:0 0 4px rgba(0, 0, 0, 0.25);\n    position: fixed;\n    left: 0;\n    top: 0;\n}\n\n\n.toolbar div{\n    font-size: 18px;\n    font-weight: bold;\n    text-align: center;\n    vertical-align: middle;\n    \n}\n\n.toolbar span{\n    font-size: 20px;\n    margin:0px 10px;\n    color: #595959;\n    cursor: pointer;\n}\n\n.toolbar span{\n    margin-right: 10px;\n}\n\n.toolbar span:active{\n    color:darkorange;\n}\n", "", {"version":3,"sources":["/./src/components/ToolBar.vue?7683c42b"],"names":[],"mappings":";;AAwBA;IACA,qBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,sBAAA;IACA,YAAA;IACA,4CAAA;IACA,aAAA;IACA,8BAAA;QAAA,0BAAA;YAAA,sBAAA;IACA,0BAAA;IAAA,uCAAA;QAAA,uBAAA;YAAA,+BAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;IACA,8BAAA;QAAA,2BAAA;YAAA,sBAAA;IACA,uCAAA;IACA,gBAAA;IACA,QAAA;IACA,OAAA;CACA;;;AAGA;IACA,gBAAA;IACA,kBAAA;IACA,mBAAA;IACA,uBAAA;;CAEA;;AAEA;IACA,gBAAA;IACA,gBAAA;IACA,eAAA;IACA,gBAAA;CACA;;AAEA;IACA,mBAAA;CACA;;AAEA;IACA,iBAAA;CACA","file":"ToolBar.vue","sourcesContent":["<template>\r\n     <header class=\"toolbar\" >\r\n        <slot name=\"leftBtn\"></slot>\r\n        <div class=\"text-title item\">{{text}}</div>\r\n        <slot name=\"rightBtn\"></slot>\r\n    </header>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\t// console.log(\"toolbar is created\");\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\ttext:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:\"未知列表\"\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\">\r\n    \r\n    .toolbar {\r\n        display: flex;\r\n        display: -webkit-flex;\r\n        width: 100%;\r\n        background-color: rgba(255, 255, 255, 0.95);\r\n        height: 44px;\r\n        flex-flow: row nowrap;\r\n        justify-content: space-between;\r\n        align-items: center;\r\n        align-content: center;\r\n        box-shadow:0 0 4px rgba(0, 0, 0, 0.25);\r\n        position: fixed;\r\n        left: 0;\r\n        top: 0;\r\n    }\r\n\r\n   \r\n    .toolbar div{\r\n        font-size: 18px;\r\n        font-weight: bold;\r\n        text-align: center;\r\n        vertical-align: middle;\r\n        \r\n    }\r\n\r\n    .toolbar span{\r\n        font-size: 20px;\r\n        margin:0px 10px;\r\n        color: #595959;\r\n        cursor: pointer;\r\n    }\r\n\r\n    .toolbar span{\r\n        margin-right: 10px;\r\n    }\r\n    \r\n    .toolbar span:active{\r\n        color:darkorange;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n.toolbar {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    display: -webkit-flex;\n    width: 100%;\n    background-color: rgba(255, 255, 255, 0.95);\n    height: 44px;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-box-pack: justify;\n    -webkit-justify-content: space-between;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-align-content: center;\n        -ms-flex-line-pack: center;\n            align-content: center;\n    box-shadow:0 0 4px rgba(0, 0, 0, 0.25);\n}\n\n\n.toolbar div{\n    font-size: 18px;\n    font-weight: bold;\n    text-align: center;\n    vertical-align: middle;\n    \n}\n\n.toolbar span{\n    font-size: 20px;\n    margin:0px 10px;\n    color: #595959;\n    cursor: pointer;\n}\n\n.toolbar span{\n    margin-right: 10px;\n}\n\n.toolbar span:active{\n    color:darkorange;\n}\n", "", {"version":3,"sources":["/./src/components/ToolBar.vue?5d4544f0"],"names":[],"mappings":";;AAwBA;IACA,qBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,sBAAA;IACA,YAAA;IACA,4CAAA;IACA,aAAA;IACA,8BAAA;QAAA,0BAAA;YAAA,sBAAA;IACA,0BAAA;IAAA,uCAAA;QAAA,uBAAA;YAAA,+BAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;IACA,8BAAA;QAAA,2BAAA;YAAA,sBAAA;IACA,uCAAA;CACA;;;AAGA;IACA,gBAAA;IACA,kBAAA;IACA,mBAAA;IACA,uBAAA;;CAEA;;AAEA;IACA,gBAAA;IACA,gBAAA;IACA,eAAA;IACA,gBAAA;CACA;;AAEA;IACA,mBAAA;CACA;;AAEA;IACA,iBAAA;CACA","file":"ToolBar.vue","sourcesContent":["<template>\r\n     <header class=\"toolbar\" >\r\n        <slot name=\"leftBtn\"></slot>\r\n        <div class=\"text-title item\">{{text}}</div>\r\n        <slot name=\"rightBtn\"></slot>\r\n    </header>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\t// console.log(\"toolbar is created\");\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\ttext:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:\"未知列表\"\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\">\r\n    \r\n    .toolbar {\r\n        display: flex;\r\n        display: -webkit-flex;\r\n        width: 100%;\r\n        background-color: rgba(255, 255, 255, 0.95);\r\n        height: 44px;\r\n        flex-flow: row nowrap;\r\n        justify-content: space-between;\r\n        align-items: center;\r\n        align-content: center;\r\n        box-shadow:0 0 4px rgba(0, 0, 0, 0.25);\r\n    }\r\n\r\n   \r\n    .toolbar div{\r\n        font-size: 18px;\r\n        font-weight: bold;\r\n        text-align: center;\r\n        vertical-align: middle;\r\n        \r\n    }\r\n\r\n    .toolbar span{\r\n        font-size: 20px;\r\n        margin:0px 10px;\r\n        color: #595959;\r\n        cursor: pointer;\r\n    }\r\n\r\n    .toolbar span{\r\n        margin-right: 10px;\r\n    }\r\n    \r\n    .toolbar span:active{\r\n        color:darkorange;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -12796,9 +12796,6 @@
 	//         align-items: center;
 	//         align-content: center;
 	//         box-shadow:0 0 4px rgba(0, 0, 0, 0.25);
-	//         position: fixed;
-	//         left: 0;
-	//         top: 0;
 	//     }
 
 	//     .toolbar div{
@@ -13475,7 +13472,7 @@
 /* 34 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t\t<toolbar :text=\"title\">\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\"></span>\n\t\t</toolbar>\n\t\t<navtabs :tab-items=\"tabItems\" :underline=\"tabWidth\" style=\"margin-top:44px;\">\n\t\t</navtabs>\n\t\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" >\n\t\t\t\n\t\t</sidebar>\n";
+	module.exports = "\n\t\t<toolbar :text=\"title\">\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\"></span>\n\t\t</toolbar>\n\t\t<navtabs :tab-items=\"tabItems\" :underline=\"tabWidth\" >\n\t\t</navtabs>\n\t\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" >\n\t\t\t\n\t\t</sidebar>\n";
 
 /***/ },
 /* 35 */
@@ -13494,7 +13491,7 @@
 	var __vue_script__, __vue_template__
 	__webpack_require__(37)
 	__vue_script__ = __webpack_require__(39)
-	__vue_template__ = __webpack_require__(50)
+	__vue_template__ = __webpack_require__(55)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -13572,7 +13569,30 @@
 	
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 	
+	var _DatePicker = __webpack_require__(50);
+	
+	var _DatePicker2 = _interopRequireDefault(_DatePicker);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// <template>
+	// 	<toolbar text="个人主页">
+	// 		<span class="icon-chevron-left" slot="leftBtn" @click="back">返回</span>
+	// 		<span class="icon-refresh" slot="rightBtn" @click="loadUserInfo"></span>
+	// 	</toolbar>
+	// 	<section >
+	// 		<input type="button" @click="showDialog">
+	
+	// 		<datepicker></datepicker>
+	// 	</section>
+	
+	// 	<loading :loading="isload"></loading>
+	// 	<dialog :show.sync="isShowDialog" :title="dialogTitle" v-on:child-confirm="confirm">
+	// 		<div slot="dlg-body">hahah</div>
+	// 	</dialog>
+	// </template>
+	
+	// <script lang="babel">
 	
 	exports.default = {
 		created: function created() {
@@ -13618,7 +13638,8 @@
 		components: {
 			toolbar: _ToolBar2.default,
 			loading: _Loading2.default,
-			dialog: _Dialog2.default
+			dialog: _Dialog2.default,
+			datepicker: _DatePicker2.default
 		}
 	
 	};
@@ -13628,22 +13649,6 @@
 	// <style type="text/css">
 
 	// </style>
-	// <template>
-	// 	<toolbar text="个人主页">
-	// 		<span class="icon-chevron-left" slot="leftBtn" @click="back">返回</span>
-	// 		<span class="icon-refresh" slot="rightBtn" @click="loadUserInfo"></span>
-	// 	</toolbar>
-	// 	<div>
-	// 		<input type="button" @click="showDialog" value="显示模态框">
-	// 	</div>
-
-	// 	<loading :loading="isload"></loading>
-	// 	<dialog :show.sync="isShowDialog" :title="dialogTitle" v-on:child-confirm="confirm">
-	// 		<div slot="dlg-body">hahah</div>
-	// 	</dialog>
-	// </template>
-
-	// <script lang="babel">
 
 /***/ },
 /* 40 */
@@ -14059,12 +14064,539 @@
 
 /***/ },
 /* 50 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "\n<toolbar text=\"个人主页\">\n\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back\">返回</span>\n\t<span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"loadUserInfo\"></span>\n</toolbar>\n<div>\n\t<input type=\"button\" @click=\"showDialog\" value=\"显示模态框\"> \n</div>\n\n<loading :loading=\"isload\"></loading>\n<dialog :show.sync=\"isShowDialog\" :title=\"dialogTitle\" v-on:child-confirm=\"confirm\">\n\t<div slot=\"dlg-body\">hahah</div>\n</dialog>\n";
+	var __vue_script__, __vue_template__
+	__webpack_require__(51)
+	__vue_script__ = __webpack_require__(53)
+	__vue_template__ = __webpack_require__(54)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\DatePicker.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
 
 /***/ },
 /* 51 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(52);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(9)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-e36f8ff0&file=DatePicker.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./DatePicker.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-e36f8ff0&file=DatePicker.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./DatePicker.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 52 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(8)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\r\n.datepicker{\r\n    position: relative;\r\n    display: inline-block;\r\n}\r\n\r\n.datepicker-popup{\r\n    position: absolute;\r\n    border: 1px solid #ccc;\r\n    border-radius: 5px;\r\n    background: #fff;\r\n    margin-top: 2px;\r\n    z-index: 1000;\r\n    box-shadow: 0 6px 12px rgba(0,0,0,0.175);\r\n}\r\n.datepicker-inner{\r\n    width: 218px;\r\n\r\n}\r\n.datepicker-body{\r\n    padding: 10px 10px;\r\n}\r\n.datepicker-ctrl p,\r\n.datepicker-ctrl span,\r\n.datepicker-body span{\r\n    display: inline-block;\r\n    width: 28px;\r\n    line-height: 28px;\r\n    height: 28px;\r\n    border-radius: 4px;\r\n}\r\n.datepicker-ctrl p {\r\n    width: 65%;\r\n}\r\n.datepicker-ctrl span {\r\n  position: absolute;\r\n}\r\n.datepicker-body span {\r\n  text-align: center;\r\n}\r\n.datepicker-mouthRange span{\r\n  width: 48px;\r\n  height: 50px;\r\n  line-height: 45px;\r\n}\r\n.datepicker-item-disable {\r\n  background-color: white!important;\r\n  cursor: not-allowed!important;\r\n}\r\n.decadeRange span:first-child,\r\n.decadeRange span:last-child,\r\n.datepicker-item-disable,\r\n.datepicker-item-gray{\r\n    color: #999;\r\n}\r\n\r\n.datepicker-dateRange-item-active:hover,\r\n.datepicker-dateRange-item-active {\r\n    background: rgb(50, 118, 177)!important;\r\n    color: white!important;\r\n}\r\n.datepicker-mouthRange {\r\n  margin-top: 10px\r\n}\r\n.datepicker-mouthRange span,\r\n.datepicker-ctrl span,\r\n.datepicker-ctrl p,\r\n.datepicker-dateRange span {\r\n  cursor: pointer;\r\n}\r\n.datepicker-mouthRange span:hover,\r\n.datepicker-ctrl p:hover,\r\n.datepicker-ctrl i:hover,\r\n.datepicker-dateRange span:hover,\r\n.datepicker-dateRange-item-hover {\r\n    background-color : #eeeeee;\r\n}\r\n\r\n.datepicker-weekRange span{\r\n    font-weight: bold;\r\n}\r\n.datepicker-label{\r\n    background-color: #f8f8f8;\r\n    font-weight: 700;\r\n    padding: 7px 0;\r\n    text-align: center;\r\n}\r\n.datepicker-ctrl{\r\n    position: relative;\r\n    height: 30px;\r\n    line-height: 30px;\r\n    font-weight: bold;\r\n    text-align: center;\r\n}\r\n.month-btn{\r\n  font-weight: bold;\r\n  -webkit-user-select:none;\r\n    -moz-user-select:none;\r\n    -ms-user-select:none;\r\n    user-select:none;\r\n}\r\n.datepicker-preBtn{\r\n    left: 2px;\r\n}\r\n.datepicker-nextBtn{\r\n    right: 2px;\r\n}\r\n", "", {"version":3,"sources":["/./src/components/DatePicker.vue?0cb5790d"],"names":[],"mappings":";AAkVA;IACA,mBAAA;IACA,sBAAA;CACA;;AAEA;IACA,mBAAA;IACA,uBAAA;IACA,mBAAA;IACA,iBAAA;IACA,gBAAA;IACA,cAAA;IACA,yCAAA;CACA;AACA;IACA,aAAA;;CAEA;AACA;IACA,mBAAA;CACA;AACA;;;IAGA,sBAAA;IACA,YAAA;IACA,kBAAA;IACA,aAAA;IACA,mBAAA;CACA;AACA;IACA,WAAA;CACA;AACA;EACA,mBAAA;CACA;AACA;EACA,mBAAA;CACA;AACA;EACA,YAAA;EACA,aAAA;EACA,kBAAA;CACA;AACA;EACA,kCAAA;EACA,8BAAA;CACA;AACA;;;;IAIA,YAAA;CACA;;AAEA;;IAEA,wCAAA;IACA,uBAAA;CACA;AACA;EACA,gBAAA;CACA;AACA;;;;EAIA,gBAAA;CACA;AACA;;;;;IAKA,2BAAA;CACA;;AAEA;IACA,kBAAA;CACA;AACA;IACA,0BAAA;IACA,iBAAA;IACA,eAAA;IACA,mBAAA;CACA;AACA;IACA,mBAAA;IACA,aAAA;IACA,kBAAA;IACA,kBAAA;IACA,mBAAA;CACA;AACA;EACA,kBAAA;EACA,yBAAA;IACA,sBAAA;IACA,qBAAA;IACA,iBAAA;CACA;AACA;IACA,UAAA;CACA;AACA;IACA,WAAA;CACA","file":"DatePicker.vue","sourcesContent":["<template>\r\n  <div class=\"datepicker\">\r\n    <input class=\"form-control datepicker-input\" type=\"text\"\r\n    v-bind:style=\"{width:width}\"\r\n    @click=\"inputClick\"\r\n    v-model=\"value\"/>\r\n      <div class=\"datepicker-popup\" v-show=\"displayDayView\">\r\n          <div class=\"datepicker-inner\">\r\n              <div class=\"datepicker-body\">\r\n                  <div class=\"datepicker-ctrl\">\r\n                      <span class=\"month-btn datepicker-preBtn\" @click=\"preNextMonthClick(0)\">&lt;</span>\r\n                      <span class=\"month-btn datepicker-nextBtn\" @click=\"preNextMonthClick(1)\">&gt;</span>\r\n                      <p @click=\"switchMouthView\">\r\n                      {{stringifyDayHeader(currDate)}}\r\n                      </p>\r\n                  </div>\r\n                  <div class=\"datepicker-weekRange\">\r\n                      <span v-for=\"w in weekRange\">{{w}}</span>\r\n                  </div>\r\n                  <div class=\"datepicker-dateRange\">\r\n                      <span v-for=\"d in dateRange\" v-bind:class=\"d.sclass\" @click=\"daySelect(d.date,this)\">{{d.text}}</span>\r\n                  </div>\r\n              </div>\r\n          </div>\r\n      </div>\r\n      <div class=\"datepicker-popup\" v-show=\"displayMouthView\">\r\n        <div class=\"datepicker-inner\">\r\n            <div class=\"datepicker-body\">\r\n                <div class=\"datepicker-ctrl\">\r\n                    <span class=\"month-btn datepicker-preBtn\" @click=\"preNextYearClick(0)\">&lt;</span>\r\n                    <span class=\"month-btn datepicker-nextBtn\" @click=\"preNextYearClick(1)\">&gt;</span>\r\n                    <p @click=\"switchDecadeView\">\r\n                    {{stringifyYearHeader(currDate)}}\r\n                    </p>\r\n                </div>\r\n                <div class=\"datepicker-mouthRange\">\r\n                \t<template v-for=\"m in mouthNames\">\r\n\t                    <span   v-bind:class=\"{'datepicker-dateRange-item-active':\r\n\t\t\t                    (this.mouthNames[this.parse(this.value).getMonth()]  === m) &&\r\n\t\t\t                    this.currDate.getFullYear() === this.parse(this.value).getFullYear()}\"\r\n\t\t\t                    @click=\"mouthSelect($index)\"\r\n\t                    >\r\n\t                      {{m.substr(0,3)}}\r\n\t                    </span>\r\n                    </template>\r\n                </div>\r\n            </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"datepicker-popup\" v-show=\"displayYearView\">\r\n        <div class=\"datepicker-inner\">\r\n            <div class=\"datepicker-body\">\r\n                <div class=\"datepicker-ctrl\">\r\n                    <span class=\"month-btn datepicker-preBtn\" @click=\"preNextDecadeClick(0)\">&lt;</span>\r\n                    <span class=\"month-btn datepicker-nextBtn\" @click=\"preNextDecadeClick(1)\">&gt;</span>\r\n                    <p>\r\n                    {{stringifyDecadeHeader(currDate)}}\r\n                    </p>\r\n                </div>\r\n                <div class=\"datepicker-mouthRange decadeRange\">\r\n                \t<template v-for=\"decade in decadeRange\">\r\n                \t\t<span v-bind:class=\"{'datepicker-dateRange-item-active':\r\n\t\t                    this.parse(this.value).getFullYear() === decade.text}\"\r\n\t                    @click.stop=\"yearSelect(decade.text)\">\r\n\t                      {{decade.text}}\r\n\t                    </span>\r\n\t\t\t\t\t</template>\r\n                </div>\r\n            </div>\r\n        </div>\r\n      </div>\r\n</div>\r\n</template>\r\n\r\n<script>\r\nimport EventListener from './utils/EventListener.js'\r\n\r\n  export default {\r\n    props: {\r\n      value: {\r\n        type: String,\r\n        twoWay: true\r\n      },\r\n      format: {\r\n        default: 'MMMM/dd/yyyy'\r\n      },\r\n      disabledDaysOfWeek: {\r\n        type: Array,\r\n        default() {\r\n          return []\r\n        }\r\n      },\r\n      width: {\r\n        type: String,\r\n        default: '200px'\r\n      }\r\n    },\r\n    data() {\r\n      return {\r\n        weekRange: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],\r\n        dateRange: [],\r\n        decadeRange: [],\r\n        currDate: new Date,\r\n        displayDayView: false,\r\n        displayMouthView: false,\r\n        displayYearView: false,\r\n        mouthNames: [\r\n                      'January', 'February', 'March',\r\n                      'April', 'May', 'June',\r\n                      'July', 'August', 'September',\r\n                      'October', 'November', 'December'\r\n                    ]\r\n      }\r\n    },\r\n    watch: {\r\n      currDate() {\r\n        this.getDateRange()\r\n      }\r\n    },\r\n    methods: {\r\n        close() {\r\n          this.displayDayView = this.displayMouthView = this.displayMouthView = false\r\n        },\r\n        inputClick() {\r\n          if (this.displayMouthView || this.displayYearView) {\r\n            this.displayDayView = false\r\n          } else {\r\n            this.displayDayView =  !this.displayDayView\r\n          }\r\n        },\r\n        preNextDecadeClick(flag) {\r\n          const year = this.currDate.getFullYear()\r\n          const mouths = this.currDate.getMonth()\r\n          const date = this.currDate.getDate()\r\n\r\n          if (flag === 0) {\r\n            this.currDate = new Date(year - 10, mouths, date)\r\n          } else {\r\n            this.currDate = new Date(year + 10, mouths, date)\r\n          }\r\n        },\r\n        preNextMonthClick(flag) {\r\n          const year = this.currDate.getFullYear()\r\n          const month = this.currDate.getMonth()\r\n          const date = this.currDate.getDate()\r\n\r\n\r\n          if (flag === 0) {\r\n            const preMonth = this.getYearMonth(year, month - 1)\r\n            this.currDate = new Date(preMonth.year, preMonth.month, date)\r\n          } else {\r\n            const nextMonth = this.getYearMonth(year, month + 1)\r\n            this.currDate = new Date(nextMonth.year, nextMonth.month, date)\r\n          }\r\n        },\r\n        preNextYearClick(flag) {\r\n          const year = this.currDate.getFullYear()\r\n          const mouths = this.currDate.getMonth()\r\n          const date = this.currDate.getDate()\r\n\r\n          if (flag === 0) {\r\n            this.currDate = new Date(year - 1, mouths, date)\r\n          } else {\r\n            this.currDate = new Date(year + 1, mouths, date)\r\n          }\r\n        },\r\n        yearSelect(year) {\r\n          this.displayYearView = false\r\n          this.displayMouthView = true\r\n          this.currDate = new Date(year, this.currDate.getMonth(), this.currDate.getDate())\r\n        },\r\n        daySelect(date, el) {\r\n          if (el.$el.classList[0] === 'datepicker-item-disable') {\r\n            return false\r\n          } else {\r\n            this.currDate = date\r\n            this.value = this.stringify(this.currDate)\r\n            this.displayDayView = false\r\n          }\r\n        },\r\n        switchMouthView() {\r\n          this.displayDayView = false\r\n          this.displayMouthView = true\r\n        },\r\n        switchDecadeView() {\r\n          this.displayMouthView = false\r\n          this.displayYearView = true\r\n        },\r\n        mouthSelect(index) {\r\n          this.displayMouthView = false\r\n          this.displayDayView = true\r\n          this.currDate = new Date(this.currDate.getFullYear(), index, this.currDate.getDate())\r\n        },\r\n        getYearMonth(year, month) {\r\n            if (month > 11) {\r\n              year++\r\n              month = 0\r\n            } else if (month < 0) {\r\n              year--\r\n              month = 11\r\n            }\r\n            return {year: year, month: month}\r\n        },\r\n        stringifyDecadeHeader(date) {\r\n          const yearStr = date.getFullYear().toString()\r\n          const firstYearOfDecade = yearStr.substring(0, yearStr.length - 1) + 0\r\n          const lastYearOfDecade = parseInt(firstYearOfDecade, 10) + 10\r\n          return firstYearOfDecade + '-' + lastYearOfDecade\r\n        },\r\n        stringifyDayHeader(date) {\r\n          return this.mouthNames[date.getMonth()] + ' ' + date.getFullYear()\r\n        },\r\n        parseMouth(date) {\r\n          return this.mouthNames[date.getMonth()]\r\n        },\r\n        stringifyYearHeader(date) {\r\n          return date.getFullYear()\r\n        },\r\n        stringify(date, format = this.format) {\r\n          const year = date.getFullYear()\r\n          const month = date.getMonth() + 1\r\n          const day = date.getDate()\r\n          const mouthName = this.parseMouth(date)\r\n\r\n          return format\r\n            .replace(/yyyy/g, year)\r\n            .replace(/MMMM/g, mouthName)\r\n            .replace(/MMM/g, mouthName.substring(0, 3))\r\n            .replace(/MM/g, ('0' + month).slice(-2))\r\n            .replace(/dd/g, ('0' + day).slice(-2))\r\n            .replace(/yy/g, year)\r\n            .replace(/M(?!a)/g, month)\r\n            .replace(/d/g, day)\r\n        },\r\n        parse(str) {\r\n          const date = new Date(str)\r\n          return isNaN(date.getFullYear()) ? null : date\r\n        },\r\n        getDayCount(year, month) {\r\n          const dict = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\r\n\r\n          if (month === 1) {\r\n              if ( (year % 400 === 0) || (year % 4 === 0 && year % 100 !== 0) ) {\r\n                  return 29\r\n              }\r\n              return 28\r\n          }\r\n\r\n          return dict[month]\r\n        },\r\n        getDateRange() {\r\n            this.dateRange = []\r\n            this.decadeRange = []\r\n            const time = {\r\n                year: this.currDate.getFullYear(),\r\n                month: this.currDate.getMonth(),\r\n                day: this.currDate.getDate()\r\n            }\r\n            const yearStr = time.year.toString()\r\n            const firstYearOfDecade = (yearStr.substring(0, yearStr.length - 1) + 0) - 1\r\n            for (let i = 0; i < 12; i++) {\r\n              this.decadeRange.push({\r\n                text: firstYearOfDecade + i\r\n              })\r\n            }\r\n\r\n            const currMonthFirstDay = new Date(time.year, time.month, 1)\r\n            let firstDayWeek = currMonthFirstDay.getDay() + 1\r\n            if (firstDayWeek === 0) {\r\n                firstDayWeek = 7\r\n            }\r\n            const dayCount = this.getDayCount(time.year, time.month)\r\n            if (firstDayWeek > 1) {\r\n              const preMonth = this.getYearMonth(time.year, time.month - 1)\r\n              const prevMonthDayCount = this.getDayCount(preMonth.year, preMonth.month)\r\n              for (let i = 1; i < firstDayWeek; i++) {\r\n                  const dayText = prevMonthDayCount - firstDayWeek + i + 1\r\n                  this.dateRange.push({\r\n                      text: dayText,\r\n                      date: new Date(preMonth.year, preMonth.month, dayText),\r\n                      sclass: 'datepicker-item-gray'\r\n                  })\r\n              }\r\n            }\r\n\r\n            for (let i = 1; i <= dayCount; i++) {\r\n                const date = new Date(time.year, time.month, i)\r\n                const week = date.getDay()\r\n                let sclass = ''\r\n                this.disabledDaysOfWeek.forEach((el)=> {\r\n                  if (week === parseInt(el, 10)) sclass = 'datepicker-item-disable'\r\n                })\r\n\r\n                if (i === time.day) {\r\n                  if (this.value) {\r\n                    const valueDate = this.parse(this.value)\r\n                    if (valueDate) {\r\n                      if (valueDate.getFullYear() === time.year && valueDate.getMonth() === time.month) {\r\n                        sclass = 'datepicker-dateRange-item-active'\r\n                      }\r\n                    }\r\n                  }\r\n                }\r\n                this.dateRange.push({\r\n                    text: i,\r\n                    date: date,\r\n                    sclass: sclass\r\n                })\r\n            }\r\n\r\n            if (this.dateRange.length < 42) {\r\n                const nextMonthNeed = 42 - this.dateRange.length\r\n                const nextMonth = this.getYearMonth(time.year, time.month + 1)\r\n\r\n                for (let i = 1; i <= nextMonthNeed; i++) {\r\n                    this.dateRange.push({\r\n                        text: i,\r\n                        date: new Date(nextMonth.year, nextMonth.month, i),\r\n                        sclass: 'datepicker-item-gray'\r\n                    })\r\n                }\r\n            }\r\n        }\r\n    },\r\n    ready() {\r\n      this.$dispatch('child-created', this)\r\n      this.currDate = this.parse(this.value) || this.parse(new Date())\r\n      this._closeEvent = EventListener.listen(window, 'click', (e)=> {\r\n        if (!this.$el.contains(e.target)) this.close()\r\n      })\r\n    },\r\n    beforeDestroy() {\r\n      if (this._closeEvent) this._closeEvent.remove()\r\n    }\r\n  }\r\n</script>\r\n\r\n<style>\r\n.datepicker{\r\n    position: relative;\r\n    display: inline-block;\r\n}\r\n\r\n.datepicker-popup{\r\n    position: absolute;\r\n    border: 1px solid #ccc;\r\n    border-radius: 5px;\r\n    background: #fff;\r\n    margin-top: 2px;\r\n    z-index: 1000;\r\n    box-shadow: 0 6px 12px rgba(0,0,0,0.175);\r\n}\r\n.datepicker-inner{\r\n    width: 218px;\r\n\r\n}\r\n.datepicker-body{\r\n    padding: 10px 10px;\r\n}\r\n.datepicker-ctrl p,\r\n.datepicker-ctrl span,\r\n.datepicker-body span{\r\n    display: inline-block;\r\n    width: 28px;\r\n    line-height: 28px;\r\n    height: 28px;\r\n    border-radius: 4px;\r\n}\r\n.datepicker-ctrl p {\r\n    width: 65%;\r\n}\r\n.datepicker-ctrl span {\r\n  position: absolute;\r\n}\r\n.datepicker-body span {\r\n  text-align: center;\r\n}\r\n.datepicker-mouthRange span{\r\n  width: 48px;\r\n  height: 50px;\r\n  line-height: 45px;\r\n}\r\n.datepicker-item-disable {\r\n  background-color: white!important;\r\n  cursor: not-allowed!important;\r\n}\r\n.decadeRange span:first-child,\r\n.decadeRange span:last-child,\r\n.datepicker-item-disable,\r\n.datepicker-item-gray{\r\n    color: #999;\r\n}\r\n\r\n.datepicker-dateRange-item-active:hover,\r\n.datepicker-dateRange-item-active {\r\n    background: rgb(50, 118, 177)!important;\r\n    color: white!important;\r\n}\r\n.datepicker-mouthRange {\r\n  margin-top: 10px\r\n}\r\n.datepicker-mouthRange span,\r\n.datepicker-ctrl span,\r\n.datepicker-ctrl p,\r\n.datepicker-dateRange span {\r\n  cursor: pointer;\r\n}\r\n.datepicker-mouthRange span:hover,\r\n.datepicker-ctrl p:hover,\r\n.datepicker-ctrl i:hover,\r\n.datepicker-dateRange span:hover,\r\n.datepicker-dateRange-item-hover {\r\n    background-color : #eeeeee;\r\n}\r\n\r\n.datepicker-weekRange span{\r\n    font-weight: bold;\r\n}\r\n.datepicker-label{\r\n    background-color: #f8f8f8;\r\n    font-weight: 700;\r\n    padding: 7px 0;\r\n    text-align: center;\r\n}\r\n.datepicker-ctrl{\r\n    position: relative;\r\n    height: 30px;\r\n    line-height: 30px;\r\n    font-weight: bold;\r\n    text-align: center;\r\n}\r\n.month-btn{\r\n  font-weight: bold;\r\n  -webkit-user-select:none;\r\n    -moz-user-select:none;\r\n    -ms-user-select:none;\r\n    user-select:none;\r\n}\r\n.datepicker-preBtn{\r\n    left: 2px;\r\n}\r\n.datepicker-nextBtn{\r\n    right: 2px;\r\n}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 53 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _EventListener = __webpack_require__(27);
+	
+	var _EventListener2 = _interopRequireDefault(_EventListener);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  props: {
+	    value: {
+	      type: String,
+	      twoWay: true
+	    },
+	    format: {
+	      default: 'MMMM/dd/yyyy'
+	    },
+	    disabledDaysOfWeek: {
+	      type: Array,
+	      default: function _default() {
+	        return [];
+	      }
+	    },
+	    width: {
+	      type: String,
+	      default: '200px'
+	    }
+	  },
+	  data: function data() {
+	    return {
+	      weekRange: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+	      dateRange: [],
+	      decadeRange: [],
+	      currDate: new Date(),
+	      displayDayView: false,
+	      displayMouthView: false,
+	      displayYearView: false,
+	      mouthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+	    };
+	  },
+	
+	  watch: {
+	    currDate: function currDate() {
+	      this.getDateRange();
+	    }
+	  },
+	  methods: {
+	    close: function close() {
+	      this.displayDayView = this.displayMouthView = this.displayMouthView = false;
+	    },
+	    inputClick: function inputClick() {
+	      if (this.displayMouthView || this.displayYearView) {
+	        this.displayDayView = false;
+	      } else {
+	        this.displayDayView = !this.displayDayView;
+	      }
+	    },
+	    preNextDecadeClick: function preNextDecadeClick(flag) {
+	      var year = this.currDate.getFullYear();
+	      var mouths = this.currDate.getMonth();
+	      var date = this.currDate.getDate();
+	
+	      if (flag === 0) {
+	        this.currDate = new Date(year - 10, mouths, date);
+	      } else {
+	        this.currDate = new Date(year + 10, mouths, date);
+	      }
+	    },
+	    preNextMonthClick: function preNextMonthClick(flag) {
+	      var year = this.currDate.getFullYear();
+	      var month = this.currDate.getMonth();
+	      var date = this.currDate.getDate();
+	
+	      if (flag === 0) {
+	        var preMonth = this.getYearMonth(year, month - 1);
+	        this.currDate = new Date(preMonth.year, preMonth.month, date);
+	      } else {
+	        var nextMonth = this.getYearMonth(year, month + 1);
+	        this.currDate = new Date(nextMonth.year, nextMonth.month, date);
+	      }
+	    },
+	    preNextYearClick: function preNextYearClick(flag) {
+	      var year = this.currDate.getFullYear();
+	      var mouths = this.currDate.getMonth();
+	      var date = this.currDate.getDate();
+	
+	      if (flag === 0) {
+	        this.currDate = new Date(year - 1, mouths, date);
+	      } else {
+	        this.currDate = new Date(year + 1, mouths, date);
+	      }
+	    },
+	    yearSelect: function yearSelect(year) {
+	      this.displayYearView = false;
+	      this.displayMouthView = true;
+	      this.currDate = new Date(year, this.currDate.getMonth(), this.currDate.getDate());
+	    },
+	    daySelect: function daySelect(date, el) {
+	      if (el.$el.classList[0] === 'datepicker-item-disable') {
+	        return false;
+	      } else {
+	        this.currDate = date;
+	        this.value = this.stringify(this.currDate);
+	        this.displayDayView = false;
+	      }
+	    },
+	    switchMouthView: function switchMouthView() {
+	      this.displayDayView = false;
+	      this.displayMouthView = true;
+	    },
+	    switchDecadeView: function switchDecadeView() {
+	      this.displayMouthView = false;
+	      this.displayYearView = true;
+	    },
+	    mouthSelect: function mouthSelect(index) {
+	      this.displayMouthView = false;
+	      this.displayDayView = true;
+	      this.currDate = new Date(this.currDate.getFullYear(), index, this.currDate.getDate());
+	    },
+	    getYearMonth: function getYearMonth(year, month) {
+	      if (month > 11) {
+	        year++;
+	        month = 0;
+	      } else if (month < 0) {
+	        year--;
+	        month = 11;
+	      }
+	      return { year: year, month: month };
+	    },
+	    stringifyDecadeHeader: function stringifyDecadeHeader(date) {
+	      var yearStr = date.getFullYear().toString();
+	      var firstYearOfDecade = yearStr.substring(0, yearStr.length - 1) + 0;
+	      var lastYearOfDecade = parseInt(firstYearOfDecade, 10) + 10;
+	      return firstYearOfDecade + '-' + lastYearOfDecade;
+	    },
+	    stringifyDayHeader: function stringifyDayHeader(date) {
+	      return this.mouthNames[date.getMonth()] + ' ' + date.getFullYear();
+	    },
+	    parseMouth: function parseMouth(date) {
+	      return this.mouthNames[date.getMonth()];
+	    },
+	    stringifyYearHeader: function stringifyYearHeader(date) {
+	      return date.getFullYear();
+	    },
+	    stringify: function stringify(date) {
+	      var format = arguments.length <= 1 || arguments[1] === undefined ? this.format : arguments[1];
+	
+	      var year = date.getFullYear();
+	      var month = date.getMonth() + 1;
+	      var day = date.getDate();
+	      var mouthName = this.parseMouth(date);
+	
+	      return format.replace(/yyyy/g, year).replace(/MMMM/g, mouthName).replace(/MMM/g, mouthName.substring(0, 3)).replace(/MM/g, ('0' + month).slice(-2)).replace(/dd/g, ('0' + day).slice(-2)).replace(/yy/g, year).replace(/M(?!a)/g, month).replace(/d/g, day);
+	    },
+	    parse: function parse(str) {
+	      var date = new Date(str);
+	      return isNaN(date.getFullYear()) ? null : date;
+	    },
+	    getDayCount: function getDayCount(year, month) {
+	      var dict = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	
+	      if (month === 1) {
+	        if (year % 400 === 0 || year % 4 === 0 && year % 100 !== 0) {
+	          return 29;
+	        }
+	        return 28;
+	      }
+	
+	      return dict[month];
+	    },
+	    getDateRange: function getDateRange() {
+	      var _this = this;
+	
+	      this.dateRange = [];
+	      this.decadeRange = [];
+	      var time = {
+	        year: this.currDate.getFullYear(),
+	        month: this.currDate.getMonth(),
+	        day: this.currDate.getDate()
+	      };
+	      var yearStr = time.year.toString();
+	      var firstYearOfDecade = yearStr.substring(0, yearStr.length - 1) + 0 - 1;
+	      for (var i = 0; i < 12; i++) {
+	        this.decadeRange.push({
+	          text: firstYearOfDecade + i
+	        });
+	      }
+	
+	      var currMonthFirstDay = new Date(time.year, time.month, 1);
+	      var firstDayWeek = currMonthFirstDay.getDay() + 1;
+	      if (firstDayWeek === 0) {
+	        firstDayWeek = 7;
+	      }
+	      var dayCount = this.getDayCount(time.year, time.month);
+	      if (firstDayWeek > 1) {
+	        var preMonth = this.getYearMonth(time.year, time.month - 1);
+	        var prevMonthDayCount = this.getDayCount(preMonth.year, preMonth.month);
+	        for (var i = 1; i < firstDayWeek; i++) {
+	          var dayText = prevMonthDayCount - firstDayWeek + i + 1;
+	          this.dateRange.push({
+	            text: dayText,
+	            date: new Date(preMonth.year, preMonth.month, dayText),
+	            sclass: 'datepicker-item-gray'
+	          });
+	        }
+	      }
+	
+	      var _loop = function _loop(i) {
+	        var date = new Date(time.year, time.month, i);
+	        var week = date.getDay();
+	        var sclass = '';
+	        _this.disabledDaysOfWeek.forEach(function (el) {
+	          if (week === parseInt(el, 10)) sclass = 'datepicker-item-disable';
+	        });
+	
+	        if (i === time.day) {
+	          if (_this.value) {
+	            var valueDate = _this.parse(_this.value);
+	            if (valueDate) {
+	              if (valueDate.getFullYear() === time.year && valueDate.getMonth() === time.month) {
+	                sclass = 'datepicker-dateRange-item-active';
+	              }
+	            }
+	          }
+	        }
+	        _this.dateRange.push({
+	          text: i,
+	          date: date,
+	          sclass: sclass
+	        });
+	      };
+	
+	      for (var i = 1; i <= dayCount; i++) {
+	        _loop(i);
+	      }
+	
+	      if (this.dateRange.length < 42) {
+	        var nextMonthNeed = 42 - this.dateRange.length;
+	        var nextMonth = this.getYearMonth(time.year, time.month + 1);
+	
+	        for (var i = 1; i <= nextMonthNeed; i++) {
+	          this.dateRange.push({
+	            text: i,
+	            date: new Date(nextMonth.year, nextMonth.month, i),
+	            sclass: 'datepicker-item-gray'
+	          });
+	        }
+	      }
+	    }
+	  },
+	  ready: function ready() {
+	    var _this2 = this;
+	
+	    this.$dispatch('child-created', this);
+	    this.currDate = this.parse(this.value) || this.parse(new Date());
+	    this._closeEvent = _EventListener2.default.listen(window, 'click', function (e) {
+	      if (!_this2.$el.contains(e.target)) _this2.close();
+	    });
+	  },
+	  beforeDestroy: function beforeDestroy() {
+	    if (this._closeEvent) this._closeEvent.remove();
+	  }
+	};
+	// </script>
+
+	// <style>
+	// .datepicker{
+	//     position: relative;
+	//     display: inline-block;
+	// }
+
+	// .datepicker-popup{
+	//     position: absolute;
+	//     border: 1px solid #ccc;
+	//     border-radius: 5px;
+	//     background: #fff;
+	//     margin-top: 2px;
+	//     z-index: 1000;
+	//     box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+	// }
+	// .datepicker-inner{
+	//     width: 218px;
+
+	// }
+	// .datepicker-body{
+	//     padding: 10px 10px;
+	// }
+	// .datepicker-ctrl p,
+	// .datepicker-ctrl span,
+	// .datepicker-body span{
+	//     display: inline-block;
+	//     width: 28px;
+	//     line-height: 28px;
+	//     height: 28px;
+	//     border-radius: 4px;
+	// }
+	// .datepicker-ctrl p {
+	//     width: 65%;
+	// }
+	// .datepicker-ctrl span {
+	//   position: absolute;
+	// }
+	// .datepicker-body span {
+	//   text-align: center;
+	// }
+	// .datepicker-mouthRange span{
+	//   width: 48px;
+	//   height: 50px;
+	//   line-height: 45px;
+	// }
+	// .datepicker-item-disable {
+	//   background-color: white!important;
+	//   cursor: not-allowed!important;
+	// }
+	// .decadeRange span:first-child,
+	// .decadeRange span:last-child,
+	// .datepicker-item-disable,
+	// .datepicker-item-gray{
+	//     color: #999;
+	// }
+
+	// .datepicker-dateRange-item-active:hover,
+	// .datepicker-dateRange-item-active {
+	//     background: rgb(50, 118, 177)!important;
+	//     color: white!important;
+	// }
+	// .datepicker-mouthRange {
+	//   margin-top: 10px
+	// }
+	// .datepicker-mouthRange span,
+	// .datepicker-ctrl span,
+	// .datepicker-ctrl p,
+	// .datepicker-dateRange span {
+	//   cursor: pointer;
+	// }
+	// .datepicker-mouthRange span:hover,
+	// .datepicker-ctrl p:hover,
+	// .datepicker-ctrl i:hover,
+	// .datepicker-dateRange span:hover,
+	// .datepicker-dateRange-item-hover {
+	//     background-color : #eeeeee;
+	// }
+
+	// .datepicker-weekRange span{
+	//     font-weight: bold;
+	// }
+	// .datepicker-label{
+	//     background-color: #f8f8f8;
+	//     font-weight: 700;
+	//     padding: 7px 0;
+	//     text-align: center;
+	// }
+	// .datepicker-ctrl{
+	//     position: relative;
+	//     height: 30px;
+	//     line-height: 30px;
+	//     font-weight: bold;
+	//     text-align: center;
+	// }
+	// .month-btn{
+	//   font-weight: bold;
+	//   -webkit-user-select:none;
+	//     -moz-user-select:none;
+	//     -ms-user-select:none;
+	//     user-select:none;
+	// }
+	// .datepicker-preBtn{
+	//     left: 2px;
+	// }
+	// .datepicker-nextBtn{
+	//     right: 2px;
+	// }
+	// </style>
+	/* generated by vue-loader */
+	// <template>
+	//   <div class="datepicker">
+	//     <input class="form-control datepicker-input" type="text"
+	//     v-bind:style="{width:width}"
+	//     @click="inputClick"
+	//     v-model="value"/>
+	//       <div class="datepicker-popup" v-show="displayDayView">
+	//           <div class="datepicker-inner">
+	//               <div class="datepicker-body">
+	//                   <div class="datepicker-ctrl">
+	//                       <span class="month-btn datepicker-preBtn" @click="preNextMonthClick(0)">&lt;</span>
+	//                       <span class="month-btn datepicker-nextBtn" @click="preNextMonthClick(1)">&gt;</span>
+	//                       <p @click="switchMouthView">
+	//                       {{stringifyDayHeader(currDate)}}
+	//                       </p>
+	//                   </div>
+	//                   <div class="datepicker-weekRange">
+	//                       <span v-for="w in weekRange">{{w}}</span>
+	//                   </div>
+	//                   <div class="datepicker-dateRange">
+	//                       <span v-for="d in dateRange" v-bind:class="d.sclass" @click="daySelect(d.date,this)">{{d.text}}</span>
+	//                   </div>
+	//               </div>
+	//           </div>
+	//       </div>
+	//       <div class="datepicker-popup" v-show="displayMouthView">
+	//         <div class="datepicker-inner">
+	//             <div class="datepicker-body">
+	//                 <div class="datepicker-ctrl">
+	//                     <span class="month-btn datepicker-preBtn" @click="preNextYearClick(0)">&lt;</span>
+	//                     <span class="month-btn datepicker-nextBtn" @click="preNextYearClick(1)">&gt;</span>
+	//                     <p @click="switchDecadeView">
+	//                     {{stringifyYearHeader(currDate)}}
+	//                     </p>
+	//                 </div>
+	//                 <div class="datepicker-mouthRange">
+	//                 	<template v-for="m in mouthNames">
+	// 	                    <span   v-bind:class="{'datepicker-dateRange-item-active':
+	// 			                    (this.mouthNames[this.parse(this.value).getMonth()]  === m) &&
+	// 			                    this.currDate.getFullYear() === this.parse(this.value).getFullYear()}"
+	// 			                    @click="mouthSelect($index)"
+	// 	                    >
+	// 	                      {{m.substr(0,3)}}
+	// 	                    </span>
+	//                     </template>
+	//                 </div>
+	//             </div>
+	//         </div>
+	//       </div>
+	//       <div class="datepicker-popup" v-show="displayYearView">
+	//         <div class="datepicker-inner">
+	//             <div class="datepicker-body">
+	//                 <div class="datepicker-ctrl">
+	//                     <span class="month-btn datepicker-preBtn" @click="preNextDecadeClick(0)">&lt;</span>
+	//                     <span class="month-btn datepicker-nextBtn" @click="preNextDecadeClick(1)">&gt;</span>
+	//                     <p>
+	//                     {{stringifyDecadeHeader(currDate)}}
+	//                     </p>
+	//                 </div>
+	//                 <div class="datepicker-mouthRange decadeRange">
+	//                 	<template v-for="decade in decadeRange">
+	//                 		<span v-bind:class="{'datepicker-dateRange-item-active':
+	// 		                    this.parse(this.value).getFullYear() === decade.text}"
+	// 	                    @click.stop="yearSelect(decade.text)">
+	// 	                      {{decade.text}}
+	// 	                    </span>
+	// 					</template>
+	//                 </div>
+	//             </div>
+	//         </div>
+	//       </div>
+	// </div>
+	// </template>
+
+	// <script>
+
+/***/ },
+/* 54 */
+/***/ function(module, exports) {
+
+	module.exports = "\n  <div class=\"datepicker\">\n    <input class=\"form-control datepicker-input\" type=\"text\"\n    v-bind:style=\"{width:width}\"\n    @click=\"inputClick\"\n    v-model=\"value\"/>\n      <div class=\"datepicker-popup\" v-show=\"displayDayView\">\n          <div class=\"datepicker-inner\">\n              <div class=\"datepicker-body\">\n                  <div class=\"datepicker-ctrl\">\n                      <span class=\"month-btn datepicker-preBtn\" @click=\"preNextMonthClick(0)\">&lt;</span>\n                      <span class=\"month-btn datepicker-nextBtn\" @click=\"preNextMonthClick(1)\">&gt;</span>\n                      <p @click=\"switchMouthView\">\n                      {{stringifyDayHeader(currDate)}}\n                      </p>\n                  </div>\n                  <div class=\"datepicker-weekRange\">\n                      <span v-for=\"w in weekRange\">{{w}}</span>\n                  </div>\n                  <div class=\"datepicker-dateRange\">\n                      <span v-for=\"d in dateRange\" v-bind:class=\"d.sclass\" @click=\"daySelect(d.date,this)\">{{d.text}}</span>\n                  </div>\n              </div>\n          </div>\n      </div>\n      <div class=\"datepicker-popup\" v-show=\"displayMouthView\">\n        <div class=\"datepicker-inner\">\n            <div class=\"datepicker-body\">\n                <div class=\"datepicker-ctrl\">\n                    <span class=\"month-btn datepicker-preBtn\" @click=\"preNextYearClick(0)\">&lt;</span>\n                    <span class=\"month-btn datepicker-nextBtn\" @click=\"preNextYearClick(1)\">&gt;</span>\n                    <p @click=\"switchDecadeView\">\n                    {{stringifyYearHeader(currDate)}}\n                    </p>\n                </div>\n                <div class=\"datepicker-mouthRange\">\n                \t<template v-for=\"m in mouthNames\">\n\t                    <span   v-bind:class=\"{'datepicker-dateRange-item-active':\n\t\t\t                    (this.mouthNames[this.parse(this.value).getMonth()]  === m) &&\n\t\t\t                    this.currDate.getFullYear() === this.parse(this.value).getFullYear()}\"\n\t\t\t                    @click=\"mouthSelect($index)\"\n\t                    >\n\t                      {{m.substr(0,3)}}\n\t                    </span>\n                    </template>\n                </div>\n            </div>\n        </div>\n      </div>\n      <div class=\"datepicker-popup\" v-show=\"displayYearView\">\n        <div class=\"datepicker-inner\">\n            <div class=\"datepicker-body\">\n                <div class=\"datepicker-ctrl\">\n                    <span class=\"month-btn datepicker-preBtn\" @click=\"preNextDecadeClick(0)\">&lt;</span>\n                    <span class=\"month-btn datepicker-nextBtn\" @click=\"preNextDecadeClick(1)\">&gt;</span>\n                    <p>\n                    {{stringifyDecadeHeader(currDate)}}\n                    </p>\n                </div>\n                <div class=\"datepicker-mouthRange decadeRange\">\n                \t<template v-for=\"decade in decadeRange\">\n                \t\t<span v-bind:class=\"{'datepicker-dateRange-item-active':\n\t\t                    this.parse(this.value).getFullYear() === decade.text}\"\n\t                    @click.stop=\"yearSelect(decade.text)\">\n\t                      {{decade.text}}\n\t                    </span>\n\t\t\t\t\t</template>\n                </div>\n            </div>\n        </div>\n      </div>\n</div>\n";
+
+/***/ },
+/* 55 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<toolbar text=\"个人主页\">\n\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back\">返回</span>\n\t<span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"loadUserInfo\"></span>\n</toolbar>\n<section >\n\t<input type=\"button\" @click=\"showDialog\">\n\n\t<datepicker></datepicker>\n</section>\n\n<loading :loading=\"isload\"></loading>\n<dialog :show.sync=\"isShowDialog\" :title=\"dialogTitle\" v-on:child-confirm=\"confirm\">\n\t<div slot=\"dlg-body\">hahah</div>\n</dialog>\n";
+
+/***/ },
+/* 56 */
 /***/ function(module, exports) {
 
 	var __vue_script__, __vue_template__
@@ -14074,12 +14606,12 @@
 
 
 /***/ },
-/* 52 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(53)
-	__vue_template__ = __webpack_require__(54)
+	__vue_script__ = __webpack_require__(58)
+	__vue_template__ = __webpack_require__(59)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14096,7 +14628,7 @@
 	})()}
 
 /***/ },
-/* 53 */
+/* 58 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14133,13 +14665,13 @@
 	/* generated by vue-loader */
 
 /***/ },
-/* 54 */
+/* 59 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\n<div class=\"container\">\n\t<div >\n\t\t<input type=\"text\" name=\"\">\n\t</div>\n</div>\n";
 
 /***/ },
-/* 55 */
+/* 60 */
 /***/ function(module, exports) {
 
 	var __vue_script__, __vue_template__
@@ -14149,7 +14681,7 @@
 
 
 /***/ },
-/* 56 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
@@ -14996,19 +15528,19 @@
 
 
 /***/ },
-/* 57 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _keys = __webpack_require__(58);
+	var _keys = __webpack_require__(63);
 	
 	var _keys2 = _interopRequireDefault(_keys);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var vueTouch = {};
-	var Hammer =  true ? __webpack_require__(70) : window.Hammer;
+	var Hammer =  true ? __webpack_require__(75) : window.Hammer;
 	var gestures = ['tap', 'pan', 'pinch', 'press', 'rotate', 'swipe'];
 	var customeEvents = {};
 	
@@ -15107,43 +15639,43 @@
 	module.exports = vueTouch;
 
 /***/ },
-/* 58 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(59), __esModule: true };
+	module.exports = { "default": __webpack_require__(64), __esModule: true };
 
 /***/ },
-/* 59 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(60);
-	module.exports = __webpack_require__(66).Object.keys;
+	__webpack_require__(65);
+	module.exports = __webpack_require__(71).Object.keys;
 
 /***/ },
-/* 60 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(61);
+	var toObject = __webpack_require__(66);
 	
-	__webpack_require__(63)('keys', function($keys){
+	__webpack_require__(68)('keys', function($keys){
 	  return function keys(it){
 	    return $keys(toObject(it));
 	  };
 	});
 
 /***/ },
-/* 61 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
-	var defined = __webpack_require__(62);
+	var defined = __webpack_require__(67);
 	module.exports = function(it){
 	  return Object(defined(it));
 	};
 
 /***/ },
-/* 62 */
+/* 67 */
 /***/ function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -15153,13 +15685,13 @@
 	};
 
 /***/ },
-/* 63 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(64)
-	  , core    = __webpack_require__(66)
-	  , fails   = __webpack_require__(69);
+	var $export = __webpack_require__(69)
+	  , core    = __webpack_require__(71)
+	  , fails   = __webpack_require__(74);
 	module.exports = function(KEY, exec){
 	  var fn  = (core.Object || {})[KEY] || Object[KEY]
 	    , exp = {};
@@ -15168,12 +15700,12 @@
 	};
 
 /***/ },
-/* 64 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(65)
-	  , core      = __webpack_require__(66)
-	  , ctx       = __webpack_require__(67)
+	var global    = __webpack_require__(70)
+	  , core      = __webpack_require__(71)
+	  , ctx       = __webpack_require__(72)
 	  , PROTOTYPE = 'prototype';
 	
 	var $export = function(type, name, source){
@@ -15219,7 +15751,7 @@
 	module.exports = $export;
 
 /***/ },
-/* 65 */
+/* 70 */
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -15228,18 +15760,18 @@
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
-/* 66 */
+/* 71 */
 /***/ function(module, exports) {
 
 	var core = module.exports = {version: '1.2.6'};
 	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ },
-/* 67 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(68);
+	var aFunction = __webpack_require__(73);
 	module.exports = function(fn, that, length){
 	  aFunction(fn);
 	  if(that === undefined)return fn;
@@ -15260,7 +15792,7 @@
 	};
 
 /***/ },
-/* 68 */
+/* 73 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -15269,7 +15801,7 @@
 	};
 
 /***/ },
-/* 69 */
+/* 74 */
 /***/ function(module, exports) {
 
 	module.exports = function(exec){
@@ -15281,7 +15813,7 @@
 	};
 
 /***/ },
-/* 70 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.6 - 2015-12-23
