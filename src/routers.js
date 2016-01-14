@@ -16,7 +16,7 @@ export default function(router){
         },
         '/worklog':{
             name:'worklog',
-            component:require('./views/Home.vue')
+            component:require('./views/WorkLog.vue')
         },
         '/userinfo':{
             name:'userinfo',

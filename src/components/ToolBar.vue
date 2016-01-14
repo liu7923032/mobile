@@ -31,8 +31,8 @@
         flex-flow: row nowrap;
         justify-content: space-between;
         align-items: center;
-        align-content: center;
-        box-shadow:0 0 4px rgba(0, 0, 0, 0.25);
+        border-bottom: 2px solid lightgray;
+        /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/
     }
 
    

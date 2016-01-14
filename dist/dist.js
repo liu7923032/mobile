@@ -12217,7 +12217,7 @@
 	        },
 	        '/worklog': {
 	            name: 'worklog',
-	            component: __webpack_require__(5)
+	            component: __webpack_require__(76)
 	        },
 	        '/userinfo': {
 	            name: 'userinfo',
@@ -12746,7 +12746,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n.toolbar {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    display: -webkit-flex;\n    width: 100%;\n    background-color: rgba(255, 255, 255, 0.95);\n    height: 44px;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-box-pack: justify;\n    -webkit-justify-content: space-between;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-align-content: center;\n        -ms-flex-line-pack: center;\n            align-content: center;\n    box-shadow:0 0 4px rgba(0, 0, 0, 0.25);\n}\n\n\n.toolbar div{\n    font-size: 18px;\n    font-weight: bold;\n    text-align: center;\n    vertical-align: middle;\n    \n}\n\n.toolbar span{\n    font-size: 20px;\n    margin:0px 10px;\n    color: #595959;\n    cursor: pointer;\n}\n\n.toolbar span{\n    margin-right: 10px;\n}\n\n.toolbar span:active{\n    color:darkorange;\n}\n", "", {"version":3,"sources":["/./src/components/ToolBar.vue?5d4544f0"],"names":[],"mappings":";;AAwBA;IACA,qBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,sBAAA;IACA,YAAA;IACA,4CAAA;IACA,aAAA;IACA,8BAAA;QAAA,0BAAA;YAAA,sBAAA;IACA,0BAAA;IAAA,uCAAA;QAAA,uBAAA;YAAA,+BAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;IACA,8BAAA;QAAA,2BAAA;YAAA,sBAAA;IACA,uCAAA;CACA;;;AAGA;IACA,gBAAA;IACA,kBAAA;IACA,mBAAA;IACA,uBAAA;;CAEA;;AAEA;IACA,gBAAA;IACA,gBAAA;IACA,eAAA;IACA,gBAAA;CACA;;AAEA;IACA,mBAAA;CACA;;AAEA;IACA,iBAAA;CACA","file":"ToolBar.vue","sourcesContent":["<template>\r\n     <header class=\"toolbar\" >\r\n        <slot name=\"leftBtn\"></slot>\r\n        <div class=\"text-title item\">{{text}}</div>\r\n        <slot name=\"rightBtn\"></slot>\r\n    </header>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\t// console.log(\"toolbar is created\");\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\ttext:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:\"未知列表\"\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\">\r\n    \r\n    .toolbar {\r\n        display: flex;\r\n        display: -webkit-flex;\r\n        width: 100%;\r\n        background-color: rgba(255, 255, 255, 0.95);\r\n        height: 44px;\r\n        flex-flow: row nowrap;\r\n        justify-content: space-between;\r\n        align-items: center;\r\n        align-content: center;\r\n        box-shadow:0 0 4px rgba(0, 0, 0, 0.25);\r\n    }\r\n\r\n   \r\n    .toolbar div{\r\n        font-size: 18px;\r\n        font-weight: bold;\r\n        text-align: center;\r\n        vertical-align: middle;\r\n        \r\n    }\r\n\r\n    .toolbar span{\r\n        font-size: 20px;\r\n        margin:0px 10px;\r\n        color: #595959;\r\n        cursor: pointer;\r\n    }\r\n\r\n    .toolbar span{\r\n        margin-right: 10px;\r\n    }\r\n    \r\n    .toolbar span:active{\r\n        color:darkorange;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n.toolbar {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    display: -webkit-flex;\n    width: 100%;\n    background-color: rgba(255, 255, 255, 0.95);\n    height: 44px;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-box-pack: justify;\n    -webkit-justify-content: space-between;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border-bottom: 2px solid lightgray;\n    /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/\n}\n\n\n.toolbar div{\n    font-size: 18px;\n    font-weight: bold;\n    text-align: center;\n    vertical-align: middle;\n    \n}\n\n.toolbar span{\n    font-size: 20px;\n    margin:0px 10px;\n    color: #595959;\n    cursor: pointer;\n}\n\n.toolbar span{\n    margin-right: 10px;\n}\n\n.toolbar span:active{\n    color:darkorange;\n}\n", "", {"version":3,"sources":["/./src/components/ToolBar.vue?6e67855c"],"names":[],"mappings":";;AAwBA;IACA,qBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,sBAAA;IACA,YAAA;IACA,4CAAA;IACA,aAAA;IACA,8BAAA;QAAA,0BAAA;YAAA,sBAAA;IACA,0BAAA;IAAA,uCAAA;QAAA,uBAAA;YAAA,+BAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;IACA,mCAAA;IACA,2CAAA;CACA;;;AAGA;IACA,gBAAA;IACA,kBAAA;IACA,mBAAA;IACA,uBAAA;;CAEA;;AAEA;IACA,gBAAA;IACA,gBAAA;IACA,eAAA;IACA,gBAAA;CACA;;AAEA;IACA,mBAAA;CACA;;AAEA;IACA,iBAAA;CACA","file":"ToolBar.vue","sourcesContent":["<template>\r\n     <header class=\"toolbar\" >\r\n        <slot name=\"leftBtn\"></slot>\r\n        <div class=\"text-title item\">{{text}}</div>\r\n        <slot name=\"rightBtn\"></slot>\r\n    </header>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\t// console.log(\"toolbar is created\");\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\ttext:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:\"未知列表\"\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\">\r\n    \r\n    .toolbar {\r\n        display: flex;\r\n        display: -webkit-flex;\r\n        width: 100%;\r\n        background-color: rgba(255, 255, 255, 0.95);\r\n        height: 44px;\r\n        flex-flow: row nowrap;\r\n        justify-content: space-between;\r\n        align-items: center;\r\n        border-bottom: 2px solid lightgray;\r\n        /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/\r\n    }\r\n\r\n   \r\n    .toolbar div{\r\n        font-size: 18px;\r\n        font-weight: bold;\r\n        text-align: center;\r\n        vertical-align: middle;\r\n        \r\n    }\r\n\r\n    .toolbar span{\r\n        font-size: 20px;\r\n        margin:0px 10px;\r\n        color: #595959;\r\n        cursor: pointer;\r\n    }\r\n\r\n    .toolbar span{\r\n        margin-right: 10px;\r\n    }\r\n    \r\n    .toolbar span:active{\r\n        color:darkorange;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -12794,8 +12794,8 @@
 	//         flex-flow: row nowrap;
 	//         justify-content: space-between;
 	//         align-items: center;
-	//         align-content: center;
-	//         box-shadow:0 0 4px rgba(0, 0, 0, 0.25);
+	//         border-bottom: 2px solid lightgray;
+	//         /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/
 	//     }
 
 	//     .toolbar div{
@@ -18385,6 +18385,619 @@
 	
 	})(window, document, 'Hammer');
 
+
+/***/ },
+/* 76 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(77)
+	__vue_template__ = __webpack_require__(79)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\views\\WorkLog.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 77 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _ToolBar = __webpack_require__(11);
+	
+	var _ToolBar2 = _interopRequireDefault(_ToolBar);
+	
+	var _Calendar = __webpack_require__(78);
+	
+	var _Calendar2 = _interopRequireDefault(_Calendar);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// <template>
+	// 	<toolbar :text="title">
+	// 		<span class="icon-chevron-left" slot="leftBtn" @click="back()"></span>
+	// 		<span slot="rightBtn"></span>
+	// 	</toolbar>
+	// 	<calendar v-on:item-click="selectDay"></calendar>
+	// </template>
+	
+	// <script>
+	exports.default = {
+		data: function data() {
+			return {
+				title: '工作日志'
+			};
+		},
+	
+		methods: {
+			back: function back() {
+				history.back();
+			},
+	
+			//子控件触发事件后执行的方法
+			selectDay: function selectDay(day) {
+				alert(day);
+			}
+		},
+		components: {
+			toolbar: _ToolBar2.default,
+			calendar: _Calendar2.default
+		}
+	};
+	// </script>
+	/* generated by vue-loader */
+
+/***/ },
+/* 78 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(80)
+	__vue_script__ = __webpack_require__(82)
+	__vue_template__ = __webpack_require__(83)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Calendar.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 79 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<toolbar :text=\"title\">\n\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back()\"></span>\n\t<span slot=\"rightBtn\"></span>\n</toolbar>\n<calendar v-on:item-click=\"selectDay\"></calendar>\n";
+
+/***/ },
+/* 80 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(81);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(9)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3d09c52c&file=Calendar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Calendar.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3d09c52c&file=Calendar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Calendar.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 81 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(8)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n.calendar {\n    width: 100%;\n    height: auto;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    display: -webkit-flex;\n    -webkit-flex-flow: column nowrap;\n        -ms-flex-flow: column nowrap;\n            flex-flow: column nowrap;\n    -webkit-box-pack: start;\n    -webkit-justify-content: flex-start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n    box-shadow: 4px 4px 5px gray;\n    border: 2px solid whitesmoke;\n    color: #666;\n    font-size: 14px;\n\n}\n\n.calendar span {\n    cursor: pointer;\n}\n\n.calendar-header {\n    height: auto;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-flex-flow: column nowrap;\n        -ms-flex-flow: column nowrap;\n            flex-flow: column nowrap;\n    -webkit-box-pack: center;\n    -webkit-justify-content: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    border-bottom: 1px solid lightgrey;\n\n}\n\n.calendar-title {\n    height: 30px;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    padding: 5px 15px;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-box-pack: justify;\n    -webkit-justify-content: space-between;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border-bottom: 1px solid lightgrey;\n    font-weight: bold;\n}\n\n.calendarDay-title>span:active {\n    color: #2db7f5;\n}\n\n.calendarDay-week{\n    background-color: whitesmoke;\n}\n\n.calendarDay-week>ul {\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-justify-content: space-around;\n        -ms-flex-pack: distribute;\n            justify-content: space-around;\n    height: 30px;\n     padding: 5px 0px;\n    list-style-type: none;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin: 0px;\n}\n\n\n.calendarDay-week>ul>li {\n    -webkit-flex-basis: 14%;\n        -ms-flex-preferred-size: 14%;\n            flex-basis: 14%;\n    text-align: center;\n}\n\n\n.calendar-range {\n    height: 260px;\n}\n\n\n\n.calendar-range>ul {\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-flex-flow: row wrap;\n        -ms-flex-flow: row wrap;\n            flex-flow: row wrap;\n    -webkit-box-pack: start;\n    -webkit-justify-content: flex-start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n    padding: 5px 0px;\n    list-style-type: none;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin: 0px;\n    font-size: 16px;\n}\n\n .calendar-range>ul>li>span:hover{\n    border:2px solid darkorange;\n    color: darkorange;\n    border-radius: 4px;\n    padding: 5px;\n }\n\n .calendar-range>ul>li>span:active{\n    border:2px solid darkorange;\n    color: #2db7f5;\n    border-radius: 4px;\n    padding: 5px;\n }\n\n\n.calendarDay {\n    -webkit-flex-basis: 14.28%;\n        -ms-flex-preferred-size: 14.28%;\n            flex-basis: 14.28%;\n    height: 40px;\n    line-height: 40px;\n    text-align: center;\n    cursor: pointer;\n}\n\n.calendarMonth{\n    -webkit-flex-basis: 30%;\n        -ms-flex-preferred-size: 30%;\n            flex-basis: 30%;\n    height: 60px;\n    line-height: 40px;\n    text-align: center;\n    cursor: pointer;\n}\n\n.itemSelect {\n    padding: 5px;\n    border:2px solid #2db7f5;\n    color: #2db7f5;\n    border-radius: 4px;\n}\n.restDay{\n    color: #e02d2d;\n}\n\n\n.curMonth{\n    font-weight: bold;\n}\n\n.calendarDay-footer {\n    height: 30px;\n    padding: 5px 15px;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    border-top: 1px solid lightgray;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-box-pack: center;\n    -webkit-justify-content: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    font-weight: bold;\n     background-color: whitesmoke;\n}\n", "", {"version":3,"sources":["/./src/components/Calendar.vue?6e1a3c95"],"names":[],"mappings":";AAkUA;IACA,YAAA;IACA,aAAA;IACA,qBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,sBAAA;IACA,iCAAA;QAAA,6BAAA;YAAA,yBAAA;IACA,wBAAA;IAAA,oCAAA;QAAA,qBAAA;YAAA,4BAAA;IACA,6BAAA;IACA,6BAAA;IACA,YAAA;IACA,gBAAA;;CAEA;;AAEA;IACA,gBAAA;CACA;;AAEA;IACA,aAAA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,iCAAA;QAAA,6BAAA;YAAA,yBAAA;IACA,yBAAA;IAAA,gCAAA;QAAA,sBAAA;YAAA,wBAAA;IACA,mCAAA;;CAEA;;AAEA;IACA,aAAA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,kBAAA;IACA,8BAAA;QAAA,0BAAA;YAAA,sBAAA;IACA,0BAAA;IAAA,uCAAA;QAAA,uBAAA;YAAA,+BAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;IACA,mCAAA;IACA,kBAAA;CACA;;AAEA;IACA,eAAA;CACA;;AAEA;IACA,6BAAA;CACA;;AAEA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,8BAAA;QAAA,0BAAA;YAAA,sBAAA;IACA,sCAAA;QAAA,0BAAA;YAAA,8BAAA;IACA,aAAA;KACA,iBAAA;IACA,sBAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;IACA,YAAA;CACA;;;AAGA;IACA,wBAAA;QAAA,6BAAA;YAAA,gBAAA;IACA,mBAAA;CACA;;;AAGA;IACA,cAAA;CACA;;;;AAIA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,4BAAA;QAAA,wBAAA;YAAA,oBAAA;IACA,wBAAA;IAAA,oCAAA;QAAA,qBAAA;YAAA,4BAAA;IACA,iBAAA;IACA,sBAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;IACA,YAAA;IACA,gBAAA;CACA;;CAEA;IACA,4BAAA;IACA,kBAAA;IACA,mBAAA;IACA,aAAA;EACA;;CAEA;IACA,4BAAA;IACA,eAAA;IACA,mBAAA;IACA,aAAA;EACA;;;AAGA;IACA,2BAAA;QAAA,gCAAA;YAAA,mBAAA;IACA,aAAA;IACA,kBAAA;IACA,mBAAA;IACA,gBAAA;CACA;;AAEA;IACA,wBAAA;QAAA,6BAAA;YAAA,gBAAA;IACA,aAAA;IACA,kBAAA;IACA,mBAAA;IACA,gBAAA;CACA;;AAEA;IACA,aAAA;IACA,yBAAA;IACA,eAAA;IACA,mBAAA;CACA;AACA;IACA,eAAA;CACA;;;AAGA;IACA,kBAAA;CACA;;AAEA;IACA,aAAA;IACA,kBAAA;IACA,8BAAA;QAAA,0BAAA;YAAA,sBAAA;IACA,gCAAA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,8BAAA;QAAA,0BAAA;YAAA,sBAAA;IACA,yBAAA;IAAA,gCAAA;QAAA,sBAAA;YAAA,wBAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;IACA,kBAAA;KACA,6BAAA;CACA","file":"Calendar.vue","sourcesContent":["<template>\r\n     <div class=\"calendar\">\r\n        <div class=\"calenarDayView\" v-show=\"showDay\">\r\n            <div class=\"calendar-header\">\r\n                <div class=\"calendar-title\">\r\n                    <div>\r\n                        <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\"></span>\r\n                        <span class=\"icon-angle-left\" style='margin-left:20px;width:50px;' @click=\"monthClick(0)\"></span>\r\n                    </div>\r\n                    <p>\r\n                        <span @click=\"showYearView\">{{curYear}}年</span>\r\n                        <span @click=\"showMonthView\">{{curMonth}}月</span>\r\n                    </p>\r\n                    <div>\r\n                         <span class=\"icon-angle-right\" style='margin-right:20px;' @click=\"monthClick(1)\"></span>\r\n                         <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\"></span>\r\n                    </div>\r\n                </div>\r\n                <div class=\"calendarDay-week\">\r\n                    <ul>\r\n                        <li v-for=\"(index,item) in weekRange\" :class=\"{'restDay':index==5||index==6}\">{{item}}</li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n            <div class=\"calendar-range\">\r\n                <ul>\r\n                    <li v-for=\"item in dateRange\" class=\"calendarDay\"   v-on:click=\"selectDay(item.day)\">\r\n                        <span v-bind:class=\"{'itemSelect':isCurSelect('D',item.day),'restDay':item.isRestDay,'curMonth':item.isCur}\">{{item.day}}</span>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n            <div class=\"calendarDay-footer\">\r\n                <span @click=\"today\">今天</span>\r\n            </div>\r\n        </div>\r\n        <div class=\"calendarMonthView\" v-show=\"showMonth\">\r\n            <div class=\"calendar-header\">\r\n                <div class=\"calendar-title\">\r\n                    <div>\r\n                        <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\"></span>\r\n                    </div>\r\n                    <p>\r\n                        <span @click=\"showYearView\">{{curYear}}年</span>\r\n                    </p>\r\n                    <div>\r\n                         <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\"></span>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"calendar-range\">\r\n                <ul>\r\n                    <li v-for=\"item in monthRange\" class=\"calendarMonth\"   v-on:click=\"selectMonth(item.id)\">\r\n                        <span v-bind:class=\"{'itemSelect':isCurSelect('M',item.id)}\">{{item.text}}</span>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"calendarYearView\" v-show=\"showYear\">\r\n            <div class=\"calendar-header\">\r\n                <div class=\"calendar-title\">\r\n                    <div>\r\n                        <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\"></span>\r\n                    </div>\r\n                    <p>\r\n                        <span @click=\"showYearView\">{{yearTitle}}</span>\r\n                    </p>\r\n                    <div>\r\n                         <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\"></span>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"calendar-range\">\r\n                <ul>\r\n                    <li v-for=\"item in yearRange\" class=\"calendarMonth\"   v-on:click=\"selectYear(item)\">\r\n                        <span v-bind:class=\"{'itemSelect':isCurSelect('Y',item)}\">{{item}}</span>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n    \r\n    export default {\r\n        data:function(){\r\n            return {\r\n               curYear:0,\r\n               curMonth:0,\r\n               curDay:0,\r\n               showDay:true,\r\n               showYear:false,\r\n               showMonth:false,\r\n               weekRange:['一','二','三','四','五','六','日'],\r\n               monthRange:[\r\n                           {id:1,text:'一月'},{id:2,text:'二月'},{id:3,text:'三月'},{id:4,text:'四月'},\r\n                           {id:5,text:'五月'},{id:6,text:'六月'},{id:7,text:'七月'},{id:8,text:'八月'},\r\n                           {id:9,text:'九月'},{id:10,text:'十月'},{id:11,text:'十一月'},{id:12,text:'十二月'}\r\n                          ],\r\n               dateRange:[],\r\n               yearRange:[],\r\n               yearTitle:''\r\n            }\r\n        },\r\n        props:{\r\n            width:{\r\n\r\n            },\r\n            //格式\r\n            format:{\r\n                type:String,\r\n                default:\"DD\"//YYYY,MM,DD,H,M,S\r\n            }\r\n        },\r\n        created:function(){\r\n            //初始化当前的年和月,并加载当前年月的数据\r\n            var date=new Date();\r\n            this.curYear=date.getFullYear();\r\n            this.curMonth=date.getMonth()+1;\r\n            this.curDay=date.getDate();\r\n\r\n            this.dateRange=this.getDateRange(this.curYear,this.curMonth);\r\n            this.yearRange=this.getYearRange(this.curYear);\r\n            this.yearTitle=this.yearRange[0]+\"~\"+this.yearRange[11];\r\n            //通过格式化显示页面\r\n            this.initShowView();\r\n        },\r\n        methods:{\r\n            initShowView(){\r\n                switch(this.format){\r\n                    case \"YYYY\":\r\n                        this.showYear=true;\r\n                        this.showMonth=false;\r\n                        this.showDay=false;\r\n                        break;\r\n                    case \"MM\":\r\n                        this.showYear=false;\r\n                        this.showMonth=true;\r\n                        this.showDay=false;\r\n                        break;\r\n                    case \"DD\":\r\n                        this.showYear=false;\r\n                        this.showMonth=false;\r\n                        this.showDay=true;\r\n                        break;\r\n                }\r\n            },\r\n            isCurSelect(flag,item){\r\n                var date=new Date();\r\n                const tempY=date.getFullYear();\r\n                const tempM=date.getMonth()+1;\r\n                if(flag==\"D\"){\r\n                    return this.curYear==tempY&&this.curMonth==tempM&&this.curDay==item;\r\n                }else if(flag==\"M\"){\r\n                    return this.curYear==tempY&&tempM==item;\r\n                }else{\r\n                    return tempY==item;\r\n                }\r\n            },\r\n            showYearView(){\r\n                this.showYear=true\r\n                this.showMonth=false;\r\n                this.showDay=false;\r\n            },\r\n            showMonthView(){\r\n                this.showYear=false\r\n                this.showMonth=true;\r\n                this.showDay=false;\r\n            },\r\n            selectYear:function(year){\r\n                this.curYear=year;\r\n                this.showYear=false\r\n                this.showMonth=true;\r\n                this.showDay=false;\r\n                if(this.format==\"YYYY\"){\r\n                    this.$dispatch('itemClick',year);\r\n                }\r\n            },\r\n            selectMonth(month){\r\n                this.showYear=false\r\n                this.showMonth=false;\r\n                this.showDay=true;\r\n                this.curMonth=month;\r\n                this.dateRange=this.getDateRange(this.curYear,this.curMonth);\r\n                if(this.format==\"MM\"){\r\n                    this.$dispatch('itemClick',this.curYear+\"-\"+month);\r\n                }\r\n            },\r\n            //选择天的时候\r\n            selectDay:function(day){\r\n                const tempD=this.curYear+\"-\"+this.curMonth+\"-\"+day;\r\n                console.log(\"触发派发事件：\"+tempD);\r\n                this.$dispatch('item-click',tempD);\r\n            },\r\n            today:function(){\r\n                var newDate=new Date();\r\n                this.curYear=newDate.getFullYear();\r\n                this.curMonth=newDate.getMonth()+1;\r\n                this.dateRange=this.getDateRange(this.curYear,this.curMonth);\r\n            },\r\n            //下一年或下一个月\r\n            yearClick(flag){\r\n                if(this.showYear){\r\n                    //如果是年的视图的情况\r\n                    const year=flag==0?this.curYear-10:this.curYear+10;\r\n                    this.yearRange=this.getYearRange(year);\r\n                    this.yearTitle=this.yearRange[0]+\"~\"+this.yearRange[11];    \r\n                }else{\r\n                     const year=flag==0?this.curYear-1:this.curYear+1;\r\n                     this.curYear=year;\r\n                     this.dateRange=this.getDateRange(year,this.curMonth);\r\n                }\r\n              \r\n            },\r\n            monthClick(flag){\r\n                var tempM=this.curMonth;\r\n                var tempY=this.curYear;\r\n                //上一月\r\n                if(flag==0){//\r\n                    if(tempM==1){\r\n                        tempM=12;\r\n                        tempY=this.curYear-1;\r\n                    }else{\r\n                        tempM=tempM-1;\r\n                    }\r\n                }else{//下个月\r\n                    if(tempM==12){\r\n                        tempY=this.curYear+1;\r\n                        tempM=1;\r\n                    }else{\r\n                        tempM=tempM+1;\r\n                    }\r\n                }\r\n                this.curYear=tempY;\r\n                this.curMonth=tempM;\r\n                console.log(tempY,tempM);\r\n                 this.dateRange=this.getDateRange(tempY,tempM);\r\n            },\r\n\r\n            //通过日期来获取当期星期几\r\n            dayOfWeek:function(date){\r\n              var week=new Date(date).getDay();\r\n              if(week==0){\r\n                  return 7;\r\n              }  \r\n              else{\r\n                  return week;\r\n              }\r\n            },\r\n            //通过年月来获取月份的天数\r\n            dayNumOfMonth:function(year,month){\r\n                var d = new Date(year,month,0);\r\n                return d.getDate();\r\n            },\r\n            //加载\r\n            getDateRange:function(year,month){\r\n                var datearray=[];\r\n                var firstDateDay=0;\r\n                //1:得到当前月的第一天是星期几\r\n                var firstDay=year+\"-\"+month+\"-01\";\r\n                \r\n                var firstWeek=this.dayOfWeek(firstDay);\r\n                //2:通过星期得到日历的第一天\r\n                if(firstWeek==1){\r\n                    firstDateDay=1;\r\n                }else{\r\n                    //获取上个月的天数\r\n                    var preMonth=0;\r\n                    if(month==1){\r\n                        preMonth=this.dayNumOfMonth(year-1,12);\r\n                    }\r\n                     preMonth=this.dayNumOfMonth(year,month-1);\r\n                     \r\n                     for(var pi=preMonth-firstWeek+2;pi<=preMonth;pi++){\r\n                            var week=new Date(this.curYear+\"/\"+(this.curMonth-1)+\"/\"+pi).getDay();\r\n                            var restDay=(week==6||week==0);\r\n                            datearray.push({\r\n                                isCur:false,\r\n                                day:pi,\r\n                                isRestDay:restDay\r\n                            });\r\n                     }\r\n                }\r\n                //3:得到这个月的总天数\r\n                var curDays=this.dayNumOfMonth(year,month);\r\n                for(var i=1;i<=curDays;i++){\r\n                    var week=new Date(this.curYear+\"/\"+this.curMonth+\"/\"+i).getDay();\r\n                    var restDay=(week==6||week==0);\r\n                    datearray.push({\r\n                        isCur:true,\r\n                        day:i,\r\n                        isRestDay:restDay\r\n                    });\r\n                }\r\n                //2:检查该对象里面是否包含42个值,如果不包含,那么久生成\r\n                if(datearray.length<42){\r\n                    var nextValue=42-datearray.length;\r\n                     for(var ni=1;ni<=nextValue;ni++){\r\n                        var week=new Date(this.curYear+\"/\"+(this.curMonth+1)+\"/\"+ni).getDay();\r\n                        var restDay=(week==6||week==0);\r\n                        datearray.push({\r\n                                isCur:false,\r\n                                day:ni,\r\n                                isRestDay:restDay\r\n                        });\r\n                     }\r\n                }\r\n                return datearray;\r\n            },\r\n            getYearRange:function(year){\r\n                var tempYRange=[];\r\n                for (var i = year - 6; i <=year+5; i++) {\r\n                   tempYRange.push(i);   \r\n                };\r\n                return tempYRange;\r\n            }\r\n        }\r\n    }\r\n\r\n</script>\r\n\r\n<style>\r\n        .calendar {\r\n            width: 100%;\r\n            height: auto;\r\n            display: flex;\r\n            display: -webkit-flex;\r\n            flex-flow: column nowrap;\r\n            justify-content: flex-start;\r\n            box-shadow: 4px 4px 5px gray;\r\n            border: 2px solid whitesmoke;\r\n            color: #666;\r\n            font-size: 14px;\r\n\r\n        }\r\n        \r\n        .calendar span {\r\n            cursor: pointer;\r\n        }\r\n        \r\n        .calendar-header {\r\n            height: auto;\r\n            display: flex;\r\n            flex-flow: column nowrap;\r\n            justify-content: center;\r\n            border-bottom: 1px solid lightgrey;\r\n\r\n        }\r\n        \r\n        .calendar-title {\r\n            height: 30px;\r\n            display: flex;\r\n            padding: 5px 15px;\r\n            flex-flow: row nowrap;\r\n            justify-content: space-between;\r\n            align-items: center;\r\n            border-bottom: 1px solid lightgrey;\r\n            font-weight: bold;\r\n        }\r\n        \r\n        .calendarDay-title>span:active {\r\n            color: #2db7f5;\r\n        }\r\n        \r\n        .calendarDay-week{\r\n            background-color: whitesmoke;\r\n        }\r\n        \r\n        .calendarDay-week>ul {\r\n            display: flex;\r\n            flex-flow: row nowrap;\r\n            justify-content: space-around;\r\n            height: 30px;\r\n             padding: 5px 0px;\r\n            list-style-type: none;\r\n            align-items: center;\r\n            margin: 0px;\r\n        }\r\n        \r\n\r\n        .calendarDay-week>ul>li {\r\n            flex-basis: 14%;\r\n            text-align: center;\r\n        }\r\n       \r\n\r\n        .calendar-range {\r\n            height: 260px;\r\n        }\r\n\r\n\r\n        \r\n        .calendar-range>ul {\r\n            display: flex;\r\n            flex-flow: row wrap;\r\n            justify-content: flex-start;\r\n            padding: 5px 0px;\r\n            list-style-type: none;\r\n            align-items: center;\r\n            margin: 0px;\r\n            font-size: 16px;\r\n        }\r\n\r\n         .calendar-range>ul>li>span:hover{\r\n            border:2px solid darkorange;\r\n            color: darkorange;\r\n            border-radius: 4px;\r\n            padding: 5px;\r\n         }\r\n\r\n         .calendar-range>ul>li>span:active{\r\n            border:2px solid darkorange;\r\n            color: #2db7f5;\r\n            border-radius: 4px;\r\n            padding: 5px;\r\n         }\r\n\r\n        \r\n        .calendarDay {\r\n            flex-basis: 14.28%;\r\n            height: 40px;\r\n            line-height: 40px;\r\n            text-align: center;\r\n            cursor: pointer;\r\n        }\r\n\r\n        .calendarMonth{\r\n            flex-basis: 30%;\r\n            height: 60px;\r\n            line-height: 40px;\r\n            text-align: center;\r\n            cursor: pointer;\r\n        }\r\n       \r\n        .itemSelect {\r\n            padding: 5px;\r\n            border:2px solid #2db7f5;\r\n            color: #2db7f5;\r\n            border-radius: 4px;\r\n        }\r\n        .restDay{\r\n            color: #e02d2d;\r\n        }\r\n       \r\n\r\n        .curMonth{\r\n            font-weight: bold;\r\n        }\r\n        \r\n        .calendarDay-footer {\r\n            height: 30px;\r\n            padding: 5px 15px;\r\n            flex-flow: row nowrap;\r\n            border-top: 1px solid lightgray;\r\n            display: flex;\r\n            flex-flow: row nowrap;\r\n            justify-content: center;\r\n            align-items: center;\r\n            font-weight: bold;\r\n             background-color: whitesmoke;\r\n        }\r\n</style>\r\n   \r\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 82 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	// <template>
+	//      <div class="calendar">
+	//         <div class="calenarDayView" v-show="showDay">
+	//             <div class="calendar-header">
+	//                 <div class="calendar-title">
+	//                     <div>
+	//                         <span class="icon-double-angle-left" @click="yearClick(0)"></span>
+	//                         <span class="icon-angle-left" style='margin-left:20px;width:50px;' @click="monthClick(0)"></span>
+	//                     </div>
+	//                     <p>
+	//                         <span @click="showYearView">{{curYear}}年</span>
+	//                         <span @click="showMonthView">{{curMonth}}月</span>
+	//                     </p>
+	//                     <div>
+	//                          <span class="icon-angle-right" style='margin-right:20px;' @click="monthClick(1)"></span>
+	//                          <span class="icon-double-angle-right" @click="yearClick(1)"></span>
+	//                     </div>
+	//                 </div>
+	//                 <div class="calendarDay-week">
+	//                     <ul>
+	//                         <li v-for="(index,item) in weekRange" :class="{'restDay':index==5||index==6}">{{item}}</li>
+	//                     </ul>
+	//                 </div>
+	//             </div>
+	//             <div class="calendar-range">
+	//                 <ul>
+	//                     <li v-for="item in dateRange" class="calendarDay"   v-on:click="selectDay(item.day)">
+	//                         <span v-bind:class="{'itemSelect':isCurSelect('D',item.day),'restDay':item.isRestDay,'curMonth':item.isCur}">{{item.day}}</span>
+	//                     </li>
+	//                 </ul>
+	//             </div>
+	//             <div class="calendarDay-footer">
+	//                 <span @click="today">今天</span>
+	//             </div>
+	//         </div>
+	//         <div class="calendarMonthView" v-show="showMonth">
+	//             <div class="calendar-header">
+	//                 <div class="calendar-title">
+	//                     <div>
+	//                         <span class="icon-double-angle-left" @click="yearClick(0)"></span>
+	//                     </div>
+	//                     <p>
+	//                         <span @click="showYearView">{{curYear}}年</span>
+	//                     </p>
+	//                     <div>
+	//                          <span class="icon-double-angle-right" @click="yearClick(1)"></span>
+	//                     </div>
+	//                 </div>
+	//             </div>
+	//             <div class="calendar-range">
+	//                 <ul>
+	//                     <li v-for="item in monthRange" class="calendarMonth"   v-on:click="selectMonth(item.id)">
+	//                         <span v-bind:class="{'itemSelect':isCurSelect('M',item.id)}">{{item.text}}</span>
+	//                     </li>
+	//                 </ul>
+	//             </div>
+	//         </div>
+	//         <div class="calendarYearView" v-show="showYear">
+	//             <div class="calendar-header">
+	//                 <div class="calendar-title">
+	//                     <div>
+	//                         <span class="icon-double-angle-left" @click="yearClick(0)"></span>
+	//                     </div>
+	//                     <p>
+	//                         <span @click="showYearView">{{yearTitle}}</span>
+	//                     </p>
+	//                     <div>
+	//                          <span class="icon-double-angle-right" @click="yearClick(1)"></span>
+	//                     </div>
+	//                 </div>
+	//             </div>
+	//             <div class="calendar-range">
+	//                 <ul>
+	//                     <li v-for="item in yearRange" class="calendarMonth"   v-on:click="selectYear(item)">
+	//                         <span v-bind:class="{'itemSelect':isCurSelect('Y',item)}">{{item}}</span>
+	//                     </li>
+	//                 </ul>
+	//             </div>
+	//         </div>
+	//     </div>
+	// </template>
+	
+	// <script lang="babel">
+	
+	exports.default = {
+	    data: function data() {
+	        return {
+	            curYear: 0,
+	            curMonth: 0,
+	            curDay: 0,
+	            showDay: true,
+	            showYear: false,
+	            showMonth: false,
+	            weekRange: ['一', '二', '三', '四', '五', '六', '日'],
+	            monthRange: [{ id: 1, text: '一月' }, { id: 2, text: '二月' }, { id: 3, text: '三月' }, { id: 4, text: '四月' }, { id: 5, text: '五月' }, { id: 6, text: '六月' }, { id: 7, text: '七月' }, { id: 8, text: '八月' }, { id: 9, text: '九月' }, { id: 10, text: '十月' }, { id: 11, text: '十一月' }, { id: 12, text: '十二月' }],
+	            dateRange: [],
+	            yearRange: [],
+	            yearTitle: ''
+	        };
+	    },
+	    props: {
+	        width: {},
+	        //格式
+	        format: {
+	            type: String,
+	            default: "DD" //YYYY,MM,DD,H,M,S
+	        }
+	    },
+	    created: function created() {
+	        //初始化当前的年和月,并加载当前年月的数据
+	        var date = new Date();
+	        this.curYear = date.getFullYear();
+	        this.curMonth = date.getMonth() + 1;
+	        this.curDay = date.getDate();
+	
+	        this.dateRange = this.getDateRange(this.curYear, this.curMonth);
+	        this.yearRange = this.getYearRange(this.curYear);
+	        this.yearTitle = this.yearRange[0] + "~" + this.yearRange[11];
+	        //通过格式化显示页面
+	        this.initShowView();
+	    },
+	    methods: {
+	        initShowView: function initShowView() {
+	            switch (this.format) {
+	                case "YYYY":
+	                    this.showYear = true;
+	                    this.showMonth = false;
+	                    this.showDay = false;
+	                    break;
+	                case "MM":
+	                    this.showYear = false;
+	                    this.showMonth = true;
+	                    this.showDay = false;
+	                    break;
+	                case "DD":
+	                    this.showYear = false;
+	                    this.showMonth = false;
+	                    this.showDay = true;
+	                    break;
+	            }
+	        },
+	        isCurSelect: function isCurSelect(flag, item) {
+	            var date = new Date();
+	            var tempY = date.getFullYear();
+	            var tempM = date.getMonth() + 1;
+	            if (flag == "D") {
+	                return this.curYear == tempY && this.curMonth == tempM && this.curDay == item;
+	            } else if (flag == "M") {
+	                return this.curYear == tempY && tempM == item;
+	            } else {
+	                return tempY == item;
+	            }
+	        },
+	        showYearView: function showYearView() {
+	            this.showYear = true;
+	            this.showMonth = false;
+	            this.showDay = false;
+	        },
+	        showMonthView: function showMonthView() {
+	            this.showYear = false;
+	            this.showMonth = true;
+	            this.showDay = false;
+	        },
+	
+	        selectYear: function selectYear(year) {
+	            this.curYear = year;
+	            this.showYear = false;
+	            this.showMonth = true;
+	            this.showDay = false;
+	            if (this.format == "YYYY") {
+	                this.$dispatch('itemClick', year);
+	            }
+	        },
+	        selectMonth: function selectMonth(month) {
+	            this.showYear = false;
+	            this.showMonth = false;
+	            this.showDay = true;
+	            this.curMonth = month;
+	            this.dateRange = this.getDateRange(this.curYear, this.curMonth);
+	            if (this.format == "MM") {
+	                this.$dispatch('itemClick', this.curYear + "-" + month);
+	            }
+	        },
+	
+	        //选择天的时候
+	        selectDay: function selectDay(day) {
+	            var tempD = this.curYear + "-" + this.curMonth + "-" + day;
+	            console.log("触发派发事件：" + tempD);
+	            this.$dispatch('item-click', tempD);
+	        },
+	        today: function today() {
+	            var newDate = new Date();
+	            this.curYear = newDate.getFullYear();
+	            this.curMonth = newDate.getMonth() + 1;
+	            this.dateRange = this.getDateRange(this.curYear, this.curMonth);
+	        },
+	        //下一年或下一个月
+	        yearClick: function yearClick(flag) {
+	            if (this.showYear) {
+	                //如果是年的视图的情况
+	                var year = flag == 0 ? this.curYear - 10 : this.curYear + 10;
+	                this.yearRange = this.getYearRange(year);
+	                this.yearTitle = this.yearRange[0] + "~" + this.yearRange[11];
+	            } else {
+	                var year = flag == 0 ? this.curYear - 1 : this.curYear + 1;
+	                this.curYear = year;
+	                this.dateRange = this.getDateRange(year, this.curMonth);
+	            }
+	        },
+	        monthClick: function monthClick(flag) {
+	            var tempM = this.curMonth;
+	            var tempY = this.curYear;
+	            //上一月
+	            if (flag == 0) {
+	                //
+	                if (tempM == 1) {
+	                    tempM = 12;
+	                    tempY = this.curYear - 1;
+	                } else {
+	                    tempM = tempM - 1;
+	                }
+	            } else {
+	                //下个月
+	                if (tempM == 12) {
+	                    tempY = this.curYear + 1;
+	                    tempM = 1;
+	                } else {
+	                    tempM = tempM + 1;
+	                }
+	            }
+	            this.curYear = tempY;
+	            this.curMonth = tempM;
+	            console.log(tempY, tempM);
+	            this.dateRange = this.getDateRange(tempY, tempM);
+	        },
+	
+	        //通过日期来获取当期星期几
+	        dayOfWeek: function dayOfWeek(date) {
+	            var week = new Date(date).getDay();
+	            if (week == 0) {
+	                return 7;
+	            } else {
+	                return week;
+	            }
+	        },
+	        //通过年月来获取月份的天数
+	        dayNumOfMonth: function dayNumOfMonth(year, month) {
+	            var d = new Date(year, month, 0);
+	            return d.getDate();
+	        },
+	        //加载
+	        getDateRange: function getDateRange(year, month) {
+	            var datearray = [];
+	            var firstDateDay = 0;
+	            //1:得到当前月的第一天是星期几
+	            var firstDay = year + "-" + month + "-01";
+	
+	            var firstWeek = this.dayOfWeek(firstDay);
+	            //2:通过星期得到日历的第一天
+	            if (firstWeek == 1) {
+	                firstDateDay = 1;
+	            } else {
+	                //获取上个月的天数
+	                var preMonth = 0;
+	                if (month == 1) {
+	                    preMonth = this.dayNumOfMonth(year - 1, 12);
+	                }
+	                preMonth = this.dayNumOfMonth(year, month - 1);
+	
+	                for (var pi = preMonth - firstWeek + 2; pi <= preMonth; pi++) {
+	                    var week = new Date(this.curYear + "/" + (this.curMonth - 1) + "/" + pi).getDay();
+	                    var restDay = week == 6 || week == 0;
+	                    datearray.push({
+	                        isCur: false,
+	                        day: pi,
+	                        isRestDay: restDay
+	                    });
+	                }
+	            }
+	            //3:得到这个月的总天数
+	            var curDays = this.dayNumOfMonth(year, month);
+	            for (var i = 1; i <= curDays; i++) {
+	                var week = new Date(this.curYear + "/" + this.curMonth + "/" + i).getDay();
+	                var restDay = week == 6 || week == 0;
+	                datearray.push({
+	                    isCur: true,
+	                    day: i,
+	                    isRestDay: restDay
+	                });
+	            }
+	            //2:检查该对象里面是否包含42个值,如果不包含,那么久生成
+	            if (datearray.length < 42) {
+	                var nextValue = 42 - datearray.length;
+	                for (var ni = 1; ni <= nextValue; ni++) {
+	                    var week = new Date(this.curYear + "/" + (this.curMonth + 1) + "/" + ni).getDay();
+	                    var restDay = week == 6 || week == 0;
+	                    datearray.push({
+	                        isCur: false,
+	                        day: ni,
+	                        isRestDay: restDay
+	                    });
+	                }
+	            }
+	            return datearray;
+	        },
+	        getYearRange: function getYearRange(year) {
+	            var tempYRange = [];
+	            for (var i = year - 6; i <= year + 5; i++) {
+	                tempYRange.push(i);
+	            };
+	            return tempYRange;
+	        }
+	    }
+	};
+	
+	// </script>
+
+	// <style>
+	//         .calendar {
+	//             width: 100%;
+	//             height: auto;
+	//             display: flex;
+	//             display: -webkit-flex;
+	//             flex-flow: column nowrap;
+	//             justify-content: flex-start;
+	//             box-shadow: 4px 4px 5px gray;
+	//             border: 2px solid whitesmoke;
+	//             color: #666;
+	//             font-size: 14px;
+
+	//         }
+
+	//         .calendar span {
+	//             cursor: pointer;
+	//         }
+
+	//         .calendar-header {
+	//             height: auto;
+	//             display: flex;
+	//             flex-flow: column nowrap;
+	//             justify-content: center;
+	//             border-bottom: 1px solid lightgrey;
+
+	//         }
+
+	//         .calendar-title {
+	//             height: 30px;
+	//             display: flex;
+	//             padding: 5px 15px;
+	//             flex-flow: row nowrap;
+	//             justify-content: space-between;
+	//             align-items: center;
+	//             border-bottom: 1px solid lightgrey;
+	//             font-weight: bold;
+	//         }
+
+	//         .calendarDay-title>span:active {
+	//             color: #2db7f5;
+	//         }
+
+	//         .calendarDay-week{
+	//             background-color: whitesmoke;
+	//         }
+
+	//         .calendarDay-week>ul {
+	//             display: flex;
+	//             flex-flow: row nowrap;
+	//             justify-content: space-around;
+	//             height: 30px;
+	//              padding: 5px 0px;
+	//             list-style-type: none;
+	//             align-items: center;
+	//             margin: 0px;
+	//         }
+
+	//         .calendarDay-week>ul>li {
+	//             flex-basis: 14%;
+	//             text-align: center;
+	//         }
+
+	//         .calendar-range {
+	//             height: 260px;
+	//         }
+
+	//         .calendar-range>ul {
+	//             display: flex;
+	//             flex-flow: row wrap;
+	//             justify-content: flex-start;
+	//             padding: 5px 0px;
+	//             list-style-type: none;
+	//             align-items: center;
+	//             margin: 0px;
+	//             font-size: 16px;
+	//         }
+
+	//          .calendar-range>ul>li>span:hover{
+	//             border:2px solid darkorange;
+	//             color: darkorange;
+	//             border-radius: 4px;
+	//             padding: 5px;
+	//          }
+
+	//          .calendar-range>ul>li>span:active{
+	//             border:2px solid darkorange;
+	//             color: #2db7f5;
+	//             border-radius: 4px;
+	//             padding: 5px;
+	//          }
+
+	//         .calendarDay {
+	//             flex-basis: 14.28%;
+	//             height: 40px;
+	//             line-height: 40px;
+	//             text-align: center;
+	//             cursor: pointer;
+	//         }
+
+	//         .calendarMonth{
+	//             flex-basis: 30%;
+	//             height: 60px;
+	//             line-height: 40px;
+	//             text-align: center;
+	//             cursor: pointer;
+	//         }
+
+	//         .itemSelect {
+	//             padding: 5px;
+	//             border:2px solid #2db7f5;
+	//             color: #2db7f5;
+	//             border-radius: 4px;
+	//         }
+	//         .restDay{
+	//             color: #e02d2d;
+	//         }
+
+	//         .curMonth{
+	//             font-weight: bold;
+	//         }
+
+	//         .calendarDay-footer {
+	//             height: 30px;
+	//             padding: 5px 15px;
+	//             flex-flow: row nowrap;
+	//             border-top: 1px solid lightgray;
+	//             display: flex;
+	//             flex-flow: row nowrap;
+	//             justify-content: center;
+	//             align-items: center;
+	//             font-weight: bold;
+	//              background-color: whitesmoke;
+	//         }
+	// </style>
+
+/***/ },
+/* 83 */
+/***/ function(module, exports) {
+
+	module.exports = "\n <div class=\"calendar\">\n    <div class=\"calenarDayView\" v-show=\"showDay\">\n        <div class=\"calendar-header\">\n            <div class=\"calendar-title\">\n                <div>\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\"></span>\n                    <span class=\"icon-angle-left\" style='margin-left:20px;width:50px;' @click=\"monthClick(0)\"></span>\n                </div>\n                <p>\n                    <span @click=\"showYearView\">{{curYear}}年</span>\n                    <span @click=\"showMonthView\">{{curMonth}}月</span>\n                </p>\n                <div>\n                     <span class=\"icon-angle-right\" style='margin-right:20px;' @click=\"monthClick(1)\"></span>\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\"></span>\n                </div>\n            </div>\n            <div class=\"calendarDay-week\">\n                <ul>\n                    <li v-for=\"(index,item) in weekRange\" :class=\"{'restDay':index==5||index==6}\">{{item}}</li>\n                </ul>\n            </div>\n        </div>\n        <div class=\"calendar-range\">\n            <ul>\n                <li v-for=\"item in dateRange\" class=\"calendarDay\"   v-on:click=\"selectDay(item.day)\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('D',item.day),'restDay':item.isRestDay,'curMonth':item.isCur}\">{{item.day}}</span>\n                </li>\n            </ul>\n        </div>\n        <div class=\"calendarDay-footer\">\n            <span @click=\"today\">今天</span>\n        </div>\n    </div>\n    <div class=\"calendarMonthView\" v-show=\"showMonth\">\n        <div class=\"calendar-header\">\n            <div class=\"calendar-title\">\n                <div>\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\"></span>\n                </div>\n                <p>\n                    <span @click=\"showYearView\">{{curYear}}年</span>\n                </p>\n                <div>\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"calendar-range\">\n            <ul>\n                <li v-for=\"item in monthRange\" class=\"calendarMonth\"   v-on:click=\"selectMonth(item.id)\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('M',item.id)}\">{{item.text}}</span>\n                </li>\n            </ul>\n        </div>\n    </div>\n    <div class=\"calendarYearView\" v-show=\"showYear\">\n        <div class=\"calendar-header\">\n            <div class=\"calendar-title\">\n                <div>\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\"></span>\n                </div>\n                <p>\n                    <span @click=\"showYearView\">{{yearTitle}}</span>\n                </p>\n                <div>\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"calendar-range\">\n            <ul>\n                <li v-for=\"item in yearRange\" class=\"calendarMonth\"   v-on:click=\"selectYear(item)\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('Y',item)}\">{{item}}</span>\n                </li>\n            </ul>\n        </div>\n    </div>\n</div>\n";
 
 /***/ }
 /******/ ]);

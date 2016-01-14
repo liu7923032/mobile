@@ -1,33 +1,81 @@
 <template>
      <div class="calendar">
-        <div class="calendar-header">
-            <div class="calendar-title">
-                <span class="icon-left">-</span>
-                <p><span v-on:click="showYear">{{curYear}}年</span><span v-on:click="showMonth">{{curMonth}}月</span></p>
-                <span class="icon-right">+</span>
+        <div class="calenarDayView" v-show="showDay">
+            <div class="calendar-header">
+                <div class="calendar-title">
+                    <div>
+                        <span class="icon-double-angle-left" @click="yearClick(0)"></span>
+                        <span class="icon-angle-left" style='margin-left:20px;width:50px;' @click="monthClick(0)"></span>
+                    </div>
+                    <p>
+                        <span @click="showYearView">{{curYear}}年</span>
+                        <span @click="showMonthView">{{curMonth}}月</span>
+                    </p>
+                    <div>
+                         <span class="icon-angle-right" style='margin-right:20px;' @click="monthClick(1)"></span>
+                         <span class="icon-double-angle-right" @click="yearClick(1)"></span>
+                    </div>
+                </div>
+                <div class="calendarDay-week">
+                    <ul>
+                        <li v-for="(index,item) in weekRange" :class="{'restDay':index==5||index==6}">{{item}}</li>
+                    </ul>
+                </div>
             </div>
-            <div class="calendar-week">
+            <div class="calendar-range">
                 <ul>
-                    <li>一</li>
-                    <li>二</li>
-                    <li>三</li>
-                    <li>四</li>
-                    <li>五</li>
-                    <li>六</li>
-                    <li>日</li>
+                    <li v-for="item in dateRange" class="calendarDay"   v-on:click="selectDay(item.day)">
+                        <span v-bind:class="{'itemSelect':isCurSelect('D',item.day),'restDay':item.isRestDay,'curMonth':item.isCur}">{{item.day}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="calendarDay-footer">
+                <span @click="today">今天</span>
+            </div>
+        </div>
+        <div class="calendarMonthView" v-show="showMonth">
+            <div class="calendar-header">
+                <div class="calendar-title">
+                    <div>
+                        <span class="icon-double-angle-left" @click="yearClick(0)"></span>
+                    </div>
+                    <p>
+                        <span @click="showYearView">{{curYear}}年</span>
+                    </p>
+                    <div>
+                         <span class="icon-double-angle-right" @click="yearClick(1)"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="calendar-range">
+                <ul>
+                    <li v-for="item in monthRange" class="calendarMonth"   v-on:click="selectMonth(item.id)">
+                        <span v-bind:class="{'itemSelect':isCurSelect('M',item.id)}">{{item.text}}</span>
+                    </li>
                 </ul>
             </div>
         </div>
-
-        <div class="calendar-daterange">
-            <ul>
-                <li v-for="item in dateRange" class="calendar-day" v-bind:class="{'daySelect':item.day==curDay,'curMonth':item.isCur}"  v-on:click="selectDay(item)">
-                    {{item.day}}
-                </li>
-            </ul>
-        </div>
-        <div class="calendar-footer">
-            <span>今天</span>
+        <div class="calendarYearView" v-show="showYear">
+            <div class="calendar-header">
+                <div class="calendar-title">
+                    <div>
+                        <span class="icon-double-angle-left" @click="yearClick(0)"></span>
+                    </div>
+                    <p>
+                        <span @click="showYearView">{{yearTitle}}</span>
+                    </p>
+                    <div>
+                         <span class="icon-double-angle-right" @click="yearClick(1)"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="calendar-range">
+                <ul>
+                    <li v-for="item in yearRange" class="calendarMonth"   v-on:click="selectYear(item)">
+                        <span v-bind:class="{'itemSelect':isCurSelect('Y',item)}">{{item}}</span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -37,27 +85,158 @@
     export default {
         data:function(){
             return {
-                   curYear:0,
-                   curMonth:0,
-                   curDay:0,
-                   showDay:true,
-                   showYear:false,
-                   showMonth:false,
-                   dateRange:[]
+               curYear:0,
+               curMonth:0,
+               curDay:0,
+               showDay:true,
+               showYear:false,
+               showMonth:false,
+               weekRange:['一','二','三','四','五','六','日'],
+               monthRange:[
+                           {id:1,text:'一月'},{id:2,text:'二月'},{id:3,text:'三月'},{id:4,text:'四月'},
+                           {id:5,text:'五月'},{id:6,text:'六月'},{id:7,text:'七月'},{id:8,text:'八月'},
+                           {id:9,text:'九月'},{id:10,text:'十月'},{id:11,text:'十一月'},{id:12,text:'十二月'}
+                          ],
+               dateRange:[],
+               yearRange:[],
+               yearTitle:''
+            }
+        },
+        props:{
+            width:{
+
+            },
+            //格式
+            format:{
+                type:String,
+                default:"DD"//YYYY,MM,DD,H,M,S
             }
         },
         created:function(){
+            //初始化当前的年和月,并加载当前年月的数据
             var date=new Date();
             this.curYear=date.getFullYear();
             this.curMonth=date.getMonth()+1;
             this.curDay=date.getDate();
-            
+
             this.dateRange=this.getDateRange(this.curYear,this.curMonth);
+            this.yearRange=this.getYearRange(this.curYear);
+            this.yearTitle=this.yearRange[0]+"~"+this.yearRange[11];
+            //通过格式化显示页面
+            this.initShowView();
         },
         methods:{
-            selectDay:function(day){
-                alert(day);
+            initShowView(){
+                switch(this.format){
+                    case "YYYY":
+                        this.showYear=true;
+                        this.showMonth=false;
+                        this.showDay=false;
+                        break;
+                    case "MM":
+                        this.showYear=false;
+                        this.showMonth=true;
+                        this.showDay=false;
+                        break;
+                    case "DD":
+                        this.showYear=false;
+                        this.showMonth=false;
+                        this.showDay=true;
+                        break;
+                }
             },
+            isCurSelect(flag,item){
+                var date=new Date();
+                const tempY=date.getFullYear();
+                const tempM=date.getMonth()+1;
+                if(flag=="D"){
+                    return this.curYear==tempY&&this.curMonth==tempM&&this.curDay==item;
+                }else if(flag=="M"){
+                    return this.curYear==tempY&&tempM==item;
+                }else{
+                    return tempY==item;
+                }
+            },
+            showYearView(){
+                this.showYear=true
+                this.showMonth=false;
+                this.showDay=false;
+            },
+            showMonthView(){
+                this.showYear=false
+                this.showMonth=true;
+                this.showDay=false;
+            },
+            selectYear:function(year){
+                this.curYear=year;
+                this.showYear=false
+                this.showMonth=true;
+                this.showDay=false;
+                if(this.format=="YYYY"){
+                    this.$dispatch('itemClick',year);
+                }
+            },
+            selectMonth(month){
+                this.showYear=false
+                this.showMonth=false;
+                this.showDay=true;
+                this.curMonth=month;
+                this.dateRange=this.getDateRange(this.curYear,this.curMonth);
+                if(this.format=="MM"){
+                    this.$dispatch('itemClick',this.curYear+"-"+month);
+                }
+            },
+            //选择天的时候
+            selectDay:function(day){
+                const tempD=this.curYear+"-"+this.curMonth+"-"+day;
+                console.log("触发派发事件："+tempD);
+                this.$dispatch('item-click',tempD);
+            },
+            today:function(){
+                var newDate=new Date();
+                this.curYear=newDate.getFullYear();
+                this.curMonth=newDate.getMonth()+1;
+                this.dateRange=this.getDateRange(this.curYear,this.curMonth);
+            },
+            //下一年或下一个月
+            yearClick(flag){
+                if(this.showYear){
+                    //如果是年的视图的情况
+                    const year=flag==0?this.curYear-10:this.curYear+10;
+                    this.yearRange=this.getYearRange(year);
+                    this.yearTitle=this.yearRange[0]+"~"+this.yearRange[11];    
+                }else{
+                     const year=flag==0?this.curYear-1:this.curYear+1;
+                     this.curYear=year;
+                     this.dateRange=this.getDateRange(year,this.curMonth);
+                }
+              
+            },
+            monthClick(flag){
+                var tempM=this.curMonth;
+                var tempY=this.curYear;
+                //上一月
+                if(flag==0){//
+                    if(tempM==1){
+                        tempM=12;
+                        tempY=this.curYear-1;
+                    }else{
+                        tempM=tempM-1;
+                    }
+                }else{//下个月
+                    if(tempM==12){
+                        tempY=this.curYear+1;
+                        tempM=1;
+                    }else{
+                        tempM=tempM+1;
+                    }
+                }
+                this.curYear=tempY;
+                this.curMonth=tempM;
+                console.log(tempY,tempM);
+                 this.dateRange=this.getDateRange(tempY,tempM);
+            },
+
             //通过日期来获取当期星期几
             dayOfWeek:function(date){
               var week=new Date(date).getDay();
@@ -93,31 +272,47 @@
                      preMonth=this.dayNumOfMonth(year,month-1);
                      
                      for(var pi=preMonth-firstWeek+2;pi<=preMonth;pi++){
+                            var week=new Date(this.curYear+"/"+(this.curMonth-1)+"/"+pi).getDay();
+                            var restDay=(week==6||week==0);
                             datearray.push({
                                 isCur:false,
-                                day:pi
+                                day:pi,
+                                isRestDay:restDay
                             });
                      }
                 }
                 //3:得到这个月的总天数
                 var curDays=this.dayNumOfMonth(year,month);
                 for(var i=1;i<=curDays;i++){
+                    var week=new Date(this.curYear+"/"+this.curMonth+"/"+i).getDay();
+                    var restDay=(week==6||week==0);
                     datearray.push({
                         isCur:true,
-                        day:i
+                        day:i,
+                        isRestDay:restDay
                     });
                 }
                 //2:检查该对象里面是否包含42个值,如果不包含,那么久生成
                 if(datearray.length<42){
                     var nextValue=42-datearray.length;
                      for(var ni=1;ni<=nextValue;ni++){
-                         datearray.push({
+                        var week=new Date(this.curYear+"/"+(this.curMonth+1)+"/"+ni).getDay();
+                        var restDay=(week==6||week==0);
+                        datearray.push({
                                 isCur:false,
-                                day:ni
-                            });
+                                day:ni,
+                                isRestDay:restDay
+                        });
                      }
                 }
                 return datearray;
+            },
+            getYearRange:function(year){
+                var tempYRange=[];
+                for (var i = year - 6; i <=year+5; i++) {
+                   tempYRange.push(i);   
+                };
+                return tempYRange;
             }
         }
     }
@@ -135,6 +330,8 @@
             box-shadow: 4px 4px 5px gray;
             border: 2px solid whitesmoke;
             color: #666;
+            font-size: 14px;
+
         }
         
         .calendar span {
@@ -147,6 +344,7 @@
             flex-flow: column nowrap;
             justify-content: center;
             border-bottom: 1px solid lightgrey;
+
         }
         
         .calendar-title {
@@ -160,57 +358,96 @@
             font-weight: bold;
         }
         
-        .calendar-title>span:active {
+        .calendarDay-title>span:active {
             color: #2db7f5;
         }
         
-        .calendar-week{
+        .calendarDay-week{
             background-color: whitesmoke;
         }
         
-        .calendar-week>ul {
+        .calendarDay-week>ul {
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-around;
             height: 30px;
-            padding: 0px;
+             padding: 5px 0px;
             list-style-type: none;
             align-items: center;
-            margin: 5px 0px;
+            margin: 0px;
         }
         
-        .calendar-daterange {
+
+        .calendarDay-week>ul>li {
+            flex-basis: 14%;
+            text-align: center;
+        }
+       
+
+        .calendar-range {
             height: 260px;
         }
+
+
         
-        .calendar-daterange>ul {
+        .calendar-range>ul {
             display: flex;
             flex-flow: row wrap;
             justify-content: flex-start;
-            height: 30px;
             padding: 5px 0px;
             list-style-type: none;
             align-items: center;
             margin: 0px;
-            font-size: 12px;
+            font-size: 16px;
         }
+
+         .calendar-range>ul>li>span:hover{
+            border:2px solid darkorange;
+            color: darkorange;
+            border-radius: 4px;
+            padding: 5px;
+         }
+
+         .calendar-range>ul>li>span:active{
+            border:2px solid darkorange;
+            color: #2db7f5;
+            border-radius: 4px;
+            padding: 5px;
+         }
+
         
-        .calendar-day {
-            flex-basis: 14%;
+        .calendarDay {
+            flex-basis: 14.28%;
             height: 40px;
             line-height: 40px;
             text-align: center;
             cursor: pointer;
         }
-        
-        .daySelect {
-            border:1px solid steelblue;
+
+        .calendarMonth{
+            flex-basis: 30%;
+            height: 60px;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
         }
+       
+        .itemSelect {
+            padding: 5px;
+            border:2px solid #2db7f5;
+            color: #2db7f5;
+            border-radius: 4px;
+        }
+        .restDay{
+            color: #e02d2d;
+        }
+       
+
         .curMonth{
             font-weight: bold;
         }
         
-        .calendar-footer {
+        .calendarDay-footer {
             height: 30px;
             padding: 5px 15px;
             flex-flow: row nowrap;
@@ -224,13 +461,3 @@
         }
 </style>
    
-
-    <script>
-       var vm= new Vue({
-            el:'body',
-          
-        })
-    </script>
-</body>
-
-</html>
