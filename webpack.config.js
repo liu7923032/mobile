@@ -7,14 +7,15 @@ var webpack = require('webpack')
 var path = require('path')
 
 module.exports = {
-    entry: './src/main.js',
+    entry: ['./src/main.js'],
     output: {
         path: './dist',
         publicPath: 'dist/',
         filename: 'dist.js'
     },
     resolve: {
-        root: path.resolve('./')
+        root: path.resolve('./'),
+        extension: ['', '.js']
     },
     watch: true,
     module: {
