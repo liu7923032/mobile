@@ -3,7 +3,7 @@
 			<span class="icon-reorder" slot="leftBtn" @click="openMenu"></span>
             <span class="icon-refresh" slot="rightBtn" @click="refresh"></span>
 		</toolbar>
-		<navtabs :tab-items="tabItems" :underline="tabWidth" >
+		<navtabs :tab-items="tabItems" >
 		</navtabs>
 		<sidebar :menu-items="menuItems" :show-menu.sync="showMenu" >
 			
@@ -18,8 +18,8 @@
 		created(){
 			console.log("home is created")
 			//计算tab的长度
-		   var width=	document.body.offsetWidth-30;
-		   this.tabWidth=width/this.tabItems.length;
+		   // var width=	document.body.offsetWidth-20;
+		   // this.tabWidth=width/this.tabItems.length;
 		},
 		components:{
 	    	toolbar:ToolBar,
@@ -60,8 +60,7 @@
 					title:'公告',content:'啊啊啊公告'
 				},{
 					title:'制度',content:'啊啊啊制度'
-				}],
-				tabWidth:0
+				}]
 			}
 		},
 	    methods: {

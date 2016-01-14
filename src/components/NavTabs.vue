@@ -1,9 +1,9 @@
 <template>
-	<div class="container-fluid">
+	<div class="container-fluid" v-touch:swipe="swipeTab">
 		<ul class="nav-tabs">
 				<li v-for="(index,item) in tabItems"
 				:class="{'nav_active':selectIndex===index}" 
-				@click="switchTab(index)" 
+				v-touch:tap="switchTab(index)" 
 				 >{{item.title}}</li>
 		</ul>
 		<div class="tabs_line" v-bind:style="{ width:underline+ 'px' }"></div>
@@ -13,7 +13,6 @@
 			</div>
 		</div>
 	</div>
-
 </template>
 
 <script lang="babel">
@@ -21,6 +20,8 @@
 	export default {
 		created(){
 			this.selectIndex=this.activeIndex;
+			var width=	document.body.offsetWidth-20;
+		    this.underline=width/this.tabItems.length;
 		},
 		props:{
 			tabItems:{
@@ -30,16 +31,13 @@
 			activeIndex:{
 				type:Number,
 				default:0
-			},
-			underline:{
-				type:Number,
-				default:100
 			}
 		},
 		data(){
 			return {
 				//当前选中的tab页面
-				selectIndex:0
+				selectIndex:0,
+				underline:100
 			}
 		},
 		methods:{
@@ -48,6 +46,26 @@
 				this.selectIndex=index;
 				var leftWidth=index*this.underline;
 				document.querySelectorAll('.tabs_line')[0].style.transform="translateX("+leftWidth+"px)";
+			},
+			swipeTab(e){
+				var deltaX=e.deltaX;
+				var tempIndex=this.activeIndex;
+				if(deltaX<0){
+					var tempIndex=this.activeIndex-1;
+					if(tempIndex<0){
+						tempIndex=0;
+					}
+				}else{
+					var tabLength=this.tabItems.length-1;
+					if(tempIndex==tabLength){
+						tempIndex=tabLength;
+					}else{
+						tempIndex=this.activeIndex+1;
+					}
+				}
+				this.activeIndex=tempIndex;
+				this.switchTab(tempIndex);
+				// document.querySelectorAll('.tabs_line')[0].style.transform="translateX("+deltaX+"px)";
 			}
 		}
 	}
@@ -63,7 +81,7 @@
 			flex-flow: row nowrap;
 			list-style-type: none;
 			line-height: 35px;
-			border-bottom: 1px solid whitesmoke;
+			border-bottom: 2px solid whitesmoke;
 			padding: 0 10px;
 			align-items: center;
 			align-content: center;
@@ -89,7 +107,7 @@
 		.tabs_line {
 			display: flex;
 			height: 3px;
-			width: 300px;
+			margin: 0px 10px;
 			margin-top: -3px;
 			background-color: darkorange;
 			transition: all .3s ease;

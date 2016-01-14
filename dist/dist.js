@@ -12613,8 +12613,8 @@
 		created: function created() {
 			console.log("home is created");
 			//计算tab的长度
-			var width = document.body.offsetWidth - 30;
-			this.tabWidth = width / this.tabItems.length;
+			// var width=	document.body.offsetWidth-20;
+			// this.tabWidth=width/this.tabItems.length;
 		},
 	
 		components: {
@@ -12654,8 +12654,7 @@
 					title: '公告', content: '啊啊啊公告'
 				}, {
 					title: '制度', content: '啊啊啊制度'
-				}],
-				tabWidth: 0
+				}]
 			};
 		},
 	
@@ -12679,7 +12678,7 @@
 	// 			<span class="icon-reorder" slot="leftBtn" @click="openMenu"></span>
 	//             <span class="icon-refresh" slot="rightBtn" @click="refresh"></span>
 	// 		</toolbar>
-	// 		<navtabs :tab-items="tabItems" :underline="tabWidth" >
+	// 		<navtabs :tab-items="tabItems" >
 	// 		</navtabs>
 	// 		<sidebar :menu-items="menuItems" :show-menu.sync="showMenu" >
 
@@ -13348,7 +13347,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n.nav-tabs[_v-1ba85f76] {\n\tmargin: 0px;\n\tpadding: 0px;\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\tdisplay: -webkit-flex;\n\t-webkit-flex-flow: row nowrap;\n\t    -ms-flex-flow: row nowrap;\n\t        flex-flow: row nowrap;\n\tlist-style-type: none;\n\tline-height: 35px;\n\tborder-bottom: 1px solid whitesmoke;\n\tpadding: 0 10px;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t    -ms-flex-align: center;\n\t        align-items: center;\n\t-webkit-align-content: center;\n\t    -ms-flex-line-pack: center;\n\t        align-content: center;\n\t-webkit-justify-content: space-around;\n\t    -ms-flex-pack: distribute;\n\t        justify-content: space-around;\n\tfont-size: 14px;\n\tfont-weight: bold;\n\t-webkit-box-flex: 1;\n\t-webkit-flex-grow: 1;\n\t    -ms-flex-positive: 1;\n\t        flex-grow: 1;\n}\n\n\n.nav-tabs>li[_v-1ba85f76] {\n\twidth: 100%;\n\ttext-align: center;\n\tvertical-align: middle;\n\tcursor: pointer;\n}\n\n.nav_active[_v-1ba85f76] {\n\tcolor: darkorange;\n}\n\n\n.tabs_line[_v-1ba85f76] {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\theight: 3px;\n\twidth: 300px;\n\tmargin-top: -3px;\n\tbackground-color: darkorange;\n\t-webkit-transition: all .3s ease;\n\ttransition: all .3s ease;\n\twidth: 0px;\n}\n", "", {"version":3,"sources":["/./src/components/NavTabs.vue?2882b256"],"names":[],"mappings":";;AAyDA;CACA,YAAA;CACA,aAAA;CACA,qBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,sBAAA;CACA,8BAAA;KAAA,0BAAA;SAAA,sBAAA;CACA,sBAAA;CACA,kBAAA;CACA,oCAAA;CACA,gBAAA;CACA,0BAAA;CAAA,4BAAA;KAAA,uBAAA;SAAA,oBAAA;CACA,8BAAA;KAAA,2BAAA;SAAA,sBAAA;CACA,sCAAA;KAAA,0BAAA;SAAA,8BAAA;CACA,gBAAA;CACA,kBAAA;CACA,oBAAA;CAAA,qBAAA;KAAA,qBAAA;SAAA,aAAA;CACA;;;AAGA;CACA,YAAA;CACA,mBAAA;CACA,uBAAA;CACA,gBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;;AAGA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,YAAA;CACA,aAAA;CACA,iBAAA;CACA,6BAAA;CACA,iCAAA;CAAA,yBAAA;CACA,WAAA;CACA","file":"NavTabs.vue","sourcesContent":["<template>\r\n\t<div class=\"container-fluid\">\r\n\t\t<ul class=\"nav-tabs\">\r\n\t\t\t\t<li v-for=\"(index,item) in tabItems\"\r\n\t\t\t\t:class=\"{'nav_active':selectIndex===index}\" \r\n\t\t\t\t@click=\"switchTab(index)\" \r\n\t\t\t\t >{{item.title}}</li>\r\n\t\t</ul>\r\n\t\t<div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\"></div>\r\n\t\t<div class=\"tabs_content\">\r\n\t\t\t<div v-for=\"(index,item) in tabItems\" v-show=\"selectIndex===index\">\r\n\t\t\t\t{{ item.content }}\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\tthis.selectIndex=this.activeIndex;\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\ttabItems:{\r\n\t\t\t\ttype:Array,\r\n\t\t\t\tdefault:[]\r\n\t\t\t},\r\n\t\t\tactiveIndex:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:0\r\n\t\t\t},\r\n\t\t\tunderline:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:100\r\n\t\t\t}\r\n\t\t},\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\t//当前选中的tab页面\r\n\t\t\t\tselectIndex:0\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\t//点击tabs\r\n\t\t\tswitchTab(index){\r\n\t\t\t\tthis.selectIndex=index;\r\n\t\t\t\tvar leftWidth=index*this.underline;\r\n\t\t\t\tdocument.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\t\t\r\n\t\t.nav-tabs {\r\n\t\t\tmargin: 0px;\r\n\t\t\tpadding: 0px;\r\n\t\t\tdisplay: flex;\r\n\t\t\tdisplay: -webkit-flex;\r\n\t\t\tflex-flow: row nowrap;\r\n\t\t\tlist-style-type: none;\r\n\t\t\tline-height: 35px;\r\n\t\t\tborder-bottom: 1px solid whitesmoke;\r\n\t\t\tpadding: 0 10px;\r\n\t\t\talign-items: center;\r\n\t\t\talign-content: center;\r\n\t\t\tjustify-content: space-around;\r\n\t\t\tfont-size: 14px;\r\n\t\t\tfont-weight: bold;\r\n\t\t\tflex-grow: 1;\r\n\t\t}\r\n\t\t\r\n\t\t\r\n\t\t.nav-tabs>li {\r\n\t\t\twidth: 100%;\r\n\t\t\ttext-align: center;\r\n\t\t\tvertical-align: middle;\r\n\t\t\tcursor: pointer;\r\n\t\t}\r\n\t\t\r\n\t\t.nav_active {\r\n\t\t\tcolor: darkorange;\r\n\t\t}\r\n\r\n\t\t\r\n\t\t.tabs_line {\r\n\t\t\tdisplay: flex;\r\n\t\t\theight: 3px;\r\n\t\t\twidth: 300px;\r\n\t\t\tmargin-top: -3px;\r\n\t\t\tbackground-color: darkorange;\r\n\t\t\ttransition: all .3s ease;\r\n\t\t\twidth: 0px;\r\n\t\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n.nav-tabs[_v-1ba85f76] {\n\tmargin: 0px;\n\tpadding: 0px;\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\tdisplay: -webkit-flex;\n\t-webkit-flex-flow: row nowrap;\n\t    -ms-flex-flow: row nowrap;\n\t        flex-flow: row nowrap;\n\tlist-style-type: none;\n\tline-height: 35px;\n\tborder-bottom: 2px solid whitesmoke;\n\tpadding: 0 10px;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t    -ms-flex-align: center;\n\t        align-items: center;\n\t-webkit-align-content: center;\n\t    -ms-flex-line-pack: center;\n\t        align-content: center;\n\t-webkit-justify-content: space-around;\n\t    -ms-flex-pack: distribute;\n\t        justify-content: space-around;\n\tfont-size: 14px;\n\tfont-weight: bold;\n\t-webkit-box-flex: 1;\n\t-webkit-flex-grow: 1;\n\t    -ms-flex-positive: 1;\n\t        flex-grow: 1;\n}\n\n\n.nav-tabs>li[_v-1ba85f76] {\n\twidth: 100%;\n\ttext-align: center;\n\tvertical-align: middle;\n\tcursor: pointer;\n}\n\n.nav_active[_v-1ba85f76] {\n\tcolor: darkorange;\n}\n\n\n.tabs_line[_v-1ba85f76] {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\theight: 3px;\n\tmargin: 0px 10px;\n\tmargin-top: -3px;\n\tbackground-color: darkorange;\n\t-webkit-transition: all .3s ease;\n\ttransition: all .3s ease;\n\twidth: 0px;\n}\n", "", {"version":3,"sources":["/./src/components/NavTabs.vue?d135aa42"],"names":[],"mappings":";;AA2EA;CACA,YAAA;CACA,aAAA;CACA,qBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,sBAAA;CACA,8BAAA;KAAA,0BAAA;SAAA,sBAAA;CACA,sBAAA;CACA,kBAAA;CACA,oCAAA;CACA,gBAAA;CACA,0BAAA;CAAA,4BAAA;KAAA,uBAAA;SAAA,oBAAA;CACA,8BAAA;KAAA,2BAAA;SAAA,sBAAA;CACA,sCAAA;KAAA,0BAAA;SAAA,8BAAA;CACA,gBAAA;CACA,kBAAA;CACA,oBAAA;CAAA,qBAAA;KAAA,qBAAA;SAAA,aAAA;CACA;;;AAGA;CACA,YAAA;CACA,mBAAA;CACA,uBAAA;CACA,gBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;;AAGA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,YAAA;CACA,iBAAA;CACA,iBAAA;CACA,6BAAA;CACA,iCAAA;CAAA,yBAAA;CACA,WAAA;CACA","file":"NavTabs.vue","sourcesContent":["<template>\r\n\t<div class=\"container-fluid\" v-touch:swipe=\"swipeTab\">\r\n\t\t<ul class=\"nav-tabs\">\r\n\t\t\t\t<li v-for=\"(index,item) in tabItems\"\r\n\t\t\t\t:class=\"{'nav_active':selectIndex===index}\" \r\n\t\t\t\tv-touch:tap=\"switchTab(index)\" \r\n\t\t\t\t >{{item.title}}</li>\r\n\t\t</ul>\r\n\t\t<div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\"></div>\r\n\t\t<div class=\"tabs_content\">\r\n\t\t\t<div v-for=\"(index,item) in tabItems\" v-show=\"selectIndex===index\">\r\n\t\t\t\t{{ item.content }}\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\tthis.selectIndex=this.activeIndex;\r\n\t\t\tvar width=\tdocument.body.offsetWidth-20;\r\n\t\t    this.underline=width/this.tabItems.length;\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\ttabItems:{\r\n\t\t\t\ttype:Array,\r\n\t\t\t\tdefault:[]\r\n\t\t\t},\r\n\t\t\tactiveIndex:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:0\r\n\t\t\t}\r\n\t\t},\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\t//当前选中的tab页面\r\n\t\t\t\tselectIndex:0,\r\n\t\t\t\tunderline:100\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\t//点击tabs\r\n\t\t\tswitchTab(index){\r\n\t\t\t\tthis.selectIndex=index;\r\n\t\t\t\tvar leftWidth=index*this.underline;\r\n\t\t\t\tdocument.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n\t\t\t},\r\n\t\t\tswipeTab(e){\r\n\t\t\t\tvar deltaX=e.deltaX;\r\n\t\t\t\tvar tempIndex=this.activeIndex;\r\n\t\t\t\tif(deltaX<0){\r\n\t\t\t\t\tvar tempIndex=this.activeIndex-1;\r\n\t\t\t\t\tif(tempIndex<0){\r\n\t\t\t\t\t\ttempIndex=0;\r\n\t\t\t\t\t}\r\n\t\t\t\t}else{\r\n\t\t\t\t\tvar tabLength=this.tabItems.length-1;\r\n\t\t\t\t\tif(tempIndex==tabLength){\r\n\t\t\t\t\t\ttempIndex=tabLength;\r\n\t\t\t\t\t}else{\r\n\t\t\t\t\t\ttempIndex=this.activeIndex+1;\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tthis.activeIndex=tempIndex;\r\n\t\t\t\tthis.switchTab(tempIndex);\r\n\t\t\t\t// document.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+deltaX+\"px)\";\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\t\t\r\n\t\t.nav-tabs {\r\n\t\t\tmargin: 0px;\r\n\t\t\tpadding: 0px;\r\n\t\t\tdisplay: flex;\r\n\t\t\tdisplay: -webkit-flex;\r\n\t\t\tflex-flow: row nowrap;\r\n\t\t\tlist-style-type: none;\r\n\t\t\tline-height: 35px;\r\n\t\t\tborder-bottom: 2px solid whitesmoke;\r\n\t\t\tpadding: 0 10px;\r\n\t\t\talign-items: center;\r\n\t\t\talign-content: center;\r\n\t\t\tjustify-content: space-around;\r\n\t\t\tfont-size: 14px;\r\n\t\t\tfont-weight: bold;\r\n\t\t\tflex-grow: 1;\r\n\t\t}\r\n\t\t\r\n\t\t\r\n\t\t.nav-tabs>li {\r\n\t\t\twidth: 100%;\r\n\t\t\ttext-align: center;\r\n\t\t\tvertical-align: middle;\r\n\t\t\tcursor: pointer;\r\n\t\t}\r\n\t\t\r\n\t\t.nav_active {\r\n\t\t\tcolor: darkorange;\r\n\t\t}\r\n\r\n\t\t\r\n\t\t.tabs_line {\r\n\t\t\tdisplay: flex;\r\n\t\t\theight: 3px;\r\n\t\t\tmargin: 0px 10px;\r\n\t\t\tmargin-top: -3px;\r\n\t\t\tbackground-color: darkorange;\r\n\t\t\ttransition: all .3s ease;\r\n\t\t\twidth: 0px;\r\n\t\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -13363,11 +13362,11 @@
 		value: true
 	});
 	// <template>
-	// 	<div class="container-fluid">
+	// 	<div class="container-fluid" v-touch:swipe="swipeTab">
 	// 		<ul class="nav-tabs">
 	// 				<li v-for="(index,item) in tabItems"
 	// 				:class="{'nav_active':selectIndex===index}"
-	// 				@click="switchTab(index)"
+	// 				v-touch:tap="switchTab(index)"
 	// 				 >{{item.title}}</li>
 	// 		</ul>
 	// 		<div class="tabs_line" v-bind:style="{ width:underline+ 'px' }"></div>
@@ -13377,7 +13376,6 @@
 	// 			</div>
 	// 		</div>
 	// 	</div>
-	
 	// </template>
 	
 	// <script lang="babel">
@@ -13385,6 +13383,8 @@
 	exports.default = {
 		created: function created() {
 			this.selectIndex = this.activeIndex;
+			var width = document.body.offsetWidth - 20;
+			this.underline = width / this.tabItems.length;
 		},
 	
 		props: {
@@ -13395,16 +13395,13 @@
 			activeIndex: {
 				type: Number,
 				default: 0
-			},
-			underline: {
-				type: Number,
-				default: 100
 			}
 		},
 		data: function data() {
 			return {
 				//当前选中的tab页面
-				selectIndex: 0
+				selectIndex: 0,
+				underline: 100
 			};
 		},
 	
@@ -13415,6 +13412,26 @@
 				this.selectIndex = index;
 				var leftWidth = index * this.underline;
 				document.querySelectorAll('.tabs_line')[0].style.transform = "translateX(" + leftWidth + "px)";
+			},
+			swipeTab: function swipeTab(e) {
+				var deltaX = e.deltaX;
+				var tempIndex = this.activeIndex;
+				if (deltaX < 0) {
+					var tempIndex = this.activeIndex - 1;
+					if (tempIndex < 0) {
+						tempIndex = 0;
+					}
+				} else {
+					var tabLength = this.tabItems.length - 1;
+					if (tempIndex == tabLength) {
+						tempIndex = tabLength;
+					} else {
+						tempIndex = this.activeIndex + 1;
+					}
+				}
+				this.activeIndex = tempIndex;
+				this.switchTab(tempIndex);
+				// document.querySelectorAll('.tabs_line')[0].style.transform="translateX("+deltaX+"px)";
 			}
 		}
 	};
@@ -13430,7 +13447,7 @@
 	// 			flex-flow: row nowrap;
 	// 			list-style-type: none;
 	// 			line-height: 35px;
-	// 			border-bottom: 1px solid whitesmoke;
+	// 			border-bottom: 2px solid whitesmoke;
 	// 			padding: 0 10px;
 	// 			align-items: center;
 	// 			align-content: center;
@@ -13454,7 +13471,7 @@
 	// 		.tabs_line {
 	// 			display: flex;
 	// 			height: 3px;
-	// 			width: 300px;
+	// 			margin: 0px 10px;
 	// 			margin-top: -3px;
 	// 			background-color: darkorange;
 	// 			transition: all .3s ease;
@@ -13466,13 +13483,13 @@
 /* 33 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"container-fluid\" _v-1ba85f76=\"\">\n\t<ul class=\"nav-tabs\" _v-1ba85f76=\"\">\n\t\t\t<li v-for=\"(index,item) in tabItems\" :class=\"{'nav_active':selectIndex===index}\" @click=\"switchTab(index)\" _v-1ba85f76=\"\">{{item.title}}</li>\n\t</ul>\n\t<div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\" _v-1ba85f76=\"\"></div>\n\t<div class=\"tabs_content\" _v-1ba85f76=\"\">\n\t\t<div v-for=\"(index,item) in tabItems\" v-show=\"selectIndex===index\" _v-1ba85f76=\"\">\n\t\t\t{{ item.content }}\n\t\t</div>\n\t</div>\n</div>\n\n";
+	module.exports = "\n<div class=\"container-fluid\" v-touch:swipe=\"swipeTab\" _v-1ba85f76=\"\">\n\t<ul class=\"nav-tabs\" _v-1ba85f76=\"\">\n\t\t\t<li v-for=\"(index,item) in tabItems\" :class=\"{'nav_active':selectIndex===index}\" v-touch:tap=\"switchTab(index)\" _v-1ba85f76=\"\">{{item.title}}</li>\n\t</ul>\n\t<div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\" _v-1ba85f76=\"\"></div>\n\t<div class=\"tabs_content\" _v-1ba85f76=\"\">\n\t\t<div v-for=\"(index,item) in tabItems\" v-show=\"selectIndex===index\" _v-1ba85f76=\"\">\n\t\t\t{{ item.content }}\n\t\t</div>\n\t</div>\n</div>\n";
 
 /***/ },
 /* 34 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t\t<toolbar :text=\"title\">\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\"></span>\n\t\t</toolbar>\n\t\t<navtabs :tab-items=\"tabItems\" :underline=\"tabWidth\" >\n\t\t</navtabs>\n\t\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" >\n\t\t\t\n\t\t</sidebar>\n";
+	module.exports = "\n\t\t<toolbar :text=\"title\">\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\"></span>\n\t\t</toolbar>\n\t\t<navtabs :tab-items=\"tabItems\" >\n\t\t</navtabs>\n\t\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" >\n\t\t\t\n\t\t</sidebar>\n";
 
 /***/ },
 /* 35 */
