@@ -20,7 +20,7 @@
 	export default {
 		created(){
 			//初始化弹出框的宽度
-			console.log("dialog init")
+			
 		},
 		data(){
 
@@ -94,6 +94,7 @@
             display: -webkit-flex;
             justify-content: center;
             cursor: pointer;
+            font-size: 16px;
         }
         
         .dlg-content>.dlg-body {

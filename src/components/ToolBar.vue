@@ -23,14 +23,21 @@
 <style type="text/css">
     
     .toolbar {
+        display: -ms-flexbox;
         display: flex;
         display: -webkit-flex;
         width: 100%;
         background-color: rgba(255, 255, 255, 0.95);
         height: 44px;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        align-items: center;
+        -webkit-flex-flow: row nowrap;
+        -ms-flex-flow: row nowrap;
+                flex-flow: row nowrap;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+                justify-content: space-between;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+                align-items: center;
         border-bottom: 2px solid lightgray;
         /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/
     }

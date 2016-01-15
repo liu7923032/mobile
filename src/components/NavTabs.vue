@@ -50,7 +50,7 @@
 			swipeTab(e){
 				var deltaX=e.deltaX;
 				var tempIndex=this.activeIndex;
-				if(deltaX<0){
+				if(deltaX>0){
 					var tempIndex=this.activeIndex-1;
 					if(tempIndex<0){
 						tempIndex=0;
@@ -76,19 +76,37 @@
 		.nav-tabs {
 			margin: 0px;
 			padding: 0px;
+			display: -ms-flexbox;
 			display: flex;
 			display: -webkit-flex;
-			flex-flow: row nowrap;
+			-webkit-flex-flow: row nowrap;
+			    -ms-flex-flow: row nowrap;
+			        flex-flow: row nowrap;
+			-webkit-align-items: center;
+			    -ms-flex-align: center;
+			        align-items: center;
+			-webkit-align-content: center;
+			    -ms-flex-line-pack: center;
+			        align-content: center;
+			-ms-flex-pack: distribute;
+			    justify-content: space-around;
+
+			-webkit-justify-content: space-around;
+			-webkit-flex-flow: row nowrap;
+			-webkit-align-items: center;
+			-webkit-align-content: center;
+
 			list-style-type: none;
 			line-height: 35px;
 			border-bottom: 2px solid whitesmoke;
 			padding: 0 10px;
-			align-items: center;
-			align-content: center;
-			justify-content: space-around;
+			
+			
 			font-size: 14px;
 			font-weight: bold;
-			flex-grow: 1;
+			-webkit-flex-grow: 1;
+			    -ms-flex-positive: 1;
+			        flex-grow: 1;
 		}
 		
 		
@@ -105,7 +123,9 @@
 
 		
 		.tabs_line {
+			display: -ms-flexbox;
 			display: flex;
+			display: -webkit-flex;
 			height: 3px;
 			margin: 0px 10px;
 			margin-top: -3px;

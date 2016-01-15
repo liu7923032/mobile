@@ -5,7 +5,6 @@
 	</toolbar>
 	<section >
 		<input type="button" @click="showDialog">
-
 		<datepicker></datepicker>
 	</section>
 

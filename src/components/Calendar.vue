@@ -1,5 +1,5 @@
 <template>
-     <div class="calendar">
+    <div class="calendar">
         <div class="calenarDayView" v-show="showDay">
             <div class="calendar-header">
                 <div class="calendar-title">
@@ -110,11 +110,20 @@
             format:{
                 type:String,
                 default:"DD"//YYYY,MM,DD,H,M,S
+            },
+            curdate:{
+                type:String,
+                default:''
             }
         },
         created:function(){
+            var date='';
+            if(this.curdate.length>0){
+                date=new Date(this.curdate);
+            }else{
+                date=new Date();
+            }
             //初始化当前的年和月,并加载当前年月的数据
-            var date=new Date();
             this.curYear=date.getFullYear();
             this.curMonth=date.getMonth()+1;
             this.curDay=date.getDate();
@@ -152,7 +161,7 @@
                 if(flag=="D"){
                     return this.curYear==tempY&&this.curMonth==tempM&&this.curDay==item;
                 }else if(flag=="M"){
-                    return this.curYear==tempY&&tempM==item;
+                    return tempM==item;
                 }else{
                     return tempY==item;
                 }
@@ -323,12 +332,17 @@
         .calendar {
             width: 100%;
             height: auto;
+            display: -ms-flexbox;
             display: flex;
             display: -webkit-flex;
-            flex-flow: column nowrap;
-            justify-content: flex-start;
+            -webkit-flex-flow: column nowrap;
+                -ms-flex-flow: column nowrap;
+                    flex-flow: column nowrap;
+            -webkit-justify-content: flex-start;
+                -ms-flex-pack: start;
+                    justify-content: flex-start;
             box-shadow: 4px 4px 5px gray;
-            border: 2px solid whitesmoke;
+            border: 0px solid whitesmoke;
             color: #666;
             font-size: 14px;
 
@@ -340,20 +354,34 @@
         
         .calendar-header {
             height: auto;
+            display: -webkit-flex;
+            display: -ms-flexbox;
             display: flex;
-            flex-flow: column nowrap;
-            justify-content: center;
+            -webkit-flex-flow: column nowrap;
+                -ms-flex-flow: column nowrap;
+                    flex-flow: column nowrap;
+            -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
             border-bottom: 1px solid lightgrey;
 
         }
         
         .calendar-title {
             height: 30px;
+            display: -webkit-flex;
+            display: -ms-flexbox;
             display: flex;
             padding: 5px 15px;
-            flex-flow: row nowrap;
-            justify-content: space-between;
-            align-items: center;
+            -webkit-flex-flow: row nowrap;
+                -ms-flex-flow: row nowrap;
+                    flex-flow: row nowrap;
+            -webkit-justify-content: space-between;
+                -ms-flex-pack: justify;
+                    justify-content: space-between;
+            -webkit-align-items: center;
+                -ms-flex-align: center;
+                    align-items: center;
             border-bottom: 1px solid lightgrey;
             font-weight: bold;
         }
@@ -367,19 +395,29 @@
         }
         
         .calendarDay-week>ul {
+            display: -webkit-flex;
+            display: -ms-flexbox;
             display: flex;
-            flex-flow: row nowrap;
-            justify-content: space-around;
+            -webkit-flex-flow: row nowrap;
+                -ms-flex-flow: row nowrap;
+                    flex-flow: row nowrap;
+            -webkit-justify-content: space-around;
+                -ms-flex-pack: distribute;
+                    justify-content: space-around;
             height: 30px;
              padding: 5px 0px;
             list-style-type: none;
-            align-items: center;
+            -webkit-align-items: center;
+                -ms-flex-align: center;
+                    align-items: center;
             margin: 0px;
         }
         
 
         .calendarDay-week>ul>li {
-            flex-basis: 14%;
+            -webkit-flex-basis: 14%;
+                -ms-flex-preferred-size: 14%;
+                    flex-basis: 14%;
             text-align: center;
         }
        
@@ -391,12 +429,20 @@
 
         
         .calendar-range>ul {
+            display: -webkit-flex;
+            display: -ms-flexbox;
             display: flex;
-            flex-flow: row wrap;
-            justify-content: flex-start;
+            -webkit-flex-flow: row wrap;
+                -ms-flex-flow: row wrap;
+                    flex-flow: row wrap;
+            -webkit-justify-content: flex-start;
+                -ms-flex-pack: start;
+                    justify-content: flex-start;
             padding: 5px 0px;
             list-style-type: none;
-            align-items: center;
+            -webkit-align-items: center;
+                -ms-flex-align: center;
+                    align-items: center;
             margin: 0px;
             font-size: 16px;
         }
@@ -417,7 +463,9 @@
 
         
         .calendarDay {
-            flex-basis: 14.28%;
+            -webkit-flex-basis: 14.28%;
+                -ms-flex-preferred-size: 14.28%;
+                    flex-basis: 14.28%;
             height: 40px;
             line-height: 40px;
             text-align: center;
@@ -425,7 +473,9 @@
         }
 
         .calendarMonth{
-            flex-basis: 30%;
+            -webkit-flex-basis: 30%;
+                -ms-flex-preferred-size: 30%;
+                    flex-basis: 30%;
             height: 60px;
             line-height: 40px;
             text-align: center;
@@ -450,12 +500,22 @@
         .calendarDay-footer {
             height: 30px;
             padding: 5px 15px;
-            flex-flow: row nowrap;
+            -webkit-flex-flow: row nowrap;
+                -ms-flex-flow: row nowrap;
+                    flex-flow: row nowrap;
             border-top: 1px solid lightgray;
+            display: -webkit-flex;
+            display: -ms-flexbox;
             display: flex;
-            flex-flow: row nowrap;
-            justify-content: center;
-            align-items: center;
+            -webkit-flex-flow: row nowrap;
+                -ms-flex-flow: row nowrap;
+                    flex-flow: row nowrap;
+            -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
+            -webkit-align-items: center;
+                -ms-flex-align: center;
+                    align-items: center;
             font-weight: bold;
              background-color: whitesmoke;
         }

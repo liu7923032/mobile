@@ -55,11 +55,11 @@
 				}],
 				showMenu:false,
 				tabItems:[{
-					title:'通知',content:'啊啊啊通知'
+					title:'通知',content:'啊啊啊通知<br /><br /><br /><br /><br /><br /><br /><br />'
 				},{
-					title:'公告',content:'啊啊啊公告'
+					title:'公告',content:'啊啊啊公告<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />'
 				},{
-					title:'制度',content:'啊啊啊制度'
+					title:'制度',content:'啊啊啊制度<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />'
 				}]
 			}
 		},
