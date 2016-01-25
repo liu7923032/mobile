@@ -56,7 +56,7 @@
 	}
 </script>
 
-<style scoped>
+<style type="text/css" scoped>
 	.mask_transparent {
 	    position: fixed;
 	    z-index: 1;

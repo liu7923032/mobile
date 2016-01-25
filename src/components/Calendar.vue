@@ -22,7 +22,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="calendar-range">
+            <div class="calendar-range" v-touch:swipe="swipeMonth">
                 <ul>
                     <li v-for="item in dateRange" class="calendarDay"   v-on:click="selectDay(item.day)">
                         <span v-bind:class="{'itemSelect':isCurSelect('D',item.day),'restDay':item.isRestDay,'curMonth':item.isCur}">{{item.day}}</span>
@@ -242,10 +242,18 @@
                 }
                 this.curYear=tempY;
                 this.curMonth=tempM;
-                console.log(tempY,tempM);
                  this.dateRange=this.getDateRange(tempY,tempM);
             },
+            swipeMonth(){
 
+            	var deltaX=e.deltaX;
+				var tempIndex=this.activeIndex;
+				if(deltaX>0){
+					this.monthClick(1);
+				}else{
+					this.monthClick(0);
+				}
+            },
             //通过日期来获取当期星期几
             dayOfWeek:function(date){
               var week=new Date(date).getDay();
@@ -328,7 +336,7 @@
 
 </script>
 
-<style>
+<style type="text/css" scoped>
         .calendar {
             width: 100%;
             height: auto;
@@ -365,6 +373,7 @@
                     justify-content: center;
             border-bottom: 1px solid lightgrey;
 
+
         }
         
         .calendar-title {
@@ -391,7 +400,7 @@
         }
         
         .calendarDay-week{
-            background-color: whitesmoke;
+             background-color: whitesmoke;
         }
         
         .calendarDay-week>ul {
@@ -415,9 +424,9 @@
         
 
         .calendarDay-week>ul>li {
-            -webkit-flex-basis: 14%;
-                -ms-flex-preferred-size: 14%;
-                    flex-basis: 14%;
+            -webkit-flex-basis: 14.28%;
+                -ms-flex-preferred-size: 14.28%;
+                    flex-basis: 14.28%;
             text-align: center;
         }
        
@@ -438,7 +447,7 @@
             -webkit-justify-content: flex-start;
                 -ms-flex-pack: start;
                     justify-content: flex-start;
-            padding: 5px 0px;
+           
             list-style-type: none;
             -webkit-align-items: center;
                 -ms-flex-align: center;

@@ -9,7 +9,7 @@
 		<div class="tabs_line" v-bind:style="{ width:underline+ 'px' }"></div>
 		<div class="tabs_content">
 			<div v-for="(index,item) in tabItems" v-show="selectIndex===index">
-				{{ item.content }}
+				{{{ item.content }}}
 			</div>
 		</div>
 	</div>

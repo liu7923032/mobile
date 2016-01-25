@@ -59,7 +59,7 @@
 	}
 </script>
 
-<style >
+<style  type="text/css" scoped>
 	
 	  .dlg-modal {
             position: absolute;

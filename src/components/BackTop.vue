@@ -27,7 +27,7 @@
         }
     }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
     .icon-top {
         position: fixed;
         right: 10px;

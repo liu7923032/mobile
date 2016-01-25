@@ -1,20 +1,30 @@
 <template>
-    <section class="datepicker">
-      <ul class="datepicker-year">
-          <li v-for="yItem in yearRange"  :class="[ isShowItem('Y',yItem)? 'dp-show':'dp-hidden' ]">
-            <span>{{yItem}}</span>
-          </li>
-      </ul>
-      <ul class="datepicker-month">
-          <li v-for="mItem in monthRange" :class="[ isShowItem('M',mItem)? 'dp-show':'dp-hidden' ]">
-            <span>{{mItem}}</span>
-          </li>
-      </ul>
-      <ul class="datepicker-day">
-          <li v-for="dItem in dayRange"   :class="[ isShowItem('D',dItem)? 'dp-show':'dp-hidden' ]">
-            <span>{{dItem}}</span>
-          </li>
-      </ul>
+
+  <div class="datepicker">
+      <section class="datepicker-header">
+        <div>年</div>
+        <div>月</div>
+        <div>日</div>
+      </section>
+      <section class="datepicker-body">
+          <div class="column datepicker-year">
+              <span class="datepicker-icon" @click="add('Y')"><i class="icon-plus"></i></span>
+              <span class="datepicker-value">{{curYear}}</span>
+              <span class="datepicker-icon" @click="minus('Y')"><i class="icon-minus"></i></span>
+          </div>
+          <div class="column datepicker-month">
+              <span  class="datepicker-icon" @click="add('M')"><i class="icon-plus"></i></span>
+              <span class="datepicker-value">{{curMonth<10?("0"+curMonth):curMonth}}</span>
+              <span  class="datepicker-icon" @click="minus('M')"><i class="icon-minus"></i></span>
+          </div>
+          <div class="column datepicker-day">
+              <span  class="datepicker-icon" @click="add('D')"><i class="icon-plus"></i></span>
+              <span class="datepicker-value">{{curDay<10?("0"+curDay):curDay}}</span>
+              <span  class="datepicker-icon" @click="minus('D')"><i class="icon-minus"></i></span>
+          </div>
+      </section> 
+  </div>
+    
 
     <!--   <ul class="datepicker-hour">
           <li v-for="item in hourRange">{{item}}</li>
@@ -25,7 +35,7 @@
       <ul class="datepicker-sec">
           <li v-for="item in secRange">{{item}}</li>
       </ul> -->
-    </section> 
+    
 </template>
 
 <script lang="babel">
@@ -82,31 +92,46 @@
               curDay:0,
               curHour:0,
               curMin:0,
-              curSec:0,
-              showYears:[],
-              showMonths:[],
-              showDays:[],
-              yHeight:0,
-              mHeight:0,
-              dHeight:0
+              curSec:0
             }
         },
         methods:{
-            //显示该item是否显示 
-            isShowItem(flag,item){
-             
-              var tempItem=parseInt(item);
+            add(flag){
+             //通过年月来获取月份的天数
                 switch(flag){
                   case "Y":
-                      return tempItem>=this.showYears[0]&&tempItem<=this.showYears[this.showYears.length-1];
+                    this.curYear=this.curYear+1;
+                    break;
                   case "M":
-                      return tempItem>=this.showMonths[0]&&tempItem<=this.showMonths[this.showMonths.length-1];
+                    //1:判断月份所在的index
+                      var index=this.curMonth==12?0:this.curMonth;
+                      this.curMonth=this.monthRange[index];
+                      this.dayRange=this.getDayRange(this.curYear,this.curMonth);
+                    break;
                   case "D":
-                      return tempItem>=this.showDays[0]&&tempItem<=this.showDays[this.showDays.length-1];
-                } 
-                return false;
+                      var length=this.dayRange.length;
+                      var dayIndex=this.curDay==length?0:this.curDay;
+                      this.curDay=this.dayRange[dayIndex];
+                    break;
+                }
             },
-             //通过年月来获取月份的天数
+            minus(flag){
+                 switch(flag){
+                    case "Y":
+                      this.curYear=this.curYear-1;
+                      break;
+                    case "M":
+                      var index=this.curMonth==1?11:this.curMonth-2;
+                      this.curMonth=this.monthRange[index];
+                      this.dayRange=this.getDayRange(this.curYear,this.curMonth);
+                      break;
+                    case "D":
+                        var length=this.dayRange.length;
+                        var dayIndex=this.curDay==1?length-1:this.curDay-2;
+                        this.curDay=this.dayRange[dayIndex];
+                      break;
+                  }
+            },
             dayNumOfMonth:function(year,month){
                 var d = new Date(year,month,0);
                 return d.getDate();
@@ -159,54 +184,106 @@
     }
 </script>
 
-<style type="text/css">
-    .datepicker{
-        background-color: whitesmoke;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-flow:row nowrap;
-            -ms-flex-flow:row nowrap;
-                flex-flow:row nowrap;
-        justify-content: space-around;
-        height: 200px;
-        width: 300px;
-        font-size: 20px;
-        padding: 20px 0px;
-        overflow: hidden;
-        align-items:center;
-        border:1px solid red;
-    }
+<style type="text/css" scoped>
 
-    .datepicker>ul{
-      list-style-type: none;
-    }
+        .datepicker{
+            display: flex;
+            flex-flow:column nowrap;
+        }
 
-    /*.datepicker-month{
-        transform:translate3d(0px, 120px, 0px);
-    }*/
+      .datepicker-header{
+          background-color: whitesmoke;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-flex-flow:row nowrap;
+              -ms-flex-flow:row nowrap;
+                  flex-flow:row nowrap;
+          justify-content: space-around;
+          height: 30px;
+          width: 300px;
+          font-size: 20px;
+          padding: 5px 20px 0px 20px;
+          align-items:center;
+          border-radius: 5px;
+          font-weight: bold;
+      }
+
+      .datepicker-body{
+          background-color: whitesmoke;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-flex-flow:row nowrap;
+              -ms-flex-flow:row nowrap;
+                  flex-flow:row nowrap;
+          justify-content: space-around;
+          height: 200px;
+          width: 300px;
+          font-size: 20px;
+          padding: 5px 20px;
+          overflow: hidden;
+          align-items:center;
+          border-radius: 5px;
+      }
 
 
-    ul>li{
-      line-height: 40px;
-      vertical-align: middle;
-      height: 30px;
-      padding: 5px;
-      text-align: center;
-      color: black;
-      transition:opacity .2s ease-out;
+      .datepicker-body>.column{
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-flex-flow:column nowrap;
+          -ms-flex-flow:column nowrap;
+                  flex-flow:column nowrap;
+          -webkit-justify-content:center;
+          -ms-flex-pack:center;
+                  justify-content:center;
+          -webkit-align-items:space-around;
+          -ms-flex-align:space-around;
+                  align-items:space-around;
+                  padding: 5px;
+
+      }
+
+      .column>span{
+        padding: 10px;
+        width: 60px;
+        text-align: center;
+        vertical-align: middle;
+        background-color: white;    
+      }
+  
+
+      .column>span:active{
+             background-color: darkorange;
+      }
+
+      .column>span:nth-child(1){
+         border-radius: 5px 5px 0px 0px;
+         box-shadow: 0px 0px 3px gray;
+      }
+
+      .column>span:nth-child(3){
+         border-radius: 0px 0px 5px 5px;
+         box-shadow: 0px 0px 3px gray;
+      }
+
+     .datepicker-icon{
+          border: 2px solid gray;
+          height: 30px;
+          line-height: 30px;
+          font-size: 24px;
+     }
+
+    
+    .datepicker-value{
+        height: 50px;
+        border-left: 2px solid gray;
+        border-right: 2px solid gray;
+        line-height: 50px;
+           font-size: 30px;
+        font-weight: bold;
     }
     
-    .dp-hidden{
-      opacity: 0;
-    }
-    .dp-show{
-      opacity: 1;
-    }
     
-    li.select{
-      color: black;
-      font-weight: bold;
-      border-top: 2px solid green;
-    }
 </style>

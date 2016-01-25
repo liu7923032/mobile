@@ -20,13 +20,12 @@
 	}
 </script>
 
-<style type="text/css">
+<style type="text/css" >
     
     .toolbar {
         display: -ms-flexbox;
         display: flex;
         display: -webkit-flex;
-        width: 100%;
         background-color: rgba(255, 255, 255, 0.95);
         height: 44px;
         -webkit-flex-flow: row nowrap;
@@ -40,9 +39,9 @@
                 align-items: center;
         border-bottom: 2px solid lightgray;
         /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/
+        padding: 0px 10px;
     }
 
-   
     .toolbar div{
         font-size: 18px;
         font-weight: bold;
@@ -50,17 +49,13 @@
         vertical-align: middle;
         
     }
-
-    .toolbar span{
+    .toolbar>span{
         font-size: 20px;
-        margin:0px 10px;
         color: #595959;
         cursor: pointer;
     }
 
-    .toolbar span{
-        margin-right: 10px;
-    }
+   
     
     .toolbar span:active{
         color:darkorange;

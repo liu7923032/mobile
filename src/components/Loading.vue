@@ -29,7 +29,7 @@
 </script>
 
 
-<style>
+<style type="text/css" scoped>
 	
 	.modal{
 		display: flex;

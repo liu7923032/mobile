@@ -12660,7 +12660,7 @@
 				}, {
 					title: '公告', content: '啊啊啊公告<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />'
 				}, {
-					title: '制度', content: '啊啊啊制度<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />'
+					title: '制度', content: '啊啊啊制度<br /><br /><br /><br />顶顶顶顶顶顶顶顶顶顶<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />顶顶顶顶顶顶顶顶顶顶<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />'
 				}]
 			};
 		},
@@ -12752,7 +12752,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n.toolbar {\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    display: -webkit-flex;\n    width: 100%;\n    background-color: rgba(255, 255, 255, 0.95);\n    height: 44px;\n    -webkit-flex-flow: row nowrap;\n    -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-justify-content: space-between;\n    -ms-flex-pack: justify;\n            -webkit-box-pack: justify;\n            justify-content: space-between;\n    -webkit-align-items: center;\n    -ms-flex-align: center;\n            -webkit-box-align: center;\n            align-items: center;\n    border-bottom: 2px solid lightgray;\n    /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/\n}\n\n\n.toolbar div{\n    font-size: 18px;\n    font-weight: bold;\n    text-align: center;\n    vertical-align: middle;\n    \n}\n\n.toolbar span{\n    font-size: 20px;\n    margin:0px 10px;\n    color: #595959;\n    cursor: pointer;\n}\n\n.toolbar span{\n    margin-right: 10px;\n}\n\n.toolbar span:active{\n    color:darkorange;\n}\n", "", {"version":3,"sources":["/./src/components/ToolBar.vue?17e0a981"],"names":[],"mappings":";;AAwBA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,sBAAA;IACA,YAAA;IACA,4CAAA;IACA,aAAA;IACA,8BAAA;IACA,0BAAA;YACA,sBAAA;IACA,uCAAA;IACA,uBAAA;YACA,0BAAA;YAAA,+BAAA;IACA,4BAAA;IACA,uBAAA;YACA,0BAAA;YAAA,oBAAA;IACA,mCAAA;IACA,2CAAA;CACA;;;AAGA;IACA,gBAAA;IACA,kBAAA;IACA,mBAAA;IACA,uBAAA;;CAEA;;AAEA;IACA,gBAAA;IACA,gBAAA;IACA,eAAA;IACA,gBAAA;CACA;;AAEA;IACA,mBAAA;CACA;;AAEA;IACA,iBAAA;CACA","file":"ToolBar.vue","sourcesContent":["<template>\r\n     <header class=\"toolbar\" >\r\n        <slot name=\"leftBtn\"></slot>\r\n        <div class=\"text-title item\">{{text}}</div>\r\n        <slot name=\"rightBtn\"></slot>\r\n    </header>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\t// console.log(\"toolbar is created\");\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\ttext:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:\"未知列表\"\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\">\r\n    \r\n    .toolbar {\r\n        display: -ms-flexbox;\r\n        display: flex;\r\n        display: -webkit-flex;\r\n        width: 100%;\r\n        background-color: rgba(255, 255, 255, 0.95);\r\n        height: 44px;\r\n        -webkit-flex-flow: row nowrap;\r\n        -ms-flex-flow: row nowrap;\r\n                flex-flow: row nowrap;\r\n        -webkit-justify-content: space-between;\r\n        -ms-flex-pack: justify;\r\n                justify-content: space-between;\r\n        -webkit-align-items: center;\r\n        -ms-flex-align: center;\r\n                align-items: center;\r\n        border-bottom: 2px solid lightgray;\r\n        /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/\r\n    }\r\n\r\n   \r\n    .toolbar div{\r\n        font-size: 18px;\r\n        font-weight: bold;\r\n        text-align: center;\r\n        vertical-align: middle;\r\n        \r\n    }\r\n\r\n    .toolbar span{\r\n        font-size: 20px;\r\n        margin:0px 10px;\r\n        color: #595959;\r\n        cursor: pointer;\r\n    }\r\n\r\n    .toolbar span{\r\n        margin-right: 10px;\r\n    }\r\n    \r\n    .toolbar span:active{\r\n        color:darkorange;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n.toolbar {\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    display: -webkit-flex;\n    background-color: rgba(255, 255, 255, 0.95);\n    height: 44px;\n    -webkit-flex-flow: row nowrap;\n    -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-justify-content: space-between;\n    -ms-flex-pack: justify;\n            -webkit-box-pack: justify;\n            justify-content: space-between;\n    -webkit-align-items: center;\n    -ms-flex-align: center;\n            -webkit-box-align: center;\n            align-items: center;\n    border-bottom: 2px solid lightgray;\n    /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/\n    padding: 0px 10px;\n}\n\n.toolbar div{\n    font-size: 18px;\n    font-weight: bold;\n    text-align: center;\n    vertical-align: middle;\n    \n}\n.toolbar>span{\n    font-size: 20px;\n    color: #595959;\n    cursor: pointer;\n}\n\n\n\n.toolbar span:active{\n    color:darkorange;\n}\n", "", {"version":3,"sources":["/./src/components/ToolBar.vue?2eeb09c4"],"names":[],"mappings":";;AAwBA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,sBAAA;IACA,4CAAA;IACA,aAAA;IACA,8BAAA;IACA,0BAAA;YACA,sBAAA;IACA,uCAAA;IACA,uBAAA;YACA,0BAAA;YAAA,+BAAA;IACA,4BAAA;IACA,uBAAA;YACA,0BAAA;YAAA,oBAAA;IACA,mCAAA;IACA,2CAAA;IACA,kBAAA;CACA;;AAEA;IACA,gBAAA;IACA,kBAAA;IACA,mBAAA;IACA,uBAAA;;CAEA;AACA;IACA,gBAAA;IACA,eAAA;IACA,gBAAA;CACA;;;;AAIA;IACA,iBAAA;CACA","file":"ToolBar.vue","sourcesContent":["<template>\r\n     <header class=\"toolbar\" >\r\n        <slot name=\"leftBtn\"></slot>\r\n        <div class=\"text-title item\">{{text}}</div>\r\n        <slot name=\"rightBtn\"></slot>\r\n    </header>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\t// console.log(\"toolbar is created\");\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\ttext:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:\"未知列表\"\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" >\r\n    \r\n    .toolbar {\r\n        display: -ms-flexbox;\r\n        display: flex;\r\n        display: -webkit-flex;\r\n        background-color: rgba(255, 255, 255, 0.95);\r\n        height: 44px;\r\n        -webkit-flex-flow: row nowrap;\r\n        -ms-flex-flow: row nowrap;\r\n                flex-flow: row nowrap;\r\n        -webkit-justify-content: space-between;\r\n        -ms-flex-pack: justify;\r\n                justify-content: space-between;\r\n        -webkit-align-items: center;\r\n        -ms-flex-align: center;\r\n                align-items: center;\r\n        border-bottom: 2px solid lightgray;\r\n        /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/\r\n        padding: 0px 10px;\r\n    }\r\n\r\n    .toolbar div{\r\n        font-size: 18px;\r\n        font-weight: bold;\r\n        text-align: center;\r\n        vertical-align: middle;\r\n        \r\n    }\r\n    .toolbar>span{\r\n        font-size: 20px;\r\n        color: #595959;\r\n        cursor: pointer;\r\n    }\r\n\r\n   \r\n    \r\n    .toolbar span:active{\r\n        color:darkorange;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -12789,13 +12789,12 @@
 	};
 	// </script>
 
-	// <style type="text/css">
+	// <style type="text/css" >
 
 	//     .toolbar {
 	//         display: -ms-flexbox;
 	//         display: flex;
 	//         display: -webkit-flex;
-	//         width: 100%;
 	//         background-color: rgba(255, 255, 255, 0.95);
 	//         height: 44px;
 	//         -webkit-flex-flow: row nowrap;
@@ -12809,6 +12808,7 @@
 	//                 align-items: center;
 	//         border-bottom: 2px solid lightgray;
 	//         /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/
+	//         padding: 0px 10px;
 	//     }
 
 	//     .toolbar div{
@@ -12818,16 +12818,10 @@
 	//         vertical-align: middle;
 
 	//     }
-
-	//     .toolbar span{
+	//     .toolbar>span{
 	//         font-size: 20px;
-	//         margin:0px 10px;
 	//         color: #595959;
 	//         cursor: pointer;
-	//     }
-
-	//     .toolbar span{
-	//         margin-right: 10px;
 	//     }
 
 	//     .toolbar span:active{
@@ -13361,7 +13355,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n.nav-tabs[_v-1ba85f76] {\n\tmargin: 0px;\n\tpadding: 0px;\n\tdisplay: -ms-flexbox;\n\tdisplay: -webkit-box;\n\tdisplay: flex;\n\tdisplay: -webkit-flex;\n\t-webkit-flex-flow: row nowrap;\n\t    -ms-flex-flow: row nowrap;\n\t        flex-flow: row nowrap;\n\t-webkit-align-items: center;\n\t    -ms-flex-align: center;\n\t        -webkit-box-align: center;\n\t        align-items: center;\n\t-webkit-align-content: center;\n\t    -ms-flex-line-pack: center;\n\t        align-content: center;\n\t-ms-flex-pack: distribute;\n\t    justify-content: space-around;\n\n\t-webkit-justify-content: space-around;\n\t-webkit-flex-flow: row nowrap;\n\t-webkit-align-items: center;\n\t-webkit-align-content: center;\n\n\tlist-style-type: none;\n\tline-height: 35px;\n\tborder-bottom: 2px solid whitesmoke;\n\tpadding: 0 10px;\n\t\n\t\n\tfont-size: 14px;\n\tfont-weight: bold;\n\t-webkit-flex-grow: 1;\n\t    -ms-flex-positive: 1;\n\t        -webkit-box-flex: 1;\n\t        flex-grow: 1;\n}\n\n\n.nav-tabs>li[_v-1ba85f76] {\n\twidth: 100%;\n\ttext-align: center;\n\tvertical-align: middle;\n\tcursor: pointer;\n}\n\n.nav_active[_v-1ba85f76] {\n\tcolor: darkorange;\n}\n\n\n.tabs_line[_v-1ba85f76] {\n\tdisplay: -ms-flexbox;\n\tdisplay: -webkit-box;\n\tdisplay: flex;\n\tdisplay: -webkit-flex;\n\theight: 3px;\n\tmargin: 0px 10px;\n\tmargin-top: -3px;\n\tbackground-color: darkorange;\n\t-webkit-transition: all .3s ease;\n\ttransition: all .3s ease;\n\twidth: 0px;\n}\n", "", {"version":3,"sources":["/./src/components/NavTabs.vue?10d40b5c"],"names":[],"mappings":";;AA2EA;CACA,YAAA;CACA,aAAA;CACA,qBAAA;CACA,qBAAA;CAAA,cAAA;CACA,sBAAA;CACA,8BAAA;KACA,0BAAA;SACA,sBAAA;CACA,4BAAA;KACA,uBAAA;SACA,0BAAA;SAAA,oBAAA;CACA,8BAAA;KACA,2BAAA;SACA,sBAAA;CACA,0BAAA;KACA,8BAAA;;CAEA,sCAAA;CACA,8BAAA;CACA,4BAAA;CACA,8BAAA;;CAEA,sBAAA;CACA,kBAAA;CACA,oCAAA;CACA,gBAAA;;;CAGA,gBAAA;CACA,kBAAA;CACA,qBAAA;KACA,qBAAA;SACA,oBAAA;SAAA,aAAA;CACA;;;AAGA;CACA,YAAA;CACA,mBAAA;CACA,uBAAA;CACA,gBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;;AAGA;CACA,qBAAA;CACA,qBAAA;CAAA,cAAA;CACA,sBAAA;CACA,YAAA;CACA,iBAAA;CACA,iBAAA;CACA,6BAAA;CACA,iCAAA;CAAA,yBAAA;CACA,WAAA;CACA","file":"NavTabs.vue","sourcesContent":["<template>\r\n\t<div class=\"container-fluid\" v-touch:swipe=\"swipeTab\">\r\n\t\t<ul class=\"nav-tabs\">\r\n\t\t\t\t<li v-for=\"(index,item) in tabItems\"\r\n\t\t\t\t:class=\"{'nav_active':selectIndex===index}\" \r\n\t\t\t\tv-touch:tap=\"switchTab(index)\" \r\n\t\t\t\t >{{item.title}}</li>\r\n\t\t</ul>\r\n\t\t<div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\"></div>\r\n\t\t<div class=\"tabs_content\">\r\n\t\t\t<div v-for=\"(index,item) in tabItems\" v-show=\"selectIndex===index\">\r\n\t\t\t\t{{ item.content }}\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\tthis.selectIndex=this.activeIndex;\r\n\t\t\tvar width=\tdocument.body.offsetWidth-20;\r\n\t\t    this.underline=width/this.tabItems.length;\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\ttabItems:{\r\n\t\t\t\ttype:Array,\r\n\t\t\t\tdefault:[]\r\n\t\t\t},\r\n\t\t\tactiveIndex:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:0\r\n\t\t\t}\r\n\t\t},\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\t//当前选中的tab页面\r\n\t\t\t\tselectIndex:0,\r\n\t\t\t\tunderline:100\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\t//点击tabs\r\n\t\t\tswitchTab(index){\r\n\t\t\t\tthis.selectIndex=index;\r\n\t\t\t\tvar leftWidth=index*this.underline;\r\n\t\t\t\tdocument.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n\t\t\t},\r\n\t\t\tswipeTab(e){\r\n\t\t\t\tvar deltaX=e.deltaX;\r\n\t\t\t\tvar tempIndex=this.activeIndex;\r\n\t\t\t\tif(deltaX>0){\r\n\t\t\t\t\tvar tempIndex=this.activeIndex-1;\r\n\t\t\t\t\tif(tempIndex<0){\r\n\t\t\t\t\t\ttempIndex=0;\r\n\t\t\t\t\t}\r\n\t\t\t\t}else{\r\n\t\t\t\t\tvar tabLength=this.tabItems.length-1;\r\n\t\t\t\t\tif(tempIndex==tabLength){\r\n\t\t\t\t\t\ttempIndex=tabLength;\r\n\t\t\t\t\t}else{\r\n\t\t\t\t\t\ttempIndex=this.activeIndex+1;\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tthis.activeIndex=tempIndex;\r\n\t\t\t\tthis.switchTab(tempIndex);\r\n\t\t\t\t// document.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+deltaX+\"px)\";\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\t\t\r\n\t\t.nav-tabs {\r\n\t\t\tmargin: 0px;\r\n\t\t\tpadding: 0px;\r\n\t\t\tdisplay: -ms-flexbox;\r\n\t\t\tdisplay: flex;\r\n\t\t\tdisplay: -webkit-flex;\r\n\t\t\t-webkit-flex-flow: row nowrap;\r\n\t\t\t    -ms-flex-flow: row nowrap;\r\n\t\t\t        flex-flow: row nowrap;\r\n\t\t\t-webkit-align-items: center;\r\n\t\t\t    -ms-flex-align: center;\r\n\t\t\t        align-items: center;\r\n\t\t\t-webkit-align-content: center;\r\n\t\t\t    -ms-flex-line-pack: center;\r\n\t\t\t        align-content: center;\r\n\t\t\t-ms-flex-pack: distribute;\r\n\t\t\t    justify-content: space-around;\r\n\r\n\t\t\t-webkit-justify-content: space-around;\r\n\t\t\t-webkit-flex-flow: row nowrap;\r\n\t\t\t-webkit-align-items: center;\r\n\t\t\t-webkit-align-content: center;\r\n\r\n\t\t\tlist-style-type: none;\r\n\t\t\tline-height: 35px;\r\n\t\t\tborder-bottom: 2px solid whitesmoke;\r\n\t\t\tpadding: 0 10px;\r\n\t\t\t\r\n\t\t\t\r\n\t\t\tfont-size: 14px;\r\n\t\t\tfont-weight: bold;\r\n\t\t\t-webkit-flex-grow: 1;\r\n\t\t\t    -ms-flex-positive: 1;\r\n\t\t\t        flex-grow: 1;\r\n\t\t}\r\n\t\t\r\n\t\t\r\n\t\t.nav-tabs>li {\r\n\t\t\twidth: 100%;\r\n\t\t\ttext-align: center;\r\n\t\t\tvertical-align: middle;\r\n\t\t\tcursor: pointer;\r\n\t\t}\r\n\t\t\r\n\t\t.nav_active {\r\n\t\t\tcolor: darkorange;\r\n\t\t}\r\n\r\n\t\t\r\n\t\t.tabs_line {\r\n\t\t\tdisplay: -ms-flexbox;\r\n\t\t\tdisplay: flex;\r\n\t\t\tdisplay: -webkit-flex;\r\n\t\t\theight: 3px;\r\n\t\t\tmargin: 0px 10px;\r\n\t\t\tmargin-top: -3px;\r\n\t\t\tbackground-color: darkorange;\r\n\t\t\ttransition: all .3s ease;\r\n\t\t\twidth: 0px;\r\n\t\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n.nav-tabs[_v-1ba85f76] {\n\tmargin: 0px;\n\tpadding: 0px;\n\tdisplay: -ms-flexbox;\n\tdisplay: -webkit-box;\n\tdisplay: flex;\n\tdisplay: -webkit-flex;\n\t-webkit-flex-flow: row nowrap;\n\t    -ms-flex-flow: row nowrap;\n\t        flex-flow: row nowrap;\n\t-webkit-align-items: center;\n\t    -ms-flex-align: center;\n\t        -webkit-box-align: center;\n\t        align-items: center;\n\t-webkit-align-content: center;\n\t    -ms-flex-line-pack: center;\n\t        align-content: center;\n\t-ms-flex-pack: distribute;\n\t    justify-content: space-around;\n\n\t-webkit-justify-content: space-around;\n\t-webkit-flex-flow: row nowrap;\n\t-webkit-align-items: center;\n\t-webkit-align-content: center;\n\n\tlist-style-type: none;\n\tline-height: 35px;\n\tborder-bottom: 2px solid whitesmoke;\n\tpadding: 0 10px;\n\t\n\t\n\tfont-size: 14px;\n\tfont-weight: bold;\n\t-webkit-flex-grow: 1;\n\t    -ms-flex-positive: 1;\n\t        -webkit-box-flex: 1;\n\t        flex-grow: 1;\n}\n\n\n.nav-tabs>li[_v-1ba85f76] {\n\twidth: 100%;\n\ttext-align: center;\n\tvertical-align: middle;\n\tcursor: pointer;\n}\n\n.nav_active[_v-1ba85f76] {\n\tcolor: darkorange;\n}\n\n\n.tabs_line[_v-1ba85f76] {\n\tdisplay: -ms-flexbox;\n\tdisplay: -webkit-box;\n\tdisplay: flex;\n\tdisplay: -webkit-flex;\n\theight: 3px;\n\tmargin: 0px 10px;\n\tmargin-top: -3px;\n\tbackground-color: darkorange;\n\t-webkit-transition: all .3s ease;\n\ttransition: all .3s ease;\n\twidth: 0px;\n}\n", "", {"version":3,"sources":["/./src/components/NavTabs.vue?073d1898"],"names":[],"mappings":";;AA2EA;CACA,YAAA;CACA,aAAA;CACA,qBAAA;CACA,qBAAA;CAAA,cAAA;CACA,sBAAA;CACA,8BAAA;KACA,0BAAA;SACA,sBAAA;CACA,4BAAA;KACA,uBAAA;SACA,0BAAA;SAAA,oBAAA;CACA,8BAAA;KACA,2BAAA;SACA,sBAAA;CACA,0BAAA;KACA,8BAAA;;CAEA,sCAAA;CACA,8BAAA;CACA,4BAAA;CACA,8BAAA;;CAEA,sBAAA;CACA,kBAAA;CACA,oCAAA;CACA,gBAAA;;;CAGA,gBAAA;CACA,kBAAA;CACA,qBAAA;KACA,qBAAA;SACA,oBAAA;SAAA,aAAA;CACA;;;AAGA;CACA,YAAA;CACA,mBAAA;CACA,uBAAA;CACA,gBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;;AAGA;CACA,qBAAA;CACA,qBAAA;CAAA,cAAA;CACA,sBAAA;CACA,YAAA;CACA,iBAAA;CACA,iBAAA;CACA,6BAAA;CACA,iCAAA;CAAA,yBAAA;CACA,WAAA;CACA","file":"NavTabs.vue","sourcesContent":["<template>\r\n\t<div class=\"container-fluid\" v-touch:swipe=\"swipeTab\">\r\n\t\t<ul class=\"nav-tabs\">\r\n\t\t\t\t<li v-for=\"(index,item) in tabItems\"\r\n\t\t\t\t:class=\"{'nav_active':selectIndex===index}\" \r\n\t\t\t\tv-touch:tap=\"switchTab(index)\" \r\n\t\t\t\t >{{item.title}}</li>\r\n\t\t</ul>\r\n\t\t<div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\"></div>\r\n\t\t<div class=\"tabs_content\">\r\n\t\t\t<div v-for=\"(index,item) in tabItems\" v-show=\"selectIndex===index\">\r\n\t\t\t\t{{{ item.content }}}\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\tthis.selectIndex=this.activeIndex;\r\n\t\t\tvar width=\tdocument.body.offsetWidth-20;\r\n\t\t    this.underline=width/this.tabItems.length;\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\ttabItems:{\r\n\t\t\t\ttype:Array,\r\n\t\t\t\tdefault:[]\r\n\t\t\t},\r\n\t\t\tactiveIndex:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:0\r\n\t\t\t}\r\n\t\t},\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\t//当前选中的tab页面\r\n\t\t\t\tselectIndex:0,\r\n\t\t\t\tunderline:100\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\t//点击tabs\r\n\t\t\tswitchTab(index){\r\n\t\t\t\tthis.selectIndex=index;\r\n\t\t\t\tvar leftWidth=index*this.underline;\r\n\t\t\t\tdocument.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n\t\t\t},\r\n\t\t\tswipeTab(e){\r\n\t\t\t\tvar deltaX=e.deltaX;\r\n\t\t\t\tvar tempIndex=this.activeIndex;\r\n\t\t\t\tif(deltaX>0){\r\n\t\t\t\t\tvar tempIndex=this.activeIndex-1;\r\n\t\t\t\t\tif(tempIndex<0){\r\n\t\t\t\t\t\ttempIndex=0;\r\n\t\t\t\t\t}\r\n\t\t\t\t}else{\r\n\t\t\t\t\tvar tabLength=this.tabItems.length-1;\r\n\t\t\t\t\tif(tempIndex==tabLength){\r\n\t\t\t\t\t\ttempIndex=tabLength;\r\n\t\t\t\t\t}else{\r\n\t\t\t\t\t\ttempIndex=this.activeIndex+1;\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tthis.activeIndex=tempIndex;\r\n\t\t\t\tthis.switchTab(tempIndex);\r\n\t\t\t\t// document.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+deltaX+\"px)\";\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\t\t\r\n\t\t.nav-tabs {\r\n\t\t\tmargin: 0px;\r\n\t\t\tpadding: 0px;\r\n\t\t\tdisplay: -ms-flexbox;\r\n\t\t\tdisplay: flex;\r\n\t\t\tdisplay: -webkit-flex;\r\n\t\t\t-webkit-flex-flow: row nowrap;\r\n\t\t\t    -ms-flex-flow: row nowrap;\r\n\t\t\t        flex-flow: row nowrap;\r\n\t\t\t-webkit-align-items: center;\r\n\t\t\t    -ms-flex-align: center;\r\n\t\t\t        align-items: center;\r\n\t\t\t-webkit-align-content: center;\r\n\t\t\t    -ms-flex-line-pack: center;\r\n\t\t\t        align-content: center;\r\n\t\t\t-ms-flex-pack: distribute;\r\n\t\t\t    justify-content: space-around;\r\n\r\n\t\t\t-webkit-justify-content: space-around;\r\n\t\t\t-webkit-flex-flow: row nowrap;\r\n\t\t\t-webkit-align-items: center;\r\n\t\t\t-webkit-align-content: center;\r\n\r\n\t\t\tlist-style-type: none;\r\n\t\t\tline-height: 35px;\r\n\t\t\tborder-bottom: 2px solid whitesmoke;\r\n\t\t\tpadding: 0 10px;\r\n\t\t\t\r\n\t\t\t\r\n\t\t\tfont-size: 14px;\r\n\t\t\tfont-weight: bold;\r\n\t\t\t-webkit-flex-grow: 1;\r\n\t\t\t    -ms-flex-positive: 1;\r\n\t\t\t        flex-grow: 1;\r\n\t\t}\r\n\t\t\r\n\t\t\r\n\t\t.nav-tabs>li {\r\n\t\t\twidth: 100%;\r\n\t\t\ttext-align: center;\r\n\t\t\tvertical-align: middle;\r\n\t\t\tcursor: pointer;\r\n\t\t}\r\n\t\t\r\n\t\t.nav_active {\r\n\t\t\tcolor: darkorange;\r\n\t\t}\r\n\r\n\t\t\r\n\t\t.tabs_line {\r\n\t\t\tdisplay: -ms-flexbox;\r\n\t\t\tdisplay: flex;\r\n\t\t\tdisplay: -webkit-flex;\r\n\t\t\theight: 3px;\r\n\t\t\tmargin: 0px 10px;\r\n\t\t\tmargin-top: -3px;\r\n\t\t\tbackground-color: darkorange;\r\n\t\t\ttransition: all .3s ease;\r\n\t\t\twidth: 0px;\r\n\t\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -13386,7 +13380,7 @@
 	// 		<div class="tabs_line" v-bind:style="{ width:underline+ 'px' }"></div>
 	// 		<div class="tabs_content">
 	// 			<div v-for="(index,item) in tabItems" v-show="selectIndex===index">
-	// 				{{ item.content }}
+	// 				{{{ item.content }}}
 	// 			</div>
 	// 		</div>
 	// 	</div>
@@ -13516,7 +13510,7 @@
 /* 34 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"container-fluid\" v-touch:swipe=\"swipeTab\" _v-1ba85f76=\"\">\n\t<ul class=\"nav-tabs\" _v-1ba85f76=\"\">\n\t\t\t<li v-for=\"(index,item) in tabItems\" :class=\"{'nav_active':selectIndex===index}\" v-touch:tap=\"switchTab(index)\" _v-1ba85f76=\"\">{{item.title}}</li>\n\t</ul>\n\t<div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\" _v-1ba85f76=\"\"></div>\n\t<div class=\"tabs_content\" _v-1ba85f76=\"\">\n\t\t<div v-for=\"(index,item) in tabItems\" v-show=\"selectIndex===index\" _v-1ba85f76=\"\">\n\t\t\t{{ item.content }}\n\t\t</div>\n\t</div>\n</div>\n";
+	module.exports = "\n<div class=\"container-fluid\" v-touch:swipe=\"swipeTab\" _v-1ba85f76=\"\">\n\t<ul class=\"nav-tabs\" _v-1ba85f76=\"\">\n\t\t\t<li v-for=\"(index,item) in tabItems\" :class=\"{'nav_active':selectIndex===index}\" v-touch:tap=\"switchTab(index)\" _v-1ba85f76=\"\">{{item.title}}</li>\n\t</ul>\n\t<div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\" _v-1ba85f76=\"\"></div>\n\t<div class=\"tabs_content\" _v-1ba85f76=\"\">\n\t\t<div v-for=\"(index,item) in tabItems\" v-show=\"selectIndex===index\" _v-1ba85f76=\"\">\n\t\t\t{{{ item.content }}}\n\t\t</div>\n\t</div>\n</div>\n";
 
 /***/ },
 /* 35 */
@@ -13615,9 +13609,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(40)
+	__webpack_require__(88)
 	__vue_script__ = __webpack_require__(42)
-	__vue_template__ = __webpack_require__(43)
+	__vue_template__ = __webpack_require__(90)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -13634,46 +13628,8 @@
 	})()}
 
 /***/ },
-/* 40 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(41);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3d09c52c&file=Calendar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Calendar.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3d09c52c&file=Calendar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Calendar.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 41 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n.calendar {\n    width: 100%;\n    height: auto;\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    display: -webkit-flex;\n    -webkit-flex-flow: column nowrap;\n        -ms-flex-flow: column nowrap;\n            flex-flow: column nowrap;\n    -webkit-justify-content: flex-start;\n        -ms-flex-pack: start;\n            -webkit-box-pack: start;\n            justify-content: flex-start;\n    box-shadow: 4px 4px 5px gray;\n    border: 0px solid whitesmoke;\n    color: #666;\n    font-size: 14px;\n\n}\n\n.calendar span {\n    cursor: pointer;\n}\n\n.calendar-header {\n    height: auto;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    -webkit-flex-flow: column nowrap;\n        -ms-flex-flow: column nowrap;\n            flex-flow: column nowrap;\n    -webkit-justify-content: center;\n        -ms-flex-pack: center;\n            -webkit-box-pack: center;\n            justify-content: center;\n    border-bottom: 1px solid lightgrey;\n\n}\n\n.calendar-title {\n    height: 30px;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    padding: 5px 15px;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-justify-content: space-between;\n        -ms-flex-pack: justify;\n            -webkit-box-pack: justify;\n            justify-content: space-between;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            -webkit-box-align: center;\n            align-items: center;\n    border-bottom: 1px solid lightgrey;\n    font-weight: bold;\n}\n\n.calendarDay-title>span:active {\n    color: #2db7f5;\n}\n\n.calendarDay-week{\n    background-color: whitesmoke;\n}\n\n.calendarDay-week>ul {\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-justify-content: space-around;\n        -ms-flex-pack: distribute;\n            justify-content: space-around;\n    height: 30px;\n     padding: 5px 0px;\n    list-style-type: none;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            -webkit-box-align: center;\n            align-items: center;\n    margin: 0px;\n}\n\n\n.calendarDay-week>ul>li {\n    -webkit-flex-basis: 14%;\n        -ms-flex-preferred-size: 14%;\n            flex-basis: 14%;\n    text-align: center;\n}\n\n\n.calendar-range {\n    height: 260px;\n}\n\n\n\n.calendar-range>ul {\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    -webkit-flex-flow: row wrap;\n        -ms-flex-flow: row wrap;\n            flex-flow: row wrap;\n    -webkit-justify-content: flex-start;\n        -ms-flex-pack: start;\n            -webkit-box-pack: start;\n            justify-content: flex-start;\n    padding: 5px 0px;\n    list-style-type: none;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            -webkit-box-align: center;\n            align-items: center;\n    margin: 0px;\n    font-size: 16px;\n}\n\n .calendar-range>ul>li>span:hover{\n    border:2px solid darkorange;\n    color: darkorange;\n    border-radius: 4px;\n    padding: 5px;\n }\n\n .calendar-range>ul>li>span:active{\n    border:2px solid darkorange;\n    color: #2db7f5;\n    border-radius: 4px;\n    padding: 5px;\n }\n\n\n.calendarDay {\n    -webkit-flex-basis: 14.28%;\n        -ms-flex-preferred-size: 14.28%;\n            flex-basis: 14.28%;\n    height: 40px;\n    line-height: 40px;\n    text-align: center;\n    cursor: pointer;\n}\n\n.calendarMonth{\n    -webkit-flex-basis: 30%;\n        -ms-flex-preferred-size: 30%;\n            flex-basis: 30%;\n    height: 60px;\n    line-height: 40px;\n    text-align: center;\n    cursor: pointer;\n}\n\n.itemSelect {\n    padding: 5px;\n    border:2px solid #2db7f5;\n    color: #2db7f5;\n    border-radius: 4px;\n}\n.restDay{\n    color: #e02d2d;\n}\n\n\n.curMonth{\n    font-weight: bold;\n}\n\n.calendarDay-footer {\n    height: 30px;\n    padding: 5px 15px;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    border-top: 1px solid lightgray;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-justify-content: center;\n        -ms-flex-pack: center;\n            -webkit-box-pack: center;\n            justify-content: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            -webkit-box-align: center;\n            align-items: center;\n    font-weight: bold;\n     background-color: whitesmoke;\n}\n", "", {"version":3,"sources":["/./src/components/Calendar.vue?1a3ff180"],"names":[],"mappings":";AA2UA;IACA,YAAA;IACA,aAAA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,sBAAA;IACA,iCAAA;QACA,6BAAA;YACA,yBAAA;IACA,oCAAA;QACA,qBAAA;YACA,wBAAA;YAAA,4BAAA;IACA,6BAAA;IACA,6BAAA;IACA,YAAA;IACA,gBAAA;;CAEA;;AAEA;IACA,gBAAA;CACA;;AAEA;IACA,aAAA;IACA,sBAAA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,iCAAA;QACA,6BAAA;YACA,yBAAA;IACA,gCAAA;QACA,sBAAA;YACA,yBAAA;YAAA,wBAAA;IACA,mCAAA;;CAEA;;AAEA;IACA,aAAA;IACA,sBAAA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,kBAAA;IACA,8BAAA;QACA,0BAAA;YACA,sBAAA;IACA,uCAAA;QACA,uBAAA;YACA,0BAAA;YAAA,+BAAA;IACA,4BAAA;QACA,uBAAA;YACA,0BAAA;YAAA,oBAAA;IACA,mCAAA;IACA,kBAAA;CACA;;AAEA;IACA,eAAA;CACA;;AAEA;IACA,6BAAA;CACA;;AAEA;IACA,sBAAA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,8BAAA;QACA,0BAAA;YACA,sBAAA;IACA,sCAAA;QACA,0BAAA;YACA,8BAAA;IACA,aAAA;KACA,iBAAA;IACA,sBAAA;IACA,4BAAA;QACA,uBAAA;YACA,0BAAA;YAAA,oBAAA;IACA,YAAA;CACA;;;AAGA;IACA,wBAAA;QACA,6BAAA;YACA,gBAAA;IACA,mBAAA;CACA;;;AAGA;IACA,cAAA;CACA;;;;AAIA;IACA,sBAAA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,4BAAA;QACA,wBAAA;YACA,oBAAA;IACA,oCAAA;QACA,qBAAA;YACA,wBAAA;YAAA,4BAAA;IACA,iBAAA;IACA,sBAAA;IACA,4BAAA;QACA,uBAAA;YACA,0BAAA;YAAA,oBAAA;IACA,YAAA;IACA,gBAAA;CACA;;CAEA;IACA,4BAAA;IACA,kBAAA;IACA,mBAAA;IACA,aAAA;EACA;;CAEA;IACA,4BAAA;IACA,eAAA;IACA,mBAAA;IACA,aAAA;EACA;;;AAGA;IACA,2BAAA;QACA,gCAAA;YACA,mBAAA;IACA,aAAA;IACA,kBAAA;IACA,mBAAA;IACA,gBAAA;CACA;;AAEA;IACA,wBAAA;QACA,6BAAA;YACA,gBAAA;IACA,aAAA;IACA,kBAAA;IACA,mBAAA;IACA,gBAAA;CACA;;AAEA;IACA,aAAA;IACA,yBAAA;IACA,eAAA;IACA,mBAAA;CACA;AACA;IACA,eAAA;CACA;;;AAGA;IACA,kBAAA;CACA;;AAEA;IACA,aAAA;IACA,kBAAA;IACA,8BAAA;QACA,0BAAA;YACA,sBAAA;IACA,gCAAA;IACA,sBAAA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,8BAAA;QACA,0BAAA;YACA,sBAAA;IACA,gCAAA;QACA,sBAAA;YACA,yBAAA;YAAA,wBAAA;IACA,4BAAA;QACA,uBAAA;YACA,0BAAA;YAAA,oBAAA;IACA,kBAAA;KACA,6BAAA;CACA","file":"Calendar.vue","sourcesContent":["<template>\r\n    <div class=\"calendar\">\r\n        <div class=\"calenarDayView\" v-show=\"showDay\">\r\n            <div class=\"calendar-header\">\r\n                <div class=\"calendar-title\">\r\n                    <div>\r\n                        <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\"></span>\r\n                        <span class=\"icon-angle-left\" style='margin-left:20px;width:50px;' @click=\"monthClick(0)\"></span>\r\n                    </div>\r\n                    <p>\r\n                        <span @click=\"showYearView\">{{curYear}}年</span>\r\n                        <span @click=\"showMonthView\">{{curMonth}}月</span>\r\n                    </p>\r\n                    <div>\r\n                         <span class=\"icon-angle-right\" style='margin-right:20px;' @click=\"monthClick(1)\"></span>\r\n                         <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\"></span>\r\n                    </div>\r\n                </div>\r\n                <div class=\"calendarDay-week\">\r\n                    <ul>\r\n                        <li v-for=\"(index,item) in weekRange\" :class=\"{'restDay':index==5||index==6}\">{{item}}</li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n            <div class=\"calendar-range\">\r\n                <ul>\r\n                    <li v-for=\"item in dateRange\" class=\"calendarDay\"   v-on:click=\"selectDay(item.day)\">\r\n                        <span v-bind:class=\"{'itemSelect':isCurSelect('D',item.day),'restDay':item.isRestDay,'curMonth':item.isCur}\">{{item.day}}</span>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n            <div class=\"calendarDay-footer\">\r\n                <span @click=\"today\">今天</span>\r\n            </div>\r\n        </div>\r\n        <div class=\"calendarMonthView\" v-show=\"showMonth\">\r\n            <div class=\"calendar-header\">\r\n                <div class=\"calendar-title\">\r\n                    <div>\r\n                        <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\"></span>\r\n                    </div>\r\n                    <p>\r\n                        <span @click=\"showYearView\">{{curYear}}年</span>\r\n                    </p>\r\n                    <div>\r\n                         <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\"></span>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"calendar-range\">\r\n                <ul>\r\n                    <li v-for=\"item in monthRange\" class=\"calendarMonth\"   v-on:click=\"selectMonth(item.id)\">\r\n                        <span v-bind:class=\"{'itemSelect':isCurSelect('M',item.id)}\">{{item.text}}</span>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"calendarYearView\" v-show=\"showYear\">\r\n            <div class=\"calendar-header\">\r\n                <div class=\"calendar-title\">\r\n                    <div>\r\n                        <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\"></span>\r\n                    </div>\r\n                    <p>\r\n                        <span @click=\"showYearView\">{{yearTitle}}</span>\r\n                    </p>\r\n                    <div>\r\n                         <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\"></span>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"calendar-range\">\r\n                <ul>\r\n                    <li v-for=\"item in yearRange\" class=\"calendarMonth\"   v-on:click=\"selectYear(item)\">\r\n                        <span v-bind:class=\"{'itemSelect':isCurSelect('Y',item)}\">{{item}}</span>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n    \r\n    export default {\r\n        data:function(){\r\n            return {\r\n               curYear:0,\r\n               curMonth:0,\r\n               curDay:0,\r\n               showDay:true,\r\n               showYear:false,\r\n               showMonth:false,\r\n               weekRange:['一','二','三','四','五','六','日'],\r\n               monthRange:[\r\n                           {id:1,text:'一月'},{id:2,text:'二月'},{id:3,text:'三月'},{id:4,text:'四月'},\r\n                           {id:5,text:'五月'},{id:6,text:'六月'},{id:7,text:'七月'},{id:8,text:'八月'},\r\n                           {id:9,text:'九月'},{id:10,text:'十月'},{id:11,text:'十一月'},{id:12,text:'十二月'}\r\n                          ],\r\n               dateRange:[],\r\n               yearRange:[],\r\n               yearTitle:''\r\n            }\r\n        },\r\n        props:{\r\n            width:{\r\n\r\n            },\r\n            //格式\r\n            format:{\r\n                type:String,\r\n                default:\"DD\"//YYYY,MM,DD,H,M,S\r\n            },\r\n            curdate:{\r\n                type:String,\r\n                default:''\r\n            }\r\n        },\r\n        created:function(){\r\n            var date='';\r\n            if(this.curdate.length>0){\r\n                date=new Date(this.curdate);\r\n            }else{\r\n                date=new Date();\r\n            }\r\n            //初始化当前的年和月,并加载当前年月的数据\r\n            this.curYear=date.getFullYear();\r\n            this.curMonth=date.getMonth()+1;\r\n            this.curDay=date.getDate();\r\n\r\n            this.dateRange=this.getDateRange(this.curYear,this.curMonth);\r\n            this.yearRange=this.getYearRange(this.curYear);\r\n            this.yearTitle=this.yearRange[0]+\"~\"+this.yearRange[11];\r\n            //通过格式化显示页面\r\n            this.initShowView();\r\n        },\r\n        methods:{\r\n            initShowView(){\r\n                switch(this.format){\r\n                    case \"YYYY\":\r\n                        this.showYear=true;\r\n                        this.showMonth=false;\r\n                        this.showDay=false;\r\n                        break;\r\n                    case \"MM\":\r\n                        this.showYear=false;\r\n                        this.showMonth=true;\r\n                        this.showDay=false;\r\n                        break;\r\n                    case \"DD\":\r\n                        this.showYear=false;\r\n                        this.showMonth=false;\r\n                        this.showDay=true;\r\n                        break;\r\n                }\r\n            },\r\n            isCurSelect(flag,item){\r\n                var date=new Date();\r\n                const tempY=date.getFullYear();\r\n                const tempM=date.getMonth()+1;\r\n                if(flag==\"D\"){\r\n                    return this.curYear==tempY&&this.curMonth==tempM&&this.curDay==item;\r\n                }else if(flag==\"M\"){\r\n                    return tempM==item;\r\n                }else{\r\n                    return tempY==item;\r\n                }\r\n            },\r\n            showYearView(){\r\n                this.showYear=true\r\n                this.showMonth=false;\r\n                this.showDay=false;\r\n            },\r\n            showMonthView(){\r\n                this.showYear=false\r\n                this.showMonth=true;\r\n                this.showDay=false;\r\n            },\r\n            selectYear:function(year){\r\n                this.curYear=year;\r\n                this.showYear=false\r\n                this.showMonth=true;\r\n                this.showDay=false;\r\n                if(this.format==\"YYYY\"){\r\n                    this.$dispatch('itemClick',year);\r\n                }\r\n            },\r\n            selectMonth(month){\r\n                this.showYear=false\r\n                this.showMonth=false;\r\n                this.showDay=true;\r\n                this.curMonth=month;\r\n                this.dateRange=this.getDateRange(this.curYear,this.curMonth);\r\n                if(this.format==\"MM\"){\r\n                    this.$dispatch('itemClick',this.curYear+\"-\"+month);\r\n                }\r\n            },\r\n            //选择天的时候\r\n            selectDay:function(day){\r\n                const tempD=this.curYear+\"-\"+this.curMonth+\"-\"+day;\r\n                console.log(\"触发派发事件：\"+tempD);\r\n                this.$dispatch('item-click',tempD);\r\n            },\r\n            today:function(){\r\n                var newDate=new Date();\r\n                this.curYear=newDate.getFullYear();\r\n                this.curMonth=newDate.getMonth()+1;\r\n                this.dateRange=this.getDateRange(this.curYear,this.curMonth);\r\n            },\r\n            //下一年或下一个月\r\n            yearClick(flag){\r\n                if(this.showYear){\r\n                    //如果是年的视图的情况\r\n                    const year=flag==0?this.curYear-10:this.curYear+10;\r\n                    this.yearRange=this.getYearRange(year);\r\n                    this.yearTitle=this.yearRange[0]+\"~\"+this.yearRange[11];    \r\n                }else{\r\n                     const year=flag==0?this.curYear-1:this.curYear+1;\r\n                     this.curYear=year;\r\n                     this.dateRange=this.getDateRange(year,this.curMonth);\r\n                }\r\n              \r\n            },\r\n            monthClick(flag){\r\n                var tempM=this.curMonth;\r\n                var tempY=this.curYear;\r\n                //上一月\r\n                if(flag==0){//\r\n                    if(tempM==1){\r\n                        tempM=12;\r\n                        tempY=this.curYear-1;\r\n                    }else{\r\n                        tempM=tempM-1;\r\n                    }\r\n                }else{//下个月\r\n                    if(tempM==12){\r\n                        tempY=this.curYear+1;\r\n                        tempM=1;\r\n                    }else{\r\n                        tempM=tempM+1;\r\n                    }\r\n                }\r\n                this.curYear=tempY;\r\n                this.curMonth=tempM;\r\n                console.log(tempY,tempM);\r\n                 this.dateRange=this.getDateRange(tempY,tempM);\r\n            },\r\n\r\n            //通过日期来获取当期星期几\r\n            dayOfWeek:function(date){\r\n              var week=new Date(date).getDay();\r\n              if(week==0){\r\n                  return 7;\r\n              }  \r\n              else{\r\n                  return week;\r\n              }\r\n            },\r\n            //通过年月来获取月份的天数\r\n            dayNumOfMonth:function(year,month){\r\n                var d = new Date(year,month,0);\r\n                return d.getDate();\r\n            },\r\n            //加载\r\n            getDateRange:function(year,month){\r\n                var datearray=[];\r\n                var firstDateDay=0;\r\n                //1:得到当前月的第一天是星期几\r\n                var firstDay=year+\"-\"+month+\"-01\";\r\n                \r\n                var firstWeek=this.dayOfWeek(firstDay);\r\n                //2:通过星期得到日历的第一天\r\n                if(firstWeek==1){\r\n                    firstDateDay=1;\r\n                }else{\r\n                    //获取上个月的天数\r\n                    var preMonth=0;\r\n                    if(month==1){\r\n                        preMonth=this.dayNumOfMonth(year-1,12);\r\n                    }\r\n                     preMonth=this.dayNumOfMonth(year,month-1);\r\n                     \r\n                     for(var pi=preMonth-firstWeek+2;pi<=preMonth;pi++){\r\n                            var week=new Date(this.curYear+\"/\"+(this.curMonth-1)+\"/\"+pi).getDay();\r\n                            var restDay=(week==6||week==0);\r\n                            datearray.push({\r\n                                isCur:false,\r\n                                day:pi,\r\n                                isRestDay:restDay\r\n                            });\r\n                     }\r\n                }\r\n                //3:得到这个月的总天数\r\n                var curDays=this.dayNumOfMonth(year,month);\r\n                for(var i=1;i<=curDays;i++){\r\n                    var week=new Date(this.curYear+\"/\"+this.curMonth+\"/\"+i).getDay();\r\n                    var restDay=(week==6||week==0);\r\n                    datearray.push({\r\n                        isCur:true,\r\n                        day:i,\r\n                        isRestDay:restDay\r\n                    });\r\n                }\r\n                //2:检查该对象里面是否包含42个值,如果不包含,那么久生成\r\n                if(datearray.length<42){\r\n                    var nextValue=42-datearray.length;\r\n                     for(var ni=1;ni<=nextValue;ni++){\r\n                        var week=new Date(this.curYear+\"/\"+(this.curMonth+1)+\"/\"+ni).getDay();\r\n                        var restDay=(week==6||week==0);\r\n                        datearray.push({\r\n                                isCur:false,\r\n                                day:ni,\r\n                                isRestDay:restDay\r\n                        });\r\n                     }\r\n                }\r\n                return datearray;\r\n            },\r\n            getYearRange:function(year){\r\n                var tempYRange=[];\r\n                for (var i = year - 6; i <=year+5; i++) {\r\n                   tempYRange.push(i);   \r\n                };\r\n                return tempYRange;\r\n            }\r\n        }\r\n    }\r\n\r\n</script>\r\n\r\n<style>\r\n        .calendar {\r\n            width: 100%;\r\n            height: auto;\r\n            display: -ms-flexbox;\r\n            display: flex;\r\n            display: -webkit-flex;\r\n            -webkit-flex-flow: column nowrap;\r\n                -ms-flex-flow: column nowrap;\r\n                    flex-flow: column nowrap;\r\n            -webkit-justify-content: flex-start;\r\n                -ms-flex-pack: start;\r\n                    justify-content: flex-start;\r\n            box-shadow: 4px 4px 5px gray;\r\n            border: 0px solid whitesmoke;\r\n            color: #666;\r\n            font-size: 14px;\r\n\r\n        }\r\n        \r\n        .calendar span {\r\n            cursor: pointer;\r\n        }\r\n        \r\n        .calendar-header {\r\n            height: auto;\r\n            display: -webkit-flex;\r\n            display: -ms-flexbox;\r\n            display: flex;\r\n            -webkit-flex-flow: column nowrap;\r\n                -ms-flex-flow: column nowrap;\r\n                    flex-flow: column nowrap;\r\n            -webkit-justify-content: center;\r\n                -ms-flex-pack: center;\r\n                    justify-content: center;\r\n            border-bottom: 1px solid lightgrey;\r\n\r\n        }\r\n        \r\n        .calendar-title {\r\n            height: 30px;\r\n            display: -webkit-flex;\r\n            display: -ms-flexbox;\r\n            display: flex;\r\n            padding: 5px 15px;\r\n            -webkit-flex-flow: row nowrap;\r\n                -ms-flex-flow: row nowrap;\r\n                    flex-flow: row nowrap;\r\n            -webkit-justify-content: space-between;\r\n                -ms-flex-pack: justify;\r\n                    justify-content: space-between;\r\n            -webkit-align-items: center;\r\n                -ms-flex-align: center;\r\n                    align-items: center;\r\n            border-bottom: 1px solid lightgrey;\r\n            font-weight: bold;\r\n        }\r\n        \r\n        .calendarDay-title>span:active {\r\n            color: #2db7f5;\r\n        }\r\n        \r\n        .calendarDay-week{\r\n            background-color: whitesmoke;\r\n        }\r\n        \r\n        .calendarDay-week>ul {\r\n            display: -webkit-flex;\r\n            display: -ms-flexbox;\r\n            display: flex;\r\n            -webkit-flex-flow: row nowrap;\r\n                -ms-flex-flow: row nowrap;\r\n                    flex-flow: row nowrap;\r\n            -webkit-justify-content: space-around;\r\n                -ms-flex-pack: distribute;\r\n                    justify-content: space-around;\r\n            height: 30px;\r\n             padding: 5px 0px;\r\n            list-style-type: none;\r\n            -webkit-align-items: center;\r\n                -ms-flex-align: center;\r\n                    align-items: center;\r\n            margin: 0px;\r\n        }\r\n        \r\n\r\n        .calendarDay-week>ul>li {\r\n            -webkit-flex-basis: 14%;\r\n                -ms-flex-preferred-size: 14%;\r\n                    flex-basis: 14%;\r\n            text-align: center;\r\n        }\r\n       \r\n\r\n        .calendar-range {\r\n            height: 260px;\r\n        }\r\n\r\n\r\n        \r\n        .calendar-range>ul {\r\n            display: -webkit-flex;\r\n            display: -ms-flexbox;\r\n            display: flex;\r\n            -webkit-flex-flow: row wrap;\r\n                -ms-flex-flow: row wrap;\r\n                    flex-flow: row wrap;\r\n            -webkit-justify-content: flex-start;\r\n                -ms-flex-pack: start;\r\n                    justify-content: flex-start;\r\n            padding: 5px 0px;\r\n            list-style-type: none;\r\n            -webkit-align-items: center;\r\n                -ms-flex-align: center;\r\n                    align-items: center;\r\n            margin: 0px;\r\n            font-size: 16px;\r\n        }\r\n\r\n         .calendar-range>ul>li>span:hover{\r\n            border:2px solid darkorange;\r\n            color: darkorange;\r\n            border-radius: 4px;\r\n            padding: 5px;\r\n         }\r\n\r\n         .calendar-range>ul>li>span:active{\r\n            border:2px solid darkorange;\r\n            color: #2db7f5;\r\n            border-radius: 4px;\r\n            padding: 5px;\r\n         }\r\n\r\n        \r\n        .calendarDay {\r\n            -webkit-flex-basis: 14.28%;\r\n                -ms-flex-preferred-size: 14.28%;\r\n                    flex-basis: 14.28%;\r\n            height: 40px;\r\n            line-height: 40px;\r\n            text-align: center;\r\n            cursor: pointer;\r\n        }\r\n\r\n        .calendarMonth{\r\n            -webkit-flex-basis: 30%;\r\n                -ms-flex-preferred-size: 30%;\r\n                    flex-basis: 30%;\r\n            height: 60px;\r\n            line-height: 40px;\r\n            text-align: center;\r\n            cursor: pointer;\r\n        }\r\n       \r\n        .itemSelect {\r\n            padding: 5px;\r\n            border:2px solid #2db7f5;\r\n            color: #2db7f5;\r\n            border-radius: 4px;\r\n        }\r\n        .restDay{\r\n            color: #e02d2d;\r\n        }\r\n       \r\n\r\n        .curMonth{\r\n            font-weight: bold;\r\n        }\r\n        \r\n        .calendarDay-footer {\r\n            height: 30px;\r\n            padding: 5px 15px;\r\n            -webkit-flex-flow: row nowrap;\r\n                -ms-flex-flow: row nowrap;\r\n                    flex-flow: row nowrap;\r\n            border-top: 1px solid lightgray;\r\n            display: -webkit-flex;\r\n            display: -ms-flexbox;\r\n            display: flex;\r\n            -webkit-flex-flow: row nowrap;\r\n                -ms-flex-flow: row nowrap;\r\n                    flex-flow: row nowrap;\r\n            -webkit-justify-content: center;\r\n                -ms-flex-pack: center;\r\n                    justify-content: center;\r\n            -webkit-align-items: center;\r\n                -ms-flex-align: center;\r\n                    align-items: center;\r\n            font-weight: bold;\r\n             background-color: whitesmoke;\r\n        }\r\n</style>\r\n   \r\n"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
+/* 40 */,
+/* 41 */,
 /* 42 */
 /***/ function(module, exports) {
 
@@ -14008,7 +13964,7 @@
 	
 	// </script>
 
-	// <style>
+	// <style type="text/css" scoped>
 	//         .calendar {
 	//             width: 100%;
 	//             height: auto;
@@ -14071,7 +14027,7 @@
 	//         }
 
 	//         .calendarDay-week{
-	//             background-color: whitesmoke;
+	//              background-color: whitesmoke;
 	//         }
 
 	//         .calendarDay-week>ul {
@@ -14094,9 +14050,9 @@
 	//         }
 
 	//         .calendarDay-week>ul>li {
-	//             -webkit-flex-basis: 14%;
-	//                 -ms-flex-preferred-size: 14%;
-	//                     flex-basis: 14%;
+	//             -webkit-flex-basis: 14.28%;
+	//                 -ms-flex-preferred-size: 14.28%;
+	//                     flex-basis: 14.28%;
 	//             text-align: center;
 	//         }
 
@@ -14114,7 +14070,7 @@
 	//             -webkit-justify-content: flex-start;
 	//                 -ms-flex-pack: start;
 	//                     justify-content: flex-start;
-	//             padding: 5px 0px;
+
 	//             list-style-type: none;
 	//             -webkit-align-items: center;
 	//                 -ms-flex-align: center;
@@ -14196,12 +14152,7 @@
 	// </style>
 
 /***/ },
-/* 43 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<div class=\"calendar\">\n    <div class=\"calenarDayView\" v-show=\"showDay\">\n        <div class=\"calendar-header\">\n            <div class=\"calendar-title\">\n                <div>\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\"></span>\n                    <span class=\"icon-angle-left\" style='margin-left:20px;width:50px;' @click=\"monthClick(0)\"></span>\n                </div>\n                <p>\n                    <span @click=\"showYearView\">{{curYear}}年</span>\n                    <span @click=\"showMonthView\">{{curMonth}}月</span>\n                </p>\n                <div>\n                     <span class=\"icon-angle-right\" style='margin-right:20px;' @click=\"monthClick(1)\"></span>\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\"></span>\n                </div>\n            </div>\n            <div class=\"calendarDay-week\">\n                <ul>\n                    <li v-for=\"(index,item) in weekRange\" :class=\"{'restDay':index==5||index==6}\">{{item}}</li>\n                </ul>\n            </div>\n        </div>\n        <div class=\"calendar-range\">\n            <ul>\n                <li v-for=\"item in dateRange\" class=\"calendarDay\"   v-on:click=\"selectDay(item.day)\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('D',item.day),'restDay':item.isRestDay,'curMonth':item.isCur}\">{{item.day}}</span>\n                </li>\n            </ul>\n        </div>\n        <div class=\"calendarDay-footer\">\n            <span @click=\"today\">今天</span>\n        </div>\n    </div>\n    <div class=\"calendarMonthView\" v-show=\"showMonth\">\n        <div class=\"calendar-header\">\n            <div class=\"calendar-title\">\n                <div>\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\"></span>\n                </div>\n                <p>\n                    <span @click=\"showYearView\">{{curYear}}年</span>\n                </p>\n                <div>\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"calendar-range\">\n            <ul>\n                <li v-for=\"item in monthRange\" class=\"calendarMonth\"   v-on:click=\"selectMonth(item.id)\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('M',item.id)}\">{{item.text}}</span>\n                </li>\n            </ul>\n        </div>\n    </div>\n    <div class=\"calendarYearView\" v-show=\"showYear\">\n        <div class=\"calendar-header\">\n            <div class=\"calendar-title\">\n                <div>\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\"></span>\n                </div>\n                <p>\n                    <span @click=\"showYearView\">{{yearTitle}}</span>\n                </p>\n                <div>\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"calendar-range\">\n            <ul>\n                <li v-for=\"item in yearRange\" class=\"calendarMonth\"   v-on:click=\"selectYear(item)\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('Y',item)}\">{{item}}</span>\n                </li>\n            </ul>\n        </div>\n    </div>\n</div>\n";
-
-/***/ },
+/* 43 */,
 /* 44 */
 /***/ function(module, exports) {
 
@@ -14212,9 +14163,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(46)
+	__webpack_require__(94)
 	__vue_script__ = __webpack_require__(48)
-	__vue_template__ = __webpack_require__(64)
+	__vue_template__ = __webpack_require__(96)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14231,46 +14182,8 @@
 	})()}
 
 /***/ },
-/* 46 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(47);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-61f407d1&file=UserInfo.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./UserInfo.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-61f407d1&file=UserInfo.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./UserInfo.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 47 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"UserInfo.vue","sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
+/* 46 */,
+/* 47 */,
 /* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -14368,7 +14281,7 @@
 	
 	// </script>
 
-	// <style type="text/css">
+	// <style type="text/css" scoped>
 
 	// </style>
 
@@ -14377,9 +14290,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(50)
+	__webpack_require__(97)
 	__vue_script__ = __webpack_require__(52)
-	__vue_template__ = __webpack_require__(53)
+	__vue_template__ = __webpack_require__(99)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14396,46 +14309,8 @@
 	})()}
 
 /***/ },
-/* 50 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(51);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-33df34c0&file=Loading.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Loading.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-33df34c0&file=Loading.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Loading.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 51 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n\t\n\t.modal{\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -webkit-flex;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n        -webkit-flex-flow: row nowrap;\n            -ms-flex-flow: row nowrap;\n                flex-flow: row nowrap;\n        -webkit-box-pack: center;\n        -webkit-justify-content: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        height:100%;\n        width: 100%;\n        -webkit-box-align:  center;\n        -webkit-align-items:  center;\n            -ms-flex-align:  center;\n                align-items:  center;\n        position: absolute;\n        /*visibility: hidden;*/\n        left: 0;\n        top: 0;\n        z-index: 100;\n        background-color: rgba(153,153,153,0.5);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */\n\t}\n\n\n\n\t   .spinner {\n            width: 100px;\n            height: 60px;\n            font-size: 10px;\n        }\n        \n        .spinner > div {\n            background-color: limegreen;\n            height: 100%;\n            width: 6px;\n            display: inline-block;\n            -webkit-animation: stretchdelay 1.2s infinite ease-in-out;\n            animation: stretchdelay 1.2s infinite ease-in-out;\n        }\n        \n        .spinner .spinnerBar2 {\n            -webkit-animation-delay: -1.1s;\n            animation-delay: -1.1s;\n        }\n        \n        .spinner .spinnerBar3 {\n            -webkit-animation-delay: -1.0s;\n            animation-delay: -1.0s;\n        }\n        \n        .spinner .spinnerBar4 {\n            -webkit-animation-delay: -0.9s;\n            animation-delay: -0.9s;\n        }\n        \n        .spinner .spinnerBar5 {\n            -webkit-animation-delay: -0.8s;\n            animation-delay: -0.8s;\n        }\n        \n        @-webkit-keyframes stretchdelay {\n            0%,\n            40%,\n            100% {\n                -webkit-transform: scaleY(0.4)\n            }\n            20% {\n                -webkit-transform: scaleY(1.0)\n            }\n        }\n        \n        @keyframes stretchdelay {\n            0%,\n            40%,\n            100% {\n                transform: scaleY(0.4);\n                -webkit-transform: scaleY(0.4);\n            }\n            20% {\n                transform: scaleY(1.0);\n                -webkit-transform: scaleY(1.0);\n            }\n        }\n\n", "", {"version":3,"sources":["/./src/components/Loading.vue?05b09125"],"names":[],"mappings":";;CAiCA;EACA,qBAAA;EAAA,sBAAA;EAAA,qBAAA;EAAA,cAAA;QACA,8BAAA;YAAA,0BAAA;gBAAA,sBAAA;QACA,yBAAA;QAAA,gCAAA;YAAA,sBAAA;gBAAA,wBAAA;QACA,YAAA;QACA,YAAA;QACA,2BAAA;QAAA,6BAAA;YAAA,wBAAA;gBAAA,qBAAA;QACA,mBAAA;QACA,uBAAA;QACA,QAAA;QACA,OAAA;QACA,aAAA;QACA,wCAAA,0CAAA;EACA;;;;IAIA;YACA,aAAA;YACA,aAAA;YACA,gBAAA;SACA;;QAEA;YACA,4BAAA;YACA,aAAA;YACA,WAAA;YACA,sBAAA;YACA,0DAAA;YACA,kDAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA;;;gBAGA,8BAAA;aACA;YACA;gBACA,8BAAA;aACA;SACA;;QAEA;YACA;;;gBAGA,uBAAA;gBACA,+BAAA;aACA;YACA;gBACA,uBAAA;gBACA,+BAAA;aACA;SACA","file":"Loading.vue","sourcesContent":["<template>\r\n\t<div class=\"modal\" v-if=\"loading\">\r\n        <div class=\"spinner\">\r\n            <div class=\"spinnerBar1\"></div>\r\n            <div class=\"spinnerBar2\"></div>\r\n            <div class=\"spinnerBar3\"></div>\r\n            <div class=\"spinnerBar4\"></div>\r\n            <div class=\"spinnerBar5\"></div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n        created(){\r\n            console.log(\"loading is created\")\r\n            console.log(this.loading);\r\n        },\r\n\t\tprops:{\r\n\t\t\tloading:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n</script>\r\n\r\n\r\n<style>\r\n\t\r\n\t.modal{\r\n\t\tdisplay: flex;\r\n        flex-flow: row nowrap;\r\n        justify-content: center;\r\n        height:100%;\r\n        width: 100%;\r\n        align-items:  center;\r\n        position: absolute;\r\n        /*visibility: hidden;*/\r\n        left: 0;\r\n        top: 0;\r\n        z-index: 100;\r\n        background-color: rgba(153,153,153,0.5);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */\r\n\t}\r\n\r\n\r\n\r\n\t   .spinner {\r\n            width: 100px;\r\n            height: 60px;\r\n            font-size: 10px;\r\n        }\r\n        \r\n        .spinner > div {\r\n            background-color: limegreen;\r\n            height: 100%;\r\n            width: 6px;\r\n            display: inline-block;\r\n            -webkit-animation: stretchdelay 1.2s infinite ease-in-out;\r\n            animation: stretchdelay 1.2s infinite ease-in-out;\r\n        }\r\n        \r\n        .spinner .spinnerBar2 {\r\n            -webkit-animation-delay: -1.1s;\r\n            animation-delay: -1.1s;\r\n        }\r\n        \r\n        .spinner .spinnerBar3 {\r\n            -webkit-animation-delay: -1.0s;\r\n            animation-delay: -1.0s;\r\n        }\r\n        \r\n        .spinner .spinnerBar4 {\r\n            -webkit-animation-delay: -0.9s;\r\n            animation-delay: -0.9s;\r\n        }\r\n        \r\n        .spinner .spinnerBar5 {\r\n            -webkit-animation-delay: -0.8s;\r\n            animation-delay: -0.8s;\r\n        }\r\n        \r\n        @-webkit-keyframes stretchdelay {\r\n            0%,\r\n            40%,\r\n            100% {\r\n                -webkit-transform: scaleY(0.4)\r\n            }\r\n            20% {\r\n                -webkit-transform: scaleY(1.0)\r\n            }\r\n        }\r\n        \r\n        @keyframes stretchdelay {\r\n            0%,\r\n            40%,\r\n            100% {\r\n                transform: scaleY(0.4);\r\n                -webkit-transform: scaleY(0.4);\r\n            }\r\n            20% {\r\n                transform: scaleY(1.0);\r\n                -webkit-transform: scaleY(1.0);\r\n            }\r\n        }\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
+/* 50 */,
+/* 51 */,
 /* 52 */
 /***/ function(module, exports) {
 
@@ -14474,7 +14349,7 @@
 	
 	// </script>
 
-	// <style>
+	// <style type="text/css" scoped>
 
 	// 	.modal{
 	// 		display: flex;
@@ -14553,19 +14428,14 @@
 	// </style>
 
 /***/ },
-/* 53 */
-/***/ function(module, exports) {
-
-	module.exports = "\n\t<div class=\"modal\" v-if=\"loading\">\n        <div class=\"spinner\">\n            <div class=\"spinnerBar1\"></div>\n            <div class=\"spinnerBar2\"></div>\n            <div class=\"spinnerBar3\"></div>\n            <div class=\"spinnerBar4\"></div>\n            <div class=\"spinnerBar5\"></div>\n        </div>\n    </div>\n";
-
-/***/ },
+/* 53 */,
 /* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(55)
+	__webpack_require__(91)
 	__vue_script__ = __webpack_require__(57)
-	__vue_template__ = __webpack_require__(58)
+	__vue_template__ = __webpack_require__(93)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14582,46 +14452,8 @@
 	})()}
 
 /***/ },
-/* 55 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(56);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-12989f74&file=Dialog.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Dialog.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-12989f74&file=Dialog.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Dialog.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 56 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n\t\n\t  .dlg-modal {\n            position: absolute;\n            left: 0;\n            top: 0;\n            height: 100%;\n            width: 100%;\n            z-index: 10;\n            background-color: rgba(153, 153, 153, 0.5);\n            display: -webkit-box;\n            display: -webkit-flex;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-flex-flow: row nowrap;\n                -ms-flex-flow: row nowrap;\n                    flex-flow: row nowrap;\n            -webkit-box-pack: center;\n            -webkit-justify-content: center;\n                -ms-flex-pack: center;\n                    justify-content: center;\n            font-size: 14px;\n            -webkit-box-align: center;\n            -webkit-align-items: center;\n                -ms-flex-align: center;\n                    align-items: center;\n        }\n        \n        .dlg-modal>.dlg-content {\n            position: relative;\n            background-color: whitesmoke;\n            width: 300px;\n            -webkit-transition: all .3s ease-in;\n            transition: all .3s ease-in;\n            border-radius: 6px;\n            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);\n            border: 1px solid rgba(0, 0, 0, .2);\n        }\n        \n        .dlg-content>.dlg-header {\n            padding: 10px;\n            font-weight: bold;\n            border-bottom: 1px solid lightgray;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            display: -webkit-flex;\n            -webkit-box-pack: center;\n            -webkit-justify-content: center;\n                -ms-flex-pack: center;\n                    justify-content: center;\n            cursor: pointer;\n            font-size: 16px;\n        }\n        \n        .dlg-content>.dlg-body {\n            padding: 10px;\n        }\n        \n        .dlg-content>.dlg-footer {\n            border-top: 1px solid lightgray;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            display: -webkit-flex;\n            -webkit-flex-wrap: row nowrap;\n                -ms-flex-wrap: row nowrap;\n                    flex-wrap: row nowrap;\n            -webkit-justify-content: space-around;\n                -ms-flex-pack: distribute;\n                    justify-content: space-around;\n            -webkit-box-align:center;\n            -webkit-align-items:center;\n                -ms-flex-align:center;\n                    align-items:center;\n            cursor: pointer;\n            height: 36px;\n            text-align: center;\n        }\n\n        \n        .dlg-footer>span {\n           font-size: 16px;\n           line-height: 36px;\n        }\n\n        .dlg-footer>span>i {\n           margin-right: 5px;\n        }\n\n\t\t\n        .dlg-footer>span:hover {\n          \tcolor: darkorange;\n        }\n\n        .dlg-footer>span:active {\n          \tbox-shadow: 1px 1px 4px darkgray;\n          \tcolor: darkorange;\n        }\n\n        \n        .dlg-footer>:first-child {\n           border-right: 1px solid darkgray;\n        }\n\n        .fade {\n            opacity: 0;\n            -webkit-transition: opacity .15s linear;\n            transition: opacity .15s linear;\n        }\n        \n        .fade.in {\n            opacity: 1;\n        }\n", "", {"version":3,"sources":["/./src/components/Dialog.vue?4115a60e"],"names":[],"mappings":";;GA+DA;YACA,mBAAA;YACA,QAAA;YACA,OAAA;YACA,aAAA;YACA,YAAA;YACA,YAAA;YACA,2CAAA;YACA,qBAAA;YAAA,sBAAA;YAAA,qBAAA;YAAA,cAAA;YACA,8BAAA;gBAAA,0BAAA;oBAAA,sBAAA;YACA,yBAAA;YAAA,gCAAA;gBAAA,sBAAA;oBAAA,wBAAA;YACA,gBAAA;YACA,0BAAA;YAAA,4BAAA;gBAAA,uBAAA;oBAAA,oBAAA;SACA;;QAEA;YACA,mBAAA;YACA,6BAAA;YACA,aAAA;YACA,oCAAA;YAAA,4BAAA;YACA,mBAAA;YACA,yCAAA;YACA,oCAAA;SACA;;QAEA;YACA,cAAA;YACA,kBAAA;YACA,mCAAA;YACA,qBAAA;YAAA,qBAAA;YAAA,cAAA;YACA,sBAAA;YACA,yBAAA;YAAA,gCAAA;gBAAA,sBAAA;oBAAA,wBAAA;YACA,gBAAA;YACA,gBAAA;SACA;;QAEA;YACA,cAAA;SACA;;QAEA;YACA,gCAAA;YACA,qBAAA;YAAA,qBAAA;YAAA,cAAA;YACA,sBAAA;YACA,8BAAA;gBAAA,0BAAA;oBAAA,sBAAA;YACA,sCAAA;gBAAA,0BAAA;oBAAA,8BAAA;YACA,yBAAA;YAAA,2BAAA;gBAAA,sBAAA;oBAAA,mBAAA;YACA,gBAAA;YACA,aAAA;YACA,mBAAA;SACA;;;QAGA;WACA,gBAAA;WACA,kBAAA;SACA;;QAEA;WACA,kBAAA;SACA;;;QAGA;WACA,kBAAA;SACA;;QAEA;WACA,iCAAA;WACA,kBAAA;SACA;;;QAGA;WACA,iCAAA;SACA;;QAEA;YACA,WAAA;YACA,wCAAA;YAEA,gCAAA;SACA;;QAEA;YACA,WAAA;SACA","file":"Dialog.vue","sourcesContent":["<template>\r\n\t<div class=\"dlg-modal\" v-if=\"show\">\r\n        <div class=\"dlg-content fade\" :class=\"{'in':show}\" :style=\"{width:dlgWidth+'px'}\">\r\n            <div class=\"dlg-header\">\r\n                <span>{{title}}</span>\r\n            </div>\r\n            <div class=\"dlg-body\">\r\n                <slot name=\"dlg-body\"></slot>\r\n            </div>\r\n            <div class=\"dlg-footer\">\r\n                <span @click=\"confirm\" :style=\"{width:dlgWidth/2 +'px'}\"><i class=\"icon-ok\"></i>确定</span>\r\n                <span @click=\"close\" :style=\"{width:dlgWidth/2 +'px'}\"><i class=\"icon-remove\"></i>关闭</span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\t//初始化弹出框的宽度\r\n\t\t\t\r\n\t\t},\r\n\t\tdata(){\r\n\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\t// 关闭dialog\r\n\t\t\tclose(){\r\n\t\t\t\tthis.show=false;\r\n\t\t\t},\r\n\t\t\tconfirm(){\r\n\t\t\t\t//将事件派发到父组件中,在通过父组件进行监听该事件\r\n\t\t\t\tthis.$dispatch('child-confirm');\r\n\t\t\t}\r\n\t\t},\r\n\t\tprops:{\r\n\r\n\t\t\tshow:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false,\r\n\t\t\t\trequire:true\r\n\t\t\t},\r\n\t\t\t//显示效果\r\n\t\t\teffect:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:'fade'\r\n\t\t\t},\r\n\t\t\tdlgWidth:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:300\r\n\t\t\t},\r\n\t\t\ttitle:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:''\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style >\r\n\t\r\n\t  .dlg-modal {\r\n            position: absolute;\r\n            left: 0;\r\n            top: 0;\r\n            height: 100%;\r\n            width: 100%;\r\n            z-index: 10;\r\n            background-color: rgba(153, 153, 153, 0.5);\r\n            display: flex;\r\n            flex-flow: row nowrap;\r\n            justify-content: center;\r\n            font-size: 14px;\r\n            align-items: center;\r\n        }\r\n        \r\n        .dlg-modal>.dlg-content {\r\n            position: relative;\r\n            background-color: whitesmoke;\r\n            width: 300px;\r\n            transition: all .3s ease-in;\r\n            border-radius: 6px;\r\n            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);\r\n            border: 1px solid rgba(0, 0, 0, .2);\r\n        }\r\n        \r\n        .dlg-content>.dlg-header {\r\n            padding: 10px;\r\n            font-weight: bold;\r\n            border-bottom: 1px solid lightgray;\r\n            display: flex;\r\n            display: -webkit-flex;\r\n            justify-content: center;\r\n            cursor: pointer;\r\n            font-size: 16px;\r\n        }\r\n        \r\n        .dlg-content>.dlg-body {\r\n            padding: 10px;\r\n        }\r\n        \r\n        .dlg-content>.dlg-footer {\r\n            border-top: 1px solid lightgray;\r\n            display: flex;\r\n            display: -webkit-flex;\r\n            flex-wrap: row nowrap;\r\n            justify-content: space-around;\r\n            align-items:center;\r\n            cursor: pointer;\r\n            height: 36px;\r\n            text-align: center;\r\n        }\r\n\r\n        \r\n        .dlg-footer>span {\r\n           font-size: 16px;\r\n           line-height: 36px;\r\n        }\r\n\r\n        .dlg-footer>span>i {\r\n           margin-right: 5px;\r\n        }\r\n\r\n\t\t\r\n        .dlg-footer>span:hover {\r\n          \tcolor: darkorange;\r\n        }\r\n\r\n        .dlg-footer>span:active {\r\n          \tbox-shadow: 1px 1px 4px darkgray;\r\n          \tcolor: darkorange;\r\n        }\r\n\r\n        \r\n        .dlg-footer>:first-child {\r\n           border-right: 1px solid darkgray;\r\n        }\r\n\r\n        .fade {\r\n            opacity: 0;\r\n            -webkit-transition: opacity .15s linear;\r\n            -o-transition: opacity .15s linear;\r\n            transition: opacity .15s linear;\r\n        }\r\n        \r\n        .fade.in {\r\n            opacity: 1;\r\n        }\r\n</style>"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
+/* 55 */,
+/* 56 */,
 /* 57 */
 /***/ function(module, exports) {
 
@@ -14691,7 +14523,7 @@
 	};
 	// </script>
 
-	// <style >
+	// <style  type="text/css" scoped>
 
 	// 	  .dlg-modal {
 	//             position: absolute;
@@ -14780,19 +14612,14 @@
 	// </style>
 
 /***/ },
-/* 58 */
-/***/ function(module, exports) {
-
-	module.exports = "\n\t<div class=\"dlg-modal\" v-if=\"show\">\n        <div class=\"dlg-content fade\" :class=\"{'in':show}\" :style=\"{width:dlgWidth+'px'}\">\n            <div class=\"dlg-header\">\n                <span>{{title}}</span>\n            </div>\n            <div class=\"dlg-body\">\n                <slot name=\"dlg-body\"></slot>\n            </div>\n            <div class=\"dlg-footer\">\n                <span @click=\"confirm\" :style=\"{width:dlgWidth/2 +'px'}\"><i class=\"icon-ok\"></i>确定</span>\n                <span @click=\"close\" :style=\"{width:dlgWidth/2 +'px'}\"><i class=\"icon-remove\"></i>关闭</span>\n            </div>\n        </div>\n    </div>\n";
-
-/***/ },
+/* 58 */,
 /* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(60)
+	__webpack_require__(85)
 	__vue_script__ = __webpack_require__(62)
-	__vue_template__ = __webpack_require__(63)
+	__vue_template__ = __webpack_require__(87)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14809,71 +14636,42 @@
 	})()}
 
 /***/ },
-/* 60 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(61);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-e36f8ff0&file=DatePicker.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./DatePicker.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-e36f8ff0&file=DatePicker.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./DatePicker.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 61 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n.datepicker{\n    background-color: whitesmoke;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    -webkit-flex-flow:row nowrap;\n        -ms-flex-flow:row nowrap;\n            flex-flow:row nowrap;\n    -webkit-justify-content: space-around;\n        -ms-flex-pack: distribute;\n            justify-content: space-around;\n    height: 200px;\n    width: 300px;\n    font-size: 20px;\n    padding: 20px 0px;\n    overflow: hidden;\n    -webkit-box-align:center;\n    -webkit-align-items:center;\n        -ms-flex-align:center;\n            align-items:center;\n    border:1px solid red;\n}\n\n.datepicker>ul{\n  list-style-type: none;\n}\n\n/*.datepicker-month{\n    transform:translate3d(0px, 120px, 0px);\n}*/\n\n\nul>li{\n  line-height: 40px;\n  vertical-align: middle;\n  height: 30px;\n  padding: 5px;\n  text-align: center;\n  color: black;\n  -webkit-transition: opacity .2s ease-out;\n  transition:opacity .2s ease-out;\n}\n\n.dp-hidden{\n  opacity: 0;\n}\n.dp-show{\n  opacity: 1;\n}\n\nli.select{\n  color: black;\n  font-weight: bold;\n  border-top: 2px solid green;\n}\n", "", {"version":3,"sources":["/./src/components/DatePicker.vue?28b19df0"],"names":[],"mappings":";AAkKA;IACA,6BAAA;IACA,sBAAA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,6BAAA;QACA,yBAAA;YACA,qBAAA;IACA,sCAAA;QAAA,0BAAA;YAAA,8BAAA;IACA,cAAA;IACA,aAAA;IACA,gBAAA;IACA,kBAAA;IACA,iBAAA;IACA,yBAAA;IAAA,2BAAA;QAAA,sBAAA;YAAA,mBAAA;IACA,qBAAA;CACA;;AAEA;EACA,sBAAA;CACA;;AAEA;;GAEA;;;AAGA;EACA,kBAAA;EACA,uBAAA;EACA,aAAA;EACA,aAAA;EACA,mBAAA;EACA,aAAA;EACA,yCAAA;EAAA,gCAAA;CACA;;AAEA;EACA,WAAA;CACA;AACA;EACA,WAAA;CACA;;AAEA;EACA,aAAA;EACA,kBAAA;EACA,4BAAA;CACA","file":"DatePicker.vue","sourcesContent":["<template>\r\n    <section class=\"datepicker\">\r\n      <ul class=\"datepicker-year\">\r\n          <li v-for=\"yItem in yearRange\"  :class=\"[ isShowItem('Y',yItem)? 'dp-show':'dp-hidden' ]\">\r\n            <span>{{yItem}}</span>\r\n          </li>\r\n      </ul>\r\n      <ul class=\"datepicker-month\">\r\n          <li v-for=\"mItem in monthRange\" :class=\"[ isShowItem('M',mItem)? 'dp-show':'dp-hidden' ]\">\r\n            <span>{{mItem}}</span>\r\n          </li>\r\n      </ul>\r\n      <ul class=\"datepicker-day\">\r\n          <li v-for=\"dItem in dayRange\"   :class=\"[ isShowItem('D',dItem)? 'dp-show':'dp-hidden' ]\">\r\n            <span>{{dItem}}</span>\r\n          </li>\r\n      </ul>\r\n\r\n    <!--   <ul class=\"datepicker-hour\">\r\n          <li v-for=\"item in hourRange\">{{item}}</li>\r\n      </ul>\r\n      <ul class=\"datepicker-min\">\r\n          <li v-for=\"item in minRange\">{{item}}</li>\r\n      </ul>\r\n      <ul class=\"datepicker-sec\">\r\n          <li v-for=\"item in secRange\">{{item}}</li>\r\n      </ul> -->\r\n    </section> \r\n</template>\r\n\r\n<script lang=\"babel\">\r\n    export default {\r\n        created(){\r\n            //初始化数据\r\n            var date='';\r\n            if(this.curdate.length>0){\r\n              date=new Date(this.curdate);\r\n            }else{\r\n              date=new Date();\r\n            }\r\n            this.curYear=date.getFullYear();\r\n            this.curMonth=date.getMonth()+1;\r\n            this.curDay=date.getDate();\r\n            //初始化年份\r\n            this.yearRange=this.getYearRange(this.curYear);\r\n            //初始化天数\r\n            this.dayRange=this.getDayRange(this.curYear,this.curMonth);\r\n\r\n            this.yHeight=40*this.yearRange.length;\r\n            this.mHeight=40*this.monthRange.length;\r\n            this.dHeight=40*this.dayRange.length;\r\n            \r\n\r\n            //初始化显示的数据\r\n            this.showDays=this.getShowRange(this.curDay,'D');\r\n            this.showYears=this.getShowRange(this.curYear,'Y');\r\n            this.showMonths=this.getShowRange(this.curMonth,'M');\r\n            console.log(this.showYears);\r\n            console.log(this.showMonths);\r\n            console.log(this.showDays);\r\n\r\n\r\n        },\r\n        props:{\r\n          curdate:{\r\n            type:String,\r\n            default:''\r\n          }\r\n        },\r\n        data(){\r\n            return {\r\n              yearRange:[],\r\n              monthRange:[ \r\n                           1,2,3,4,5,6,7,8,9,10,11,12\r\n                         ],\r\n              dayRange:[],\r\n              hourRange:[],\r\n              minRange:[],\r\n              secRange:[],\r\n              curYear:0,\r\n              curMonth:0,\r\n              curDay:0,\r\n              curHour:0,\r\n              curMin:0,\r\n              curSec:0,\r\n              showYears:[],\r\n              showMonths:[],\r\n              showDays:[],\r\n              yHeight:0,\r\n              mHeight:0,\r\n              dHeight:0\r\n            }\r\n        },\r\n        methods:{\r\n            //显示该item是否显示 \r\n            isShowItem(flag,item){\r\n             \r\n              var tempItem=parseInt(item);\r\n                switch(flag){\r\n                  case \"Y\":\r\n                      return tempItem>=this.showYears[0]&&tempItem<=this.showYears[this.showYears.length-1];\r\n                  case \"M\":\r\n                      return tempItem>=this.showMonths[0]&&tempItem<=this.showMonths[this.showMonths.length-1];\r\n                  case \"D\":\r\n                      return tempItem>=this.showDays[0]&&tempItem<=this.showDays[this.showDays.length-1];\r\n                } \r\n                return false;\r\n            },\r\n             //通过年月来获取月份的天数\r\n            dayNumOfMonth:function(year,month){\r\n                var d = new Date(year,month,0);\r\n                return d.getDate();\r\n            },\r\n            //通过年份来获取年份的区间\r\n            getYearRange:function(year){\r\n              var tempYR=[];\r\n              for (var i = year- 10; i <=year+5; i++) {\r\n                  tempYR.push(i);\r\n              }          \r\n              return tempYR;\r\n            },\r\n            getDayRange:function(year,month){\r\n               var tempDR=[];\r\n               var length=this.dayNumOfMonth(year,month);\r\n               for (var i = 1; i <=length; i++) {\r\n                  tempDR.push(i);\r\n               };\r\n               return tempDR;\r\n            },\r\n            //获取显示的数据\r\n            getShowRange(val,flag){\r\n              var tempSR=[];\r\n              var start=1,end=0;\r\n              start=val-2;\r\n              end=val+2;\r\n              for (var i = start; i <=end; i++) {\r\n                 switch(flag){\r\n                  case \"Y\":\r\n                    if(this.yearRange.indexOf(i)>=0){\r\n                        tempSR.push(i);\r\n                    }\r\n                    break;\r\n                  case \"M\":\r\n                    if(this.monthRange.indexOf(i)>=0){\r\n                       tempSR.push(i);\r\n                    }\r\n                    break;\r\n\r\n                  case \"D\":\r\n                    if(this.dayRange.indexOf(i)>=0){\r\n                       tempSR.push(i);\r\n                    }\r\n                    break;\r\n                  }\r\n              };\r\n              return tempSR;\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style type=\"text/css\">\r\n    .datepicker{\r\n        background-color: whitesmoke;\r\n        display: -webkit-flex;\r\n        display: -ms-flexbox;\r\n        display: flex;\r\n        -webkit-flex-flow:row nowrap;\r\n            -ms-flex-flow:row nowrap;\r\n                flex-flow:row nowrap;\r\n        justify-content: space-around;\r\n        height: 200px;\r\n        width: 300px;\r\n        font-size: 20px;\r\n        padding: 20px 0px;\r\n        overflow: hidden;\r\n        align-items:center;\r\n        border:1px solid red;\r\n    }\r\n\r\n    .datepicker>ul{\r\n      list-style-type: none;\r\n    }\r\n\r\n    /*.datepicker-month{\r\n        transform:translate3d(0px, 120px, 0px);\r\n    }*/\r\n\r\n\r\n    ul>li{\r\n      line-height: 40px;\r\n      vertical-align: middle;\r\n      height: 30px;\r\n      padding: 5px;\r\n      text-align: center;\r\n      color: black;\r\n      transition:opacity .2s ease-out;\r\n    }\r\n    \r\n    .dp-hidden{\r\n      opacity: 0;\r\n    }\r\n    .dp-show{\r\n      opacity: 1;\r\n    }\r\n    \r\n    li.select{\r\n      color: black;\r\n      font-weight: bold;\r\n      border-top: 2px solid green;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
+/* 60 */,
+/* 61 */,
 /* 62 */
 /***/ function(module, exports) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	// <template>
-	//     <section class="datepicker">
-	//       <ul class="datepicker-year">
-	//           <li v-for="yItem in yearRange"  :class="[ isShowItem('Y',yItem)? 'dp-show':'dp-hidden' ]">
-	//             <span>{{yItem}}</span>
-	//           </li>
-	//       </ul>
-	//       <ul class="datepicker-month">
-	//           <li v-for="mItem in monthRange" :class="[ isShowItem('M',mItem)? 'dp-show':'dp-hidden' ]">
-	//             <span>{{mItem}}</span>
-	//           </li>
-	//       </ul>
-	//       <ul class="datepicker-day">
-	//           <li v-for="dItem in dayRange"   :class="[ isShowItem('D',dItem)? 'dp-show':'dp-hidden' ]">
-	//             <span>{{dItem}}</span>
-	//           </li>
-	//       </ul>
+	
+	//   <div class="datepicker">
+	//       <section class="datepicker-header">
+	//         <div>年</div>
+	//         <div>月</div>
+	//         <div>日</div>
+	//       </section>
+	//       <section class="datepicker-body">
+	//           <div class="column datepicker-year">
+	//               <span class="datepicker-icon" @click="add('Y')"><i class="icon-plus"></i></span>
+	//               <span class="datepicker-value">{{curYear}}</span>
+	//               <span class="datepicker-icon" @click="minus('Y')"><i class="icon-minus"></i></span>
+	//           </div>
+	//           <div class="column datepicker-month">
+	//               <span  class="datepicker-icon" @click="add('M')"><i class="icon-plus"></i></span>
+	//               <span class="datepicker-value">{{curMonth<10?("0"+curMonth):curMonth}}</span>
+	//               <span  class="datepicker-icon" @click="minus('M')"><i class="icon-minus"></i></span>
+	//           </div>
+	//           <div class="column datepicker-day">
+	//               <span  class="datepicker-icon" @click="add('D')"><i class="icon-plus"></i></span>
+	//               <span class="datepicker-value">{{curDay<10?("0"+curDay):curDay}}</span>
+	//               <span  class="datepicker-icon" @click="minus('D')"><i class="icon-minus"></i></span>
+	//           </div>
+	//       </section>
+	//   </div>
 	
 	//     <!--   <ul class="datepicker-hour">
 	//           <li v-for="item in hourRange">{{item}}</li>
@@ -14884,204 +14682,257 @@
 	//       <ul class="datepicker-sec">
 	//           <li v-for="item in secRange">{{item}}</li>
 	//       </ul> -->
-	//     </section>
+	
 	// </template>
 	
 	// <script lang="babel">
 	exports.default = {
-	    created: function created() {
-	        //初始化数据
-	        var date = '';
-	        if (this.curdate.length > 0) {
-	            date = new Date(this.curdate);
-	        } else {
-	            date = new Date();
-	        }
-	        this.curYear = date.getFullYear();
-	        this.curMonth = date.getMonth() + 1;
-	        this.curDay = date.getDate();
-	        //初始化年份
-	        this.yearRange = this.getYearRange(this.curYear);
-	        //初始化天数
-	        this.dayRange = this.getDayRange(this.curYear, this.curMonth);
-	
-	        this.yHeight = 40 * this.yearRange.length;
-	        this.mHeight = 40 * this.monthRange.length;
-	        this.dHeight = 40 * this.dayRange.length;
-	
-	        //初始化显示的数据
-	        this.showDays = this.getShowRange(this.curDay, 'D');
-	        this.showYears = this.getShowRange(this.curYear, 'Y');
-	        this.showMonths = this.getShowRange(this.curMonth, 'M');
-	        console.log(this.showYears);
-	        console.log(this.showMonths);
-	        console.log(this.showDays);
-	    },
-	
-	    props: {
-	        curdate: {
-	            type: String,
-	            default: ''
-	        }
-	    },
-	    data: function data() {
-	        return {
-	            yearRange: [],
-	            monthRange: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-	            dayRange: [],
-	            hourRange: [],
-	            minRange: [],
-	            secRange: [],
-	            curYear: 0,
-	            curMonth: 0,
-	            curDay: 0,
-	            curHour: 0,
-	            curMin: 0,
-	            curSec: 0,
-	            showYears: [],
-	            showMonths: [],
-	            showDays: [],
-	            yHeight: 0,
-	            mHeight: 0,
-	            dHeight: 0
-	        };
-	    },
-	
-	    methods: {
-	        //显示该item是否显示
-	
-	        isShowItem: function isShowItem(flag, item) {
-	
-	            var tempItem = parseInt(item);
-	            switch (flag) {
-	                case "Y":
-	                    return tempItem >= this.showYears[0] && tempItem <= this.showYears[this.showYears.length - 1];
-	                case "M":
-	                    return tempItem >= this.showMonths[0] && tempItem <= this.showMonths[this.showMonths.length - 1];
-	                case "D":
-	                    return tempItem >= this.showDays[0] && tempItem <= this.showDays[this.showDays.length - 1];
-	            }
-	            return false;
-	        },
-	
-	        //通过年月来获取月份的天数
-	        dayNumOfMonth: function dayNumOfMonth(year, month) {
-	            var d = new Date(year, month, 0);
-	            return d.getDate();
-	        },
-	        //通过年份来获取年份的区间
-	        getYearRange: function getYearRange(year) {
-	            var tempYR = [];
-	            for (var i = year - 10; i <= year + 5; i++) {
-	                tempYR.push(i);
-	            }
-	            return tempYR;
-	        },
-	        getDayRange: function getDayRange(year, month) {
-	            var tempDR = [];
-	            var length = this.dayNumOfMonth(year, month);
-	            for (var i = 1; i <= length; i++) {
-	                tempDR.push(i);
-	            };
-	            return tempDR;
-	        },
-	        //获取显示的数据
-	        getShowRange: function getShowRange(val, flag) {
-	            var tempSR = [];
-	            var start = 1,
-	                end = 0;
-	            start = val - 2;
-	            end = val + 2;
-	            for (var i = start; i <= end; i++) {
-	                switch (flag) {
-	                    case "Y":
-	                        if (this.yearRange.indexOf(i) >= 0) {
-	                            tempSR.push(i);
-	                        }
-	                        break;
-	                    case "M":
-	                        if (this.monthRange.indexOf(i) >= 0) {
-	                            tempSR.push(i);
-	                        }
-	                        break;
-	
-	                    case "D":
-	                        if (this.dayRange.indexOf(i) >= 0) {
-	                            tempSR.push(i);
-	                        }
-	                        break;
-	                }
-	            };
-	            return tempSR;
-	        }
+	  created: function created() {
+	    //初始化数据
+	    var date = '';
+	    if (this.curdate.length > 0) {
+	      date = new Date(this.curdate);
+	    } else {
+	      date = new Date();
 	    }
+	    this.curYear = date.getFullYear();
+	    this.curMonth = date.getMonth() + 1;
+	    this.curDay = date.getDate();
+	    //初始化年份
+	    this.yearRange = this.getYearRange(this.curYear);
+	    //初始化天数
+	    this.dayRange = this.getDayRange(this.curYear, this.curMonth);
+	
+	    this.yHeight = 40 * this.yearRange.length;
+	    this.mHeight = 40 * this.monthRange.length;
+	    this.dHeight = 40 * this.dayRange.length;
+	
+	    //初始化显示的数据
+	    this.showDays = this.getShowRange(this.curDay, 'D');
+	    this.showYears = this.getShowRange(this.curYear, 'Y');
+	    this.showMonths = this.getShowRange(this.curMonth, 'M');
+	    console.log(this.showYears);
+	    console.log(this.showMonths);
+	    console.log(this.showDays);
+	  },
+	
+	  props: {
+	    curdate: {
+	      type: String,
+	      default: ''
+	    }
+	  },
+	  data: function data() {
+	    return {
+	      yearRange: [],
+	      monthRange: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+	      dayRange: [],
+	      hourRange: [],
+	      minRange: [],
+	      secRange: [],
+	      curYear: 0,
+	      curMonth: 0,
+	      curDay: 0,
+	      curHour: 0,
+	      curMin: 0,
+	      curSec: 0
+	    };
+	  },
+	
+	  methods: {
+	    add: function add(flag) {
+	      //通过年月来获取月份的天数
+	      switch (flag) {
+	        case "Y":
+	          this.curYear = this.curYear + 1;
+	          break;
+	        case "M":
+	          //1:判断月份所在的index
+	          var index = this.curMonth == 12 ? 0 : this.curMonth;
+	          this.curMonth = this.monthRange[index];
+	          this.dayRange = this.getDayRange(this.curYear, this.curMonth);
+	          break;
+	        case "D":
+	          var length = this.dayRange.length;
+	          var dayIndex = this.curDay == length ? 0 : this.curDay;
+	          this.curDay = this.dayRange[dayIndex];
+	          break;
+	      }
+	    },
+	    minus: function minus(flag) {
+	      switch (flag) {
+	        case "Y":
+	          this.curYear = this.curYear - 1;
+	          break;
+	        case "M":
+	          var index = this.curMonth == 1 ? 11 : this.curMonth - 2;
+	          this.curMonth = this.monthRange[index];
+	          this.dayRange = this.getDayRange(this.curYear, this.curMonth);
+	          break;
+	        case "D":
+	          var length = this.dayRange.length;
+	          var dayIndex = this.curDay == 1 ? length - 1 : this.curDay - 2;
+	          this.curDay = this.dayRange[dayIndex];
+	          break;
+	      }
+	    },
+	
+	    dayNumOfMonth: function dayNumOfMonth(year, month) {
+	      var d = new Date(year, month, 0);
+	      return d.getDate();
+	    },
+	    //通过年份来获取年份的区间
+	    getYearRange: function getYearRange(year) {
+	      var tempYR = [];
+	      for (var i = year - 10; i <= year + 5; i++) {
+	        tempYR.push(i);
+	      }
+	      return tempYR;
+	    },
+	    getDayRange: function getDayRange(year, month) {
+	      var tempDR = [];
+	      var length = this.dayNumOfMonth(year, month);
+	      for (var i = 1; i <= length; i++) {
+	        tempDR.push(i);
+	      };
+	      return tempDR;
+	    },
+	    //获取显示的数据
+	    getShowRange: function getShowRange(val, flag) {
+	      var tempSR = [];
+	      var start = 1,
+	          end = 0;
+	      start = val - 2;
+	      end = val + 2;
+	      for (var i = start; i <= end; i++) {
+	        switch (flag) {
+	          case "Y":
+	            if (this.yearRange.indexOf(i) >= 0) {
+	              tempSR.push(i);
+	            }
+	            break;
+	          case "M":
+	            if (this.monthRange.indexOf(i) >= 0) {
+	              tempSR.push(i);
+	            }
+	            break;
+	
+	          case "D":
+	            if (this.dayRange.indexOf(i) >= 0) {
+	              tempSR.push(i);
+	            }
+	            break;
+	        }
+	      };
+	      return tempSR;
+	    }
+	  }
 	};
 	// </script>
 
-	// <style type="text/css">
-	//     .datepicker{
-	//         background-color: whitesmoke;
-	//         display: -webkit-flex;
-	//         display: -ms-flexbox;
-	//         display: flex;
-	//         -webkit-flex-flow:row nowrap;
-	//             -ms-flex-flow:row nowrap;
-	//                 flex-flow:row nowrap;
-	//         justify-content: space-around;
-	//         height: 200px;
-	//         width: 300px;
-	//         font-size: 20px;
-	//         padding: 20px 0px;
-	//         overflow: hidden;
-	//         align-items:center;
-	//         border:1px solid red;
+	// <style type="text/css" scoped>
+
+	//         .datepicker{
+	//             display: flex;
+	//             flex-flow:column nowrap;
+	//         }
+
+	//       .datepicker-header{
+	//           background-color: whitesmoke;
+	//           display: -webkit-flex;
+	//           display: -ms-flexbox;
+	//           display: flex;
+	//           -webkit-flex-flow:row nowrap;
+	//               -ms-flex-flow:row nowrap;
+	//                   flex-flow:row nowrap;
+	//           justify-content: space-around;
+	//           height: 30px;
+	//           width: 300px;
+	//           font-size: 20px;
+	//           padding: 5px 20px 0px 20px;
+	//           align-items:center;
+	//           border-radius: 5px;
+	//           font-weight: bold;
+	//       }
+
+	//       .datepicker-body{
+	//           background-color: whitesmoke;
+	//           display: -webkit-flex;
+	//           display: -ms-flexbox;
+	//           display: flex;
+	//           -webkit-flex-flow:row nowrap;
+	//               -ms-flex-flow:row nowrap;
+	//                   flex-flow:row nowrap;
+	//           justify-content: space-around;
+	//           height: 200px;
+	//           width: 300px;
+	//           font-size: 20px;
+	//           padding: 5px 20px;
+	//           overflow: hidden;
+	//           align-items:center;
+	//           border-radius: 5px;
+	//       }
+
+	//       .datepicker-body>.column{
+	//           display: -webkit-flex;
+	//           display: -ms-flexbox;
+	//           display: flex;
+	//           -webkit-flex-flow:column nowrap;
+	//           -ms-flex-flow:column nowrap;
+	//                   flex-flow:column nowrap;
+	//           -webkit-justify-content:center;
+	//           -ms-flex-pack:center;
+	//                   justify-content:center;
+	//           -webkit-align-items:space-around;
+	//           -ms-flex-align:space-around;
+	//                   align-items:space-around;
+	//                   padding: 5px;
+
+	//       }
+
+	//       .column>span{
+	//         padding: 10px;
+	//         width: 60px;
+	//         text-align: center;
+	//         vertical-align: middle;
+	//         background-color: white;   
+	//       }
+
+	//       .column>span:active{
+	//              background-color: darkorange;
+	//       }
+
+	//       .column>span:nth-child(1){
+	//          border-radius: 5px 5px 0px 0px;
+	//          box-shadow: 0px 0px 3px gray;
+	//       }
+
+	//       .column>span:nth-child(3){
+	//          border-radius: 0px 0px 5px 5px;
+	//          box-shadow: 0px 0px 3px gray;
+	//       }
+
+	//      .datepicker-icon{
+	//           border: 2px solid gray;
+	//           height: 30px;
+	//           line-height: 30px;
+	//           font-size: 24px;
+	//      }
+
+	//     .datepicker-value{
+	//         height: 50px;
+	//         border-left: 2px solid gray;
+	//         border-right: 2px solid gray;
+	//         line-height: 50px;
+	//            font-size: 30px;
+	//         font-weight: bold;
 	//     }
 
-	//     .datepicker>ul{
-	//       list-style-type: none;
-	//     }
-
-	//     /*.datepicker-month{
-	//         transform:translate3d(0px, 120px, 0px);
-	//     }*/
-
-	//     ul>li{
-	//       line-height: 40px;
-	//       vertical-align: middle;
-	//       height: 30px;
-	//       padding: 5px;
-	//       text-align: center;
-	//       color: black;
-	//       transition:opacity .2s ease-out;
-	//     }
-
-	//     .dp-hidden{
-	//       opacity: 0;
-	//     }
-	//     .dp-show{
-	//       opacity: 1;
-	//     }
-
-	//     li.select{
-	//       color: black;
-	//       font-weight: bold;
-	//       border-top: 2px solid green;
-	//     }
 	// </style>
 
 /***/ },
-/* 63 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<section class=\"datepicker\">\n  <ul class=\"datepicker-year\">\n      <li v-for=\"yItem in yearRange\"  :class=\"[ isShowItem('Y',yItem)? 'dp-show':'dp-hidden' ]\">\n        <span>{{yItem}}</span>\n      </li>\n  </ul>\n  <ul class=\"datepicker-month\">\n      <li v-for=\"mItem in monthRange\" :class=\"[ isShowItem('M',mItem)? 'dp-show':'dp-hidden' ]\">\n        <span>{{mItem}}</span>\n      </li>\n  </ul>\n  <ul class=\"datepicker-day\">\n      <li v-for=\"dItem in dayRange\"   :class=\"[ isShowItem('D',dItem)? 'dp-show':'dp-hidden' ]\">\n        <span>{{dItem}}</span>\n      </li>\n  </ul>\n\n<!--   <ul class=\"datepicker-hour\">\n      <li v-for=\"item in hourRange\">{{item}}</li>\n  </ul>\n  <ul class=\"datepicker-min\">\n      <li v-for=\"item in minRange\">{{item}}</li>\n  </ul>\n  <ul class=\"datepicker-sec\">\n      <li v-for=\"item in secRange\">{{item}}</li>\n  </ul> -->\n</section> \n";
-
-/***/ },
-/* 64 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<toolbar text=\"个人主页\">\n\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back\">返回</span>\n\t<span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"loadUserInfo\"></span>\n</toolbar>\n<section >\n\t<input type=\"button\" @click=\"showDialog\">\n\t<datepicker></datepicker>\n</section>\n\n<loading :loading=\"isload\"></loading>\n<dialog :show.sync=\"isShowDialog\" :title=\"dialogTitle\" v-on:child-confirm=\"confirm\">\n\t<div slot=\"dlg-body\">hahah</div>\n</dialog>\n";
-
-/***/ },
+/* 63 */,
+/* 64 */,
 /* 65 */
 /***/ function(module, exports) {
 
@@ -18871,6 +18722,236 @@
 	
 	})(window, document, 'Hammer');
 
+
+/***/ },
+/* 85 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(86);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-e36f8ff0&file=DatePicker.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./DatePicker.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-e36f8ff0&file=DatePicker.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./DatePicker.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 86 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\n    .datepicker[_v-e36f8ff0]{\n        display: -webkit-box;\n        display: -webkit-flex;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-flex-flow:column nowrap;\n            -ms-flex-flow:column nowrap;\n                flex-flow:column nowrap;\n    }\n\n  .datepicker-header[_v-e36f8ff0]{\n      background-color: whitesmoke;\n      display: -webkit-flex;\n      display: -ms-flexbox;\n      display: -webkit-box;\n      display: flex;\n      -webkit-flex-flow:row nowrap;\n          -ms-flex-flow:row nowrap;\n              flex-flow:row nowrap;\n      -webkit-justify-content: space-around;\n          -ms-flex-pack: distribute;\n              justify-content: space-around;\n      height: 30px;\n      width: 300px;\n      font-size: 20px;\n      padding: 5px 20px 0px 20px;\n      -webkit-box-align:center;\n      -webkit-align-items:center;\n          -ms-flex-align:center;\n              align-items:center;\n      border-radius: 5px;\n      font-weight: bold;\n  }\n\n  .datepicker-body[_v-e36f8ff0]{\n      background-color: whitesmoke;\n      display: -webkit-flex;\n      display: -ms-flexbox;\n      display: -webkit-box;\n      display: flex;\n      -webkit-flex-flow:row nowrap;\n          -ms-flex-flow:row nowrap;\n              flex-flow:row nowrap;\n      -webkit-justify-content: space-around;\n          -ms-flex-pack: distribute;\n              justify-content: space-around;\n      height: 200px;\n      width: 300px;\n      font-size: 20px;\n      padding: 5px 20px;\n      overflow: hidden;\n      -webkit-box-align:center;\n      -webkit-align-items:center;\n          -ms-flex-align:center;\n              align-items:center;\n      border-radius: 5px;\n  }\n\n\n  .datepicker-body>.column[_v-e36f8ff0]{\n      display: -webkit-flex;\n      display: -ms-flexbox;\n      display: -webkit-box;\n      display: flex;\n      -webkit-flex-flow:column nowrap;\n      -ms-flex-flow:column nowrap;\n              flex-flow:column nowrap;\n      -webkit-justify-content:center;\n      -ms-flex-pack:center;\n              -webkit-box-pack:center;\n              justify-content:center;\n      -webkit-align-items:space-around;\n      -ms-flex-align:space-around;\n              -webkit-box-align:space-around;\n              align-items:space-around;\n              padding: 5px;\n\n  }\n\n  .column>span[_v-e36f8ff0]{\n    padding: 10px;\n    width: 60px;\n    text-align: center;\n    vertical-align: middle;\n    background-color: white;    \n  }\n\n\n  .column>span[_v-e36f8ff0]:active{\n         background-color: darkorange;\n  }\n\n  .column>span[_v-e36f8ff0]:nth-child(1){\n     border-radius: 5px 5px 0px 0px;\n     box-shadow: 0px 0px 3px gray;\n  }\n\n  .column>span[_v-e36f8ff0]:nth-child(3){\n     border-radius: 0px 0px 5px 5px;\n     box-shadow: 0px 0px 3px gray;\n  }\n\n .datepicker-icon[_v-e36f8ff0]{\n      border: 2px solid gray;\n      height: 30px;\n      line-height: 30px;\n      font-size: 24px;\n }\n\n\n.datepicker-value[_v-e36f8ff0]{\n    height: 50px;\n    border-left: 2px solid gray;\n    border-right: 2px solid gray;\n    line-height: 50px;\n       font-size: 30px;\n    font-weight: bold;\n}\n\n\n", "", {"version":3,"sources":["/./src/components/DatePicker.vue?3b0c11c3"],"names":[],"mappings":";;IA4LA;QACA,qBAAA;QAAA,sBAAA;QAAA,qBAAA;QAAA,cAAA;QACA,gCAAA;YAAA,4BAAA;gBAAA,wBAAA;KACA;;EAEA;MACA,6BAAA;MACA,sBAAA;MACA,qBAAA;MACA,qBAAA;MAAA,cAAA;MACA,6BAAA;UACA,yBAAA;cACA,qBAAA;MACA,sCAAA;UAAA,0BAAA;cAAA,8BAAA;MACA,aAAA;MACA,aAAA;MACA,gBAAA;MACA,2BAAA;MACA,yBAAA;MAAA,2BAAA;UAAA,sBAAA;cAAA,mBAAA;MACA,mBAAA;MACA,kBAAA;GACA;;EAEA;MACA,6BAAA;MACA,sBAAA;MACA,qBAAA;MACA,qBAAA;MAAA,cAAA;MACA,6BAAA;UACA,yBAAA;cACA,qBAAA;MACA,sCAAA;UAAA,0BAAA;cAAA,8BAAA;MACA,cAAA;MACA,aAAA;MACA,gBAAA;MACA,kBAAA;MACA,iBAAA;MACA,yBAAA;MAAA,2BAAA;UAAA,sBAAA;cAAA,mBAAA;MACA,mBAAA;GACA;;;EAGA;MACA,sBAAA;MACA,qBAAA;MACA,qBAAA;MAAA,cAAA;MACA,gCAAA;MACA,4BAAA;cACA,wBAAA;MACA,+BAAA;MACA,qBAAA;cACA,wBAAA;cAAA,uBAAA;MACA,iCAAA;MACA,4BAAA;cACA,+BAAA;cAAA,yBAAA;cACA,aAAA;;GAEA;;EAEA;IACA,cAAA;IACA,YAAA;IACA,mBAAA;IACA,uBAAA;IACA,wBAAA;GACA;;;EAGA;SACA,6BAAA;GACA;;EAEA;KACA,+BAAA;KACA,6BAAA;GACA;;EAEA;KACA,+BAAA;KACA,6BAAA;GACA;;CAEA;MACA,uBAAA;MACA,aAAA;MACA,kBAAA;MACA,gBAAA;EACA;;;AAGA;IACA,aAAA;IACA,4BAAA;IACA,6BAAA;IACA,kBAAA;OACA,gBAAA;IACA,kBAAA;CACA","file":"DatePicker.vue","sourcesContent":["<template>\r\n\r\n  <div class=\"datepicker\">\r\n      <section class=\"datepicker-header\">\r\n        <div>年</div>\r\n        <div>月</div>\r\n        <div>日</div>\r\n      </section>\r\n      <section class=\"datepicker-body\">\r\n          <div class=\"column datepicker-year\">\r\n              <span class=\"datepicker-icon\" @click=\"add('Y')\"><i class=\"icon-plus\"></i></span>\r\n              <span class=\"datepicker-value\">{{curYear}}</span>\r\n              <span class=\"datepicker-icon\" @click=\"minus('Y')\"><i class=\"icon-minus\"></i></span>\r\n          </div>\r\n          <div class=\"column datepicker-month\">\r\n              <span  class=\"datepicker-icon\" @click=\"add('M')\"><i class=\"icon-plus\"></i></span>\r\n              <span class=\"datepicker-value\">{{curMonth<10?(\"0\"+curMonth):curMonth}}</span>\r\n              <span  class=\"datepicker-icon\" @click=\"minus('M')\"><i class=\"icon-minus\"></i></span>\r\n          </div>\r\n          <div class=\"column datepicker-day\">\r\n              <span  class=\"datepicker-icon\" @click=\"add('D')\"><i class=\"icon-plus\"></i></span>\r\n              <span class=\"datepicker-value\">{{curDay<10?(\"0\"+curDay):curDay}}</span>\r\n              <span  class=\"datepicker-icon\" @click=\"minus('D')\"><i class=\"icon-minus\"></i></span>\r\n          </div>\r\n      </section> \r\n  </div>\r\n    \r\n\r\n    <!--   <ul class=\"datepicker-hour\">\r\n          <li v-for=\"item in hourRange\">{{item}}</li>\r\n      </ul>\r\n      <ul class=\"datepicker-min\">\r\n          <li v-for=\"item in minRange\">{{item}}</li>\r\n      </ul>\r\n      <ul class=\"datepicker-sec\">\r\n          <li v-for=\"item in secRange\">{{item}}</li>\r\n      </ul> -->\r\n    \r\n</template>\r\n\r\n<script lang=\"babel\">\r\n    export default {\r\n        created(){\r\n            //初始化数据\r\n            var date='';\r\n            if(this.curdate.length>0){\r\n              date=new Date(this.curdate);\r\n            }else{\r\n              date=new Date();\r\n            }\r\n            this.curYear=date.getFullYear();\r\n            this.curMonth=date.getMonth()+1;\r\n            this.curDay=date.getDate();\r\n            //初始化年份\r\n            this.yearRange=this.getYearRange(this.curYear);\r\n            //初始化天数\r\n            this.dayRange=this.getDayRange(this.curYear,this.curMonth);\r\n\r\n            this.yHeight=40*this.yearRange.length;\r\n            this.mHeight=40*this.monthRange.length;\r\n            this.dHeight=40*this.dayRange.length;\r\n            \r\n\r\n            //初始化显示的数据\r\n            this.showDays=this.getShowRange(this.curDay,'D');\r\n            this.showYears=this.getShowRange(this.curYear,'Y');\r\n            this.showMonths=this.getShowRange(this.curMonth,'M');\r\n            console.log(this.showYears);\r\n            console.log(this.showMonths);\r\n            console.log(this.showDays);\r\n\r\n\r\n        },\r\n        props:{\r\n          curdate:{\r\n            type:String,\r\n            default:''\r\n          }\r\n        },\r\n        data(){\r\n            return {\r\n              yearRange:[],\r\n              monthRange:[ \r\n                           1,2,3,4,5,6,7,8,9,10,11,12\r\n                         ],\r\n              dayRange:[],\r\n              hourRange:[],\r\n              minRange:[],\r\n              secRange:[],\r\n              curYear:0,\r\n              curMonth:0,\r\n              curDay:0,\r\n              curHour:0,\r\n              curMin:0,\r\n              curSec:0\r\n            }\r\n        },\r\n        methods:{\r\n            add(flag){\r\n             //通过年月来获取月份的天数\r\n                switch(flag){\r\n                  case \"Y\":\r\n                    this.curYear=this.curYear+1;\r\n                    break;\r\n                  case \"M\":\r\n                    //1:判断月份所在的index\r\n                      var index=this.curMonth==12?0:this.curMonth;\r\n                      this.curMonth=this.monthRange[index];\r\n                      this.dayRange=this.getDayRange(this.curYear,this.curMonth);\r\n                    break;\r\n                  case \"D\":\r\n                      var length=this.dayRange.length;\r\n                      var dayIndex=this.curDay==length?0:this.curDay;\r\n                      this.curDay=this.dayRange[dayIndex];\r\n                    break;\r\n                }\r\n            },\r\n            minus(flag){\r\n                 switch(flag){\r\n                    case \"Y\":\r\n                      this.curYear=this.curYear-1;\r\n                      break;\r\n                    case \"M\":\r\n                      var index=this.curMonth==1?11:this.curMonth-2;\r\n                      this.curMonth=this.monthRange[index];\r\n                      this.dayRange=this.getDayRange(this.curYear,this.curMonth);\r\n                      break;\r\n                    case \"D\":\r\n                        var length=this.dayRange.length;\r\n                        var dayIndex=this.curDay==1?length-1:this.curDay-2;\r\n                        this.curDay=this.dayRange[dayIndex];\r\n                      break;\r\n                  }\r\n            },\r\n            dayNumOfMonth:function(year,month){\r\n                var d = new Date(year,month,0);\r\n                return d.getDate();\r\n            },\r\n            //通过年份来获取年份的区间\r\n            getYearRange:function(year){\r\n              var tempYR=[];\r\n              for (var i = year- 10; i <=year+5; i++) {\r\n                  tempYR.push(i);\r\n              }          \r\n              return tempYR;\r\n            },\r\n            getDayRange:function(year,month){\r\n               var tempDR=[];\r\n               var length=this.dayNumOfMonth(year,month);\r\n               for (var i = 1; i <=length; i++) {\r\n                  tempDR.push(i);\r\n               };\r\n               return tempDR;\r\n            },\r\n            //获取显示的数据\r\n            getShowRange(val,flag){\r\n              var tempSR=[];\r\n              var start=1,end=0;\r\n              start=val-2;\r\n              end=val+2;\r\n              for (var i = start; i <=end; i++) {\r\n                 switch(flag){\r\n                  case \"Y\":\r\n                    if(this.yearRange.indexOf(i)>=0){\r\n                        tempSR.push(i);\r\n                    }\r\n                    break;\r\n                  case \"M\":\r\n                    if(this.monthRange.indexOf(i)>=0){\r\n                       tempSR.push(i);\r\n                    }\r\n                    break;\r\n\r\n                  case \"D\":\r\n                    if(this.dayRange.indexOf(i)>=0){\r\n                       tempSR.push(i);\r\n                    }\r\n                    break;\r\n                  }\r\n              };\r\n              return tempSR;\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\r\n        .datepicker{\r\n            display: flex;\r\n            flex-flow:column nowrap;\r\n        }\r\n\r\n      .datepicker-header{\r\n          background-color: whitesmoke;\r\n          display: -webkit-flex;\r\n          display: -ms-flexbox;\r\n          display: flex;\r\n          -webkit-flex-flow:row nowrap;\r\n              -ms-flex-flow:row nowrap;\r\n                  flex-flow:row nowrap;\r\n          justify-content: space-around;\r\n          height: 30px;\r\n          width: 300px;\r\n          font-size: 20px;\r\n          padding: 5px 20px 0px 20px;\r\n          align-items:center;\r\n          border-radius: 5px;\r\n          font-weight: bold;\r\n      }\r\n\r\n      .datepicker-body{\r\n          background-color: whitesmoke;\r\n          display: -webkit-flex;\r\n          display: -ms-flexbox;\r\n          display: flex;\r\n          -webkit-flex-flow:row nowrap;\r\n              -ms-flex-flow:row nowrap;\r\n                  flex-flow:row nowrap;\r\n          justify-content: space-around;\r\n          height: 200px;\r\n          width: 300px;\r\n          font-size: 20px;\r\n          padding: 5px 20px;\r\n          overflow: hidden;\r\n          align-items:center;\r\n          border-radius: 5px;\r\n      }\r\n\r\n\r\n      .datepicker-body>.column{\r\n          display: -webkit-flex;\r\n          display: -ms-flexbox;\r\n          display: flex;\r\n          -webkit-flex-flow:column nowrap;\r\n          -ms-flex-flow:column nowrap;\r\n                  flex-flow:column nowrap;\r\n          -webkit-justify-content:center;\r\n          -ms-flex-pack:center;\r\n                  justify-content:center;\r\n          -webkit-align-items:space-around;\r\n          -ms-flex-align:space-around;\r\n                  align-items:space-around;\r\n                  padding: 5px;\r\n\r\n      }\r\n\r\n      .column>span{\r\n        padding: 10px;\r\n        width: 60px;\r\n        text-align: center;\r\n        vertical-align: middle;\r\n        background-color: white;    \r\n      }\r\n  \r\n\r\n      .column>span:active{\r\n             background-color: darkorange;\r\n      }\r\n\r\n      .column>span:nth-child(1){\r\n         border-radius: 5px 5px 0px 0px;\r\n         box-shadow: 0px 0px 3px gray;\r\n      }\r\n\r\n      .column>span:nth-child(3){\r\n         border-radius: 0px 0px 5px 5px;\r\n         box-shadow: 0px 0px 3px gray;\r\n      }\r\n\r\n     .datepicker-icon{\r\n          border: 2px solid gray;\r\n          height: 30px;\r\n          line-height: 30px;\r\n          font-size: 24px;\r\n     }\r\n\r\n    \r\n    .datepicker-value{\r\n        height: 50px;\r\n        border-left: 2px solid gray;\r\n        border-right: 2px solid gray;\r\n        line-height: 50px;\r\n           font-size: 30px;\r\n        font-weight: bold;\r\n    }\r\n    \r\n    \r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 87 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\n<div class=\"datepicker\" _v-e36f8ff0=\"\">\n    <section class=\"datepicker-header\" _v-e36f8ff0=\"\">\n      <div _v-e36f8ff0=\"\">年</div>\n      <div _v-e36f8ff0=\"\">月</div>\n      <div _v-e36f8ff0=\"\">日</div>\n    </section>\n    <section class=\"datepicker-body\" _v-e36f8ff0=\"\">\n        <div class=\"column datepicker-year\" _v-e36f8ff0=\"\">\n            <span class=\"datepicker-icon\" @click=\"add('Y')\" _v-e36f8ff0=\"\"><i class=\"icon-plus\" _v-e36f8ff0=\"\"></i></span>\n            <span class=\"datepicker-value\" _v-e36f8ff0=\"\">{{curYear}}</span>\n            <span class=\"datepicker-icon\" @click=\"minus('Y')\" _v-e36f8ff0=\"\"><i class=\"icon-minus\" _v-e36f8ff0=\"\"></i></span>\n        </div>\n        <div class=\"column datepicker-month\" _v-e36f8ff0=\"\">\n            <span class=\"datepicker-icon\" @click=\"add('M')\" _v-e36f8ff0=\"\"><i class=\"icon-plus\" _v-e36f8ff0=\"\"></i></span>\n            <span class=\"datepicker-value\" _v-e36f8ff0=\"\">{{curMonth&lt;10?(\"0\"+curMonth):curMonth}}</span>\n            <span class=\"datepicker-icon\" @click=\"minus('M')\" _v-e36f8ff0=\"\"><i class=\"icon-minus\" _v-e36f8ff0=\"\"></i></span>\n        </div>\n        <div class=\"column datepicker-day\" _v-e36f8ff0=\"\">\n            <span class=\"datepicker-icon\" @click=\"add('D')\" _v-e36f8ff0=\"\"><i class=\"icon-plus\" _v-e36f8ff0=\"\"></i></span>\n            <span class=\"datepicker-value\" _v-e36f8ff0=\"\">{{curDay&lt;10?(\"0\"+curDay):curDay}}</span>\n            <span class=\"datepicker-icon\" @click=\"minus('D')\" _v-e36f8ff0=\"\"><i class=\"icon-minus\" _v-e36f8ff0=\"\"></i></span>\n        </div>\n    </section> \n</div>\n  \n\n  <!--   <ul class=\"datepicker-hour\">\n        <li v-for=\"item in hourRange\">{{item}}</li>\n    </ul>\n    <ul class=\"datepicker-min\">\n        <li v-for=\"item in minRange\">{{item}}</li>\n    </ul>\n    <ul class=\"datepicker-sec\">\n        <li v-for=\"item in secRange\">{{item}}</li>\n    </ul> -->\n  \n";
+
+/***/ },
+/* 88 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(89);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3d09c52c&file=Calendar.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Calendar.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3d09c52c&file=Calendar.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Calendar.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 89 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n.calendar[_v-3d09c52c] {\n    width: 100%;\n    height: auto;\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    display: -webkit-flex;\n    -webkit-flex-flow: column nowrap;\n        -ms-flex-flow: column nowrap;\n            flex-flow: column nowrap;\n    -webkit-justify-content: flex-start;\n        -ms-flex-pack: start;\n            -webkit-box-pack: start;\n            justify-content: flex-start;\n    box-shadow: 4px 4px 5px gray;\n    border: 0px solid whitesmoke;\n    color: #666;\n    font-size: 14px;\n\n}\n\n.calendar span[_v-3d09c52c] {\n    cursor: pointer;\n}\n\n.calendar-header[_v-3d09c52c] {\n    height: auto;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    -webkit-flex-flow: column nowrap;\n        -ms-flex-flow: column nowrap;\n            flex-flow: column nowrap;\n    -webkit-justify-content: center;\n        -ms-flex-pack: center;\n            -webkit-box-pack: center;\n            justify-content: center;\n    border-bottom: 1px solid lightgrey;\n\n\n}\n\n.calendar-title[_v-3d09c52c] {\n    height: 30px;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    padding: 5px 15px;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-justify-content: space-between;\n        -ms-flex-pack: justify;\n            -webkit-box-pack: justify;\n            justify-content: space-between;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            -webkit-box-align: center;\n            align-items: center;\n    border-bottom: 1px solid lightgrey;\n    font-weight: bold;\n}\n\n.calendarDay-title>span[_v-3d09c52c]:active {\n    color: #2db7f5;\n}\n\n.calendarDay-week[_v-3d09c52c]{\n     background-color: whitesmoke;\n}\n\n.calendarDay-week>ul[_v-3d09c52c] {\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-justify-content: space-around;\n        -ms-flex-pack: distribute;\n            justify-content: space-around;\n    height: 30px;\n     padding: 5px 0px;\n    list-style-type: none;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            -webkit-box-align: center;\n            align-items: center;\n    margin: 0px;\n}\n\n\n.calendarDay-week>ul>li[_v-3d09c52c] {\n    -webkit-flex-basis: 14.28%;\n        -ms-flex-preferred-size: 14.28%;\n            flex-basis: 14.28%;\n    text-align: center;\n}\n\n\n.calendar-range[_v-3d09c52c] {\n    height: 260px;\n}\n\n\n\n.calendar-range>ul[_v-3d09c52c] {\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    -webkit-flex-flow: row wrap;\n        -ms-flex-flow: row wrap;\n            flex-flow: row wrap;\n    -webkit-justify-content: flex-start;\n        -ms-flex-pack: start;\n            -webkit-box-pack: start;\n            justify-content: flex-start;\n   \n    list-style-type: none;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            -webkit-box-align: center;\n            align-items: center;\n    margin: 0px;\n    font-size: 16px;\n}\n\n .calendar-range>ul>li>span[_v-3d09c52c]:hover{\n    border:2px solid darkorange;\n    color: darkorange;\n    border-radius: 4px;\n    padding: 5px;\n }\n\n .calendar-range>ul>li>span[_v-3d09c52c]:active{\n    border:2px solid darkorange;\n    color: #2db7f5;\n    border-radius: 4px;\n    padding: 5px;\n }\n\n\n.calendarDay[_v-3d09c52c] {\n    -webkit-flex-basis: 14.28%;\n        -ms-flex-preferred-size: 14.28%;\n            flex-basis: 14.28%;\n    height: 40px;\n    line-height: 40px;\n    text-align: center;\n    cursor: pointer;\n}\n\n.calendarMonth[_v-3d09c52c]{\n    -webkit-flex-basis: 30%;\n        -ms-flex-preferred-size: 30%;\n            flex-basis: 30%;\n    height: 60px;\n    line-height: 40px;\n    text-align: center;\n    cursor: pointer;\n}\n\n.itemSelect[_v-3d09c52c] {\n    padding: 5px;\n    border:2px solid #2db7f5;\n    color: #2db7f5;\n    border-radius: 4px;\n}\n.restDay[_v-3d09c52c]{\n    color: #e02d2d;\n}\n\n\n.curMonth[_v-3d09c52c]{\n    font-weight: bold;\n}\n\n.calendarDay-footer[_v-3d09c52c] {\n    height: 30px;\n    padding: 5px 15px;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    border-top: 1px solid lightgray;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-justify-content: center;\n        -ms-flex-pack: center;\n            -webkit-box-pack: center;\n            justify-content: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            -webkit-box-align: center;\n            align-items: center;\n    font-weight: bold;\n     background-color: whitesmoke;\n}\n", "", {"version":3,"sources":["/./src/components/Calendar.vue?618d10ec"],"names":[],"mappings":";AA2UA;IACA,YAAA;IACA,aAAA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,sBAAA;IACA,iCAAA;QACA,6BAAA;YACA,yBAAA;IACA,oCAAA;QACA,qBAAA;YACA,wBAAA;YAAA,4BAAA;IACA,6BAAA;IACA,6BAAA;IACA,YAAA;IACA,gBAAA;;CAEA;;AAEA;IACA,gBAAA;CACA;;AAEA;IACA,aAAA;IACA,sBAAA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,iCAAA;QACA,6BAAA;YACA,yBAAA;IACA,gCAAA;QACA,sBAAA;YACA,yBAAA;YAAA,wBAAA;IACA,mCAAA;;;CAGA;;AAEA;IACA,aAAA;IACA,sBAAA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,kBAAA;IACA,8BAAA;QACA,0BAAA;YACA,sBAAA;IACA,uCAAA;QACA,uBAAA;YACA,0BAAA;YAAA,+BAAA;IACA,4BAAA;QACA,uBAAA;YACA,0BAAA;YAAA,oBAAA;IACA,mCAAA;IACA,kBAAA;CACA;;AAEA;IACA,eAAA;CACA;;AAEA;KACA,6BAAA;CACA;;AAEA;IACA,sBAAA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,8BAAA;QACA,0BAAA;YACA,sBAAA;IACA,sCAAA;QACA,0BAAA;YACA,8BAAA;IACA,aAAA;KACA,iBAAA;IACA,sBAAA;IACA,4BAAA;QACA,uBAAA;YACA,0BAAA;YAAA,oBAAA;IACA,YAAA;CACA;;;AAGA;IACA,2BAAA;QACA,gCAAA;YACA,mBAAA;IACA,mBAAA;CACA;;;AAGA;IACA,cAAA;CACA;;;;AAIA;IACA,sBAAA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,4BAAA;QACA,wBAAA;YACA,oBAAA;IACA,oCAAA;QACA,qBAAA;YACA,wBAAA;YAAA,4BAAA;;IAEA,sBAAA;IACA,4BAAA;QACA,uBAAA;YACA,0BAAA;YAAA,oBAAA;IACA,YAAA;IACA,gBAAA;CACA;;CAEA;IACA,4BAAA;IACA,kBAAA;IACA,mBAAA;IACA,aAAA;EACA;;CAEA;IACA,4BAAA;IACA,eAAA;IACA,mBAAA;IACA,aAAA;EACA;;;AAGA;IACA,2BAAA;QACA,gCAAA;YACA,mBAAA;IACA,aAAA;IACA,kBAAA;IACA,mBAAA;IACA,gBAAA;CACA;;AAEA;IACA,wBAAA;QACA,6BAAA;YACA,gBAAA;IACA,aAAA;IACA,kBAAA;IACA,mBAAA;IACA,gBAAA;CACA;;AAEA;IACA,aAAA;IACA,yBAAA;IACA,eAAA;IACA,mBAAA;CACA;AACA;IACA,eAAA;CACA;;;AAGA;IACA,kBAAA;CACA;;AAEA;IACA,aAAA;IACA,kBAAA;IACA,8BAAA;QACA,0BAAA;YACA,sBAAA;IACA,gCAAA;IACA,sBAAA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,8BAAA;QACA,0BAAA;YACA,sBAAA;IACA,gCAAA;QACA,sBAAA;YACA,yBAAA;YAAA,wBAAA;IACA,4BAAA;QACA,uBAAA;YACA,0BAAA;YAAA,oBAAA;IACA,kBAAA;KACA,6BAAA;CACA","file":"Calendar.vue","sourcesContent":["<template>\r\n    <div class=\"calendar\">\r\n        <div class=\"calenarDayView\" v-show=\"showDay\">\r\n            <div class=\"calendar-header\">\r\n                <div class=\"calendar-title\">\r\n                    <div>\r\n                        <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\"></span>\r\n                        <span class=\"icon-angle-left\" style='margin-left:20px;width:50px;' @click=\"monthClick(0)\"></span>\r\n                    </div>\r\n                    <p>\r\n                        <span @click=\"showYearView\">{{curYear}}年</span>\r\n                        <span @click=\"showMonthView\">{{curMonth}}月</span>\r\n                    </p>\r\n                    <div>\r\n                         <span class=\"icon-angle-right\" style='margin-right:20px;' @click=\"monthClick(1)\"></span>\r\n                         <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\"></span>\r\n                    </div>\r\n                </div>\r\n                <div class=\"calendarDay-week\">\r\n                    <ul>\r\n                        <li v-for=\"(index,item) in weekRange\" :class=\"{'restDay':index==5||index==6}\">{{item}}</li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n            <div class=\"calendar-range\">\r\n                <ul>\r\n                    <li v-for=\"item in dateRange\" class=\"calendarDay\"   v-on:click=\"selectDay(item.day)\">\r\n                        <span v-bind:class=\"{'itemSelect':isCurSelect('D',item.day),'restDay':item.isRestDay,'curMonth':item.isCur}\">{{item.day}}</span>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n            <div class=\"calendarDay-footer\">\r\n                <span @click=\"today\">今天</span>\r\n            </div>\r\n        </div>\r\n        <div class=\"calendarMonthView\" v-show=\"showMonth\">\r\n            <div class=\"calendar-header\">\r\n                <div class=\"calendar-title\">\r\n                    <div>\r\n                        <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\"></span>\r\n                    </div>\r\n                    <p>\r\n                        <span @click=\"showYearView\">{{curYear}}年</span>\r\n                    </p>\r\n                    <div>\r\n                         <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\"></span>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"calendar-range\">\r\n                <ul>\r\n                    <li v-for=\"item in monthRange\" class=\"calendarMonth\"   v-on:click=\"selectMonth(item.id)\">\r\n                        <span v-bind:class=\"{'itemSelect':isCurSelect('M',item.id)}\">{{item.text}}</span>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n        <div class=\"calendarYearView\" v-show=\"showYear\">\r\n            <div class=\"calendar-header\">\r\n                <div class=\"calendar-title\">\r\n                    <div>\r\n                        <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\"></span>\r\n                    </div>\r\n                    <p>\r\n                        <span @click=\"showYearView\">{{yearTitle}}</span>\r\n                    </p>\r\n                    <div>\r\n                         <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\"></span>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"calendar-range\">\r\n                <ul>\r\n                    <li v-for=\"item in yearRange\" class=\"calendarMonth\"   v-on:click=\"selectYear(item)\">\r\n                        <span v-bind:class=\"{'itemSelect':isCurSelect('Y',item)}\">{{item}}</span>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n    \r\n    export default {\r\n        data:function(){\r\n            return {\r\n               curYear:0,\r\n               curMonth:0,\r\n               curDay:0,\r\n               showDay:true,\r\n               showYear:false,\r\n               showMonth:false,\r\n               weekRange:['一','二','三','四','五','六','日'],\r\n               monthRange:[\r\n                           {id:1,text:'一月'},{id:2,text:'二月'},{id:3,text:'三月'},{id:4,text:'四月'},\r\n                           {id:5,text:'五月'},{id:6,text:'六月'},{id:7,text:'七月'},{id:8,text:'八月'},\r\n                           {id:9,text:'九月'},{id:10,text:'十月'},{id:11,text:'十一月'},{id:12,text:'十二月'}\r\n                          ],\r\n               dateRange:[],\r\n               yearRange:[],\r\n               yearTitle:''\r\n            }\r\n        },\r\n        props:{\r\n            width:{\r\n\r\n            },\r\n            //格式\r\n            format:{\r\n                type:String,\r\n                default:\"DD\"//YYYY,MM,DD,H,M,S\r\n            },\r\n            curdate:{\r\n                type:String,\r\n                default:''\r\n            }\r\n        },\r\n        created:function(){\r\n            var date='';\r\n            if(this.curdate.length>0){\r\n                date=new Date(this.curdate);\r\n            }else{\r\n                date=new Date();\r\n            }\r\n            //初始化当前的年和月,并加载当前年月的数据\r\n            this.curYear=date.getFullYear();\r\n            this.curMonth=date.getMonth()+1;\r\n            this.curDay=date.getDate();\r\n\r\n            this.dateRange=this.getDateRange(this.curYear,this.curMonth);\r\n            this.yearRange=this.getYearRange(this.curYear);\r\n            this.yearTitle=this.yearRange[0]+\"~\"+this.yearRange[11];\r\n            //通过格式化显示页面\r\n            this.initShowView();\r\n        },\r\n        methods:{\r\n            initShowView(){\r\n                switch(this.format){\r\n                    case \"YYYY\":\r\n                        this.showYear=true;\r\n                        this.showMonth=false;\r\n                        this.showDay=false;\r\n                        break;\r\n                    case \"MM\":\r\n                        this.showYear=false;\r\n                        this.showMonth=true;\r\n                        this.showDay=false;\r\n                        break;\r\n                    case \"DD\":\r\n                        this.showYear=false;\r\n                        this.showMonth=false;\r\n                        this.showDay=true;\r\n                        break;\r\n                }\r\n            },\r\n            isCurSelect(flag,item){\r\n                var date=new Date();\r\n                const tempY=date.getFullYear();\r\n                const tempM=date.getMonth()+1;\r\n                if(flag==\"D\"){\r\n                    return this.curYear==tempY&&this.curMonth==tempM&&this.curDay==item;\r\n                }else if(flag==\"M\"){\r\n                    return tempM==item;\r\n                }else{\r\n                    return tempY==item;\r\n                }\r\n            },\r\n            showYearView(){\r\n                this.showYear=true\r\n                this.showMonth=false;\r\n                this.showDay=false;\r\n            },\r\n            showMonthView(){\r\n                this.showYear=false\r\n                this.showMonth=true;\r\n                this.showDay=false;\r\n            },\r\n            selectYear:function(year){\r\n                this.curYear=year;\r\n                this.showYear=false\r\n                this.showMonth=true;\r\n                this.showDay=false;\r\n                if(this.format==\"YYYY\"){\r\n                    this.$dispatch('itemClick',year);\r\n                }\r\n            },\r\n            selectMonth(month){\r\n                this.showYear=false\r\n                this.showMonth=false;\r\n                this.showDay=true;\r\n                this.curMonth=month;\r\n                this.dateRange=this.getDateRange(this.curYear,this.curMonth);\r\n                if(this.format==\"MM\"){\r\n                    this.$dispatch('itemClick',this.curYear+\"-\"+month);\r\n                }\r\n            },\r\n            //选择天的时候\r\n            selectDay:function(day){\r\n                const tempD=this.curYear+\"-\"+this.curMonth+\"-\"+day;\r\n                console.log(\"触发派发事件：\"+tempD);\r\n                this.$dispatch('item-click',tempD);\r\n            },\r\n            today:function(){\r\n                var newDate=new Date();\r\n                this.curYear=newDate.getFullYear();\r\n                this.curMonth=newDate.getMonth()+1;\r\n                this.dateRange=this.getDateRange(this.curYear,this.curMonth);\r\n            },\r\n            //下一年或下一个月\r\n            yearClick(flag){\r\n                if(this.showYear){\r\n                    //如果是年的视图的情况\r\n                    const year=flag==0?this.curYear-10:this.curYear+10;\r\n                    this.yearRange=this.getYearRange(year);\r\n                    this.yearTitle=this.yearRange[0]+\"~\"+this.yearRange[11];    \r\n                }else{\r\n                     const year=flag==0?this.curYear-1:this.curYear+1;\r\n                     this.curYear=year;\r\n                     this.dateRange=this.getDateRange(year,this.curMonth);\r\n                }\r\n              \r\n            },\r\n            monthClick(flag){\r\n                var tempM=this.curMonth;\r\n                var tempY=this.curYear;\r\n                //上一月\r\n                if(flag==0){//\r\n                    if(tempM==1){\r\n                        tempM=12;\r\n                        tempY=this.curYear-1;\r\n                    }else{\r\n                        tempM=tempM-1;\r\n                    }\r\n                }else{//下个月\r\n                    if(tempM==12){\r\n                        tempY=this.curYear+1;\r\n                        tempM=1;\r\n                    }else{\r\n                        tempM=tempM+1;\r\n                    }\r\n                }\r\n                this.curYear=tempY;\r\n                this.curMonth=tempM;\r\n                console.log(tempY,tempM);\r\n                 this.dateRange=this.getDateRange(tempY,tempM);\r\n            },\r\n\r\n            //通过日期来获取当期星期几\r\n            dayOfWeek:function(date){\r\n              var week=new Date(date).getDay();\r\n              if(week==0){\r\n                  return 7;\r\n              }  \r\n              else{\r\n                  return week;\r\n              }\r\n            },\r\n            //通过年月来获取月份的天数\r\n            dayNumOfMonth:function(year,month){\r\n                var d = new Date(year,month,0);\r\n                return d.getDate();\r\n            },\r\n            //加载\r\n            getDateRange:function(year,month){\r\n                var datearray=[];\r\n                var firstDateDay=0;\r\n                //1:得到当前月的第一天是星期几\r\n                var firstDay=year+\"-\"+month+\"-01\";\r\n                \r\n                var firstWeek=this.dayOfWeek(firstDay);\r\n                //2:通过星期得到日历的第一天\r\n                if(firstWeek==1){\r\n                    firstDateDay=1;\r\n                }else{\r\n                    //获取上个月的天数\r\n                    var preMonth=0;\r\n                    if(month==1){\r\n                        preMonth=this.dayNumOfMonth(year-1,12);\r\n                    }\r\n                     preMonth=this.dayNumOfMonth(year,month-1);\r\n                     \r\n                     for(var pi=preMonth-firstWeek+2;pi<=preMonth;pi++){\r\n                            var week=new Date(this.curYear+\"/\"+(this.curMonth-1)+\"/\"+pi).getDay();\r\n                            var restDay=(week==6||week==0);\r\n                            datearray.push({\r\n                                isCur:false,\r\n                                day:pi,\r\n                                isRestDay:restDay\r\n                            });\r\n                     }\r\n                }\r\n                //3:得到这个月的总天数\r\n                var curDays=this.dayNumOfMonth(year,month);\r\n                for(var i=1;i<=curDays;i++){\r\n                    var week=new Date(this.curYear+\"/\"+this.curMonth+\"/\"+i).getDay();\r\n                    var restDay=(week==6||week==0);\r\n                    datearray.push({\r\n                        isCur:true,\r\n                        day:i,\r\n                        isRestDay:restDay\r\n                    });\r\n                }\r\n                //2:检查该对象里面是否包含42个值,如果不包含,那么久生成\r\n                if(datearray.length<42){\r\n                    var nextValue=42-datearray.length;\r\n                     for(var ni=1;ni<=nextValue;ni++){\r\n                        var week=new Date(this.curYear+\"/\"+(this.curMonth+1)+\"/\"+ni).getDay();\r\n                        var restDay=(week==6||week==0);\r\n                        datearray.push({\r\n                                isCur:false,\r\n                                day:ni,\r\n                                isRestDay:restDay\r\n                        });\r\n                     }\r\n                }\r\n                return datearray;\r\n            },\r\n            getYearRange:function(year){\r\n                var tempYRange=[];\r\n                for (var i = year - 6; i <=year+5; i++) {\r\n                   tempYRange.push(i);   \r\n                };\r\n                return tempYRange;\r\n            }\r\n        }\r\n    }\r\n\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n        .calendar {\r\n            width: 100%;\r\n            height: auto;\r\n            display: -ms-flexbox;\r\n            display: flex;\r\n            display: -webkit-flex;\r\n            -webkit-flex-flow: column nowrap;\r\n                -ms-flex-flow: column nowrap;\r\n                    flex-flow: column nowrap;\r\n            -webkit-justify-content: flex-start;\r\n                -ms-flex-pack: start;\r\n                    justify-content: flex-start;\r\n            box-shadow: 4px 4px 5px gray;\r\n            border: 0px solid whitesmoke;\r\n            color: #666;\r\n            font-size: 14px;\r\n\r\n        }\r\n        \r\n        .calendar span {\r\n            cursor: pointer;\r\n        }\r\n        \r\n        .calendar-header {\r\n            height: auto;\r\n            display: -webkit-flex;\r\n            display: -ms-flexbox;\r\n            display: flex;\r\n            -webkit-flex-flow: column nowrap;\r\n                -ms-flex-flow: column nowrap;\r\n                    flex-flow: column nowrap;\r\n            -webkit-justify-content: center;\r\n                -ms-flex-pack: center;\r\n                    justify-content: center;\r\n            border-bottom: 1px solid lightgrey;\r\n\r\n\r\n        }\r\n        \r\n        .calendar-title {\r\n            height: 30px;\r\n            display: -webkit-flex;\r\n            display: -ms-flexbox;\r\n            display: flex;\r\n            padding: 5px 15px;\r\n            -webkit-flex-flow: row nowrap;\r\n                -ms-flex-flow: row nowrap;\r\n                    flex-flow: row nowrap;\r\n            -webkit-justify-content: space-between;\r\n                -ms-flex-pack: justify;\r\n                    justify-content: space-between;\r\n            -webkit-align-items: center;\r\n                -ms-flex-align: center;\r\n                    align-items: center;\r\n            border-bottom: 1px solid lightgrey;\r\n            font-weight: bold;\r\n        }\r\n        \r\n        .calendarDay-title>span:active {\r\n            color: #2db7f5;\r\n        }\r\n        \r\n        .calendarDay-week{\r\n             background-color: whitesmoke;\r\n        }\r\n        \r\n        .calendarDay-week>ul {\r\n            display: -webkit-flex;\r\n            display: -ms-flexbox;\r\n            display: flex;\r\n            -webkit-flex-flow: row nowrap;\r\n                -ms-flex-flow: row nowrap;\r\n                    flex-flow: row nowrap;\r\n            -webkit-justify-content: space-around;\r\n                -ms-flex-pack: distribute;\r\n                    justify-content: space-around;\r\n            height: 30px;\r\n             padding: 5px 0px;\r\n            list-style-type: none;\r\n            -webkit-align-items: center;\r\n                -ms-flex-align: center;\r\n                    align-items: center;\r\n            margin: 0px;\r\n        }\r\n        \r\n\r\n        .calendarDay-week>ul>li {\r\n            -webkit-flex-basis: 14.28%;\r\n                -ms-flex-preferred-size: 14.28%;\r\n                    flex-basis: 14.28%;\r\n            text-align: center;\r\n        }\r\n       \r\n\r\n        .calendar-range {\r\n            height: 260px;\r\n        }\r\n\r\n\r\n        \r\n        .calendar-range>ul {\r\n            display: -webkit-flex;\r\n            display: -ms-flexbox;\r\n            display: flex;\r\n            -webkit-flex-flow: row wrap;\r\n                -ms-flex-flow: row wrap;\r\n                    flex-flow: row wrap;\r\n            -webkit-justify-content: flex-start;\r\n                -ms-flex-pack: start;\r\n                    justify-content: flex-start;\r\n           \r\n            list-style-type: none;\r\n            -webkit-align-items: center;\r\n                -ms-flex-align: center;\r\n                    align-items: center;\r\n            margin: 0px;\r\n            font-size: 16px;\r\n        }\r\n\r\n         .calendar-range>ul>li>span:hover{\r\n            border:2px solid darkorange;\r\n            color: darkorange;\r\n            border-radius: 4px;\r\n            padding: 5px;\r\n         }\r\n\r\n         .calendar-range>ul>li>span:active{\r\n            border:2px solid darkorange;\r\n            color: #2db7f5;\r\n            border-radius: 4px;\r\n            padding: 5px;\r\n         }\r\n\r\n        \r\n        .calendarDay {\r\n            -webkit-flex-basis: 14.28%;\r\n                -ms-flex-preferred-size: 14.28%;\r\n                    flex-basis: 14.28%;\r\n            height: 40px;\r\n            line-height: 40px;\r\n            text-align: center;\r\n            cursor: pointer;\r\n        }\r\n\r\n        .calendarMonth{\r\n            -webkit-flex-basis: 30%;\r\n                -ms-flex-preferred-size: 30%;\r\n                    flex-basis: 30%;\r\n            height: 60px;\r\n            line-height: 40px;\r\n            text-align: center;\r\n            cursor: pointer;\r\n        }\r\n       \r\n        .itemSelect {\r\n            padding: 5px;\r\n            border:2px solid #2db7f5;\r\n            color: #2db7f5;\r\n            border-radius: 4px;\r\n        }\r\n        .restDay{\r\n            color: #e02d2d;\r\n        }\r\n       \r\n\r\n        .curMonth{\r\n            font-weight: bold;\r\n        }\r\n        \r\n        .calendarDay-footer {\r\n            height: 30px;\r\n            padding: 5px 15px;\r\n            -webkit-flex-flow: row nowrap;\r\n                -ms-flex-flow: row nowrap;\r\n                    flex-flow: row nowrap;\r\n            border-top: 1px solid lightgray;\r\n            display: -webkit-flex;\r\n            display: -ms-flexbox;\r\n            display: flex;\r\n            -webkit-flex-flow: row nowrap;\r\n                -ms-flex-flow: row nowrap;\r\n                    flex-flow: row nowrap;\r\n            -webkit-justify-content: center;\r\n                -ms-flex-pack: center;\r\n                    justify-content: center;\r\n            -webkit-align-items: center;\r\n                -ms-flex-align: center;\r\n                    align-items: center;\r\n            font-weight: bold;\r\n             background-color: whitesmoke;\r\n        }\r\n</style>\r\n   \r\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 90 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"calendar\" _v-3d09c52c=\"\">\n    <div class=\"calenarDayView\" v-show=\"showDay\" _v-3d09c52c=\"\">\n        <div class=\"calendar-header\" _v-3d09c52c=\"\">\n            <div class=\"calendar-title\" _v-3d09c52c=\"\">\n                <div _v-3d09c52c=\"\">\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\" _v-3d09c52c=\"\"></span>\n                    <span class=\"icon-angle-left\" style=\"margin-left:20px;width:50px;\" @click=\"monthClick(0)\" _v-3d09c52c=\"\"></span>\n                </div>\n                <p _v-3d09c52c=\"\">\n                    <span @click=\"showYearView\" _v-3d09c52c=\"\">{{curYear}}年</span>\n                    <span @click=\"showMonthView\" _v-3d09c52c=\"\">{{curMonth}}月</span>\n                </p>\n                <div _v-3d09c52c=\"\">\n                     <span class=\"icon-angle-right\" style=\"margin-right:20px;\" @click=\"monthClick(1)\" _v-3d09c52c=\"\"></span>\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\" _v-3d09c52c=\"\"></span>\n                </div>\n            </div>\n            <div class=\"calendarDay-week\" _v-3d09c52c=\"\">\n                <ul _v-3d09c52c=\"\">\n                    <li v-for=\"(index,item) in weekRange\" :class=\"{'restDay':index==5||index==6}\" _v-3d09c52c=\"\">{{item}}</li>\n                </ul>\n            </div>\n        </div>\n        <div class=\"calendar-range\" _v-3d09c52c=\"\">\n            <ul _v-3d09c52c=\"\">\n                <li v-for=\"item in dateRange\" class=\"calendarDay\" v-on:click=\"selectDay(item.day)\" _v-3d09c52c=\"\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('D',item.day),'restDay':item.isRestDay,'curMonth':item.isCur}\" _v-3d09c52c=\"\">{{item.day}}</span>\n                </li>\n            </ul>\n        </div>\n        <div class=\"calendarDay-footer\" _v-3d09c52c=\"\">\n            <span @click=\"today\" _v-3d09c52c=\"\">今天</span>\n        </div>\n    </div>\n    <div class=\"calendarMonthView\" v-show=\"showMonth\" _v-3d09c52c=\"\">\n        <div class=\"calendar-header\" _v-3d09c52c=\"\">\n            <div class=\"calendar-title\" _v-3d09c52c=\"\">\n                <div _v-3d09c52c=\"\">\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\" _v-3d09c52c=\"\"></span>\n                </div>\n                <p _v-3d09c52c=\"\">\n                    <span @click=\"showYearView\" _v-3d09c52c=\"\">{{curYear}}年</span>\n                </p>\n                <div _v-3d09c52c=\"\">\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\" _v-3d09c52c=\"\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"calendar-range\" _v-3d09c52c=\"\">\n            <ul _v-3d09c52c=\"\">\n                <li v-for=\"item in monthRange\" class=\"calendarMonth\" v-on:click=\"selectMonth(item.id)\" _v-3d09c52c=\"\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('M',item.id)}\" _v-3d09c52c=\"\">{{item.text}}</span>\n                </li>\n            </ul>\n        </div>\n    </div>\n    <div class=\"calendarYearView\" v-show=\"showYear\" _v-3d09c52c=\"\">\n        <div class=\"calendar-header\" _v-3d09c52c=\"\">\n            <div class=\"calendar-title\" _v-3d09c52c=\"\">\n                <div _v-3d09c52c=\"\">\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\" _v-3d09c52c=\"\"></span>\n                </div>\n                <p _v-3d09c52c=\"\">\n                    <span @click=\"showYearView\" _v-3d09c52c=\"\">{{yearTitle}}</span>\n                </p>\n                <div _v-3d09c52c=\"\">\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\" _v-3d09c52c=\"\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"calendar-range\" _v-3d09c52c=\"\">\n            <ul _v-3d09c52c=\"\">\n                <li v-for=\"item in yearRange\" class=\"calendarMonth\" v-on:click=\"selectYear(item)\" _v-3d09c52c=\"\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('Y',item)}\" _v-3d09c52c=\"\">{{item}}</span>\n                </li>\n            </ul>\n        </div>\n    </div>\n</div>\n";
+
+/***/ },
+/* 91 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(92);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-12989f74&file=Dialog.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Dialog.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-12989f74&file=Dialog.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Dialog.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 92 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\t\n\t  .dlg-modal[_v-12989f74] {\n            position: absolute;\n            left: 0;\n            top: 0;\n            height: 100%;\n            width: 100%;\n            z-index: 10;\n            background-color: rgba(153, 153, 153, 0.5);\n            display: -webkit-box;\n            display: -webkit-flex;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-flex-flow: row nowrap;\n                -ms-flex-flow: row nowrap;\n                    flex-flow: row nowrap;\n            -webkit-box-pack: center;\n            -webkit-justify-content: center;\n                -ms-flex-pack: center;\n                    justify-content: center;\n            font-size: 14px;\n            -webkit-box-align: center;\n            -webkit-align-items: center;\n                -ms-flex-align: center;\n                    align-items: center;\n        }\n        \n        .dlg-modal>.dlg-content[_v-12989f74] {\n            position: relative;\n            background-color: whitesmoke;\n            width: 300px;\n            -webkit-transition: all .3s ease-in;\n            transition: all .3s ease-in;\n            border-radius: 6px;\n            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);\n            border: 1px solid rgba(0, 0, 0, .2);\n        }\n        \n        .dlg-content>.dlg-header[_v-12989f74] {\n            padding: 10px;\n            font-weight: bold;\n            border-bottom: 1px solid lightgray;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            display: -webkit-flex;\n            -webkit-box-pack: center;\n            -webkit-justify-content: center;\n                -ms-flex-pack: center;\n                    justify-content: center;\n            cursor: pointer;\n            font-size: 16px;\n        }\n        \n        .dlg-content>.dlg-body[_v-12989f74] {\n            padding: 10px;\n        }\n        \n        .dlg-content>.dlg-footer[_v-12989f74] {\n            border-top: 1px solid lightgray;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            display: -webkit-flex;\n            -webkit-flex-wrap: row nowrap;\n                -ms-flex-wrap: row nowrap;\n                    flex-wrap: row nowrap;\n            -webkit-justify-content: space-around;\n                -ms-flex-pack: distribute;\n                    justify-content: space-around;\n            -webkit-box-align:center;\n            -webkit-align-items:center;\n                -ms-flex-align:center;\n                    align-items:center;\n            cursor: pointer;\n            height: 36px;\n            text-align: center;\n        }\n\n        \n        .dlg-footer>span[_v-12989f74] {\n           font-size: 16px;\n           line-height: 36px;\n        }\n\n        .dlg-footer>span>i[_v-12989f74] {\n           margin-right: 5px;\n        }\n\n\t\t\n        .dlg-footer>span[_v-12989f74]:hover {\n          \tcolor: darkorange;\n        }\n\n        .dlg-footer>span[_v-12989f74]:active {\n          \tbox-shadow: 1px 1px 4px darkgray;\n          \tcolor: darkorange;\n        }\n\n        \n        .dlg-footer>[_v-12989f74]:first-child {\n           border-right: 1px solid darkgray;\n        }\n\n        .fade[_v-12989f74] {\n            opacity: 0;\n            -webkit-transition: opacity .15s linear;\n            transition: opacity .15s linear;\n        }\n        \n        .fade.in[_v-12989f74] {\n            opacity: 1;\n        }\n", "", {"version":3,"sources":["/./src/components/Dialog.vue?703e5d41"],"names":[],"mappings":";;GA+DA;YACA,mBAAA;YACA,QAAA;YACA,OAAA;YACA,aAAA;YACA,YAAA;YACA,YAAA;YACA,2CAAA;YACA,qBAAA;YAAA,sBAAA;YAAA,qBAAA;YAAA,cAAA;YACA,8BAAA;gBAAA,0BAAA;oBAAA,sBAAA;YACA,yBAAA;YAAA,gCAAA;gBAAA,sBAAA;oBAAA,wBAAA;YACA,gBAAA;YACA,0BAAA;YAAA,4BAAA;gBAAA,uBAAA;oBAAA,oBAAA;SACA;;QAEA;YACA,mBAAA;YACA,6BAAA;YACA,aAAA;YACA,oCAAA;YAAA,4BAAA;YACA,mBAAA;YACA,yCAAA;YACA,oCAAA;SACA;;QAEA;YACA,cAAA;YACA,kBAAA;YACA,mCAAA;YACA,qBAAA;YAAA,qBAAA;YAAA,cAAA;YACA,sBAAA;YACA,yBAAA;YAAA,gCAAA;gBAAA,sBAAA;oBAAA,wBAAA;YACA,gBAAA;YACA,gBAAA;SACA;;QAEA;YACA,cAAA;SACA;;QAEA;YACA,gCAAA;YACA,qBAAA;YAAA,qBAAA;YAAA,cAAA;YACA,sBAAA;YACA,8BAAA;gBAAA,0BAAA;oBAAA,sBAAA;YACA,sCAAA;gBAAA,0BAAA;oBAAA,8BAAA;YACA,yBAAA;YAAA,2BAAA;gBAAA,sBAAA;oBAAA,mBAAA;YACA,gBAAA;YACA,aAAA;YACA,mBAAA;SACA;;;QAGA;WACA,gBAAA;WACA,kBAAA;SACA;;QAEA;WACA,kBAAA;SACA;;;QAGA;WACA,kBAAA;SACA;;QAEA;WACA,iCAAA;WACA,kBAAA;SACA;;;QAGA;WACA,iCAAA;SACA;;QAEA;YACA,WAAA;YACA,wCAAA;YAEA,gCAAA;SACA;;QAEA;YACA,WAAA;SACA","file":"Dialog.vue","sourcesContent":["<template>\r\n\t<div class=\"dlg-modal\" v-if=\"show\">\r\n        <div class=\"dlg-content fade\" :class=\"{'in':show}\" :style=\"{width:dlgWidth+'px'}\">\r\n            <div class=\"dlg-header\">\r\n                <span>{{title}}</span>\r\n            </div>\r\n            <div class=\"dlg-body\">\r\n                <slot name=\"dlg-body\"></slot>\r\n            </div>\r\n            <div class=\"dlg-footer\">\r\n                <span @click=\"confirm\" :style=\"{width:dlgWidth/2 +'px'}\"><i class=\"icon-ok\"></i>确定</span>\r\n                <span @click=\"close\" :style=\"{width:dlgWidth/2 +'px'}\"><i class=\"icon-remove\"></i>关闭</span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\t//初始化弹出框的宽度\r\n\t\t\t\r\n\t\t},\r\n\t\tdata(){\r\n\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\t// 关闭dialog\r\n\t\t\tclose(){\r\n\t\t\t\tthis.show=false;\r\n\t\t\t},\r\n\t\t\tconfirm(){\r\n\t\t\t\t//将事件派发到父组件中,在通过父组件进行监听该事件\r\n\t\t\t\tthis.$dispatch('child-confirm');\r\n\t\t\t}\r\n\t\t},\r\n\t\tprops:{\r\n\r\n\t\t\tshow:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false,\r\n\t\t\t\trequire:true\r\n\t\t\t},\r\n\t\t\t//显示效果\r\n\t\t\teffect:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:'fade'\r\n\t\t\t},\r\n\t\t\tdlgWidth:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:300\r\n\t\t\t},\r\n\t\t\ttitle:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:''\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style  type=\"text/css\" scoped>\r\n\t\r\n\t  .dlg-modal {\r\n            position: absolute;\r\n            left: 0;\r\n            top: 0;\r\n            height: 100%;\r\n            width: 100%;\r\n            z-index: 10;\r\n            background-color: rgba(153, 153, 153, 0.5);\r\n            display: flex;\r\n            flex-flow: row nowrap;\r\n            justify-content: center;\r\n            font-size: 14px;\r\n            align-items: center;\r\n        }\r\n        \r\n        .dlg-modal>.dlg-content {\r\n            position: relative;\r\n            background-color: whitesmoke;\r\n            width: 300px;\r\n            transition: all .3s ease-in;\r\n            border-radius: 6px;\r\n            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);\r\n            border: 1px solid rgba(0, 0, 0, .2);\r\n        }\r\n        \r\n        .dlg-content>.dlg-header {\r\n            padding: 10px;\r\n            font-weight: bold;\r\n            border-bottom: 1px solid lightgray;\r\n            display: flex;\r\n            display: -webkit-flex;\r\n            justify-content: center;\r\n            cursor: pointer;\r\n            font-size: 16px;\r\n        }\r\n        \r\n        .dlg-content>.dlg-body {\r\n            padding: 10px;\r\n        }\r\n        \r\n        .dlg-content>.dlg-footer {\r\n            border-top: 1px solid lightgray;\r\n            display: flex;\r\n            display: -webkit-flex;\r\n            flex-wrap: row nowrap;\r\n            justify-content: space-around;\r\n            align-items:center;\r\n            cursor: pointer;\r\n            height: 36px;\r\n            text-align: center;\r\n        }\r\n\r\n        \r\n        .dlg-footer>span {\r\n           font-size: 16px;\r\n           line-height: 36px;\r\n        }\r\n\r\n        .dlg-footer>span>i {\r\n           margin-right: 5px;\r\n        }\r\n\r\n\t\t\r\n        .dlg-footer>span:hover {\r\n          \tcolor: darkorange;\r\n        }\r\n\r\n        .dlg-footer>span:active {\r\n          \tbox-shadow: 1px 1px 4px darkgray;\r\n          \tcolor: darkorange;\r\n        }\r\n\r\n        \r\n        .dlg-footer>:first-child {\r\n           border-right: 1px solid darkgray;\r\n        }\r\n\r\n        .fade {\r\n            opacity: 0;\r\n            -webkit-transition: opacity .15s linear;\r\n            -o-transition: opacity .15s linear;\r\n            transition: opacity .15s linear;\r\n        }\r\n        \r\n        .fade.in {\r\n            opacity: 1;\r\n        }\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 93 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\t<div class=\"dlg-modal\" v-if=\"show\" _v-12989f74=\"\">\n        <div class=\"dlg-content fade\" :class=\"{'in':show}\" :style=\"{width:dlgWidth+'px'}\" _v-12989f74=\"\">\n            <div class=\"dlg-header\" _v-12989f74=\"\">\n                <span _v-12989f74=\"\">{{title}}</span>\n            </div>\n            <div class=\"dlg-body\" _v-12989f74=\"\">\n                <slot name=\"dlg-body\" _v-12989f74=\"\"></slot>\n            </div>\n            <div class=\"dlg-footer\" _v-12989f74=\"\">\n                <span @click=\"confirm\" :style=\"{width:dlgWidth/2 +'px'}\" _v-12989f74=\"\"><i class=\"icon-ok\" _v-12989f74=\"\"></i>确定</span>\n                <span @click=\"close\" :style=\"{width:dlgWidth/2 +'px'}\" _v-12989f74=\"\"><i class=\"icon-remove\" _v-12989f74=\"\"></i>关闭</span>\n            </div>\n        </div>\n    </div>\n";
+
+/***/ },
+/* 94 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(95);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-61f407d1&file=UserInfo.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./UserInfo.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-61f407d1&file=UserInfo.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./UserInfo.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 95 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"UserInfo.vue","sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 96 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<toolbar text=\"个人主页\" _v-61f407d1=\"\">\n\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back\" _v-61f407d1=\"\">返回</span>\n\t<span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"loadUserInfo\" _v-61f407d1=\"\"></span>\n</toolbar>\n<section _v-61f407d1=\"\">\n\t<input type=\"button\" @click=\"showDialog\" _v-61f407d1=\"\">\n\t<datepicker _v-61f407d1=\"\"></datepicker>\n</section>\n\n<loading :loading=\"isload\" _v-61f407d1=\"\"></loading>\n<dialog :show.sync=\"isShowDialog\" :title=\"dialogTitle\" v-on:child-confirm=\"confirm\" _v-61f407d1=\"\">\n\t<div slot=\"dlg-body\" _v-61f407d1=\"\">hahah</div>\n</dialog>\n";
+
+/***/ },
+/* 97 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(98);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-33df34c0&file=Loading.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Loading.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-33df34c0&file=Loading.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Loading.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 98 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\t\n\t.modal[_v-33df34c0]{\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -webkit-flex;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n        -webkit-flex-flow: row nowrap;\n            -ms-flex-flow: row nowrap;\n                flex-flow: row nowrap;\n        -webkit-box-pack: center;\n        -webkit-justify-content: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        height:100%;\n        width: 100%;\n        -webkit-box-align:  center;\n        -webkit-align-items:  center;\n            -ms-flex-align:  center;\n                align-items:  center;\n        position: absolute;\n        /*visibility: hidden;*/\n        left: 0;\n        top: 0;\n        z-index: 100;\n        background-color: rgba(153,153,153,0.5);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */\n\t}\n\n\n\n\t   .spinner[_v-33df34c0] {\n            width: 100px;\n            height: 60px;\n            font-size: 10px;\n        }\n        \n        .spinner > div[_v-33df34c0] {\n            background-color: limegreen;\n            height: 100%;\n            width: 6px;\n            display: inline-block;\n            -webkit-animation: stretchdelay 1.2s infinite ease-in-out;\n            animation: stretchdelay 1.2s infinite ease-in-out;\n        }\n        \n        .spinner .spinnerBar2[_v-33df34c0] {\n            -webkit-animation-delay: -1.1s;\n            animation-delay: -1.1s;\n        }\n        \n        .spinner .spinnerBar3[_v-33df34c0] {\n            -webkit-animation-delay: -1.0s;\n            animation-delay: -1.0s;\n        }\n        \n        .spinner .spinnerBar4[_v-33df34c0] {\n            -webkit-animation-delay: -0.9s;\n            animation-delay: -0.9s;\n        }\n        \n        .spinner .spinnerBar5[_v-33df34c0] {\n            -webkit-animation-delay: -0.8s;\n            animation-delay: -0.8s;\n        }\n        \n        @-webkit-keyframes stretchdelay {\n            0%,\n            40%,\n            100% {\n                -webkit-transform: scaleY(0.4)\n            }\n            20% {\n                -webkit-transform: scaleY(1.0)\n            }\n        }\n        \n        @keyframes stretchdelay {\n            0%,\n            40%,\n            100% {\n                transform: scaleY(0.4);\n                -webkit-transform: scaleY(0.4);\n            }\n            20% {\n                transform: scaleY(1.0);\n                -webkit-transform: scaleY(1.0);\n            }\n        }\n\n", "", {"version":3,"sources":["/./src/components/Loading.vue?68dc5e32"],"names":[],"mappings":";;CAiCA;EACA,qBAAA;EAAA,sBAAA;EAAA,qBAAA;EAAA,cAAA;QACA,8BAAA;YAAA,0BAAA;gBAAA,sBAAA;QACA,yBAAA;QAAA,gCAAA;YAAA,sBAAA;gBAAA,wBAAA;QACA,YAAA;QACA,YAAA;QACA,2BAAA;QAAA,6BAAA;YAAA,wBAAA;gBAAA,qBAAA;QACA,mBAAA;QACA,uBAAA;QACA,QAAA;QACA,OAAA;QACA,aAAA;QACA,wCAAA,0CAAA;EACA;;;;IAIA;YACA,aAAA;YACA,aAAA;YACA,gBAAA;SACA;;QAEA;YACA,4BAAA;YACA,aAAA;YACA,WAAA;YACA,sBAAA;YACA,0DAAA;YACA,kDAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA;;;gBAGA,8BAAA;aACA;YACA;gBACA,8BAAA;aACA;SACA;;QAEA;YACA;;;gBAGA,uBAAA;gBACA,+BAAA;aACA;YACA;gBACA,uBAAA;gBACA,+BAAA;aACA;SACA","file":"Loading.vue","sourcesContent":["<template>\r\n\t<div class=\"modal\" v-if=\"loading\">\r\n        <div class=\"spinner\">\r\n            <div class=\"spinnerBar1\"></div>\r\n            <div class=\"spinnerBar2\"></div>\r\n            <div class=\"spinnerBar3\"></div>\r\n            <div class=\"spinnerBar4\"></div>\r\n            <div class=\"spinnerBar5\"></div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n        created(){\r\n            console.log(\"loading is created\")\r\n            console.log(this.loading);\r\n        },\r\n\t\tprops:{\r\n\t\t\tloading:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" scoped>\r\n\t\r\n\t.modal{\r\n\t\tdisplay: flex;\r\n        flex-flow: row nowrap;\r\n        justify-content: center;\r\n        height:100%;\r\n        width: 100%;\r\n        align-items:  center;\r\n        position: absolute;\r\n        /*visibility: hidden;*/\r\n        left: 0;\r\n        top: 0;\r\n        z-index: 100;\r\n        background-color: rgba(153,153,153,0.5);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */\r\n\t}\r\n\r\n\r\n\r\n\t   .spinner {\r\n            width: 100px;\r\n            height: 60px;\r\n            font-size: 10px;\r\n        }\r\n        \r\n        .spinner > div {\r\n            background-color: limegreen;\r\n            height: 100%;\r\n            width: 6px;\r\n            display: inline-block;\r\n            -webkit-animation: stretchdelay 1.2s infinite ease-in-out;\r\n            animation: stretchdelay 1.2s infinite ease-in-out;\r\n        }\r\n        \r\n        .spinner .spinnerBar2 {\r\n            -webkit-animation-delay: -1.1s;\r\n            animation-delay: -1.1s;\r\n        }\r\n        \r\n        .spinner .spinnerBar3 {\r\n            -webkit-animation-delay: -1.0s;\r\n            animation-delay: -1.0s;\r\n        }\r\n        \r\n        .spinner .spinnerBar4 {\r\n            -webkit-animation-delay: -0.9s;\r\n            animation-delay: -0.9s;\r\n        }\r\n        \r\n        .spinner .spinnerBar5 {\r\n            -webkit-animation-delay: -0.8s;\r\n            animation-delay: -0.8s;\r\n        }\r\n        \r\n        @-webkit-keyframes stretchdelay {\r\n            0%,\r\n            40%,\r\n            100% {\r\n                -webkit-transform: scaleY(0.4)\r\n            }\r\n            20% {\r\n                -webkit-transform: scaleY(1.0)\r\n            }\r\n        }\r\n        \r\n        @keyframes stretchdelay {\r\n            0%,\r\n            40%,\r\n            100% {\r\n                transform: scaleY(0.4);\r\n                -webkit-transform: scaleY(0.4);\r\n            }\r\n            20% {\r\n                transform: scaleY(1.0);\r\n                -webkit-transform: scaleY(1.0);\r\n            }\r\n        }\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 99 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\t<div class=\"modal\" v-if=\"loading\" _v-33df34c0=\"\">\n        <div class=\"spinner\" _v-33df34c0=\"\">\n            <div class=\"spinnerBar1\" _v-33df34c0=\"\"></div>\n            <div class=\"spinnerBar2\" _v-33df34c0=\"\"></div>\n            <div class=\"spinnerBar3\" _v-33df34c0=\"\"></div>\n            <div class=\"spinnerBar4\" _v-33df34c0=\"\"></div>\n            <div class=\"spinnerBar5\" _v-33df34c0=\"\"></div>\n        </div>\n    </div>\n";
 
 /***/ }
 /******/ ]);

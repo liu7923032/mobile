@@ -59,7 +59,7 @@
 				},{
 					title:'公告',content:'啊啊啊公告<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />'
 				},{
-					title:'制度',content:'啊啊啊制度<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />'
+					title:'制度',content:'啊啊啊制度<br /><br /><br /><br />顶顶顶顶顶顶顶顶顶顶<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />顶顶顶顶顶顶顶顶顶顶<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />'
 				}]
 			}
 		},
