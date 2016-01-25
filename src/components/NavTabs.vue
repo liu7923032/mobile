@@ -1,17 +1,13 @@
 <template>
-	<div class="container-fluid" v-touch:swipe="swipeTab">
+	<div class="page-content" v-touch:swipe="swipeTab">
 		<ul class="nav-tabs">
 				<li v-for="(index,item) in tabItems"
-				:class="{'nav_active':selectIndex===index}" 
+				:class="{'nav_active':activeIndex===index}" 
 				v-touch:tap="switchTab(index)" 
 				 >{{item.title}}</li>
 		</ul>
 		<div class="tabs_line" v-bind:style="{ width:underline+ 'px' }"></div>
-		<div class="tabs_content">
-			<div v-for="(index,item) in tabItems" v-show="selectIndex===index">
-				{{{ item.content }}}
-			</div>
-		</div>
+		
 	</div>
 </template>
 
@@ -19,7 +15,6 @@
 	
 	export default {
 		created(){
-			this.selectIndex=this.activeIndex;
 			var width=	document.body.offsetWidth-20;
 		    this.underline=width/this.tabItems.length;
 		},
@@ -36,14 +31,13 @@
 		data(){
 			return {
 				//当前选中的tab页面
-				selectIndex:0,
 				underline:100
 			}
 		},
 		methods:{
 			//点击tabs
 			switchTab(index){
-				this.selectIndex=index;
+				this.activeIndex=index;
 				var leftWidth=index*this.underline;
 				document.querySelectorAll('.tabs_line')[0].style.transform="translateX("+leftWidth+"px)";
 			},
@@ -131,6 +125,9 @@
 			margin-top: -3px;
 			background-color: darkorange;
 			transition: all .3s ease;
+			-moz-transition: all .3s ease;/* Firefox 4 */
+			-webkit-transition: all .3s ease; /* Safari 和 Chrome */
+			-o-transition: all .3s ease; /* Opera */
 			width: 0px;
 		}
 </style>

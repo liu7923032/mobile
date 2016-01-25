@@ -8,10 +8,14 @@ import FastClick from 'fastclick'
 //加载触摸插件
 import VueTouch from './plugns/vTouch'
 
+//加载数据请求组件
+import VueResource from 'vue-resource'
+
     // 1:创建启动的版本
 
 Vue.use(Router)
 Vue.use(VueTouch)
+Vue.use(VueResource)
 
 var router = new Router({
         hashbang: true,
@@ -21,9 +25,16 @@ var router = new Router({
 })
     // 路由器需要一个根组件。
     // 出于演示的目的，这里使用一个空的组件，直接使用 HTML 作为应用的模板
-var App = Vue.extend({});
+var App = Vue.extend({
 
+    http:{
+        root:'/api/',
+        url:'http://ht.mdsd.cn:9000/api/'
+    }
+});
 
+//设置访问的地址
+Vue.http.options.root = 'http://ht.mdsd.cn:9000/api';
 
 
 // 创建一个路由器实例

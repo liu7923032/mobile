@@ -1,8 +1,8 @@
 <template>
      <header class="toolbar" >
-        <slot name="leftBtn"></slot>
+        <slot name="leftBtn" ></slot>
         <div class="text-title item">{{text}}</div>
-        <slot name="rightBtn"></slot>
+        <slot name="rightBtn" ></slot>
     </header>
 </template>
 
@@ -39,22 +39,34 @@
                 align-items: center;
         border-bottom: 2px solid lightgray;
         /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/
-        padding: 0px 10px;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
     }
 
     .toolbar div{
+
         font-size: 18px;
         font-weight: bold;
         text-align: center;
         vertical-align: middle;
-        
     }
+
     .toolbar>span{
+        position: relative;
         font-size: 20px;
         color: #595959;
         cursor: pointer;
     }
 
+    span[slot="leftBtn"]{
+        margin-left: 10px;
+    }
+
+    span[slot="rightBtn"]{
+       margin-right: 10px;
+    }
    
     
     .toolbar span:active{

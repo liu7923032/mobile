@@ -15,3 +15,8 @@ html,body,ul,table,tr,td{
     background: rgba(0, 0, 0, .4);
     z-index: 10;
 }
+
+/*定义所有内容区域的上边距*/
+.page-content{
+	margin-top: 44px;
+}

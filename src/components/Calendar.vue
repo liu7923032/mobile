@@ -244,14 +244,14 @@
                 this.curMonth=tempM;
                  this.dateRange=this.getDateRange(tempY,tempM);
             },
-            swipeMonth(){
+            swipeMonth(e){
 
             	var deltaX=e.deltaX;
 				var tempIndex=this.activeIndex;
 				if(deltaX>0){
-					this.monthClick(1);
-				}else{
 					this.monthClick(0);
+				}else{
+					this.monthClick(1);
 				}
             },
             //通过日期来获取当期星期几
