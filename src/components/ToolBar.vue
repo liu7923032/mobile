@@ -26,8 +26,9 @@
         display: -ms-flexbox;
         display: flex;
         display: -webkit-flex;
-        background-color: rgba(255, 255, 255, 0.95);
+        background-color: rgba(255, 255, 255, 255);
         height: 44px;
+        min-height: 44px;
         -webkit-flex-flow: row nowrap;
         -ms-flex-flow: row nowrap;
                 flex-flow: row nowrap;
@@ -39,14 +40,10 @@
                 align-items: center;
         border-bottom: 2px solid lightgray;
         /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/
-        position: fixed;
-        left: 0px;
-        top: 0px;
         width: 100%;
     }
 
     .toolbar div{
-
         font-size: 18px;
         font-weight: bold;
         text-align: center;

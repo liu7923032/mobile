@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 import Router from 'vue-router'
-
+//配置路由规则
 import routerMap from './routers'
 
 import FastClick from 'fastclick'
@@ -26,11 +26,7 @@ var router = new Router({
     // 路由器需要一个根组件。
     // 出于演示的目的，这里使用一个空的组件，直接使用 HTML 作为应用的模板
 var App = Vue.extend({
-
-    http:{
-        root:'/api/',
-        url:'http://ht.mdsd.cn:9000/api/'
-    }
+    
 });
 
 //设置访问的地址

@@ -1,14 +1,16 @@
 <template>
  
-  <div class="page-content" v-touch:swipe="swipeTab" role="tablist">
-    <ul class="nav-tabs">
-        <li v-for="item in tabItems"
-        :class="{'nav_active':activeIndex===$index}" 
-        v-touch:tap="switchTab($index)" 
-         >{{item.header}}</li>
-    </ul>
-    <div class="tabs_line" v-bind:style="{ width:underline+ 'px' }"></div>
-    
+  <div class="tabs" v-touch:swipe="swipeTab" role="tablist">
+    <div class="nav-tabs">
+        <ul class="tabs_title">
+            <li v-for="item in tabItems"
+            :class="{'nav_active':activeIndex===$index}" 
+            v-touch:tap="switchTab($index)" 
+             >{{item.header}}</li>
+        </ul>
+        <div class="tabs_line" v-bind:style="{ width:underline+ 'px' }">
+        </div>
+    </div>
       <!-- Tab panes -->
      <div class="tab-content" v-el:tabContent>
         <slot></slot>
@@ -76,9 +78,20 @@
 
 <style type="text/css" scoped>
     
-    .nav-tabs {
-      margin: 0px;
-      padding: 0px;
+    .tabs{
+        height: 100%;
+        width: 100%;
+    }
+
+
+    .nav-tabs{
+       display: flex;
+       flex-flow:column nowrap;
+       min-height: 35px;
+
+    }
+    
+    .tabs_title {
       display: -ms-flexbox;
       display: flex;
       display: -webkit-flex;
@@ -103,13 +116,9 @@
       line-height: 35px;
       border-bottom: 2px solid whitesmoke;
       padding: 0 10px;
-      
-      
       font-size: 14px;
       font-weight: bold;
-      -webkit-flex-grow: 1;
-          -ms-flex-positive: 1;
-              flex-grow: 1;
+      flex: 0 1 auto;
     }
     
     
@@ -138,5 +147,21 @@
       -webkit-transition: transform .3s ease; /* Safari 和 Chrome */
       -o-transition: transform .3s ease; /* Opera */
       width: 0px;
+      flex: 0 1 auto;
+    }
+
+    .tab-content{
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex: 0 1 auto;
+      -ms-flex: 0 1 auto;
+      flex: 0 1 auto;
+      margin-bottom: 10px;
+      width: 100%;
+      height: 100%;
+      flex-flow:column nowrap;
     }
 </style>

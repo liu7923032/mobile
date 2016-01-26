@@ -1,9 +1,9 @@
 <template>
-  <div role="tabpanel" class="tab-pane"
-      v-bind:class="{hide:!show}"
-      v-show="show"
-      :transition="transition"
-  >
+    <div role="tabpanel" class="tab-pane"
+        v-bind:class="{hide:!show}"
+        v-show="show"
+        :transition="transition"
+    >
     <slot></slot>
   </div>
 </template>
@@ -35,6 +35,7 @@
     },
     created() {
        console.log("进入tabItem created")
+      
         this.$parent.tabItems.push({
           header: this.header,
           disabled: this.disabled

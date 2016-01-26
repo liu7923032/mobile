@@ -1,12 +1,21 @@
-
-/*将默认边距去掉*/
-html,body,ul,table,tr,td{
-    margin: 0px;
-    padding: 0px;
+* {
+    padding: 0;
+    margin: 0;
 }
 
+html,
+body {
+    height: 100%
+}
+
+#app{
+	height: 100%;
+}
+
+
 /*添加模态框*/
-.page-cover{
+
+.page-cover {
     position: fixed;
     top: 0;
     right: 0;
@@ -16,7 +25,46 @@ html,body,ul,table,tr,td{
     z-index: 10;
 }
 
-/*定义所有内容区域的上边距*/
-.page-content{
-	margin-top: 44px;
+
+/*单页面的布局*/
+
+.page,tabs {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-flex-flow: column nowrap;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    height: 100%;
+}
+
+
+/*头部的布局*/
+
+.toolbar {
+    flex: 0 1 auto;
+}
+
+
+/*内容的布局*/
+
+.page-content {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 100%;
+    flex-flow:column nowrap;
 }

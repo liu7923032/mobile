@@ -65,15 +65,15 @@
 	
 	var _routers2 = _interopRequireDefault(_routers);
 	
-	var _fastclick = __webpack_require__(70);
+	var _fastclick = __webpack_require__(75);
 	
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 	
-	var _vTouch = __webpack_require__(71);
+	var _vTouch = __webpack_require__(76);
 	
 	var _vTouch2 = _interopRequireDefault(_vTouch);
 	
-	var _vueResource = __webpack_require__(85);
+	var _vueResource = __webpack_require__(90);
 	
 	var _vueResource2 = _interopRequireDefault(_vueResource);
 	
@@ -82,6 +82,8 @@
 	// 1:创建启动的版本
 	
 	//加载触摸插件
+	
+	//配置路由规则
 	_vue2.default.use(_vueRouter2.default);
 	
 	//加载数据请求组件
@@ -97,13 +99,7 @@
 	});
 	// 路由器需要一个根组件。
 	// 出于演示的目的，这里使用一个空的组件，直接使用 HTML 作为应用的模板
-	var App = _vue2.default.extend({
-	
-	    http: {
-	        root: '/api/',
-	        url: 'http://ht.mdsd.cn:9000/api/'
-	    }
-	});
+	var App = _vue2.default.extend({});
 	
 	//设置访问的地址
 	_vue2.default.http.options.root = 'http://ht.mdsd.cn:9000/api';
@@ -12236,27 +12232,27 @@
 	        },
 	        '/project': {
 	            name: 'project',
-	            component: __webpack_require__(41)
+	            component: __webpack_require__(46)
 	        },
 	        '/worklog': {
 	            name: 'worklog',
-	            component: __webpack_require__(42)
+	            component: __webpack_require__(47)
 	        },
 	        '/userinfo': {
 	            name: 'userinfo',
-	            component: __webpack_require__(50)
+	            component: __webpack_require__(55)
 	        },
 	        '/workflow': {
 	            name: 'workflow',
-	            component: __webpack_require__(65)
+	            component: __webpack_require__(70)
 	        },
 	        '/login': {
 	            name: 'login',
-	            component: __webpack_require__(66)
+	            component: __webpack_require__(71)
 	        },
 	        '/comment': {
 	            name: 'comment',
-	            component: __webpack_require__(69)
+	            component: __webpack_require__(74)
 	        },
 	
 	        /* 404路由 */
@@ -12272,9 +12268,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(112)
+	__webpack_require__(7)
 	__vue_script__ = __webpack_require__(11)
-	__vue_template__ = __webpack_require__(114)
+	__vue_template__ = __webpack_require__(45)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -12291,8 +12287,46 @@
 	})()}
 
 /***/ },
-/* 7 */,
-/* 8 */,
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(8);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ecc3dad2&file=Home.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ecc3dad2&file=Home.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n.tab_info[_v-ecc3dad2]{\n\theight: 40px;\n\tpadding: 5px;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-flex-flow:row nowrap;\n\t    -ms-flex-flow:row nowrap;\n\t        flex-flow:row nowrap;\n\t-webkit-box-pack:justify;\n\t-webkit-justify-content:space-between;\n\t    -ms-flex-pack:justify;\n\t        justify-content:space-between;\n\t-webkit-box-align:center;\n\t-webkit-align-items:center;\n\t    -ms-flex-align:center;\n\t        align-items:center;\n\tbackground-color: white;\n}\n\n\n.tab_info>div[_v-ecc3dad2]:nth-child(2){\n\tmargin-right: 5px;\n\tcolor: #272822;\n}\n\n.left[_v-ecc3dad2]{\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-flex-flow:row nowrap;\n\t    -ms-flex-flow:row nowrap;\n\t        flex-flow:row nowrap;\n\t-webkit-box-pack:start;\n\t-webkit-justify-content:flex-start;\n\t    -ms-flex-pack:start;\n\t        justify-content:flex-start;\n\t-webkit-box-align:center;\n\t-webkit-align-items:center;\n\t    -ms-flex-align:center;\n\t        align-items:center;\n}\n.left>div[_v-ecc3dad2]{\n\tmargin-left: 10px;\n\n}\n\n.contentList[_v-ecc3dad2]{\n\tmargin: 0px;\n\tpadding: 5px;\n\tbackground-color: whitesmoke;\n}\n.contentList>li[_v-ecc3dad2]{\n\tborder-radius: 3px;\n\tlist-style-type: none;\n\tborder:1px solid whitesmoke;\n\tmargin-bottom:5px;\n\n}\n\n.contentList>li[_v-ecc3dad2]:hover{\n\tborder:1px solid gray;\n}\n\n.content>div[_v-ecc3dad2]:nth-child(1){\n\tfont-size: 12px;\n\tcolor: lightdark;\n\tmargin-bottom: 5px;\n}\n\n.content>div:nth-child(1)>span[_v-ecc3dad2]:nth-child(2){\n\tmargin-left: 10px;\n}\n\n.content>div[_v-ecc3dad2]:nth-child(2){\n\tfont-size: 14px;\n\t\n}\n\nimg[_v-ecc3dad2]{\n\twidth: 40px;\n\theight: 40px;\n\tborder-width: 0px;\n}\n", "", {"version":3,"sources":["/./src/views/Home.vue?789b4ef8"],"names":[],"mappings":";AAoOA;CACA,aAAA;CACA,aAAA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,6BAAA;KAAA,yBAAA;SAAA,qBAAA;CACA,yBAAA;CAAA,sCAAA;KAAA,sBAAA;SAAA,8BAAA;CACA,yBAAA;CAAA,2BAAA;KAAA,sBAAA;SAAA,mBAAA;CACA,wBAAA;CACA;;;AAGA;CACA,kBAAA;CACA,eAAA;CACA;;AAEA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,6BAAA;KAAA,yBAAA;SAAA,qBAAA;CACA,uBAAA;CAAA,mCAAA;KAAA,oBAAA;SAAA,2BAAA;CACA,yBAAA;CAAA,2BAAA;KAAA,sBAAA;SAAA,mBAAA;CACA;AACA;CACA,kBAAA;;CAEA;;AAEA;CACA,YAAA;CACA,aAAA;CACA,6BAAA;CACA;AACA;CACA,mBAAA;CACA,sBAAA;CACA,4BAAA;CACA,kBAAA;;CAEA;;AAEA;CACA,sBAAA;CACA;;AAEA;CACA,gBAAA;CACA,iBAAA;CACA,mBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;AAEA;CACA,gBAAA;;CAEA;;AAEA;CACA,YAAA;CACA,aAAA;CACA,kBAAA;CACA","file":"Home.vue","sourcesContent":["<template>\r\n\t<div class=\"page\">\r\n\t\t<toolbar :text=\"title\">\r\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\"></span>\r\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\"></span>\r\n\t\t</toolbar>\r\n\t\t<tabs :active-index.sync=\"index\" >\r\n\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" >\r\n\t\t\t\t<ul class=\"contentList\">\r\n\t\t\t\t\t<li v-for=\"subItem in item.infoList\" >\r\n\t\t\t\t\t\t<div class=\"tab_info\">\r\n\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t<img src=\"\" alt=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"content\">\r\n\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t<span>发布时间:{{subItem.time}}</span>\r\n\t\t\t\t\t\t\t\t\t\t<span>发布人:{{subItem.subUser}}</span>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t{{subItem.content}}\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t<i class=\"icon-chevron-right\"></i>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t</li>\r\n\t\t\t\t</ul>\r\n\t\t\t</tab>\r\n\t\t</tabs>\r\n\t</div>\r\n\t\t\r\n\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" >\r\n\t\t\r\n\t</sidebar>\r\n\r\n\t<loading :loading=\"isload\"></loading>\r\n\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\timport ToolBar from 'src/components/ToolBar.vue'\r\n    import SideBar from 'src/components/Sidebar.vue'\r\n    import Tabs from 'src/components/Tabs.vue'\r\n    import Tab from 'src/components/Tab.vue'\r\n    import Loading from 'src/components/Loading.vue'\r\n\texport default \t{\r\n\t\tcreated(){\r\n\t\t\tconsole.log(\"home is created\")\r\n\t\t\t//计算tab的长度\r\n\t\t   // var width=\tdocument.body.offsetWidth-20;\r\n\t\t   // this.tabWidth=width/this.tabItems.length;\r\n\t\t},\r\n\t\tcomponents:{\r\n\t    \ttoolbar:ToolBar,\r\n            sidebar:SideBar,\r\n            tabs:Tabs,\r\n            tab:Tab,\r\n            loading:Loading\r\n\t    },\r\n\t    props:{\r\n\t    \t\r\n\t    },\r\n\t\tdata() {\r\n\t\t\treturn {\r\n\t\t\t\ttitle:'首页',\r\n\t\t\t\tmenuItems:[{\r\n\t\t\t\t\ttext:'系统首页',\r\n\t\t\t\t\tlink:'home',\r\n\t\t\t\t\ticon:'icon-home'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'个人信息',\r\n\t\t\t\t\tlink:'userinfo',\r\n\t\t\t\t\ticon:'icon-user'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'我的项目',\r\n\t\t\t\t\tlink:'project',\r\n\t\t\t\t\ticon:'icon-tasks'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'工作日志',\r\n\t\t\t\t\tlink:'worklog',\r\n\t\t\t\t\ticon:'icon-calendar'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'流程信息',\r\n\t\t\t\t\tlink:'worklog',\r\n\t\t\t\t\ticon:'icon-exchange'\r\n\t\t\t\t}],\r\n\t\t\t\tindex:1,\r\n\t\t\t\tisload:false,\r\n\t\t\t\tshowMenu:false,\r\n\t\t\t\ttabItems:[{\r\n\t\t\t\t\ttitle:'通知',infoList:[{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂1'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-21',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂2'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t}]\r\n\t\t\t\t},{\r\n\t\t\t\t\ttitle:'公告',infoList:[{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'李四',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'李四',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'李四',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'李四',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t}]\r\n\t\t\t\t},{\r\n\t\t\t\t\ttitle:'制度',infoList:[{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'王五',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'王五',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'王五',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'王五',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t}]\r\n\t\t\t\t}]\r\n\t\t\t}\r\n\t\t},\r\n\t\troute:{\r\n\t\t\tdata(){\r\n\t\t\t\t//从服务器端加载数据\r\n\t\t\t\tconsole.log(\"home组件切入,加载初始数据\");\r\n\t\t\t\t//加载数据\r\n\t\t\t\tthis.isload=false;\r\n\t\t\t\tthis.$http.get(\"values\").then((response)=>{\r\n\t\t\t\t\tconsole.log(response.data);\r\n\t\t\t\t\tthis.isload=false;\r\n\t\t\t\t});\r\n\r\n\t\t\t},\r\n\t\t\tcanDeactivate(transition){\r\n\t\t\t\t//组件被切除\r\n\t\t\t\tconsole.log(\"组件被切出\")\r\n\t\t\t\tthis.showMenu=false;\r\n\t\t\t\ttransition.next();\r\n\t\t\t}\r\n\t\t},\r\n\t    methods: {\r\n\t        openMenu() {\r\n\t            this.showMenu = !this.showMenu;\r\n\t        },\r\n\t        refresh(){\r\n\t        \t//刷新当前页面\r\n\t        }\r\n\t    }\r\n\t}\r\n\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\t.tab_info{\r\n\t\theight: 40px;\r\n\t\tpadding: 5px;\r\n\t\tdisplay: flex;\r\n\t\tflex-flow:row nowrap;\r\n\t\tjustify-content:space-between;\r\n\t\talign-items:center;\r\n\t\tbackground-color: white;\r\n\t}\r\n\r\n\r\n\t.tab_info>div:nth-child(2){\r\n\t\tmargin-right: 5px;\r\n\t\tcolor: #272822;\r\n\t}\r\n\t\r\n\t.left{\r\n\t\tdisplay: flex;\r\n\t\tflex-flow:row nowrap;\r\n\t\tjustify-content:flex-start;\r\n\t\talign-items:center;\r\n\t}\r\n\t.left>div{\r\n\t\tmargin-left: 10px;\r\n\r\n\t}\r\n\r\n\t.contentList{\r\n\t\tmargin: 0px;\r\n\t\tpadding: 5px;\r\n\t\tbackground-color: whitesmoke;\r\n\t}\r\n\t.contentList>li{\r\n\t\tborder-radius: 3px;\r\n\t\tlist-style-type: none;\r\n\t\tborder:1px solid whitesmoke;\r\n\t\tmargin-bottom:5px;\r\n\r\n\t}\r\n\r\n\t.contentList>li:hover{\r\n\t\tborder:1px solid gray;\r\n\t}\r\n\r\n\t.content>div:nth-child(1){\r\n\t\tfont-size: 12px;\r\n\t\tcolor: lightdark;\r\n\t\tmargin-bottom: 5px;\r\n\t}\r\n\r\n\t.content>div:nth-child(1)>span:nth-child(2){\r\n\t\tmargin-left: 10px;\r\n\t}\r\n\r\n\t.content>div:nth-child(2){\r\n\t\tfont-size: 14px;\r\n\t\t\r\n\t}\r\n\r\n\timg{\r\n\t\twidth: 40px;\r\n\t\theight: 40px;\r\n\t\tborder-width: 0px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
 /* 9 */
 /***/ function(module, exports) {
 
@@ -12588,15 +12622,15 @@
 	
 	var _Sidebar2 = _interopRequireDefault(_Sidebar);
 	
-	var _Tabs = __webpack_require__(115);
+	var _Tabs = __webpack_require__(30);
 	
 	var _Tabs2 = _interopRequireDefault(_Tabs);
 	
-	var _Tab = __webpack_require__(120);
+	var _Tab = __webpack_require__(35);
 	
 	var _Tab2 = _interopRequireDefault(_Tab);
 	
-	var _Loading = __webpack_require__(35);
+	var _Loading = __webpack_require__(40);
 	
 	var _Loading2 = _interopRequireDefault(_Loading);
 	
@@ -12649,34 +12683,101 @@
 					title: '通知', infoList: [{
 						imgUrl: '',
 						time: '2015-11-20',
+						subUser: '张三',
 						content: '我的世界你不懂1'
 					}, {
 						imgUrl: '',
 						time: '2015-11-21',
+						subUser: '张三',
 						content: '我的世界你不懂2'
 					}, {
 						imgUrl: '',
 						time: '2015-11-22',
+						subUser: '张三',
 						content: '我的世界你不懂3'
 					}, {
 						imgUrl: '',
 						time: '2015-11-23',
+						subUser: '张三',
 						content: '我的世界你不懂4'
 					}, {
 						imgUrl: '',
 						time: '2015-11-24',
+						subUser: '张三',
+						content: '我的世界你不懂5'
+					}, {
+						imgUrl: '',
+						time: '2015-11-22',
+						subUser: '张三',
+						content: '我的世界你不懂3'
+					}, {
+						imgUrl: '',
+						time: '2015-11-23',
+						subUser: '张三',
+						content: '我的世界你不懂4'
+					}, {
+						imgUrl: '',
+						time: '2015-11-24',
+						subUser: '张三',
+						content: '我的世界你不懂5'
+					}, {
+						imgUrl: '',
+						time: '2015-11-22',
+						subUser: '张三',
+						content: '我的世界你不懂3'
+					}, {
+						imgUrl: '',
+						time: '2015-11-23',
+						subUser: '张三',
+						content: '我的世界你不懂4'
+					}, {
+						imgUrl: '',
+						time: '2015-11-24',
+						subUser: '张三',
 						content: '我的世界你不懂5'
 					}]
 				}, {
 					title: '公告', infoList: [{
 						imgUrl: '',
 						time: '2015-11-20',
+						subUser: '李四',
+						content: '我的世界你不懂'
+					}, {
+						imgUrl: '',
+						time: '2015-11-20',
+						subUser: '李四',
+						content: '我的世界你不懂'
+					}, {
+						imgUrl: '',
+						time: '2015-11-20',
+						subUser: '李四',
+						content: '我的世界你不懂'
+					}, {
+						imgUrl: '',
+						time: '2015-11-20',
+						subUser: '李四',
 						content: '我的世界你不懂'
 					}]
 				}, {
 					title: '制度', infoList: [{
 						imgUrl: '',
 						time: '2015-11-20',
+						subUser: '王五',
+						content: '我的世界你不懂'
+					}, {
+						imgUrl: '',
+						time: '2015-11-20',
+						subUser: '王五',
+						content: '我的世界你不懂'
+					}, {
+						imgUrl: '',
+						time: '2015-11-20',
+						subUser: '王五',
+						content: '我的世界你不懂'
+					}, {
+						imgUrl: '',
+						time: '2015-11-20',
+						subUser: '王五',
 						content: '我的世界你不懂'
 					}]
 				}]
@@ -12716,13 +12817,62 @@
 	// </script>
 
 	// <style type="text/css" scoped>
-	// 	.tabItem{
-	// 		height: 80px;
-	// 		padding: 10px;
+	// 	.tab_info{
+	// 		height: 40px;
+	// 		padding: 5px;
 	// 		display: flex;
 	// 		flex-flow:row nowrap;
-	// 		justify-content:space-around;
+	// 		justify-content:space-between;
+	// 		align-items:center;
+	// 		background-color: white;
+	// 	}
+
+	// 	.tab_info>div:nth-child(2){
+	// 		margin-right: 5px;
+	// 		color: #272822;
+	// 	}
+
+	// 	.left{
+	// 		display: flex;
+	// 		flex-flow:row nowrap;
+	// 		justify-content:flex-start;
+	// 		align-items:center;
+	// 	}
+	// 	.left>div{
+	// 		margin-left: 10px;
+
+	// 	}
+
+	// 	.contentList{
+	// 		margin: 0px;
+	// 		padding: 5px;
+	// 		background-color: whitesmoke;
+	// 	}
+	// 	.contentList>li{
+	// 		border-radius: 3px;
+	// 		list-style-type: none;
+	// 		border:1px solid whitesmoke;
+	// 		margin-bottom:5px;
+
+	// 	}
+
+	// 	.contentList>li:hover{
 	// 		border:1px solid gray;
+	// 	}
+
+	// 	.content>div:nth-child(1){
+	// 		font-size: 12px;
+	// 		color: lightdark;
+	// 		margin-bottom: 5px;
+	// 	}
+
+	// 	.content>div:nth-child(1)>span:nth-child(2){
+	// 		margin-left: 10px;
+	// 	}
+
+	// 	.content>div:nth-child(2){
+	// 		font-size: 14px;
+
 	// 	}
 
 	// 	img{
@@ -12732,20 +12882,44 @@
 	// 	}
 	// </style>
 	// <template>
+	// 	<div class="page">
 	// 		<toolbar :text="title">
 	// 			<span class="icon-reorder" slot="leftBtn" @click="openMenu"></span>
 	//             <span class="icon-refresh" slot="rightBtn" @click="refresh"></span>
 	// 		</toolbar>
-	// 		<tabs :active-index.sync="index">
-	// 			<tab v-for="item in tabItems" :header="item.title">
+	// 		<tabs :active-index.sync="index" >
+	// 			<tab v-for="item in tabItems" :header="item.title" >
+	// 				<ul class="contentList">
+	// 					<li v-for="subItem in item.infoList" >
+	// 						<div class="tab_info">
+	// 							<div class="left">
+	// 								<img src="" alt="">
+	// 								<div class="content">
+	// 									<div>
+	// 										<span>发布时间:{{subItem.time}}</span>
+	// 										<span>发布人:{{subItem.subUser}}</span>
+	// 									</div>
+	// 									<div>
+	// 										{{subItem.content}}
+	// 									</div>
+	// 								</div>
+	// 							</div>
+	// 							<div>
+	// 								<i class="icon-chevron-right"></i>
+	// 							</div>
+	// 						</div>
 
+	// 					</li>
+	// 				</ul>
 	// 			</tab>
 	// 		</tabs>
-	// 		<sidebar :menu-items="menuItems" :show-menu.sync="showMenu" >
+	// 	</div>
 
-	// 		</sidebar>
+	// 	<sidebar :menu-items="menuItems" :show-menu.sync="showMenu" >
 
-	// 		<loading :loading="isload"></loading>
+	// 	</sidebar>
+
+	// 	<loading :loading="isload"></loading>
 
 	// </template>
 
@@ -12809,7 +12983,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n.toolbar {\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    display: -webkit-flex;\n    background-color: rgba(255, 255, 255, 0.95);\n    height: 44px;\n    -webkit-flex-flow: row nowrap;\n    -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-justify-content: space-between;\n    -ms-flex-pack: justify;\n            -webkit-box-pack: justify;\n            justify-content: space-between;\n    -webkit-align-items: center;\n    -ms-flex-align: center;\n            -webkit-box-align: center;\n            align-items: center;\n    border-bottom: 2px solid lightgray;\n    /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/\n    position: fixed;\n    left: 0px;\n    top: 0px;\n    width: 100%;\n}\n\n.toolbar div{\n\n    font-size: 18px;\n    font-weight: bold;\n    text-align: center;\n    vertical-align: middle;\n}\n\n.toolbar>span{\n    position: relative;\n    font-size: 20px;\n    color: #595959;\n    cursor: pointer;\n}\n\nspan[slot=\"leftBtn\"]{\n    margin-left: 10px;\n}\n\nspan[slot=\"rightBtn\"]{\n   margin-right: 10px;\n}\n\n\n.toolbar span:active{\n    color:darkorange;\n}\n", "", {"version":3,"sources":["/./src/components/ToolBar.vue?de23341c"],"names":[],"mappings":";;AAwBA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,sBAAA;IACA,4CAAA;IACA,aAAA;IACA,8BAAA;IACA,0BAAA;YACA,sBAAA;IACA,uCAAA;IACA,uBAAA;YACA,0BAAA;YAAA,+BAAA;IACA,4BAAA;IACA,uBAAA;YACA,0BAAA;YAAA,oBAAA;IACA,mCAAA;IACA,2CAAA;IACA,gBAAA;IACA,UAAA;IACA,SAAA;IACA,YAAA;CACA;;AAEA;;IAEA,gBAAA;IACA,kBAAA;IACA,mBAAA;IACA,uBAAA;CACA;;AAEA;IACA,mBAAA;IACA,gBAAA;IACA,eAAA;IACA,gBAAA;CACA;;AAEA;IACA,kBAAA;CACA;;AAEA;GACA,mBAAA;CACA;;;AAGA;IACA,iBAAA;CACA","file":"ToolBar.vue","sourcesContent":["<template>\r\n     <header class=\"toolbar\" >\r\n        <slot name=\"leftBtn\" ></slot>\r\n        <div class=\"text-title item\">{{text}}</div>\r\n        <slot name=\"rightBtn\" ></slot>\r\n    </header>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\t// console.log(\"toolbar is created\");\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\ttext:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:\"未知列表\"\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" >\r\n    \r\n    .toolbar {\r\n        display: -ms-flexbox;\r\n        display: flex;\r\n        display: -webkit-flex;\r\n        background-color: rgba(255, 255, 255, 0.95);\r\n        height: 44px;\r\n        -webkit-flex-flow: row nowrap;\r\n        -ms-flex-flow: row nowrap;\r\n                flex-flow: row nowrap;\r\n        -webkit-justify-content: space-between;\r\n        -ms-flex-pack: justify;\r\n                justify-content: space-between;\r\n        -webkit-align-items: center;\r\n        -ms-flex-align: center;\r\n                align-items: center;\r\n        border-bottom: 2px solid lightgray;\r\n        /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/\r\n        position: fixed;\r\n        left: 0px;\r\n        top: 0px;\r\n        width: 100%;\r\n    }\r\n\r\n    .toolbar div{\r\n\r\n        font-size: 18px;\r\n        font-weight: bold;\r\n        text-align: center;\r\n        vertical-align: middle;\r\n    }\r\n\r\n    .toolbar>span{\r\n        position: relative;\r\n        font-size: 20px;\r\n        color: #595959;\r\n        cursor: pointer;\r\n    }\r\n\r\n    span[slot=\"leftBtn\"]{\r\n        margin-left: 10px;\r\n    }\r\n\r\n    span[slot=\"rightBtn\"]{\r\n       margin-right: 10px;\r\n    }\r\n   \r\n    \r\n    .toolbar span:active{\r\n        color:darkorange;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n.toolbar {\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    display: -webkit-flex;\n    background-color: rgba(255, 255, 255, 255);\n    height: 44px;\n    min-height: 44px;\n    -webkit-flex-flow: row nowrap;\n    -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-justify-content: space-between;\n    -ms-flex-pack: justify;\n            -webkit-box-pack: justify;\n            justify-content: space-between;\n    -webkit-align-items: center;\n    -ms-flex-align: center;\n            -webkit-box-align: center;\n            align-items: center;\n    border-bottom: 2px solid lightgray;\n    /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/\n    width: 100%;\n}\n\n.toolbar div{\n    font-size: 18px;\n    font-weight: bold;\n    text-align: center;\n    vertical-align: middle;\n}\n\n.toolbar>span{\n    position: relative;\n    font-size: 20px;\n    color: #595959;\n    cursor: pointer;\n}\n\nspan[slot=\"leftBtn\"]{\n    margin-left: 10px;\n}\n\nspan[slot=\"rightBtn\"]{\n   margin-right: 10px;\n}\n\n\n.toolbar span:active{\n    color:darkorange;\n}\n", "", {"version":3,"sources":["/./src/components/ToolBar.vue?fcc6a8dc"],"names":[],"mappings":";;AAwBA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,sBAAA;IACA,2CAAA;IACA,aAAA;IACA,iBAAA;IACA,8BAAA;IACA,0BAAA;YACA,sBAAA;IACA,uCAAA;IACA,uBAAA;YACA,0BAAA;YAAA,+BAAA;IACA,4BAAA;IACA,uBAAA;YACA,0BAAA;YAAA,oBAAA;IACA,mCAAA;IACA,2CAAA;IACA,YAAA;CACA;;AAEA;IACA,gBAAA;IACA,kBAAA;IACA,mBAAA;IACA,uBAAA;CACA;;AAEA;IACA,mBAAA;IACA,gBAAA;IACA,eAAA;IACA,gBAAA;CACA;;AAEA;IACA,kBAAA;CACA;;AAEA;GACA,mBAAA;CACA;;;AAGA;IACA,iBAAA;CACA","file":"ToolBar.vue","sourcesContent":["<template>\r\n     <header class=\"toolbar\" >\r\n        <slot name=\"leftBtn\" ></slot>\r\n        <div class=\"text-title item\">{{text}}</div>\r\n        <slot name=\"rightBtn\" ></slot>\r\n    </header>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\t// console.log(\"toolbar is created\");\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\ttext:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:\"未知列表\"\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" >\r\n    \r\n    .toolbar {\r\n        display: -ms-flexbox;\r\n        display: flex;\r\n        display: -webkit-flex;\r\n        background-color: rgba(255, 255, 255, 255);\r\n        height: 44px;\r\n        min-height: 44px;\r\n        -webkit-flex-flow: row nowrap;\r\n        -ms-flex-flow: row nowrap;\r\n                flex-flow: row nowrap;\r\n        -webkit-justify-content: space-between;\r\n        -ms-flex-pack: justify;\r\n                justify-content: space-between;\r\n        -webkit-align-items: center;\r\n        -ms-flex-align: center;\r\n                align-items: center;\r\n        border-bottom: 2px solid lightgray;\r\n        /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/\r\n        width: 100%;\r\n    }\r\n\r\n    .toolbar div{\r\n        font-size: 18px;\r\n        font-weight: bold;\r\n        text-align: center;\r\n        vertical-align: middle;\r\n    }\r\n\r\n    .toolbar>span{\r\n        position: relative;\r\n        font-size: 20px;\r\n        color: #595959;\r\n        cursor: pointer;\r\n    }\r\n\r\n    span[slot=\"leftBtn\"]{\r\n        margin-left: 10px;\r\n    }\r\n\r\n    span[slot=\"rightBtn\"]{\r\n       margin-right: 10px;\r\n    }\r\n   \r\n    \r\n    .toolbar span:active{\r\n        color:darkorange;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -12852,8 +13026,9 @@
 	//         display: -ms-flexbox;
 	//         display: flex;
 	//         display: -webkit-flex;
-	//         background-color: rgba(255, 255, 255, 0.95);
+	//         background-color: rgba(255, 255, 255, 255);
 	//         height: 44px;
+	//         min-height: 44px;
 	//         -webkit-flex-flow: row nowrap;
 	//         -ms-flex-flow: row nowrap;
 	//                 flex-flow: row nowrap;
@@ -12865,14 +13040,10 @@
 	//                 align-items: center;
 	//         border-bottom: 2px solid lightgray;
 	//         /*box-shadow:0 0 4px rgba(0, 0, 0, 0.25);*/
-	//         position: fixed;
-	//         left: 0px;
-	//         top: 0px;
 	//         width: 100%;
 	//     }
 
 	//     .toolbar div{
-
 	//         font-size: 18px;
 	//         font-weight: bold;
 	//         text-align: center;
@@ -13368,11 +13539,252 @@
 	module.exports = "\n\t<div class=\"page-cover\" v-if=\"showMenu\" @click=\"showCover\" _v-29364ee0=\"\">\n\t</div>\n\n\t <section id=\"sideBar\" class=\"nav-list\" :class=\"{'showside':showMenu}\" _v-29364ee0=\"\">\n\t    <userheader _v-29364ee0=\"\"></userheader>\n        <ul class=\"list-ul\" _v-29364ee0=\"\">\n        \t<li v-for=\"item in menuItems\" :class=\"item.icon\" v-link=\"{'name':item.link}\" _v-29364ee0=\"\">{{item.text}}</li>\n        </ul>\n        <ul class=\"loginout\" _v-29364ee0=\"\">\n        \t<li class=\"icon-comments\" v-link=\"{'name':comment}\" _v-29364ee0=\"\">问题反馈</li>\n        \t<li class=\"icon-off\" @click=\"loginOut\" _v-29364ee0=\"\">退出系统</li>\n        </ul>\n    </section>\n";
 
 /***/ },
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(31)
+	__vue_script__ = __webpack_require__(33)
+	__vue_template__ = __webpack_require__(34)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Tabs.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(32);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-5d2ac0ac&file=Tabs.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tabs.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-5d2ac0ac&file=Tabs.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tabs.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\n.tabs[_v-5d2ac0ac]{\n    height: 100%;\n    width: 100%;\n}\n\n\n.nav-tabs[_v-5d2ac0ac]{\n   display: -webkit-box;\n   display: -webkit-flex;\n   display: -ms-flexbox;\n   display: flex;\n   -webkit-flex-flow:column nowrap;\n       -ms-flex-flow:column nowrap;\n           flex-flow:column nowrap;\n   min-height: 35px;\n\n}\n\n.tabs_title[_v-5d2ac0ac] {\n  display: -ms-flexbox;\n  display: -webkit-box;\n  display: flex;\n  display: -webkit-flex;\n  -webkit-flex-flow: row nowrap;\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n  -webkit-align-items: center;\n      -ms-flex-align: center;\n          -webkit-box-align: center;\n          align-items: center;\n  -webkit-align-content: center;\n      -ms-flex-line-pack: center;\n          align-content: center;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n\n  -webkit-justify-content: space-around;\n  -webkit-flex-flow: row nowrap;\n  -webkit-align-items: center;\n  -webkit-align-content: center;\n\n  list-style-type: none;\n  line-height: 35px;\n  border-bottom: 2px solid whitesmoke;\n  padding: 0 10px;\n  font-size: 14px;\n  font-weight: bold;\n  -webkit-box-flex: 0;\n  -webkit-flex: 0 1 auto;\n      -ms-flex: 0 1 auto;\n          flex: 0 1 auto;\n}\n\n\n.nav-tabs>li[_v-5d2ac0ac] {\n  width: 100%;\n  text-align: center;\n  vertical-align: middle;\n  cursor: pointer;\n}\n\n.nav_active[_v-5d2ac0ac] {\n  color: darkorange;\n}\n\n\n.tabs_line[_v-5d2ac0ac] {\n  display: -ms-flexbox;\n  display: -webkit-box;\n  display: flex;\n  display: -webkit-flex;\n  height: 3px;\n  margin: 0px 10px;\n  margin-top: -3px;\n  background-color: darkorange;\n  -webkit-transition: -webkit-transform .3s ease;\n  transition: -webkit-transform .3s ease;\n  transition: transform .3s ease;\n  transition: transform .3s ease, -webkit-transform .3s ease;\n  -moz-transition: transform .3s ease;/* Firefox 4 */\n  -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n  -o-transition: transform .3s ease; /* Opera */\n  width: 0px;\n  -webkit-box-flex: 0;\n  -webkit-flex: 0 1 auto;\n      -ms-flex: 0 1 auto;\n          flex: 0 1 auto;\n}\n\n.tab-content[_v-5d2ac0ac]{\n  overflow: auto;\n  -webkit-overflow-scrolling: touch;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: -webkit-box;\n  display: flex;\n  -webkit-flex: 0 1 auto;\n  -ms-flex: 0 1 auto;\n  -webkit-box-flex: 0;\n          flex: 0 1 auto;\n  margin-bottom: 10px;\n  width: 100%;\n  height: 100%;\n  -webkit-flex-flow:column nowrap;\n      -ms-flex-flow:column nowrap;\n          flex-flow:column nowrap;\n}\n", "", {"version":3,"sources":["/./src/components/Tabs.vue?5684f3ee"],"names":[],"mappings":";;AAgFA;IACA,aAAA;IACA,YAAA;CACA;;;AAGA;GACA,qBAAA;GAAA,sBAAA;GAAA,qBAAA;GAAA,cAAA;GACA,gCAAA;OAAA,4BAAA;WAAA,wBAAA;GACA,iBAAA;;CAEA;;AAEA;EACA,qBAAA;EACA,qBAAA;EAAA,cAAA;EACA,sBAAA;EACA,8BAAA;MACA,0BAAA;UACA,sBAAA;EACA,4BAAA;MACA,uBAAA;UACA,0BAAA;UAAA,oBAAA;EACA,8BAAA;MACA,2BAAA;UACA,sBAAA;EACA,0BAAA;MACA,8BAAA;;EAEA,sCAAA;EACA,8BAAA;EACA,4BAAA;EACA,8BAAA;;EAEA,sBAAA;EACA,kBAAA;EACA,oCAAA;EACA,gBAAA;EACA,gBAAA;EACA,kBAAA;EACA,oBAAA;EAAA,uBAAA;MAAA,mBAAA;UAAA,eAAA;CACA;;;AAGA;EACA,YAAA;EACA,mBAAA;EACA,uBAAA;EACA,gBAAA;CACA;;AAEA;EACA,kBAAA;CACA;;;AAGA;EACA,qBAAA;EACA,qBAAA;EAAA,cAAA;EACA,sBAAA;EACA,YAAA;EACA,iBAAA;EACA,iBAAA;EACA,6BAAA;EACA,+CAAA;EAAA,uCAAA;EAAA,+BAAA;EAAA,2DAAA;EACA,oCAAA,eAAA;EACA,uCAAA,CAAA,qBAAA;EACA,kCAAA,CAAA,WAAA;EACA,WAAA;EACA,oBAAA;EAAA,uBAAA;MAAA,mBAAA;UAAA,eAAA;CACA;;AAEA;EACA,eAAA;EACA,kCAAA;EACA,sBAAA;EACA,qBAAA;EACA,qBAAA;EAAA,cAAA;EACA,uBAAA;EACA,mBAAA;EACA,oBAAA;UAAA,eAAA;EACA,oBAAA;EACA,YAAA;EACA,aAAA;EACA,gCAAA;MAAA,4BAAA;UAAA,wBAAA;CACA","file":"Tabs.vue","sourcesContent":["<template>\r\n \r\n  <div class=\"tabs\" v-touch:swipe=\"swipeTab\" role=\"tablist\">\r\n    <div class=\"nav-tabs\">\r\n        <ul class=\"tabs_title\">\r\n            <li v-for=\"item in tabItems\"\r\n            :class=\"{'nav_active':activeIndex===$index}\" \r\n            v-touch:tap=\"switchTab($index)\" \r\n             >{{item.header}}</li>\r\n        </ul>\r\n        <div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\">\r\n        </div>\r\n    </div>\r\n      <!-- Tab panes -->\r\n     <div class=\"tab-content\" v-el:tabContent>\r\n        <slot></slot>\r\n     </div>\r\n  </div>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    ready(){\r\n        var width=  document.body.offsetWidth-20;\r\n        this.underline=width/this.tabItems.length;\r\n        var leftWidth=this.activeIndex*this.underline;\r\n        document.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n    },\r\n    props:{\r\n      effect: {\r\n        type: String,\r\n        default: 'fadein'\r\n      },\r\n      activeIndex:{\r\n        type: Number,\r\n        default: 0\r\n      }\r\n    },\r\n    data(){\r\n      return {\r\n        //当前选中的tab页面\r\n        underline:100,\r\n        tabItems:[]\r\n      }\r\n    },\r\n    methods:{\r\n      //点击tabs\r\n      switchTab(index){\r\n\r\n        this.activeIndex=index;\r\n        var leftWidth=index*this.underline;\r\n        document.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n      },\r\n      swipeTab(e){\r\n        var deltaX=e.deltaX;\r\n        var tempIndex=this.activeIndex;\r\n        if(deltaX>0){\r\n          var tempIndex=this.activeIndex-1;\r\n          if(tempIndex<0){\r\n            tempIndex=0;\r\n          }\r\n        }else{\r\n          var tabLength=this.tabItems.length-1;\r\n          if(tempIndex==tabLength){\r\n            tempIndex=tabLength;\r\n          }else{\r\n            tempIndex=this.activeIndex+1;\r\n          }\r\n        }\r\n        this.activeIndex=tempIndex;\r\n        this.switchTab(tempIndex);\r\n        // document.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+deltaX+\"px)\";\r\n      }\r\n    }\r\n  }\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" scoped>\r\n    \r\n    .tabs{\r\n        height: 100%;\r\n        width: 100%;\r\n    }\r\n\r\n\r\n    .nav-tabs{\r\n       display: flex;\r\n       flex-flow:column nowrap;\r\n       min-height: 35px;\r\n\r\n    }\r\n    \r\n    .tabs_title {\r\n      display: -ms-flexbox;\r\n      display: flex;\r\n      display: -webkit-flex;\r\n      -webkit-flex-flow: row nowrap;\r\n          -ms-flex-flow: row nowrap;\r\n              flex-flow: row nowrap;\r\n      -webkit-align-items: center;\r\n          -ms-flex-align: center;\r\n              align-items: center;\r\n      -webkit-align-content: center;\r\n          -ms-flex-line-pack: center;\r\n              align-content: center;\r\n      -ms-flex-pack: distribute;\r\n          justify-content: space-around;\r\n\r\n      -webkit-justify-content: space-around;\r\n      -webkit-flex-flow: row nowrap;\r\n      -webkit-align-items: center;\r\n      -webkit-align-content: center;\r\n\r\n      list-style-type: none;\r\n      line-height: 35px;\r\n      border-bottom: 2px solid whitesmoke;\r\n      padding: 0 10px;\r\n      font-size: 14px;\r\n      font-weight: bold;\r\n      flex: 0 1 auto;\r\n    }\r\n    \r\n    \r\n    .nav-tabs>li {\r\n      width: 100%;\r\n      text-align: center;\r\n      vertical-align: middle;\r\n      cursor: pointer;\r\n    }\r\n    \r\n    .nav_active {\r\n      color: darkorange;\r\n    }\r\n\r\n    \r\n    .tabs_line {\r\n      display: -ms-flexbox;\r\n      display: flex;\r\n      display: -webkit-flex;\r\n      height: 3px;\r\n      margin: 0px 10px;\r\n      margin-top: -3px;\r\n      background-color: darkorange;\r\n      transition: transform .3s ease;\r\n      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n      -o-transition: transform .3s ease; /* Opera */\r\n      width: 0px;\r\n      flex: 0 1 auto;\r\n    }\r\n\r\n    .tab-content{\r\n      overflow: auto;\r\n      -webkit-overflow-scrolling: touch;\r\n      display: -webkit-flex;\r\n      display: -ms-flexbox;\r\n      display: flex;\r\n      -webkit-flex: 0 1 auto;\r\n      -ms-flex: 0 1 auto;\r\n      flex: 0 1 auto;\r\n      margin-bottom: 10px;\r\n      width: 100%;\r\n      height: 100%;\r\n      flex-flow:column nowrap;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 33 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	// <template>
+	
+	//   <div class="tabs" v-touch:swipe="swipeTab" role="tablist">
+	//     <div class="nav-tabs">
+	//         <ul class="tabs_title">
+	//             <li v-for="item in tabItems"
+	//             :class="{'nav_active':activeIndex===$index}"
+	//             v-touch:tap="switchTab($index)"
+	//              >{{item.header}}</li>
+	//         </ul>
+	//         <div class="tabs_line" v-bind:style="{ width:underline+ 'px' }">
+	//         </div>
+	//     </div>
+	//       <!-- Tab panes -->
+	//      <div class="tab-content" v-el:tabContent>
+	//         <slot></slot>
+	//      </div>
+	//   </div>
+	// </template>
+	
+	// <script>
+	exports.default = {
+	  ready: function ready() {
+	    var width = document.body.offsetWidth - 20;
+	    this.underline = width / this.tabItems.length;
+	    var leftWidth = this.activeIndex * this.underline;
+	    document.querySelectorAll('.tabs_line')[0].style.transform = "translateX(" + leftWidth + "px)";
+	  },
+	
+	  props: {
+	    effect: {
+	      type: String,
+	      default: 'fadein'
+	    },
+	    activeIndex: {
+	      type: Number,
+	      default: 0
+	    }
+	  },
+	  data: function data() {
+	    return {
+	      //当前选中的tab页面
+	      underline: 100,
+	      tabItems: []
+	    };
+	  },
+	
+	  methods: {
+	    //点击tabs
+	
+	    switchTab: function switchTab(index) {
+	
+	      this.activeIndex = index;
+	      var leftWidth = index * this.underline;
+	      document.querySelectorAll('.tabs_line')[0].style.transform = "translateX(" + leftWidth + "px)";
+	    },
+	    swipeTab: function swipeTab(e) {
+	      var deltaX = e.deltaX;
+	      var tempIndex = this.activeIndex;
+	      if (deltaX > 0) {
+	        var tempIndex = this.activeIndex - 1;
+	        if (tempIndex < 0) {
+	          tempIndex = 0;
+	        }
+	      } else {
+	        var tabLength = this.tabItems.length - 1;
+	        if (tempIndex == tabLength) {
+	          tempIndex = tabLength;
+	        } else {
+	          tempIndex = this.activeIndex + 1;
+	        }
+	      }
+	      this.activeIndex = tempIndex;
+	      this.switchTab(tempIndex);
+	      // document.querySelectorAll('.tabs_line')[0].style.transform="translateX("+deltaX+"px)";
+	    }
+	  }
+	};
+	// </script>
+
+	// <style type="text/css" scoped>
+
+	//     .tabs{
+	//         height: 100%;
+	//         width: 100%;
+	//     }
+
+	//     .nav-tabs{
+	//        display: flex;
+	//        flex-flow:column nowrap;
+	//        min-height: 35px;
+
+	//     }
+
+	//     .tabs_title {
+	//       display: -ms-flexbox;
+	//       display: flex;
+	//       display: -webkit-flex;
+	//       -webkit-flex-flow: row nowrap;
+	//           -ms-flex-flow: row nowrap;
+	//               flex-flow: row nowrap;
+	//       -webkit-align-items: center;
+	//           -ms-flex-align: center;
+	//               align-items: center;
+	//       -webkit-align-content: center;
+	//           -ms-flex-line-pack: center;
+	//               align-content: center;
+	//       -ms-flex-pack: distribute;
+	//           justify-content: space-around;
+
+	//       -webkit-justify-content: space-around;
+	//       -webkit-flex-flow: row nowrap;
+	//       -webkit-align-items: center;
+	//       -webkit-align-content: center;
+
+	//       list-style-type: none;
+	//       line-height: 35px;
+	//       border-bottom: 2px solid whitesmoke;
+	//       padding: 0 10px;
+	//       font-size: 14px;
+	//       font-weight: bold;
+	//       flex: 0 1 auto;
+	//     }
+
+	//     .nav-tabs>li {
+	//       width: 100%;
+	//       text-align: center;
+	//       vertical-align: middle;
+	//       cursor: pointer;
+	//     }
+
+	//     .nav_active {
+	//       color: darkorange;
+	//     }
+
+	//     .tabs_line {
+	//       display: -ms-flexbox;
+	//       display: flex;
+	//       display: -webkit-flex;
+	//       height: 3px;
+	//       margin: 0px 10px;
+	//       margin-top: -3px;
+	//       background-color: darkorange;
+	//       transition: transform .3s ease;
+	//       -moz-transition: transform .3s ease;/* Firefox 4 */
+	//       -webkit-transition: transform .3s ease; /* Safari 和 Chrome */
+	//       -o-transition: transform .3s ease; /* Opera */
+	//       width: 0px;
+	//       flex: 0 1 auto;
+	//     }
+
+	//     .tab-content{
+	//       overflow: auto;
+	//       -webkit-overflow-scrolling: touch;
+	//       display: -webkit-flex;
+	//       display: -ms-flexbox;
+	//       display: flex;
+	//       -webkit-flex: 0 1 auto;
+	//       -ms-flex: 0 1 auto;
+	//       flex: 0 1 auto;
+	//       margin-bottom: 10px;
+	//       width: 100%;
+	//       height: 100%;
+	//       flex-flow:column nowrap;
+	//     }
+	// </style>
+	/* generated by vue-loader */
+
+/***/ },
+/* 34 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\n<div class=\"tabs\" v-touch:swipe=\"swipeTab\" role=\"tablist\" _v-5d2ac0ac=\"\">\n  <div class=\"nav-tabs\" _v-5d2ac0ac=\"\">\n      <ul class=\"tabs_title\" _v-5d2ac0ac=\"\">\n          <li v-for=\"item in tabItems\" :class=\"{'nav_active':activeIndex===$index}\" v-touch:tap=\"switchTab($index)\" _v-5d2ac0ac=\"\">{{item.header}}</li>\n      </ul>\n      <div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\" _v-5d2ac0ac=\"\">\n      </div>\n  </div>\n    <!-- Tab panes -->\n   <div class=\"tab-content\" v-el:tabcontent=\"\" _v-5d2ac0ac=\"\">\n      <slot _v-5d2ac0ac=\"\"></slot>\n   </div>\n</div>\n";
+
+/***/ },
 /* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -13387,7 +13799,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Loading.vue"
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Tab.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -13411,8 +13823,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-33df34c0&file=Loading.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Loading.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-33df34c0&file=Loading.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Loading.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-48b39499&file=Tab.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tab.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-48b39499&file=Tab.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tab.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -13430,13 +13842,155 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\t\n\t.modal[_v-33df34c0]{\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -webkit-flex;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n        -webkit-flex-flow: row nowrap;\n            -ms-flex-flow: row nowrap;\n                flex-flow: row nowrap;\n        -webkit-box-pack: center;\n        -webkit-justify-content: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        height:100%;\n        width: 100%;\n        -webkit-box-align:  center;\n        -webkit-align-items:  center;\n            -ms-flex-align:  center;\n                align-items:  center;\n        position: absolute;\n        /*visibility: hidden;*/\n        left: 0;\n        top: 0;\n        z-index: 100;\n        background-color: rgba(153,153,153,0.5);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */\n\t}\n\n\n\n\t   .spinner[_v-33df34c0] {\n            width: 100px;\n            height: 60px;\n            font-size: 10px;\n        }\n        \n        .spinner > div[_v-33df34c0] {\n            background-color: limegreen;\n            height: 100%;\n            width: 6px;\n            display: inline-block;\n            -webkit-animation: stretchdelay 1.2s infinite ease-in-out;\n            animation: stretchdelay 1.2s infinite ease-in-out;\n        }\n        \n        .spinner .spinnerBar2[_v-33df34c0] {\n            -webkit-animation-delay: -1.1s;\n            animation-delay: -1.1s;\n        }\n        \n        .spinner .spinnerBar3[_v-33df34c0] {\n            -webkit-animation-delay: -1.0s;\n            animation-delay: -1.0s;\n        }\n        \n        .spinner .spinnerBar4[_v-33df34c0] {\n            -webkit-animation-delay: -0.9s;\n            animation-delay: -0.9s;\n        }\n        \n        .spinner .spinnerBar5[_v-33df34c0] {\n            -webkit-animation-delay: -0.8s;\n            animation-delay: -0.8s;\n        }\n        \n        @-webkit-keyframes stretchdelay {\n            0%,\n            40%,\n            100% {\n                -webkit-transform: scaleY(0.4)\n            }\n            20% {\n                -webkit-transform: scaleY(1.0)\n            }\n        }\n        \n        @keyframes stretchdelay {\n            0%,\n            40%,\n            100% {\n                transform: scaleY(0.4);\n                -webkit-transform: scaleY(0.4);\n            }\n            20% {\n                transform: scaleY(1.0);\n                -webkit-transform: scaleY(1.0);\n            }\n        }\n\n", "", {"version":3,"sources":["/./src/components/Loading.vue?68dc5e32"],"names":[],"mappings":";;CAiCA;EACA,qBAAA;EAAA,sBAAA;EAAA,qBAAA;EAAA,cAAA;QACA,8BAAA;YAAA,0BAAA;gBAAA,sBAAA;QACA,yBAAA;QAAA,gCAAA;YAAA,sBAAA;gBAAA,wBAAA;QACA,YAAA;QACA,YAAA;QACA,2BAAA;QAAA,6BAAA;YAAA,wBAAA;gBAAA,qBAAA;QACA,mBAAA;QACA,uBAAA;QACA,QAAA;QACA,OAAA;QACA,aAAA;QACA,wCAAA,0CAAA;EACA;;;;IAIA;YACA,aAAA;YACA,aAAA;YACA,gBAAA;SACA;;QAEA;YACA,4BAAA;YACA,aAAA;YACA,WAAA;YACA,sBAAA;YACA,0DAAA;YACA,kDAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA;;;gBAGA,8BAAA;aACA;YACA;gBACA,8BAAA;aACA;SACA;;QAEA;YACA;;;gBAGA,uBAAA;gBACA,+BAAA;aACA;YACA;gBACA,uBAAA;gBACA,+BAAA;aACA;SACA","file":"Loading.vue","sourcesContent":["<template>\r\n\t<div class=\"modal\" v-if=\"loading\">\r\n        <div class=\"spinner\">\r\n            <div class=\"spinnerBar1\"></div>\r\n            <div class=\"spinnerBar2\"></div>\r\n            <div class=\"spinnerBar3\"></div>\r\n            <div class=\"spinnerBar4\"></div>\r\n            <div class=\"spinnerBar5\"></div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n        created(){\r\n            console.log(\"loading is created\")\r\n            console.log(this.loading);\r\n        },\r\n\t\tprops:{\r\n\t\t\tloading:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" scoped>\r\n\t\r\n\t.modal{\r\n\t\tdisplay: flex;\r\n        flex-flow: row nowrap;\r\n        justify-content: center;\r\n        height:100%;\r\n        width: 100%;\r\n        align-items:  center;\r\n        position: absolute;\r\n        /*visibility: hidden;*/\r\n        left: 0;\r\n        top: 0;\r\n        z-index: 100;\r\n        background-color: rgba(153,153,153,0.5);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */\r\n\t}\r\n\r\n\r\n\r\n\t   .spinner {\r\n            width: 100px;\r\n            height: 60px;\r\n            font-size: 10px;\r\n        }\r\n        \r\n        .spinner > div {\r\n            background-color: limegreen;\r\n            height: 100%;\r\n            width: 6px;\r\n            display: inline-block;\r\n            -webkit-animation: stretchdelay 1.2s infinite ease-in-out;\r\n            animation: stretchdelay 1.2s infinite ease-in-out;\r\n        }\r\n        \r\n        .spinner .spinnerBar2 {\r\n            -webkit-animation-delay: -1.1s;\r\n            animation-delay: -1.1s;\r\n        }\r\n        \r\n        .spinner .spinnerBar3 {\r\n            -webkit-animation-delay: -1.0s;\r\n            animation-delay: -1.0s;\r\n        }\r\n        \r\n        .spinner .spinnerBar4 {\r\n            -webkit-animation-delay: -0.9s;\r\n            animation-delay: -0.9s;\r\n        }\r\n        \r\n        .spinner .spinnerBar5 {\r\n            -webkit-animation-delay: -0.8s;\r\n            animation-delay: -0.8s;\r\n        }\r\n        \r\n        @-webkit-keyframes stretchdelay {\r\n            0%,\r\n            40%,\r\n            100% {\r\n                -webkit-transform: scaleY(0.4)\r\n            }\r\n            20% {\r\n                -webkit-transform: scaleY(1.0)\r\n            }\r\n        }\r\n        \r\n        @keyframes stretchdelay {\r\n            0%,\r\n            40%,\r\n            100% {\r\n                transform: scaleY(0.4);\r\n                -webkit-transform: scaleY(0.4);\r\n            }\r\n            20% {\r\n                transform: scaleY(1.0);\r\n                -webkit-transform: scaleY(1.0);\r\n            }\r\n        }\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.tab-content > .tab-pane[_v-48b39499] {\n  display: block;\n}\n", "", {"version":3,"sources":["/./src/components/Tab.vue?b5318af6"],"names":[],"mappings":";AA0DA;EACA,eAAA;CACA","file":"Tab.vue","sourcesContent":["<template>\r\n    <div role=\"tabpanel\" class=\"tab-pane\"\r\n        v-bind:class=\"{hide:!show}\"\r\n        v-show=\"show\"\r\n        :transition=\"transition\"\r\n    >\r\n    <slot></slot>\r\n  </div>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    props: {\r\n      header: {\r\n        type: String\r\n      },\r\n      disabled: {\r\n        type: Boolean,\r\n        default: false\r\n      }\r\n    },\r\n    data() {\r\n      return {\r\n        index: 0,\r\n        show: false\r\n      }\r\n    },\r\n    computed: {\r\n      show() {\r\n        return (this.$parent.activeIndex == this.index);\r\n      },\r\n      transition() {\r\n        return this.$parent.effect\r\n      }\r\n    },\r\n    created() {\r\n       console.log(\"进入tabItem created\")\r\n      \r\n        this.$parent.tabItems.push({\r\n          header: this.header,\r\n          disabled: this.disabled\r\n        })\r\n    },\r\n    ready() {\r\n       console.log(\"进入tabItem ready\")\r\n        for (var c in this.$parent.$children)\r\n        {\r\n            if (this.$parent.$children[c].$el == this.$el)\r\n            {\r\n                this.index= c;\r\n                break;\r\n            }\r\n        }\r\n    }\r\n  }\r\n</script>\r\n\r\n<style scoped>\r\n  .tab-content > .tab-pane {\r\n    display: block;\r\n  }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
 /* 38 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	// <template>
+	//     <div role="tabpanel" class="tab-pane"
+	//         v-bind:class="{hide:!show}"
+	//         v-show="show"
+	//         :transition="transition"
+	//     >
+	//     <slot></slot>
+	//   </div>
+	// </template>
+	
+	// <script>
+	exports.default = {
+	  props: {
+	    header: {
+	      type: String
+	    },
+	    disabled: {
+	      type: Boolean,
+	      default: false
+	    }
+	  },
+	  data: function data() {
+	    return {
+	      index: 0,
+	      show: false
+	    };
+	  },
+	
+	  computed: {
+	    show: function show() {
+	      return this.$parent.activeIndex == this.index;
+	    },
+	    transition: function transition() {
+	      return this.$parent.effect;
+	    }
+	  },
+	  created: function created() {
+	    console.log("进入tabItem created");
+	
+	    this.$parent.tabItems.push({
+	      header: this.header,
+	      disabled: this.disabled
+	    });
+	  },
+	  ready: function ready() {
+	    console.log("进入tabItem ready");
+	    for (var c in this.$parent.$children) {
+	      if (this.$parent.$children[c].$el == this.$el) {
+	        this.index = c;
+	        break;
+	      }
+	    }
+	  }
+	};
+	// </script>
+
+	// <style scoped>
+	//   .tab-content > .tab-pane {
+	//     display: block;
+	//   }
+	// </style>
+
+	/* generated by vue-loader */
+
+/***/ },
+/* 39 */
+/***/ function(module, exports) {
+
+	module.exports = "\n  <div role=\"tabpanel\" class=\"tab-pane\" v-bind:class=\"{hide:!show}\" v-show=\"show\" :transition=\"transition\" _v-48b39499=\"\">\n  <slot _v-48b39499=\"\"></slot>\n</div>\n";
+
+/***/ },
+/* 40 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(41)
+	__vue_script__ = __webpack_require__(43)
+	__vue_template__ = __webpack_require__(44)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Loading.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(42);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-33df34c0&file=Loading.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Loading.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-33df34c0&file=Loading.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Loading.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 42 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\t\n\t.modal[_v-33df34c0]{\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -webkit-flex;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n        -webkit-flex-flow: row nowrap;\n            -ms-flex-flow: row nowrap;\n                flex-flow: row nowrap;\n        -webkit-box-pack: center;\n        -webkit-justify-content: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        height:100%;\n        width: 100%;\n        -webkit-box-align:  center;\n        -webkit-align-items:  center;\n            -ms-flex-align:  center;\n                align-items:  center;\n        position: absolute;\n        /*visibility: hidden;*/\n        left: 0;\n        top: 0;\n        z-index: 100;\n        background-color: rgba(153,153,153,0.5);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */\n\t}\n\n\n\n\t   .spinner[_v-33df34c0] {\n            width: 100px;\n            height: 60px;\n            font-size: 10px;\n        }\n        \n        .spinner > div[_v-33df34c0] {\n            background-color: limegreen;\n            height: 100%;\n            width: 6px;\n            display: inline-block;\n            -webkit-animation: stretchdelay 1.2s infinite ease-in-out;\n            animation: stretchdelay 1.2s infinite ease-in-out;\n        }\n        \n        .spinner .spinnerBar2[_v-33df34c0] {\n            -webkit-animation-delay: -1.1s;\n            animation-delay: -1.1s;\n        }\n        \n        .spinner .spinnerBar3[_v-33df34c0] {\n            -webkit-animation-delay: -1.0s;\n            animation-delay: -1.0s;\n        }\n        \n        .spinner .spinnerBar4[_v-33df34c0] {\n            -webkit-animation-delay: -0.9s;\n            animation-delay: -0.9s;\n        }\n        \n        .spinner .spinnerBar5[_v-33df34c0] {\n            -webkit-animation-delay: -0.8s;\n            animation-delay: -0.8s;\n        }\n        \n        @-webkit-keyframes stretchdelay {\n            0%,\n            40%,\n            100% {\n                -webkit-transform: scaleY(0.4)\n            }\n            20% {\n                -webkit-transform: scaleY(1.0)\n            }\n        }\n        \n        @keyframes stretchdelay {\n            0%,\n            40%,\n            100% {\n                transform: scaleY(0.4);\n                -webkit-transform: scaleY(0.4);\n            }\n            20% {\n                transform: scaleY(1.0);\n                -webkit-transform: scaleY(1.0);\n            }\n        }\n\n", "", {"version":3,"sources":["/./src/components/Loading.vue?68dc5e32"],"names":[],"mappings":";;CAiCA;EACA,qBAAA;EAAA,sBAAA;EAAA,qBAAA;EAAA,cAAA;QACA,8BAAA;YAAA,0BAAA;gBAAA,sBAAA;QACA,yBAAA;QAAA,gCAAA;YAAA,sBAAA;gBAAA,wBAAA;QACA,YAAA;QACA,YAAA;QACA,2BAAA;QAAA,6BAAA;YAAA,wBAAA;gBAAA,qBAAA;QACA,mBAAA;QACA,uBAAA;QACA,QAAA;QACA,OAAA;QACA,aAAA;QACA,wCAAA,0CAAA;EACA;;;;IAIA;YACA,aAAA;YACA,aAAA;YACA,gBAAA;SACA;;QAEA;YACA,4BAAA;YACA,aAAA;YACA,WAAA;YACA,sBAAA;YACA,0DAAA;YACA,kDAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA,+BAAA;YACA,uBAAA;SACA;;QAEA;YACA;;;gBAGA,8BAAA;aACA;YACA;gBACA,8BAAA;aACA;SACA;;QAEA;YACA;;;gBAGA,uBAAA;gBACA,+BAAA;aACA;YACA;gBACA,uBAAA;gBACA,+BAAA;aACA;SACA","file":"Loading.vue","sourcesContent":["<template>\r\n\t<div class=\"modal\" v-if=\"loading\">\r\n        <div class=\"spinner\">\r\n            <div class=\"spinnerBar1\"></div>\r\n            <div class=\"spinnerBar2\"></div>\r\n            <div class=\"spinnerBar3\"></div>\r\n            <div class=\"spinnerBar4\"></div>\r\n            <div class=\"spinnerBar5\"></div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n        created(){\r\n            console.log(\"loading is created\")\r\n            console.log(this.loading);\r\n        },\r\n\t\tprops:{\r\n\t\t\tloading:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" scoped>\r\n\t\r\n\t.modal{\r\n\t\tdisplay: flex;\r\n        flex-flow: row nowrap;\r\n        justify-content: center;\r\n        height:100%;\r\n        width: 100%;\r\n        align-items:  center;\r\n        position: absolute;\r\n        /*visibility: hidden;*/\r\n        left: 0;\r\n        top: 0;\r\n        z-index: 100;\r\n        background-color: rgba(153,153,153,0.5);/* IE9、标准浏览器、IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂 */\r\n\t}\r\n\r\n\r\n\r\n\t   .spinner {\r\n            width: 100px;\r\n            height: 60px;\r\n            font-size: 10px;\r\n        }\r\n        \r\n        .spinner > div {\r\n            background-color: limegreen;\r\n            height: 100%;\r\n            width: 6px;\r\n            display: inline-block;\r\n            -webkit-animation: stretchdelay 1.2s infinite ease-in-out;\r\n            animation: stretchdelay 1.2s infinite ease-in-out;\r\n        }\r\n        \r\n        .spinner .spinnerBar2 {\r\n            -webkit-animation-delay: -1.1s;\r\n            animation-delay: -1.1s;\r\n        }\r\n        \r\n        .spinner .spinnerBar3 {\r\n            -webkit-animation-delay: -1.0s;\r\n            animation-delay: -1.0s;\r\n        }\r\n        \r\n        .spinner .spinnerBar4 {\r\n            -webkit-animation-delay: -0.9s;\r\n            animation-delay: -0.9s;\r\n        }\r\n        \r\n        .spinner .spinnerBar5 {\r\n            -webkit-animation-delay: -0.8s;\r\n            animation-delay: -0.8s;\r\n        }\r\n        \r\n        @-webkit-keyframes stretchdelay {\r\n            0%,\r\n            40%,\r\n            100% {\r\n                -webkit-transform: scaleY(0.4)\r\n            }\r\n            20% {\r\n                -webkit-transform: scaleY(1.0)\r\n            }\r\n        }\r\n        \r\n        @keyframes stretchdelay {\r\n            0%,\r\n            40%,\r\n            100% {\r\n                transform: scaleY(0.4);\r\n                -webkit-transform: scaleY(0.4);\r\n            }\r\n            20% {\r\n                transform: scaleY(1.0);\r\n                -webkit-transform: scaleY(1.0);\r\n            }\r\n        }\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 43 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -13553,29 +14107,47 @@
 	// </style>
 
 /***/ },
-/* 39 */
+/* 44 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\t<div class=\"modal\" v-if=\"loading\" _v-33df34c0=\"\">\n        <div class=\"spinner\" _v-33df34c0=\"\">\n            <div class=\"spinnerBar1\" _v-33df34c0=\"\"></div>\n            <div class=\"spinnerBar2\" _v-33df34c0=\"\"></div>\n            <div class=\"spinnerBar3\" _v-33df34c0=\"\"></div>\n            <div class=\"spinnerBar4\" _v-33df34c0=\"\"></div>\n            <div class=\"spinnerBar5\" _v-33df34c0=\"\"></div>\n        </div>\n    </div>\n";
 
 /***/ },
-/* 40 */,
-/* 41 */
+/* 45 */
 /***/ function(module, exports) {
 
-	var __vue_script__, __vue_template__
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-
+	module.exports = "\n\t<div class=\"page\" _v-ecc3dad2=\"\">\n\t\t<toolbar :text=\"title\" _v-ecc3dad2=\"\">\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\" _v-ecc3dad2=\"\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\" _v-ecc3dad2=\"\"></span>\n\t\t</toolbar>\n\t\t<tabs :active-index.sync=\"index\" _v-ecc3dad2=\"\">\n\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" _v-ecc3dad2=\"\">\n\t\t\t\t<ul class=\"contentList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t<li v-for=\"subItem in item.infoList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t<div class=\"tab_info\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t<div class=\"left\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t<img src=\"xxxHTMLLINKxxx0.58825656189583240.09877799241803586xxx\" alt=\"\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t<div class=\"content\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布时间:{{subItem.time}}</span>\n\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布人:{{subItem.subUser}}</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t{{subItem.content}}\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t<i class=\"icon-chevron-right\" _v-ecc3dad2=\"\"></i>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</tab>\n\t\t</tabs>\n\t</div>\n\t\t\n\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" _v-ecc3dad2=\"\">\n\t\t\n\t</sidebar>\n\n\t<loading :loading=\"isload\" _v-ecc3dad2=\"\"></loading>\n\n";
 
 /***/ },
-/* 42 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(43)
-	__vue_template__ = __webpack_require__(49)
+	__webpack_require__(114)
+	__vue_script__ = __webpack_require__(116)
+	__vue_template__ = __webpack_require__(117)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\views\\Project.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 47 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(48)
+	__vue_template__ = __webpack_require__(54)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -13592,7 +14164,7 @@
 	})()}
 
 /***/ },
-/* 43 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13605,7 +14177,7 @@
 	
 	var _ToolBar2 = _interopRequireDefault(_ToolBar);
 	
-	var _Calendar = __webpack_require__(44);
+	var _Calendar = __webpack_require__(49);
 	
 	var _Calendar2 = _interopRequireDefault(_Calendar);
 	
@@ -13646,13 +14218,13 @@
 	/* generated by vue-loader */
 
 /***/ },
-/* 44 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(45)
-	__vue_script__ = __webpack_require__(47)
-	__vue_template__ = __webpack_require__(48)
+	__webpack_require__(50)
+	__vue_script__ = __webpack_require__(52)
+	__vue_template__ = __webpack_require__(53)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -13669,13 +14241,13 @@
 	})()}
 
 /***/ },
-/* 45 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(46);
+	var content = __webpack_require__(51);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -13695,7 +14267,7 @@
 	}
 
 /***/ },
-/* 46 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -13709,7 +14281,7 @@
 
 
 /***/ },
-/* 47 */
+/* 52 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14240,25 +14812,25 @@
 	// </style>
 
 /***/ },
-/* 48 */
+/* 53 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"calendar\" _v-3d09c52c=\"\">\n    <div class=\"calenarDayView\" v-show=\"showDay\" _v-3d09c52c=\"\">\n        <div class=\"calendar-header\" _v-3d09c52c=\"\">\n            <div class=\"calendar-title\" _v-3d09c52c=\"\">\n                <div _v-3d09c52c=\"\">\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\" _v-3d09c52c=\"\"></span>\n                    <span class=\"icon-angle-left\" style=\"margin-left:20px;width:50px;\" @click=\"monthClick(0)\" _v-3d09c52c=\"\"></span>\n                </div>\n                <p _v-3d09c52c=\"\">\n                    <span @click=\"showYearView\" _v-3d09c52c=\"\">{{curYear}}年</span>\n                    <span @click=\"showMonthView\" _v-3d09c52c=\"\">{{curMonth}}月</span>\n                </p>\n                <div _v-3d09c52c=\"\">\n                     <span class=\"icon-angle-right\" style=\"margin-right:20px;\" @click=\"monthClick(1)\" _v-3d09c52c=\"\"></span>\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\" _v-3d09c52c=\"\"></span>\n                </div>\n            </div>\n            <div class=\"calendarDay-week\" _v-3d09c52c=\"\">\n                <ul _v-3d09c52c=\"\">\n                    <li v-for=\"(index,item) in weekRange\" :class=\"{'restDay':index==5||index==6}\" _v-3d09c52c=\"\">{{item}}</li>\n                </ul>\n            </div>\n        </div>\n        <div class=\"calendar-range\" v-touch:swipe=\"swipeMonth\" _v-3d09c52c=\"\">\n            <ul _v-3d09c52c=\"\">\n                <li v-for=\"item in dateRange\" class=\"calendarDay\" v-on:click=\"selectDay(item.day)\" _v-3d09c52c=\"\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('D',item.day),'restDay':item.isRestDay,'curMonth':item.isCur}\" _v-3d09c52c=\"\">{{item.day}}</span>\n                </li>\n            </ul>\n        </div>\n        <div class=\"calendarDay-footer\" _v-3d09c52c=\"\">\n            <span @click=\"today\" _v-3d09c52c=\"\">今天</span>\n        </div>\n    </div>\n    <div class=\"calendarMonthView\" v-show=\"showMonth\" _v-3d09c52c=\"\">\n        <div class=\"calendar-header\" _v-3d09c52c=\"\">\n            <div class=\"calendar-title\" _v-3d09c52c=\"\">\n                <div _v-3d09c52c=\"\">\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\" _v-3d09c52c=\"\"></span>\n                </div>\n                <p _v-3d09c52c=\"\">\n                    <span @click=\"showYearView\" _v-3d09c52c=\"\">{{curYear}}年</span>\n                </p>\n                <div _v-3d09c52c=\"\">\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\" _v-3d09c52c=\"\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"calendar-range\" _v-3d09c52c=\"\">\n            <ul _v-3d09c52c=\"\">\n                <li v-for=\"item in monthRange\" class=\"calendarMonth\" v-on:click=\"selectMonth(item.id)\" _v-3d09c52c=\"\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('M',item.id)}\" _v-3d09c52c=\"\">{{item.text}}</span>\n                </li>\n            </ul>\n        </div>\n    </div>\n    <div class=\"calendarYearView\" v-show=\"showYear\" _v-3d09c52c=\"\">\n        <div class=\"calendar-header\" _v-3d09c52c=\"\">\n            <div class=\"calendar-title\" _v-3d09c52c=\"\">\n                <div _v-3d09c52c=\"\">\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\" _v-3d09c52c=\"\"></span>\n                </div>\n                <p _v-3d09c52c=\"\">\n                    <span @click=\"showYearView\" _v-3d09c52c=\"\">{{yearTitle}}</span>\n                </p>\n                <div _v-3d09c52c=\"\">\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\" _v-3d09c52c=\"\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"calendar-range\" _v-3d09c52c=\"\">\n            <ul _v-3d09c52c=\"\">\n                <li v-for=\"item in yearRange\" class=\"calendarMonth\" v-on:click=\"selectYear(item)\" _v-3d09c52c=\"\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('Y',item)}\" _v-3d09c52c=\"\">{{item}}</span>\n                </li>\n            </ul>\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
-/* 49 */
+/* 54 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<toolbar :text=\"title\">\n\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back()\"></span>\n\t<span slot=\"rightBtn\"></span>\n</toolbar>\n<calendar v-on:item-click=\"selectDay\"></calendar>\n";
 
 /***/ },
-/* 50 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(51)
-	__vue_script__ = __webpack_require__(53)
-	__vue_template__ = __webpack_require__(64)
+	__webpack_require__(56)
+	__vue_script__ = __webpack_require__(58)
+	__vue_template__ = __webpack_require__(69)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14275,13 +14847,13 @@
 	})()}
 
 /***/ },
-/* 51 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(52);
+	var content = __webpack_require__(57);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -14301,7 +14873,7 @@
 	}
 
 /***/ },
-/* 52 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -14315,7 +14887,7 @@
 
 
 /***/ },
-/* 53 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14328,15 +14900,15 @@
 	
 	var _ToolBar2 = _interopRequireDefault(_ToolBar);
 	
-	var _Loading = __webpack_require__(35);
+	var _Loading = __webpack_require__(40);
 	
 	var _Loading2 = _interopRequireDefault(_Loading);
 	
-	var _Dialog = __webpack_require__(54);
+	var _Dialog = __webpack_require__(59);
 	
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 	
-	var _DatePicker = __webpack_require__(59);
+	var _DatePicker = __webpack_require__(64);
 	
 	var _DatePicker2 = _interopRequireDefault(_DatePicker);
 	
@@ -14417,13 +14989,13 @@
 	// </style>
 
 /***/ },
-/* 54 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(55)
-	__vue_script__ = __webpack_require__(57)
-	__vue_template__ = __webpack_require__(58)
+	__webpack_require__(60)
+	__vue_script__ = __webpack_require__(62)
+	__vue_template__ = __webpack_require__(63)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14440,13 +15012,13 @@
 	})()}
 
 /***/ },
-/* 55 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(56);
+	var content = __webpack_require__(61);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -14466,7 +15038,7 @@
 	}
 
 /***/ },
-/* 56 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -14480,7 +15052,7 @@
 
 
 /***/ },
-/* 57 */
+/* 62 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14638,19 +15210,19 @@
 	// </style>
 
 /***/ },
-/* 58 */
+/* 63 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\t<div class=\"dlg-modal\" v-if=\"show\" _v-12989f74=\"\">\n        <div class=\"dlg-content fade\" :class=\"{'in':show}\" :style=\"{width:dlgWidth+'px'}\" _v-12989f74=\"\">\n            <div class=\"dlg-header\" _v-12989f74=\"\">\n                <span _v-12989f74=\"\">{{title}}</span>\n            </div>\n            <div class=\"dlg-body\" _v-12989f74=\"\">\n                <slot name=\"dlg-body\" _v-12989f74=\"\"></slot>\n            </div>\n            <div class=\"dlg-footer\" _v-12989f74=\"\">\n                <span @click=\"confirm\" :style=\"{width:dlgWidth/2 +'px'}\" _v-12989f74=\"\"><i class=\"icon-ok\" _v-12989f74=\"\"></i>确定</span>\n                <span @click=\"close\" :style=\"{width:dlgWidth/2 +'px'}\" _v-12989f74=\"\"><i class=\"icon-remove\" _v-12989f74=\"\"></i>关闭</span>\n            </div>\n        </div>\n    </div>\n";
 
 /***/ },
-/* 59 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(60)
-	__vue_script__ = __webpack_require__(62)
-	__vue_template__ = __webpack_require__(63)
+	__webpack_require__(65)
+	__vue_script__ = __webpack_require__(67)
+	__vue_template__ = __webpack_require__(68)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14667,13 +15239,13 @@
 	})()}
 
 /***/ },
-/* 60 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(61);
+	var content = __webpack_require__(66);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -14693,7 +15265,7 @@
 	}
 
 /***/ },
-/* 61 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -14707,7 +15279,7 @@
 
 
 /***/ },
-/* 62 */
+/* 67 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15000,19 +15572,19 @@
 	// </style>
 
 /***/ },
-/* 63 */
+/* 68 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\n<div class=\"datepicker\" _v-e36f8ff0=\"\">\n    <section class=\"datepicker-header\" _v-e36f8ff0=\"\">\n      <div _v-e36f8ff0=\"\">年</div>\n      <div _v-e36f8ff0=\"\">月</div>\n      <div _v-e36f8ff0=\"\">日</div>\n    </section>\n    <section class=\"datepicker-body\" _v-e36f8ff0=\"\">\n        <div class=\"column datepicker-year\" _v-e36f8ff0=\"\">\n            <span class=\"datepicker-icon\" @click=\"add('Y')\" _v-e36f8ff0=\"\"><i class=\"icon-plus\" _v-e36f8ff0=\"\"></i></span>\n            <span class=\"datepicker-value\" _v-e36f8ff0=\"\">{{curYear}}</span>\n            <span class=\"datepicker-icon\" @click=\"minus('Y')\" _v-e36f8ff0=\"\"><i class=\"icon-minus\" _v-e36f8ff0=\"\"></i></span>\n        </div>\n        <div class=\"column datepicker-month\" _v-e36f8ff0=\"\">\n            <span class=\"datepicker-icon\" @click=\"add('M')\" _v-e36f8ff0=\"\"><i class=\"icon-plus\" _v-e36f8ff0=\"\"></i></span>\n            <span class=\"datepicker-value\" _v-e36f8ff0=\"\">{{curMonth&lt;10?(\"0\"+curMonth):curMonth}}</span>\n            <span class=\"datepicker-icon\" @click=\"minus('M')\" _v-e36f8ff0=\"\"><i class=\"icon-minus\" _v-e36f8ff0=\"\"></i></span>\n        </div>\n        <div class=\"column datepicker-day\" _v-e36f8ff0=\"\">\n            <span class=\"datepicker-icon\" @click=\"add('D')\" _v-e36f8ff0=\"\"><i class=\"icon-plus\" _v-e36f8ff0=\"\"></i></span>\n            <span class=\"datepicker-value\" _v-e36f8ff0=\"\">{{curDay&lt;10?(\"0\"+curDay):curDay}}</span>\n            <span class=\"datepicker-icon\" @click=\"minus('D')\" _v-e36f8ff0=\"\"><i class=\"icon-minus\" _v-e36f8ff0=\"\"></i></span>\n        </div>\n    </section> \n</div>\n  \n\n  <!--   <ul class=\"datepicker-hour\">\n        <li v-for=\"item in hourRange\">{{item}}</li>\n    </ul>\n    <ul class=\"datepicker-min\">\n        <li v-for=\"item in minRange\">{{item}}</li>\n    </ul>\n    <ul class=\"datepicker-sec\">\n        <li v-for=\"item in secRange\">{{item}}</li>\n    </ul> -->\n  \n";
 
 /***/ },
-/* 64 */
+/* 69 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<toolbar text=\"个人主页\" _v-61f407d1=\"\">\n\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back\" _v-61f407d1=\"\">返回</span>\n\t<span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"loadUserInfo\" _v-61f407d1=\"\"></span>\n</toolbar>\n<section _v-61f407d1=\"\">\n\t<input type=\"button\" @click=\"showDialog\" _v-61f407d1=\"\">\n\t<datepicker _v-61f407d1=\"\"></datepicker>\n</section>\n\n<loading :loading=\"isload\" _v-61f407d1=\"\"></loading>\n<dialog :show.sync=\"isShowDialog\" :title=\"dialogTitle\" v-on:child-confirm=\"confirm\" _v-61f407d1=\"\">\n\t<div slot=\"dlg-body\" _v-61f407d1=\"\">hahah</div>\n</dialog>\n";
 
 /***/ },
-/* 65 */
+/* 70 */
 /***/ function(module, exports) {
 
 	var __vue_script__, __vue_template__
@@ -15022,12 +15594,12 @@
 
 
 /***/ },
-/* 66 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(67)
-	__vue_template__ = __webpack_require__(68)
+	__vue_script__ = __webpack_require__(72)
+	__vue_template__ = __webpack_require__(73)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -15044,7 +15616,7 @@
 	})()}
 
 /***/ },
-/* 67 */
+/* 72 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15081,13 +15653,13 @@
 	/* generated by vue-loader */
 
 /***/ },
-/* 68 */
+/* 73 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\n<div class=\"container\">\n\t<div >\n\t\t<input type=\"text\" name=\"\">\n\t</div>\n</div>\n";
 
 /***/ },
-/* 69 */
+/* 74 */
 /***/ function(module, exports) {
 
 	var __vue_script__, __vue_template__
@@ -15097,7 +15669,7 @@
 
 
 /***/ },
-/* 70 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
@@ -15944,20 +16516,20 @@
 
 
 /***/ },
-/* 71 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _keys = __webpack_require__(72);
+	var _keys = __webpack_require__(77);
 	
 	var _keys2 = _interopRequireDefault(_keys);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var vueTouch = {};
-	var Hammer =  true ? __webpack_require__(84) : window.Hammer;
-	var gestures = ['tap', 'pan', 'pinch', 'press', 'rotate', 'swipe'];
+	var Hammer =  true ? __webpack_require__(89) : window.Hammer;
+	var gestures = ['tap', 'pan', 'pandown', 'panend', 'pinch', 'press', 'pressup', 'rotate', 'swipe'];
 	var customeEvents = {};
 	
 	vueTouch.install = function (Vue) {
@@ -16055,43 +16627,43 @@
 	module.exports = vueTouch;
 
 /***/ },
-/* 72 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(73), __esModule: true };
+	module.exports = { "default": __webpack_require__(78), __esModule: true };
 
 /***/ },
-/* 73 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(74);
-	module.exports = __webpack_require__(80).Object.keys;
+	__webpack_require__(79);
+	module.exports = __webpack_require__(85).Object.keys;
 
 /***/ },
-/* 74 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(75);
+	var toObject = __webpack_require__(80);
 	
-	__webpack_require__(77)('keys', function($keys){
+	__webpack_require__(82)('keys', function($keys){
 	  return function keys(it){
 	    return $keys(toObject(it));
 	  };
 	});
 
 /***/ },
-/* 75 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
-	var defined = __webpack_require__(76);
+	var defined = __webpack_require__(81);
 	module.exports = function(it){
 	  return Object(defined(it));
 	};
 
 /***/ },
-/* 76 */
+/* 81 */
 /***/ function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -16101,13 +16673,13 @@
 	};
 
 /***/ },
-/* 77 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(78)
-	  , core    = __webpack_require__(80)
-	  , fails   = __webpack_require__(83);
+	var $export = __webpack_require__(83)
+	  , core    = __webpack_require__(85)
+	  , fails   = __webpack_require__(88);
 	module.exports = function(KEY, exec){
 	  var fn  = (core.Object || {})[KEY] || Object[KEY]
 	    , exp = {};
@@ -16116,12 +16688,12 @@
 	};
 
 /***/ },
-/* 78 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(79)
-	  , core      = __webpack_require__(80)
-	  , ctx       = __webpack_require__(81)
+	var global    = __webpack_require__(84)
+	  , core      = __webpack_require__(85)
+	  , ctx       = __webpack_require__(86)
 	  , PROTOTYPE = 'prototype';
 	
 	var $export = function(type, name, source){
@@ -16167,7 +16739,7 @@
 	module.exports = $export;
 
 /***/ },
-/* 79 */
+/* 84 */
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -16176,18 +16748,18 @@
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
-/* 80 */
+/* 85 */
 /***/ function(module, exports) {
 
 	var core = module.exports = {version: '1.2.6'};
 	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ },
-/* 81 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(82);
+	var aFunction = __webpack_require__(87);
 	module.exports = function(fn, that, length){
 	  aFunction(fn);
 	  if(that === undefined)return fn;
@@ -16208,7 +16780,7 @@
 	};
 
 /***/ },
-/* 82 */
+/* 87 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -16217,7 +16789,7 @@
 	};
 
 /***/ },
-/* 83 */
+/* 88 */
 /***/ function(module, exports) {
 
 	module.exports = function(exec){
@@ -16229,7 +16801,7 @@
 	};
 
 /***/ },
-/* 84 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.6 - 2015-12-23
@@ -18803,7 +19375,7 @@
 
 
 /***/ },
-/* 85 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -18812,16 +19384,16 @@
 	
 	function install(Vue) {
 	
-	    var _ = __webpack_require__(86);
+	    var _ = __webpack_require__(91);
 	
 	    _.config = Vue.config;
 	    _.warning = Vue.util.warn;
 	    _.nextTick = Vue.util.nextTick;
 	
-	    Vue.url = __webpack_require__(87);
-	    Vue.http = __webpack_require__(93);
-	    Vue.resource = __webpack_require__(108);
-	    Vue.Promise = __webpack_require__(95);
+	    Vue.url = __webpack_require__(92);
+	    Vue.http = __webpack_require__(98);
+	    Vue.resource = __webpack_require__(113);
+	    Vue.Promise = __webpack_require__(100);
 	
 	    Object.defineProperties(Vue.prototype, {
 	
@@ -18862,7 +19434,7 @@
 
 
 /***/ },
-/* 86 */
+/* 91 */
 /***/ function(module, exports) {
 
 	/**
@@ -18990,14 +19562,14 @@
 
 
 /***/ },
-/* 87 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for URL templating.
 	 */
 	
-	var _ = __webpack_require__(86);
+	var _ = __webpack_require__(91);
 	var ie = document.documentMode;
 	var el = document.createElement('a');
 	
@@ -19033,10 +19605,10 @@
 	 */
 	
 	Url.transforms = [
-	    __webpack_require__(88),
-	    __webpack_require__(90),
-	    __webpack_require__(91),
-	    __webpack_require__(92)
+	    __webpack_require__(93),
+	    __webpack_require__(95),
+	    __webpack_require__(96),
+	    __webpack_require__(97)
 	];
 	
 	/**
@@ -19126,14 +19698,14 @@
 
 
 /***/ },
-/* 88 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * URL Template (RFC 6570) Transform.
 	 */
 	
-	var UrlTemplate = __webpack_require__(89);
+	var UrlTemplate = __webpack_require__(94);
 	
 	module.exports = function (options) {
 	
@@ -19148,7 +19720,7 @@
 
 
 /***/ },
-/* 89 */
+/* 94 */
 /***/ function(module, exports) {
 
 	/**
@@ -19304,14 +19876,14 @@
 
 
 /***/ },
-/* 90 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Legacy Transform.
 	 */
 	
-	var _ = __webpack_require__(86);
+	var _ = __webpack_require__(91);
 	
 	module.exports = function (options, next) {
 	
@@ -19356,14 +19928,14 @@
 
 
 /***/ },
-/* 91 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Query Parameter Transform.
 	 */
 	
-	var _ = __webpack_require__(86);
+	var _ = __webpack_require__(91);
 	
 	module.exports = function (options, next) {
 	
@@ -19386,14 +19958,14 @@
 
 
 /***/ },
-/* 92 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Root Prefix Transform.
 	 */
 	
-	var _ = __webpack_require__(86);
+	var _ = __webpack_require__(91);
 	
 	module.exports = function (options, next) {
 	
@@ -19408,17 +19980,17 @@
 
 
 /***/ },
-/* 93 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for sending network requests.
 	 */
 	
-	var _ = __webpack_require__(86);
-	var Client = __webpack_require__(94);
-	var Promise = __webpack_require__(95);
-	var interceptor = __webpack_require__(98);
+	var _ = __webpack_require__(91);
+	var Client = __webpack_require__(99);
+	var Promise = __webpack_require__(100);
+	var interceptor = __webpack_require__(103);
 	var jsonType = {'Content-Type': 'application/json'};
 	
 	function Http(url, options) {
@@ -19470,13 +20042,13 @@
 	};
 	
 	Http.interceptors = [
-	    __webpack_require__(99),
-	    __webpack_require__(100),
-	    __webpack_require__(101),
-	    __webpack_require__(103),
 	    __webpack_require__(104),
 	    __webpack_require__(105),
-	    __webpack_require__(106)
+	    __webpack_require__(106),
+	    __webpack_require__(108),
+	    __webpack_require__(109),
+	    __webpack_require__(110),
+	    __webpack_require__(111)
 	];
 	
 	Http.headers = {
@@ -19511,16 +20083,16 @@
 
 
 /***/ },
-/* 94 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Base client.
 	 */
 	
-	var _ = __webpack_require__(86);
-	var Promise = __webpack_require__(95);
-	var xhrClient = __webpack_require__(97);
+	var _ = __webpack_require__(91);
+	var Promise = __webpack_require__(100);
+	var xhrClient = __webpack_require__(102);
 	
 	module.exports = function (request) {
 	
@@ -19582,15 +20154,15 @@
 
 
 /***/ },
-/* 95 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promise adapter.
 	 */
 	
-	var _ = __webpack_require__(86);
-	var PromiseObj = window.Promise || __webpack_require__(96);
+	var _ = __webpack_require__(91);
+	var PromiseObj = window.Promise || __webpack_require__(101);
 	
 	function Promise(executor, context) {
 	
@@ -19697,14 +20269,14 @@
 
 
 /***/ },
-/* 96 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promises/A+ polyfill v1.1.4 (https://github.com/bramstein/promis)
 	 */
 	
-	var _ = __webpack_require__(86);
+	var _ = __webpack_require__(91);
 	
 	var RESOLVED = 0;
 	var REJECTED = 1;
@@ -19882,15 +20454,15 @@
 
 
 /***/ },
-/* 97 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XMLHttp client.
 	 */
 	
-	var _ = __webpack_require__(86);
-	var Promise = __webpack_require__(95);
+	var _ = __webpack_require__(91);
+	var Promise = __webpack_require__(100);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -19931,15 +20503,15 @@
 
 
 /***/ },
-/* 98 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Interceptor factory.
 	 */
 	
-	var _ = __webpack_require__(86);
-	var Promise = __webpack_require__(95);
+	var _ = __webpack_require__(91);
+	var Promise = __webpack_require__(100);
 	
 	module.exports = function (handler, vm) {
 	
@@ -19982,14 +20554,14 @@
 
 
 /***/ },
-/* 99 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Before Interceptor.
 	 */
 	
-	var _ = __webpack_require__(86);
+	var _ = __webpack_require__(91);
 	
 	module.exports = {
 	
@@ -20006,7 +20578,7 @@
 
 
 /***/ },
-/* 100 */
+/* 105 */
 /***/ function(module, exports) {
 
 	/**
@@ -20042,14 +20614,14 @@
 
 
 /***/ },
-/* 101 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP Interceptor.
 	 */
 	
-	var jsonpClient = __webpack_require__(102);
+	var jsonpClient = __webpack_require__(107);
 	
 	module.exports = {
 	
@@ -20066,15 +20638,15 @@
 
 
 /***/ },
-/* 102 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP client.
 	 */
 	
-	var _ = __webpack_require__(86);
-	var Promise = __webpack_require__(95);
+	var _ = __webpack_require__(91);
+	var Promise = __webpack_require__(100);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -20120,7 +20692,7 @@
 
 
 /***/ },
-/* 103 */
+/* 108 */
 /***/ function(module, exports) {
 
 	/**
@@ -20143,14 +20715,14 @@
 
 
 /***/ },
-/* 104 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Mime Interceptor.
 	 */
 	
-	var _ = __webpack_require__(86);
+	var _ = __webpack_require__(91);
 	
 	module.exports = {
 	
@@ -20185,14 +20757,14 @@
 
 
 /***/ },
-/* 105 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Header Interceptor.
 	 */
 	
-	var _ = __webpack_require__(86);
+	var _ = __webpack_require__(91);
 	
 	module.exports = {
 	
@@ -20217,15 +20789,15 @@
 
 
 /***/ },
-/* 106 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * CORS Interceptor.
 	 */
 	
-	var _ = __webpack_require__(86);
-	var xdrClient = __webpack_require__(107);
+	var _ = __webpack_require__(91);
+	var xdrClient = __webpack_require__(112);
 	var xhrCors = 'withCredentials' in new XMLHttpRequest();
 	var originUrl = _.url.parse(location.href);
 	
@@ -20260,15 +20832,15 @@
 
 
 /***/ },
-/* 107 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XDomain client (Internet Explorer).
 	 */
 	
-	var _ = __webpack_require__(86);
-	var Promise = __webpack_require__(95);
+	var _ = __webpack_require__(91);
+	var Promise = __webpack_require__(100);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -20303,14 +20875,14 @@
 
 
 /***/ },
-/* 108 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for interacting with RESTful services.
 	 */
 	
-	var _ = __webpack_require__(86);
+	var _ = __webpack_require__(91);
 	
 	function Resource(url, params, actions, options) {
 	
@@ -20419,16 +20991,13 @@
 
 
 /***/ },
-/* 109 */,
-/* 110 */,
-/* 111 */,
-/* 112 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(113);
+	var content = __webpack_require__(115);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -20437,8 +21006,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ecc3dad2&file=Home.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ecc3dad2&file=Home.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ba295ade&file=Project.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Project.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ba295ade&file=Project.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Project.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -20446,256 +21015,130 @@
 		// When the module is disposed, remove the <style> tags
 		module.hot.dispose(function() { update(); });
 	}
-
-/***/ },
-/* 113 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n.tabItem[_v-ecc3dad2]{\n\theight: 80px;\n\tpadding: 10px;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-flex-flow:row nowrap;\n\t    -ms-flex-flow:row nowrap;\n\t        flex-flow:row nowrap;\n\t-webkit-justify-content:space-around;\n\t    -ms-flex-pack:distribute;\n\t        justify-content:space-around;\n\tborder:1px solid gray;\n}\n\nimg[_v-ecc3dad2]{\n\twidth: 40px;\n\theight: 40px;\n\tborder-width: 0px;\n}\n", "", {"version":3,"sources":["/./src/views/Home.vue?05c24b64"],"names":[],"mappings":";AAyIA;CACA,aAAA;CACA,cAAA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,6BAAA;KAAA,yBAAA;SAAA,qBAAA;CACA,qCAAA;KAAA,yBAAA;SAAA,6BAAA;CACA,sBAAA;CACA;;AAEA;CACA,YAAA;CACA,aAAA;CACA,kBAAA;CACA","file":"Home.vue","sourcesContent":["<template>\r\n\t\t<toolbar :text=\"title\">\r\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\"></span>\r\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\"></span>\r\n\t\t</toolbar>\r\n\t\t<tabs :active-index.sync=\"index\">\r\n\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\">\r\n\t\t\t\t\r\n\t\t\t</tab>\r\n\t\t</tabs>\r\n\t\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" >\r\n\t\t\t\r\n\t\t</sidebar>\r\n\t\r\n\t\t<loading :loading=\"isload\"></loading>\r\n\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\timport ToolBar from 'src/components/ToolBar.vue'\r\n    import SideBar from 'src/components/Sidebar.vue'\r\n    import Tabs from 'src/components/Tabs.vue'\r\n    import Tab from 'src/components/Tab.vue'\r\n    import Loading from 'src/components/Loading.vue'\r\n\texport default \t{\r\n\t\tcreated(){\r\n\t\t\tconsole.log(\"home is created\")\r\n\t\t\t//计算tab的长度\r\n\t\t   // var width=\tdocument.body.offsetWidth-20;\r\n\t\t   // this.tabWidth=width/this.tabItems.length;\r\n\t\t},\r\n\t\tcomponents:{\r\n\t    \ttoolbar:ToolBar,\r\n            sidebar:SideBar,\r\n            tabs:Tabs,\r\n            tab:Tab,\r\n            loading:Loading\r\n\t    },\r\n\t    props:{\r\n\t    \t\r\n\t    },\r\n\t\tdata() {\r\n\t\t\treturn {\r\n\t\t\t\ttitle:'首页',\r\n\t\t\t\tmenuItems:[{\r\n\t\t\t\t\ttext:'系统首页',\r\n\t\t\t\t\tlink:'home',\r\n\t\t\t\t\ticon:'icon-home'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'个人信息',\r\n\t\t\t\t\tlink:'userinfo',\r\n\t\t\t\t\ticon:'icon-user'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'我的项目',\r\n\t\t\t\t\tlink:'project',\r\n\t\t\t\t\ticon:'icon-tasks'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'工作日志',\r\n\t\t\t\t\tlink:'worklog',\r\n\t\t\t\t\ticon:'icon-calendar'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'流程信息',\r\n\t\t\t\t\tlink:'worklog',\r\n\t\t\t\t\ticon:'icon-exchange'\r\n\t\t\t\t}],\r\n\t\t\t\tindex:1,\r\n\t\t\t\tisload:false,\r\n\t\t\t\tshowMenu:false,\r\n\t\t\t\ttabItems:[{\r\n\t\t\t\t\ttitle:'通知',infoList:[{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂1'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-21',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂2'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t}]\r\n\t\t\t\t},{\r\n\t\t\t\t\ttitle:'公告',infoList:[{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t}]\r\n\t\t\t\t},{\r\n\t\t\t\t\ttitle:'制度',infoList:[{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t}]\r\n\t\t\t\t}]\r\n\t\t\t}\r\n\t\t},\r\n\t\troute:{\r\n\t\t\tdata(){\r\n\t\t\t\t//从服务器端加载数据\r\n\t\t\t\tconsole.log(\"home组件切入,加载初始数据\");\r\n\t\t\t\t//加载数据\r\n\t\t\t\tthis.isload=false;\r\n\t\t\t\tthis.$http.get(\"values\").then((response)=>{\r\n\t\t\t\t\tconsole.log(response.data);\r\n\t\t\t\t\tthis.isload=false;\r\n\t\t\t\t});\r\n\r\n\t\t\t},\r\n\t\t\tcanDeactivate(transition){\r\n\t\t\t\t//组件被切除\r\n\t\t\t\tconsole.log(\"组件被切出\")\r\n\t\t\t\tthis.showMenu=false;\r\n\t\t\t\ttransition.next();\r\n\t\t\t}\r\n\t\t},\r\n\t    methods: {\r\n\t        openMenu() {\r\n\t            this.showMenu = !this.showMenu;\r\n\t        },\r\n\t        refresh(){\r\n\t        \t//刷新当前页面\r\n\t        }\r\n\t    }\r\n\t}\r\n\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\t.tabItem{\r\n\t\theight: 80px;\r\n\t\tpadding: 10px;\r\n\t\tdisplay: flex;\r\n\t\tflex-flow:row nowrap;\r\n\t\tjustify-content:space-around;\r\n\t\tborder:1px solid gray;\r\n\t}\r\n\r\n\timg{\r\n\t\twidth: 40px;\r\n\t\theight: 40px;\r\n\t\tborder-width: 0px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 114 */
-/***/ function(module, exports) {
-
-	module.exports = "\n\t\t<toolbar :text=\"title\" _v-ecc3dad2=\"\">\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\" _v-ecc3dad2=\"\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\" _v-ecc3dad2=\"\"></span>\n\t\t</toolbar>\n\t\t<tabs :active-index.sync=\"index\" _v-ecc3dad2=\"\">\n\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" _v-ecc3dad2=\"\">\n\t\t\t\t\n\t\t\t</tab>\n\t\t</tabs>\n\t\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" _v-ecc3dad2=\"\">\n\t\t\t\n\t\t</sidebar>\n\t\n\t\t<loading :loading=\"isload\" _v-ecc3dad2=\"\"></loading>\n\n";
 
 /***/ },
 /* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __vue_script__, __vue_template__
-	__webpack_require__(116)
-	__vue_script__ = __webpack_require__(118)
-	__vue_template__ = __webpack_require__(119)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Tabs.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Project.vue","sourceRoot":"webpack://"}]);
+	
+	// exports
+
 
 /***/ },
 /* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(117);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-5d2ac0ac&file=Tabs.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tabs.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-5d2ac0ac&file=Tabs.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tabs.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 117 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n\n.nav-tabs[_v-5d2ac0ac] {\n  margin: 0px;\n  padding: 0px;\n  display: -ms-flexbox;\n  display: -webkit-box;\n  display: flex;\n  display: -webkit-flex;\n  -webkit-flex-flow: row nowrap;\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n  -webkit-align-items: center;\n      -ms-flex-align: center;\n          -webkit-box-align: center;\n          align-items: center;\n  -webkit-align-content: center;\n      -ms-flex-line-pack: center;\n          align-content: center;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n\n  -webkit-justify-content: space-around;\n  -webkit-flex-flow: row nowrap;\n  -webkit-align-items: center;\n  -webkit-align-content: center;\n\n  list-style-type: none;\n  line-height: 35px;\n  border-bottom: 2px solid whitesmoke;\n  padding: 0 10px;\n  \n  \n  font-size: 14px;\n  font-weight: bold;\n  -webkit-flex-grow: 1;\n      -ms-flex-positive: 1;\n          -webkit-box-flex: 1;\n          flex-grow: 1;\n}\n\n\n.nav-tabs>li[_v-5d2ac0ac] {\n  width: 100%;\n  text-align: center;\n  vertical-align: middle;\n  cursor: pointer;\n}\n\n.nav_active[_v-5d2ac0ac] {\n  color: darkorange;\n}\n\n\n.tabs_line[_v-5d2ac0ac] {\n  display: -ms-flexbox;\n  display: -webkit-box;\n  display: flex;\n  display: -webkit-flex;\n  height: 3px;\n  margin: 0px 10px;\n  margin-top: -3px;\n  background-color: darkorange;\n  -webkit-transition: -webkit-transform .3s ease;\n  transition: -webkit-transform .3s ease;\n  transition: transform .3s ease;\n  transition: transform .3s ease, -webkit-transform .3s ease;\n  -moz-transition: transform .3s ease;/* Firefox 4 */\n  -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n  -o-transition: transform .3s ease; /* Opera */\n  width: 0px;\n}\n", "", {"version":3,"sources":["/./src/components/Tabs.vue?0b9a9c72"],"names":[],"mappings":";;AA8EA;EACA,YAAA;EACA,aAAA;EACA,qBAAA;EACA,qBAAA;EAAA,cAAA;EACA,sBAAA;EACA,8BAAA;MACA,0BAAA;UACA,sBAAA;EACA,4BAAA;MACA,uBAAA;UACA,0BAAA;UAAA,oBAAA;EACA,8BAAA;MACA,2BAAA;UACA,sBAAA;EACA,0BAAA;MACA,8BAAA;;EAEA,sCAAA;EACA,8BAAA;EACA,4BAAA;EACA,8BAAA;;EAEA,sBAAA;EACA,kBAAA;EACA,oCAAA;EACA,gBAAA;;;EAGA,gBAAA;EACA,kBAAA;EACA,qBAAA;MACA,qBAAA;UACA,oBAAA;UAAA,aAAA;CACA;;;AAGA;EACA,YAAA;EACA,mBAAA;EACA,uBAAA;EACA,gBAAA;CACA;;AAEA;EACA,kBAAA;CACA;;;AAGA;EACA,qBAAA;EACA,qBAAA;EAAA,cAAA;EACA,sBAAA;EACA,YAAA;EACA,iBAAA;EACA,iBAAA;EACA,6BAAA;EACA,+CAAA;EAAA,uCAAA;EAAA,+BAAA;EAAA,2DAAA;EACA,oCAAA,eAAA;EACA,uCAAA,CAAA,qBAAA;EACA,kCAAA,CAAA,WAAA;EACA,WAAA;CACA","file":"Tabs.vue","sourcesContent":["<template>\r\n \r\n  <div class=\"page-content\" v-touch:swipe=\"swipeTab\" role=\"tablist\">\r\n    <ul class=\"nav-tabs\">\r\n        <li v-for=\"item in tabItems\"\r\n        :class=\"{'nav_active':activeIndex===$index}\" \r\n        v-touch:tap=\"switchTab($index)\" \r\n         >{{item.header}}</li>\r\n    </ul>\r\n    <div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\"></div>\r\n    \r\n      <!-- Tab panes -->\r\n     <div class=\"tab-content\" v-el:tabContent>\r\n        <slot></slot>\r\n     </div>\r\n  </div>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    ready(){\r\n        var width=  document.body.offsetWidth-20;\r\n        this.underline=width/this.tabItems.length;\r\n        var leftWidth=this.activeIndex*this.underline;\r\n        document.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n    },\r\n    props:{\r\n      effect: {\r\n        type: String,\r\n        default: 'fadein'\r\n      },\r\n      activeIndex:{\r\n        type: Number,\r\n        default: 0\r\n      }\r\n    },\r\n    data(){\r\n      return {\r\n        //当前选中的tab页面\r\n        underline:100,\r\n        tabItems:[]\r\n      }\r\n    },\r\n    methods:{\r\n      //点击tabs\r\n      switchTab(index){\r\n\r\n        this.activeIndex=index;\r\n        var leftWidth=index*this.underline;\r\n        document.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n      },\r\n      swipeTab(e){\r\n        var deltaX=e.deltaX;\r\n        var tempIndex=this.activeIndex;\r\n        if(deltaX>0){\r\n          var tempIndex=this.activeIndex-1;\r\n          if(tempIndex<0){\r\n            tempIndex=0;\r\n          }\r\n        }else{\r\n          var tabLength=this.tabItems.length-1;\r\n          if(tempIndex==tabLength){\r\n            tempIndex=tabLength;\r\n          }else{\r\n            tempIndex=this.activeIndex+1;\r\n          }\r\n        }\r\n        this.activeIndex=tempIndex;\r\n        this.switchTab(tempIndex);\r\n        // document.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+deltaX+\"px)\";\r\n      }\r\n    }\r\n  }\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" scoped>\r\n    \r\n    .nav-tabs {\r\n      margin: 0px;\r\n      padding: 0px;\r\n      display: -ms-flexbox;\r\n      display: flex;\r\n      display: -webkit-flex;\r\n      -webkit-flex-flow: row nowrap;\r\n          -ms-flex-flow: row nowrap;\r\n              flex-flow: row nowrap;\r\n      -webkit-align-items: center;\r\n          -ms-flex-align: center;\r\n              align-items: center;\r\n      -webkit-align-content: center;\r\n          -ms-flex-line-pack: center;\r\n              align-content: center;\r\n      -ms-flex-pack: distribute;\r\n          justify-content: space-around;\r\n\r\n      -webkit-justify-content: space-around;\r\n      -webkit-flex-flow: row nowrap;\r\n      -webkit-align-items: center;\r\n      -webkit-align-content: center;\r\n\r\n      list-style-type: none;\r\n      line-height: 35px;\r\n      border-bottom: 2px solid whitesmoke;\r\n      padding: 0 10px;\r\n      \r\n      \r\n      font-size: 14px;\r\n      font-weight: bold;\r\n      -webkit-flex-grow: 1;\r\n          -ms-flex-positive: 1;\r\n              flex-grow: 1;\r\n    }\r\n    \r\n    \r\n    .nav-tabs>li {\r\n      width: 100%;\r\n      text-align: center;\r\n      vertical-align: middle;\r\n      cursor: pointer;\r\n    }\r\n    \r\n    .nav_active {\r\n      color: darkorange;\r\n    }\r\n\r\n    \r\n    .tabs_line {\r\n      display: -ms-flexbox;\r\n      display: flex;\r\n      display: -webkit-flex;\r\n      height: 3px;\r\n      margin: 0px 10px;\r\n      margin-top: -3px;\r\n      background-color: darkorange;\r\n      transition: transform .3s ease;\r\n      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n      -o-transition: transform .3s ease; /* Opera */\r\n      width: 0px;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 118 */
-/***/ function(module, exports) {
-
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
+	
+	var _ToolBar = __webpack_require__(12);
+	
+	var _ToolBar2 = _interopRequireDefault(_ToolBar);
+	
+	var _PullList = __webpack_require__(118);
+	
+	var _PullList2 = _interopRequireDefault(_PullList);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	// <template>
+	// 	<div class="page">
+	// 		<toolbar text="我的项目">
+	// 			<span class="icon-chevron-left" slot="leftBtn" @click="back"></span>
+	// 	        <span class="icon-refresh" slot="rightBtn" ></span>
+	// 		</toolbar>
+	// 		<div class="page-content" >
+	// 			<pull-list >
+	// 				<ul>
+	// 					<li>asdffdddd;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;a</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;a</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;a</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;a</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>顶顶顶 阿斯蒂芬;</li>
 	
-	//   <div class="page-content" v-touch:swipe="swipeTab" role="tablist">
-	//     <ul class="nav-tabs">
-	//         <li v-for="item in tabItems"
-	//         :class="{'nav_active':activeIndex===$index}"
-	//         v-touch:tap="switchTab($index)"
-	//          >{{item.header}}</li>
-	//     </ul>
-	//     <div class="tabs_line" v-bind:style="{ width:underline+ 'px' }"></div>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>顶顶顶 阿斯蒂芬;</li>
 	
-	//       <!-- Tab panes -->
-	//      <div class="tab-content" v-el:tabContent>
-	//         <slot></slot>
-	//      </div>
-	//   </div>
+	// 				</ul>
+	// 			</pull-list>
+	// 		</div>
+	// 	</div>
+	
 	// </template>
 	
-	// <script>
+	// <script lang="babel">
 	exports.default = {
-	  ready: function ready() {
-	    var width = document.body.offsetWidth - 20;
-	    this.underline = width / this.tabItems.length;
-	    var leftWidth = this.activeIndex * this.underline;
-	    document.querySelectorAll('.tabs_line')[0].style.transform = "translateX(" + leftWidth + "px)";
-	  },
 	
-	  props: {
-	    effect: {
-	      type: String,
-	      default: 'fadein'
-	    },
-	    activeIndex: {
-	      type: Number,
-	      default: 0
-	    }
-	  },
-	  data: function data() {
-	    return {
-	      //当前选中的tab页面
-	      underline: 100,
-	      tabItems: []
-	    };
-	  },
-	
-	  methods: {
-	    //点击tabs
-	
-	    switchTab: function switchTab(index) {
-	
-	      this.activeIndex = index;
-	      var leftWidth = index * this.underline;
-	      document.querySelectorAll('.tabs_line')[0].style.transform = "translateX(" + leftWidth + "px)";
-	    },
-	    swipeTab: function swipeTab(e) {
-	      var deltaX = e.deltaX;
-	      var tempIndex = this.activeIndex;
-	      if (deltaX > 0) {
-	        var tempIndex = this.activeIndex - 1;
-	        if (tempIndex < 0) {
-	          tempIndex = 0;
-	        }
-	      } else {
-	        var tabLength = this.tabItems.length - 1;
-	        if (tempIndex == tabLength) {
-	          tempIndex = tabLength;
-	        } else {
-	          tempIndex = this.activeIndex + 1;
-	        }
-	      }
-	      this.activeIndex = tempIndex;
-	      this.switchTab(tempIndex);
-	      // document.querySelectorAll('.tabs_line')[0].style.transform="translateX("+deltaX+"px)";
-	    }
-	  }
+		methods: {
+			back: function back() {
+				history.back();
+			}
+		},
+		components: {
+			toolbar: _ToolBar2.default,
+			PullList: _PullList2.default
+		}
 	};
 	// </script>
 
-	// <style type="text/css" scoped>
+	// <style scoped>
 
-	//     .nav-tabs {
-	//       margin: 0px;
-	//       padding: 0px;
-	//       display: -ms-flexbox;
-	//       display: flex;
-	//       display: -webkit-flex;
-	//       -webkit-flex-flow: row nowrap;
-	//           -ms-flex-flow: row nowrap;
-	//               flex-flow: row nowrap;
-	//       -webkit-align-items: center;
-	//           -ms-flex-align: center;
-	//               align-items: center;
-	//       -webkit-align-content: center;
-	//           -ms-flex-line-pack: center;
-	//               align-content: center;
-	//       -ms-flex-pack: distribute;
-	//           justify-content: space-around;
-
-	//       -webkit-justify-content: space-around;
-	//       -webkit-flex-flow: row nowrap;
-	//       -webkit-align-items: center;
-	//       -webkit-align-content: center;
-
-	//       list-style-type: none;
-	//       line-height: 35px;
-	//       border-bottom: 2px solid whitesmoke;
-	//       padding: 0 10px;
-
-	//       font-size: 14px;
-	//       font-weight: bold;
-	//       -webkit-flex-grow: 1;
-	//           -ms-flex-positive: 1;
-	//               flex-grow: 1;
-	//     }
-
-	//     .nav-tabs>li {
-	//       width: 100%;
-	//       text-align: center;
-	//       vertical-align: middle;
-	//       cursor: pointer;
-	//     }
-
-	//     .nav_active {
-	//       color: darkorange;
-	//     }
-
-	//     .tabs_line {
-	//       display: -ms-flexbox;
-	//       display: flex;
-	//       display: -webkit-flex;
-	//       height: 3px;
-	//       margin: 0px 10px;
-	//       margin-top: -3px;
-	//       background-color: darkorange;
-	//       transition: transform .3s ease;
-	//       -moz-transition: transform .3s ease;/* Firefox 4 */
-	//       -webkit-transition: transform .3s ease; /* Safari 和 Chrome */
-	//       -o-transition: transform .3s ease; /* Opera */
-	//       width: 0px;
-	//     }
 	// </style>
-	/* generated by vue-loader */
 
 /***/ },
-/* 119 */
+/* 117 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n<div class=\"page-content\" v-touch:swipe=\"swipeTab\" role=\"tablist\" _v-5d2ac0ac=\"\">\n  <ul class=\"nav-tabs\" _v-5d2ac0ac=\"\">\n      <li v-for=\"item in tabItems\" :class=\"{'nav_active':activeIndex===$index}\" v-touch:tap=\"switchTab($index)\" _v-5d2ac0ac=\"\">{{item.header}}</li>\n  </ul>\n  <div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\" _v-5d2ac0ac=\"\"></div>\n  \n    <!-- Tab panes -->\n   <div class=\"tab-content\" v-el:tabcontent=\"\" _v-5d2ac0ac=\"\">\n      <slot _v-5d2ac0ac=\"\"></slot>\n   </div>\n</div>\n";
+	module.exports = "\n<div class=\"page\" _v-ba295ade=\"\">\n\t<toolbar text=\"我的项目\" _v-ba295ade=\"\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back\" _v-ba295ade=\"\"></span>\n        <span class=\"icon-refresh\" slot=\"rightBtn\" _v-ba295ade=\"\"></span>\n\t</toolbar>\n\t<div class=\"page-content\" _v-ba295ade=\"\">\n\t\t<pull-list _v-ba295ade=\"\">\n\t\t\t<ul _v-ba295ade=\"\">\n\t\t\t\t<li _v-ba295ade=\"\">asdffdddd;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t</ul>\n\t\t</pull-list>\n\t</div>\n</div>\n\n";
 
 /***/ },
-/* 120 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(121)
-	__vue_script__ = __webpack_require__(123)
-	__vue_template__ = __webpack_require__(124)
+	__webpack_require__(123)
+	__vue_script__ = __webpack_require__(121)
+	__vue_template__ = __webpack_require__(125)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -20703,7 +21146,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Tab.vue"
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\PullList.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -20712,13 +21155,83 @@
 	})()}
 
 /***/ },
+/* 119 */,
+/* 120 */,
 /* 121 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// <!-- 下拉刷新组件 -->
+	
+	// <template>
+	// 	<div id="pulllist" v-touch:pandown="pullToRefresh" v-touch:panend="panleave"  >
+	// 		<div id="pull-header">
+	// 			<span>下拉刷新</span>
+	// 		</div>
+	// 		<slot></slot>
+	// 		<div class="pull-footer">
+	
+	// 		</div>
+	// 	</div>
+	
+	// </template>
+	
+	// <script lang="babel">
+	exports.default = {
+	
+		methods: {
+			panleave: function panleave(e) {
+				var header = document.getElementById('pulllist');
+				header.style.transform = "translateY(0px)";
+			},
+	
+			// 下拉刷新事件
+			pullToRefresh: function pullToRefresh(e) {
+				if (!e.isFinal) {
+					var header = document.getElementById('pulllist');
+					var distance = e.distance;
+					console.log("拉动的距离" + distance);
+					if (distance < 50) {
+						header.style.transform = "translateY(" + distance + "px)";
+					} else {
+						//1：触发刷新事件
+						this.$dispatch('list-reload');
+						header.style.transform = "translateY(50px)";
+					}
+				} else {
+					var header = document.getElementById('pulllist');
+					header.style.transform = "translateY(0px)";
+				}
+			}
+		}
+	};
+	// </script>
+
+	// <style >
+
+	// 	#pull-header{
+	// 		height: 44px;
+	// 		margin-top: -44px;
+	// 		transition: all .3s ease;
+	// 		display: flex;
+	// 		justify-content:center;
+	// 	}
+
+	// </style>
+
+/***/ },
+/* 122 */,
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(122);
+	var content = __webpack_require__(124);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -20727,8 +21240,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-48b39499&file=Tab.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tab.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-48b39499&file=Tab.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tab.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-50a8202f&file=PullList.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./PullList.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-50a8202f&file=PullList.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./PullList.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -20738,7 +21251,7 @@
 	}
 
 /***/ },
-/* 122 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -20746,88 +21259,16 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.tab-content > .tab-pane[_v-48b39499] {\n  display: block;\n}\n", "", {"version":3,"sources":["/./src/components/Tab.vue?011c5b02"],"names":[],"mappings":";AAyDA;EACA,eAAA;CACA","file":"Tab.vue","sourcesContent":["<template>\r\n  <div role=\"tabpanel\" class=\"tab-pane\"\r\n      v-bind:class=\"{hide:!show}\"\r\n      v-show=\"show\"\r\n      :transition=\"transition\"\r\n  >\r\n    <slot></slot>\r\n  </div>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    props: {\r\n      header: {\r\n        type: String\r\n      },\r\n      disabled: {\r\n        type: Boolean,\r\n        default: false\r\n      }\r\n    },\r\n    data() {\r\n      return {\r\n        index: 0,\r\n        show: false\r\n      }\r\n    },\r\n    computed: {\r\n      show() {\r\n        return (this.$parent.activeIndex == this.index);\r\n      },\r\n      transition() {\r\n        return this.$parent.effect\r\n      }\r\n    },\r\n    created() {\r\n       console.log(\"进入tabItem created\")\r\n        this.$parent.tabItems.push({\r\n          header: this.header,\r\n          disabled: this.disabled\r\n        })\r\n    },\r\n    ready() {\r\n       console.log(\"进入tabItem ready\")\r\n        for (var c in this.$parent.$children)\r\n        {\r\n            if (this.$parent.$children[c].$el == this.$el)\r\n            {\r\n                this.index= c;\r\n                break;\r\n            }\r\n        }\r\n    }\r\n  }\r\n</script>\r\n\r\n<style scoped>\r\n  .tab-content > .tab-pane {\r\n    display: block;\r\n  }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n#pull-header{\n\theight: 44px;\n\tmargin-top: -44px;\n\t-webkit-transition: all .3s ease;\n\ttransition: all .3s ease;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-box-pack:center;\n\t-webkit-justify-content:center;\n\t    -ms-flex-pack:center;\n\t        justify-content:center;\n}\n\n\n", "", {"version":3,"sources":["/./src/components/PullList.vue?2f4f6dea"],"names":[],"mappings":";;AAoDA;CACA,aAAA;CACA,kBAAA;CACA,iCAAA;CAAA,yBAAA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,wBAAA;CAAA,+BAAA;KAAA,qBAAA;SAAA,uBAAA;CACA","file":"PullList.vue","sourcesContent":["<!-- 下拉刷新组件 -->\r\n\r\n<template>\r\n\t<div id=\"pulllist\" v-touch:pandown=\"pullToRefresh\" v-touch:panend=\"panleave\"  >\r\n\t\t<div id=\"pull-header\">\r\n\t\t\t<span>下拉刷新</span>\r\n\t\t</div>\r\n\t\t<slot></slot>\r\n\t\t<div class=\"pull-footer\">\r\n\t\t\t\r\n\t\t</div>\r\n\t</div>\r\n\t\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\texport default {\r\n\t\t\r\n\t\tmethods:{\r\n\r\n\t\t\tpanleave(e){\r\n\t\t\t\tvar header=\tdocument.getElementById('pulllist');\r\n\t\t\t\theader.style.transform=\"translateY(0px)\";\r\n\t\t\t},\r\n\t\t\t// 下拉刷新事件\r\n\t\t\tpullToRefresh(e){\r\n\t\t\t\t if(!e.isFinal){\r\n\t\t\t\t \t\tvar header=\tdocument.getElementById('pulllist');\r\n\t\t\t\t\t \tvar distance=e.distance;\r\n\t\t\t\t\t \tconsole.log(\"拉动的距离\"+distance)\r\n\t\t\t\t\t \tif(distance<50){\r\n \t\t\t\t\t\t\theader.style.transform=\"translateY(\"+distance+\"px)\";\r\n\t\t\t\t\t \t}\r\n\t\t\t\t\t \telse{\r\n\t\t\t\t\t \t\t//1：触发刷新事件\r\n\t\t\t\t\t \t\tthis.$dispatch('list-reload');\r\n\t\t\t\t\t \t\theader.style.transform=\"translateY(50px)\";\r\n\t\t\t\t\t \t}\r\n\r\n\t\t\t\t }else{\r\n\t\t\t\t \t var header=document.getElementById('pulllist');\r\n\t\t\t\t\t header.style.transform=\"translateY(0px)\";\r\n\t\t\t\t }\r\n\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style >\r\n\r\n\t#pull-header{\r\n\t\theight: 44px;\r\n\t\tmargin-top: -44px;\r\n\t\ttransition: all .3s ease;\r\n\t\tdisplay: flex;\r\n\t\tjustify-content:center;\r\n\t}\r\n\t\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
-/* 123 */
+/* 125 */
 /***/ function(module, exports) {
 
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	// <template>
-	//   <div role="tabpanel" class="tab-pane"
-	//       v-bind:class="{hide:!show}"
-	//       v-show="show"
-	//       :transition="transition"
-	//   >
-	//     <slot></slot>
-	//   </div>
-	// </template>
-	
-	// <script>
-	exports.default = {
-	  props: {
-	    header: {
-	      type: String
-	    },
-	    disabled: {
-	      type: Boolean,
-	      default: false
-	    }
-	  },
-	  data: function data() {
-	    return {
-	      index: 0,
-	      show: false
-	    };
-	  },
-	
-	  computed: {
-	    show: function show() {
-	      return this.$parent.activeIndex == this.index;
-	    },
-	    transition: function transition() {
-	      return this.$parent.effect;
-	    }
-	  },
-	  created: function created() {
-	    console.log("进入tabItem created");
-	    this.$parent.tabItems.push({
-	      header: this.header,
-	      disabled: this.disabled
-	    });
-	  },
-	  ready: function ready() {
-	    console.log("进入tabItem ready");
-	    for (var c in this.$parent.$children) {
-	      if (this.$parent.$children[c].$el == this.$el) {
-	        this.index = c;
-	        break;
-	      }
-	    }
-	  }
-	};
-	// </script>
-
-	// <style scoped>
-	//   .tab-content > .tab-pane {
-	//     display: block;
-	//   }
-	// </style>
-
-	/* generated by vue-loader */
-
-/***/ },
-/* 124 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<div role=\"tabpanel\" class=\"tab-pane\" v-bind:class=\"{hide:!show}\" v-show=\"show\" :transition=\"transition\" _v-48b39499=\"\">\n  <slot _v-48b39499=\"\"></slot>\n</div>\n";
+	module.exports = "\n<div id=\"pulllist\" v-touch:pandown=\"pullToRefresh\" v-touch:panend=\"panleave\"  >\n\t<div id=\"pull-header\">\n\t\t<span>下拉刷新</span>\n\t</div>\n\t<slot></slot>\n\t<div class=\"pull-footer\">\n\t\t\n\t</div>\n</div>\n\n";
 
 /***/ }
 /******/ ]);

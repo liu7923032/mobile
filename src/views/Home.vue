@@ -1,18 +1,42 @@
 <template>
+	<div class="page">
 		<toolbar :text="title">
 			<span class="icon-reorder" slot="leftBtn" @click="openMenu"></span>
             <span class="icon-refresh" slot="rightBtn" @click="refresh"></span>
 		</toolbar>
-		<tabs :active-index.sync="index">
-			<tab v-for="item in tabItems" :header="item.title">
-				
+		<tabs :active-index.sync="index" >
+			<tab v-for="item in tabItems" :header="item.title" >
+				<ul class="contentList">
+					<li v-for="subItem in item.infoList" >
+						<div class="tab_info">
+							<div class="left">
+								<img src="" alt="">
+								<div class="content">
+									<div>
+										<span>发布时间:{{subItem.time}}</span>
+										<span>发布人:{{subItem.subUser}}</span>
+									</div>
+									<div>
+										{{subItem.content}}
+									</div>
+								</div>
+							</div>
+							<div>
+								<i class="icon-chevron-right"></i>
+							</div>
+						</div>
+						
+					</li>
+				</ul>
 			</tab>
 		</tabs>
-		<sidebar :menu-items="menuItems" :show-menu.sync="showMenu" >
-			
-		</sidebar>
-	
-		<loading :loading="isload"></loading>
+	</div>
+		
+	<sidebar :menu-items="menuItems" :show-menu.sync="showMenu" >
+		
+	</sidebar>
+
+	<loading :loading="isload"></loading>
 
 </template>
 
@@ -70,34 +94,101 @@
 					title:'通知',infoList:[{
 						imgUrl:'',
 						time:'2015-11-20',
+						subUser:'张三',
 						content:'我的世界你不懂1'
 					},{
 						imgUrl:'',
 						time:'2015-11-21',
+						subUser:'张三',
 						content:'我的世界你不懂2'
 					},{
 						imgUrl:'',
 						time:'2015-11-22',
+						subUser:'张三',
 						content:'我的世界你不懂3'
 					},{
 						imgUrl:'',
 						time:'2015-11-23',
+						subUser:'张三',
 						content:'我的世界你不懂4'
 					},{
 						imgUrl:'',
 						time:'2015-11-24',
+						subUser:'张三',
+						content:'我的世界你不懂5'
+					},{
+						imgUrl:'',
+						time:'2015-11-22',
+						subUser:'张三',
+						content:'我的世界你不懂3'
+					},{
+						imgUrl:'',
+						time:'2015-11-23',
+						subUser:'张三',
+						content:'我的世界你不懂4'
+					},{
+						imgUrl:'',
+						time:'2015-11-24',
+						subUser:'张三',
+						content:'我的世界你不懂5'
+					},{
+						imgUrl:'',
+						time:'2015-11-22',
+						subUser:'张三',
+						content:'我的世界你不懂3'
+					},{
+						imgUrl:'',
+						time:'2015-11-23',
+						subUser:'张三',
+						content:'我的世界你不懂4'
+					},{
+						imgUrl:'',
+						time:'2015-11-24',
+						subUser:'张三',
 						content:'我的世界你不懂5'
 					}]
 				},{
 					title:'公告',infoList:[{
 						imgUrl:'',
 						time:'2015-11-20',
+						subUser:'李四',
+						content:'我的世界你不懂'
+					},{
+						imgUrl:'',
+						time:'2015-11-20',
+						subUser:'李四',
+						content:'我的世界你不懂'
+					},{
+						imgUrl:'',
+						time:'2015-11-20',
+						subUser:'李四',
+						content:'我的世界你不懂'
+					},{
+						imgUrl:'',
+						time:'2015-11-20',
+						subUser:'李四',
 						content:'我的世界你不懂'
 					}]
 				},{
 					title:'制度',infoList:[{
 						imgUrl:'',
 						time:'2015-11-20',
+						subUser:'王五',
+						content:'我的世界你不懂'
+					},{
+						imgUrl:'',
+						time:'2015-11-20',
+						subUser:'王五',
+						content:'我的世界你不懂'
+					},{
+						imgUrl:'',
+						time:'2015-11-20',
+						subUser:'王五',
+						content:'我的世界你不懂'
+					},{
+						imgUrl:'',
+						time:'2015-11-20',
+						subUser:'王五',
 						content:'我的世界你不懂'
 					}]
 				}]
@@ -135,13 +226,63 @@
 </script>
 
 <style type="text/css" scoped>
-	.tabItem{
-		height: 80px;
-		padding: 10px;
+	.tab_info{
+		height: 40px;
+		padding: 5px;
 		display: flex;
 		flex-flow:row nowrap;
-		justify-content:space-around;
+		justify-content:space-between;
+		align-items:center;
+		background-color: white;
+	}
+
+
+	.tab_info>div:nth-child(2){
+		margin-right: 5px;
+		color: #272822;
+	}
+	
+	.left{
+		display: flex;
+		flex-flow:row nowrap;
+		justify-content:flex-start;
+		align-items:center;
+	}
+	.left>div{
+		margin-left: 10px;
+
+	}
+
+	.contentList{
+		margin: 0px;
+		padding: 5px;
+		background-color: whitesmoke;
+	}
+	.contentList>li{
+		border-radius: 3px;
+		list-style-type: none;
+		border:1px solid whitesmoke;
+		margin-bottom:5px;
+
+	}
+
+	.contentList>li:hover{
 		border:1px solid gray;
+	}
+
+	.content>div:nth-child(1){
+		font-size: 12px;
+		color: lightdark;
+		margin-bottom: 5px;
+	}
+
+	.content>div:nth-child(1)>span:nth-child(2){
+		margin-left: 10px;
+	}
+
+	.content>div:nth-child(2){
+		font-size: 14px;
+		
 	}
 
 	img{
