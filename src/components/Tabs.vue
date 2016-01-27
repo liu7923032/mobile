@@ -1,6 +1,6 @@
 <template>
  
-  <div class="tabs" v-touch:swipe="swipeTab" role="tablist">
+  <section class="tabs" v-touch:swipeleft="swipeLeft" v-touch:swiperight="swipeRight" role="tablist">
     <div class="nav-tabs">
         <ul class="tabs_title">
             <li v-for="item in tabItems"
@@ -8,14 +8,14 @@
             v-touch:tap="switchTab($index)" 
              >{{item.header}}</li>
         </ul>
-        <div class="tabs_line" v-bind:style="{ width:underline+ 'px' }">
+        <div id="tabs_line" v-bind:style="{ width:underline+ 'px' }">
         </div>
     </div>
       <!-- Tab panes -->
-     <div class="tab-content" v-el:tabContent>
+    <div class="tab-content">
         <slot></slot>
-     </div>
-  </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -23,8 +23,7 @@
     ready(){
         var width=  document.body.offsetWidth-20;
         this.underline=width/this.tabItems.length;
-        var leftWidth=this.activeIndex*this.underline;
-        document.querySelectorAll('.tabs_line')[0].style.transform="translateX("+leftWidth+"px)";
+        this.switchTab(this.activeIndex);
     },
     props:{
       effect: {
@@ -49,27 +48,28 @@
 
         this.activeIndex=index;
         var leftWidth=index*this.underline;
-        document.querySelectorAll('.tabs_line')[0].style.transform="translateX("+leftWidth+"px)";
+        document.getElementById('tabs_line').style.transform="translateX("+leftWidth+"px)";
       },
-      swipeTab(e){
-        var deltaX=e.deltaX;
-        var tempIndex=this.activeIndex;
-        if(deltaX>0){
-          var tempIndex=this.activeIndex-1;
-          if(tempIndex<0){
-            tempIndex=0;
-          }
-        }else{
+      swipeLeft(){
+         
+          var tempIndex=this.activeIndex;
           var tabLength=this.tabItems.length-1;
           if(tempIndex==tabLength){
             tempIndex=tabLength;
           }else{
             tempIndex=this.activeIndex+1;
           }
-        }
-        this.activeIndex=tempIndex;
-        this.switchTab(tempIndex);
-        // document.querySelectorAll('.tabs_line')[0].style.transform="translateX("+deltaX+"px)";
+          this.activeIndex=tempIndex;
+          this.switchTab(tempIndex);
+      },
+      swipeRight(){
+          var tempIndex=this.activeIndex;
+          var tempIndex=this.activeIndex-1;
+          if(tempIndex<0){
+            tempIndex=0;
+          }
+          this.activeIndex=tempIndex;
+          this.switchTab(tempIndex);
       }
     }
   }
@@ -78,52 +78,57 @@
 
 <style type="text/css" scoped>
     
-    .tabs{
-        height: 100%;
-        width: 100%;
-    }
 
+    .tabs{
+        display: flex;
+        flex-flow:column nowrap;
+        min-height: 35px;
+        justify-content:flex-start;
+        height: 100%;
+    }
 
     .nav-tabs{
        display: flex;
        flex-flow:column nowrap;
        min-height: 35px;
-
+       height: 40px;
+       justify-content:flex-start;
+       flex:0 1 auto;
     }
     
     .tabs_title {
-      display: -ms-flexbox;
-      display: flex;
-      display: -webkit-flex;
-      -webkit-flex-flow: row nowrap;
-          -ms-flex-flow: row nowrap;
-              flex-flow: row nowrap;
-      -webkit-align-items: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-align-content: center;
-          -ms-flex-line-pack: center;
-              align-content: center;
-      -ms-flex-pack: distribute;
-          justify-content: space-around;
+        display: -ms-flexbox;
+        display: flex;
+        display: -webkit-flex;
+        -webkit-flex-flow: row nowrap;
+            -ms-flex-flow: row nowrap;
+                flex-flow: row nowrap;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-align-content: center;
+            -ms-flex-line-pack: center;
+                align-content: center;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
 
-      -webkit-justify-content: space-around;
-      -webkit-flex-flow: row nowrap;
-      -webkit-align-items: center;
-      -webkit-align-content: center;
+        -webkit-justify-content: space-around;
+        -webkit-flex-flow: row nowrap;
+        -webkit-align-items: center;
+        -webkit-align-content: center;
 
-      list-style-type: none;
-      line-height: 35px;
-      border-bottom: 2px solid whitesmoke;
-      padding: 0 10px;
-      font-size: 14px;
-      font-weight: bold;
-      flex: 0 1 auto;
+        list-style-type: none;
+        line-height: 35px;
+        border-bottom: 1px solid whitesmoke;
+        font-size: 14px;
+        font-weight: bold;
+        width: 100%;
     }
     
     
-    .nav-tabs>li {
+    .tabs_title>li {
       width: 100%;
+      min-width: 100px;
       text-align: center;
       vertical-align: middle;
       cursor: pointer;
@@ -134,10 +139,7 @@
     }
 
     
-    .tabs_line {
-      display: -ms-flexbox;
-      display: flex;
-      display: -webkit-flex;
+    #tabs_line {
       height: 3px;
       margin: 0px 10px;
       margin-top: -3px;
@@ -147,21 +149,19 @@
       -webkit-transition: transform .3s ease; /* Safari 和 Chrome */
       -o-transition: transform .3s ease; /* Opera */
       width: 0px;
-      flex: 0 1 auto;
     }
 
     .tab-content{
-      overflow: auto;
-      -webkit-overflow-scrolling: touch;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-flex: 0 1 auto;
-      -ms-flex: 0 1 auto;
-      flex: 0 1 auto;
-      margin-bottom: 10px;
-      width: 100%;
-      height: 100%;
-      flex-flow:column nowrap;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        margin-bottom: 0px;
+        height: 100%;
+        flex-flow:column nowrap;
     }
 </style>

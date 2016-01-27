@@ -57,6 +57,16 @@
 
 <style scoped>
   .tab-content > .tab-pane {
-    display: block;
+     /*overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;*/
+    /*width: 100%;*/
+    height: 100%;
+    /*flex-flow:column nowrap;*/
   }
 </style>

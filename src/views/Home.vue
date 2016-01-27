@@ -4,32 +4,36 @@
 			<span class="icon-reorder" slot="leftBtn" @click="openMenu"></span>
             <span class="icon-refresh" slot="rightBtn" @click="refresh"></span>
 		</toolbar>
-		<tabs :active-index.sync="index" >
-			<tab v-for="item in tabItems" :header="item.title" >
-				<ul class="contentList">
-					<li v-for="subItem in item.infoList" >
-						<div class="tab_info">
-							<div class="left">
-								<img src="" alt="">
-								<div class="content">
-									<div>
-										<span>发布时间:{{subItem.time}}</span>
-										<span>发布人:{{subItem.subUser}}</span>
+		<div class="page-content">
+			<tabs :active-index.sync="index" >
+				<tab v-for="item in tabItems" :header="item.title" >
+					<pull-list>
+						<ul class="contentList">
+							<li v-for="subItem in item.infoList" >
+								<div class="tab_info">
+									<div class="left">
+										<img src="" alt="">
+										<div class="content">
+											<div>
+												<span>发布时间:{{subItem.time}}</span>
+												<span>发布人:{{subItem.subUser}}</span>
+											</div>
+											<div>
+												{{subItem.content}}
+											</div>
+										</div>
 									</div>
 									<div>
-										{{subItem.content}}
+										<i class="icon-chevron-right"></i>
 									</div>
 								</div>
-							</div>
-							<div>
-								<i class="icon-chevron-right"></i>
-							</div>
-						</div>
-						
-					</li>
-				</ul>
-			</tab>
-		</tabs>
+								
+							</li>
+						</ul>
+					</pull-list>
+				</tab>
+			</tabs>
+		</div>
 	</div>
 		
 	<sidebar :menu-items="menuItems" :show-menu.sync="showMenu" >
@@ -46,6 +50,7 @@
     import Tabs from 'src/components/Tabs.vue'
     import Tab from 'src/components/Tab.vue'
     import Loading from 'src/components/Loading.vue'
+    import PullList from 'src/components/PullList.vue'
 	export default 	{
 		created(){
 			console.log("home is created")
@@ -58,7 +63,8 @@
             sidebar:SideBar,
             tabs:Tabs,
             tab:Tab,
-            loading:Loading
+            loading:Loading,
+            PullList
 	    },
 	    props:{
 	    	
@@ -87,7 +93,7 @@
 					link:'worklog',
 					icon:'icon-exchange'
 				}],
-				index:1,
+				index:0,
 				isload:false,
 				showMenu:false,
 				tabItems:[{
@@ -146,50 +152,36 @@
 						time:'2015-11-24',
 						subUser:'张三',
 						content:'我的世界你不懂5'
-					}]
-				},{
-					title:'公告',infoList:[{
-						imgUrl:'',
-						time:'2015-11-20',
-						subUser:'李四',
-						content:'我的世界你不懂'
 					},{
 						imgUrl:'',
-						time:'2015-11-20',
-						subUser:'李四',
-						content:'我的世界你不懂'
+						time:'2015-11-22',
+						subUser:'张三',
+						content:'我的世界你不懂3'
 					},{
 						imgUrl:'',
-						time:'2015-11-20',
-						subUser:'李四',
-						content:'我的世界你不懂'
+						time:'2015-11-23',
+						subUser:'张三',
+						content:'我的世界你不懂4'
 					},{
 						imgUrl:'',
-						time:'2015-11-20',
-						subUser:'李四',
-						content:'我的世界你不懂'
-					}]
-				},{
-					title:'制度',infoList:[{
-						imgUrl:'',
-						time:'2015-11-20',
-						subUser:'王五',
-						content:'我的世界你不懂'
+						time:'2015-11-24',
+						subUser:'张三',
+						content:'我的世界你不懂5'
 					},{
 						imgUrl:'',
-						time:'2015-11-20',
-						subUser:'王五',
-						content:'我的世界你不懂'
+						time:'2015-11-22',
+						subUser:'张三',
+						content:'我的世界你不懂3'
 					},{
 						imgUrl:'',
-						time:'2015-11-20',
-						subUser:'王五',
-						content:'我的世界你不懂'
+						time:'2015-11-23',
+						subUser:'张三',
+						content:'我的世界你不懂4'
 					},{
 						imgUrl:'',
-						time:'2015-11-20',
-						subUser:'王五',
-						content:'我的世界你不懂'
+						time:'2015-11-24',
+						subUser:'张三',
+						content:'我的世界你不懂5'
 					}]
 				}]
 			}
@@ -254,8 +246,6 @@
 	}
 
 	.contentList{
-		margin: 0px;
-		padding: 5px;
 		background-color: whitesmoke;
 	}
 	.contentList>li{
@@ -263,7 +253,6 @@
 		list-style-type: none;
 		border:1px solid whitesmoke;
 		margin-bottom:5px;
-
 	}
 
 	.contentList>li:hover{

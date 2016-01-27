@@ -65,15 +65,15 @@
 	
 	var _routers2 = _interopRequireDefault(_routers);
 	
-	var _fastclick = __webpack_require__(75);
+	var _fastclick = __webpack_require__(86);
 	
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 	
-	var _vTouch = __webpack_require__(76);
+	var _vTouch = __webpack_require__(87);
 	
 	var _vTouch2 = _interopRequireDefault(_vTouch);
 	
-	var _vueResource = __webpack_require__(90);
+	var _vueResource = __webpack_require__(101);
 	
 	var _vueResource2 = _interopRequireDefault(_vueResource);
 	
@@ -145,8 +145,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/*!
-	 * Vue.js v1.0.13
-	 * (c) 2015 Evan You
+	 * Vue.js v1.0.15
+	 * (c) 2016 Evan You
 	 * Released under the MIT License.
 	 */
 	'use strict';
@@ -623,23 +623,29 @@
 	 */
 	
 	p.put = function (key, value) {
-	  var entry = {
-	    key: key,
-	    value: value
-	  };
-	  this._keymap[key] = entry;
-	  if (this.tail) {
-	    this.tail.newer = entry;
-	    entry.older = this.tail;
-	  } else {
-	    this.head = entry;
-	  }
-	  this.tail = entry;
+	  var removed;
 	  if (this.size === this.limit) {
-	    return this.shift();
-	  } else {
+	    removed = this.shift();
+	  }
+	
+	  var entry = this.get(key, true);
+	  if (!entry) {
+	    entry = {
+	      key: key
+	    };
+	    this._keymap[key] = entry;
+	    if (this.tail) {
+	      this.tail.newer = entry;
+	      entry.older = this.tail;
+	    } else {
+	      this.head = entry;
+	    }
+	    this.tail = entry;
 	    this.size++;
 	  }
+	  entry.value = value;
+	
+	  return removed;
 	};
 	
 	/**
@@ -655,6 +661,7 @@
 	    this.head.older = undefined;
 	    entry.newer = entry.older = undefined;
 	    this._keymap[entry.key] = undefined;
+	    this.size--;
 	  }
 	  return entry;
 	};
@@ -938,16 +945,17 @@
 	 * into one single expression as '"a " + b + " c"'.
 	 *
 	 * @param {Array} tokens
+	 * @param {Vue} [vm]
 	 * @return {String}
 	 */
 	
-	function tokensToExp(tokens) {
+	function tokensToExp(tokens, vm) {
 	  if (tokens.length > 1) {
 	    return tokens.map(function (token) {
-	      return formatToken(token);
+	      return formatToken(token, vm);
 	    }).join('+');
 	  } else {
-	    return formatToken(tokens[0], true);
+	    return formatToken(tokens[0], vm, true);
 	  }
 	}
 	
@@ -955,12 +963,13 @@
 	 * Format a single token.
 	 *
 	 * @param {Object} token
-	 * @param {Boolean} single
+	 * @param {Vue} [vm]
+	 * @param {Boolean} [single]
 	 * @return {String}
 	 */
 	
-	function formatToken(token, single) {
-	  return token.tag ? inlineFilters(token.value, single) : '"' + token.value + '"';
+	function formatToken(token, vm, single) {
+	  return token.tag ? token.oneTime && vm ? '"' + vm.$eval(token.value) + '"' : inlineFilters(token.value, single) : '"' + token.value + '"';
 	}
 	
 	/**
@@ -3493,9 +3502,9 @@
 	var EL = 1500;
 	var COMPONENT = 1500;
 	var PARTIAL = 1750;
-	var SLOT = 1750;
 	var FOR = 2000;
 	var IF = 2000;
+	var SLOT = 2100;
 	
 	var el = {
 	
@@ -3634,11 +3643,10 @@
 	var xlinkRE = /^xlink:/;
 	
 	// check for attributes that prohibit interpolations
-	var disallowedInterpAttrRE = /^v-|^:|^@|^(is|transition|transition-mode|debounce|track-by|stagger|enter-stagger|leave-stagger)$/;
-	
+	var disallowedInterpAttrRE = /^v-|^:|^@|^(?:is|transition|transition-mode|debounce|track-by|stagger|enter-stagger|leave-stagger)$/;
 	// these attributes should also set their corresponding properties
 	// because they only affect the initial state of the element
-	var attrWithPropsRE = /^(value|checked|selected|muted)$/;
+	var attrWithPropsRE = /^(?:value|checked|selected|muted)$/;
 	
 	// these attributes should set a hidden property for
 	// binding v-model to object values
@@ -3660,17 +3668,24 @@
 	      this.deep = true;
 	    }
 	    // handle interpolation bindings
-	    if (this.descriptor.interp) {
+	    var descriptor = this.descriptor;
+	    var tokens = descriptor.interp;
+	    if (tokens) {
+	      // handle interpolations with one-time tokens
+	      if (descriptor.hasOneTime) {
+	        this.expression = tokensToExp(tokens, this._scope || this.vm);
+	      }
+	
 	      // only allow binding on native attributes
 	      if (disallowedInterpAttrRE.test(attr) || attr === 'name' && (tag === 'PARTIAL' || tag === 'SLOT')) {
-	        process.env.NODE_ENV !== 'production' && warn(attr + '="' + this.descriptor.raw + '": ' + 'attribute interpolation is not allowed in Vue.js ' + 'directives and special attributes.');
+	        process.env.NODE_ENV !== 'production' && warn(attr + '="' + descriptor.raw + '": ' + 'attribute interpolation is not allowed in Vue.js ' + 'directives and special attributes.');
 	        this.el.removeAttribute(attr);
 	        this.invalid = true;
 	      }
 	
 	      /* istanbul ignore if */
 	      if (process.env.NODE_ENV !== 'production') {
-	        var raw = attr + '="' + this.descriptor.raw + '": ';
+	        var raw = attr + '="' + descriptor.raw + '": ';
 	        // warn src
 	        if (attr === 'src') {
 	          warn(raw + 'interpolation in "src" attribute will cause ' + 'a 404 request. Use v-bind:src instead.');
@@ -4086,7 +4101,7 @@
 	    // prevent messing with the input when user is typing,
 	    // and force update on blur.
 	    this.focused = false;
-	    if (!isRange) {
+	    if (!isRange && !lazy) {
 	      this.on('focus', function () {
 	        self.focused = true;
 	      });
@@ -4344,10 +4359,8 @@
 	    var suffix = wrap[2];
 	    var node = document.createElement('div');
 	
-	    if (!raw) {
-	      templateString = templateString.trim();
-	    }
-	    node.innerHTML = prefix + templateString + suffix;
+	    var templateStringToUse = raw ? templateString : templateString.trim();
+	    node.innerHTML = prefix + templateStringToUse + suffix;
 	    while (depth--) {
 	      node = node.lastChild;
 	    }
@@ -4578,23 +4591,12 @@
 	
 	Fragment.prototype.callHook = function (hook) {
 	  var i, l;
-	  for (i = 0, l = this.children.length; i < l; i++) {
-	    hook(this.children[i]);
-	  }
 	  for (i = 0, l = this.childFrags.length; i < l; i++) {
 	    this.childFrags[i].callHook(hook);
 	  }
-	};
-	
-	/**
-	 * Destroy the fragment.
-	 */
-	
-	Fragment.prototype.destroy = function () {
-	  if (this.parentFrag) {
-	    this.parentFrag.childFrags.$remove(this);
+	  for (i = 0, l = this.children.length; i < l; i++) {
+	    hook(this.children[i]);
 	  }
-	  this.unlink();
 	};
 	
 	/**
@@ -4621,7 +4623,7 @@
 	  this.inserted = false;
 	  var shouldCallRemove = inDoc(this.node);
 	  var self = this;
-	  self.callHook(destroyChild);
+	  this.beforeRemove();
 	  removeWithTransition(this.node, this.vm, function () {
 	    if (shouldCallRemove) {
 	      self.callHook(detach);
@@ -4657,7 +4659,7 @@
 	  this.inserted = false;
 	  var self = this;
 	  var shouldCallRemove = inDoc(this.node);
-	  self.callHook(destroyChild);
+	  this.beforeRemove();
 	  removeNodeRange(this.node, this.end, this.vm, this.frag, function () {
 	    if (shouldCallRemove) {
 	      self.callHook(detach);
@@ -4665,6 +4667,46 @@
 	    self.destroy();
 	  });
 	}
+	
+	/**
+	 * Prepare the fragment for removal.
+	 */
+	
+	Fragment.prototype.beforeRemove = function () {
+	  var i, l;
+	  for (i = 0, l = this.childFrags.length; i < l; i++) {
+	    // call the same method recursively on child
+	    // fragments, depth-first
+	    this.childFrags[i].beforeRemove(false);
+	  }
+	  for (i = 0, l = this.children.length; i < l; i++) {
+	    // Call destroy for all contained instances,
+	    // with remove:false and defer:true.
+	    // Defer is necessary because we need to
+	    // keep the children to call detach hooks
+	    // on them.
+	    this.children[i].$destroy(false, true);
+	  }
+	  var dirs = this.unlink.dirs;
+	  for (i = 0, l = dirs.length; i < l; i++) {
+	    // disable the watchers on all the directives
+	    // so that the rendered content stays the same
+	    // during removal.
+	    dirs[i]._watcher && dirs[i]._watcher.teardown();
+	  }
+	};
+	
+	/**
+	 * Destroy the fragment.
+	 */
+	
+	Fragment.prototype.destroy = function () {
+	  if (this.parentFrag) {
+	    this.parentFrag.childFrags.$remove(this);
+	  }
+	  this.node.__vfrag__ = null;
+	  this.unlink();
+	};
 	
 	/**
 	 * Call attach hook for a Vue instance.
@@ -4676,20 +4718,6 @@
 	  if (!child._isAttached) {
 	    child._callHook('attached');
 	  }
-	}
-	
-	/**
-	 * Call destroy for all contained instances,
-	 * with remove:false and defer:true.
-	 * Defer is necessary because we need to
-	 * keep the children to call detach hooks
-	 * on them.
-	 *
-	 * @param {Vue} child
-	 */
-	
-	function destroyChild(child) {
-	  child.$destroy(false, true);
 	}
 	
 	/**
@@ -5137,6 +5165,14 @@
 	   */
 	
 	  move: function move(frag, prevEl) {
+	    // fix a common issue with Sortable:
+	    // if prevEl doesn't have nextSibling, this means it's
+	    // been dragged after the end anchor. Just re-position
+	    // the end anchor to the end of the container.
+	    /* istanbul ignore if */
+	    if (!prevEl.nextSibling) {
+	      this.end.parentNode.appendChild(this.end);
+	    }
 	    frag.before(prevEl.nextSibling, false);
 	  },
 	
@@ -5472,8 +5508,8 @@
 	  return f;
 	}
 	
-	var TYPE_TRANSITION = 1;
-	var TYPE_ANIMATION = 2;
+	var TYPE_TRANSITION = 'transition';
+	var TYPE_ANIMATION = 'animation';
 	var transDurationProp = transitionProp + 'Duration';
 	var animDurationProp = animationProp + 'Duration';
 	
@@ -5489,8 +5525,8 @@
 	function Transition(el, id, hooks, vm) {
 	  this.id = id;
 	  this.el = el;
-	  this.enterClass = id + '-enter';
-	  this.leaveClass = id + '-leave';
+	  this.enterClass = hooks && hooks.enterClass || id + '-enter';
+	  this.leaveClass = hooks && hooks.leaveClass || id + '-leave';
 	  this.hooks = hooks;
 	  this.vm = vm;
 	  // async state
@@ -5498,6 +5534,14 @@
 	  this.justEntered = false;
 	  this.entered = this.left = false;
 	  this.typeCache = {};
+	  // check css transition type
+	  this.type = hooks && hooks.type;
+	  /* istanbul ignore if */
+	  if (process.env.NODE_ENV !== 'production') {
+	    if (this.type && this.type !== TYPE_TRANSITION && this.type !== TYPE_ANIMATION) {
+	      warn('invalid CSS transition type for transition="' + this.id + '": ' + this.type);
+	    }
+	  }
 	  // bind
 	  var self = this;['enterNextTick', 'enterDone', 'leaveNextTick', 'leaveDone'].forEach(function (m) {
 	    self[m] = bind$1(self[m], self);
@@ -5757,7 +5801,7 @@
 	  isHidden(this.el)) {
 	    return;
 	  }
-	  var type = this.typeCache[className];
+	  var type = this.type || this.typeCache[className];
 	  if (type) return type;
 	  var inlineStyles = this.el.style;
 	  var computedStyles = window.getComputedStyle(this.el);
@@ -6358,7 +6402,7 @@
 	      value = parsed.expression;
 	      prop.filters = parsed.filters;
 	      // check binding type
-	      if (isLiteral(value)) {
+	      if (isLiteral(value) && !parsed.filters) {
 	        // for expressions containing literal numbers and
 	        // booleans, there's no need to setup a prop binding,
 	        // so we can optimize them as a one-time set.
@@ -6577,12 +6621,15 @@
 	 */
 	
 	function makeUnlinkFn(vm, dirs, context, contextDirs) {
-	  return function unlink(destroying) {
+	  function unlink(destroying) {
 	    teardownDirs(vm, dirs, destroying);
 	    if (context && contextDirs) {
 	      teardownDirs(context, contextDirs);
 	    }
-	  };
+	  }
+	  // expose linked directives
+	  unlink.dirs = dirs;
+	  return unlink;
 	}
 	
 	/**
@@ -6678,6 +6725,7 @@
 	    }
 	  }
 	
+	  options._containerAttrs = options._replacerAttrs = null;
 	  return function rootLinkFn(vm, el, scope) {
 	    // link context scope dirs
 	    var context = vm._context;
@@ -7005,11 +7053,10 @@
 	  var value, dirName;
 	  for (var i = 0, l = terminalDirectives.length; i < l; i++) {
 	    dirName = terminalDirectives[i];
-	    /* eslint-disable no-cond-assign */
-	    if (value = el.getAttribute('v-' + dirName)) {
+	    value = el.getAttribute('v-' + dirName);
+	    if (value != null) {
 	      return makeTerminalNodeLinkFn(el, dirName, value, options);
 	    }
-	    /* eslint-enable no-cond-assign */
 	  }
 	}
 	
@@ -7081,7 +7128,7 @@
 	    if (tokens) {
 	      value = tokensToExp(tokens);
 	      arg = name;
-	      pushDir('bind', publicDirectives.bind, true);
+	      pushDir('bind', publicDirectives.bind, tokens);
 	      // warn against mixing mustaches with v-bind
 	      if (process.env.NODE_ENV !== 'production') {
 	        if (name === 'class' && Array.prototype.some.call(attrs, function (attr) {
@@ -7147,11 +7194,12 @@
 	   *
 	   * @param {String} dirName
 	   * @param {Object|Function} def
-	   * @param {Boolean} [interp]
+	   * @param {Array} [interpTokens]
 	   */
 	
-	  function pushDir(dirName, def, interp) {
-	    var parsed = parseDirective(value);
+	  function pushDir(dirName, def, interpTokens) {
+	    var hasOneTimeToken = interpTokens && hasOneTime(interpTokens);
+	    var parsed = !hasOneTimeToken && parseDirective(value);
 	    dirs.push({
 	      name: dirName,
 	      attr: rawName,
@@ -7159,9 +7207,13 @@
 	      def: def,
 	      arg: arg,
 	      modifiers: modifiers,
-	      expression: parsed.expression,
-	      filters: parsed.filters,
-	      interp: interp
+	      // conversion from interpolation strings with one-time token
+	      // to expression is differed until directive bind time so that we
+	      // have access to the actual vm context for one-time bindings.
+	      expression: parsed && parsed.expression,
+	      filters: parsed && parsed.filters,
+	      interp: interpTokens,
+	      hasOneTime: hasOneTimeToken
 	    });
 	  }
 	
@@ -7204,6 +7256,20 @@
 	      vm._bindDir(directives[i], el, host, scope, frag);
 	    }
 	  };
+	}
+	
+	/**
+	 * Check if an interpolation string contains one-time tokens.
+	 *
+	 * @param {Array} tokens
+	 * @return {Boolean}
+	 */
+	
+	function hasOneTime(tokens) {
+	  var i = tokens.length;
+	  while (i--) {
+	    if (tokens[i].oneTime) return true;
+	  }
 	}
 	
 	var specialCharRE = /[^\w\-:\.]/;
@@ -7335,7 +7401,7 @@
 	    value = attrs[i].value;
 	    if (!to.hasAttribute(name) && !specialCharRE.test(name)) {
 	      to.setAttribute(name, value);
-	    } else if (name === 'class') {
+	    } else if (name === 'class' && !parseText(value)) {
 	      value.split(/\s+/).forEach(function (cls) {
 	        addClass(to, cls);
 	      });
@@ -7347,6 +7413,7 @@
 		compile: compile,
 		compileAndLinkProps: compileAndLinkProps,
 		compileRoot: compileRoot,
+		terminalDirectives: terminalDirectives,
 		transclude: transclude
 	});
 	
@@ -7625,6 +7692,7 @@
 	      if (eventRE.test(name)) {
 	        name = name.replace(eventRE, '');
 	        handler = (vm._scope || vm._context).$eval(attrs[i].value, true);
+	        handler._fromParent = true;
 	        vm.$on(name.replace(eventRE), handler);
 	      }
 	    }
@@ -8560,8 +8628,9 @@
 	        var self = this;
 	        return function statementHandler() {
 	          self.$arguments = toArray(arguments);
-	          res.get.call(self, self);
+	          var result = res.get.call(self, self);
 	          self.$arguments = null;
+	          return result;
 	        };
 	      } else {
 	        try {
@@ -8981,19 +9050,32 @@
 	  /**
 	   * Trigger an event on self.
 	   *
-	   * @param {String} event
+	   * @param {String|Object} event
 	   * @return {Boolean} shouldPropagate
 	   */
 	
 	  Vue.prototype.$emit = function (event) {
+	    var isSource = typeof event === 'string';
+	    event = isSource ? event : event.name;
 	    var cbs = this._events[event];
-	    var shouldPropagate = !cbs;
+	    var shouldPropagate = isSource || !cbs;
 	    if (cbs) {
 	      cbs = cbs.length > 1 ? toArray(cbs) : cbs;
+	      // this is a somewhat hacky solution to the question raised
+	      // in #2102: for an inline component listener like <comp @test="doThis">,
+	      // the propagation handling is somewhat broken. Therefore we
+	      // need to treat these inline callbacks differently.
+	      var hasParentCbs = isSource && cbs.some(function (cb) {
+	        return cb._fromParent;
+	      });
+	      if (hasParentCbs) {
+	        shouldPropagate = false;
+	      }
 	      var args = toArray(arguments, 1);
 	      for (var i = 0, l = cbs.length; i < l; i++) {
-	        var res = cbs[i].apply(this, args);
-	        if (res === true) {
+	        var cb = cbs[i];
+	        var res = cb.apply(this, args);
+	        if (res === true && (!hasParentCbs || cb._fromParent)) {
 	          shouldPropagate = true;
 	        }
 	      }
@@ -9004,20 +9086,28 @@
 	  /**
 	   * Recursively broadcast an event to all children instances.
 	   *
-	   * @param {String} event
+	   * @param {String|Object} event
 	   * @param {...*} additional arguments
 	   */
 	
 	  Vue.prototype.$broadcast = function (event) {
+	    var isSource = typeof event === 'string';
+	    event = isSource ? event : event.name;
 	    // if no child has registered for this event,
 	    // then there's no need to broadcast.
 	    if (!this._eventsCount[event]) return;
 	    var children = this.$children;
+	    var args = toArray(arguments);
+	    if (isSource) {
+	      // use object event to indicate non-source emit
+	      // on children
+	      args[0] = { name: event, source: this };
+	    }
 	    for (var i = 0, l = children.length; i < l; i++) {
 	      var child = children[i];
-	      var shouldPropagate = child.$emit.apply(child, arguments);
+	      var shouldPropagate = child.$emit.apply(child, args);
 	      if (shouldPropagate) {
-	        child.$broadcast.apply(child, arguments);
+	        child.$broadcast.apply(child, args);
 	      }
 	    }
 	    return this;
@@ -9030,11 +9120,16 @@
 	   * @param {...*} additional arguments
 	   */
 	
-	  Vue.prototype.$dispatch = function () {
-	    this.$emit.apply(this, arguments);
+	  Vue.prototype.$dispatch = function (event) {
+	    var shouldPropagate = this.$emit.apply(this, arguments);
+	    if (!shouldPropagate) return;
 	    var parent = this.$parent;
+	    var args = toArray(arguments);
+	    // use object event to indicate non-source emit
+	    // on parents
+	    args[0] = { name: event, source: this };
 	    while (parent) {
-	      var shouldPropagate = parent.$emit.apply(parent, arguments);
+	      shouldPropagate = parent.$emit.apply(parent, args);
 	      parent = shouldPropagate ? parent.$parent : null;
 	    }
 	    return this;
@@ -9171,6 +9266,7 @@
 	
 	function limitBy(arr, n, offset) {
 	  offset = offset ? parseInt(offset, 10) : 0;
+	  n = toNumber(n);
 	  return typeof n === 'number' ? arr.slice(offset, offset + n) : arr;
 	}
 	
@@ -9540,7 +9636,7 @@
 	  partial: partial
 	};
 	
-	Vue.version = '1.0.13';
+	Vue.version = '1.0.15';
 	
 	/**
 	 * Vue and every constructor that extends Vue has an
@@ -12232,27 +12328,27 @@
 	        },
 	        '/project': {
 	            name: 'project',
-	            component: __webpack_require__(46)
+	            component: __webpack_require__(53)
 	        },
 	        '/worklog': {
 	            name: 'worklog',
-	            component: __webpack_require__(47)
+	            component: __webpack_require__(58)
 	        },
 	        '/userinfo': {
 	            name: 'userinfo',
-	            component: __webpack_require__(55)
+	            component: __webpack_require__(66)
 	        },
 	        '/workflow': {
 	            name: 'workflow',
-	            component: __webpack_require__(70)
+	            component: __webpack_require__(81)
 	        },
 	        '/login': {
 	            name: 'login',
-	            component: __webpack_require__(71)
+	            component: __webpack_require__(82)
 	        },
 	        '/comment': {
 	            name: 'comment',
-	            component: __webpack_require__(74)
+	            component: __webpack_require__(85)
 	        },
 	
 	        /* 404路由 */
@@ -12270,7 +12366,7 @@
 	var __vue_script__, __vue_template__
 	__webpack_require__(7)
 	__vue_script__ = __webpack_require__(11)
-	__vue_template__ = __webpack_require__(45)
+	__vue_template__ = __webpack_require__(52)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -12321,7 +12417,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.tab_info[_v-ecc3dad2]{\n\theight: 40px;\n\tpadding: 5px;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-flex-flow:row nowrap;\n\t    -ms-flex-flow:row nowrap;\n\t        flex-flow:row nowrap;\n\t-webkit-box-pack:justify;\n\t-webkit-justify-content:space-between;\n\t    -ms-flex-pack:justify;\n\t        justify-content:space-between;\n\t-webkit-box-align:center;\n\t-webkit-align-items:center;\n\t    -ms-flex-align:center;\n\t        align-items:center;\n\tbackground-color: white;\n}\n\n\n.tab_info>div[_v-ecc3dad2]:nth-child(2){\n\tmargin-right: 5px;\n\tcolor: #272822;\n}\n\n.left[_v-ecc3dad2]{\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-flex-flow:row nowrap;\n\t    -ms-flex-flow:row nowrap;\n\t        flex-flow:row nowrap;\n\t-webkit-box-pack:start;\n\t-webkit-justify-content:flex-start;\n\t    -ms-flex-pack:start;\n\t        justify-content:flex-start;\n\t-webkit-box-align:center;\n\t-webkit-align-items:center;\n\t    -ms-flex-align:center;\n\t        align-items:center;\n}\n.left>div[_v-ecc3dad2]{\n\tmargin-left: 10px;\n\n}\n\n.contentList[_v-ecc3dad2]{\n\tmargin: 0px;\n\tpadding: 5px;\n\tbackground-color: whitesmoke;\n}\n.contentList>li[_v-ecc3dad2]{\n\tborder-radius: 3px;\n\tlist-style-type: none;\n\tborder:1px solid whitesmoke;\n\tmargin-bottom:5px;\n\n}\n\n.contentList>li[_v-ecc3dad2]:hover{\n\tborder:1px solid gray;\n}\n\n.content>div[_v-ecc3dad2]:nth-child(1){\n\tfont-size: 12px;\n\tcolor: lightdark;\n\tmargin-bottom: 5px;\n}\n\n.content>div:nth-child(1)>span[_v-ecc3dad2]:nth-child(2){\n\tmargin-left: 10px;\n}\n\n.content>div[_v-ecc3dad2]:nth-child(2){\n\tfont-size: 14px;\n\t\n}\n\nimg[_v-ecc3dad2]{\n\twidth: 40px;\n\theight: 40px;\n\tborder-width: 0px;\n}\n", "", {"version":3,"sources":["/./src/views/Home.vue?789b4ef8"],"names":[],"mappings":";AAoOA;CACA,aAAA;CACA,aAAA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,6BAAA;KAAA,yBAAA;SAAA,qBAAA;CACA,yBAAA;CAAA,sCAAA;KAAA,sBAAA;SAAA,8BAAA;CACA,yBAAA;CAAA,2BAAA;KAAA,sBAAA;SAAA,mBAAA;CACA,wBAAA;CACA;;;AAGA;CACA,kBAAA;CACA,eAAA;CACA;;AAEA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,6BAAA;KAAA,yBAAA;SAAA,qBAAA;CACA,uBAAA;CAAA,mCAAA;KAAA,oBAAA;SAAA,2BAAA;CACA,yBAAA;CAAA,2BAAA;KAAA,sBAAA;SAAA,mBAAA;CACA;AACA;CACA,kBAAA;;CAEA;;AAEA;CACA,YAAA;CACA,aAAA;CACA,6BAAA;CACA;AACA;CACA,mBAAA;CACA,sBAAA;CACA,4BAAA;CACA,kBAAA;;CAEA;;AAEA;CACA,sBAAA;CACA;;AAEA;CACA,gBAAA;CACA,iBAAA;CACA,mBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;AAEA;CACA,gBAAA;;CAEA;;AAEA;CACA,YAAA;CACA,aAAA;CACA,kBAAA;CACA","file":"Home.vue","sourcesContent":["<template>\r\n\t<div class=\"page\">\r\n\t\t<toolbar :text=\"title\">\r\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\"></span>\r\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\"></span>\r\n\t\t</toolbar>\r\n\t\t<tabs :active-index.sync=\"index\" >\r\n\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" >\r\n\t\t\t\t<ul class=\"contentList\">\r\n\t\t\t\t\t<li v-for=\"subItem in item.infoList\" >\r\n\t\t\t\t\t\t<div class=\"tab_info\">\r\n\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t<img src=\"\" alt=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"content\">\r\n\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t<span>发布时间:{{subItem.time}}</span>\r\n\t\t\t\t\t\t\t\t\t\t<span>发布人:{{subItem.subUser}}</span>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t{{subItem.content}}\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t<i class=\"icon-chevron-right\"></i>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t</li>\r\n\t\t\t\t</ul>\r\n\t\t\t</tab>\r\n\t\t</tabs>\r\n\t</div>\r\n\t\t\r\n\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" >\r\n\t\t\r\n\t</sidebar>\r\n\r\n\t<loading :loading=\"isload\"></loading>\r\n\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\timport ToolBar from 'src/components/ToolBar.vue'\r\n    import SideBar from 'src/components/Sidebar.vue'\r\n    import Tabs from 'src/components/Tabs.vue'\r\n    import Tab from 'src/components/Tab.vue'\r\n    import Loading from 'src/components/Loading.vue'\r\n\texport default \t{\r\n\t\tcreated(){\r\n\t\t\tconsole.log(\"home is created\")\r\n\t\t\t//计算tab的长度\r\n\t\t   // var width=\tdocument.body.offsetWidth-20;\r\n\t\t   // this.tabWidth=width/this.tabItems.length;\r\n\t\t},\r\n\t\tcomponents:{\r\n\t    \ttoolbar:ToolBar,\r\n            sidebar:SideBar,\r\n            tabs:Tabs,\r\n            tab:Tab,\r\n            loading:Loading\r\n\t    },\r\n\t    props:{\r\n\t    \t\r\n\t    },\r\n\t\tdata() {\r\n\t\t\treturn {\r\n\t\t\t\ttitle:'首页',\r\n\t\t\t\tmenuItems:[{\r\n\t\t\t\t\ttext:'系统首页',\r\n\t\t\t\t\tlink:'home',\r\n\t\t\t\t\ticon:'icon-home'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'个人信息',\r\n\t\t\t\t\tlink:'userinfo',\r\n\t\t\t\t\ticon:'icon-user'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'我的项目',\r\n\t\t\t\t\tlink:'project',\r\n\t\t\t\t\ticon:'icon-tasks'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'工作日志',\r\n\t\t\t\t\tlink:'worklog',\r\n\t\t\t\t\ticon:'icon-calendar'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'流程信息',\r\n\t\t\t\t\tlink:'worklog',\r\n\t\t\t\t\ticon:'icon-exchange'\r\n\t\t\t\t}],\r\n\t\t\t\tindex:1,\r\n\t\t\t\tisload:false,\r\n\t\t\t\tshowMenu:false,\r\n\t\t\t\ttabItems:[{\r\n\t\t\t\t\ttitle:'通知',infoList:[{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂1'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-21',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂2'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t}]\r\n\t\t\t\t},{\r\n\t\t\t\t\ttitle:'公告',infoList:[{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'李四',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'李四',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'李四',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'李四',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t}]\r\n\t\t\t\t},{\r\n\t\t\t\t\ttitle:'制度',infoList:[{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'王五',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'王五',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'王五',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'王五',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂'\r\n\t\t\t\t\t}]\r\n\t\t\t\t}]\r\n\t\t\t}\r\n\t\t},\r\n\t\troute:{\r\n\t\t\tdata(){\r\n\t\t\t\t//从服务器端加载数据\r\n\t\t\t\tconsole.log(\"home组件切入,加载初始数据\");\r\n\t\t\t\t//加载数据\r\n\t\t\t\tthis.isload=false;\r\n\t\t\t\tthis.$http.get(\"values\").then((response)=>{\r\n\t\t\t\t\tconsole.log(response.data);\r\n\t\t\t\t\tthis.isload=false;\r\n\t\t\t\t});\r\n\r\n\t\t\t},\r\n\t\t\tcanDeactivate(transition){\r\n\t\t\t\t//组件被切除\r\n\t\t\t\tconsole.log(\"组件被切出\")\r\n\t\t\t\tthis.showMenu=false;\r\n\t\t\t\ttransition.next();\r\n\t\t\t}\r\n\t\t},\r\n\t    methods: {\r\n\t        openMenu() {\r\n\t            this.showMenu = !this.showMenu;\r\n\t        },\r\n\t        refresh(){\r\n\t        \t//刷新当前页面\r\n\t        }\r\n\t    }\r\n\t}\r\n\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\t.tab_info{\r\n\t\theight: 40px;\r\n\t\tpadding: 5px;\r\n\t\tdisplay: flex;\r\n\t\tflex-flow:row nowrap;\r\n\t\tjustify-content:space-between;\r\n\t\talign-items:center;\r\n\t\tbackground-color: white;\r\n\t}\r\n\r\n\r\n\t.tab_info>div:nth-child(2){\r\n\t\tmargin-right: 5px;\r\n\t\tcolor: #272822;\r\n\t}\r\n\t\r\n\t.left{\r\n\t\tdisplay: flex;\r\n\t\tflex-flow:row nowrap;\r\n\t\tjustify-content:flex-start;\r\n\t\talign-items:center;\r\n\t}\r\n\t.left>div{\r\n\t\tmargin-left: 10px;\r\n\r\n\t}\r\n\r\n\t.contentList{\r\n\t\tmargin: 0px;\r\n\t\tpadding: 5px;\r\n\t\tbackground-color: whitesmoke;\r\n\t}\r\n\t.contentList>li{\r\n\t\tborder-radius: 3px;\r\n\t\tlist-style-type: none;\r\n\t\tborder:1px solid whitesmoke;\r\n\t\tmargin-bottom:5px;\r\n\r\n\t}\r\n\r\n\t.contentList>li:hover{\r\n\t\tborder:1px solid gray;\r\n\t}\r\n\r\n\t.content>div:nth-child(1){\r\n\t\tfont-size: 12px;\r\n\t\tcolor: lightdark;\r\n\t\tmargin-bottom: 5px;\r\n\t}\r\n\r\n\t.content>div:nth-child(1)>span:nth-child(2){\r\n\t\tmargin-left: 10px;\r\n\t}\r\n\r\n\t.content>div:nth-child(2){\r\n\t\tfont-size: 14px;\r\n\t\t\r\n\t}\r\n\r\n\timg{\r\n\t\twidth: 40px;\r\n\t\theight: 40px;\r\n\t\tborder-width: 0px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.tab_info[_v-ecc3dad2]{\n\theight: 40px;\n\tpadding: 5px;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-flex-flow:row nowrap;\n\t    -ms-flex-flow:row nowrap;\n\t        flex-flow:row nowrap;\n\t-webkit-box-pack:justify;\n\t-webkit-justify-content:space-between;\n\t    -ms-flex-pack:justify;\n\t        justify-content:space-between;\n\t-webkit-box-align:center;\n\t-webkit-align-items:center;\n\t    -ms-flex-align:center;\n\t        align-items:center;\n\tbackground-color: white;\n}\n\n\n.tab_info>div[_v-ecc3dad2]:nth-child(2){\n\tmargin-right: 5px;\n\tcolor: #272822;\n}\n\n.left[_v-ecc3dad2]{\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-flex-flow:row nowrap;\n\t    -ms-flex-flow:row nowrap;\n\t        flex-flow:row nowrap;\n\t-webkit-box-pack:start;\n\t-webkit-justify-content:flex-start;\n\t    -ms-flex-pack:start;\n\t        justify-content:flex-start;\n\t-webkit-box-align:center;\n\t-webkit-align-items:center;\n\t    -ms-flex-align:center;\n\t        align-items:center;\n}\n.left>div[_v-ecc3dad2]{\n\tmargin-left: 10px;\n\n}\n\n.contentList[_v-ecc3dad2]{\n\tbackground-color: whitesmoke;\n}\n.contentList>li[_v-ecc3dad2]{\n\tborder-radius: 3px;\n\tlist-style-type: none;\n\tborder:1px solid whitesmoke;\n\tmargin-bottom:5px;\n}\n\n.contentList>li[_v-ecc3dad2]:hover{\n\tborder:1px solid gray;\n}\n\n.content>div[_v-ecc3dad2]:nth-child(1){\n\tfont-size: 12px;\n\tcolor: lightdark;\n\tmargin-bottom: 5px;\n}\n\n.content>div:nth-child(1)>span[_v-ecc3dad2]:nth-child(2){\n\tmargin-left: 10px;\n}\n\n.content>div[_v-ecc3dad2]:nth-child(2){\n\tfont-size: 14px;\n\t\n}\n\nimg[_v-ecc3dad2]{\n\twidth: 40px;\n\theight: 40px;\n\tborder-width: 0px;\n}\n", "", {"version":3,"sources":["/./src/views/Home.vue?78f2bf5c"],"names":[],"mappings":";AA4NA;CACA,aAAA;CACA,aAAA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,6BAAA;KAAA,yBAAA;SAAA,qBAAA;CACA,yBAAA;CAAA,sCAAA;KAAA,sBAAA;SAAA,8BAAA;CACA,yBAAA;CAAA,2BAAA;KAAA,sBAAA;SAAA,mBAAA;CACA,wBAAA;CACA;;;AAGA;CACA,kBAAA;CACA,eAAA;CACA;;AAEA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,6BAAA;KAAA,yBAAA;SAAA,qBAAA;CACA,uBAAA;CAAA,mCAAA;KAAA,oBAAA;SAAA,2BAAA;CACA,yBAAA;CAAA,2BAAA;KAAA,sBAAA;SAAA,mBAAA;CACA;AACA;CACA,kBAAA;;CAEA;;AAEA;CACA,6BAAA;CACA;AACA;CACA,mBAAA;CACA,sBAAA;CACA,4BAAA;CACA,kBAAA;CACA;;AAEA;CACA,sBAAA;CACA;;AAEA;CACA,gBAAA;CACA,iBAAA;CACA,mBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;AAEA;CACA,gBAAA;;CAEA;;AAEA;CACA,YAAA;CACA,aAAA;CACA,kBAAA;CACA","file":"Home.vue","sourcesContent":["<template>\r\n\t<div class=\"page\">\r\n\t\t<toolbar :text=\"title\">\r\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\"></span>\r\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\"></span>\r\n\t\t</toolbar>\r\n\t\t<div class=\"page-content\">\r\n\t\t\t<tabs :active-index.sync=\"index\" >\r\n\t\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" >\r\n\t\t\t\t\t<pull-list>\r\n\t\t\t\t\t\t<ul class=\"contentList\">\r\n\t\t\t\t\t\t\t<li v-for=\"subItem in item.infoList\" >\r\n\t\t\t\t\t\t\t\t<div class=\"tab_info\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t\t<img src=\"\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"content\">\r\n\t\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<span>发布时间:{{subItem.time}}</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<span>发布人:{{subItem.subUser}}</span>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t{{subItem.content}}\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t<i class=\"icon-chevron-right\"></i>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t</pull-list>\r\n\t\t\t\t</tab>\r\n\t\t\t</tabs>\r\n\t\t</div>\r\n\t</div>\r\n\t\t\r\n\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" >\r\n\t\t\r\n\t</sidebar>\r\n\r\n\t<loading :loading=\"isload\"></loading>\r\n\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\timport ToolBar from 'src/components/ToolBar.vue'\r\n    import SideBar from 'src/components/Sidebar.vue'\r\n    import Tabs from 'src/components/Tabs.vue'\r\n    import Tab from 'src/components/Tab.vue'\r\n    import Loading from 'src/components/Loading.vue'\r\n    import PullList from 'src/components/PullList.vue'\r\n\texport default \t{\r\n\t\tcreated(){\r\n\t\t\tconsole.log(\"home is created\")\r\n\t\t\t//计算tab的长度\r\n\t\t   // var width=\tdocument.body.offsetWidth-20;\r\n\t\t   // this.tabWidth=width/this.tabItems.length;\r\n\t\t},\r\n\t\tcomponents:{\r\n\t    \ttoolbar:ToolBar,\r\n            sidebar:SideBar,\r\n            tabs:Tabs,\r\n            tab:Tab,\r\n            loading:Loading,\r\n            PullList\r\n\t    },\r\n\t    props:{\r\n\t    \t\r\n\t    },\r\n\t\tdata() {\r\n\t\t\treturn {\r\n\t\t\t\ttitle:'首页',\r\n\t\t\t\tmenuItems:[{\r\n\t\t\t\t\ttext:'系统首页',\r\n\t\t\t\t\tlink:'home',\r\n\t\t\t\t\ticon:'icon-home'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'个人信息',\r\n\t\t\t\t\tlink:'userinfo',\r\n\t\t\t\t\ticon:'icon-user'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'我的项目',\r\n\t\t\t\t\tlink:'project',\r\n\t\t\t\t\ticon:'icon-tasks'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'工作日志',\r\n\t\t\t\t\tlink:'worklog',\r\n\t\t\t\t\ticon:'icon-calendar'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'流程信息',\r\n\t\t\t\t\tlink:'worklog',\r\n\t\t\t\t\ticon:'icon-exchange'\r\n\t\t\t\t}],\r\n\t\t\t\tindex:0,\r\n\t\t\t\tisload:false,\r\n\t\t\t\tshowMenu:false,\r\n\t\t\t\ttabItems:[{\r\n\t\t\t\t\ttitle:'通知',infoList:[{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂1'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-21',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂2'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t}]\r\n\t\t\t\t}]\r\n\t\t\t}\r\n\t\t},\r\n\t\troute:{\r\n\t\t\tdata(){\r\n\t\t\t\t//从服务器端加载数据\r\n\t\t\t\tconsole.log(\"home组件切入,加载初始数据\");\r\n\t\t\t\t//加载数据\r\n\t\t\t\tthis.isload=false;\r\n\t\t\t\tthis.$http.get(\"values\").then((response)=>{\r\n\t\t\t\t\tconsole.log(response.data);\r\n\t\t\t\t\tthis.isload=false;\r\n\t\t\t\t});\r\n\r\n\t\t\t},\r\n\t\t\tcanDeactivate(transition){\r\n\t\t\t\t//组件被切除\r\n\t\t\t\tconsole.log(\"组件被切出\")\r\n\t\t\t\tthis.showMenu=false;\r\n\t\t\t\ttransition.next();\r\n\t\t\t}\r\n\t\t},\r\n\t    methods: {\r\n\t        openMenu() {\r\n\t            this.showMenu = !this.showMenu;\r\n\t        },\r\n\t        refresh(){\r\n\t        \t//刷新当前页面\r\n\t        }\r\n\t    }\r\n\t}\r\n\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\t.tab_info{\r\n\t\theight: 40px;\r\n\t\tpadding: 5px;\r\n\t\tdisplay: flex;\r\n\t\tflex-flow:row nowrap;\r\n\t\tjustify-content:space-between;\r\n\t\talign-items:center;\r\n\t\tbackground-color: white;\r\n\t}\r\n\r\n\r\n\t.tab_info>div:nth-child(2){\r\n\t\tmargin-right: 5px;\r\n\t\tcolor: #272822;\r\n\t}\r\n\t\r\n\t.left{\r\n\t\tdisplay: flex;\r\n\t\tflex-flow:row nowrap;\r\n\t\tjustify-content:flex-start;\r\n\t\talign-items:center;\r\n\t}\r\n\t.left>div{\r\n\t\tmargin-left: 10px;\r\n\r\n\t}\r\n\r\n\t.contentList{\r\n\t\tbackground-color: whitesmoke;\r\n\t}\r\n\t.contentList>li{\r\n\t\tborder-radius: 3px;\r\n\t\tlist-style-type: none;\r\n\t\tborder:1px solid whitesmoke;\r\n\t\tmargin-bottom:5px;\r\n\t}\r\n\r\n\t.contentList>li:hover{\r\n\t\tborder:1px solid gray;\r\n\t}\r\n\r\n\t.content>div:nth-child(1){\r\n\t\tfont-size: 12px;\r\n\t\tcolor: lightdark;\r\n\t\tmargin-bottom: 5px;\r\n\t}\r\n\r\n\t.content>div:nth-child(1)>span:nth-child(2){\r\n\t\tmargin-left: 10px;\r\n\t}\r\n\r\n\t.content>div:nth-child(2){\r\n\t\tfont-size: 14px;\r\n\t\t\r\n\t}\r\n\r\n\timg{\r\n\t\twidth: 40px;\r\n\t\theight: 40px;\r\n\t\tborder-width: 0px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -12634,8 +12730,59 @@
 	
 	var _Loading2 = _interopRequireDefault(_Loading);
 	
+	var _PullList = __webpack_require__(45);
+	
+	var _PullList2 = _interopRequireDefault(_PullList);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// <template>
+	// 	<div class="page">
+	// 		<toolbar :text="title">
+	// 			<span class="icon-reorder" slot="leftBtn" @click="openMenu"></span>
+	//             <span class="icon-refresh" slot="rightBtn" @click="refresh"></span>
+	// 		</toolbar>
+	// 		<div class="page-content">
+	// 			<tabs :active-index.sync="index" >
+	// 				<tab v-for="item in tabItems" :header="item.title" >
+	// 					<pull-list>
+	// 						<ul class="contentList">
+	// 							<li v-for="subItem in item.infoList" >
+	// 								<div class="tab_info">
+	// 									<div class="left">
+	// 										<img src="" alt="">
+	// 										<div class="content">
+	// 											<div>
+	// 												<span>发布时间:{{subItem.time}}</span>
+	// 												<span>发布人:{{subItem.subUser}}</span>
+	// 											</div>
+	// 											<div>
+	// 												{{subItem.content}}
+	// 											</div>
+	// 										</div>
+	// 									</div>
+	// 									<div>
+	// 										<i class="icon-chevron-right"></i>
+	// 									</div>
+	// 								</div>
+	
+	// 							</li>
+	// 						</ul>
+	// 					</pull-list>
+	// 				</tab>
+	// 			</tabs>
+	// 		</div>
+	// 	</div>
+	
+	// 	<sidebar :menu-items="menuItems" :show-menu.sync="showMenu" >
+	
+	// 	</sidebar>
+	
+	// 	<loading :loading="isload"></loading>
+	
+	// </template>
+	
+	// <script lang="babel">
 	exports.default = {
 		created: function created() {
 			console.log("home is created");
@@ -12649,7 +12796,8 @@
 			sidebar: _Sidebar2.default,
 			tabs: _Tabs2.default,
 			tab: _Tab2.default,
-			loading: _Loading2.default
+			loading: _Loading2.default,
+			PullList: _PullList2.default
 		},
 		props: {},
 		data: function data() {
@@ -12676,7 +12824,7 @@
 					link: 'worklog',
 					icon: 'icon-exchange'
 				}],
-				index: 1,
+				index: 0,
 				isload: false,
 				showMenu: false,
 				tabItems: [{
@@ -12735,50 +12883,36 @@
 						time: '2015-11-24',
 						subUser: '张三',
 						content: '我的世界你不懂5'
-					}]
-				}, {
-					title: '公告', infoList: [{
-						imgUrl: '',
-						time: '2015-11-20',
-						subUser: '李四',
-						content: '我的世界你不懂'
 					}, {
 						imgUrl: '',
-						time: '2015-11-20',
-						subUser: '李四',
-						content: '我的世界你不懂'
+						time: '2015-11-22',
+						subUser: '张三',
+						content: '我的世界你不懂3'
 					}, {
 						imgUrl: '',
-						time: '2015-11-20',
-						subUser: '李四',
-						content: '我的世界你不懂'
+						time: '2015-11-23',
+						subUser: '张三',
+						content: '我的世界你不懂4'
 					}, {
 						imgUrl: '',
-						time: '2015-11-20',
-						subUser: '李四',
-						content: '我的世界你不懂'
-					}]
-				}, {
-					title: '制度', infoList: [{
-						imgUrl: '',
-						time: '2015-11-20',
-						subUser: '王五',
-						content: '我的世界你不懂'
+						time: '2015-11-24',
+						subUser: '张三',
+						content: '我的世界你不懂5'
 					}, {
 						imgUrl: '',
-						time: '2015-11-20',
-						subUser: '王五',
-						content: '我的世界你不懂'
+						time: '2015-11-22',
+						subUser: '张三',
+						content: '我的世界你不懂3'
 					}, {
 						imgUrl: '',
-						time: '2015-11-20',
-						subUser: '王五',
-						content: '我的世界你不懂'
+						time: '2015-11-23',
+						subUser: '张三',
+						content: '我的世界你不懂4'
 					}, {
 						imgUrl: '',
-						time: '2015-11-20',
-						subUser: '王五',
-						content: '我的世界你不懂'
+						time: '2015-11-24',
+						subUser: '张三',
+						content: '我的世界你不懂5'
 					}]
 				}]
 			};
@@ -12844,8 +12978,6 @@
 	// 	}
 
 	// 	.contentList{
-	// 		margin: 0px;
-	// 		padding: 5px;
 	// 		background-color: whitesmoke;
 	// 	}
 	// 	.contentList>li{
@@ -12853,7 +12985,6 @@
 	// 		list-style-type: none;
 	// 		border:1px solid whitesmoke;
 	// 		margin-bottom:5px;
-
 	// 	}
 
 	// 	.contentList>li:hover{
@@ -12881,49 +13012,6 @@
 	// 		border-width: 0px;
 	// 	}
 	// </style>
-	// <template>
-	// 	<div class="page">
-	// 		<toolbar :text="title">
-	// 			<span class="icon-reorder" slot="leftBtn" @click="openMenu"></span>
-	//             <span class="icon-refresh" slot="rightBtn" @click="refresh"></span>
-	// 		</toolbar>
-	// 		<tabs :active-index.sync="index" >
-	// 			<tab v-for="item in tabItems" :header="item.title" >
-	// 				<ul class="contentList">
-	// 					<li v-for="subItem in item.infoList" >
-	// 						<div class="tab_info">
-	// 							<div class="left">
-	// 								<img src="" alt="">
-	// 								<div class="content">
-	// 									<div>
-	// 										<span>发布时间:{{subItem.time}}</span>
-	// 										<span>发布人:{{subItem.subUser}}</span>
-	// 									</div>
-	// 									<div>
-	// 										{{subItem.content}}
-	// 									</div>
-	// 								</div>
-	// 							</div>
-	// 							<div>
-	// 								<i class="icon-chevron-right"></i>
-	// 							</div>
-	// 						</div>
-
-	// 					</li>
-	// 				</ul>
-	// 			</tab>
-	// 		</tabs>
-	// 	</div>
-
-	// 	<sidebar :menu-items="menuItems" :show-menu.sync="showMenu" >
-
-	// 	</sidebar>
-
-	// 	<loading :loading="isload"></loading>
-
-	// </template>
-
-	// <script lang="babel">
 
 /***/ },
 /* 12 */
@@ -13596,7 +13684,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n.tabs[_v-5d2ac0ac]{\n    height: 100%;\n    width: 100%;\n}\n\n\n.nav-tabs[_v-5d2ac0ac]{\n   display: -webkit-box;\n   display: -webkit-flex;\n   display: -ms-flexbox;\n   display: flex;\n   -webkit-flex-flow:column nowrap;\n       -ms-flex-flow:column nowrap;\n           flex-flow:column nowrap;\n   min-height: 35px;\n\n}\n\n.tabs_title[_v-5d2ac0ac] {\n  display: -ms-flexbox;\n  display: -webkit-box;\n  display: flex;\n  display: -webkit-flex;\n  -webkit-flex-flow: row nowrap;\n      -ms-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n  -webkit-align-items: center;\n      -ms-flex-align: center;\n          -webkit-box-align: center;\n          align-items: center;\n  -webkit-align-content: center;\n      -ms-flex-line-pack: center;\n          align-content: center;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n\n  -webkit-justify-content: space-around;\n  -webkit-flex-flow: row nowrap;\n  -webkit-align-items: center;\n  -webkit-align-content: center;\n\n  list-style-type: none;\n  line-height: 35px;\n  border-bottom: 2px solid whitesmoke;\n  padding: 0 10px;\n  font-size: 14px;\n  font-weight: bold;\n  -webkit-box-flex: 0;\n  -webkit-flex: 0 1 auto;\n      -ms-flex: 0 1 auto;\n          flex: 0 1 auto;\n}\n\n\n.nav-tabs>li[_v-5d2ac0ac] {\n  width: 100%;\n  text-align: center;\n  vertical-align: middle;\n  cursor: pointer;\n}\n\n.nav_active[_v-5d2ac0ac] {\n  color: darkorange;\n}\n\n\n.tabs_line[_v-5d2ac0ac] {\n  display: -ms-flexbox;\n  display: -webkit-box;\n  display: flex;\n  display: -webkit-flex;\n  height: 3px;\n  margin: 0px 10px;\n  margin-top: -3px;\n  background-color: darkorange;\n  -webkit-transition: -webkit-transform .3s ease;\n  transition: -webkit-transform .3s ease;\n  transition: transform .3s ease;\n  transition: transform .3s ease, -webkit-transform .3s ease;\n  -moz-transition: transform .3s ease;/* Firefox 4 */\n  -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n  -o-transition: transform .3s ease; /* Opera */\n  width: 0px;\n  -webkit-box-flex: 0;\n  -webkit-flex: 0 1 auto;\n      -ms-flex: 0 1 auto;\n          flex: 0 1 auto;\n}\n\n.tab-content[_v-5d2ac0ac]{\n  overflow: auto;\n  -webkit-overflow-scrolling: touch;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: -webkit-box;\n  display: flex;\n  -webkit-flex: 0 1 auto;\n  -ms-flex: 0 1 auto;\n  -webkit-box-flex: 0;\n          flex: 0 1 auto;\n  margin-bottom: 10px;\n  width: 100%;\n  height: 100%;\n  -webkit-flex-flow:column nowrap;\n      -ms-flex-flow:column nowrap;\n          flex-flow:column nowrap;\n}\n", "", {"version":3,"sources":["/./src/components/Tabs.vue?5684f3ee"],"names":[],"mappings":";;AAgFA;IACA,aAAA;IACA,YAAA;CACA;;;AAGA;GACA,qBAAA;GAAA,sBAAA;GAAA,qBAAA;GAAA,cAAA;GACA,gCAAA;OAAA,4BAAA;WAAA,wBAAA;GACA,iBAAA;;CAEA;;AAEA;EACA,qBAAA;EACA,qBAAA;EAAA,cAAA;EACA,sBAAA;EACA,8BAAA;MACA,0BAAA;UACA,sBAAA;EACA,4BAAA;MACA,uBAAA;UACA,0BAAA;UAAA,oBAAA;EACA,8BAAA;MACA,2BAAA;UACA,sBAAA;EACA,0BAAA;MACA,8BAAA;;EAEA,sCAAA;EACA,8BAAA;EACA,4BAAA;EACA,8BAAA;;EAEA,sBAAA;EACA,kBAAA;EACA,oCAAA;EACA,gBAAA;EACA,gBAAA;EACA,kBAAA;EACA,oBAAA;EAAA,uBAAA;MAAA,mBAAA;UAAA,eAAA;CACA;;;AAGA;EACA,YAAA;EACA,mBAAA;EACA,uBAAA;EACA,gBAAA;CACA;;AAEA;EACA,kBAAA;CACA;;;AAGA;EACA,qBAAA;EACA,qBAAA;EAAA,cAAA;EACA,sBAAA;EACA,YAAA;EACA,iBAAA;EACA,iBAAA;EACA,6BAAA;EACA,+CAAA;EAAA,uCAAA;EAAA,+BAAA;EAAA,2DAAA;EACA,oCAAA,eAAA;EACA,uCAAA,CAAA,qBAAA;EACA,kCAAA,CAAA,WAAA;EACA,WAAA;EACA,oBAAA;EAAA,uBAAA;MAAA,mBAAA;UAAA,eAAA;CACA;;AAEA;EACA,eAAA;EACA,kCAAA;EACA,sBAAA;EACA,qBAAA;EACA,qBAAA;EAAA,cAAA;EACA,uBAAA;EACA,mBAAA;EACA,oBAAA;UAAA,eAAA;EACA,oBAAA;EACA,YAAA;EACA,aAAA;EACA,gCAAA;MAAA,4BAAA;UAAA,wBAAA;CACA","file":"Tabs.vue","sourcesContent":["<template>\r\n \r\n  <div class=\"tabs\" v-touch:swipe=\"swipeTab\" role=\"tablist\">\r\n    <div class=\"nav-tabs\">\r\n        <ul class=\"tabs_title\">\r\n            <li v-for=\"item in tabItems\"\r\n            :class=\"{'nav_active':activeIndex===$index}\" \r\n            v-touch:tap=\"switchTab($index)\" \r\n             >{{item.header}}</li>\r\n        </ul>\r\n        <div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\">\r\n        </div>\r\n    </div>\r\n      <!-- Tab panes -->\r\n     <div class=\"tab-content\" v-el:tabContent>\r\n        <slot></slot>\r\n     </div>\r\n  </div>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    ready(){\r\n        var width=  document.body.offsetWidth-20;\r\n        this.underline=width/this.tabItems.length;\r\n        var leftWidth=this.activeIndex*this.underline;\r\n        document.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n    },\r\n    props:{\r\n      effect: {\r\n        type: String,\r\n        default: 'fadein'\r\n      },\r\n      activeIndex:{\r\n        type: Number,\r\n        default: 0\r\n      }\r\n    },\r\n    data(){\r\n      return {\r\n        //当前选中的tab页面\r\n        underline:100,\r\n        tabItems:[]\r\n      }\r\n    },\r\n    methods:{\r\n      //点击tabs\r\n      switchTab(index){\r\n\r\n        this.activeIndex=index;\r\n        var leftWidth=index*this.underline;\r\n        document.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n      },\r\n      swipeTab(e){\r\n        var deltaX=e.deltaX;\r\n        var tempIndex=this.activeIndex;\r\n        if(deltaX>0){\r\n          var tempIndex=this.activeIndex-1;\r\n          if(tempIndex<0){\r\n            tempIndex=0;\r\n          }\r\n        }else{\r\n          var tabLength=this.tabItems.length-1;\r\n          if(tempIndex==tabLength){\r\n            tempIndex=tabLength;\r\n          }else{\r\n            tempIndex=this.activeIndex+1;\r\n          }\r\n        }\r\n        this.activeIndex=tempIndex;\r\n        this.switchTab(tempIndex);\r\n        // document.querySelectorAll('.tabs_line')[0].style.transform=\"translateX(\"+deltaX+\"px)\";\r\n      }\r\n    }\r\n  }\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" scoped>\r\n    \r\n    .tabs{\r\n        height: 100%;\r\n        width: 100%;\r\n    }\r\n\r\n\r\n    .nav-tabs{\r\n       display: flex;\r\n       flex-flow:column nowrap;\r\n       min-height: 35px;\r\n\r\n    }\r\n    \r\n    .tabs_title {\r\n      display: -ms-flexbox;\r\n      display: flex;\r\n      display: -webkit-flex;\r\n      -webkit-flex-flow: row nowrap;\r\n          -ms-flex-flow: row nowrap;\r\n              flex-flow: row nowrap;\r\n      -webkit-align-items: center;\r\n          -ms-flex-align: center;\r\n              align-items: center;\r\n      -webkit-align-content: center;\r\n          -ms-flex-line-pack: center;\r\n              align-content: center;\r\n      -ms-flex-pack: distribute;\r\n          justify-content: space-around;\r\n\r\n      -webkit-justify-content: space-around;\r\n      -webkit-flex-flow: row nowrap;\r\n      -webkit-align-items: center;\r\n      -webkit-align-content: center;\r\n\r\n      list-style-type: none;\r\n      line-height: 35px;\r\n      border-bottom: 2px solid whitesmoke;\r\n      padding: 0 10px;\r\n      font-size: 14px;\r\n      font-weight: bold;\r\n      flex: 0 1 auto;\r\n    }\r\n    \r\n    \r\n    .nav-tabs>li {\r\n      width: 100%;\r\n      text-align: center;\r\n      vertical-align: middle;\r\n      cursor: pointer;\r\n    }\r\n    \r\n    .nav_active {\r\n      color: darkorange;\r\n    }\r\n\r\n    \r\n    .tabs_line {\r\n      display: -ms-flexbox;\r\n      display: flex;\r\n      display: -webkit-flex;\r\n      height: 3px;\r\n      margin: 0px 10px;\r\n      margin-top: -3px;\r\n      background-color: darkorange;\r\n      transition: transform .3s ease;\r\n      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n      -o-transition: transform .3s ease; /* Opera */\r\n      width: 0px;\r\n      flex: 0 1 auto;\r\n    }\r\n\r\n    .tab-content{\r\n      overflow: auto;\r\n      -webkit-overflow-scrolling: touch;\r\n      display: -webkit-flex;\r\n      display: -ms-flexbox;\r\n      display: flex;\r\n      -webkit-flex: 0 1 auto;\r\n      -ms-flex: 0 1 auto;\r\n      flex: 0 1 auto;\r\n      margin-bottom: 10px;\r\n      width: 100%;\r\n      height: 100%;\r\n      flex-flow:column nowrap;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n\n.tabs[_v-5d2ac0ac]{\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-flex-flow:column nowrap;\n        -ms-flex-flow:column nowrap;\n            flex-flow:column nowrap;\n    min-height: 35px;\n    -webkit-box-pack:start;\n    -webkit-justify-content:flex-start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    height: 100%;\n}\n\n.nav-tabs[_v-5d2ac0ac]{\n   display: -webkit-box;\n   display: -webkit-flex;\n   display: -ms-flexbox;\n   display: flex;\n   -webkit-flex-flow:column nowrap;\n       -ms-flex-flow:column nowrap;\n           flex-flow:column nowrap;\n   min-height: 35px;\n   height: 40px;\n   -webkit-box-pack:start;\n   -webkit-justify-content:flex-start;\n       -ms-flex-pack:start;\n           justify-content:flex-start;\n   -webkit-box-flex:0;\n   -webkit-flex:0 1 auto;\n       -ms-flex:0 1 auto;\n           flex:0 1 auto;\n}\n\n.tabs_title[_v-5d2ac0ac] {\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    display: -webkit-flex;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            -webkit-box-align: center;\n            align-items: center;\n    -webkit-align-content: center;\n        -ms-flex-line-pack: center;\n            align-content: center;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n\n    -webkit-justify-content: space-around;\n    -webkit-flex-flow: row nowrap;\n    -webkit-align-items: center;\n    -webkit-align-content: center;\n\n    list-style-type: none;\n    line-height: 35px;\n    border-bottom: 1px solid whitesmoke;\n    font-size: 14px;\n    font-weight: bold;\n    width: 100%;\n}\n\n\n.tabs_title>li[_v-5d2ac0ac] {\n  width: 100%;\n  min-width: 100px;\n  text-align: center;\n  vertical-align: middle;\n  cursor: pointer;\n}\n\n.nav_active[_v-5d2ac0ac] {\n  color: darkorange;\n}\n\n\n#tabs_line[_v-5d2ac0ac] {\n  height: 3px;\n  margin: 0px 10px;\n  margin-top: -3px;\n  background-color: darkorange;\n  -webkit-transition: -webkit-transform .3s ease;\n  transition: -webkit-transform .3s ease;\n  transition: transform .3s ease;\n  transition: transform .3s ease, -webkit-transform .3s ease;\n  -moz-transition: transform .3s ease;/* Firefox 4 */\n  -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n  -o-transition: transform .3s ease; /* Opera */\n  width: 0px;\n}\n\n.tab-content[_v-5d2ac0ac]{\n    overflow: auto;\n    -webkit-overflow-scrolling: touch;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    -webkit-flex: 0 1 auto;\n    -ms-flex: 0 1 auto;\n    -webkit-box-flex: 0;\n            flex: 0 1 auto;\n    margin-bottom: 0px;\n    height: 100%;\n    -webkit-flex-flow:column nowrap;\n        -ms-flex-flow:column nowrap;\n            flex-flow:column nowrap;\n}\n", "", {"version":3,"sources":["/./src/components/Tabs.vue?95e12948"],"names":[],"mappings":";;;AAiFA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,gCAAA;QAAA,4BAAA;YAAA,wBAAA;IACA,iBAAA;IACA,uBAAA;IAAA,mCAAA;QAAA,oBAAA;YAAA,2BAAA;IACA,aAAA;CACA;;AAEA;GACA,qBAAA;GAAA,sBAAA;GAAA,qBAAA;GAAA,cAAA;GACA,gCAAA;OAAA,4BAAA;WAAA,wBAAA;GACA,iBAAA;GACA,aAAA;GACA,uBAAA;GAAA,mCAAA;OAAA,oBAAA;WAAA,2BAAA;GACA,mBAAA;GAAA,sBAAA;OAAA,kBAAA;WAAA,cAAA;CACA;;AAEA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,sBAAA;IACA,8BAAA;QACA,0BAAA;YACA,sBAAA;IACA,4BAAA;QACA,uBAAA;YACA,0BAAA;YAAA,oBAAA;IACA,8BAAA;QACA,2BAAA;YACA,sBAAA;IACA,0BAAA;QACA,8BAAA;;IAEA,sCAAA;IACA,8BAAA;IACA,4BAAA;IACA,8BAAA;;IAEA,sBAAA;IACA,kBAAA;IACA,oCAAA;IACA,gBAAA;IACA,kBAAA;IACA,YAAA;CACA;;;AAGA;EACA,YAAA;EACA,iBAAA;EACA,mBAAA;EACA,uBAAA;EACA,gBAAA;CACA;;AAEA;EACA,kBAAA;CACA;;;AAGA;EACA,YAAA;EACA,iBAAA;EACA,iBAAA;EACA,6BAAA;EACA,+CAAA;EAAA,uCAAA;EAAA,+BAAA;EAAA,2DAAA;EACA,oCAAA,eAAA;EACA,uCAAA,CAAA,qBAAA;EACA,kCAAA,CAAA,WAAA;EACA,WAAA;CACA;;AAEA;IACA,eAAA;IACA,kCAAA;IACA,sBAAA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,uBAAA;IACA,mBAAA;IACA,oBAAA;YAAA,eAAA;IACA,mBAAA;IACA,aAAA;IACA,gCAAA;QAAA,4BAAA;YAAA,wBAAA;CACA","file":"Tabs.vue","sourcesContent":["<template>\r\n \r\n  <section class=\"tabs\" v-touch:swipeleft=\"swipeLeft\" v-touch:swiperight=\"swipeRight\" role=\"tablist\">\r\n    <div class=\"nav-tabs\">\r\n        <ul class=\"tabs_title\">\r\n            <li v-for=\"item in tabItems\"\r\n            :class=\"{'nav_active':activeIndex===$index}\" \r\n            v-touch:tap=\"switchTab($index)\" \r\n             >{{item.header}}</li>\r\n        </ul>\r\n        <div id=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\">\r\n        </div>\r\n    </div>\r\n      <!-- Tab panes -->\r\n    <div class=\"tab-content\">\r\n        <slot></slot>\r\n    </div>\r\n  </section>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    ready(){\r\n        var width=  document.body.offsetWidth-20;\r\n        this.underline=width/this.tabItems.length;\r\n        this.switchTab(this.activeIndex);\r\n    },\r\n    props:{\r\n      effect: {\r\n        type: String,\r\n        default: 'fadein'\r\n      },\r\n      activeIndex:{\r\n        type: Number,\r\n        default: 0\r\n      }\r\n    },\r\n    data(){\r\n      return {\r\n        //当前选中的tab页面\r\n        underline:100,\r\n        tabItems:[]\r\n      }\r\n    },\r\n    methods:{\r\n      //点击tabs\r\n      switchTab(index){\r\n\r\n        this.activeIndex=index;\r\n        var leftWidth=index*this.underline;\r\n        document.getElementById('tabs_line').style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n      },\r\n      swipeLeft(){\r\n         \r\n          var tempIndex=this.activeIndex;\r\n          var tabLength=this.tabItems.length-1;\r\n          if(tempIndex==tabLength){\r\n            tempIndex=tabLength;\r\n          }else{\r\n            tempIndex=this.activeIndex+1;\r\n          }\r\n          this.activeIndex=tempIndex;\r\n          this.switchTab(tempIndex);\r\n      },\r\n      swipeRight(){\r\n          var tempIndex=this.activeIndex;\r\n          var tempIndex=this.activeIndex-1;\r\n          if(tempIndex<0){\r\n            tempIndex=0;\r\n          }\r\n          this.activeIndex=tempIndex;\r\n          this.switchTab(tempIndex);\r\n      }\r\n    }\r\n  }\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" scoped>\r\n    \r\n\r\n    .tabs{\r\n        display: flex;\r\n        flex-flow:column nowrap;\r\n        min-height: 35px;\r\n        justify-content:flex-start;\r\n        height: 100%;\r\n    }\r\n\r\n    .nav-tabs{\r\n       display: flex;\r\n       flex-flow:column nowrap;\r\n       min-height: 35px;\r\n       height: 40px;\r\n       justify-content:flex-start;\r\n       flex:0 1 auto;\r\n    }\r\n    \r\n    .tabs_title {\r\n        display: -ms-flexbox;\r\n        display: flex;\r\n        display: -webkit-flex;\r\n        -webkit-flex-flow: row nowrap;\r\n            -ms-flex-flow: row nowrap;\r\n                flex-flow: row nowrap;\r\n        -webkit-align-items: center;\r\n            -ms-flex-align: center;\r\n                align-items: center;\r\n        -webkit-align-content: center;\r\n            -ms-flex-line-pack: center;\r\n                align-content: center;\r\n        -ms-flex-pack: distribute;\r\n            justify-content: space-around;\r\n\r\n        -webkit-justify-content: space-around;\r\n        -webkit-flex-flow: row nowrap;\r\n        -webkit-align-items: center;\r\n        -webkit-align-content: center;\r\n\r\n        list-style-type: none;\r\n        line-height: 35px;\r\n        border-bottom: 1px solid whitesmoke;\r\n        font-size: 14px;\r\n        font-weight: bold;\r\n        width: 100%;\r\n    }\r\n    \r\n    \r\n    .tabs_title>li {\r\n      width: 100%;\r\n      min-width: 100px;\r\n      text-align: center;\r\n      vertical-align: middle;\r\n      cursor: pointer;\r\n    }\r\n    \r\n    .nav_active {\r\n      color: darkorange;\r\n    }\r\n\r\n    \r\n    #tabs_line {\r\n      height: 3px;\r\n      margin: 0px 10px;\r\n      margin-top: -3px;\r\n      background-color: darkorange;\r\n      transition: transform .3s ease;\r\n      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n      -o-transition: transform .3s ease; /* Opera */\r\n      width: 0px;\r\n    }\r\n\r\n    .tab-content{\r\n        overflow: auto;\r\n        -webkit-overflow-scrolling: touch;\r\n        display: -webkit-flex;\r\n        display: -ms-flexbox;\r\n        display: flex;\r\n        -webkit-flex: 0 1 auto;\r\n        -ms-flex: 0 1 auto;\r\n        flex: 0 1 auto;\r\n        margin-bottom: 0px;\r\n        height: 100%;\r\n        flex-flow:column nowrap;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -13605,14 +13693,14 @@
 /* 33 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	// <template>
 	
-	//   <div class="tabs" v-touch:swipe="swipeTab" role="tablist">
+	//   <section class="tabs" v-touch:swipeleft="swipeLeft" v-touch:swiperight="swipeRight" role="tablist">
 	//     <div class="nav-tabs">
 	//         <ul class="tabs_title">
 	//             <li v-for="item in tabItems"
@@ -13620,14 +13708,14 @@
 	//             v-touch:tap="switchTab($index)"
 	//              >{{item.header}}</li>
 	//         </ul>
-	//         <div class="tabs_line" v-bind:style="{ width:underline+ 'px' }">
+	//         <div id="tabs_line" v-bind:style="{ width:underline+ 'px' }">
 	//         </div>
 	//     </div>
 	//       <!-- Tab panes -->
-	//      <div class="tab-content" v-el:tabContent>
+	//     <div class="tab-content">
 	//         <slot></slot>
-	//      </div>
-	//   </div>
+	//     </div>
+	//   </section>
 	// </template>
 	
 	// <script>
@@ -13635,8 +13723,7 @@
 	  ready: function ready() {
 	    var width = document.body.offsetWidth - 20;
 	    this.underline = width / this.tabItems.length;
-	    var leftWidth = this.activeIndex * this.underline;
-	    document.querySelectorAll('.tabs_line')[0].style.transform = "translateX(" + leftWidth + "px)";
+	    this.switchTab(this.activeIndex);
 	  },
 	
 	  props: {
@@ -13664,27 +13751,28 @@
 	
 	      this.activeIndex = index;
 	      var leftWidth = index * this.underline;
-	      document.querySelectorAll('.tabs_line')[0].style.transform = "translateX(" + leftWidth + "px)";
+	      document.getElementById('tabs_line').style.transform = "translateX(" + leftWidth + "px)";
 	    },
-	    swipeTab: function swipeTab(e) {
-	      var deltaX = e.deltaX;
+	    swipeLeft: function swipeLeft() {
+	
 	      var tempIndex = this.activeIndex;
-	      if (deltaX > 0) {
-	        var tempIndex = this.activeIndex - 1;
-	        if (tempIndex < 0) {
-	          tempIndex = 0;
-	        }
+	      var tabLength = this.tabItems.length - 1;
+	      if (tempIndex == tabLength) {
+	        tempIndex = tabLength;
 	      } else {
-	        var tabLength = this.tabItems.length - 1;
-	        if (tempIndex == tabLength) {
-	          tempIndex = tabLength;
-	        } else {
-	          tempIndex = this.activeIndex + 1;
-	        }
+	        tempIndex = this.activeIndex + 1;
 	      }
 	      this.activeIndex = tempIndex;
 	      this.switchTab(tempIndex);
-	      // document.querySelectorAll('.tabs_line')[0].style.transform="translateX("+deltaX+"px)";
+	    },
+	    swipeRight: function swipeRight() {
+	      var tempIndex = this.activeIndex;
+	      var tempIndex = this.activeIndex - 1;
+	      if (tempIndex < 0) {
+	        tempIndex = 0;
+	      }
+	      this.activeIndex = tempIndex;
+	      this.switchTab(tempIndex);
 	    }
 	  }
 	};
@@ -13693,49 +13781,54 @@
 	// <style type="text/css" scoped>
 
 	//     .tabs{
+	//         display: flex;
+	//         flex-flow:column nowrap;
+	//         min-height: 35px;
+	//         justify-content:flex-start;
 	//         height: 100%;
-	//         width: 100%;
 	//     }
 
 	//     .nav-tabs{
 	//        display: flex;
 	//        flex-flow:column nowrap;
 	//        min-height: 35px;
-
+	//        height: 40px;
+	//        justify-content:flex-start;
+	//        flex:0 1 auto;
 	//     }
 
 	//     .tabs_title {
-	//       display: -ms-flexbox;
-	//       display: flex;
-	//       display: -webkit-flex;
-	//       -webkit-flex-flow: row nowrap;
-	//           -ms-flex-flow: row nowrap;
-	//               flex-flow: row nowrap;
-	//       -webkit-align-items: center;
-	//           -ms-flex-align: center;
-	//               align-items: center;
-	//       -webkit-align-content: center;
-	//           -ms-flex-line-pack: center;
-	//               align-content: center;
-	//       -ms-flex-pack: distribute;
-	//           justify-content: space-around;
+	//         display: -ms-flexbox;
+	//         display: flex;
+	//         display: -webkit-flex;
+	//         -webkit-flex-flow: row nowrap;
+	//             -ms-flex-flow: row nowrap;
+	//                 flex-flow: row nowrap;
+	//         -webkit-align-items: center;
+	//             -ms-flex-align: center;
+	//                 align-items: center;
+	//         -webkit-align-content: center;
+	//             -ms-flex-line-pack: center;
+	//                 align-content: center;
+	//         -ms-flex-pack: distribute;
+	//             justify-content: space-around;
 
-	//       -webkit-justify-content: space-around;
-	//       -webkit-flex-flow: row nowrap;
-	//       -webkit-align-items: center;
-	//       -webkit-align-content: center;
+	//         -webkit-justify-content: space-around;
+	//         -webkit-flex-flow: row nowrap;
+	//         -webkit-align-items: center;
+	//         -webkit-align-content: center;
 
-	//       list-style-type: none;
-	//       line-height: 35px;
-	//       border-bottom: 2px solid whitesmoke;
-	//       padding: 0 10px;
-	//       font-size: 14px;
-	//       font-weight: bold;
-	//       flex: 0 1 auto;
+	//         list-style-type: none;
+	//         line-height: 35px;
+	//         border-bottom: 1px solid whitesmoke;
+	//         font-size: 14px;
+	//         font-weight: bold;
+	//         width: 100%;
 	//     }
 
-	//     .nav-tabs>li {
+	//     .tabs_title>li {
 	//       width: 100%;
+	//       min-width: 100px;
 	//       text-align: center;
 	//       vertical-align: middle;
 	//       cursor: pointer;
@@ -13745,10 +13838,7 @@
 	//       color: darkorange;
 	//     }
 
-	//     .tabs_line {
-	//       display: -ms-flexbox;
-	//       display: flex;
-	//       display: -webkit-flex;
+	//     #tabs_line {
 	//       height: 3px;
 	//       margin: 0px 10px;
 	//       margin-top: -3px;
@@ -13758,22 +13848,20 @@
 	//       -webkit-transition: transform .3s ease; /* Safari 和 Chrome */
 	//       -o-transition: transform .3s ease; /* Opera */
 	//       width: 0px;
-	//       flex: 0 1 auto;
 	//     }
 
 	//     .tab-content{
-	//       overflow: auto;
-	//       -webkit-overflow-scrolling: touch;
-	//       display: -webkit-flex;
-	//       display: -ms-flexbox;
-	//       display: flex;
-	//       -webkit-flex: 0 1 auto;
-	//       -ms-flex: 0 1 auto;
-	//       flex: 0 1 auto;
-	//       margin-bottom: 10px;
-	//       width: 100%;
-	//       height: 100%;
-	//       flex-flow:column nowrap;
+	//         overflow: auto;
+	//         -webkit-overflow-scrolling: touch;
+	//         display: -webkit-flex;
+	//         display: -ms-flexbox;
+	//         display: flex;
+	//         -webkit-flex: 0 1 auto;
+	//         -ms-flex: 0 1 auto;
+	//         flex: 0 1 auto;
+	//         margin-bottom: 0px;
+	//         height: 100%;
+	//         flex-flow:column nowrap;
 	//     }
 	// </style>
 	/* generated by vue-loader */
@@ -13782,7 +13870,7 @@
 /* 34 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n<div class=\"tabs\" v-touch:swipe=\"swipeTab\" role=\"tablist\" _v-5d2ac0ac=\"\">\n  <div class=\"nav-tabs\" _v-5d2ac0ac=\"\">\n      <ul class=\"tabs_title\" _v-5d2ac0ac=\"\">\n          <li v-for=\"item in tabItems\" :class=\"{'nav_active':activeIndex===$index}\" v-touch:tap=\"switchTab($index)\" _v-5d2ac0ac=\"\">{{item.header}}</li>\n      </ul>\n      <div class=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\" _v-5d2ac0ac=\"\">\n      </div>\n  </div>\n    <!-- Tab panes -->\n   <div class=\"tab-content\" v-el:tabcontent=\"\" _v-5d2ac0ac=\"\">\n      <slot _v-5d2ac0ac=\"\"></slot>\n   </div>\n</div>\n";
+	module.exports = "\n\n<section class=\"tabs\" v-touch:swipeleft=\"swipeLeft\" v-touch:swiperight=\"swipeRight\" role=\"tablist\" _v-5d2ac0ac=\"\">\n  <div class=\"nav-tabs\" _v-5d2ac0ac=\"\">\n      <ul class=\"tabs_title\" _v-5d2ac0ac=\"\">\n          <li v-for=\"item in tabItems\" :class=\"{'nav_active':activeIndex===$index}\" v-touch:tap=\"switchTab($index)\" _v-5d2ac0ac=\"\">{{item.header}}</li>\n      </ul>\n      <div id=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\" _v-5d2ac0ac=\"\">\n      </div>\n  </div>\n    <!-- Tab panes -->\n  <div class=\"tab-content\" _v-5d2ac0ac=\"\">\n      <slot _v-5d2ac0ac=\"\"></slot>\n  </div>\n</section>\n";
 
 /***/ },
 /* 35 */
@@ -13842,7 +13930,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.tab-content > .tab-pane[_v-48b39499] {\n  display: block;\n}\n", "", {"version":3,"sources":["/./src/components/Tab.vue?b5318af6"],"names":[],"mappings":";AA0DA;EACA,eAAA;CACA","file":"Tab.vue","sourcesContent":["<template>\r\n    <div role=\"tabpanel\" class=\"tab-pane\"\r\n        v-bind:class=\"{hide:!show}\"\r\n        v-show=\"show\"\r\n        :transition=\"transition\"\r\n    >\r\n    <slot></slot>\r\n  </div>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    props: {\r\n      header: {\r\n        type: String\r\n      },\r\n      disabled: {\r\n        type: Boolean,\r\n        default: false\r\n      }\r\n    },\r\n    data() {\r\n      return {\r\n        index: 0,\r\n        show: false\r\n      }\r\n    },\r\n    computed: {\r\n      show() {\r\n        return (this.$parent.activeIndex == this.index);\r\n      },\r\n      transition() {\r\n        return this.$parent.effect\r\n      }\r\n    },\r\n    created() {\r\n       console.log(\"进入tabItem created\")\r\n      \r\n        this.$parent.tabItems.push({\r\n          header: this.header,\r\n          disabled: this.disabled\r\n        })\r\n    },\r\n    ready() {\r\n       console.log(\"进入tabItem ready\")\r\n        for (var c in this.$parent.$children)\r\n        {\r\n            if (this.$parent.$children[c].$el == this.$el)\r\n            {\r\n                this.index= c;\r\n                break;\r\n            }\r\n        }\r\n    }\r\n  }\r\n</script>\r\n\r\n<style scoped>\r\n  .tab-content > .tab-pane {\r\n    display: block;\r\n  }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.tab-content > .tab-pane[_v-48b39499] {\n   /*overflow: auto;\n  -webkit-overflow-scrolling: touch;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-flex: 0 1 auto;\n  -ms-flex: 0 1 auto;\n  flex: 0 1 auto;*/\n  /*width: 100%;*/\n  height: 100%;\n  /*flex-flow:column nowrap;*/\n}\n", "", {"version":3,"sources":["/./src/components/Tab.vue?d6eda51e"],"names":[],"mappings":";AA0DA;GACA;;;;;;;mBAOA;EACA,gBAAA;EACA,aAAA;EACA,4BAAA;CACA","file":"Tab.vue","sourcesContent":["<template>\r\n    <div role=\"tabpanel\" class=\"tab-pane\"\r\n        v-bind:class=\"{hide:!show}\"\r\n        v-show=\"show\"\r\n        :transition=\"transition\"\r\n    >\r\n    <slot></slot>\r\n  </div>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    props: {\r\n      header: {\r\n        type: String\r\n      },\r\n      disabled: {\r\n        type: Boolean,\r\n        default: false\r\n      }\r\n    },\r\n    data() {\r\n      return {\r\n        index: 0,\r\n        show: false\r\n      }\r\n    },\r\n    computed: {\r\n      show() {\r\n        return (this.$parent.activeIndex == this.index);\r\n      },\r\n      transition() {\r\n        return this.$parent.effect\r\n      }\r\n    },\r\n    created() {\r\n       console.log(\"进入tabItem created\")\r\n      \r\n        this.$parent.tabItems.push({\r\n          header: this.header,\r\n          disabled: this.disabled\r\n        })\r\n    },\r\n    ready() {\r\n       console.log(\"进入tabItem ready\")\r\n        for (var c in this.$parent.$children)\r\n        {\r\n            if (this.$parent.$children[c].$el == this.$el)\r\n            {\r\n                this.index= c;\r\n                break;\r\n            }\r\n        }\r\n    }\r\n  }\r\n</script>\r\n\r\n<style scoped>\r\n  .tab-content > .tab-pane {\r\n     /*overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n    display: -webkit-flex;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-flex: 0 1 auto;\r\n    -ms-flex: 0 1 auto;\r\n    flex: 0 1 auto;*/\r\n    /*width: 100%;*/\r\n    height: 100%;\r\n    /*flex-flow:column nowrap;*/\r\n  }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -13914,7 +14002,17 @@
 
 	// <style scoped>
 	//   .tab-content > .tab-pane {
-	//     display: block;
+	//      /*overflow: auto;
+	//     -webkit-overflow-scrolling: touch;
+	//     display: -webkit-flex;
+	//     display: -ms-flexbox;
+	//     display: flex;
+	//     -webkit-flex: 0 1 auto;
+	//     -ms-flex: 0 1 auto;
+	//     flex: 0 1 auto;*/
+	//     /*width: 100%;*/
+	//     height: 100%;
+	//     /*flex-flow:column nowrap;*/
 	//   }
 	// </style>
 
@@ -14114,18 +14212,320 @@
 
 /***/ },
 /* 45 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "\n\t<div class=\"page\" _v-ecc3dad2=\"\">\n\t\t<toolbar :text=\"title\" _v-ecc3dad2=\"\">\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\" _v-ecc3dad2=\"\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\" _v-ecc3dad2=\"\"></span>\n\t\t</toolbar>\n\t\t<tabs :active-index.sync=\"index\" _v-ecc3dad2=\"\">\n\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" _v-ecc3dad2=\"\">\n\t\t\t\t<ul class=\"contentList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t<li v-for=\"subItem in item.infoList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t<div class=\"tab_info\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t<div class=\"left\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t<img src=\"xxxHTMLLINKxxx0.58825656189583240.09877799241803586xxx\" alt=\"\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t<div class=\"content\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布时间:{{subItem.time}}</span>\n\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布人:{{subItem.subUser}}</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t{{subItem.content}}\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t<i class=\"icon-chevron-right\" _v-ecc3dad2=\"\"></i>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</tab>\n\t\t</tabs>\n\t</div>\n\t\t\n\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" _v-ecc3dad2=\"\">\n\t\t\n\t</sidebar>\n\n\t<loading :loading=\"isload\" _v-ecc3dad2=\"\"></loading>\n\n";
+	var __vue_script__, __vue_template__
+	__webpack_require__(46)
+	__vue_script__ = __webpack_require__(48)
+	__vue_template__ = __webpack_require__(49)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\PullList.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
 
 /***/ },
 /* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(47);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-50a8202f&file=PullList.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./PullList.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-50a8202f&file=PullList.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./PullList.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 47 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\n\t/*list集合*/\n\t.pull-list{\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -webkit-flex;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t   \t-webkit-flex-flow:column nowrap;\n\t   \t    -ms-flex-flow:column nowrap;\n\t   \t        flex-flow:column nowrap;\n\t  \tmin-height: 35px;\n\t  \t-webkit-box-pack:start;\n\t  \t-webkit-justify-content:flex-start;\n\t  \t    -ms-flex-pack:start;\n\t  \t        justify-content:flex-start;\n\t  \t-webkit-box-flex:0;\n\t  \t-webkit-flex:0 1 auto;\n\t  \t    -ms-flex:0 1 auto;\n\t  \t        flex:0 1 auto;\n\t   \theight: 100%;\n\t}\n\n\t\n\t.pull-header,.pull-footer{\n\t     display: -webkit-box;\n\t     display: -webkit-flex;\n\t     display: -ms-flexbox;\n\t     display: flex;\n     \t -webkit-flex-flow:row nowrap;\n     \t     -ms-flex-flow:row nowrap;\n     \t         flex-flow:row nowrap;\n\t     min-height: 35px;\n\t     height: 60px;\n\t     -webkit-box-pack:center;\n\t     -webkit-justify-content:center;\n\t         -ms-flex-pack:center;\n\t             justify-content:center;\n\t     -webkit-box-flex:0;\n\t     -webkit-flex:0 1 auto;\n\t         -ms-flex:0 1 auto;\n\t             flex:0 1 auto;\n\t     -webkit-box-align:center;\n\t     -webkit-align-items:center;\n\t         -ms-flex-align:center;\n\t             align-items:center;\n\t     aiign-content:center;\n\t}\n\n\t.pull-header{\n\t    \n\t\tmargin-top: -60px;\n\t\tborder-bottom: 1px solid whitesmoke;\n\t}\n\t.pull-footer{\n\t\tmargin-bottom: -60px;\n\t\tborder-top: 1px solid whitesmoke;\n\t}\n\n\t.pull-header>img,.pull-footer>img{\n\t\t -webkit-transition: -webkit-transform .3s ease;\n\t\t transition: -webkit-transform .3s ease;\n\t\t transition: transform .3s ease;\n\t\t transition: transform .3s ease, -webkit-transform .3s ease;\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n\t      -o-transition: transform .3s ease; /* Opera */\n\t}\n\n\n\t.pull-header>div,.pull-footer>div{\n\t\tfont-size: 12px;\n\t\tmargin-left: 12px;\n\t}\n\t\n\n\t.pull-content{\n\t\toverflow: auto;\n\t    -webkit-overflow-scrolling: touch;\n\t    display: -webkit-flex;\n\t    display: -ms-flexbox;\n\t    display: -webkit-box;\n\t    display: flex;\n\t    -webkit-flex: 0 1 auto;\n\t    -ms-flex: 0 1 auto;\n\t    -webkit-box-flex: 0;\n\t            flex: 0 1 auto;\n\t    margin-bottom: 10px;\n\t   \n\t    -webkit-flex-flow:column nowrap;\n\t   \n\t        -ms-flex-flow:column nowrap;\n\t   \n\t            flex-flow:column nowrap;\n\t    padding: 5px;\n\t}\n", "", {"version":3,"sources":["/./src/components/PullList.vue?542aef98"],"names":[],"mappings":";;CAyJA,UAAA;CACA;EACA,qBAAA;EAAA,sBAAA;EAAA,qBAAA;EAAA,cAAA;KACA,gCAAA;SAAA,4BAAA;aAAA,wBAAA;IACA,iBAAA;IACA,uBAAA;IAAA,mCAAA;QAAA,oBAAA;YAAA,2BAAA;IACA,mBAAA;IAAA,sBAAA;QAAA,kBAAA;YAAA,cAAA;KACA,aAAA;EACA;;;CAGA;MACA,qBAAA;MAAA,sBAAA;MAAA,qBAAA;MAAA,cAAA;OACA,6BAAA;WAAA,yBAAA;eAAA,qBAAA;MACA,iBAAA;MACA,aAAA;MACA,wBAAA;MAAA,+BAAA;UAAA,qBAAA;cAAA,uBAAA;MACA,mBAAA;MAAA,sBAAA;UAAA,kBAAA;cAAA,cAAA;MACA,yBAAA;MAAA,2BAAA;UAAA,sBAAA;cAAA,mBAAA;MACA,qBAAA;EACA;;CAEA;;EAEA,kBAAA;EACA,oCAAA;EACA;CACA;EACA,qBAAA;EACA,iCAAA;EACA;;CAEA;GACA,+CAAA;GAAA,uCAAA;GAAA,+BAAA;GAAA,2DAAA;OACA,oCAAA,eAAA;OACA,uCAAA,CAAA,qBAAA;OACA,kCAAA,CAAA,WAAA;EACA;;;CAGA;EACA,gBAAA;EACA,kBAAA;EACA;;;CAGA;EACA,eAAA;KACA,kCAAA;KACA,sBAAA;KACA,qBAAA;KACA,qBAAA;KAAA,cAAA;KACA,uBAAA;KACA,mBAAA;KACA,oBAAA;aAAA,eAAA;KACA,oBAAA;;KAEA,gCAAA;;SAAA,4BAAA;;aAAA,wBAAA;KACA,aAAA;EACA","file":"PullList.vue","sourcesContent":["<!-- 下拉刷新组件 -->\r\n\r\n<template>\r\n\t<section class=\"pull-list\" v-touch:pandown=\"pullToRefresh\" v-touch:panup=\"loadMore\" v-touch:panend=\"panleave\"   >\r\n\t\t<header class=\"pull-header\">\r\n\t\t\t<div>\r\n\t\t\t\t<img class=\"downImg\" src=\"../assets/images/components/icon-down.png\" alt=\"下拉\">\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<p>{{refreshText}}</p>\r\n\t\t\t\t<p>最后更新:{{rlastTime}}</p>\r\n\t\t\t</div>\r\n\t\t</header>\r\n\t\t<div class=\"pull-content\" v-on:scroll=\"scroll($event)\" v-el:listContent>\r\n\t\t\t<slot ></slot>\r\n\t\t</div>\r\n\t\t<footer class=\"pull-footer\" v-show=\"showfooter\">\r\n\t\t\t<div>\r\n\t\t\t\t<img class=\"upImg\" src=\"../assets/images/components/icon-up.png\" alt=\"上拉\">\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<p>{{moreText}}</p>\r\n\t\t\t\t<p>最后更新:{{mlastTime}}</p>\r\n\t\t\t</div>\r\n\t\t</footer>\r\n\t</section>\r\n\t\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\texport default {\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\trlastTime:'2016-01-27',\r\n\t\t\t\tmlastTime:'2015-02-22',\r\n\t\t\t\trefreshText:'下拉刷新',\r\n\t\t\t\tmoreText:'加载更多',\r\n\t\t\t\tisRefresh:false,\r\n\t\t\t\tshowfooter:false,\r\n\t\t\t\tarrow:'down',//下拉和上拉的标识\r\n\t\t\t\ttop:0\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\t\r\n\t\t\tmove(height){\r\n\t\t\t\tvar list=this.$el;\r\n\t\t\t\t//获取角度\r\n\t\t\t\tvar rotateHeight=height<90?height*2:180;\r\n\t\t\t\tif(this.arrow==\"down\"){\r\n\t\t\t\t\tlist.style.transform=\"translateY(\"+height+\"px)\";\r\n\t\t\t\t\tvar img=list.getElementsByTagName('header')[0].getElementsByTagName('img')[0];\r\n\t\t\t\t\timg.style.transform=\"rotate(\"+rotateHeight+\"deg)\"\r\n\t\t\t\t}else{\r\n\t\t\t\t\tlist.style.transform=\"translateY(-\"+height+\"px)\";\r\n\t\t\t\t\t//先检查底部的div是否显示出来,如果显示出来了,那么在找到对应的图标\r\n\t\t\t\t\tif(list.getElementsByTagName('footer')[0]){\r\n\t\t\t\t\t\tvar img=list.getElementsByTagName('footer')[0].getElementsByTagName('img')[0];\r\n\t\t\t\t\t\timg.style.transform=\"rotate(\"+rotateHeight+\"deg)\"\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\tscroll(e){\r\n\t\t\t\tconsole.log(e);\r\n\t\t\t\tthis.top=e.target.scrollTop;\r\n\t\t\t\tconsole.log(\"list集合的滚动\"+e.target.scrollTop);\r\n\t\t\t},\r\n\t\t\tgetCurTime(){\r\n\t\t\t\t// var date=new Date();\r\n\t\t\t\t// return date.getFullYear()+\"\"\r\n\t\t\t},\r\n\t\t\tpanleave(e){\r\n\t\t\t\t\r\n\t\t\t\tif(this.arrow==\"down\"){\r\n\t\t\t\t\tthis.move(0)\r\n\t\t\t\t\tthis.refreshText=\"下拉刷新\";\r\n\t\t\t\t\t//得到当前的时间\r\n\t\t\t\t\tif(this.isRefresh){\r\n\t\t\t\t\t\tthis.isRefresh=false;\r\n\t\t\t\t\t\tthis.$emit('reload');\r\n\t\t\t\t\t}\r\n\t\t\t\t\t// this.$broadcast('list-reload');\r\n\t\t\t\t}else if(this.arrow==\"up\"){\r\n\t\t\t\t\tthis.showfooter=false;\r\n\t\t\t\t\tthis.moreText=\"加载更多\";\r\n\t\t\t\t\tthis.move(0)\r\n\t\t\t\t\tif(this.isRefresh){\r\n\t\t\t\t\t\tthis.isRefresh=false;\r\n\t\t\t\t\t\tthis.$emit('loadmore');\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\tgetScrollTop(){\r\n\t\t\t\tvar scrollPos; \r\n\t\t\t\tif (window.pageYOffset) {\r\n\t\t\t\t\tscrollPos = window.pageYOffset;\r\n\t\t\t\t} \r\n\t\t\t\telse if (document.compatMode && document.compatMode != 'BackCompat') {\r\n\t\t\t\t scrollPos = document.documentElement.scrollTop;\r\n\t\t\t\t} else if (document.body) { \r\n\t\t\t\t\tscrollPos = document.body.scrollTop;\r\n\t\t\t    } \r\n\t\t\t    return scrollPos; \r\n\t\t\t},\r\n\t\t\t// 下拉刷新事件\r\n\t\t\tpullToRefresh(e){\r\n\t\t\t\tif(this.top==0){\r\n\t\t\t\t \tvar distance=e.distance;\r\n\t\t\t\t \tthis.arrow='down';\r\n\t\t\t\t \tthis.move(distance);\r\n\t\t\t\t \tif(distance>90){\r\n\t\t\t\t\t\tthis.refreshText=\"松开后刷新\";\r\n\t\t\t\t \t\tthis.isRefresh=true;\r\n\t\t\t\t \t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t//加载更多\r\n\t\t\tloadMore(e){\r\n\t\t\t\t//得到滚动的距离\r\n\r\n\t\t\t\tvar listObj=this.$el.getElementsByTagName('ul')[0];\r\n\t\t\t\t// console.log(listObj);\r\n\t\t\t\t//1:滚动的高度\r\n\t\t\t\t// console.log(listObj);\r\n\t\t\t\tvar scrollHeight=this.top;\r\n\t\t\t\t//2:可见区域的高度\r\n\t\t\t\tvar offsetHeight=document.body.offsetHeight;\r\n\r\n\t\t\t\t//3:整个内容的高度\r\n\t\t\t\tvar winHeight=listObj.scrollHeight;\r\n\r\n\t\t\t\tconsole.log(\"滚动条距离窗口的高度:\"+scrollHeight+\"-窗口的可见区域：\"+offsetHeight+\"整个ul的高度:\"+winHeight);\r\n\t\t\t\t//判断滚动的距离+当前窗口的宽度是否\r\n\t\t\t\tif((winHeight-5)<(scrollHeight+offsetHeight)){\r\n\t\t\t\t\tconsole.log('触发加载更多事件')\r\n\t\t\t\t\tthis.showfooter=true;\r\n\t\t\t\t\tthis.arrow='up';\r\n\t\t\t\t\tvar distance=e.distance;\r\n\t\t\t\t \tconsole.log(\"拉动的距离\"+distance)\r\n\t\t\t\t \tthis.move(distance);\r\n\t\t\t\t \tif(distance>90){\r\n\t\t\t\t\t\tthis.moreText=\"松开后刷新\";\r\n\t\t\t\t \t\tthis.isRefresh=true;\r\n\t\t\t\t \t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style >\r\n\r\n\t/*list集合*/\r\n\t.pull-list{\r\n\t\tdisplay: flex;\r\n\t   \tflex-flow:column nowrap;\r\n\t  \tmin-height: 35px;\r\n\t  \tjustify-content:flex-start;\r\n\t  \tflex:0 1 auto;\r\n\t   \theight: 100%;\r\n\t}\r\n\r\n\t\r\n\t.pull-header,.pull-footer{\r\n\t     display: flex;\r\n     \t flex-flow:row nowrap;\r\n\t     min-height: 35px;\r\n\t     height: 60px;\r\n\t     justify-content:center;\r\n\t     flex:0 1 auto;\r\n\t     align-items:center;\r\n\t     aiign-content:center;\r\n\t}\r\n\r\n\t.pull-header{\r\n\t    \r\n\t\tmargin-top: -60px;\r\n\t\tborder-bottom: 1px solid whitesmoke;\r\n\t}\r\n\t.pull-footer{\r\n\t\tmargin-bottom: -60px;\r\n\t\tborder-top: 1px solid whitesmoke;\r\n\t}\r\n\r\n\t.pull-header>img,.pull-footer>img{\r\n\t\t transition: transform .3s ease;\r\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n\t      -o-transition: transform .3s ease; /* Opera */\r\n\t}\r\n\r\n\r\n\t.pull-header>div,.pull-footer>div{\r\n\t\tfont-size: 12px;\r\n\t\tmargin-left: 12px;\r\n\t}\r\n\t\r\n\r\n\t.pull-content{\r\n\t\toverflow: auto;\r\n\t    -webkit-overflow-scrolling: touch;\r\n\t    display: -webkit-flex;\r\n\t    display: -ms-flexbox;\r\n\t    display: flex;\r\n\t    -webkit-flex: 0 1 auto;\r\n\t    -ms-flex: 0 1 auto;\r\n\t    flex: 0 1 auto;\r\n\t    margin-bottom: 10px;\r\n\t   \r\n\t    flex-flow:column nowrap;\r\n\t    padding: 5px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 48 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// <!-- 下拉刷新组件 -->
+	
+	// <template>
+	// 	<section class="pull-list" v-touch:pandown="pullToRefresh" v-touch:panup="loadMore" v-touch:panend="panleave"   >
+	// 		<header class="pull-header">
+	// 			<div>
+	// 				<img class="downImg" src="../assets/images/components/icon-down.png" alt="下拉">
+	// 			</div>
+	// 			<div>
+	// 				<p>{{refreshText}}</p>
+	// 				<p>最后更新:{{rlastTime}}</p>
+	// 			</div>
+	// 		</header>
+	// 		<div class="pull-content" v-on:scroll="scroll($event)" v-el:listContent>
+	// 			<slot ></slot>
+	// 		</div>
+	// 		<footer class="pull-footer" v-show="showfooter">
+	// 			<div>
+	// 				<img class="upImg" src="../assets/images/components/icon-up.png" alt="上拉">
+	// 			</div>
+	// 			<div>
+	// 				<p>{{moreText}}</p>
+	// 				<p>最后更新:{{mlastTime}}</p>
+	// 			</div>
+	// 		</footer>
+	// 	</section>
+	
+	// </template>
+	
+	// <script lang="babel">
+	exports.default = {
+		data: function data() {
+			return {
+				rlastTime: '2016-01-27',
+				mlastTime: '2015-02-22',
+				refreshText: '下拉刷新',
+				moreText: '加载更多',
+				isRefresh: false,
+				showfooter: false,
+				arrow: 'down', //下拉和上拉的标识
+				top: 0
+			};
+		},
+	
+		methods: {
+			move: function move(height) {
+				var list = this.$el;
+				//获取角度
+				var rotateHeight = height < 90 ? height * 2 : 180;
+				if (this.arrow == "down") {
+					list.style.transform = "translateY(" + height + "px)";
+					var img = list.getElementsByTagName('header')[0].getElementsByTagName('img')[0];
+					img.style.transform = "rotate(" + rotateHeight + "deg)";
+				} else {
+					list.style.transform = "translateY(-" + height + "px)";
+					//先检查底部的div是否显示出来,如果显示出来了,那么在找到对应的图标
+					if (list.getElementsByTagName('footer')[0]) {
+						var img = list.getElementsByTagName('footer')[0].getElementsByTagName('img')[0];
+						img.style.transform = "rotate(" + rotateHeight + "deg)";
+					}
+				}
+			},
+			scroll: function scroll(e) {
+				console.log(e);
+				this.top = e.target.scrollTop;
+				console.log("list集合的滚动" + e.target.scrollTop);
+			},
+			getCurTime: function getCurTime() {
+				// var date=new Date();
+				// return date.getFullYear()+""
+			},
+			panleave: function panleave(e) {
+	
+				if (this.arrow == "down") {
+					this.move(0);
+					this.refreshText = "下拉刷新";
+					//得到当前的时间
+					if (this.isRefresh) {
+						this.isRefresh = false;
+						this.$emit('reload');
+					}
+					// this.$broadcast('list-reload');
+				} else if (this.arrow == "up") {
+						this.showfooter = false;
+						this.moreText = "加载更多";
+						this.move(0);
+						if (this.isRefresh) {
+							this.isRefresh = false;
+							this.$emit('loadmore');
+						}
+					}
+			},
+			getScrollTop: function getScrollTop() {
+				var scrollPos;
+				if (window.pageYOffset) {
+					scrollPos = window.pageYOffset;
+				} else if (document.compatMode && document.compatMode != 'BackCompat') {
+					scrollPos = document.documentElement.scrollTop;
+				} else if (document.body) {
+					scrollPos = document.body.scrollTop;
+				}
+				return scrollPos;
+			},
+	
+			// 下拉刷新事件
+			pullToRefresh: function pullToRefresh(e) {
+				if (this.top == 0) {
+					var distance = e.distance;
+					this.arrow = 'down';
+					this.move(distance);
+					if (distance > 90) {
+						this.refreshText = "松开后刷新";
+						this.isRefresh = true;
+					}
+				}
+			},
+	
+			//加载更多
+			loadMore: function loadMore(e) {
+				//得到滚动的距离
+	
+				var listObj = this.$el.getElementsByTagName('ul')[0];
+				// console.log(listObj);
+				//1:滚动的高度
+				// console.log(listObj);
+				var scrollHeight = this.top;
+				//2:可见区域的高度
+				var offsetHeight = document.body.offsetHeight;
+	
+				//3:整个内容的高度
+				var winHeight = listObj.scrollHeight;
+	
+				console.log("滚动条距离窗口的高度:" + scrollHeight + "-窗口的可见区域：" + offsetHeight + "整个ul的高度:" + winHeight);
+				//判断滚动的距离+当前窗口的宽度是否
+				if (winHeight - 5 < scrollHeight + offsetHeight) {
+					console.log('触发加载更多事件');
+					this.showfooter = true;
+					this.arrow = 'up';
+					var distance = e.distance;
+					console.log("拉动的距离" + distance);
+					this.move(distance);
+					if (distance > 90) {
+						this.moreText = "松开后刷新";
+						this.isRefresh = true;
+					}
+				}
+			}
+		}
+	};
+	// </script>
+
+	// <style >
+
+	// 	/*list集合*/
+	// 	.pull-list{
+	// 		display: flex;
+	// 	   	flex-flow:column nowrap;
+	// 	  	min-height: 35px;
+	// 	  	justify-content:flex-start;
+	// 	  	flex:0 1 auto;
+	// 	   	height: 100%;
+	// 	}
+
+	// 	.pull-header,.pull-footer{
+	// 	     display: flex;
+	//      	 flex-flow:row nowrap;
+	// 	     min-height: 35px;
+	// 	     height: 60px;
+	// 	     justify-content:center;
+	// 	     flex:0 1 auto;
+	// 	     align-items:center;
+	// 	     aiign-content:center;
+	// 	}
+
+	// 	.pull-header{
+
+	// 		margin-top: -60px;
+	// 		border-bottom: 1px solid whitesmoke;
+	// 	}
+	// 	.pull-footer{
+	// 		margin-bottom: -60px;
+	// 		border-top: 1px solid whitesmoke;
+	// 	}
+
+	// 	.pull-header>img,.pull-footer>img{
+	// 		 transition: transform .3s ease;
+	// 	      -moz-transition: transform .3s ease;/* Firefox 4 */
+	// 	      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */
+	// 	      -o-transition: transform .3s ease; /* Opera */
+	// 	}
+
+	// 	.pull-header>div,.pull-footer>div{
+	// 		font-size: 12px;
+	// 		margin-left: 12px;
+	// 	}
+
+	// 	.pull-content{
+	// 		overflow: auto;
+	// 	    -webkit-overflow-scrolling: touch;
+	// 	    display: -webkit-flex;
+	// 	    display: -ms-flexbox;
+	// 	    display: flex;
+	// 	    -webkit-flex: 0 1 auto;
+	// 	    -ms-flex: 0 1 auto;
+	// 	    flex: 0 1 auto;
+	// 	    margin-bottom: 10px;
+
+	// 	    flex-flow:column nowrap;
+	// 	    padding: 5px;
+	// 	}
+	// </style>
+
+/***/ },
+/* 49 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = "\n<section class=\"pull-list\" v-touch:pandown=\"pullToRefresh\" v-touch:panup=\"loadMore\" v-touch:panend=\"panleave\"   >\n\t<header class=\"pull-header\">\n\t\t<div>\n\t\t\t<img class=\"downImg\" src=\"" + __webpack_require__(50) + "\" alt=\"下拉\">\n\t\t</div>\n\t\t<div>\n\t\t\t<p>{{refreshText}}</p>\n\t\t\t<p>最后更新:{{rlastTime}}</p>\n\t\t</div>\n\t</header>\n\t<div class=\"pull-content\" v-on:scroll=\"scroll($event)\" v-el:listContent>\n\t\t<slot ></slot>\n\t</div>\n\t<footer class=\"pull-footer\" v-show=\"showfooter\">\n\t\t<div>\n\t\t\t<img class=\"upImg\" src=\"" + __webpack_require__(51) + "\" alt=\"上拉\">\n\t\t</div>\n\t\t<div>\n\t\t\t<p>{{moreText}}</p>\n\t\t\t<p>最后更新:{{mlastTime}}</p>\n\t\t</div>\n\t</footer>\n</section>\n\n";
+
+/***/ },
+/* 50 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "icon-down.png?02ed8a17fc4b37001e3f4ed24ea2d91e";
+
+/***/ },
+/* 51 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "icon-up.png?ce68cee9db0a441272f0bffa50364385";
+
+/***/ },
+/* 52 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\t<div class=\"page\" _v-ecc3dad2=\"\">\n\t\t<toolbar :text=\"title\" _v-ecc3dad2=\"\">\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\" _v-ecc3dad2=\"\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\" _v-ecc3dad2=\"\"></span>\n\t\t</toolbar>\n\t\t<div class=\"page-content\" _v-ecc3dad2=\"\">\n\t\t\t<tabs :active-index.sync=\"index\" _v-ecc3dad2=\"\">\n\t\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" _v-ecc3dad2=\"\">\n\t\t\t\t\t<pull-list _v-ecc3dad2=\"\">\n\t\t\t\t\t\t<ul class=\"contentList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t<li v-for=\"subItem in item.infoList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t<div class=\"tab_info\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"left\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<img src=\"xxxHTMLLINKxxx0.88712395634502170.7200181013904512xxx\" alt=\"\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"content\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布时间:{{subItem.time}}</span>\n\t\t\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布人:{{subItem.subUser}}</span>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t{{subItem.content}}\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<i class=\"icon-chevron-right\" _v-ecc3dad2=\"\"></i>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</pull-list>\n\t\t\t\t</tab>\n\t\t\t</tabs>\n\t\t</div>\n\t</div>\n\t\t\n\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" _v-ecc3dad2=\"\">\n\t\t\n\t</sidebar>\n\n\t<loading :loading=\"isload\" _v-ecc3dad2=\"\"></loading>\n\n";
+
+/***/ },
+/* 53 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var __vue_script__, __vue_template__
-	__webpack_require__(114)
-	__vue_script__ = __webpack_require__(116)
-	__vue_template__ = __webpack_require__(117)
+	__webpack_require__(54)
+	__vue_script__ = __webpack_require__(56)
+	__vue_template__ = __webpack_require__(57)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14142,12 +14542,167 @@
 	})()}
 
 /***/ },
-/* 47 */
+/* 54 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(55);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ba295ade&file=Project.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Project.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ba295ade&file=Project.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Project.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 55 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Project.vue","sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 56 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _ToolBar = __webpack_require__(12);
+	
+	var _ToolBar2 = _interopRequireDefault(_ToolBar);
+	
+	var _PullList = __webpack_require__(45);
+	
+	var _PullList2 = _interopRequireDefault(_PullList);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// <template>
+	// 	<div class="page">
+	// 		<toolbar text="我的项目">
+	// 			<span class="icon-chevron-left" slot="leftBtn" v-touch:tap="back"></span>
+	// 	        <span class="icon-refresh" slot="rightBtn" ></span>
+	// 		</toolbar>
+	// 		<div class="page-content" >
+	// 			<pull-list v-on:reload="getInitData" v-on:loadmore="getMoreData">
+	// 				<ul >
+	// 					<li>asdffdddd;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;a</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;a</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;a</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;a</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>顶顶顶 阿斯蒂芬;</li>
+	
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>顶顶顶 阿斯蒂芬;</li>
+	
+	// 					<li>顶顶顶 阿斯蒂芬;</li>
+	
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff</li>
+	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 					<li>顶顶顶 阿斯蒂芬;</li>
+	// 				</ul>
+	// 			</pull-list>
+	// 		</div>
+	// 	</div>
+	
+	// </template>
+	
+	// <script lang="babel">
+	exports.default = {
+	
+		methods: {
+			back: function back() {
+				history.back();
+			},
+			getInitData: function getInitData() {
+				alert('集合刷新');
+			},
+			getMoreData: function getMoreData() {
+				alert("集合加载更多");
+			}
+		},
+		components: {
+			toolbar: _ToolBar2.default,
+			PullList: _PullList2.default
+		}
+	};
+	// </script>
+
+	// <style scoped>
+
+	// </style>
+
+/***/ },
+/* 57 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"page\" _v-ba295ade=\"\">\n\t<toolbar text=\"我的项目\" _v-ba295ade=\"\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" v-touch:tap=\"back\" _v-ba295ade=\"\"></span>\n        <span class=\"icon-refresh\" slot=\"rightBtn\" _v-ba295ade=\"\"></span>\n\t</toolbar>\n\t<div class=\"page-content\" _v-ba295ade=\"\">\n\t\t<pull-list v-on:reload=\"getInitData\" v-on:loadmore=\"getMoreData\" _v-ba295ade=\"\">\n\t\t\t<ul _v-ba295ade=\"\">\n\t\t\t\t<li _v-ba295ade=\"\">asdffdddd;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\t\t\t</ul>\n\t\t</pull-list>\n\t</div>\n</div>\n\n";
+
+/***/ },
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(48)
-	__vue_template__ = __webpack_require__(54)
+	__vue_script__ = __webpack_require__(59)
+	__vue_template__ = __webpack_require__(65)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14164,7 +14719,7 @@
 	})()}
 
 /***/ },
-/* 48 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14177,7 +14732,7 @@
 	
 	var _ToolBar2 = _interopRequireDefault(_ToolBar);
 	
-	var _Calendar = __webpack_require__(49);
+	var _Calendar = __webpack_require__(60);
 	
 	var _Calendar2 = _interopRequireDefault(_Calendar);
 	
@@ -14218,13 +14773,13 @@
 	/* generated by vue-loader */
 
 /***/ },
-/* 49 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(50)
-	__vue_script__ = __webpack_require__(52)
-	__vue_template__ = __webpack_require__(53)
+	__webpack_require__(61)
+	__vue_script__ = __webpack_require__(63)
+	__vue_template__ = __webpack_require__(64)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14241,13 +14796,13 @@
 	})()}
 
 /***/ },
-/* 50 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(51);
+	var content = __webpack_require__(62);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -14267,7 +14822,7 @@
 	}
 
 /***/ },
-/* 51 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -14281,7 +14836,7 @@
 
 
 /***/ },
-/* 52 */
+/* 63 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14812,25 +15367,25 @@
 	// </style>
 
 /***/ },
-/* 53 */
+/* 64 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"calendar\" _v-3d09c52c=\"\">\n    <div class=\"calenarDayView\" v-show=\"showDay\" _v-3d09c52c=\"\">\n        <div class=\"calendar-header\" _v-3d09c52c=\"\">\n            <div class=\"calendar-title\" _v-3d09c52c=\"\">\n                <div _v-3d09c52c=\"\">\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\" _v-3d09c52c=\"\"></span>\n                    <span class=\"icon-angle-left\" style=\"margin-left:20px;width:50px;\" @click=\"monthClick(0)\" _v-3d09c52c=\"\"></span>\n                </div>\n                <p _v-3d09c52c=\"\">\n                    <span @click=\"showYearView\" _v-3d09c52c=\"\">{{curYear}}年</span>\n                    <span @click=\"showMonthView\" _v-3d09c52c=\"\">{{curMonth}}月</span>\n                </p>\n                <div _v-3d09c52c=\"\">\n                     <span class=\"icon-angle-right\" style=\"margin-right:20px;\" @click=\"monthClick(1)\" _v-3d09c52c=\"\"></span>\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\" _v-3d09c52c=\"\"></span>\n                </div>\n            </div>\n            <div class=\"calendarDay-week\" _v-3d09c52c=\"\">\n                <ul _v-3d09c52c=\"\">\n                    <li v-for=\"(index,item) in weekRange\" :class=\"{'restDay':index==5||index==6}\" _v-3d09c52c=\"\">{{item}}</li>\n                </ul>\n            </div>\n        </div>\n        <div class=\"calendar-range\" v-touch:swipe=\"swipeMonth\" _v-3d09c52c=\"\">\n            <ul _v-3d09c52c=\"\">\n                <li v-for=\"item in dateRange\" class=\"calendarDay\" v-on:click=\"selectDay(item.day)\" _v-3d09c52c=\"\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('D',item.day),'restDay':item.isRestDay,'curMonth':item.isCur}\" _v-3d09c52c=\"\">{{item.day}}</span>\n                </li>\n            </ul>\n        </div>\n        <div class=\"calendarDay-footer\" _v-3d09c52c=\"\">\n            <span @click=\"today\" _v-3d09c52c=\"\">今天</span>\n        </div>\n    </div>\n    <div class=\"calendarMonthView\" v-show=\"showMonth\" _v-3d09c52c=\"\">\n        <div class=\"calendar-header\" _v-3d09c52c=\"\">\n            <div class=\"calendar-title\" _v-3d09c52c=\"\">\n                <div _v-3d09c52c=\"\">\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\" _v-3d09c52c=\"\"></span>\n                </div>\n                <p _v-3d09c52c=\"\">\n                    <span @click=\"showYearView\" _v-3d09c52c=\"\">{{curYear}}年</span>\n                </p>\n                <div _v-3d09c52c=\"\">\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\" _v-3d09c52c=\"\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"calendar-range\" _v-3d09c52c=\"\">\n            <ul _v-3d09c52c=\"\">\n                <li v-for=\"item in monthRange\" class=\"calendarMonth\" v-on:click=\"selectMonth(item.id)\" _v-3d09c52c=\"\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('M',item.id)}\" _v-3d09c52c=\"\">{{item.text}}</span>\n                </li>\n            </ul>\n        </div>\n    </div>\n    <div class=\"calendarYearView\" v-show=\"showYear\" _v-3d09c52c=\"\">\n        <div class=\"calendar-header\" _v-3d09c52c=\"\">\n            <div class=\"calendar-title\" _v-3d09c52c=\"\">\n                <div _v-3d09c52c=\"\">\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\" _v-3d09c52c=\"\"></span>\n                </div>\n                <p _v-3d09c52c=\"\">\n                    <span @click=\"showYearView\" _v-3d09c52c=\"\">{{yearTitle}}</span>\n                </p>\n                <div _v-3d09c52c=\"\">\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\" _v-3d09c52c=\"\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"calendar-range\" _v-3d09c52c=\"\">\n            <ul _v-3d09c52c=\"\">\n                <li v-for=\"item in yearRange\" class=\"calendarMonth\" v-on:click=\"selectYear(item)\" _v-3d09c52c=\"\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('Y',item)}\" _v-3d09c52c=\"\">{{item}}</span>\n                </li>\n            </ul>\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
-/* 54 */
+/* 65 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<toolbar :text=\"title\">\n\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back()\"></span>\n\t<span slot=\"rightBtn\"></span>\n</toolbar>\n<calendar v-on:item-click=\"selectDay\"></calendar>\n";
 
 /***/ },
-/* 55 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(56)
-	__vue_script__ = __webpack_require__(58)
-	__vue_template__ = __webpack_require__(69)
+	__webpack_require__(67)
+	__vue_script__ = __webpack_require__(69)
+	__vue_template__ = __webpack_require__(80)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14847,13 +15402,13 @@
 	})()}
 
 /***/ },
-/* 56 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(57);
+	var content = __webpack_require__(68);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -14873,7 +15428,7 @@
 	}
 
 /***/ },
-/* 57 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -14887,7 +15442,7 @@
 
 
 /***/ },
-/* 58 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14904,11 +15459,11 @@
 	
 	var _Loading2 = _interopRequireDefault(_Loading);
 	
-	var _Dialog = __webpack_require__(59);
+	var _Dialog = __webpack_require__(70);
 	
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 	
-	var _DatePicker = __webpack_require__(64);
+	var _DatePicker = __webpack_require__(75);
 	
 	var _DatePicker2 = _interopRequireDefault(_DatePicker);
 	
@@ -14989,13 +15544,13 @@
 	// </style>
 
 /***/ },
-/* 59 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(60)
-	__vue_script__ = __webpack_require__(62)
-	__vue_template__ = __webpack_require__(63)
+	__webpack_require__(71)
+	__vue_script__ = __webpack_require__(73)
+	__vue_template__ = __webpack_require__(74)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -15012,13 +15567,13 @@
 	})()}
 
 /***/ },
-/* 60 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(61);
+	var content = __webpack_require__(72);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -15038,7 +15593,7 @@
 	}
 
 /***/ },
-/* 61 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -15052,7 +15607,7 @@
 
 
 /***/ },
-/* 62 */
+/* 73 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15210,19 +15765,19 @@
 	// </style>
 
 /***/ },
-/* 63 */
+/* 74 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\t<div class=\"dlg-modal\" v-if=\"show\" _v-12989f74=\"\">\n        <div class=\"dlg-content fade\" :class=\"{'in':show}\" :style=\"{width:dlgWidth+'px'}\" _v-12989f74=\"\">\n            <div class=\"dlg-header\" _v-12989f74=\"\">\n                <span _v-12989f74=\"\">{{title}}</span>\n            </div>\n            <div class=\"dlg-body\" _v-12989f74=\"\">\n                <slot name=\"dlg-body\" _v-12989f74=\"\"></slot>\n            </div>\n            <div class=\"dlg-footer\" _v-12989f74=\"\">\n                <span @click=\"confirm\" :style=\"{width:dlgWidth/2 +'px'}\" _v-12989f74=\"\"><i class=\"icon-ok\" _v-12989f74=\"\"></i>确定</span>\n                <span @click=\"close\" :style=\"{width:dlgWidth/2 +'px'}\" _v-12989f74=\"\"><i class=\"icon-remove\" _v-12989f74=\"\"></i>关闭</span>\n            </div>\n        </div>\n    </div>\n";
 
 /***/ },
-/* 64 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(65)
-	__vue_script__ = __webpack_require__(67)
-	__vue_template__ = __webpack_require__(68)
+	__webpack_require__(76)
+	__vue_script__ = __webpack_require__(78)
+	__vue_template__ = __webpack_require__(79)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -15239,13 +15794,13 @@
 	})()}
 
 /***/ },
-/* 65 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(66);
+	var content = __webpack_require__(77);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -15265,7 +15820,7 @@
 	}
 
 /***/ },
-/* 66 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -15279,7 +15834,7 @@
 
 
 /***/ },
-/* 67 */
+/* 78 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15572,19 +16127,19 @@
 	// </style>
 
 /***/ },
-/* 68 */
+/* 79 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\n<div class=\"datepicker\" _v-e36f8ff0=\"\">\n    <section class=\"datepicker-header\" _v-e36f8ff0=\"\">\n      <div _v-e36f8ff0=\"\">年</div>\n      <div _v-e36f8ff0=\"\">月</div>\n      <div _v-e36f8ff0=\"\">日</div>\n    </section>\n    <section class=\"datepicker-body\" _v-e36f8ff0=\"\">\n        <div class=\"column datepicker-year\" _v-e36f8ff0=\"\">\n            <span class=\"datepicker-icon\" @click=\"add('Y')\" _v-e36f8ff0=\"\"><i class=\"icon-plus\" _v-e36f8ff0=\"\"></i></span>\n            <span class=\"datepicker-value\" _v-e36f8ff0=\"\">{{curYear}}</span>\n            <span class=\"datepicker-icon\" @click=\"minus('Y')\" _v-e36f8ff0=\"\"><i class=\"icon-minus\" _v-e36f8ff0=\"\"></i></span>\n        </div>\n        <div class=\"column datepicker-month\" _v-e36f8ff0=\"\">\n            <span class=\"datepicker-icon\" @click=\"add('M')\" _v-e36f8ff0=\"\"><i class=\"icon-plus\" _v-e36f8ff0=\"\"></i></span>\n            <span class=\"datepicker-value\" _v-e36f8ff0=\"\">{{curMonth&lt;10?(\"0\"+curMonth):curMonth}}</span>\n            <span class=\"datepicker-icon\" @click=\"minus('M')\" _v-e36f8ff0=\"\"><i class=\"icon-minus\" _v-e36f8ff0=\"\"></i></span>\n        </div>\n        <div class=\"column datepicker-day\" _v-e36f8ff0=\"\">\n            <span class=\"datepicker-icon\" @click=\"add('D')\" _v-e36f8ff0=\"\"><i class=\"icon-plus\" _v-e36f8ff0=\"\"></i></span>\n            <span class=\"datepicker-value\" _v-e36f8ff0=\"\">{{curDay&lt;10?(\"0\"+curDay):curDay}}</span>\n            <span class=\"datepicker-icon\" @click=\"minus('D')\" _v-e36f8ff0=\"\"><i class=\"icon-minus\" _v-e36f8ff0=\"\"></i></span>\n        </div>\n    </section> \n</div>\n  \n\n  <!--   <ul class=\"datepicker-hour\">\n        <li v-for=\"item in hourRange\">{{item}}</li>\n    </ul>\n    <ul class=\"datepicker-min\">\n        <li v-for=\"item in minRange\">{{item}}</li>\n    </ul>\n    <ul class=\"datepicker-sec\">\n        <li v-for=\"item in secRange\">{{item}}</li>\n    </ul> -->\n  \n";
 
 /***/ },
-/* 69 */
+/* 80 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<toolbar text=\"个人主页\" _v-61f407d1=\"\">\n\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back\" _v-61f407d1=\"\">返回</span>\n\t<span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"loadUserInfo\" _v-61f407d1=\"\"></span>\n</toolbar>\n<section _v-61f407d1=\"\">\n\t<input type=\"button\" @click=\"showDialog\" _v-61f407d1=\"\">\n\t<datepicker _v-61f407d1=\"\"></datepicker>\n</section>\n\n<loading :loading=\"isload\" _v-61f407d1=\"\"></loading>\n<dialog :show.sync=\"isShowDialog\" :title=\"dialogTitle\" v-on:child-confirm=\"confirm\" _v-61f407d1=\"\">\n\t<div slot=\"dlg-body\" _v-61f407d1=\"\">hahah</div>\n</dialog>\n";
 
 /***/ },
-/* 70 */
+/* 81 */
 /***/ function(module, exports) {
 
 	var __vue_script__, __vue_template__
@@ -15594,12 +16149,12 @@
 
 
 /***/ },
-/* 71 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(72)
-	__vue_template__ = __webpack_require__(73)
+	__vue_script__ = __webpack_require__(83)
+	__vue_template__ = __webpack_require__(84)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -15616,7 +16171,7 @@
 	})()}
 
 /***/ },
-/* 72 */
+/* 83 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15653,13 +16208,13 @@
 	/* generated by vue-loader */
 
 /***/ },
-/* 73 */
+/* 84 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\n<div class=\"container\">\n\t<div >\n\t\t<input type=\"text\" name=\"\">\n\t</div>\n</div>\n";
 
 /***/ },
-/* 74 */
+/* 85 */
 /***/ function(module, exports) {
 
 	var __vue_script__, __vue_template__
@@ -15669,7 +16224,7 @@
 
 
 /***/ },
-/* 75 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
@@ -16516,20 +17071,20 @@
 
 
 /***/ },
-/* 76 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _keys = __webpack_require__(77);
+	var _keys = __webpack_require__(88);
 	
 	var _keys2 = _interopRequireDefault(_keys);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var vueTouch = {};
-	var Hammer =  true ? __webpack_require__(89) : window.Hammer;
-	var gestures = ['tap', 'pan', 'pandown', 'panend', 'pinch', 'press', 'pressup', 'rotate', 'swipe'];
+	var Hammer =  true ? __webpack_require__(100) : window.Hammer;
+	var gestures = ['tap', 'pan', 'pandown', 'panend', 'pinch', 'press', 'pressup', 'rotate', 'swipe', 'swipeleft', 'swiperight', 'swipeup', 'swipedown'];
 	var customeEvents = {};
 	
 	vueTouch.install = function (Vue) {
@@ -16627,43 +17182,43 @@
 	module.exports = vueTouch;
 
 /***/ },
-/* 77 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(78), __esModule: true };
+	module.exports = { "default": __webpack_require__(89), __esModule: true };
 
 /***/ },
-/* 78 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(79);
-	module.exports = __webpack_require__(85).Object.keys;
+	__webpack_require__(90);
+	module.exports = __webpack_require__(96).Object.keys;
 
 /***/ },
-/* 79 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(80);
+	var toObject = __webpack_require__(91);
 	
-	__webpack_require__(82)('keys', function($keys){
+	__webpack_require__(93)('keys', function($keys){
 	  return function keys(it){
 	    return $keys(toObject(it));
 	  };
 	});
 
 /***/ },
-/* 80 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
-	var defined = __webpack_require__(81);
+	var defined = __webpack_require__(92);
 	module.exports = function(it){
 	  return Object(defined(it));
 	};
 
 /***/ },
-/* 81 */
+/* 92 */
 /***/ function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -16673,13 +17228,13 @@
 	};
 
 /***/ },
-/* 82 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(83)
-	  , core    = __webpack_require__(85)
-	  , fails   = __webpack_require__(88);
+	var $export = __webpack_require__(94)
+	  , core    = __webpack_require__(96)
+	  , fails   = __webpack_require__(99);
 	module.exports = function(KEY, exec){
 	  var fn  = (core.Object || {})[KEY] || Object[KEY]
 	    , exp = {};
@@ -16688,12 +17243,12 @@
 	};
 
 /***/ },
-/* 83 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(84)
-	  , core      = __webpack_require__(85)
-	  , ctx       = __webpack_require__(86)
+	var global    = __webpack_require__(95)
+	  , core      = __webpack_require__(96)
+	  , ctx       = __webpack_require__(97)
 	  , PROTOTYPE = 'prototype';
 	
 	var $export = function(type, name, source){
@@ -16739,7 +17294,7 @@
 	module.exports = $export;
 
 /***/ },
-/* 84 */
+/* 95 */
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -16748,18 +17303,18 @@
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
-/* 85 */
+/* 96 */
 /***/ function(module, exports) {
 
 	var core = module.exports = {version: '1.2.6'};
 	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ },
-/* 86 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(87);
+	var aFunction = __webpack_require__(98);
 	module.exports = function(fn, that, length){
 	  aFunction(fn);
 	  if(that === undefined)return fn;
@@ -16780,7 +17335,7 @@
 	};
 
 /***/ },
-/* 87 */
+/* 98 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -16789,7 +17344,7 @@
 	};
 
 /***/ },
-/* 88 */
+/* 99 */
 /***/ function(module, exports) {
 
 	module.exports = function(exec){
@@ -16801,7 +17356,7 @@
 	};
 
 /***/ },
-/* 89 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.6 - 2015-12-23
@@ -19375,7 +19930,7 @@
 
 
 /***/ },
-/* 90 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -19384,16 +19939,16 @@
 	
 	function install(Vue) {
 	
-	    var _ = __webpack_require__(91);
+	    var _ = __webpack_require__(102);
 	
 	    _.config = Vue.config;
 	    _.warning = Vue.util.warn;
 	    _.nextTick = Vue.util.nextTick;
 	
-	    Vue.url = __webpack_require__(92);
-	    Vue.http = __webpack_require__(98);
-	    Vue.resource = __webpack_require__(113);
-	    Vue.Promise = __webpack_require__(100);
+	    Vue.url = __webpack_require__(103);
+	    Vue.http = __webpack_require__(109);
+	    Vue.resource = __webpack_require__(124);
+	    Vue.Promise = __webpack_require__(111);
 	
 	    Object.defineProperties(Vue.prototype, {
 	
@@ -19434,7 +19989,7 @@
 
 
 /***/ },
-/* 91 */
+/* 102 */
 /***/ function(module, exports) {
 
 	/**
@@ -19562,14 +20117,14 @@
 
 
 /***/ },
-/* 92 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for URL templating.
 	 */
 	
-	var _ = __webpack_require__(91);
+	var _ = __webpack_require__(102);
 	var ie = document.documentMode;
 	var el = document.createElement('a');
 	
@@ -19605,10 +20160,10 @@
 	 */
 	
 	Url.transforms = [
-	    __webpack_require__(93),
-	    __webpack_require__(95),
-	    __webpack_require__(96),
-	    __webpack_require__(97)
+	    __webpack_require__(104),
+	    __webpack_require__(106),
+	    __webpack_require__(107),
+	    __webpack_require__(108)
 	];
 	
 	/**
@@ -19698,14 +20253,14 @@
 
 
 /***/ },
-/* 93 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * URL Template (RFC 6570) Transform.
 	 */
 	
-	var UrlTemplate = __webpack_require__(94);
+	var UrlTemplate = __webpack_require__(105);
 	
 	module.exports = function (options) {
 	
@@ -19720,7 +20275,7 @@
 
 
 /***/ },
-/* 94 */
+/* 105 */
 /***/ function(module, exports) {
 
 	/**
@@ -19876,14 +20431,14 @@
 
 
 /***/ },
-/* 95 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Legacy Transform.
 	 */
 	
-	var _ = __webpack_require__(91);
+	var _ = __webpack_require__(102);
 	
 	module.exports = function (options, next) {
 	
@@ -19928,14 +20483,14 @@
 
 
 /***/ },
-/* 96 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Query Parameter Transform.
 	 */
 	
-	var _ = __webpack_require__(91);
+	var _ = __webpack_require__(102);
 	
 	module.exports = function (options, next) {
 	
@@ -19958,14 +20513,14 @@
 
 
 /***/ },
-/* 97 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Root Prefix Transform.
 	 */
 	
-	var _ = __webpack_require__(91);
+	var _ = __webpack_require__(102);
 	
 	module.exports = function (options, next) {
 	
@@ -19980,17 +20535,17 @@
 
 
 /***/ },
-/* 98 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for sending network requests.
 	 */
 	
-	var _ = __webpack_require__(91);
-	var Client = __webpack_require__(99);
-	var Promise = __webpack_require__(100);
-	var interceptor = __webpack_require__(103);
+	var _ = __webpack_require__(102);
+	var Client = __webpack_require__(110);
+	var Promise = __webpack_require__(111);
+	var interceptor = __webpack_require__(114);
 	var jsonType = {'Content-Type': 'application/json'};
 	
 	function Http(url, options) {
@@ -20042,13 +20597,13 @@
 	};
 	
 	Http.interceptors = [
-	    __webpack_require__(104),
-	    __webpack_require__(105),
-	    __webpack_require__(106),
-	    __webpack_require__(108),
-	    __webpack_require__(109),
-	    __webpack_require__(110),
-	    __webpack_require__(111)
+	    __webpack_require__(115),
+	    __webpack_require__(116),
+	    __webpack_require__(117),
+	    __webpack_require__(119),
+	    __webpack_require__(120),
+	    __webpack_require__(121),
+	    __webpack_require__(122)
 	];
 	
 	Http.headers = {
@@ -20083,16 +20638,16 @@
 
 
 /***/ },
-/* 99 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Base client.
 	 */
 	
-	var _ = __webpack_require__(91);
-	var Promise = __webpack_require__(100);
-	var xhrClient = __webpack_require__(102);
+	var _ = __webpack_require__(102);
+	var Promise = __webpack_require__(111);
+	var xhrClient = __webpack_require__(113);
 	
 	module.exports = function (request) {
 	
@@ -20154,15 +20709,15 @@
 
 
 /***/ },
-/* 100 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promise adapter.
 	 */
 	
-	var _ = __webpack_require__(91);
-	var PromiseObj = window.Promise || __webpack_require__(101);
+	var _ = __webpack_require__(102);
+	var PromiseObj = window.Promise || __webpack_require__(112);
 	
 	function Promise(executor, context) {
 	
@@ -20269,14 +20824,14 @@
 
 
 /***/ },
-/* 101 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promises/A+ polyfill v1.1.4 (https://github.com/bramstein/promis)
 	 */
 	
-	var _ = __webpack_require__(91);
+	var _ = __webpack_require__(102);
 	
 	var RESOLVED = 0;
 	var REJECTED = 1;
@@ -20454,15 +21009,15 @@
 
 
 /***/ },
-/* 102 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XMLHttp client.
 	 */
 	
-	var _ = __webpack_require__(91);
-	var Promise = __webpack_require__(100);
+	var _ = __webpack_require__(102);
+	var Promise = __webpack_require__(111);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -20503,15 +21058,15 @@
 
 
 /***/ },
-/* 103 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Interceptor factory.
 	 */
 	
-	var _ = __webpack_require__(91);
-	var Promise = __webpack_require__(100);
+	var _ = __webpack_require__(102);
+	var Promise = __webpack_require__(111);
 	
 	module.exports = function (handler, vm) {
 	
@@ -20554,14 +21109,14 @@
 
 
 /***/ },
-/* 104 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Before Interceptor.
 	 */
 	
-	var _ = __webpack_require__(91);
+	var _ = __webpack_require__(102);
 	
 	module.exports = {
 	
@@ -20578,7 +21133,7 @@
 
 
 /***/ },
-/* 105 */
+/* 116 */
 /***/ function(module, exports) {
 
 	/**
@@ -20614,14 +21169,14 @@
 
 
 /***/ },
-/* 106 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP Interceptor.
 	 */
 	
-	var jsonpClient = __webpack_require__(107);
+	var jsonpClient = __webpack_require__(118);
 	
 	module.exports = {
 	
@@ -20638,15 +21193,15 @@
 
 
 /***/ },
-/* 107 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP client.
 	 */
 	
-	var _ = __webpack_require__(91);
-	var Promise = __webpack_require__(100);
+	var _ = __webpack_require__(102);
+	var Promise = __webpack_require__(111);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -20692,7 +21247,7 @@
 
 
 /***/ },
-/* 108 */
+/* 119 */
 /***/ function(module, exports) {
 
 	/**
@@ -20715,14 +21270,14 @@
 
 
 /***/ },
-/* 109 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Mime Interceptor.
 	 */
 	
-	var _ = __webpack_require__(91);
+	var _ = __webpack_require__(102);
 	
 	module.exports = {
 	
@@ -20757,14 +21312,14 @@
 
 
 /***/ },
-/* 110 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Header Interceptor.
 	 */
 	
-	var _ = __webpack_require__(91);
+	var _ = __webpack_require__(102);
 	
 	module.exports = {
 	
@@ -20789,15 +21344,15 @@
 
 
 /***/ },
-/* 111 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * CORS Interceptor.
 	 */
 	
-	var _ = __webpack_require__(91);
-	var xdrClient = __webpack_require__(112);
+	var _ = __webpack_require__(102);
+	var xdrClient = __webpack_require__(123);
 	var xhrCors = 'withCredentials' in new XMLHttpRequest();
 	var originUrl = _.url.parse(location.href);
 	
@@ -20832,15 +21387,15 @@
 
 
 /***/ },
-/* 112 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XDomain client (Internet Explorer).
 	 */
 	
-	var _ = __webpack_require__(91);
-	var Promise = __webpack_require__(100);
+	var _ = __webpack_require__(102);
+	var Promise = __webpack_require__(111);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -20875,14 +21430,14 @@
 
 
 /***/ },
-/* 113 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for interacting with RESTful services.
 	 */
 	
-	var _ = __webpack_require__(91);
+	var _ = __webpack_require__(102);
 	
 	function Resource(url, params, actions, options) {
 	
@@ -20989,286 +21544,6 @@
 	
 	module.exports = _.resource = Resource;
 
-
-/***/ },
-/* 114 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(115);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ba295ade&file=Project.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Project.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ba295ade&file=Project.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Project.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 115 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Project.vue","sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 116 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _ToolBar = __webpack_require__(12);
-	
-	var _ToolBar2 = _interopRequireDefault(_ToolBar);
-	
-	var _PullList = __webpack_require__(118);
-	
-	var _PullList2 = _interopRequireDefault(_PullList);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// <template>
-	// 	<div class="page">
-	// 		<toolbar text="我的项目">
-	// 			<span class="icon-chevron-left" slot="leftBtn" @click="back"></span>
-	// 	        <span class="icon-refresh" slot="rightBtn" ></span>
-	// 		</toolbar>
-	// 		<div class="page-content" >
-	// 			<pull-list >
-	// 				<ul>
-	// 					<li>asdffdddd;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;a</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;a</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;a</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;a</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>顶顶顶 阿斯蒂芬;</li>
-	
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>顶顶顶 阿斯蒂芬;</li>
-	
-	// 				</ul>
-	// 			</pull-list>
-	// 		</div>
-	// 	</div>
-	
-	// </template>
-	
-	// <script lang="babel">
-	exports.default = {
-	
-		methods: {
-			back: function back() {
-				history.back();
-			}
-		},
-		components: {
-			toolbar: _ToolBar2.default,
-			PullList: _PullList2.default
-		}
-	};
-	// </script>
-
-	// <style scoped>
-
-	// </style>
-
-/***/ },
-/* 117 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<div class=\"page\" _v-ba295ade=\"\">\n\t<toolbar text=\"我的项目\" _v-ba295ade=\"\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back\" _v-ba295ade=\"\"></span>\n        <span class=\"icon-refresh\" slot=\"rightBtn\" _v-ba295ade=\"\"></span>\n\t</toolbar>\n\t<div class=\"page-content\" _v-ba295ade=\"\">\n\t\t<pull-list _v-ba295ade=\"\">\n\t\t\t<ul _v-ba295ade=\"\">\n\t\t\t\t<li _v-ba295ade=\"\">asdffdddd;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t</ul>\n\t\t</pull-list>\n\t</div>\n</div>\n\n";
-
-/***/ },
-/* 118 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__webpack_require__(123)
-	__vue_script__ = __webpack_require__(121)
-	__vue_template__ = __webpack_require__(125)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\components\\PullList.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 119 */,
-/* 120 */,
-/* 121 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	// <!-- 下拉刷新组件 -->
-	
-	// <template>
-	// 	<div id="pulllist" v-touch:pandown="pullToRefresh" v-touch:panend="panleave"  >
-	// 		<div id="pull-header">
-	// 			<span>下拉刷新</span>
-	// 		</div>
-	// 		<slot></slot>
-	// 		<div class="pull-footer">
-	
-	// 		</div>
-	// 	</div>
-	
-	// </template>
-	
-	// <script lang="babel">
-	exports.default = {
-	
-		methods: {
-			panleave: function panleave(e) {
-				var header = document.getElementById('pulllist');
-				header.style.transform = "translateY(0px)";
-			},
-	
-			// 下拉刷新事件
-			pullToRefresh: function pullToRefresh(e) {
-				if (!e.isFinal) {
-					var header = document.getElementById('pulllist');
-					var distance = e.distance;
-					console.log("拉动的距离" + distance);
-					if (distance < 50) {
-						header.style.transform = "translateY(" + distance + "px)";
-					} else {
-						//1：触发刷新事件
-						this.$dispatch('list-reload');
-						header.style.transform = "translateY(50px)";
-					}
-				} else {
-					var header = document.getElementById('pulllist');
-					header.style.transform = "translateY(0px)";
-				}
-			}
-		}
-	};
-	// </script>
-
-	// <style >
-
-	// 	#pull-header{
-	// 		height: 44px;
-	// 		margin-top: -44px;
-	// 		transition: all .3s ease;
-	// 		display: flex;
-	// 		justify-content:center;
-	// 	}
-
-	// </style>
-
-/***/ },
-/* 122 */,
-/* 123 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(124);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-50a8202f&file=PullList.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./PullList.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-50a8202f&file=PullList.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./PullList.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 124 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n\n#pull-header{\n\theight: 44px;\n\tmargin-top: -44px;\n\t-webkit-transition: all .3s ease;\n\ttransition: all .3s ease;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-box-pack:center;\n\t-webkit-justify-content:center;\n\t    -ms-flex-pack:center;\n\t        justify-content:center;\n}\n\n\n", "", {"version":3,"sources":["/./src/components/PullList.vue?2f4f6dea"],"names":[],"mappings":";;AAoDA;CACA,aAAA;CACA,kBAAA;CACA,iCAAA;CAAA,yBAAA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,wBAAA;CAAA,+BAAA;KAAA,qBAAA;SAAA,uBAAA;CACA","file":"PullList.vue","sourcesContent":["<!-- 下拉刷新组件 -->\r\n\r\n<template>\r\n\t<div id=\"pulllist\" v-touch:pandown=\"pullToRefresh\" v-touch:panend=\"panleave\"  >\r\n\t\t<div id=\"pull-header\">\r\n\t\t\t<span>下拉刷新</span>\r\n\t\t</div>\r\n\t\t<slot></slot>\r\n\t\t<div class=\"pull-footer\">\r\n\t\t\t\r\n\t\t</div>\r\n\t</div>\r\n\t\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\texport default {\r\n\t\t\r\n\t\tmethods:{\r\n\r\n\t\t\tpanleave(e){\r\n\t\t\t\tvar header=\tdocument.getElementById('pulllist');\r\n\t\t\t\theader.style.transform=\"translateY(0px)\";\r\n\t\t\t},\r\n\t\t\t// 下拉刷新事件\r\n\t\t\tpullToRefresh(e){\r\n\t\t\t\t if(!e.isFinal){\r\n\t\t\t\t \t\tvar header=\tdocument.getElementById('pulllist');\r\n\t\t\t\t\t \tvar distance=e.distance;\r\n\t\t\t\t\t \tconsole.log(\"拉动的距离\"+distance)\r\n\t\t\t\t\t \tif(distance<50){\r\n \t\t\t\t\t\t\theader.style.transform=\"translateY(\"+distance+\"px)\";\r\n\t\t\t\t\t \t}\r\n\t\t\t\t\t \telse{\r\n\t\t\t\t\t \t\t//1：触发刷新事件\r\n\t\t\t\t\t \t\tthis.$dispatch('list-reload');\r\n\t\t\t\t\t \t\theader.style.transform=\"translateY(50px)\";\r\n\t\t\t\t\t \t}\r\n\r\n\t\t\t\t }else{\r\n\t\t\t\t \t var header=document.getElementById('pulllist');\r\n\t\t\t\t\t header.style.transform=\"translateY(0px)\";\r\n\t\t\t\t }\r\n\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style >\r\n\r\n\t#pull-header{\r\n\t\theight: 44px;\r\n\t\tmargin-top: -44px;\r\n\t\ttransition: all .3s ease;\r\n\t\tdisplay: flex;\r\n\t\tjustify-content:center;\r\n\t}\r\n\t\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 125 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<div id=\"pulllist\" v-touch:pandown=\"pullToRefresh\" v-touch:panend=\"panleave\"  >\n\t<div id=\"pull-header\">\n\t\t<span>下拉刷新</span>\n\t</div>\n\t<slot></slot>\n\t<div class=\"pull-footer\">\n\t\t\n\t</div>\n</div>\n\n";
 
 /***/ }
 /******/ ]);
