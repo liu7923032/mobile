@@ -1,34 +1,32 @@
 <template>
-	<div class="dlg-modal" v-if="show">
-        <div class="dlg-content fade" :class="{'in':show}" :style="{width:dlgWidth+'px'}">
-            <div class="dlg-header">
-                <span>{{title}}</span>
-            </div>
-            <div class="dlg-body">
-                <slot name="dlg-body"></slot>
-            </div>
-            <div class="dlg-footer">
-                <span @click="confirm" :style="{width:dlgWidth/2 +'px'}"><i class="icon-ok"></i>确定</span>
-                <span @click="close" :style="{width:dlgWidth/2 +'px'}"><i class="icon-remove"></i>关闭</span>
-            </div>
-        </div>
-    </div>
+    <section class="dialog"  v-show="show">
+        <section class="dialog-mask"></section>
+        <section class="dialog-content">
+            <section class="dialog-hd">{{title}}</section>
+            <section class="dialog-bd">
+                <slot name="dialog-bd"></slot>
+            </section>
+            <section class="dialog-ft" v-if="isAlert">
+            <!-- 判断类别,如果是 -->
+                <a href="javascript:;" class="weui_btn_dialog primary" v-touch:tap="close">确定</a>
+            </section>
+            <section class="dialog-ft" v-else>
+            <!-- 判断类别,如果是 -->
+                <a href="javascript:;" class="weui_btn_dialog default" v-touch:tap="close">取消</a>
+                <a href="javascript:;" class="weui_btn_dialog primary" v-touch:tap="confirm">确定</a>
+            </section>
+        </section>
+    </section>
+
 </template>
 
 <script lang="babel">
 	
 	export default {
-		created(){
-			//初始化弹出框的宽度
-			
-		},
-		data(){
-
-		},
 		methods:{
 			// 关闭dialog
 			close(){
-				this.show=false;
+				this.show=!this.show;
 			},
 			confirm(){
 				//将事件派发到父组件中,在通过父组件进行监听该事件
@@ -36,20 +34,19 @@
 			}
 		},
 		props:{
-
 			show:{
 				type:Boolean,
 				default:false,
 				require:true
 			},
+            isAlert:{
+                type:Boolean,
+                default:false
+            },
 			//显示效果
 			effect:{
 				type:String,
 				default:'fade'
-			},
-			dlgWidth:{
-				type:Number,
-				default:300
 			},
 			title:{
 				type:String,
@@ -61,91 +58,75 @@
 
 <style  type="text/css" scoped>
 	
-	  .dlg-modal {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 100%;
-            z-index: 10;
-            background-color: rgba(153, 153, 153, 0.5);
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: center;
-            font-size: 14px;
-            align-items: center;
-        }
-        
-        .dlg-modal>.dlg-content {
-            position: relative;
-            background-color: whitesmoke;
-            width: 300px;
-            transition: all .3s ease-in;
-            border-radius: 6px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-            border: 1px solid rgba(0, 0, 0, .2);
-        }
-        
-        .dlg-content>.dlg-header {
-            padding: 10px;
-            font-weight: bold;
-            border-bottom: 1px solid lightgray;
-            display: flex;
-            display: -webkit-flex;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        
-        .dlg-content>.dlg-body {
-            padding: 10px;
-        }
-        
-        .dlg-content>.dlg-footer {
-            border-top: 1px solid lightgray;
-            display: flex;
-            display: -webkit-flex;
-            flex-wrap: row nowrap;
-            justify-content: space-around;
-            align-items:center;
-            cursor: pointer;
-            height: 36px;
-            text-align: center;
-        }
+    .dialog{
+        padding: 0px;
+        margin: 0px;
+    }
 
-        
-        .dlg-footer>span {
-           font-size: 16px;
-           line-height: 36px;
-        }
+    /*遮罩层*/
+    .dialog-mask{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 10;
+    }
+    
+    .dialog-content{
+        position: fixed;
+        z-index: 20;
+        width: 85%;
+        top: 50%;
+        left: 50%;
+        max-width: 400px;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        text-align: center;
+        border-radius: 3px;
+    }
 
-        .dlg-footer>span>i {
-           margin-right: 5px;
-        }
+    .dialog-content>.dialog-hd{
+        padding: 1.2em 20px .5em;
+        font-weight: 400;
+        font-size: 17px;
+    }
 
-		
-        .dlg-footer>span:hover {
-          	color: darkorange;
-        }
+    .dialog-content>.dialog-bd{
+        text-align: left;
+         padding: 0 20px;
+        font-size: 15px;
+        color: #888;
+    }
 
-        .dlg-footer>span:active {
-          	box-shadow: 1px 1px 4px darkgray;
-          	color: darkorange;
-        }
+    .dialog-content>.dialog-ft{
+        position: relative;
+        line-height: 42px;
+        margin-top: 20px;
+        font-size: 17px;
+        display: flex;
+        display: flexbox;
+    }
 
-        
-        .dlg-footer>:first-child {
-           border-right: 1px solid darkgray;
-        }
+    .dialog-ft:before{
+        content:" ";
+        position: absolute;
+        width: 8.14px;
+        height: 1.08px;
+        background: rgb(209, 209, 213);
+        box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;
+        border-radius: 1px;
+        transform-origin: left 50% 0px;
+        width: 100%;
+    }
 
-        .fade {
-            opacity: 0;
-            -webkit-transition: opacity .15s linear;
-            -o-transition: opacity .15s linear;
-            transition: opacity .15s linear;
-        }
-        
-        .fade.in {
-            opacity: 1;
-        }
+    .dialog-ft>a{
+        flex:1;
+        -webkit-box-flex:1;
+    }
+
+
+
+	  
 </style>

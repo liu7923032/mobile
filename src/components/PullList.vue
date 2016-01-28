@@ -102,7 +102,7 @@
 					//得到当前的时间
 					if(this.isRefresh){
 						this.isRefresh=false;
-						this.rlastTime=dateHelper.getCurrentDate("yyyy-MM-dd HH:mm:ss");
+						this.rlastTime=dateHelper.getNowDate("yyyy-MM-dd HH:mm:ss");
 						this.$emit('reload');
 					}
 					// this.$broadcast('list-reload');
@@ -112,7 +112,7 @@
 					this.move(0)
 					if(this.isRefresh){
 						this.isRefresh=false;
-						this.mlastTime=dateHelper.getCurrentDate("yyyy-MM-dd HH:mm:ss");
+						this.mlastTime=dateHelper.getNowDate("yyyy-MM-dd HH:mm:ss");
 						this.$emit('loadmore');
 					}
 				}
@@ -136,7 +136,7 @@
 					this.showfooter=true;
 					this.arrow='up';
 					var distance=e.distance;
-				 	console.log("拉动的距离"+distance)
+				 	// console.log("拉动的距离"+distance)
 				 	this.move(distance);
 				 	if(distance>90){
 						this.moreText="松开后刷新";

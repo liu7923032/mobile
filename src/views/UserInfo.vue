@@ -4,13 +4,13 @@
 		<span class="icon-refresh" slot="rightBtn" @click="loadUserInfo"></span>
 	</toolbar>
 	<section >
-		<input type="button" @click="showDialog">
+		<input type="button" @click="showDialog" value="显示dialog">
 		<datepicker></datepicker>
 	</section>
 
 	<loading :loading="isload"></loading>
-	<dialog :show.sync="isShowDialog" :title="dialogTitle" v-on:child-confirm="confirm">
-		<div slot="dlg-body">hahah</div>
+	<dialog :show.sync="isShowDialog" :title="dialogTitle" :is-alert="isAlert" v-on:child-confirm="confirm">
+		<div slot="dialog-bd">我的世界你不懂</div>
 	</dialog>
 </template>
 
@@ -55,7 +55,8 @@
 			return {
 				isload:true,
 				isShowDialog:false,
-				dialogTitle:'测试'
+				dialogTitle:'测试',
+				isAlert:true
 			}
 		},
 		components:{

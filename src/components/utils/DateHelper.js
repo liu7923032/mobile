@@ -1,6 +1,6 @@
 const DateHelper={
 	//获取档期的日期
-	getCurrentDate(formate){
+	getNowDate(formate){
 		var date=new Date();
 		var year= date.getFullYear();
 		var month=parseInt((date.getMonth()+1))<10?("0"+(date.getMonth()+1)):(date.getMonth()+1);
@@ -19,16 +19,19 @@ const DateHelper={
 			result+="-"+day;
 		}
 		if(formate.indexOf("HH")>=0){
-			result+="-"+hour;
+			result+=" "+hour;
 		}
 
 		if(formate.indexOf("mm")>=0){
-			result+="-"+min;
+			result+=":"+min;
 		}
 		if(formate.indexOf("ss")>=0){
-			result+="-"+sec;
+			result+=":"+sec;
 
 		}
 		return result;
 	}
 }
+
+
+export default DateHelper

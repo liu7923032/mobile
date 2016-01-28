@@ -65,19 +65,21 @@
 	
 	var _routers2 = _interopRequireDefault(_routers);
 	
-	var _fastclick = __webpack_require__(86);
+	var _fastclick = __webpack_require__(92);
 	
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 	
-	var _vTouch = __webpack_require__(87);
+	var _vTouch = __webpack_require__(93);
 	
 	var _vTouch2 = _interopRequireDefault(_vTouch);
 	
-	var _vueResource = __webpack_require__(101);
+	var _vueResource = __webpack_require__(107);
 	
 	var _vueResource2 = _interopRequireDefault(_vueResource);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//加载weui
 	
 	// 1:创建启动的版本
 	
@@ -12328,27 +12330,27 @@
 	        },
 	        '/project': {
 	            name: 'project',
-	            component: __webpack_require__(53)
+	            component: __webpack_require__(54)
 	        },
 	        '/worklog': {
 	            name: 'worklog',
-	            component: __webpack_require__(58)
+	            component: __webpack_require__(64)
 	        },
 	        '/userinfo': {
 	            name: 'userinfo',
-	            component: __webpack_require__(66)
+	            component: __webpack_require__(72)
 	        },
 	        '/workflow': {
 	            name: 'workflow',
-	            component: __webpack_require__(81)
+	            component: __webpack_require__(87)
 	        },
 	        '/login': {
 	            name: 'login',
-	            component: __webpack_require__(82)
+	            component: __webpack_require__(88)
 	        },
 	        '/comment': {
 	            name: 'comment',
-	            component: __webpack_require__(85)
+	            component: __webpack_require__(91)
 	        },
 	
 	        /* 404路由 */
@@ -12366,7 +12368,7 @@
 	var __vue_script__, __vue_template__
 	__webpack_require__(7)
 	__vue_script__ = __webpack_require__(11)
-	__vue_template__ = __webpack_require__(52)
+	__vue_template__ = __webpack_require__(53)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14218,7 +14220,7 @@
 	var __vue_script__, __vue_template__
 	__webpack_require__(46)
 	__vue_script__ = __webpack_require__(48)
-	__vue_template__ = __webpack_require__(49)
+	__vue_template__ = __webpack_require__(50)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14269,7 +14271,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n\t/*list集合*/\n\t.pull-list{\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -webkit-flex;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t   \t-webkit-flex-flow:column nowrap;\n\t   \t    -ms-flex-flow:column nowrap;\n\t   \t        flex-flow:column nowrap;\n\t  \tmin-height: 120px;\n\t  \t-webkit-box-pack:start;\n\t  \t-webkit-justify-content:flex-start;\n\t  \t    -ms-flex-pack:start;\n\t  \t        justify-content:flex-start;\n\t  \t-webkit-box-flex:0;\n\t  \t-webkit-flex:0 1 auto;\n\t  \t    -ms-flex:0 1 auto;\n\t  \t        flex:0 1 auto;\n\t   \theight: 100%;\n\t}\n\n\t\n\t.pull-header,.pull-footer{\n\t     display: -webkit-box;\n\t     display: -webkit-flex;\n\t     display: -ms-flexbox;\n\t     display: flex;\n     \t -webkit-flex-flow:row nowrap;\n     \t     -ms-flex-flow:row nowrap;\n     \t         flex-flow:row nowrap;\n\t     min-height: 60px;\n\t     height: 60px;\n\t     -webkit-box-pack:center;\n\t     -webkit-justify-content:center;\n\t         -ms-flex-pack:center;\n\t             justify-content:center;\n\t     -webkit-box-flex:0;\n\t     -webkit-flex:0 1 auto;\n\t         -ms-flex:0 1 auto;\n\t             flex:0 1 auto;\n\t     -webkit-box-align:center;\n\t     -webkit-align-items:center;\n\t         -ms-flex-align:center;\n\t             align-items:center;\n\t     aiign-content:center;\n\t}\n\n\t.pull-header{\n\t    \n\t\tmargin-top: -60px;\n\t\tborder-bottom: 1px solid whitesmoke;\n\n\t}\n\t.pull-footer{\n\t\tmargin-bottom: -60px;\n\t\tborder-top: 1px solid whitesmoke;\n\t}\n\n\t.pull-header>img,.pull-footer>img{\n\t\t -webkit-transition: -webkit-transform .3s ease;\n\t\t transition: -webkit-transform .3s ease;\n\t\t transition: transform .3s ease;\n\t\t transition: transform .3s ease, -webkit-transform .3s ease;\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n\t      -o-transition: transform .3s ease; /* Opera */\n\t}\n\n\n\t.pull-header>div,.pull-footer>div{\n\t\tfont-size: 12px;\n\t\tmargin-left: 12px;\n\t}\n\t\n\n\t.pull-content{\n\t\toverflow: auto;\n\t    -webkit-overflow-scrolling: touch;\n\t    display: -webkit-flex;\n\t    display: -ms-flexbox;\n\t    display: -webkit-box;\n\t    display: flex;\n\t    -webkit-flex: 0 1 auto;\n\t    -ms-flex: 0 1 auto;\n\t    -webkit-box-flex: 0;\n\t            flex: 0 1 auto;\n\t    margin-bottom: 10px;\n\t    margin: 0px;\n\t    -webkit-flex-flow:column nowrap;\n\t        -ms-flex-flow:column nowrap;\n\t            flex-flow:column nowrap;\n\t    padding: 0px;\n\t}\n", "", {"version":3,"sources":["/./src/components/PullList.vue?6bd1301c"],"names":[],"mappings":";;CAyJA,UAAA;CACA;EACA,qBAAA;EAAA,sBAAA;EAAA,qBAAA;EAAA,cAAA;KACA,gCAAA;SAAA,4BAAA;aAAA,wBAAA;IACA,kBAAA;IACA,uBAAA;IAAA,mCAAA;QAAA,oBAAA;YAAA,2BAAA;IACA,mBAAA;IAAA,sBAAA;QAAA,kBAAA;YAAA,cAAA;KACA,aAAA;EACA;;;CAGA;MACA,qBAAA;MAAA,sBAAA;MAAA,qBAAA;MAAA,cAAA;OACA,6BAAA;WAAA,yBAAA;eAAA,qBAAA;MACA,iBAAA;MACA,aAAA;MACA,wBAAA;MAAA,+BAAA;UAAA,qBAAA;cAAA,uBAAA;MACA,mBAAA;MAAA,sBAAA;UAAA,kBAAA;cAAA,cAAA;MACA,yBAAA;MAAA,2BAAA;UAAA,sBAAA;cAAA,mBAAA;MACA,qBAAA;EACA;;CAEA;;EAEA,kBAAA;EACA,oCAAA;;EAEA;CACA;EACA,qBAAA;EACA,iCAAA;EACA;;CAEA;GACA,+CAAA;GAAA,uCAAA;GAAA,+BAAA;GAAA,2DAAA;OACA,oCAAA,eAAA;OACA,uCAAA,CAAA,qBAAA;OACA,kCAAA,CAAA,WAAA;EACA;;;CAGA;EACA,gBAAA;EACA,kBAAA;EACA;;;CAGA;EACA,eAAA;KACA,kCAAA;KACA,sBAAA;KACA,qBAAA;KACA,qBAAA;KAAA,cAAA;KACA,uBAAA;KACA,mBAAA;KACA,oBAAA;aAAA,eAAA;KACA,oBAAA;KACA,YAAA;KACA,gCAAA;SAAA,4BAAA;aAAA,wBAAA;KACA,aAAA;EACA","file":"PullList.vue","sourcesContent":["<!-- 下拉刷新组件 -->\r\n\r\n<template>\r\n\t<section class=\"pull-list\" v-touch:pandown=\"pullToRefresh\" v-touch:panup=\"loadMore\" v-touch:panend=\"panleave\"   >\r\n\t\t<header class=\"pull-header\">\r\n\t\t\t<div>\r\n\t\t\t\t<img class=\"downImg\" src=\"../assets/images/components/icon-down.png\" alt=\"下拉\">\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<p>{{refreshText}}</p>\r\n\t\t\t\t<p>最后更新:{{rlastTime}}</p>\r\n\t\t\t</div>\r\n\t\t</header>\r\n\t\t<div class=\"pull-content\" v-on:scroll=\"scroll($event)\" v-el:listContent>\r\n\t\t\t<slot ></slot>\r\n\t\t</div>\r\n\t\t<footer class=\"pull-footer\" v-show=\"showfooter\">\r\n\t\t\t<div>\r\n\t\t\t\t<img class=\"upImg\" src=\"../assets/images/components/icon-up.png\" alt=\"上拉\">\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<p>{{moreText}}</p>\r\n\t\t\t\t<p>最后更新:{{mlastTime}}</p>\r\n\t\t\t</div>\r\n\t\t</footer>\r\n\t</section>\r\n\t\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\r\n\timport dateHelper from './utils/DateHelper.js'\r\n\r\n\texport default {\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\trlastTime:'',\r\n\t\t\t\tmlastTime:'',\r\n\t\t\t\trefreshText:'下拉刷新',\r\n\t\t\t\tmoreText:'加载更多',\r\n\t\t\t\t//是否触发事件\r\n\t\t\t\tisRefresh:false,\r\n\t\t\t\t//是否显示底部加载更多\r\n\t\t\t\tshowfooter:false,\r\n\t\t\t\t//下拉和上拉的标识\r\n\t\t\t\tarrow:'down',\r\n\t\t\t\t//滚动条是否在顶部\r\n\t\t\t\ttop:0,\r\n\t\t\t\t//滚动条是否在底部\r\n\t\t\t\tisBottom:false,\r\n\t\t\t\t//屏幕的高度\r\n\t\t\t\tregionHeight:100,\r\n\t\t\t\t//内容的高度\r\n\t\t\t\twinHeight:100\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\t//得到对应的高度\r\n\t\t\tthis.regionHeight=this.$el.offsetHeight;\r\n\t\t\tvar listObj=this.$el.getElementsByTagName('ul')[0];\r\n\t\t\tthis.winHeight=listObj.offsetHeight;\r\n\t\t\tconsole.log(\"可见区域的高度：\"+this.regionHeight+\"-内容总高度:\"+this.winHeight);\r\n\r\n\t\t},\r\n\t\tmethods:{\r\n\r\n\t\t\tmove(height){\r\n\t\t\t\tvar list=this.$el;\r\n\t\t\t\t//获取角度\r\n\t\t\t\tvar rotateHeight=height<90?height*2:180;\r\n\t\t\t\tif(this.arrow==\"down\"){\r\n\t\t\t\t\tlist.style.transform=\"translateY(\"+height+\"px)\";\r\n\t\t\t\t\tvar img=list.getElementsByTagName('header')[0].getElementsByTagName('img')[0];\r\n\t\t\t\t\timg.style.transform=\"rotate(\"+rotateHeight+\"deg)\"\r\n\t\t\t\t}else{\r\n\t\t\t\t\tlist.style.transform=\"translateY(-\"+height+\"px)\";\r\n\t\t\t\t\t//先检查底部的div是否显示出来,如果显示出来了,那么在找到对应的图标\r\n\t\t\t\t\tif(list.getElementsByTagName('footer')[0]){\r\n\t\t\t\t\t\tvar img=list.getElementsByTagName('footer')[0].getElementsByTagName('img')[0];\r\n\t\t\t\t\t\timg.style.transform=\"rotate(\"+rotateHeight+\"deg)\"\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t//检查是否滚动到底部,滚动到底部触发上拉加载更多的事件\r\n\t\t\tscroll(e){\r\n\t\t\t\tthis.top=e.target.scrollTop;\r\n\t\t\t\tif(this.top+this.regionHeight>this.winHeight){\r\n\t\t\t\t\tthis.isBottom=true;\r\n\t\t\t\t}else{\r\n\t\t\t\t\tthis.isBottom=false;\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\tgetCurTime(){\r\n\t\t\t\t var date=new Date();\r\n\t\t\t\t// return date.getFullYear()+\"\"\r\n\t\t\t},\r\n\t\t\tpanleave(e){\r\n\t\t\t\t\r\n\t\t\t\tif(this.arrow==\"down\"){\r\n\t\t\t\t\tthis.move(0)\r\n\t\t\t\t\tthis.refreshText=\"下拉刷新\";\r\n\t\t\t\t\t//得到当前的时间\r\n\t\t\t\t\tif(this.isRefresh){\r\n\t\t\t\t\t\tthis.isRefresh=false;\r\n\t\t\t\t\t\tthis.rlastTime=dateHelper.getCurrentDate(\"yyyy-MM-dd HH:mm:ss\");\r\n\t\t\t\t\t\tthis.$emit('reload');\r\n\t\t\t\t\t}\r\n\t\t\t\t\t// this.$broadcast('list-reload');\r\n\t\t\t\t}else if(this.arrow==\"up\"){\r\n\t\t\t\t\tthis.showfooter=false;\r\n\t\t\t\t\tthis.moreText=\"加载更多\";\r\n\t\t\t\t\tthis.move(0)\r\n\t\t\t\t\tif(this.isRefresh){\r\n\t\t\t\t\t\tthis.isRefresh=false;\r\n\t\t\t\t\t\tthis.mlastTime=dateHelper.getCurrentDate(\"yyyy-MM-dd HH:mm:ss\");\r\n\t\t\t\t\t\tthis.$emit('loadmore');\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t// 下拉刷新事件\r\n\t\t\tpullToRefresh(e){\r\n\t\t\t\tif(this.top==0){\r\n\t\t\t\t \tvar distance=e.distance;\r\n\t\t\t\t \tthis.arrow='down';\r\n\t\t\t\t \tthis.move(distance);\r\n\t\t\t\t \tif(distance>90){\r\n\t\t\t\t\t\tthis.refreshText=\"松开后刷新\";\r\n\t\t\t\t \t\tthis.isRefresh=true;\r\n\t\t\t\t \t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t//加载更多\r\n\t\t\tloadMore(e){\r\n\t\t\t\t//判断滚动的距离+当前窗口的宽度是否\r\n\t\t\t\tif(this.isBottom){\r\n\t\t\t\t\tthis.showfooter=true;\r\n\t\t\t\t\tthis.arrow='up';\r\n\t\t\t\t\tvar distance=e.distance;\r\n\t\t\t\t \tconsole.log(\"拉动的距离\"+distance)\r\n\t\t\t\t \tthis.move(distance);\r\n\t\t\t\t \tif(distance>90){\r\n\t\t\t\t\t\tthis.moreText=\"松开后刷新\";\r\n\t\t\t\t \t\tthis.isRefresh=true;\r\n\t\t\t\t \t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style >\r\n\r\n\t/*list集合*/\r\n\t.pull-list{\r\n\t\tdisplay: flex;\r\n\t   \tflex-flow:column nowrap;\r\n\t  \tmin-height: 120px;\r\n\t  \tjustify-content:flex-start;\r\n\t  \tflex:0 1 auto;\r\n\t   \theight: 100%;\r\n\t}\r\n\r\n\t\r\n\t.pull-header,.pull-footer{\r\n\t     display: flex;\r\n     \t flex-flow:row nowrap;\r\n\t     min-height: 60px;\r\n\t     height: 60px;\r\n\t     justify-content:center;\r\n\t     flex:0 1 auto;\r\n\t     align-items:center;\r\n\t     aiign-content:center;\r\n\t}\r\n\r\n\t.pull-header{\r\n\t    \r\n\t\tmargin-top: -60px;\r\n\t\tborder-bottom: 1px solid whitesmoke;\r\n\r\n\t}\r\n\t.pull-footer{\r\n\t\tmargin-bottom: -60px;\r\n\t\tborder-top: 1px solid whitesmoke;\r\n\t}\r\n\r\n\t.pull-header>img,.pull-footer>img{\r\n\t\t transition: transform .3s ease;\r\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n\t      -o-transition: transform .3s ease; /* Opera */\r\n\t}\r\n\r\n\r\n\t.pull-header>div,.pull-footer>div{\r\n\t\tfont-size: 12px;\r\n\t\tmargin-left: 12px;\r\n\t}\r\n\t\r\n\r\n\t.pull-content{\r\n\t\toverflow: auto;\r\n\t    -webkit-overflow-scrolling: touch;\r\n\t    display: -webkit-flex;\r\n\t    display: -ms-flexbox;\r\n\t    display: flex;\r\n\t    -webkit-flex: 0 1 auto;\r\n\t    -ms-flex: 0 1 auto;\r\n\t    flex: 0 1 auto;\r\n\t    margin-bottom: 10px;\r\n\t    margin: 0px;\r\n\t    flex-flow:column nowrap;\r\n\t    padding: 0px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n\t/*list集合*/\n\t.pull-list{\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -webkit-flex;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t   \t-webkit-flex-flow:column nowrap;\n\t   \t    -ms-flex-flow:column nowrap;\n\t   \t        flex-flow:column nowrap;\n\t  \tmin-height: 120px;\n\t  \t-webkit-box-pack:start;\n\t  \t-webkit-justify-content:flex-start;\n\t  \t    -ms-flex-pack:start;\n\t  \t        justify-content:flex-start;\n\t  \t-webkit-box-flex:0;\n\t  \t-webkit-flex:0 1 auto;\n\t  \t    -ms-flex:0 1 auto;\n\t  \t        flex:0 1 auto;\n\t   \theight: 100%;\n\t}\n\n\t\n\t.pull-header,.pull-footer{\n\t     display: -webkit-box;\n\t     display: -webkit-flex;\n\t     display: -ms-flexbox;\n\t     display: flex;\n     \t -webkit-flex-flow:row nowrap;\n     \t     -ms-flex-flow:row nowrap;\n     \t         flex-flow:row nowrap;\n\t     min-height: 60px;\n\t     height: 60px;\n\t     -webkit-box-pack:center;\n\t     -webkit-justify-content:center;\n\t         -ms-flex-pack:center;\n\t             justify-content:center;\n\t     -webkit-box-flex:0;\n\t     -webkit-flex:0 1 auto;\n\t         -ms-flex:0 1 auto;\n\t             flex:0 1 auto;\n\t     -webkit-box-align:center;\n\t     -webkit-align-items:center;\n\t         -ms-flex-align:center;\n\t             align-items:center;\n\t     aiign-content:center;\n\t}\n\n\t.pull-header{\n\t    \n\t\tmargin-top: -60px;\n\t\tborder-bottom: 1px solid whitesmoke;\n\n\t}\n\t.pull-footer{\n\t\tmargin-bottom: -60px;\n\t\tborder-top: 1px solid whitesmoke;\n\t}\n\n\t.pull-header>img,.pull-footer>img{\n\t\t -webkit-transition: -webkit-transform .3s ease;\n\t\t transition: -webkit-transform .3s ease;\n\t\t transition: transform .3s ease;\n\t\t transition: transform .3s ease, -webkit-transform .3s ease;\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n\t      -o-transition: transform .3s ease; /* Opera */\n\t}\n\n\n\t.pull-header>div,.pull-footer>div{\n\t\tfont-size: 12px;\n\t\tmargin-left: 12px;\n\t}\n\t\n\n\t.pull-content{\n\t\toverflow: auto;\n\t    -webkit-overflow-scrolling: touch;\n\t    display: -webkit-flex;\n\t    display: -ms-flexbox;\n\t    display: -webkit-box;\n\t    display: flex;\n\t    -webkit-flex: 0 1 auto;\n\t    -ms-flex: 0 1 auto;\n\t    -webkit-box-flex: 0;\n\t            flex: 0 1 auto;\n\t    margin-bottom: 10px;\n\t    margin: 0px;\n\t    -webkit-flex-flow:column nowrap;\n\t        -ms-flex-flow:column nowrap;\n\t            flex-flow:column nowrap;\n\t    padding: 0px;\n\t}\n", "", {"version":3,"sources":["/./src/components/PullList.vue?43b1ca1c"],"names":[],"mappings":";;CAyJA,UAAA;CACA;EACA,qBAAA;EAAA,sBAAA;EAAA,qBAAA;EAAA,cAAA;KACA,gCAAA;SAAA,4BAAA;aAAA,wBAAA;IACA,kBAAA;IACA,uBAAA;IAAA,mCAAA;QAAA,oBAAA;YAAA,2BAAA;IACA,mBAAA;IAAA,sBAAA;QAAA,kBAAA;YAAA,cAAA;KACA,aAAA;EACA;;;CAGA;MACA,qBAAA;MAAA,sBAAA;MAAA,qBAAA;MAAA,cAAA;OACA,6BAAA;WAAA,yBAAA;eAAA,qBAAA;MACA,iBAAA;MACA,aAAA;MACA,wBAAA;MAAA,+BAAA;UAAA,qBAAA;cAAA,uBAAA;MACA,mBAAA;MAAA,sBAAA;UAAA,kBAAA;cAAA,cAAA;MACA,yBAAA;MAAA,2BAAA;UAAA,sBAAA;cAAA,mBAAA;MACA,qBAAA;EACA;;CAEA;;EAEA,kBAAA;EACA,oCAAA;;EAEA;CACA;EACA,qBAAA;EACA,iCAAA;EACA;;CAEA;GACA,+CAAA;GAAA,uCAAA;GAAA,+BAAA;GAAA,2DAAA;OACA,oCAAA,eAAA;OACA,uCAAA,CAAA,qBAAA;OACA,kCAAA,CAAA,WAAA;EACA;;;CAGA;EACA,gBAAA;EACA,kBAAA;EACA;;;CAGA;EACA,eAAA;KACA,kCAAA;KACA,sBAAA;KACA,qBAAA;KACA,qBAAA;KAAA,cAAA;KACA,uBAAA;KACA,mBAAA;KACA,oBAAA;aAAA,eAAA;KACA,oBAAA;KACA,YAAA;KACA,gCAAA;SAAA,4BAAA;aAAA,wBAAA;KACA,aAAA;EACA","file":"PullList.vue","sourcesContent":["<!-- 下拉刷新组件 -->\r\n\r\n<template>\r\n\t<section class=\"pull-list\" v-touch:pandown=\"pullToRefresh\" v-touch:panup=\"loadMore\" v-touch:panend=\"panleave\"   >\r\n\t\t<header class=\"pull-header\">\r\n\t\t\t<div>\r\n\t\t\t\t<img class=\"downImg\" src=\"../assets/images/components/icon-down.png\" alt=\"下拉\">\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<p>{{refreshText}}</p>\r\n\t\t\t\t<p>最后更新:{{rlastTime}}</p>\r\n\t\t\t</div>\r\n\t\t</header>\r\n\t\t<div class=\"pull-content\" v-on:scroll=\"scroll($event)\" v-el:listContent>\r\n\t\t\t<slot ></slot>\r\n\t\t</div>\r\n\t\t<footer class=\"pull-footer\" v-show=\"showfooter\">\r\n\t\t\t<div>\r\n\t\t\t\t<img class=\"upImg\" src=\"../assets/images/components/icon-up.png\" alt=\"上拉\">\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<p>{{moreText}}</p>\r\n\t\t\t\t<p>最后更新:{{mlastTime}}</p>\r\n\t\t\t</div>\r\n\t\t</footer>\r\n\t</section>\r\n\t\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\r\n\timport dateHelper from './utils/DateHelper.js'\r\n\r\n\texport default {\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\trlastTime:'',\r\n\t\t\t\tmlastTime:'',\r\n\t\t\t\trefreshText:'下拉刷新',\r\n\t\t\t\tmoreText:'加载更多',\r\n\t\t\t\t//是否触发事件\r\n\t\t\t\tisRefresh:false,\r\n\t\t\t\t//是否显示底部加载更多\r\n\t\t\t\tshowfooter:false,\r\n\t\t\t\t//下拉和上拉的标识\r\n\t\t\t\tarrow:'down',\r\n\t\t\t\t//滚动条是否在顶部\r\n\t\t\t\ttop:0,\r\n\t\t\t\t//滚动条是否在底部\r\n\t\t\t\tisBottom:false,\r\n\t\t\t\t//屏幕的高度\r\n\t\t\t\tregionHeight:100,\r\n\t\t\t\t//内容的高度\r\n\t\t\t\twinHeight:100\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\t//得到对应的高度\r\n\t\t\tthis.regionHeight=this.$el.offsetHeight;\r\n\t\t\tvar listObj=this.$el.getElementsByTagName('ul')[0];\r\n\t\t\tthis.winHeight=listObj.offsetHeight;\r\n\t\t\tconsole.log(\"可见区域的高度：\"+this.regionHeight+\"-内容总高度:\"+this.winHeight);\r\n\r\n\t\t},\r\n\t\tmethods:{\r\n\r\n\t\t\tmove(height){\r\n\t\t\t\tvar list=this.$el;\r\n\t\t\t\t//获取角度\r\n\t\t\t\tvar rotateHeight=height<90?height*2:180;\r\n\t\t\t\tif(this.arrow==\"down\"){\r\n\t\t\t\t\tlist.style.transform=\"translateY(\"+height+\"px)\";\r\n\t\t\t\t\tvar img=list.getElementsByTagName('header')[0].getElementsByTagName('img')[0];\r\n\t\t\t\t\timg.style.transform=\"rotate(\"+rotateHeight+\"deg)\"\r\n\t\t\t\t}else{\r\n\t\t\t\t\tlist.style.transform=\"translateY(-\"+height+\"px)\";\r\n\t\t\t\t\t//先检查底部的div是否显示出来,如果显示出来了,那么在找到对应的图标\r\n\t\t\t\t\tif(list.getElementsByTagName('footer')[0]){\r\n\t\t\t\t\t\tvar img=list.getElementsByTagName('footer')[0].getElementsByTagName('img')[0];\r\n\t\t\t\t\t\timg.style.transform=\"rotate(\"+rotateHeight+\"deg)\"\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t//检查是否滚动到底部,滚动到底部触发上拉加载更多的事件\r\n\t\t\tscroll(e){\r\n\t\t\t\tthis.top=e.target.scrollTop;\r\n\t\t\t\tif(this.top+this.regionHeight>this.winHeight){\r\n\t\t\t\t\tthis.isBottom=true;\r\n\t\t\t\t}else{\r\n\t\t\t\t\tthis.isBottom=false;\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\tgetCurTime(){\r\n\t\t\t\t var date=new Date();\r\n\t\t\t\t// return date.getFullYear()+\"\"\r\n\t\t\t},\r\n\t\t\tpanleave(e){\r\n\t\t\t\t\r\n\t\t\t\tif(this.arrow==\"down\"){\r\n\t\t\t\t\tthis.move(0)\r\n\t\t\t\t\tthis.refreshText=\"下拉刷新\";\r\n\t\t\t\t\t//得到当前的时间\r\n\t\t\t\t\tif(this.isRefresh){\r\n\t\t\t\t\t\tthis.isRefresh=false;\r\n\t\t\t\t\t\tthis.rlastTime=dateHelper.getNowDate(\"yyyy-MM-dd HH:mm:ss\");\r\n\t\t\t\t\t\tthis.$emit('reload');\r\n\t\t\t\t\t}\r\n\t\t\t\t\t// this.$broadcast('list-reload');\r\n\t\t\t\t}else if(this.arrow==\"up\"){\r\n\t\t\t\t\tthis.showfooter=false;\r\n\t\t\t\t\tthis.moreText=\"加载更多\";\r\n\t\t\t\t\tthis.move(0)\r\n\t\t\t\t\tif(this.isRefresh){\r\n\t\t\t\t\t\tthis.isRefresh=false;\r\n\t\t\t\t\t\tthis.mlastTime=dateHelper.getNowDate(\"yyyy-MM-dd HH:mm:ss\");\r\n\t\t\t\t\t\tthis.$emit('loadmore');\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t// 下拉刷新事件\r\n\t\t\tpullToRefresh(e){\r\n\t\t\t\tif(this.top==0){\r\n\t\t\t\t \tvar distance=e.distance;\r\n\t\t\t\t \tthis.arrow='down';\r\n\t\t\t\t \tthis.move(distance);\r\n\t\t\t\t \tif(distance>90){\r\n\t\t\t\t\t\tthis.refreshText=\"松开后刷新\";\r\n\t\t\t\t \t\tthis.isRefresh=true;\r\n\t\t\t\t \t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t//加载更多\r\n\t\t\tloadMore(e){\r\n\t\t\t\t//判断滚动的距离+当前窗口的宽度是否\r\n\t\t\t\tif(this.isBottom){\r\n\t\t\t\t\tthis.showfooter=true;\r\n\t\t\t\t\tthis.arrow='up';\r\n\t\t\t\t\tvar distance=e.distance;\r\n\t\t\t\t \t// console.log(\"拉动的距离\"+distance)\r\n\t\t\t\t \tthis.move(distance);\r\n\t\t\t\t \tif(distance>90){\r\n\t\t\t\t\t\tthis.moreText=\"松开后刷新\";\r\n\t\t\t\t \t\tthis.isRefresh=true;\r\n\t\t\t\t \t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style >\r\n\r\n\t/*list集合*/\r\n\t.pull-list{\r\n\t\tdisplay: flex;\r\n\t   \tflex-flow:column nowrap;\r\n\t  \tmin-height: 120px;\r\n\t  \tjustify-content:flex-start;\r\n\t  \tflex:0 1 auto;\r\n\t   \theight: 100%;\r\n\t}\r\n\r\n\t\r\n\t.pull-header,.pull-footer{\r\n\t     display: flex;\r\n     \t flex-flow:row nowrap;\r\n\t     min-height: 60px;\r\n\t     height: 60px;\r\n\t     justify-content:center;\r\n\t     flex:0 1 auto;\r\n\t     align-items:center;\r\n\t     aiign-content:center;\r\n\t}\r\n\r\n\t.pull-header{\r\n\t    \r\n\t\tmargin-top: -60px;\r\n\t\tborder-bottom: 1px solid whitesmoke;\r\n\r\n\t}\r\n\t.pull-footer{\r\n\t\tmargin-bottom: -60px;\r\n\t\tborder-top: 1px solid whitesmoke;\r\n\t}\r\n\r\n\t.pull-header>img,.pull-footer>img{\r\n\t\t transition: transform .3s ease;\r\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n\t      -o-transition: transform .3s ease; /* Opera */\r\n\t}\r\n\r\n\r\n\t.pull-header>div,.pull-footer>div{\r\n\t\tfont-size: 12px;\r\n\t\tmargin-left: 12px;\r\n\t}\r\n\t\r\n\r\n\t.pull-content{\r\n\t\toverflow: auto;\r\n\t    -webkit-overflow-scrolling: touch;\r\n\t    display: -webkit-flex;\r\n\t    display: -ms-flexbox;\r\n\t    display: flex;\r\n\t    -webkit-flex: 0 1 auto;\r\n\t    -ms-flex: 0 1 auto;\r\n\t    flex: 0 1 auto;\r\n\t    margin-bottom: 10px;\r\n\t    margin: 0px;\r\n\t    flex-flow:column nowrap;\r\n\t    padding: 0px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -14284,7 +14286,7 @@
 		value: true
 	});
 	
-	var _DateHelper = __webpack_require__(125);
+	var _DateHelper = __webpack_require__(49);
 	
 	var _DateHelper2 = _interopRequireDefault(_DateHelper);
 	
@@ -14361,7 +14363,7 @@
 					//得到当前的时间
 					if (this.isRefresh) {
 						this.isRefresh = false;
-						this.rlastTime = _DateHelper2.default.getCurrentDate("yyyy-MM-dd HH:mm:ss");
+						this.rlastTime = _DateHelper2.default.getNowDate("yyyy-MM-dd HH:mm:ss");
 						this.$emit('reload');
 					}
 					// this.$broadcast('list-reload');
@@ -14371,7 +14373,7 @@
 						this.move(0);
 						if (this.isRefresh) {
 							this.isRefresh = false;
-							this.mlastTime = _DateHelper2.default.getCurrentDate("yyyy-MM-dd HH:mm:ss");
+							this.mlastTime = _DateHelper2.default.getNowDate("yyyy-MM-dd HH:mm:ss");
 							this.$emit('loadmore');
 						}
 					}
@@ -14397,7 +14399,7 @@
 					this.showfooter = true;
 					this.arrow = 'up';
 					var distance = e.distance;
-					console.log("拉动的距离" + distance);
+					// console.log("拉动的距离"+distance)
 					this.move(distance);
 					if (distance > 90) {
 						this.moreText = "松开后刷新";
@@ -14503,36 +14505,82 @@
 
 /***/ },
 /* 49 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	module.exports = "\n<section class=\"pull-list\" v-touch:pandown=\"pullToRefresh\" v-touch:panup=\"loadMore\" v-touch:panend=\"panleave\"   >\n\t<header class=\"pull-header\">\n\t\t<div>\n\t\t\t<img class=\"downImg\" src=\"" + __webpack_require__(50) + "\" alt=\"下拉\">\n\t\t</div>\n\t\t<div>\n\t\t\t<p>{{refreshText}}</p>\n\t\t\t<p>最后更新:{{rlastTime}}</p>\n\t\t</div>\n\t</header>\n\t<div class=\"pull-content\" v-on:scroll=\"scroll($event)\" v-el:listContent>\n\t\t<slot ></slot>\n\t</div>\n\t<footer class=\"pull-footer\" v-show=\"showfooter\">\n\t\t<div>\n\t\t\t<img class=\"upImg\" src=\"" + __webpack_require__(51) + "\" alt=\"上拉\">\n\t\t</div>\n\t\t<div>\n\t\t\t<p>{{moreText}}</p>\n\t\t\t<p>最后更新:{{mlastTime}}</p>\n\t\t</div>\n\t</footer>\n</section>\n\n";
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	var DateHelper = {
+		//获取档期的日期
+	
+		getNowDate: function getNowDate(formate) {
+			var date = new Date();
+			var year = date.getFullYear();
+			var month = parseInt(date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+			var day = date.getDate();
+			var hour = date.getHours();
+			var min = date.getMinutes();
+			var sec = date.getSeconds();
+			var result = "";
+			if (formate.indexOf("yyyy") >= 0) {
+				result = year;
+			}
+			if (formate.indexOf("MM") >= 0) {
+				result += "-" + month;
+			}
+			if (formate.indexOf("dd") >= 0) {
+				result += "-" + day;
+			}
+			if (formate.indexOf("HH") >= 0) {
+				result += " " + hour;
+			}
+	
+			if (formate.indexOf("mm") >= 0) {
+				result += ":" + min;
+			}
+			if (formate.indexOf("ss") >= 0) {
+				result += ":" + sec;
+			}
+			return result;
+		}
+	};
+	
+	exports.default = DateHelper;
 
 /***/ },
 /* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "icon-down.png?02ed8a17fc4b37001e3f4ed24ea2d91e";
+	module.exports = "\n<section class=\"pull-list\" v-touch:pandown=\"pullToRefresh\" v-touch:panup=\"loadMore\" v-touch:panend=\"panleave\"   >\n\t<header class=\"pull-header\">\n\t\t<div>\n\t\t\t<img class=\"downImg\" src=\"" + __webpack_require__(51) + "\" alt=\"下拉\">\n\t\t</div>\n\t\t<div>\n\t\t\t<p>{{refreshText}}</p>\n\t\t\t<p>最后更新:{{rlastTime}}</p>\n\t\t</div>\n\t</header>\n\t<div class=\"pull-content\" v-on:scroll=\"scroll($event)\" v-el:listContent>\n\t\t<slot ></slot>\n\t</div>\n\t<footer class=\"pull-footer\" v-show=\"showfooter\">\n\t\t<div>\n\t\t\t<img class=\"upImg\" src=\"" + __webpack_require__(52) + "\" alt=\"上拉\">\n\t\t</div>\n\t\t<div>\n\t\t\t<p>{{moreText}}</p>\n\t\t\t<p>最后更新:{{mlastTime}}</p>\n\t\t</div>\n\t</footer>\n</section>\n\n";
 
 /***/ },
 /* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "icon-up.png?ce68cee9db0a441272f0bffa50364385";
+	module.exports = __webpack_require__.p + "icon-down.png?02ed8a17fc4b37001e3f4ed24ea2d91e";
 
 /***/ },
 /* 52 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "\n\t<div class=\"page\" _v-ecc3dad2=\"\">\n\t\t<toolbar :text=\"title\" _v-ecc3dad2=\"\">\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\" _v-ecc3dad2=\"\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\" _v-ecc3dad2=\"\"></span>\n\t\t</toolbar>\n\t\t<div class=\"page-content\" _v-ecc3dad2=\"\">\n\t\t\t<tabs :active-index.sync=\"index\" _v-ecc3dad2=\"\">\n\t\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" _v-ecc3dad2=\"\">\n\t\t\t\t\t<pull-list _v-ecc3dad2=\"\">\n\t\t\t\t\t\t<ul class=\"contentList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t<li v-for=\"subItem in item.infoList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t<div class=\"tab_info\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"left\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<img src=\"xxxHTMLLINKxxx0.160702590364962820.4573658949229866xxx\" alt=\"\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"content\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布时间:{{subItem.time}}</span>\n\t\t\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布人:{{subItem.subUser}}</span>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t{{subItem.content}}\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<i class=\"icon-chevron-right\" _v-ecc3dad2=\"\"></i>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</pull-list>\n\t\t\t\t</tab>\n\t\t\t</tabs>\n\t\t</div>\n\t</div>\n\t\t\n\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" _v-ecc3dad2=\"\">\n\t\t\n\t</sidebar>\n\n\t<loading :loading=\"isload\" _v-ecc3dad2=\"\"></loading>\n\n";
+	module.exports = __webpack_require__.p + "icon-up.png?ce68cee9db0a441272f0bffa50364385";
 
 /***/ },
 /* 53 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\t<div class=\"page\" _v-ecc3dad2=\"\">\n\t\t<toolbar :text=\"title\" _v-ecc3dad2=\"\">\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\" _v-ecc3dad2=\"\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\" _v-ecc3dad2=\"\"></span>\n\t\t</toolbar>\n\t\t<div class=\"page-content\" _v-ecc3dad2=\"\">\n\t\t\t<tabs :active-index.sync=\"index\" _v-ecc3dad2=\"\">\n\t\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" _v-ecc3dad2=\"\">\n\t\t\t\t\t<pull-list _v-ecc3dad2=\"\">\n\t\t\t\t\t\t<ul class=\"contentList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t<li v-for=\"subItem in item.infoList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t<div class=\"tab_info\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"left\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<img src=\"xxxHTMLLINKxxx0.140121794072911140.5722007197327912xxx\" alt=\"\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"content\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布时间:{{subItem.time}}</span>\n\t\t\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布人:{{subItem.subUser}}</span>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t{{subItem.content}}\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<i class=\"icon-chevron-right\" _v-ecc3dad2=\"\"></i>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</pull-list>\n\t\t\t\t</tab>\n\t\t\t</tabs>\n\t\t</div>\n\t</div>\n\t\t\n\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" _v-ecc3dad2=\"\">\n\t\t\n\t</sidebar>\n\n\t<loading :loading=\"isload\" _v-ecc3dad2=\"\"></loading>\n\n";
+
+/***/ },
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(54)
-	__vue_script__ = __webpack_require__(56)
-	__vue_template__ = __webpack_require__(57)
+	__webpack_require__(55)
+	__vue_script__ = __webpack_require__(57)
+	__vue_template__ = __webpack_require__(63)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14549,13 +14597,13 @@
 	})()}
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(55);
+	var content = __webpack_require__(56);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -14575,7 +14623,7 @@
 	}
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -14589,7 +14637,7 @@
 
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14606,13 +14654,21 @@
 	
 	var _PullList2 = _interopRequireDefault(_PullList);
 	
+	var _ActionSheet = __webpack_require__(58);
+	
+	var _ActionSheet2 = _interopRequireDefault(_ActionSheet);
+	
+	var _Toast = __webpack_require__(131);
+	
+	var _Toast2 = _interopRequireDefault(_Toast);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// <template>
 	// 	<div class="page">
 	// 		<toolbar text="我的项目">
 	// 			<span class="icon-chevron-left" slot="leftBtn" v-touch:tap="back"></span>
-	// 	        <span class="icon-refresh" slot="rightBtn" ></span>
+	// 	        <span class="icon-refresh" slot="rightBtn" v-touch:tap="showSheet"></span>
 	// 		</toolbar>
 	// 		<div class="page-content" >
 	// 			<pull-list v-on:reload="getInitData" v-on:loadmore="getMoreData">
@@ -14670,14 +14726,29 @@
 	// 		</div>
 	// 	</div>
 	
+	// 	<toast :show="showToast"></toast>
+	// 	<action-sheet :showsheet.sync="showsheet"  :btn-items="btnItems" v-on:action-click="actionClick"></action-sheet>
 	// </template>
 	
 	// <script lang="babel">
 	exports.default = {
+		data: function data() {
+			return {
+				showsheet: false,
+				btnItems: ['手机拍照', '选择照片'],
+				showToast: true
+			};
+		},
 	
 		methods: {
 			back: function back() {
 				history.back();
+			},
+			showSheet: function showSheet() {
+				this.showsheet = !this.showsheet;
+			},
+			actionClick: function actionClick(index) {
+				alert(index);
 			},
 			getInitData: function getInitData() {
 				alert('集合刷新');
@@ -14688,7 +14759,9 @@
 		},
 		components: {
 			toolbar: _ToolBar2.default,
-			PullList: _PullList2.default
+			PullList: _PullList2.default,
+			ActionSheet: _ActionSheet2.default,
+			Toast: _Toast2.default
 		}
 	};
 	// </script>
@@ -14698,18 +14771,214 @@
 	// </style>
 
 /***/ },
-/* 57 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<div class=\"page\" _v-ba295ade=\"\">\n\t<toolbar text=\"我的项目\" _v-ba295ade=\"\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" v-touch:tap=\"back\" _v-ba295ade=\"\"></span>\n        <span class=\"icon-refresh\" slot=\"rightBtn\" _v-ba295ade=\"\"></span>\n\t</toolbar>\n\t<div class=\"page-content\" _v-ba295ade=\"\">\n\t\t<pull-list v-on:reload=\"getInitData\" v-on:loadmore=\"getMoreData\" _v-ba295ade=\"\">\n\t\t\t<ul _v-ba295ade=\"\">\n\t\t\t\t<li _v-ba295ade=\"\">asdffdddd;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\t\t\t</ul>\n\t\t</pull-list>\n\t</div>\n</div>\n\n";
-
-/***/ },
 /* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(59)
-	__vue_template__ = __webpack_require__(65)
+	__webpack_require__(59)
+	__vue_script__ = __webpack_require__(61)
+	__vue_template__ = __webpack_require__(62)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\ActionSheet.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 59 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(60);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-4e6fcfcd&file=ActionSheet.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ActionSheet.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-4e6fcfcd&file=ActionSheet.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ActionSheet.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 60 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n.actionsheet_wrap{\n\twidth: 100%;\n\tpadding: 0px;\n\tmargin: 0px;\n\theight: 100%;\n}\n\n.mask_transition{\n\tbackground: rgba(0, 0, 0, 0.6);\n\tposition:fixed;\n\tleft: 0;\n\ttop: 0;\n\theight: 100%;\n\twidth: 100%;\n\tz-index: 10;\n\t-webkit-transition: background .3s;\n\ttransition:background .3s;\n}\n\n.actionsheet{\n\t\t/*background-color:#EFEFF4;*/\n\tbackground-color:#D9D9D9;\n}\n\n.expand-transition{\n\n\t-webkit-transition: -webkit-transform .3s;\n\n\ttransition: -webkit-transform .3s;\n\n\ttransition: transform .3s;\n\n\ttransition:transform .3s, -webkit-transform .3s;\n\tposition: fixed;\n\tleft: 0;\n\tbottom: 0;\n\twidth: 100%;\n\t\n\tz-index: 20;\n\t-webkit-backface-visibility:hidden;\n\t        backface-visibility:hidden;\n}\n\n.expand-enter, .expand-leave {\n \t-webkit-transform:translate(0,100%);\n \t        transform:translate(0,100%);\n}\n\n.actionsheet_cell{\n\tposition: relative;\n    padding: 10px 0;\n    text-align: center;\n    font-size: 18px;\n    background-color: #fff;\n}\n\n.actionsheet_cell:before{\n\tcontent:'';\n\tborder-top:1px solid #D9D9D9;\n\tcolor:#D9D9D9;\n\tposition: absolute;\n\tleft: 0;\n\ttop: 0;\n\twidth: 100%;\n\theight: 1px;\n\t-webkit-transform:scaleY(0.5);\n\t        transform:scaleY(0.5);\n}\n\n.actionsheet_action{\n\tmargin-top:6px;\n\tbackground-color: #fff;\n\n}\n\n", "", {"version":3,"sources":["/./src/components/ActionSheet.vue?0dfccc3c"],"names":[],"mappings":";AAmDA;CACA,YAAA;CACA,aAAA;CACA,YAAA;CACA,aAAA;CACA;;AAEA;CACA,+BAAA;CACA,eAAA;CACA,QAAA;CACA,OAAA;CACA,aAAA;CACA,YAAA;CACA,YAAA;CACA,mCAAA;CAAA,0BAAA;CACA;;AAEA;EACA,6BAAA;CACA,yBAAA;CACA;;AAEA;;CAEA,0CAAA;;CAAA,kCAAA;;CAAA,0BAAA;;CAAA,gDAAA;CACA,gBAAA;CACA,QAAA;CACA,UAAA;CACA,YAAA;;CAEA,YAAA;CACA,mCAAA;SAAA,2BAAA;CACA;;AAEA;EACA,oCAAA;UAAA,4BAAA;CACA;;AAEA;CACA,mBAAA;IACA,gBAAA;IACA,mBAAA;IACA,gBAAA;IACA,uBAAA;CACA;;AAEA;CACA,WAAA;CACA,6BAAA;CACA,cAAA;CACA,mBAAA;CACA,QAAA;CACA,OAAA;CACA,YAAA;CACA,YAAA;CACA,8BAAA;SAAA,sBAAA;CACA;;AAEA;CACA,eAAA;CACA,uBAAA;;CAEA","file":"ActionSheet.vue","sourcesContent":["<template>\r\n\t<!--  -->\r\n    <section id=\"actionsheet_wrap\" >\r\n    \t<!--遮罩  -->\r\n    \t<div class=\"mask_transition\" v-show=\"showsheet\" v-touch:tap=\"close\"></div>\r\n    \t<!-- 按钮组 -->\r\n        <div class=\"actionsheet\" v-show=\"showsheet\" transition=\"expand\">\r\n        \t<ul class=\"actionsheet_menu\">\r\n        \t\t<li v-for=\"item in btnItems\" class=\"actionsheet_cell\" v-touch:tap=\"actionClick($index)\">\r\n        \t\t\t{{item}}\r\n        \t\t</li>\r\n        \t</ul>\r\n            <div class=\"actionsheet_action\">\r\n                <div class=\"actionsheet_cell\" v-touch:tap=\"close\">取消</div>\r\n            </div>\r\n        </div>\r\n    </section>\r\n    <!--END actionSheet-->\r\n</template>\r\n\r\n\r\n<script>\r\n\texport default {\r\n\t\tprops:{\r\n\t\t\t//按钮组\r\n\t\t\tbtnItems:{\r\n\t\t\t\ttype:Array,\r\n\t\t\t\tdefault:[]\r\n\t\t\t},\r\n\t\t\tshowsheet:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t}\r\n\t\t},\r\n\t\tcreated(){\r\n\t\t\tconsole.log(\"进入actionSheet:\"+this.showsheet);\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tactionClick(index){\r\n\t\t\t\tthis.$dispatch('action-click',index);\r\n\t\t\t},\r\n\t\t\tclose(){\r\n\t\t\t\tthis.showsheet=!this.showsheet;\r\n\t\t\t\tconsole.log(this.showsheet);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style>\r\n\t.actionsheet_wrap{\r\n\t\twidth: 100%;\r\n\t\tpadding: 0px;\r\n\t\tmargin: 0px;\r\n\t\theight: 100%;\r\n\t}\r\n\r\n\t.mask_transition{\r\n\t\tbackground: rgba(0, 0, 0, 0.6);\r\n\t\tposition:fixed;\r\n\t\tleft: 0;\r\n\t\ttop: 0;\r\n\t\theight: 100%;\r\n\t\twidth: 100%;\r\n\t\tz-index: 10;\r\n\t\ttransition:background .3s;\r\n\t}\r\n\t\r\n\t.actionsheet{\r\n\t\t\t/*background-color:#EFEFF4;*/\r\n\t\tbackground-color:#D9D9D9;\r\n\t}\r\n\r\n\t.expand-transition{\r\n\t\r\n\t\ttransition:transform .3s;\r\n\t\tposition: fixed;\r\n\t\tleft: 0;\r\n\t\tbottom: 0;\r\n\t\twidth: 100%;\r\n\t\t\r\n\t\tz-index: 20;\r\n\t\tbackface-visibility:hidden;\r\n\t}\r\n\r\n\t.expand-enter, .expand-leave {\r\n\t \ttransform:translate(0,100%);\r\n\t}\r\n\r\n\t.actionsheet_cell{\r\n\t\tposition: relative;\r\n\t    padding: 10px 0;\r\n\t    text-align: center;\r\n\t    font-size: 18px;\r\n\t    background-color: #fff;\r\n\t}\r\n\r\n\t.actionsheet_cell:before{\r\n\t\tcontent:'';\r\n\t\tborder-top:1px solid #D9D9D9;\r\n\t\tcolor:#D9D9D9;\r\n\t\tposition: absolute;\r\n\t\tleft: 0;\r\n\t\ttop: 0;\r\n\t\twidth: 100%;\r\n\t\theight: 1px;\r\n\t\ttransform:scaleY(0.5);\r\n\t}\r\n\r\n\t.actionsheet_action{\r\n\t\tmargin-top:6px;\r\n\t\tbackground-color: #fff;\r\n\r\n\t}\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 61 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// <template>
+	// 	<!--  -->
+	//     <section id="actionsheet_wrap" >
+	//     	<!--遮罩  -->
+	//     	<div class="mask_transition" v-show="showsheet" v-touch:tap="close"></div>
+	//     	<!-- 按钮组 -->
+	//         <div class="actionsheet" v-show="showsheet" transition="expand">
+	//         	<ul class="actionsheet_menu">
+	//         		<li v-for="item in btnItems" class="actionsheet_cell" v-touch:tap="actionClick($index)">
+	//         			{{item}}
+	//         		</li>
+	//         	</ul>
+	//             <div class="actionsheet_action">
+	//                 <div class="actionsheet_cell" v-touch:tap="close">取消</div>
+	//             </div>
+	//         </div>
+	//     </section>
+	//     <!--END actionSheet-->
+	// </template>
+	
+	// <script>
+	exports.default = {
+		props: {
+			//按钮组
+			btnItems: {
+				type: Array,
+				default: []
+			},
+			showsheet: {
+				type: Boolean,
+				default: false
+			}
+		},
+		created: function created() {
+			console.log("进入actionSheet:" + this.showsheet);
+		},
+	
+		methods: {
+			actionClick: function actionClick(index) {
+				this.$dispatch('action-click', index);
+			},
+			close: function close() {
+				this.showsheet = !this.showsheet;
+				console.log(this.showsheet);
+			}
+		}
+	};
+	// </script>
+
+	// <style>
+	// 	.actionsheet_wrap{
+	// 		width: 100%;
+	// 		padding: 0px;
+	// 		margin: 0px;
+	// 		height: 100%;
+	// 	}
+
+	// 	.mask_transition{
+	// 		background: rgba(0, 0, 0, 0.6);
+	// 		position:fixed;
+	// 		left: 0;
+	// 		top: 0;
+	// 		height: 100%;
+	// 		width: 100%;
+	// 		z-index: 10;
+	// 		transition:background .3s;
+	// 	}
+
+	// 	.actionsheet{
+	// 			/*background-color:#EFEFF4;*/
+	// 		background-color:#D9D9D9;
+	// 	}
+
+	// 	.expand-transition{
+
+	// 		transition:transform .3s;
+	// 		position: fixed;
+	// 		left: 0;
+	// 		bottom: 0;
+	// 		width: 100%;
+
+	// 		z-index: 20;
+	// 		backface-visibility:hidden;
+	// 	}
+
+	// 	.expand-enter, .expand-leave {
+	// 	 	transform:translate(0,100%);
+	// 	}
+
+	// 	.actionsheet_cell{
+	// 		position: relative;
+	// 	    padding: 10px 0;
+	// 	    text-align: center;
+	// 	    font-size: 18px;
+	// 	    background-color: #fff;
+	// 	}
+
+	// 	.actionsheet_cell:before{
+	// 		content:'';
+	// 		border-top:1px solid #D9D9D9;
+	// 		color:#D9D9D9;
+	// 		position: absolute;
+	// 		left: 0;
+	// 		top: 0;
+	// 		width: 100%;
+	// 		height: 1px;
+	// 		transform:scaleY(0.5);
+	// 	}
+
+	// 	.actionsheet_action{
+	// 		margin-top:6px;
+	// 		background-color: #fff;
+
+	// 	}
+
+	// </style>
+	/* generated by vue-loader */
+
+/***/ },
+/* 62 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\t<!--  -->\n    <section id=\"actionsheet_wrap\" >\n    \t<!--遮罩  -->\n    \t<div class=\"mask_transition\" v-show=\"showsheet\" v-touch:tap=\"close\"></div>\n    \t<!-- 按钮组 -->\n        <div class=\"actionsheet\" v-show=\"showsheet\" transition=\"expand\">\n        \t<ul class=\"actionsheet_menu\">\n        \t\t<li v-for=\"item in btnItems\" class=\"actionsheet_cell\" v-touch:tap=\"actionClick($index)\">\n        \t\t\t{{item}}\n        \t\t</li>\n        \t</ul>\n            <div class=\"actionsheet_action\">\n                <div class=\"actionsheet_cell\" v-touch:tap=\"close\">取消</div>\n            </div>\n        </div>\n    </section>\n    <!--END actionSheet-->\n";
+
+/***/ },
+/* 63 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"page\" _v-ba295ade=\"\">\n\t<toolbar text=\"我的项目\" _v-ba295ade=\"\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" v-touch:tap=\"back\" _v-ba295ade=\"\"></span>\n        <span class=\"icon-refresh\" slot=\"rightBtn\" v-touch:tap=\"showSheet\" _v-ba295ade=\"\"></span>\n\t</toolbar>\n\t<div class=\"page-content\" _v-ba295ade=\"\">\n\t\t<pull-list v-on:reload=\"getInitData\" v-on:loadmore=\"getMoreData\" _v-ba295ade=\"\">\n\t\t\t<ul _v-ba295ade=\"\">\n\t\t\t\t<li _v-ba295ade=\"\">asdffdddd;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\t\t\t</ul>\n\t\t</pull-list>\n\t</div>\n</div>\n\n<toast :show=\"showToast\" _v-ba295ade=\"\"></toast>\n<action-sheet :showsheet.sync=\"showsheet\" :btn-items=\"btnItems\" v-on:action-click=\"actionClick\" _v-ba295ade=\"\"></action-sheet>\n";
+
+/***/ },
+/* 64 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(65)
+	__vue_template__ = __webpack_require__(71)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14726,7 +14995,7 @@
 	})()}
 
 /***/ },
-/* 59 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14739,7 +15008,7 @@
 	
 	var _ToolBar2 = _interopRequireDefault(_ToolBar);
 	
-	var _Calendar = __webpack_require__(60);
+	var _Calendar = __webpack_require__(66);
 	
 	var _Calendar2 = _interopRequireDefault(_Calendar);
 	
@@ -14780,13 +15049,13 @@
 	/* generated by vue-loader */
 
 /***/ },
-/* 60 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(61)
-	__vue_script__ = __webpack_require__(63)
-	__vue_template__ = __webpack_require__(64)
+	__webpack_require__(67)
+	__vue_script__ = __webpack_require__(69)
+	__vue_template__ = __webpack_require__(70)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14803,13 +15072,13 @@
 	})()}
 
 /***/ },
-/* 61 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(62);
+	var content = __webpack_require__(68);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -14829,7 +15098,7 @@
 	}
 
 /***/ },
-/* 62 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -14843,7 +15112,7 @@
 
 
 /***/ },
-/* 63 */
+/* 69 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15374,25 +15643,25 @@
 	// </style>
 
 /***/ },
-/* 64 */
+/* 70 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"calendar\" _v-3d09c52c=\"\">\n    <div class=\"calenarDayView\" v-show=\"showDay\" _v-3d09c52c=\"\">\n        <div class=\"calendar-header\" _v-3d09c52c=\"\">\n            <div class=\"calendar-title\" _v-3d09c52c=\"\">\n                <div _v-3d09c52c=\"\">\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\" _v-3d09c52c=\"\"></span>\n                    <span class=\"icon-angle-left\" style=\"margin-left:20px;width:50px;\" @click=\"monthClick(0)\" _v-3d09c52c=\"\"></span>\n                </div>\n                <p _v-3d09c52c=\"\">\n                    <span @click=\"showYearView\" _v-3d09c52c=\"\">{{curYear}}年</span>\n                    <span @click=\"showMonthView\" _v-3d09c52c=\"\">{{curMonth}}月</span>\n                </p>\n                <div _v-3d09c52c=\"\">\n                     <span class=\"icon-angle-right\" style=\"margin-right:20px;\" @click=\"monthClick(1)\" _v-3d09c52c=\"\"></span>\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\" _v-3d09c52c=\"\"></span>\n                </div>\n            </div>\n            <div class=\"calendarDay-week\" _v-3d09c52c=\"\">\n                <ul _v-3d09c52c=\"\">\n                    <li v-for=\"(index,item) in weekRange\" :class=\"{'restDay':index==5||index==6}\" _v-3d09c52c=\"\">{{item}}</li>\n                </ul>\n            </div>\n        </div>\n        <div class=\"calendar-range\" v-touch:swipe=\"swipeMonth\" _v-3d09c52c=\"\">\n            <ul _v-3d09c52c=\"\">\n                <li v-for=\"item in dateRange\" class=\"calendarDay\" v-on:click=\"selectDay(item.day)\" _v-3d09c52c=\"\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('D',item.day),'restDay':item.isRestDay,'curMonth':item.isCur}\" _v-3d09c52c=\"\">{{item.day}}</span>\n                </li>\n            </ul>\n        </div>\n        <div class=\"calendarDay-footer\" _v-3d09c52c=\"\">\n            <span @click=\"today\" _v-3d09c52c=\"\">今天</span>\n        </div>\n    </div>\n    <div class=\"calendarMonthView\" v-show=\"showMonth\" _v-3d09c52c=\"\">\n        <div class=\"calendar-header\" _v-3d09c52c=\"\">\n            <div class=\"calendar-title\" _v-3d09c52c=\"\">\n                <div _v-3d09c52c=\"\">\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\" _v-3d09c52c=\"\"></span>\n                </div>\n                <p _v-3d09c52c=\"\">\n                    <span @click=\"showYearView\" _v-3d09c52c=\"\">{{curYear}}年</span>\n                </p>\n                <div _v-3d09c52c=\"\">\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\" _v-3d09c52c=\"\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"calendar-range\" _v-3d09c52c=\"\">\n            <ul _v-3d09c52c=\"\">\n                <li v-for=\"item in monthRange\" class=\"calendarMonth\" v-on:click=\"selectMonth(item.id)\" _v-3d09c52c=\"\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('M',item.id)}\" _v-3d09c52c=\"\">{{item.text}}</span>\n                </li>\n            </ul>\n        </div>\n    </div>\n    <div class=\"calendarYearView\" v-show=\"showYear\" _v-3d09c52c=\"\">\n        <div class=\"calendar-header\" _v-3d09c52c=\"\">\n            <div class=\"calendar-title\" _v-3d09c52c=\"\">\n                <div _v-3d09c52c=\"\">\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\" _v-3d09c52c=\"\"></span>\n                </div>\n                <p _v-3d09c52c=\"\">\n                    <span @click=\"showYearView\" _v-3d09c52c=\"\">{{yearTitle}}</span>\n                </p>\n                <div _v-3d09c52c=\"\">\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\" _v-3d09c52c=\"\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"calendar-range\" _v-3d09c52c=\"\">\n            <ul _v-3d09c52c=\"\">\n                <li v-for=\"item in yearRange\" class=\"calendarMonth\" v-on:click=\"selectYear(item)\" _v-3d09c52c=\"\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('Y',item)}\" _v-3d09c52c=\"\">{{item}}</span>\n                </li>\n            </ul>\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
-/* 65 */
+/* 71 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<toolbar :text=\"title\">\n\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back()\"></span>\n\t<span slot=\"rightBtn\"></span>\n</toolbar>\n<calendar v-on:item-click=\"selectDay\"></calendar>\n";
 
 /***/ },
-/* 66 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(67)
-	__vue_script__ = __webpack_require__(69)
-	__vue_template__ = __webpack_require__(80)
+	__webpack_require__(73)
+	__vue_script__ = __webpack_require__(75)
+	__vue_template__ = __webpack_require__(86)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -15409,13 +15678,13 @@
 	})()}
 
 /***/ },
-/* 67 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(68);
+	var content = __webpack_require__(74);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -15435,7 +15704,7 @@
 	}
 
 /***/ },
-/* 68 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -15449,7 +15718,7 @@
 
 
 /***/ },
-/* 69 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15466,11 +15735,11 @@
 	
 	var _Loading2 = _interopRequireDefault(_Loading);
 	
-	var _Dialog = __webpack_require__(70);
+	var _Dialog = __webpack_require__(76);
 	
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 	
-	var _DatePicker = __webpack_require__(75);
+	var _DatePicker = __webpack_require__(81);
 	
 	var _DatePicker2 = _interopRequireDefault(_DatePicker);
 	
@@ -15482,13 +15751,13 @@
 	// 		<span class="icon-refresh" slot="rightBtn" @click="loadUserInfo"></span>
 	// 	</toolbar>
 	// 	<section >
-	// 		<input type="button" @click="showDialog">
+	// 		<input type="button" @click="showDialog" value="显示dialog">
 	// 		<datepicker></datepicker>
 	// 	</section>
 	
 	// 	<loading :loading="isload"></loading>
-	// 	<dialog :show.sync="isShowDialog" :title="dialogTitle" v-on:child-confirm="confirm">
-	// 		<div slot="dlg-body">hahah</div>
+	// 	<dialog :show.sync="isShowDialog" :title="dialogTitle" :is-alert="isAlert" v-on:child-confirm="confirm">
+	// 		<div slot="dialog-bd">我的世界你不懂</div>
 	// 	</dialog>
 	// </template>
 	
@@ -15531,7 +15800,8 @@
 			return {
 				isload: true,
 				isShowDialog: false,
-				dialogTitle: '测试'
+				dialogTitle: '测试',
+				isAlert: true
 			};
 		},
 	
@@ -15551,13 +15821,13 @@
 	// </style>
 
 /***/ },
-/* 70 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(71)
-	__vue_script__ = __webpack_require__(73)
-	__vue_template__ = __webpack_require__(74)
+	__webpack_require__(77)
+	__vue_script__ = __webpack_require__(79)
+	__vue_template__ = __webpack_require__(80)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -15574,13 +15844,13 @@
 	})()}
 
 /***/ },
-/* 71 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(72);
+	var content = __webpack_require__(78);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -15600,7 +15870,7 @@
 	}
 
 /***/ },
-/* 72 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -15608,13 +15878,13 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\t\n\t  .dlg-modal[_v-12989f74] {\n            position: absolute;\n            left: 0;\n            top: 0;\n            height: 100%;\n            width: 100%;\n            z-index: 10;\n            background-color: rgba(153, 153, 153, 0.5);\n            display: -webkit-box;\n            display: -webkit-flex;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-flex-flow: row nowrap;\n                -ms-flex-flow: row nowrap;\n                    flex-flow: row nowrap;\n            -webkit-box-pack: center;\n            -webkit-justify-content: center;\n                -ms-flex-pack: center;\n                    justify-content: center;\n            font-size: 14px;\n            -webkit-box-align: center;\n            -webkit-align-items: center;\n                -ms-flex-align: center;\n                    align-items: center;\n        }\n        \n        .dlg-modal>.dlg-content[_v-12989f74] {\n            position: relative;\n            background-color: whitesmoke;\n            width: 300px;\n            -webkit-transition: all .3s ease-in;\n            transition: all .3s ease-in;\n            border-radius: 6px;\n            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);\n            border: 1px solid rgba(0, 0, 0, .2);\n        }\n        \n        .dlg-content>.dlg-header[_v-12989f74] {\n            padding: 10px;\n            font-weight: bold;\n            border-bottom: 1px solid lightgray;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            display: -webkit-flex;\n            -webkit-box-pack: center;\n            -webkit-justify-content: center;\n                -ms-flex-pack: center;\n                    justify-content: center;\n            cursor: pointer;\n            font-size: 16px;\n        }\n        \n        .dlg-content>.dlg-body[_v-12989f74] {\n            padding: 10px;\n        }\n        \n        .dlg-content>.dlg-footer[_v-12989f74] {\n            border-top: 1px solid lightgray;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            display: -webkit-flex;\n            -webkit-flex-wrap: row nowrap;\n                -ms-flex-wrap: row nowrap;\n                    flex-wrap: row nowrap;\n            -webkit-justify-content: space-around;\n                -ms-flex-pack: distribute;\n                    justify-content: space-around;\n            -webkit-box-align:center;\n            -webkit-align-items:center;\n                -ms-flex-align:center;\n                    align-items:center;\n            cursor: pointer;\n            height: 36px;\n            text-align: center;\n        }\n\n        \n        .dlg-footer>span[_v-12989f74] {\n           font-size: 16px;\n           line-height: 36px;\n        }\n\n        .dlg-footer>span>i[_v-12989f74] {\n           margin-right: 5px;\n        }\n\n\t\t\n        .dlg-footer>span[_v-12989f74]:hover {\n          \tcolor: darkorange;\n        }\n\n        .dlg-footer>span[_v-12989f74]:active {\n          \tbox-shadow: 1px 1px 4px darkgray;\n          \tcolor: darkorange;\n        }\n\n        \n        .dlg-footer>[_v-12989f74]:first-child {\n           border-right: 1px solid darkgray;\n        }\n\n        .fade[_v-12989f74] {\n            opacity: 0;\n            -webkit-transition: opacity .15s linear;\n            transition: opacity .15s linear;\n        }\n        \n        .fade.in[_v-12989f74] {\n            opacity: 1;\n        }\n", "", {"version":3,"sources":["/./src/components/Dialog.vue?703e5d41"],"names":[],"mappings":";;GA+DA;YACA,mBAAA;YACA,QAAA;YACA,OAAA;YACA,aAAA;YACA,YAAA;YACA,YAAA;YACA,2CAAA;YACA,qBAAA;YAAA,sBAAA;YAAA,qBAAA;YAAA,cAAA;YACA,8BAAA;gBAAA,0BAAA;oBAAA,sBAAA;YACA,yBAAA;YAAA,gCAAA;gBAAA,sBAAA;oBAAA,wBAAA;YACA,gBAAA;YACA,0BAAA;YAAA,4BAAA;gBAAA,uBAAA;oBAAA,oBAAA;SACA;;QAEA;YACA,mBAAA;YACA,6BAAA;YACA,aAAA;YACA,oCAAA;YAAA,4BAAA;YACA,mBAAA;YACA,yCAAA;YACA,oCAAA;SACA;;QAEA;YACA,cAAA;YACA,kBAAA;YACA,mCAAA;YACA,qBAAA;YAAA,qBAAA;YAAA,cAAA;YACA,sBAAA;YACA,yBAAA;YAAA,gCAAA;gBAAA,sBAAA;oBAAA,wBAAA;YACA,gBAAA;YACA,gBAAA;SACA;;QAEA;YACA,cAAA;SACA;;QAEA;YACA,gCAAA;YACA,qBAAA;YAAA,qBAAA;YAAA,cAAA;YACA,sBAAA;YACA,8BAAA;gBAAA,0BAAA;oBAAA,sBAAA;YACA,sCAAA;gBAAA,0BAAA;oBAAA,8BAAA;YACA,yBAAA;YAAA,2BAAA;gBAAA,sBAAA;oBAAA,mBAAA;YACA,gBAAA;YACA,aAAA;YACA,mBAAA;SACA;;;QAGA;WACA,gBAAA;WACA,kBAAA;SACA;;QAEA;WACA,kBAAA;SACA;;;QAGA;WACA,kBAAA;SACA;;QAEA;WACA,iCAAA;WACA,kBAAA;SACA;;;QAGA;WACA,iCAAA;SACA;;QAEA;YACA,WAAA;YACA,wCAAA;YAEA,gCAAA;SACA;;QAEA;YACA,WAAA;SACA","file":"Dialog.vue","sourcesContent":["<template>\r\n\t<div class=\"dlg-modal\" v-if=\"show\">\r\n        <div class=\"dlg-content fade\" :class=\"{'in':show}\" :style=\"{width:dlgWidth+'px'}\">\r\n            <div class=\"dlg-header\">\r\n                <span>{{title}}</span>\r\n            </div>\r\n            <div class=\"dlg-body\">\r\n                <slot name=\"dlg-body\"></slot>\r\n            </div>\r\n            <div class=\"dlg-footer\">\r\n                <span @click=\"confirm\" :style=\"{width:dlgWidth/2 +'px'}\"><i class=\"icon-ok\"></i>确定</span>\r\n                <span @click=\"close\" :style=\"{width:dlgWidth/2 +'px'}\"><i class=\"icon-remove\"></i>关闭</span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\t//初始化弹出框的宽度\r\n\t\t\t\r\n\t\t},\r\n\t\tdata(){\r\n\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\t// 关闭dialog\r\n\t\t\tclose(){\r\n\t\t\t\tthis.show=false;\r\n\t\t\t},\r\n\t\t\tconfirm(){\r\n\t\t\t\t//将事件派发到父组件中,在通过父组件进行监听该事件\r\n\t\t\t\tthis.$dispatch('child-confirm');\r\n\t\t\t}\r\n\t\t},\r\n\t\tprops:{\r\n\r\n\t\t\tshow:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false,\r\n\t\t\t\trequire:true\r\n\t\t\t},\r\n\t\t\t//显示效果\r\n\t\t\teffect:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:'fade'\r\n\t\t\t},\r\n\t\t\tdlgWidth:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:300\r\n\t\t\t},\r\n\t\t\ttitle:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:''\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style  type=\"text/css\" scoped>\r\n\t\r\n\t  .dlg-modal {\r\n            position: absolute;\r\n            left: 0;\r\n            top: 0;\r\n            height: 100%;\r\n            width: 100%;\r\n            z-index: 10;\r\n            background-color: rgba(153, 153, 153, 0.5);\r\n            display: flex;\r\n            flex-flow: row nowrap;\r\n            justify-content: center;\r\n            font-size: 14px;\r\n            align-items: center;\r\n        }\r\n        \r\n        .dlg-modal>.dlg-content {\r\n            position: relative;\r\n            background-color: whitesmoke;\r\n            width: 300px;\r\n            transition: all .3s ease-in;\r\n            border-radius: 6px;\r\n            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);\r\n            border: 1px solid rgba(0, 0, 0, .2);\r\n        }\r\n        \r\n        .dlg-content>.dlg-header {\r\n            padding: 10px;\r\n            font-weight: bold;\r\n            border-bottom: 1px solid lightgray;\r\n            display: flex;\r\n            display: -webkit-flex;\r\n            justify-content: center;\r\n            cursor: pointer;\r\n            font-size: 16px;\r\n        }\r\n        \r\n        .dlg-content>.dlg-body {\r\n            padding: 10px;\r\n        }\r\n        \r\n        .dlg-content>.dlg-footer {\r\n            border-top: 1px solid lightgray;\r\n            display: flex;\r\n            display: -webkit-flex;\r\n            flex-wrap: row nowrap;\r\n            justify-content: space-around;\r\n            align-items:center;\r\n            cursor: pointer;\r\n            height: 36px;\r\n            text-align: center;\r\n        }\r\n\r\n        \r\n        .dlg-footer>span {\r\n           font-size: 16px;\r\n           line-height: 36px;\r\n        }\r\n\r\n        .dlg-footer>span>i {\r\n           margin-right: 5px;\r\n        }\r\n\r\n\t\t\r\n        .dlg-footer>span:hover {\r\n          \tcolor: darkorange;\r\n        }\r\n\r\n        .dlg-footer>span:active {\r\n          \tbox-shadow: 1px 1px 4px darkgray;\r\n          \tcolor: darkorange;\r\n        }\r\n\r\n        \r\n        .dlg-footer>:first-child {\r\n           border-right: 1px solid darkgray;\r\n        }\r\n\r\n        .fade {\r\n            opacity: 0;\r\n            -webkit-transition: opacity .15s linear;\r\n            -o-transition: opacity .15s linear;\r\n            transition: opacity .15s linear;\r\n        }\r\n        \r\n        .fade.in {\r\n            opacity: 1;\r\n        }\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n.dialog[_v-12989f74]{\n    padding: 0px;\n    margin: 0px;\n}\n\n/*遮罩层*/\n.dialog-mask[_v-12989f74]{\n    position: fixed;\n    left: 0;\n    top: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.6);\n    z-index: 10;\n}\n\n.dialog-content[_v-12989f74]{\n    position: fixed;\n    z-index: 20;\n    width: 85%;\n    top: 50%;\n    left: 50%;\n    max-width: 400px;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    background-color: #fff;\n    text-align: center;\n    border-radius: 3px;\n}\n\n.dialog-content>.dialog-hd[_v-12989f74]{\n    padding: 1.2em 20px .5em;\n    font-weight: 400;\n    font-size: 17px;\n}\n\n.dialog-content>.dialog-bd[_v-12989f74]{\n    text-align: left;\n     padding: 0 20px;\n    font-size: 15px;\n    color: #888;\n}\n\n.dialog-content>.dialog-ft[_v-12989f74]{\n    position: relative;\n    line-height: 42px;\n    margin-top: 20px;\n    font-size: 17px;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    display: flexbox;\n}\n\n.dialog-ft[_v-12989f74]:before{\n    content:\" \";\n    position: absolute;\n    width: 8.14px;\n    height: 1.08px;\n    background: rgb(209, 209, 213);\n    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;\n    border-radius: 1px;\n    -webkit-transform-origin: left 50% 0px;\n            transform-origin: left 50% 0px;\n    width: 100%;\n}\n\n.dialog-ft>a[_v-12989f74]{\n    -webkit-flex:1;\n        -ms-flex:1;\n            flex:1;\n    -webkit-box-flex:1;\n}\n\n\n\n\n", "", {"version":3,"sources":["/./src/components/Dialog.vue?6f807018"],"names":[],"mappings":";;AA4DA;IACA,aAAA;IACA,YAAA;CACA;;AAEA,OAAA;AACA;IACA,gBAAA;IACA,QAAA;IACA,OAAA;IACA,YAAA;IACA,aAAA;IACA,qCAAA;IACA,YAAA;CACA;;AAEA;IACA,gBAAA;IACA,YAAA;IACA,WAAA;IACA,SAAA;IACA,UAAA;IACA,iBAAA;IACA,yCAAA;YAAA,iCAAA;IACA,uBAAA;IACA,mBAAA;IACA,mBAAA;CACA;;AAEA;IACA,yBAAA;IACA,iBAAA;IACA,gBAAA;CACA;;AAEA;IACA,iBAAA;KACA,gBAAA;IACA,gBAAA;IACA,YAAA;CACA;;AAEA;IACA,mBAAA;IACA,kBAAA;IACA,iBAAA;IACA,gBAAA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,iBAAA;CACA;;AAEA;IACA,YAAA;IACA,mBAAA;IACA,cAAA;IACA,eAAA;IACA,+BAAA;IACA,iDAAA;IACA,mBAAA;IACA,uCAAA;YAAA,+BAAA;IACA,YAAA;CACA;;AAEA;IACA,eAAA;QAAA,WAAA;YAAA,OAAA;IACA,mBAAA;CACA","file":"Dialog.vue","sourcesContent":["<template>\r\n    <section class=\"dialog\"  v-show=\"show\">\r\n        <section class=\"dialog-mask\"></section>\r\n        <section class=\"dialog-content\">\r\n            <section class=\"dialog-hd\">{{title}}</section>\r\n            <section class=\"dialog-bd\">\r\n                <slot name=\"dialog-bd\"></slot>\r\n            </section>\r\n            <section class=\"dialog-ft\" v-if=\"isAlert\">\r\n            <!-- 判断类别,如果是 -->\r\n                <a href=\"javascript:;\" class=\"weui_btn_dialog primary\" v-touch:tap=\"close\">确定</a>\r\n            </section>\r\n            <section class=\"dialog-ft\" v-else>\r\n            <!-- 判断类别,如果是 -->\r\n                <a href=\"javascript:;\" class=\"weui_btn_dialog default\" v-touch:tap=\"close\">取消</a>\r\n                <a href=\"javascript:;\" class=\"weui_btn_dialog primary\" v-touch:tap=\"confirm\">确定</a>\r\n            </section>\r\n        </section>\r\n    </section>\r\n\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n\t\tmethods:{\r\n\t\t\t// 关闭dialog\r\n\t\t\tclose(){\r\n\t\t\t\tthis.show=!this.show;\r\n\t\t\t},\r\n\t\t\tconfirm(){\r\n\t\t\t\t//将事件派发到父组件中,在通过父组件进行监听该事件\r\n\t\t\t\tthis.$dispatch('child-confirm');\r\n\t\t\t}\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\tshow:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false,\r\n\t\t\t\trequire:true\r\n\t\t\t},\r\n            isAlert:{\r\n                type:Boolean,\r\n                default:false\r\n            },\r\n\t\t\t//显示效果\r\n\t\t\teffect:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:'fade'\r\n\t\t\t},\r\n\t\t\ttitle:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:''\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style  type=\"text/css\" scoped>\r\n\t\r\n    .dialog{\r\n        padding: 0px;\r\n        margin: 0px;\r\n    }\r\n\r\n    /*遮罩层*/\r\n    .dialog-mask{\r\n        position: fixed;\r\n        left: 0;\r\n        top: 0;\r\n        width: 100%;\r\n        height: 100%;\r\n        background-color: rgba(0, 0, 0, 0.6);\r\n        z-index: 10;\r\n    }\r\n    \r\n    .dialog-content{\r\n        position: fixed;\r\n        z-index: 20;\r\n        width: 85%;\r\n        top: 50%;\r\n        left: 50%;\r\n        max-width: 400px;\r\n        transform: translate(-50%, -50%);\r\n        background-color: #fff;\r\n        text-align: center;\r\n        border-radius: 3px;\r\n    }\r\n\r\n    .dialog-content>.dialog-hd{\r\n        padding: 1.2em 20px .5em;\r\n        font-weight: 400;\r\n        font-size: 17px;\r\n    }\r\n\r\n    .dialog-content>.dialog-bd{\r\n        text-align: left;\r\n         padding: 0 20px;\r\n        font-size: 15px;\r\n        color: #888;\r\n    }\r\n\r\n    .dialog-content>.dialog-ft{\r\n        position: relative;\r\n        line-height: 42px;\r\n        margin-top: 20px;\r\n        font-size: 17px;\r\n        display: flex;\r\n        display: flexbox;\r\n    }\r\n\r\n    .dialog-ft:before{\r\n        content:\" \";\r\n        position: absolute;\r\n        width: 8.14px;\r\n        height: 1.08px;\r\n        background: rgb(209, 209, 213);\r\n        box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;\r\n        border-radius: 1px;\r\n        transform-origin: left 50% 0px;\r\n        width: 100%;\r\n    }\r\n\r\n    .dialog-ft>a{\r\n        flex:1;\r\n        -webkit-box-flex:1;\r\n    }\r\n\r\n\r\n\r\n\t  \r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
-/* 73 */
+/* 79 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15623,36 +15893,35 @@
 		value: true
 	});
 	// <template>
-	// 	<div class="dlg-modal" v-if="show">
-	//         <div class="dlg-content fade" :class="{'in':show}" :style="{width:dlgWidth+'px'}">
-	//             <div class="dlg-header">
-	//                 <span>{{title}}</span>
-	//             </div>
-	//             <div class="dlg-body">
-	//                 <slot name="dlg-body"></slot>
-	//             </div>
-	//             <div class="dlg-footer">
-	//                 <span @click="confirm" :style="{width:dlgWidth/2 +'px'}"><i class="icon-ok"></i>确定</span>
-	//                 <span @click="close" :style="{width:dlgWidth/2 +'px'}"><i class="icon-remove"></i>关闭</span>
-	//             </div>
-	//         </div>
-	//     </div>
+	//     <section class="dialog"  v-show="show">
+	//         <section class="dialog-mask"></section>
+	//         <section class="dialog-content">
+	//             <section class="dialog-hd">{{title}}</section>
+	//             <section class="dialog-bd">
+	//                 <slot name="dialog-bd"></slot>
+	//             </section>
+	//             <section class="dialog-ft" v-if="isAlert">
+	//             <!-- 判断类别,如果是 -->
+	//                 <a href="javascript:;" class="weui_btn_dialog primary" v-touch:tap="close">确定</a>
+	//             </section>
+	//             <section class="dialog-ft" v-else>
+	//             <!-- 判断类别,如果是 -->
+	//                 <a href="javascript:;" class="weui_btn_dialog default" v-touch:tap="close">取消</a>
+	//                 <a href="javascript:;" class="weui_btn_dialog primary" v-touch:tap="confirm">确定</a>
+	//             </section>
+	//         </section>
+	//     </section>
+	
 	// </template>
 	
 	// <script lang="babel">
 	
 	exports.default = {
-		created: function created() {
-			//初始化弹出框的宽度
-	
-		},
-		data: function data() {},
-	
 		methods: {
 			// 关闭dialog
 	
 			close: function close() {
-				this.show = false;
+				this.show = !this.show;
 			},
 			confirm: function confirm() {
 				//将事件派发到父组件中,在通过父组件进行监听该事件
@@ -15660,20 +15929,19 @@
 			}
 		},
 		props: {
-	
 			show: {
 				type: Boolean,
 				default: false,
 				require: true
 			},
+			isAlert: {
+				type: Boolean,
+				default: false
+			},
 			//显示效果
 			effect: {
 				type: String,
 				default: 'fade'
-			},
-			dlgWidth: {
-				type: Number,
-				default: 300
 			},
 			title: {
 				type: String,
@@ -15685,106 +15953,90 @@
 
 	// <style  type="text/css" scoped>
 
-	// 	  .dlg-modal {
-	//             position: absolute;
-	//             left: 0;
-	//             top: 0;
-	//             height: 100%;
-	//             width: 100%;
-	//             z-index: 10;
-	//             background-color: rgba(153, 153, 153, 0.5);
-	//             display: flex;
-	//             flex-flow: row nowrap;
-	//             justify-content: center;
-	//             font-size: 14px;
-	//             align-items: center;
-	//         }
+	//     .dialog{
+	//         padding: 0px;
+	//         margin: 0px;
+	//     }
 
-	//         .dlg-modal>.dlg-content {
-	//             position: relative;
-	//             background-color: whitesmoke;
-	//             width: 300px;
-	//             transition: all .3s ease-in;
-	//             border-radius: 6px;
-	//             box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-	//             border: 1px solid rgba(0, 0, 0, .2);
-	//         }
+	//     /*遮罩层*/
+	//     .dialog-mask{
+	//         position: fixed;
+	//         left: 0;
+	//         top: 0;
+	//         width: 100%;
+	//         height: 100%;
+	//         background-color: rgba(0, 0, 0, 0.6);
+	//         z-index: 10;
+	//     }
 
-	//         .dlg-content>.dlg-header {
-	//             padding: 10px;
-	//             font-weight: bold;
-	//             border-bottom: 1px solid lightgray;
-	//             display: flex;
-	//             display: -webkit-flex;
-	//             justify-content: center;
-	//             cursor: pointer;
-	//             font-size: 16px;
-	//         }
+	//     .dialog-content{
+	//         position: fixed;
+	//         z-index: 20;
+	//         width: 85%;
+	//         top: 50%;
+	//         left: 50%;
+	//         max-width: 400px;
+	//         transform: translate(-50%, -50%);
+	//         background-color: #fff;
+	//         text-align: center;
+	//         border-radius: 3px;
+	//     }
 
-	//         .dlg-content>.dlg-body {
-	//             padding: 10px;
-	//         }
+	//     .dialog-content>.dialog-hd{
+	//         padding: 1.2em 20px .5em;
+	//         font-weight: 400;
+	//         font-size: 17px;
+	//     }
 
-	//         .dlg-content>.dlg-footer {
-	//             border-top: 1px solid lightgray;
-	//             display: flex;
-	//             display: -webkit-flex;
-	//             flex-wrap: row nowrap;
-	//             justify-content: space-around;
-	//             align-items:center;
-	//             cursor: pointer;
-	//             height: 36px;
-	//             text-align: center;
-	//         }
+	//     .dialog-content>.dialog-bd{
+	//         text-align: left;
+	//          padding: 0 20px;
+	//         font-size: 15px;
+	//         color: #888;
+	//     }
 
-	//         .dlg-footer>span {
-	//            font-size: 16px;
-	//            line-height: 36px;
-	//         }
+	//     .dialog-content>.dialog-ft{
+	//         position: relative;
+	//         line-height: 42px;
+	//         margin-top: 20px;
+	//         font-size: 17px;
+	//         display: flex;
+	//         display: flexbox;
+	//     }
 
-	//         .dlg-footer>span>i {
-	//            margin-right: 5px;
-	//         }
+	//     .dialog-ft:before{
+	//         content:" ";
+	//         position: absolute;
+	//         width: 8.14px;
+	//         height: 1.08px;
+	//         background: rgb(209, 209, 213);
+	//         box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;
+	//         border-radius: 1px;
+	//         transform-origin: left 50% 0px;
+	//         width: 100%;
+	//     }
 
-	//         .dlg-footer>span:hover {
-	//           	color: darkorange;
-	//         }
+	//     .dialog-ft>a{
+	//         flex:1;
+	//         -webkit-box-flex:1;
+	//     }
 
-	//         .dlg-footer>span:active {
-	//           	box-shadow: 1px 1px 4px darkgray;
-	//           	color: darkorange;
-	//         }
-
-	//         .dlg-footer>:first-child {
-	//            border-right: 1px solid darkgray;
-	//         }
-
-	//         .fade {
-	//             opacity: 0;
-	//             -webkit-transition: opacity .15s linear;
-	//             -o-transition: opacity .15s linear;
-	//             transition: opacity .15s linear;
-	//         }
-
-	//         .fade.in {
-	//             opacity: 1;
-	//         }
 	// </style>
 
 /***/ },
-/* 74 */
+/* 80 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t<div class=\"dlg-modal\" v-if=\"show\" _v-12989f74=\"\">\n        <div class=\"dlg-content fade\" :class=\"{'in':show}\" :style=\"{width:dlgWidth+'px'}\" _v-12989f74=\"\">\n            <div class=\"dlg-header\" _v-12989f74=\"\">\n                <span _v-12989f74=\"\">{{title}}</span>\n            </div>\n            <div class=\"dlg-body\" _v-12989f74=\"\">\n                <slot name=\"dlg-body\" _v-12989f74=\"\"></slot>\n            </div>\n            <div class=\"dlg-footer\" _v-12989f74=\"\">\n                <span @click=\"confirm\" :style=\"{width:dlgWidth/2 +'px'}\" _v-12989f74=\"\"><i class=\"icon-ok\" _v-12989f74=\"\"></i>确定</span>\n                <span @click=\"close\" :style=\"{width:dlgWidth/2 +'px'}\" _v-12989f74=\"\"><i class=\"icon-remove\" _v-12989f74=\"\"></i>关闭</span>\n            </div>\n        </div>\n    </div>\n";
+	module.exports = "\n<section class=\"dialog\" v-show=\"show\" _v-12989f74=\"\">\n    <section class=\"dialog-mask\" _v-12989f74=\"\"></section>\n    <section class=\"dialog-content\" _v-12989f74=\"\">\n        <section class=\"dialog-hd\" _v-12989f74=\"\">{{title}}</section>\n        <section class=\"dialog-bd\" _v-12989f74=\"\">\n            <slot name=\"dialog-bd\" _v-12989f74=\"\"></slot>\n        </section>\n        <section class=\"dialog-ft\" v-if=\"isAlert\" _v-12989f74=\"\">\n        <!-- 判断类别,如果是 -->\n            <a href=\"javascript:;\" class=\"weui_btn_dialog primary\" v-touch:tap=\"close\" _v-12989f74=\"\">确定</a>\n        </section>\n        <section class=\"dialog-ft\" v-else=\"\" _v-12989f74=\"\">\n        <!-- 判断类别,如果是 -->\n            <a href=\"javascript:;\" class=\"weui_btn_dialog default\" v-touch:tap=\"close\" _v-12989f74=\"\">取消</a>\n            <a href=\"javascript:;\" class=\"weui_btn_dialog primary\" v-touch:tap=\"confirm\" _v-12989f74=\"\">确定</a>\n        </section>\n    </section>\n</section>\n\n";
 
 /***/ },
-/* 75 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(76)
-	__vue_script__ = __webpack_require__(78)
-	__vue_template__ = __webpack_require__(79)
+	__webpack_require__(82)
+	__vue_script__ = __webpack_require__(84)
+	__vue_template__ = __webpack_require__(85)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -15801,13 +16053,13 @@
 	})()}
 
 /***/ },
-/* 76 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(77);
+	var content = __webpack_require__(83);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -15827,7 +16079,7 @@
 	}
 
 /***/ },
-/* 77 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -15841,7 +16093,7 @@
 
 
 /***/ },
-/* 78 */
+/* 84 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16134,19 +16386,19 @@
 	// </style>
 
 /***/ },
-/* 79 */
+/* 85 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\n<div class=\"datepicker\" _v-e36f8ff0=\"\">\n    <section class=\"datepicker-header\" _v-e36f8ff0=\"\">\n      <div _v-e36f8ff0=\"\">年</div>\n      <div _v-e36f8ff0=\"\">月</div>\n      <div _v-e36f8ff0=\"\">日</div>\n    </section>\n    <section class=\"datepicker-body\" _v-e36f8ff0=\"\">\n        <div class=\"column datepicker-year\" _v-e36f8ff0=\"\">\n            <span class=\"datepicker-icon\" @click=\"add('Y')\" _v-e36f8ff0=\"\"><i class=\"icon-plus\" _v-e36f8ff0=\"\"></i></span>\n            <span class=\"datepicker-value\" _v-e36f8ff0=\"\">{{curYear}}</span>\n            <span class=\"datepicker-icon\" @click=\"minus('Y')\" _v-e36f8ff0=\"\"><i class=\"icon-minus\" _v-e36f8ff0=\"\"></i></span>\n        </div>\n        <div class=\"column datepicker-month\" _v-e36f8ff0=\"\">\n            <span class=\"datepicker-icon\" @click=\"add('M')\" _v-e36f8ff0=\"\"><i class=\"icon-plus\" _v-e36f8ff0=\"\"></i></span>\n            <span class=\"datepicker-value\" _v-e36f8ff0=\"\">{{curMonth&lt;10?(\"0\"+curMonth):curMonth}}</span>\n            <span class=\"datepicker-icon\" @click=\"minus('M')\" _v-e36f8ff0=\"\"><i class=\"icon-minus\" _v-e36f8ff0=\"\"></i></span>\n        </div>\n        <div class=\"column datepicker-day\" _v-e36f8ff0=\"\">\n            <span class=\"datepicker-icon\" @click=\"add('D')\" _v-e36f8ff0=\"\"><i class=\"icon-plus\" _v-e36f8ff0=\"\"></i></span>\n            <span class=\"datepicker-value\" _v-e36f8ff0=\"\">{{curDay&lt;10?(\"0\"+curDay):curDay}}</span>\n            <span class=\"datepicker-icon\" @click=\"minus('D')\" _v-e36f8ff0=\"\"><i class=\"icon-minus\" _v-e36f8ff0=\"\"></i></span>\n        </div>\n    </section> \n</div>\n  \n\n  <!--   <ul class=\"datepicker-hour\">\n        <li v-for=\"item in hourRange\">{{item}}</li>\n    </ul>\n    <ul class=\"datepicker-min\">\n        <li v-for=\"item in minRange\">{{item}}</li>\n    </ul>\n    <ul class=\"datepicker-sec\">\n        <li v-for=\"item in secRange\">{{item}}</li>\n    </ul> -->\n  \n";
 
 /***/ },
-/* 80 */
+/* 86 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<toolbar text=\"个人主页\" _v-61f407d1=\"\">\n\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back\" _v-61f407d1=\"\">返回</span>\n\t<span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"loadUserInfo\" _v-61f407d1=\"\"></span>\n</toolbar>\n<section _v-61f407d1=\"\">\n\t<input type=\"button\" @click=\"showDialog\" _v-61f407d1=\"\">\n\t<datepicker _v-61f407d1=\"\"></datepicker>\n</section>\n\n<loading :loading=\"isload\" _v-61f407d1=\"\"></loading>\n<dialog :show.sync=\"isShowDialog\" :title=\"dialogTitle\" v-on:child-confirm=\"confirm\" _v-61f407d1=\"\">\n\t<div slot=\"dlg-body\" _v-61f407d1=\"\">hahah</div>\n</dialog>\n";
+	module.exports = "\n<toolbar text=\"个人主页\" _v-61f407d1=\"\">\n\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back\" _v-61f407d1=\"\">返回</span>\n\t<span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"loadUserInfo\" _v-61f407d1=\"\"></span>\n</toolbar>\n<section _v-61f407d1=\"\">\n\t<input type=\"button\" @click=\"showDialog\" value=\"显示dialog\" _v-61f407d1=\"\">\n\t<datepicker _v-61f407d1=\"\"></datepicker>\n</section>\n\n<loading :loading=\"isload\" _v-61f407d1=\"\"></loading>\n<dialog :show.sync=\"isShowDialog\" :title=\"dialogTitle\" :is-alert=\"isAlert\" v-on:child-confirm=\"confirm\" _v-61f407d1=\"\">\n\t<div slot=\"dialog-bd\" _v-61f407d1=\"\">我的世界你不懂</div>\n</dialog>\n";
 
 /***/ },
-/* 81 */
+/* 87 */
 /***/ function(module, exports) {
 
 	var __vue_script__, __vue_template__
@@ -16156,12 +16408,12 @@
 
 
 /***/ },
-/* 82 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(83)
-	__vue_template__ = __webpack_require__(84)
+	__vue_script__ = __webpack_require__(89)
+	__vue_template__ = __webpack_require__(90)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -16178,7 +16430,7 @@
 	})()}
 
 /***/ },
-/* 83 */
+/* 89 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16215,13 +16467,13 @@
 	/* generated by vue-loader */
 
 /***/ },
-/* 84 */
+/* 90 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\n<div class=\"container\">\n\t<div >\n\t\t<input type=\"text\" name=\"\">\n\t</div>\n</div>\n";
 
 /***/ },
-/* 85 */
+/* 91 */
 /***/ function(module, exports) {
 
 	var __vue_script__, __vue_template__
@@ -16231,7 +16483,7 @@
 
 
 /***/ },
-/* 86 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
@@ -17078,19 +17330,19 @@
 
 
 /***/ },
-/* 87 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _keys = __webpack_require__(88);
+	var _keys = __webpack_require__(94);
 	
 	var _keys2 = _interopRequireDefault(_keys);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var vueTouch = {};
-	var Hammer =  true ? __webpack_require__(100) : window.Hammer;
+	var Hammer =  true ? __webpack_require__(106) : window.Hammer;
 	var gestures = ['tap', 'pan', 'pandown', 'panend', 'pinch', 'press', 'pressup', 'rotate', 'swipe', 'swipeleft', 'swiperight', 'swipeup', 'swipedown'];
 	var customeEvents = {};
 	
@@ -17189,43 +17441,43 @@
 	module.exports = vueTouch;
 
 /***/ },
-/* 88 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(89), __esModule: true };
+	module.exports = { "default": __webpack_require__(95), __esModule: true };
 
 /***/ },
-/* 89 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(90);
-	module.exports = __webpack_require__(96).Object.keys;
+	__webpack_require__(96);
+	module.exports = __webpack_require__(102).Object.keys;
 
 /***/ },
-/* 90 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(91);
+	var toObject = __webpack_require__(97);
 	
-	__webpack_require__(93)('keys', function($keys){
+	__webpack_require__(99)('keys', function($keys){
 	  return function keys(it){
 	    return $keys(toObject(it));
 	  };
 	});
 
 /***/ },
-/* 91 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
-	var defined = __webpack_require__(92);
+	var defined = __webpack_require__(98);
 	module.exports = function(it){
 	  return Object(defined(it));
 	};
 
 /***/ },
-/* 92 */
+/* 98 */
 /***/ function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -17235,13 +17487,13 @@
 	};
 
 /***/ },
-/* 93 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(94)
-	  , core    = __webpack_require__(96)
-	  , fails   = __webpack_require__(99);
+	var $export = __webpack_require__(100)
+	  , core    = __webpack_require__(102)
+	  , fails   = __webpack_require__(105);
 	module.exports = function(KEY, exec){
 	  var fn  = (core.Object || {})[KEY] || Object[KEY]
 	    , exp = {};
@@ -17250,12 +17502,12 @@
 	};
 
 /***/ },
-/* 94 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(95)
-	  , core      = __webpack_require__(96)
-	  , ctx       = __webpack_require__(97)
+	var global    = __webpack_require__(101)
+	  , core      = __webpack_require__(102)
+	  , ctx       = __webpack_require__(103)
 	  , PROTOTYPE = 'prototype';
 	
 	var $export = function(type, name, source){
@@ -17301,7 +17553,7 @@
 	module.exports = $export;
 
 /***/ },
-/* 95 */
+/* 101 */
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -17310,18 +17562,18 @@
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
-/* 96 */
+/* 102 */
 /***/ function(module, exports) {
 
 	var core = module.exports = {version: '1.2.6'};
 	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ },
-/* 97 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(98);
+	var aFunction = __webpack_require__(104);
 	module.exports = function(fn, that, length){
 	  aFunction(fn);
 	  if(that === undefined)return fn;
@@ -17342,7 +17594,7 @@
 	};
 
 /***/ },
-/* 98 */
+/* 104 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -17351,7 +17603,7 @@
 	};
 
 /***/ },
-/* 99 */
+/* 105 */
 /***/ function(module, exports) {
 
 	module.exports = function(exec){
@@ -17363,7 +17615,7 @@
 	};
 
 /***/ },
-/* 100 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.6 - 2015-12-23
@@ -19937,7 +20189,7 @@
 
 
 /***/ },
-/* 101 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -19946,16 +20198,16 @@
 	
 	function install(Vue) {
 	
-	    var _ = __webpack_require__(102);
+	    var _ = __webpack_require__(108);
 	
 	    _.config = Vue.config;
 	    _.warning = Vue.util.warn;
 	    _.nextTick = Vue.util.nextTick;
 	
-	    Vue.url = __webpack_require__(103);
-	    Vue.http = __webpack_require__(109);
-	    Vue.resource = __webpack_require__(124);
-	    Vue.Promise = __webpack_require__(111);
+	    Vue.url = __webpack_require__(109);
+	    Vue.http = __webpack_require__(115);
+	    Vue.resource = __webpack_require__(130);
+	    Vue.Promise = __webpack_require__(117);
 	
 	    Object.defineProperties(Vue.prototype, {
 	
@@ -19996,7 +20248,7 @@
 
 
 /***/ },
-/* 102 */
+/* 108 */
 /***/ function(module, exports) {
 
 	/**
@@ -20124,14 +20376,14 @@
 
 
 /***/ },
-/* 103 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for URL templating.
 	 */
 	
-	var _ = __webpack_require__(102);
+	var _ = __webpack_require__(108);
 	var ie = document.documentMode;
 	var el = document.createElement('a');
 	
@@ -20167,10 +20419,10 @@
 	 */
 	
 	Url.transforms = [
-	    __webpack_require__(104),
-	    __webpack_require__(106),
-	    __webpack_require__(107),
-	    __webpack_require__(108)
+	    __webpack_require__(110),
+	    __webpack_require__(112),
+	    __webpack_require__(113),
+	    __webpack_require__(114)
 	];
 	
 	/**
@@ -20260,14 +20512,14 @@
 
 
 /***/ },
-/* 104 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * URL Template (RFC 6570) Transform.
 	 */
 	
-	var UrlTemplate = __webpack_require__(105);
+	var UrlTemplate = __webpack_require__(111);
 	
 	module.exports = function (options) {
 	
@@ -20282,7 +20534,7 @@
 
 
 /***/ },
-/* 105 */
+/* 111 */
 /***/ function(module, exports) {
 
 	/**
@@ -20438,14 +20690,14 @@
 
 
 /***/ },
-/* 106 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Legacy Transform.
 	 */
 	
-	var _ = __webpack_require__(102);
+	var _ = __webpack_require__(108);
 	
 	module.exports = function (options, next) {
 	
@@ -20490,14 +20742,14 @@
 
 
 /***/ },
-/* 107 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Query Parameter Transform.
 	 */
 	
-	var _ = __webpack_require__(102);
+	var _ = __webpack_require__(108);
 	
 	module.exports = function (options, next) {
 	
@@ -20520,14 +20772,14 @@
 
 
 /***/ },
-/* 108 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Root Prefix Transform.
 	 */
 	
-	var _ = __webpack_require__(102);
+	var _ = __webpack_require__(108);
 	
 	module.exports = function (options, next) {
 	
@@ -20542,17 +20794,17 @@
 
 
 /***/ },
-/* 109 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for sending network requests.
 	 */
 	
-	var _ = __webpack_require__(102);
-	var Client = __webpack_require__(110);
-	var Promise = __webpack_require__(111);
-	var interceptor = __webpack_require__(114);
+	var _ = __webpack_require__(108);
+	var Client = __webpack_require__(116);
+	var Promise = __webpack_require__(117);
+	var interceptor = __webpack_require__(120);
 	var jsonType = {'Content-Type': 'application/json'};
 	
 	function Http(url, options) {
@@ -20604,13 +20856,13 @@
 	};
 	
 	Http.interceptors = [
-	    __webpack_require__(115),
-	    __webpack_require__(116),
-	    __webpack_require__(117),
-	    __webpack_require__(119),
-	    __webpack_require__(120),
 	    __webpack_require__(121),
-	    __webpack_require__(122)
+	    __webpack_require__(122),
+	    __webpack_require__(123),
+	    __webpack_require__(125),
+	    __webpack_require__(126),
+	    __webpack_require__(127),
+	    __webpack_require__(128)
 	];
 	
 	Http.headers = {
@@ -20645,16 +20897,16 @@
 
 
 /***/ },
-/* 110 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Base client.
 	 */
 	
-	var _ = __webpack_require__(102);
-	var Promise = __webpack_require__(111);
-	var xhrClient = __webpack_require__(113);
+	var _ = __webpack_require__(108);
+	var Promise = __webpack_require__(117);
+	var xhrClient = __webpack_require__(119);
 	
 	module.exports = function (request) {
 	
@@ -20716,15 +20968,15 @@
 
 
 /***/ },
-/* 111 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promise adapter.
 	 */
 	
-	var _ = __webpack_require__(102);
-	var PromiseObj = window.Promise || __webpack_require__(112);
+	var _ = __webpack_require__(108);
+	var PromiseObj = window.Promise || __webpack_require__(118);
 	
 	function Promise(executor, context) {
 	
@@ -20831,14 +21083,14 @@
 
 
 /***/ },
-/* 112 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promises/A+ polyfill v1.1.4 (https://github.com/bramstein/promis)
 	 */
 	
-	var _ = __webpack_require__(102);
+	var _ = __webpack_require__(108);
 	
 	var RESOLVED = 0;
 	var REJECTED = 1;
@@ -21016,15 +21268,15 @@
 
 
 /***/ },
-/* 113 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XMLHttp client.
 	 */
 	
-	var _ = __webpack_require__(102);
-	var Promise = __webpack_require__(111);
+	var _ = __webpack_require__(108);
+	var Promise = __webpack_require__(117);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -21065,15 +21317,15 @@
 
 
 /***/ },
-/* 114 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Interceptor factory.
 	 */
 	
-	var _ = __webpack_require__(102);
-	var Promise = __webpack_require__(111);
+	var _ = __webpack_require__(108);
+	var Promise = __webpack_require__(117);
 	
 	module.exports = function (handler, vm) {
 	
@@ -21116,14 +21368,14 @@
 
 
 /***/ },
-/* 115 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Before Interceptor.
 	 */
 	
-	var _ = __webpack_require__(102);
+	var _ = __webpack_require__(108);
 	
 	module.exports = {
 	
@@ -21140,7 +21392,7 @@
 
 
 /***/ },
-/* 116 */
+/* 122 */
 /***/ function(module, exports) {
 
 	/**
@@ -21176,14 +21428,14 @@
 
 
 /***/ },
-/* 117 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP Interceptor.
 	 */
 	
-	var jsonpClient = __webpack_require__(118);
+	var jsonpClient = __webpack_require__(124);
 	
 	module.exports = {
 	
@@ -21200,15 +21452,15 @@
 
 
 /***/ },
-/* 118 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP client.
 	 */
 	
-	var _ = __webpack_require__(102);
-	var Promise = __webpack_require__(111);
+	var _ = __webpack_require__(108);
+	var Promise = __webpack_require__(117);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -21254,7 +21506,7 @@
 
 
 /***/ },
-/* 119 */
+/* 125 */
 /***/ function(module, exports) {
 
 	/**
@@ -21277,14 +21529,14 @@
 
 
 /***/ },
-/* 120 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Mime Interceptor.
 	 */
 	
-	var _ = __webpack_require__(102);
+	var _ = __webpack_require__(108);
 	
 	module.exports = {
 	
@@ -21319,14 +21571,14 @@
 
 
 /***/ },
-/* 121 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Header Interceptor.
 	 */
 	
-	var _ = __webpack_require__(102);
+	var _ = __webpack_require__(108);
 	
 	module.exports = {
 	
@@ -21351,15 +21603,15 @@
 
 
 /***/ },
-/* 122 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * CORS Interceptor.
 	 */
 	
-	var _ = __webpack_require__(102);
-	var xdrClient = __webpack_require__(123);
+	var _ = __webpack_require__(108);
+	var xdrClient = __webpack_require__(129);
 	var xhrCors = 'withCredentials' in new XMLHttpRequest();
 	var originUrl = _.url.parse(location.href);
 	
@@ -21394,15 +21646,15 @@
 
 
 /***/ },
-/* 123 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XDomain client (Internet Explorer).
 	 */
 	
-	var _ = __webpack_require__(102);
-	var Promise = __webpack_require__(111);
+	var _ = __webpack_require__(108);
+	var Promise = __webpack_require__(117);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -21437,14 +21689,14 @@
 
 
 /***/ },
-/* 124 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for interacting with RESTful services.
 	 */
 	
-	var _ = __webpack_require__(102);
+	var _ = __webpack_require__(108);
 	
 	function Resource(url, params, actions, options) {
 	
@@ -21553,45 +21805,377 @@
 
 
 /***/ },
-/* 125 */
+/* 131 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(132)
+	__vue_script__ = __webpack_require__(134)
+	__vue_template__ = __webpack_require__(135)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Toast.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 132 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(133);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-4de571aa&file=Toast.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Toast.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-4de571aa&file=Toast.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Toast.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 133 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, " \n\t\n\t.toast[_v-4de571aa]{\n\t\tposition: fixed;\n\t    z-index: 3;\n\t    width: 7.6em;\n\t    min-height: 7.6em;\n\t    top: 180px;\n\t    left: 50%;\n\t    margin-left: -3.8em;\n\t    background: rgba(40, 40, 40, 0.75);\n\t    text-align: center;\n\t    border-radius: 5px;\n\t    color: #FFFFFF;\n\t}\n\n\t/*遮罩*/\n\t.toast-mask[_v-4de571aa]{\n\t\tposition: fixed;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\tz-index: 10px;\n\t\theight: 100%;\n\t\twidth: 100%;\n\t}\n\n\t.toast-bd>.loading[_v-4de571aa]{\n\t\tposition: absolute;\n\t    width: 0px;\n\t    z-index: 20;\n\t    left: 50%;\n\t    top: 38%;\n\t}\n\n\t.toast-content[_v-4de571aa]{\n\t\tmargin: 0 0 15px;\n\t\tmargin-top:10%;\n      \tfont-size:14px;\n\t}\n\n\t.loading_leaf[_v-4de571aa]{\n\t\tposition: absolute;\n\t    top: -1px;\n\t    opacity: 0.25;\n\t}\n\n\t.loading_leaf[_v-4de571aa]:before{\n\t\tcontent:\" \";\n        position: absolute;\n        width: 8.14px;\n        height: 3.08px;\n        background: rgb(209, 209, 213);\n        box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;\n        border-radius: 1px;\n        -webkit-transform-origin: left 50% 0px;\n                transform-origin: left 50% 0px;\n\t}\n\n\t.loading_leaf_0[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-0-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-0-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_0[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(0deg) translate(7.92px, 0px);\n\t\t        transform: rotate(0deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_1[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-1-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-1-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_1[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(30deg) translate(7.92px, 0px);\n\t\t        transform: rotate(30deg) translate(7.92px, 0px);\n\t}\n\n\n\t.loading_leaf_2[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-2-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-2-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_2[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(60deg) translate(7.92px, 0px);\n\t\t        transform: rotate(60deg) translate(7.92px, 0px);\n\t}\n\n\n\t.loading_leaf_3[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-3-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-3-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_3[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(90deg) translate(7.92px, 0px);\n\t\t        transform: rotate(90deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_4[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-4-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-4-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_4[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(120deg) translate(7.92px, 0px);\n\t\t        transform: rotate(120deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_5[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-5-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-5-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_5[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(150deg) translate(7.92px, 0px);\n\t\t        transform: rotate(150deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_6[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-6-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-6-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_6[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(180deg) translate(7.92px, 0px);\n\t\t        transform: rotate(180deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_7[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-7-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-7-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_7[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(210deg) translate(7.92px, 0px);\n\t\t        transform: rotate(210deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_8[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-8-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-8-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_8[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(240deg) translate(7.92px, 0px);\n\t\t        transform: rotate(240deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_9[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-9-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-9-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_9[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(270deg) translate(7.92px, 0px);\n\t\t        transform: rotate(270deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_10[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-10-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-10-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_10[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(300deg) translate(7.92px, 0px);\n\t\t        transform: rotate(300deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_11[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-11-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-11-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_11[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(330deg) translate(7.92px, 0px);\n\t\t        transform: rotate(330deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_12[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-12-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-12-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_12[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(360deg) translate(7.92px, 0px);\n\t\t        transform: rotate(360deg) translate(7.92px, 0px);\n\t}\n\n\n\t@-webkit-keyframes opacity-60-25-0-12 {\n\t  0% { opacity: 0.25; }\n\t  0.01% { opacity: 0.25; }\n\t  0.02% { opacity: 1; }\n\t  60.01% { opacity: 0.25; }\n\t  100% { opacity: 0.25; }\n\t}@-webkit-keyframes opacity-60-25-1-12 {\n\t  0% { opacity: 0.25; }\n\t  8.34333% { opacity: 0.25; }\n\t  8.35333% { opacity: 1; }\n\t  68.3433% { opacity: 0.25; }\n\t  100% { opacity: 0.25; }\n\t}@-webkit-keyframes opacity-60-25-2-12 {\n\t  0% { opacity: 0.25; }\n\t  16.6767% { opacity: 0.25; }\n\t  16.6867% { opacity: 1; }\n\t  76.6767% { opacity: 0.25; }\n\t  100% { opacity: 0.25; }\n\t}@-webkit-keyframes opacity-60-25-3-12 {\n\t  0% { opacity: 0.25; }\n\t  25.01% { opacity: 0.25; }\n\t  25.02% { opacity: 1; }\n\t  85.01% { opacity: 0.25; }\n\t  100% { opacity: 0.25; }\n\t}@-webkit-keyframes opacity-60-25-4-12 {\n\t  0% { opacity: 0.25; }\n\t  33.3433% { opacity: 0.25; }\n\t  33.3533% { opacity: 1; }\n\t  93.3433% { opacity: 0.25; }\n\t  100% { opacity: 0.25; }\n\t}@-webkit-keyframes opacity-60-25-5-12 {\n\t  0% { opacity: 0.270958333333333; }\n\t  41.6767% { opacity: 0.25; }\n\t  41.6867% { opacity: 1; }\n\t  1.67667% { opacity: 0.25; }\n\t  100% { opacity: 0.270958333333333; }\n\t}@-webkit-keyframes opacity-60-25-6-12 {\n\t  0% { opacity: 0.375125; }\n\t  50.01% { opacity: 0.25; }\n\t  50.02% { opacity: 1; }\n\t  10.01% { opacity: 0.25; }\n\t  100% { opacity: 0.375125; }\n\t}@-webkit-keyframes opacity-60-25-7-12 {\n\t  0% { opacity: 0.479291666666667; }\n\t  58.3433% { opacity: 0.25; }\n\t  58.3533% { opacity: 1; }\n\t  18.3433% { opacity: 0.25; }\n\t  100% { opacity: 0.479291666666667; }\n\t}@-webkit-keyframes opacity-60-25-8-12 {\n\t  0% { opacity: 0.583458333333333; }\n\t  66.6767% { opacity: 0.25; }\n\t  66.6867% { opacity: 1; }\n\t  26.6767% { opacity: 0.25; }\n\t  100% { opacity: 0.583458333333333; }\n\t}@-webkit-keyframes opacity-60-25-9-12 {\n\t  0% { opacity: 0.687625; }\n\t  75.01% { opacity: 0.25; }\n\t  75.02% { opacity: 1; }\n\t  35.01% { opacity: 0.25; }\n\t  100% { opacity: 0.687625; }\n\t}@-webkit-keyframes opacity-60-25-10-12 {\n\t  0% { opacity: 0.791791666666667; }\n\t  83.3433% { opacity: 0.25; }\n\t  83.3533% { opacity: 1; }\n\t  43.3433% { opacity: 0.25; }\n\t  100% { opacity: 0.791791666666667; }\n\t}@-webkit-keyframes opacity-60-25-11-12 {\n\t  0% { opacity: 0.895958333333333; }\n\t  91.6767% { opacity: 0.25; }\n\t  91.6867% { opacity: 1; }\n\t  51.6767% { opacity: 0.25; }\n\t  100% { opacity: 0.895958333333333; }\n\t}\n\n", "", {"version":3,"sources":["/./src/components/Toast.vue?58bc00e3"],"names":[],"mappings":";;CAwEA;EACA,gBAAA;KACA,WAAA;KACA,aAAA;KACA,kBAAA;KACA,WAAA;KACA,UAAA;KACA,oBAAA;KACA,mCAAA;KACA,mBAAA;KACA,mBAAA;KACA,eAAA;EACA;;CAEA,MAAA;CACA;EACA,gBAAA;EACA,OAAA;EACA,QAAA;EACA,cAAA;EACA,aAAA;EACA,YAAA;EACA;;CAEA;EACA,mBAAA;KACA,WAAA;KACA,YAAA;KACA,UAAA;KACA,SAAA;EACA;;CAEA;EACA,iBAAA;EACA,eAAA;OACA,eAAA;EACA;;CAEA;EACA,mBAAA;KACA,UAAA;KACA,cAAA;EACA;;CAEA;EACA,YAAA;QACA,mBAAA;QACA,cAAA;QACA,eAAA;QACA,+BAAA;QACA,iDAAA;QACA,mBAAA;QACA,uCAAA;gBAAA,+BAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,uDAAA;UAAA,+CAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,wDAAA;UAAA,gDAAA;EACA;;;CAGA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,wDAAA;UAAA,gDAAA;EACA;;;CAGA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,wDAAA;UAAA,gDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,6DAAA;UAAA,qDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,6DAAA;UAAA,qDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,6DAAA;UAAA,qDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;;CAGA;GACA,KAAA,cAAA,EAAA;GACA,QAAA,cAAA,EAAA;GACA,QAAA,WAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,OAAA,cAAA,EAAA;EACA;GACA,KAAA,cAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,cAAA,EAAA;EACA;GACA,KAAA,cAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,cAAA,EAAA;EACA;GACA,KAAA,cAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,SAAA,WAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,OAAA,cAAA,EAAA;EACA;GACA,KAAA,cAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,cAAA,EAAA;EACA;GACA,KAAA,2BAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,2BAAA,EAAA;EACA;GACA,KAAA,kBAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,SAAA,WAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,OAAA,kBAAA,EAAA;EACA;GACA,KAAA,2BAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,2BAAA,EAAA;EACA;GACA,KAAA,2BAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,2BAAA,EAAA;EACA;GACA,KAAA,kBAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,SAAA,WAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,OAAA,kBAAA,EAAA;EACA;GACA,KAAA,2BAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,2BAAA,EAAA;EACA;GACA,KAAA,2BAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,2BAAA,EAAA;EACA","file":"Toast.vue","sourcesContent":["<template>\r\n\t<section class=\"toast\" v-show=\"show\">\r\n\t\t<section class=\"toast-mask\"></section>\r\n\t\t<section class=\"toast-bd\">\r\n\t\t\t<section class=\"loading\" v-if=\"isload\">\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_0\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_1\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_2\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_3\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_4\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_5\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_6\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_7\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_8\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_9\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_10\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_11\"></div>\r\n\t\t\t</section>\r\n\t\t\t<section class=\"prompt\" v-else>\r\n\t\t\t\t<i class=\"weui_icon_toast\"></i>\r\n\t\t\t</section>\r\n\t\t\t<p class=\"toast-content\" >{{prompt}}</p>\r\n\t\t</section>\r\n\t</section>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n\t\tprops:{\r\n\t\t\tshow:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t},\r\n\t\t\t//显示的时常\r\n\t\t\tseconds:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:5\r\n\t\t\t},\r\n\t\t\tisload:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t},\r\n\t\t\tprompt:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:'已经完成'\r\n\t\t\t}\r\n\t\t},\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\tsec:0\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\tif(!this.isload){\r\n\t\t\t\tsetTimeout(()=>{\r\n\t\t\t\t\tthis.show=false;\r\n\t\t\t\t},this.seconds*1000);\r\n\t\t\t}\r\n\t\t},\r\n\t\tcreated(){\r\n\t\t\tif(this.isload){\r\n\t\t\t\tthis.prompt=\"正在加载中..\";\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" scoped> \r\n\t\r\n\t.toast{\r\n\t\tposition: fixed;\r\n\t    z-index: 3;\r\n\t    width: 7.6em;\r\n\t    min-height: 7.6em;\r\n\t    top: 180px;\r\n\t    left: 50%;\r\n\t    margin-left: -3.8em;\r\n\t    background: rgba(40, 40, 40, 0.75);\r\n\t    text-align: center;\r\n\t    border-radius: 5px;\r\n\t    color: #FFFFFF;\r\n\t}\r\n\r\n\t/*遮罩*/\r\n\t.toast-mask{\r\n\t\tposition: fixed;\r\n\t\ttop: 0;\r\n\t\tleft: 0;\r\n\t\tz-index: 10px;\r\n\t\theight: 100%;\r\n\t\twidth: 100%;\r\n\t}\r\n\r\n\t.toast-bd>.loading{\r\n\t\tposition: absolute;\r\n\t    width: 0px;\r\n\t    z-index: 20;\r\n\t    left: 50%;\r\n\t    top: 38%;\r\n\t}\r\n\r\n\t.toast-content{\r\n\t\tmargin: 0 0 15px;\r\n\t\tmargin-top:10%;\r\n      \tfont-size:14px;\r\n\t}\r\n\r\n\t.loading_leaf{\r\n\t\tposition: absolute;\r\n\t    top: -1px;\r\n\t    opacity: 0.25;\r\n\t}\r\n\r\n\t.loading_leaf:before{\r\n\t\tcontent:\" \";\r\n        position: absolute;\r\n        width: 8.14px;\r\n        height: 3.08px;\r\n        background: rgb(209, 209, 213);\r\n        box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;\r\n        border-radius: 1px;\r\n        transform-origin: left 50% 0px;\r\n\t}\r\n\r\n\t.loading_leaf_0{\r\n\t\tanimation: opacity-60-25-0-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_0:before{\r\n\t\ttransform: rotate(0deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_1{\r\n\t\tanimation: opacity-60-25-1-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_1:before{\r\n\t\ttransform: rotate(30deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\r\n\t.loading_leaf_2{\r\n\t\tanimation: opacity-60-25-2-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_2:before{\r\n\t\ttransform: rotate(60deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\r\n\t.loading_leaf_3{\r\n\t\tanimation: opacity-60-25-3-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_3:before{\r\n\t\ttransform: rotate(90deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_4{\r\n\t\tanimation: opacity-60-25-4-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_4:before{\r\n\t\ttransform: rotate(120deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_5{\r\n\t\tanimation: opacity-60-25-5-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_5:before{\r\n\t\ttransform: rotate(150deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_6{\r\n\t\tanimation: opacity-60-25-6-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_6:before{\r\n\t\ttransform: rotate(180deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_7{\r\n\t\tanimation: opacity-60-25-7-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_7:before{\r\n\t\ttransform: rotate(210deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_8{\r\n\t\tanimation: opacity-60-25-8-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_8:before{\r\n\t\ttransform: rotate(240deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_9{\r\n\t\tanimation: opacity-60-25-9-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_9:before{\r\n\t\ttransform: rotate(270deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_10{\r\n\t\tanimation: opacity-60-25-10-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_10:before{\r\n\t\ttransform: rotate(300deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_11{\r\n\t\tanimation: opacity-60-25-11-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_11:before{\r\n\t\ttransform: rotate(330deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_12{\r\n\t\tanimation: opacity-60-25-12-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_12:before{\r\n\t\ttransform: rotate(360deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\r\n\t@-webkit-keyframes opacity-60-25-0-12 {\r\n\t  0% { opacity: 0.25; }\r\n\t  0.01% { opacity: 0.25; }\r\n\t  0.02% { opacity: 1; }\r\n\t  60.01% { opacity: 0.25; }\r\n\t  100% { opacity: 0.25; }\r\n\t}@-webkit-keyframes opacity-60-25-1-12 {\r\n\t  0% { opacity: 0.25; }\r\n\t  8.34333% { opacity: 0.25; }\r\n\t  8.35333% { opacity: 1; }\r\n\t  68.3433% { opacity: 0.25; }\r\n\t  100% { opacity: 0.25; }\r\n\t}@-webkit-keyframes opacity-60-25-2-12 {\r\n\t  0% { opacity: 0.25; }\r\n\t  16.6767% { opacity: 0.25; }\r\n\t  16.6867% { opacity: 1; }\r\n\t  76.6767% { opacity: 0.25; }\r\n\t  100% { opacity: 0.25; }\r\n\t}@-webkit-keyframes opacity-60-25-3-12 {\r\n\t  0% { opacity: 0.25; }\r\n\t  25.01% { opacity: 0.25; }\r\n\t  25.02% { opacity: 1; }\r\n\t  85.01% { opacity: 0.25; }\r\n\t  100% { opacity: 0.25; }\r\n\t}@-webkit-keyframes opacity-60-25-4-12 {\r\n\t  0% { opacity: 0.25; }\r\n\t  33.3433% { opacity: 0.25; }\r\n\t  33.3533% { opacity: 1; }\r\n\t  93.3433% { opacity: 0.25; }\r\n\t  100% { opacity: 0.25; }\r\n\t}@-webkit-keyframes opacity-60-25-5-12 {\r\n\t  0% { opacity: 0.270958333333333; }\r\n\t  41.6767% { opacity: 0.25; }\r\n\t  41.6867% { opacity: 1; }\r\n\t  1.67667% { opacity: 0.25; }\r\n\t  100% { opacity: 0.270958333333333; }\r\n\t}@-webkit-keyframes opacity-60-25-6-12 {\r\n\t  0% { opacity: 0.375125; }\r\n\t  50.01% { opacity: 0.25; }\r\n\t  50.02% { opacity: 1; }\r\n\t  10.01% { opacity: 0.25; }\r\n\t  100% { opacity: 0.375125; }\r\n\t}@-webkit-keyframes opacity-60-25-7-12 {\r\n\t  0% { opacity: 0.479291666666667; }\r\n\t  58.3433% { opacity: 0.25; }\r\n\t  58.3533% { opacity: 1; }\r\n\t  18.3433% { opacity: 0.25; }\r\n\t  100% { opacity: 0.479291666666667; }\r\n\t}@-webkit-keyframes opacity-60-25-8-12 {\r\n\t  0% { opacity: 0.583458333333333; }\r\n\t  66.6767% { opacity: 0.25; }\r\n\t  66.6867% { opacity: 1; }\r\n\t  26.6767% { opacity: 0.25; }\r\n\t  100% { opacity: 0.583458333333333; }\r\n\t}@-webkit-keyframes opacity-60-25-9-12 {\r\n\t  0% { opacity: 0.687625; }\r\n\t  75.01% { opacity: 0.25; }\r\n\t  75.02% { opacity: 1; }\r\n\t  35.01% { opacity: 0.25; }\r\n\t  100% { opacity: 0.687625; }\r\n\t}@-webkit-keyframes opacity-60-25-10-12 {\r\n\t  0% { opacity: 0.791791666666667; }\r\n\t  83.3433% { opacity: 0.25; }\r\n\t  83.3533% { opacity: 1; }\r\n\t  43.3433% { opacity: 0.25; }\r\n\t  100% { opacity: 0.791791666666667; }\r\n\t}@-webkit-keyframes opacity-60-25-11-12 {\r\n\t  0% { opacity: 0.895958333333333; }\r\n\t  91.6767% { opacity: 0.25; }\r\n\t  91.6867% { opacity: 1; }\r\n\t  51.6767% { opacity: 0.25; }\r\n\t  100% { opacity: 0.895958333333333; }\r\n\t}\r\n\r\n</style>\r\n\r\n\r\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 134 */
 /***/ function(module, exports) {
 
 	"use strict";
 	
-	var DateHelper = {
-		//获取档期的日期
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// <template>
+	// 	<section class="toast" v-show="show">
+	// 		<section class="toast-mask"></section>
+	// 		<section class="toast-bd">
+	// 			<section class="loading" v-if="isload">
+	// 				<div class="loading_leaf loading_leaf_0"></div>
+	// 				<div class="loading_leaf loading_leaf_1"></div>
+	// 				<div class="loading_leaf loading_leaf_2"></div>
+	// 				<div class="loading_leaf loading_leaf_3"></div>
+	// 				<div class="loading_leaf loading_leaf_4"></div>
+	// 				<div class="loading_leaf loading_leaf_5"></div>
+	// 				<div class="loading_leaf loading_leaf_6"></div>
+	// 				<div class="loading_leaf loading_leaf_7"></div>
+	// 				<div class="loading_leaf loading_leaf_8"></div>
+	// 				<div class="loading_leaf loading_leaf_9"></div>
+	// 				<div class="loading_leaf loading_leaf_10"></div>
+	// 				<div class="loading_leaf loading_leaf_11"></div>
+	// 			</section>
+	// 			<section class="prompt" v-else>
+	// 				<i class="weui_icon_toast"></i>
+	// 			</section>
+	// 			<p class="toast-content" >{{prompt}}</p>
+	// 		</section>
+	// 	</section>
+	// </template>
 	
-		getCurrentDate: function getCurrentDate(formate) {
-			var date = new Date();
-			var year = date.getFullYear();
-			var month = parseInt(date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-			var day = date.getDate();
-			var hour = date.getHours();
-			var min = date.getMinutes();
-			var sec = date.getSeconds();
-			var result = "";
-			if (formate.indexOf("yyyy") >= 0) {
-				result = year;
-			}
-			if (formate.indexOf("MM") >= 0) {
-				result += "-" + month;
-			}
-			if (formate.indexOf("dd") >= 0) {
-				result += "-" + day;
-			}
-			if (formate.indexOf("HH") >= 0) {
-				result += "-" + hour;
-			}
+	// <script lang="babel">
 	
-			if (formate.indexOf("mm") >= 0) {
-				result += "-" + min;
+	exports.default = {
+		props: {
+			show: {
+				type: Boolean,
+				default: false
+			},
+			//显示的时常
+			seconds: {
+				type: Number,
+				default: 5
+			},
+			isload: {
+				type: Boolean,
+				default: false
+			},
+			prompt: {
+				type: String,
+				default: '已经完成'
 			}
-			if (formate.indexOf("ss") >= 0) {
-				result += "-" + sec;
+		},
+		data: function data() {
+			return {
+				sec: 0
+			};
+		},
+		ready: function ready() {
+			var _this = this;
+	
+			if (!this.isload) {
+				setTimeout(function () {
+					_this.show = false;
+				}, this.seconds * 1000);
 			}
-			return result;
+		},
+		created: function created() {
+			if (this.isload) {
+				this.prompt = "正在加载中..";
+			}
 		}
 	};
+	
+	// </script>
+
+	// <style type="text/css" scoped>
+
+	// 	.toast{
+	// 		position: fixed;
+	// 	    z-index: 3;
+	// 	    width: 7.6em;
+	// 	    min-height: 7.6em;
+	// 	    top: 180px;
+	// 	    left: 50%;
+	// 	    margin-left: -3.8em;
+	// 	    background: rgba(40, 40, 40, 0.75);
+	// 	    text-align: center;
+	// 	    border-radius: 5px;
+	// 	    color: #FFFFFF;
+	// 	}
+
+	// 	/*遮罩*/
+	// 	.toast-mask{
+	// 		position: fixed;
+	// 		top: 0;
+	// 		left: 0;
+	// 		z-index: 10px;
+	// 		height: 100%;
+	// 		width: 100%;
+	// 	}
+
+	// 	.toast-bd>.loading{
+	// 		position: absolute;
+	// 	    width: 0px;
+	// 	    z-index: 20;
+	// 	    left: 50%;
+	// 	    top: 38%;
+	// 	}
+
+	// 	.toast-content{
+	// 		margin: 0 0 15px;
+	// 		margin-top:10%;
+	//       	font-size:14px;
+	// 	}
+
+	// 	.loading_leaf{
+	// 		position: absolute;
+	// 	    top: -1px;
+	// 	    opacity: 0.25;
+	// 	}
+
+	// 	.loading_leaf:before{
+	// 		content:" ";
+	//         position: absolute;
+	//         width: 8.14px;
+	//         height: 3.08px;
+	//         background: rgb(209, 209, 213);
+	//         box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;
+	//         border-radius: 1px;
+	//         transform-origin: left 50% 0px;
+	// 	}
+
+	// 	.loading_leaf_0{
+	// 		animation: opacity-60-25-0-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_0:before{
+	// 		transform: rotate(0deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_1{
+	// 		animation: opacity-60-25-1-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_1:before{
+	// 		transform: rotate(30deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_2{
+	// 		animation: opacity-60-25-2-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_2:before{
+	// 		transform: rotate(60deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_3{
+	// 		animation: opacity-60-25-3-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_3:before{
+	// 		transform: rotate(90deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_4{
+	// 		animation: opacity-60-25-4-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_4:before{
+	// 		transform: rotate(120deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_5{
+	// 		animation: opacity-60-25-5-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_5:before{
+	// 		transform: rotate(150deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_6{
+	// 		animation: opacity-60-25-6-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_6:before{
+	// 		transform: rotate(180deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_7{
+	// 		animation: opacity-60-25-7-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_7:before{
+	// 		transform: rotate(210deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_8{
+	// 		animation: opacity-60-25-8-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_8:before{
+	// 		transform: rotate(240deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_9{
+	// 		animation: opacity-60-25-9-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_9:before{
+	// 		transform: rotate(270deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_10{
+	// 		animation: opacity-60-25-10-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_10:before{
+	// 		transform: rotate(300deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_11{
+	// 		animation: opacity-60-25-11-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_11:before{
+	// 		transform: rotate(330deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_12{
+	// 		animation: opacity-60-25-12-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_12:before{
+	// 		transform: rotate(360deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	@-webkit-keyframes opacity-60-25-0-12 {
+	// 	  0% { opacity: 0.25; }
+	// 	  0.01% { opacity: 0.25; }
+	// 	  0.02% { opacity: 1; }
+	// 	  60.01% { opacity: 0.25; }
+	// 	  100% { opacity: 0.25; }
+	// 	}@-webkit-keyframes opacity-60-25-1-12 {
+	// 	  0% { opacity: 0.25; }
+	// 	  8.34333% { opacity: 0.25; }
+	// 	  8.35333% { opacity: 1; }
+	// 	  68.3433% { opacity: 0.25; }
+	// 	  100% { opacity: 0.25; }
+	// 	}@-webkit-keyframes opacity-60-25-2-12 {
+	// 	  0% { opacity: 0.25; }
+	// 	  16.6767% { opacity: 0.25; }
+	// 	  16.6867% { opacity: 1; }
+	// 	  76.6767% { opacity: 0.25; }
+	// 	  100% { opacity: 0.25; }
+	// 	}@-webkit-keyframes opacity-60-25-3-12 {
+	// 	  0% { opacity: 0.25; }
+	// 	  25.01% { opacity: 0.25; }
+	// 	  25.02% { opacity: 1; }
+	// 	  85.01% { opacity: 0.25; }
+	// 	  100% { opacity: 0.25; }
+	// 	}@-webkit-keyframes opacity-60-25-4-12 {
+	// 	  0% { opacity: 0.25; }
+	// 	  33.3433% { opacity: 0.25; }
+	// 	  33.3533% { opacity: 1; }
+	// 	  93.3433% { opacity: 0.25; }
+	// 	  100% { opacity: 0.25; }
+	// 	}@-webkit-keyframes opacity-60-25-5-12 {
+	// 	  0% { opacity: 0.270958333333333; }
+	// 	  41.6767% { opacity: 0.25; }
+	// 	  41.6867% { opacity: 1; }
+	// 	  1.67667% { opacity: 0.25; }
+	// 	  100% { opacity: 0.270958333333333; }
+	// 	}@-webkit-keyframes opacity-60-25-6-12 {
+	// 	  0% { opacity: 0.375125; }
+	// 	  50.01% { opacity: 0.25; }
+	// 	  50.02% { opacity: 1; }
+	// 	  10.01% { opacity: 0.25; }
+	// 	  100% { opacity: 0.375125; }
+	// 	}@-webkit-keyframes opacity-60-25-7-12 {
+	// 	  0% { opacity: 0.479291666666667; }
+	// 	  58.3433% { opacity: 0.25; }
+	// 	  58.3533% { opacity: 1; }
+	// 	  18.3433% { opacity: 0.25; }
+	// 	  100% { opacity: 0.479291666666667; }
+	// 	}@-webkit-keyframes opacity-60-25-8-12 {
+	// 	  0% { opacity: 0.583458333333333; }
+	// 	  66.6767% { opacity: 0.25; }
+	// 	  66.6867% { opacity: 1; }
+	// 	  26.6767% { opacity: 0.25; }
+	// 	  100% { opacity: 0.583458333333333; }
+	// 	}@-webkit-keyframes opacity-60-25-9-12 {
+	// 	  0% { opacity: 0.687625; }
+	// 	  75.01% { opacity: 0.25; }
+	// 	  75.02% { opacity: 1; }
+	// 	  35.01% { opacity: 0.25; }
+	// 	  100% { opacity: 0.687625; }
+	// 	}@-webkit-keyframes opacity-60-25-10-12 {
+	// 	  0% { opacity: 0.791791666666667; }
+	// 	  83.3433% { opacity: 0.25; }
+	// 	  83.3533% { opacity: 1; }
+	// 	  43.3433% { opacity: 0.25; }
+	// 	  100% { opacity: 0.791791666666667; }
+	// 	}@-webkit-keyframes opacity-60-25-11-12 {
+	// 	  0% { opacity: 0.895958333333333; }
+	// 	  91.6767% { opacity: 0.25; }
+	// 	  91.6867% { opacity: 1; }
+	// 	  51.6767% { opacity: 0.25; }
+	// 	  100% { opacity: 0.895958333333333; }
+	// 	}
+
+	// </style>
+
+/***/ },
+/* 135 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<section class=\"toast\" v-show=\"show\" _v-4de571aa=\"\">\n\t<section class=\"toast-mask\" _v-4de571aa=\"\"></section>\n\t<section class=\"toast-bd\" _v-4de571aa=\"\">\n\t\t<section class=\"loading\" v-if=\"isload\" _v-4de571aa=\"\">\n\t\t\t<div class=\"loading_leaf loading_leaf_0\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_1\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_2\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_3\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_4\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_5\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_6\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_7\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_8\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_9\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_10\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_11\" _v-4de571aa=\"\"></div>\n\t\t</section>\n\t\t<section class=\"prompt\" v-else=\"\" _v-4de571aa=\"\">\n\t\t\t<i class=\"weui_icon_toast\" _v-4de571aa=\"\"></i>\n\t\t</section>\n\t\t<p class=\"toast-content\" _v-4de571aa=\"\">{{prompt}}</p>\n\t</section>\n</section>\n";
 
 /***/ }
 /******/ ]);

@@ -11,7 +11,10 @@ import VueTouch from './plugns/vTouch'
 //加载数据请求组件
 import VueResource from 'vue-resource'
 
+//加载weui
+
     // 1:创建启动的版本
+
 
 Vue.use(Router)
 Vue.use(VueTouch)
