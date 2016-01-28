@@ -13930,7 +13930,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.tab-content > .tab-pane[_v-48b39499] {\n   /*overflow: auto;\n  -webkit-overflow-scrolling: touch;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-flex: 0 1 auto;\n  -ms-flex: 0 1 auto;\n  flex: 0 1 auto;*/\n  /*width: 100%;*/\n  height: 100%;\n  /*flex-flow:column nowrap;*/\n}\n", "", {"version":3,"sources":["/./src/components/Tab.vue?d6eda51e"],"names":[],"mappings":";AA0DA;GACA;;;;;;;mBAOA;EACA,gBAAA;EACA,aAAA;EACA,4BAAA;CACA","file":"Tab.vue","sourcesContent":["<template>\r\n    <div role=\"tabpanel\" class=\"tab-pane\"\r\n        v-bind:class=\"{hide:!show}\"\r\n        v-show=\"show\"\r\n        :transition=\"transition\"\r\n    >\r\n    <slot></slot>\r\n  </div>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    props: {\r\n      header: {\r\n        type: String\r\n      },\r\n      disabled: {\r\n        type: Boolean,\r\n        default: false\r\n      }\r\n    },\r\n    data() {\r\n      return {\r\n        index: 0,\r\n        show: false\r\n      }\r\n    },\r\n    computed: {\r\n      show() {\r\n        return (this.$parent.activeIndex == this.index);\r\n      },\r\n      transition() {\r\n        return this.$parent.effect\r\n      }\r\n    },\r\n    created() {\r\n       console.log(\"进入tabItem created\")\r\n      \r\n        this.$parent.tabItems.push({\r\n          header: this.header,\r\n          disabled: this.disabled\r\n        })\r\n    },\r\n    ready() {\r\n       console.log(\"进入tabItem ready\")\r\n        for (var c in this.$parent.$children)\r\n        {\r\n            if (this.$parent.$children[c].$el == this.$el)\r\n            {\r\n                this.index= c;\r\n                break;\r\n            }\r\n        }\r\n    }\r\n  }\r\n</script>\r\n\r\n<style scoped>\r\n  .tab-content > .tab-pane {\r\n     /*overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n    display: -webkit-flex;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-flex: 0 1 auto;\r\n    -ms-flex: 0 1 auto;\r\n    flex: 0 1 auto;*/\r\n    /*width: 100%;*/\r\n    height: 100%;\r\n    /*flex-flow:column nowrap;*/\r\n  }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.tab-content > .tab-pane[_v-48b39499] {\n   overflow: auto;\n  -webkit-overflow-scrolling: touch;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: -webkit-box;\n  display: flex;\n  -webkit-flex: 0 1 auto;\n  -ms-flex: 0 1 auto;\n  -webkit-box-flex: 0;\n          flex: 0 1 auto;\n  width: 100%;\n  \n  height: 100%;\n  -webkit-flex-flow:column nowrap;\n      -ms-flex-flow:column nowrap;\n          flex-flow:column nowrap;\n}\n", "", {"version":3,"sources":["/./src/components/Tab.vue?6e963178"],"names":[],"mappings":";AA0DA;GACA,eAAA;EACA,kCAAA;EACA,sBAAA;EACA,qBAAA;EACA,qBAAA;EAAA,cAAA;EACA,uBAAA;EACA,mBAAA;EACA,oBAAA;UAAA,eAAA;EACA,YAAA;;EAEA,aAAA;EACA,gCAAA;MAAA,4BAAA;UAAA,wBAAA;CACA","file":"Tab.vue","sourcesContent":["<template>\r\n    <div role=\"tabpanel\" class=\"tab-pane\"\r\n        v-bind:class=\"{hide:!show}\"\r\n        v-show=\"show\"\r\n        :transition=\"transition\"\r\n    >\r\n    <slot></slot>\r\n  </div>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    props: {\r\n      header: {\r\n        type: String\r\n      },\r\n      disabled: {\r\n        type: Boolean,\r\n        default: false\r\n      }\r\n    },\r\n    data() {\r\n      return {\r\n        index: 0,\r\n        show: false\r\n      }\r\n    },\r\n    computed: {\r\n      show() {\r\n        return (this.$parent.activeIndex == this.index);\r\n      },\r\n      transition() {\r\n        return this.$parent.effect\r\n      }\r\n    },\r\n    created() {\r\n       console.log(\"进入tabItem created\")\r\n      \r\n        this.$parent.tabItems.push({\r\n          header: this.header,\r\n          disabled: this.disabled\r\n        })\r\n    },\r\n    ready() {\r\n       console.log(\"进入tabItem ready\")\r\n        for (var c in this.$parent.$children)\r\n        {\r\n            if (this.$parent.$children[c].$el == this.$el)\r\n            {\r\n                this.index= c;\r\n                break;\r\n            }\r\n        }\r\n    }\r\n  }\r\n</script>\r\n\r\n<style scoped>\r\n  .tab-content > .tab-pane {\r\n     overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n    display: -webkit-flex;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-flex: 0 1 auto;\r\n    -ms-flex: 0 1 auto;\r\n    flex: 0 1 auto;\r\n    width: 100%;\r\n    \r\n    height: 100%;\r\n    flex-flow:column nowrap;\r\n  }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -14002,17 +14002,18 @@
 
 	// <style scoped>
 	//   .tab-content > .tab-pane {
-	//      /*overflow: auto;
+	//      overflow: auto;
 	//     -webkit-overflow-scrolling: touch;
 	//     display: -webkit-flex;
 	//     display: -ms-flexbox;
 	//     display: flex;
 	//     -webkit-flex: 0 1 auto;
 	//     -ms-flex: 0 1 auto;
-	//     flex: 0 1 auto;*/
-	//     /*width: 100%;*/
+	//     flex: 0 1 auto;
+	//     width: 100%;
+
 	//     height: 100%;
-	//     /*flex-flow:column nowrap;*/
+	//     flex-flow:column nowrap;
 	//   }
 	// </style>
 
@@ -14268,62 +14269,56 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n\t/*list集合*/\n\t.pull-list{\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -webkit-flex;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t   \t-webkit-flex-flow:column nowrap;\n\t   \t    -ms-flex-flow:column nowrap;\n\t   \t        flex-flow:column nowrap;\n\t  \tmin-height: 35px;\n\t  \t-webkit-box-pack:start;\n\t  \t-webkit-justify-content:flex-start;\n\t  \t    -ms-flex-pack:start;\n\t  \t        justify-content:flex-start;\n\t  \t-webkit-box-flex:0;\n\t  \t-webkit-flex:0 1 auto;\n\t  \t    -ms-flex:0 1 auto;\n\t  \t        flex:0 1 auto;\n\t   \theight: 100%;\n\t}\n\n\t\n\t.pull-header,.pull-footer{\n\t     display: -webkit-box;\n\t     display: -webkit-flex;\n\t     display: -ms-flexbox;\n\t     display: flex;\n     \t -webkit-flex-flow:row nowrap;\n     \t     -ms-flex-flow:row nowrap;\n     \t         flex-flow:row nowrap;\n\t     min-height: 35px;\n\t     height: 60px;\n\t     -webkit-box-pack:center;\n\t     -webkit-justify-content:center;\n\t         -ms-flex-pack:center;\n\t             justify-content:center;\n\t     -webkit-box-flex:0;\n\t     -webkit-flex:0 1 auto;\n\t         -ms-flex:0 1 auto;\n\t             flex:0 1 auto;\n\t     -webkit-box-align:center;\n\t     -webkit-align-items:center;\n\t         -ms-flex-align:center;\n\t             align-items:center;\n\t     aiign-content:center;\n\t}\n\n\t.pull-header{\n\t    \n\t\tmargin-top: -60px;\n\t\tborder-bottom: 1px solid whitesmoke;\n\t}\n\t.pull-footer{\n\t\tmargin-bottom: -60px;\n\t\tborder-top: 1px solid whitesmoke;\n\t}\n\n\t.pull-header>img,.pull-footer>img{\n\t\t -webkit-transition: -webkit-transform .3s ease;\n\t\t transition: -webkit-transform .3s ease;\n\t\t transition: transform .3s ease;\n\t\t transition: transform .3s ease, -webkit-transform .3s ease;\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n\t      -o-transition: transform .3s ease; /* Opera */\n\t}\n\n\n\t.pull-header>div,.pull-footer>div{\n\t\tfont-size: 12px;\n\t\tmargin-left: 12px;\n\t}\n\t\n\n\t.pull-content{\n\t\toverflow: auto;\n\t    -webkit-overflow-scrolling: touch;\n\t    display: -webkit-flex;\n\t    display: -ms-flexbox;\n\t    display: -webkit-box;\n\t    display: flex;\n\t    -webkit-flex: 0 1 auto;\n\t    -ms-flex: 0 1 auto;\n\t    -webkit-box-flex: 0;\n\t            flex: 0 1 auto;\n\t    margin-bottom: 10px;\n\t   \n\t    -webkit-flex-flow:column nowrap;\n\t   \n\t        -ms-flex-flow:column nowrap;\n\t   \n\t            flex-flow:column nowrap;\n\t    padding: 5px;\n\t}\n", "", {"version":3,"sources":["/./src/components/PullList.vue?542aef98"],"names":[],"mappings":";;CAyJA,UAAA;CACA;EACA,qBAAA;EAAA,sBAAA;EAAA,qBAAA;EAAA,cAAA;KACA,gCAAA;SAAA,4BAAA;aAAA,wBAAA;IACA,iBAAA;IACA,uBAAA;IAAA,mCAAA;QAAA,oBAAA;YAAA,2BAAA;IACA,mBAAA;IAAA,sBAAA;QAAA,kBAAA;YAAA,cAAA;KACA,aAAA;EACA;;;CAGA;MACA,qBAAA;MAAA,sBAAA;MAAA,qBAAA;MAAA,cAAA;OACA,6BAAA;WAAA,yBAAA;eAAA,qBAAA;MACA,iBAAA;MACA,aAAA;MACA,wBAAA;MAAA,+BAAA;UAAA,qBAAA;cAAA,uBAAA;MACA,mBAAA;MAAA,sBAAA;UAAA,kBAAA;cAAA,cAAA;MACA,yBAAA;MAAA,2BAAA;UAAA,sBAAA;cAAA,mBAAA;MACA,qBAAA;EACA;;CAEA;;EAEA,kBAAA;EACA,oCAAA;EACA;CACA;EACA,qBAAA;EACA,iCAAA;EACA;;CAEA;GACA,+CAAA;GAAA,uCAAA;GAAA,+BAAA;GAAA,2DAAA;OACA,oCAAA,eAAA;OACA,uCAAA,CAAA,qBAAA;OACA,kCAAA,CAAA,WAAA;EACA;;;CAGA;EACA,gBAAA;EACA,kBAAA;EACA;;;CAGA;EACA,eAAA;KACA,kCAAA;KACA,sBAAA;KACA,qBAAA;KACA,qBAAA;KAAA,cAAA;KACA,uBAAA;KACA,mBAAA;KACA,oBAAA;aAAA,eAAA;KACA,oBAAA;;KAEA,gCAAA;;SAAA,4BAAA;;aAAA,wBAAA;KACA,aAAA;EACA","file":"PullList.vue","sourcesContent":["<!-- 下拉刷新组件 -->\r\n\r\n<template>\r\n\t<section class=\"pull-list\" v-touch:pandown=\"pullToRefresh\" v-touch:panup=\"loadMore\" v-touch:panend=\"panleave\"   >\r\n\t\t<header class=\"pull-header\">\r\n\t\t\t<div>\r\n\t\t\t\t<img class=\"downImg\" src=\"../assets/images/components/icon-down.png\" alt=\"下拉\">\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<p>{{refreshText}}</p>\r\n\t\t\t\t<p>最后更新:{{rlastTime}}</p>\r\n\t\t\t</div>\r\n\t\t</header>\r\n\t\t<div class=\"pull-content\" v-on:scroll=\"scroll($event)\" v-el:listContent>\r\n\t\t\t<slot ></slot>\r\n\t\t</div>\r\n\t\t<footer class=\"pull-footer\" v-show=\"showfooter\">\r\n\t\t\t<div>\r\n\t\t\t\t<img class=\"upImg\" src=\"../assets/images/components/icon-up.png\" alt=\"上拉\">\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<p>{{moreText}}</p>\r\n\t\t\t\t<p>最后更新:{{mlastTime}}</p>\r\n\t\t\t</div>\r\n\t\t</footer>\r\n\t</section>\r\n\t\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\texport default {\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\trlastTime:'2016-01-27',\r\n\t\t\t\tmlastTime:'2015-02-22',\r\n\t\t\t\trefreshText:'下拉刷新',\r\n\t\t\t\tmoreText:'加载更多',\r\n\t\t\t\tisRefresh:false,\r\n\t\t\t\tshowfooter:false,\r\n\t\t\t\tarrow:'down',//下拉和上拉的标识\r\n\t\t\t\ttop:0\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\t\r\n\t\t\tmove(height){\r\n\t\t\t\tvar list=this.$el;\r\n\t\t\t\t//获取角度\r\n\t\t\t\tvar rotateHeight=height<90?height*2:180;\r\n\t\t\t\tif(this.arrow==\"down\"){\r\n\t\t\t\t\tlist.style.transform=\"translateY(\"+height+\"px)\";\r\n\t\t\t\t\tvar img=list.getElementsByTagName('header')[0].getElementsByTagName('img')[0];\r\n\t\t\t\t\timg.style.transform=\"rotate(\"+rotateHeight+\"deg)\"\r\n\t\t\t\t}else{\r\n\t\t\t\t\tlist.style.transform=\"translateY(-\"+height+\"px)\";\r\n\t\t\t\t\t//先检查底部的div是否显示出来,如果显示出来了,那么在找到对应的图标\r\n\t\t\t\t\tif(list.getElementsByTagName('footer')[0]){\r\n\t\t\t\t\t\tvar img=list.getElementsByTagName('footer')[0].getElementsByTagName('img')[0];\r\n\t\t\t\t\t\timg.style.transform=\"rotate(\"+rotateHeight+\"deg)\"\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\tscroll(e){\r\n\t\t\t\tconsole.log(e);\r\n\t\t\t\tthis.top=e.target.scrollTop;\r\n\t\t\t\tconsole.log(\"list集合的滚动\"+e.target.scrollTop);\r\n\t\t\t},\r\n\t\t\tgetCurTime(){\r\n\t\t\t\t// var date=new Date();\r\n\t\t\t\t// return date.getFullYear()+\"\"\r\n\t\t\t},\r\n\t\t\tpanleave(e){\r\n\t\t\t\t\r\n\t\t\t\tif(this.arrow==\"down\"){\r\n\t\t\t\t\tthis.move(0)\r\n\t\t\t\t\tthis.refreshText=\"下拉刷新\";\r\n\t\t\t\t\t//得到当前的时间\r\n\t\t\t\t\tif(this.isRefresh){\r\n\t\t\t\t\t\tthis.isRefresh=false;\r\n\t\t\t\t\t\tthis.$emit('reload');\r\n\t\t\t\t\t}\r\n\t\t\t\t\t// this.$broadcast('list-reload');\r\n\t\t\t\t}else if(this.arrow==\"up\"){\r\n\t\t\t\t\tthis.showfooter=false;\r\n\t\t\t\t\tthis.moreText=\"加载更多\";\r\n\t\t\t\t\tthis.move(0)\r\n\t\t\t\t\tif(this.isRefresh){\r\n\t\t\t\t\t\tthis.isRefresh=false;\r\n\t\t\t\t\t\tthis.$emit('loadmore');\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\tgetScrollTop(){\r\n\t\t\t\tvar scrollPos; \r\n\t\t\t\tif (window.pageYOffset) {\r\n\t\t\t\t\tscrollPos = window.pageYOffset;\r\n\t\t\t\t} \r\n\t\t\t\telse if (document.compatMode && document.compatMode != 'BackCompat') {\r\n\t\t\t\t scrollPos = document.documentElement.scrollTop;\r\n\t\t\t\t} else if (document.body) { \r\n\t\t\t\t\tscrollPos = document.body.scrollTop;\r\n\t\t\t    } \r\n\t\t\t    return scrollPos; \r\n\t\t\t},\r\n\t\t\t// 下拉刷新事件\r\n\t\t\tpullToRefresh(e){\r\n\t\t\t\tif(this.top==0){\r\n\t\t\t\t \tvar distance=e.distance;\r\n\t\t\t\t \tthis.arrow='down';\r\n\t\t\t\t \tthis.move(distance);\r\n\t\t\t\t \tif(distance>90){\r\n\t\t\t\t\t\tthis.refreshText=\"松开后刷新\";\r\n\t\t\t\t \t\tthis.isRefresh=true;\r\n\t\t\t\t \t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t//加载更多\r\n\t\t\tloadMore(e){\r\n\t\t\t\t//得到滚动的距离\r\n\r\n\t\t\t\tvar listObj=this.$el.getElementsByTagName('ul')[0];\r\n\t\t\t\t// console.log(listObj);\r\n\t\t\t\t//1:滚动的高度\r\n\t\t\t\t// console.log(listObj);\r\n\t\t\t\tvar scrollHeight=this.top;\r\n\t\t\t\t//2:可见区域的高度\r\n\t\t\t\tvar offsetHeight=document.body.offsetHeight;\r\n\r\n\t\t\t\t//3:整个内容的高度\r\n\t\t\t\tvar winHeight=listObj.scrollHeight;\r\n\r\n\t\t\t\tconsole.log(\"滚动条距离窗口的高度:\"+scrollHeight+\"-窗口的可见区域：\"+offsetHeight+\"整个ul的高度:\"+winHeight);\r\n\t\t\t\t//判断滚动的距离+当前窗口的宽度是否\r\n\t\t\t\tif((winHeight-5)<(scrollHeight+offsetHeight)){\r\n\t\t\t\t\tconsole.log('触发加载更多事件')\r\n\t\t\t\t\tthis.showfooter=true;\r\n\t\t\t\t\tthis.arrow='up';\r\n\t\t\t\t\tvar distance=e.distance;\r\n\t\t\t\t \tconsole.log(\"拉动的距离\"+distance)\r\n\t\t\t\t \tthis.move(distance);\r\n\t\t\t\t \tif(distance>90){\r\n\t\t\t\t\t\tthis.moreText=\"松开后刷新\";\r\n\t\t\t\t \t\tthis.isRefresh=true;\r\n\t\t\t\t \t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style >\r\n\r\n\t/*list集合*/\r\n\t.pull-list{\r\n\t\tdisplay: flex;\r\n\t   \tflex-flow:column nowrap;\r\n\t  \tmin-height: 35px;\r\n\t  \tjustify-content:flex-start;\r\n\t  \tflex:0 1 auto;\r\n\t   \theight: 100%;\r\n\t}\r\n\r\n\t\r\n\t.pull-header,.pull-footer{\r\n\t     display: flex;\r\n     \t flex-flow:row nowrap;\r\n\t     min-height: 35px;\r\n\t     height: 60px;\r\n\t     justify-content:center;\r\n\t     flex:0 1 auto;\r\n\t     align-items:center;\r\n\t     aiign-content:center;\r\n\t}\r\n\r\n\t.pull-header{\r\n\t    \r\n\t\tmargin-top: -60px;\r\n\t\tborder-bottom: 1px solid whitesmoke;\r\n\t}\r\n\t.pull-footer{\r\n\t\tmargin-bottom: -60px;\r\n\t\tborder-top: 1px solid whitesmoke;\r\n\t}\r\n\r\n\t.pull-header>img,.pull-footer>img{\r\n\t\t transition: transform .3s ease;\r\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n\t      -o-transition: transform .3s ease; /* Opera */\r\n\t}\r\n\r\n\r\n\t.pull-header>div,.pull-footer>div{\r\n\t\tfont-size: 12px;\r\n\t\tmargin-left: 12px;\r\n\t}\r\n\t\r\n\r\n\t.pull-content{\r\n\t\toverflow: auto;\r\n\t    -webkit-overflow-scrolling: touch;\r\n\t    display: -webkit-flex;\r\n\t    display: -ms-flexbox;\r\n\t    display: flex;\r\n\t    -webkit-flex: 0 1 auto;\r\n\t    -ms-flex: 0 1 auto;\r\n\t    flex: 0 1 auto;\r\n\t    margin-bottom: 10px;\r\n\t   \r\n\t    flex-flow:column nowrap;\r\n\t    padding: 5px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n\t/*list集合*/\n\t.pull-list{\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -webkit-flex;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t   \t-webkit-flex-flow:column nowrap;\n\t   \t    -ms-flex-flow:column nowrap;\n\t   \t        flex-flow:column nowrap;\n\t  \tmin-height: 120px;\n\t  \t-webkit-box-pack:start;\n\t  \t-webkit-justify-content:flex-start;\n\t  \t    -ms-flex-pack:start;\n\t  \t        justify-content:flex-start;\n\t  \t-webkit-box-flex:0;\n\t  \t-webkit-flex:0 1 auto;\n\t  \t    -ms-flex:0 1 auto;\n\t  \t        flex:0 1 auto;\n\t   \theight: 100%;\n\t}\n\n\t\n\t.pull-header,.pull-footer{\n\t     display: -webkit-box;\n\t     display: -webkit-flex;\n\t     display: -ms-flexbox;\n\t     display: flex;\n     \t -webkit-flex-flow:row nowrap;\n     \t     -ms-flex-flow:row nowrap;\n     \t         flex-flow:row nowrap;\n\t     min-height: 60px;\n\t     height: 60px;\n\t     -webkit-box-pack:center;\n\t     -webkit-justify-content:center;\n\t         -ms-flex-pack:center;\n\t             justify-content:center;\n\t     -webkit-box-flex:0;\n\t     -webkit-flex:0 1 auto;\n\t         -ms-flex:0 1 auto;\n\t             flex:0 1 auto;\n\t     -webkit-box-align:center;\n\t     -webkit-align-items:center;\n\t         -ms-flex-align:center;\n\t             align-items:center;\n\t     aiign-content:center;\n\t}\n\n\t.pull-header{\n\t    \n\t\tmargin-top: -60px;\n\t\tborder-bottom: 1px solid whitesmoke;\n\n\t}\n\t.pull-footer{\n\t\tmargin-bottom: -60px;\n\t\tborder-top: 1px solid whitesmoke;\n\t}\n\n\t.pull-header>img,.pull-footer>img{\n\t\t -webkit-transition: -webkit-transform .3s ease;\n\t\t transition: -webkit-transform .3s ease;\n\t\t transition: transform .3s ease;\n\t\t transition: transform .3s ease, -webkit-transform .3s ease;\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n\t      -o-transition: transform .3s ease; /* Opera */\n\t}\n\n\n\t.pull-header>div,.pull-footer>div{\n\t\tfont-size: 12px;\n\t\tmargin-left: 12px;\n\t}\n\t\n\n\t.pull-content{\n\t\toverflow: auto;\n\t    -webkit-overflow-scrolling: touch;\n\t    display: -webkit-flex;\n\t    display: -ms-flexbox;\n\t    display: -webkit-box;\n\t    display: flex;\n\t    -webkit-flex: 0 1 auto;\n\t    -ms-flex: 0 1 auto;\n\t    -webkit-box-flex: 0;\n\t            flex: 0 1 auto;\n\t    margin-bottom: 10px;\n\t    margin: 0px;\n\t    -webkit-flex-flow:column nowrap;\n\t        -ms-flex-flow:column nowrap;\n\t            flex-flow:column nowrap;\n\t    padding: 0px;\n\t}\n", "", {"version":3,"sources":["/./src/components/PullList.vue?6bd1301c"],"names":[],"mappings":";;CAyJA,UAAA;CACA;EACA,qBAAA;EAAA,sBAAA;EAAA,qBAAA;EAAA,cAAA;KACA,gCAAA;SAAA,4BAAA;aAAA,wBAAA;IACA,kBAAA;IACA,uBAAA;IAAA,mCAAA;QAAA,oBAAA;YAAA,2BAAA;IACA,mBAAA;IAAA,sBAAA;QAAA,kBAAA;YAAA,cAAA;KACA,aAAA;EACA;;;CAGA;MACA,qBAAA;MAAA,sBAAA;MAAA,qBAAA;MAAA,cAAA;OACA,6BAAA;WAAA,yBAAA;eAAA,qBAAA;MACA,iBAAA;MACA,aAAA;MACA,wBAAA;MAAA,+BAAA;UAAA,qBAAA;cAAA,uBAAA;MACA,mBAAA;MAAA,sBAAA;UAAA,kBAAA;cAAA,cAAA;MACA,yBAAA;MAAA,2BAAA;UAAA,sBAAA;cAAA,mBAAA;MACA,qBAAA;EACA;;CAEA;;EAEA,kBAAA;EACA,oCAAA;;EAEA;CACA;EACA,qBAAA;EACA,iCAAA;EACA;;CAEA;GACA,+CAAA;GAAA,uCAAA;GAAA,+BAAA;GAAA,2DAAA;OACA,oCAAA,eAAA;OACA,uCAAA,CAAA,qBAAA;OACA,kCAAA,CAAA,WAAA;EACA;;;CAGA;EACA,gBAAA;EACA,kBAAA;EACA;;;CAGA;EACA,eAAA;KACA,kCAAA;KACA,sBAAA;KACA,qBAAA;KACA,qBAAA;KAAA,cAAA;KACA,uBAAA;KACA,mBAAA;KACA,oBAAA;aAAA,eAAA;KACA,oBAAA;KACA,YAAA;KACA,gCAAA;SAAA,4BAAA;aAAA,wBAAA;KACA,aAAA;EACA","file":"PullList.vue","sourcesContent":["<!-- 下拉刷新组件 -->\r\n\r\n<template>\r\n\t<section class=\"pull-list\" v-touch:pandown=\"pullToRefresh\" v-touch:panup=\"loadMore\" v-touch:panend=\"panleave\"   >\r\n\t\t<header class=\"pull-header\">\r\n\t\t\t<div>\r\n\t\t\t\t<img class=\"downImg\" src=\"../assets/images/components/icon-down.png\" alt=\"下拉\">\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<p>{{refreshText}}</p>\r\n\t\t\t\t<p>最后更新:{{rlastTime}}</p>\r\n\t\t\t</div>\r\n\t\t</header>\r\n\t\t<div class=\"pull-content\" v-on:scroll=\"scroll($event)\" v-el:listContent>\r\n\t\t\t<slot ></slot>\r\n\t\t</div>\r\n\t\t<footer class=\"pull-footer\" v-show=\"showfooter\">\r\n\t\t\t<div>\r\n\t\t\t\t<img class=\"upImg\" src=\"../assets/images/components/icon-up.png\" alt=\"上拉\">\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<p>{{moreText}}</p>\r\n\t\t\t\t<p>最后更新:{{mlastTime}}</p>\r\n\t\t\t</div>\r\n\t\t</footer>\r\n\t</section>\r\n\t\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\r\n\timport dateHelper from './utils/DateHelper.js'\r\n\r\n\texport default {\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\trlastTime:'',\r\n\t\t\t\tmlastTime:'',\r\n\t\t\t\trefreshText:'下拉刷新',\r\n\t\t\t\tmoreText:'加载更多',\r\n\t\t\t\t//是否触发事件\r\n\t\t\t\tisRefresh:false,\r\n\t\t\t\t//是否显示底部加载更多\r\n\t\t\t\tshowfooter:false,\r\n\t\t\t\t//下拉和上拉的标识\r\n\t\t\t\tarrow:'down',\r\n\t\t\t\t//滚动条是否在顶部\r\n\t\t\t\ttop:0,\r\n\t\t\t\t//滚动条是否在底部\r\n\t\t\t\tisBottom:false,\r\n\t\t\t\t//屏幕的高度\r\n\t\t\t\tregionHeight:100,\r\n\t\t\t\t//内容的高度\r\n\t\t\t\twinHeight:100\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\t//得到对应的高度\r\n\t\t\tthis.regionHeight=this.$el.offsetHeight;\r\n\t\t\tvar listObj=this.$el.getElementsByTagName('ul')[0];\r\n\t\t\tthis.winHeight=listObj.offsetHeight;\r\n\t\t\tconsole.log(\"可见区域的高度：\"+this.regionHeight+\"-内容总高度:\"+this.winHeight);\r\n\r\n\t\t},\r\n\t\tmethods:{\r\n\r\n\t\t\tmove(height){\r\n\t\t\t\tvar list=this.$el;\r\n\t\t\t\t//获取角度\r\n\t\t\t\tvar rotateHeight=height<90?height*2:180;\r\n\t\t\t\tif(this.arrow==\"down\"){\r\n\t\t\t\t\tlist.style.transform=\"translateY(\"+height+\"px)\";\r\n\t\t\t\t\tvar img=list.getElementsByTagName('header')[0].getElementsByTagName('img')[0];\r\n\t\t\t\t\timg.style.transform=\"rotate(\"+rotateHeight+\"deg)\"\r\n\t\t\t\t}else{\r\n\t\t\t\t\tlist.style.transform=\"translateY(-\"+height+\"px)\";\r\n\t\t\t\t\t//先检查底部的div是否显示出来,如果显示出来了,那么在找到对应的图标\r\n\t\t\t\t\tif(list.getElementsByTagName('footer')[0]){\r\n\t\t\t\t\t\tvar img=list.getElementsByTagName('footer')[0].getElementsByTagName('img')[0];\r\n\t\t\t\t\t\timg.style.transform=\"rotate(\"+rotateHeight+\"deg)\"\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t//检查是否滚动到底部,滚动到底部触发上拉加载更多的事件\r\n\t\t\tscroll(e){\r\n\t\t\t\tthis.top=e.target.scrollTop;\r\n\t\t\t\tif(this.top+this.regionHeight>this.winHeight){\r\n\t\t\t\t\tthis.isBottom=true;\r\n\t\t\t\t}else{\r\n\t\t\t\t\tthis.isBottom=false;\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\tgetCurTime(){\r\n\t\t\t\t var date=new Date();\r\n\t\t\t\t// return date.getFullYear()+\"\"\r\n\t\t\t},\r\n\t\t\tpanleave(e){\r\n\t\t\t\t\r\n\t\t\t\tif(this.arrow==\"down\"){\r\n\t\t\t\t\tthis.move(0)\r\n\t\t\t\t\tthis.refreshText=\"下拉刷新\";\r\n\t\t\t\t\t//得到当前的时间\r\n\t\t\t\t\tif(this.isRefresh){\r\n\t\t\t\t\t\tthis.isRefresh=false;\r\n\t\t\t\t\t\tthis.rlastTime=dateHelper.getCurrentDate(\"yyyy-MM-dd HH:mm:ss\");\r\n\t\t\t\t\t\tthis.$emit('reload');\r\n\t\t\t\t\t}\r\n\t\t\t\t\t// this.$broadcast('list-reload');\r\n\t\t\t\t}else if(this.arrow==\"up\"){\r\n\t\t\t\t\tthis.showfooter=false;\r\n\t\t\t\t\tthis.moreText=\"加载更多\";\r\n\t\t\t\t\tthis.move(0)\r\n\t\t\t\t\tif(this.isRefresh){\r\n\t\t\t\t\t\tthis.isRefresh=false;\r\n\t\t\t\t\t\tthis.mlastTime=dateHelper.getCurrentDate(\"yyyy-MM-dd HH:mm:ss\");\r\n\t\t\t\t\t\tthis.$emit('loadmore');\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t// 下拉刷新事件\r\n\t\t\tpullToRefresh(e){\r\n\t\t\t\tif(this.top==0){\r\n\t\t\t\t \tvar distance=e.distance;\r\n\t\t\t\t \tthis.arrow='down';\r\n\t\t\t\t \tthis.move(distance);\r\n\t\t\t\t \tif(distance>90){\r\n\t\t\t\t\t\tthis.refreshText=\"松开后刷新\";\r\n\t\t\t\t \t\tthis.isRefresh=true;\r\n\t\t\t\t \t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t//加载更多\r\n\t\t\tloadMore(e){\r\n\t\t\t\t//判断滚动的距离+当前窗口的宽度是否\r\n\t\t\t\tif(this.isBottom){\r\n\t\t\t\t\tthis.showfooter=true;\r\n\t\t\t\t\tthis.arrow='up';\r\n\t\t\t\t\tvar distance=e.distance;\r\n\t\t\t\t \tconsole.log(\"拉动的距离\"+distance)\r\n\t\t\t\t \tthis.move(distance);\r\n\t\t\t\t \tif(distance>90){\r\n\t\t\t\t\t\tthis.moreText=\"松开后刷新\";\r\n\t\t\t\t \t\tthis.isRefresh=true;\r\n\t\t\t\t \t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style >\r\n\r\n\t/*list集合*/\r\n\t.pull-list{\r\n\t\tdisplay: flex;\r\n\t   \tflex-flow:column nowrap;\r\n\t  \tmin-height: 120px;\r\n\t  \tjustify-content:flex-start;\r\n\t  \tflex:0 1 auto;\r\n\t   \theight: 100%;\r\n\t}\r\n\r\n\t\r\n\t.pull-header,.pull-footer{\r\n\t     display: flex;\r\n     \t flex-flow:row nowrap;\r\n\t     min-height: 60px;\r\n\t     height: 60px;\r\n\t     justify-content:center;\r\n\t     flex:0 1 auto;\r\n\t     align-items:center;\r\n\t     aiign-content:center;\r\n\t}\r\n\r\n\t.pull-header{\r\n\t    \r\n\t\tmargin-top: -60px;\r\n\t\tborder-bottom: 1px solid whitesmoke;\r\n\r\n\t}\r\n\t.pull-footer{\r\n\t\tmargin-bottom: -60px;\r\n\t\tborder-top: 1px solid whitesmoke;\r\n\t}\r\n\r\n\t.pull-header>img,.pull-footer>img{\r\n\t\t transition: transform .3s ease;\r\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n\t      -o-transition: transform .3s ease; /* Opera */\r\n\t}\r\n\r\n\r\n\t.pull-header>div,.pull-footer>div{\r\n\t\tfont-size: 12px;\r\n\t\tmargin-left: 12px;\r\n\t}\r\n\t\r\n\r\n\t.pull-content{\r\n\t\toverflow: auto;\r\n\t    -webkit-overflow-scrolling: touch;\r\n\t    display: -webkit-flex;\r\n\t    display: -ms-flexbox;\r\n\t    display: flex;\r\n\t    -webkit-flex: 0 1 auto;\r\n\t    -ms-flex: 0 1 auto;\r\n\t    flex: 0 1 auto;\r\n\t    margin-bottom: 10px;\r\n\t    margin: 0px;\r\n\t    flex-flow:column nowrap;\r\n\t    padding: 0px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
 /* 48 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	// <!-- 下拉刷新组件 -->
 	
-	// <template>
-	// 	<section class="pull-list" v-touch:pandown="pullToRefresh" v-touch:panup="loadMore" v-touch:panend="panleave"   >
-	// 		<header class="pull-header">
-	// 			<div>
-	// 				<img class="downImg" src="../assets/images/components/icon-down.png" alt="下拉">
-	// 			</div>
-	// 			<div>
-	// 				<p>{{refreshText}}</p>
-	// 				<p>最后更新:{{rlastTime}}</p>
-	// 			</div>
-	// 		</header>
-	// 		<div class="pull-content" v-on:scroll="scroll($event)" v-el:listContent>
-	// 			<slot ></slot>
-	// 		</div>
-	// 		<footer class="pull-footer" v-show="showfooter">
-	// 			<div>
-	// 				<img class="upImg" src="../assets/images/components/icon-up.png" alt="上拉">
-	// 			</div>
-	// 			<div>
-	// 				<p>{{moreText}}</p>
-	// 				<p>最后更新:{{mlastTime}}</p>
-	// 			</div>
-	// 		</footer>
-	// 	</section>
+	var _DateHelper = __webpack_require__(125);
 	
-	// </template>
+	var _DateHelper2 = _interopRequireDefault(_DateHelper);
 	
-	// <script lang="babel">
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	exports.default = {
 		data: function data() {
 			return {
-				rlastTime: '2016-01-27',
-				mlastTime: '2015-02-22',
+				rlastTime: '',
+				mlastTime: '',
 				refreshText: '下拉刷新',
 				moreText: '加载更多',
+				//是否触发事件
 				isRefresh: false,
+				//是否显示底部加载更多
 				showfooter: false,
-				arrow: 'down', //下拉和上拉的标识
-				top: 0
+				//下拉和上拉的标识
+				arrow: 'down',
+				//滚动条是否在顶部
+				top: 0,
+				//滚动条是否在底部
+				isBottom: false,
+				//屏幕的高度
+				regionHeight: 100,
+				//内容的高度
+				winHeight: 100
 			};
+		},
+		ready: function ready() {
+			//得到对应的高度
+			this.regionHeight = this.$el.offsetHeight;
+			var listObj = this.$el.getElementsByTagName('ul')[0];
+			this.winHeight = listObj.offsetHeight;
+			console.log("可见区域的高度：" + this.regionHeight + "-内容总高度:" + this.winHeight);
 		},
 	
 		methods: {
@@ -14344,13 +14339,18 @@
 					}
 				}
 			},
+	
+			//检查是否滚动到底部,滚动到底部触发上拉加载更多的事件
 			scroll: function scroll(e) {
-				console.log(e);
 				this.top = e.target.scrollTop;
-				console.log("list集合的滚动" + e.target.scrollTop);
+				if (this.top + this.regionHeight > this.winHeight) {
+					this.isBottom = true;
+				} else {
+					this.isBottom = false;
+				}
 			},
 			getCurTime: function getCurTime() {
-				// var date=new Date();
+				var date = new Date();
 				// return date.getFullYear()+""
 			},
 			panleave: function panleave(e) {
@@ -14361,6 +14361,7 @@
 					//得到当前的时间
 					if (this.isRefresh) {
 						this.isRefresh = false;
+						this.rlastTime = _DateHelper2.default.getCurrentDate("yyyy-MM-dd HH:mm:ss");
 						this.$emit('reload');
 					}
 					// this.$broadcast('list-reload');
@@ -14370,20 +14371,10 @@
 						this.move(0);
 						if (this.isRefresh) {
 							this.isRefresh = false;
+							this.mlastTime = _DateHelper2.default.getCurrentDate("yyyy-MM-dd HH:mm:ss");
 							this.$emit('loadmore');
 						}
 					}
-			},
-			getScrollTop: function getScrollTop() {
-				var scrollPos;
-				if (window.pageYOffset) {
-					scrollPos = window.pageYOffset;
-				} else if (document.compatMode && document.compatMode != 'BackCompat') {
-					scrollPos = document.documentElement.scrollTop;
-				} else if (document.body) {
-					scrollPos = document.body.scrollTop;
-				}
-				return scrollPos;
 			},
 	
 			// 下拉刷新事件
@@ -14401,23 +14392,8 @@
 	
 			//加载更多
 			loadMore: function loadMore(e) {
-				//得到滚动的距离
-	
-				var listObj = this.$el.getElementsByTagName('ul')[0];
-				// console.log(listObj);
-				//1:滚动的高度
-				// console.log(listObj);
-				var scrollHeight = this.top;
-				//2:可见区域的高度
-				var offsetHeight = document.body.offsetHeight;
-	
-				//3:整个内容的高度
-				var winHeight = listObj.scrollHeight;
-	
-				console.log("滚动条距离窗口的高度:" + scrollHeight + "-窗口的可见区域：" + offsetHeight + "整个ul的高度:" + winHeight);
 				//判断滚动的距离+当前窗口的宽度是否
-				if (winHeight - 5 < scrollHeight + offsetHeight) {
-					console.log('触发加载更多事件');
+				if (this.isBottom) {
 					this.showfooter = true;
 					this.arrow = 'up';
 					var distance = e.distance;
@@ -14439,7 +14415,7 @@
 	// 	.pull-list{
 	// 		display: flex;
 	// 	   	flex-flow:column nowrap;
-	// 	  	min-height: 35px;
+	// 	  	min-height: 120px;
 	// 	  	justify-content:flex-start;
 	// 	  	flex:0 1 auto;
 	// 	   	height: 100%;
@@ -14448,7 +14424,7 @@
 	// 	.pull-header,.pull-footer{
 	// 	     display: flex;
 	//      	 flex-flow:row nowrap;
-	// 	     min-height: 35px;
+	// 	     min-height: 60px;
 	// 	     height: 60px;
 	// 	     justify-content:center;
 	// 	     flex:0 1 auto;
@@ -14460,6 +14436,7 @@
 
 	// 		margin-top: -60px;
 	// 		border-bottom: 1px solid whitesmoke;
+
 	// 	}
 	// 	.pull-footer{
 	// 		margin-bottom: -60px;
@@ -14488,11 +14465,41 @@
 	// 	    -ms-flex: 0 1 auto;
 	// 	    flex: 0 1 auto;
 	// 	    margin-bottom: 10px;
-
+	// 	    margin: 0px;
 	// 	    flex-flow:column nowrap;
-	// 	    padding: 5px;
+	// 	    padding: 0px;
 	// 	}
 	// </style>
+	// <!-- 下拉刷新组件 -->
+
+	// <template>
+	// 	<section class="pull-list" v-touch:pandown="pullToRefresh" v-touch:panup="loadMore" v-touch:panend="panleave"   >
+	// 		<header class="pull-header">
+	// 			<div>
+	// 				<img class="downImg" src="../assets/images/components/icon-down.png" alt="下拉">
+	// 			</div>
+	// 			<div>
+	// 				<p>{{refreshText}}</p>
+	// 				<p>最后更新:{{rlastTime}}</p>
+	// 			</div>
+	// 		</header>
+	// 		<div class="pull-content" v-on:scroll="scroll($event)" v-el:listContent>
+	// 			<slot ></slot>
+	// 		</div>
+	// 		<footer class="pull-footer" v-show="showfooter">
+	// 			<div>
+	// 				<img class="upImg" src="../assets/images/components/icon-up.png" alt="上拉">
+	// 			</div>
+	// 			<div>
+	// 				<p>{{moreText}}</p>
+	// 				<p>最后更新:{{mlastTime}}</p>
+	// 			</div>
+	// 		</footer>
+	// 	</section>
+
+	// </template>
+
+	// <script lang="babel">
 
 /***/ },
 /* 49 */
@@ -14516,7 +14523,7 @@
 /* 52 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t<div class=\"page\" _v-ecc3dad2=\"\">\n\t\t<toolbar :text=\"title\" _v-ecc3dad2=\"\">\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\" _v-ecc3dad2=\"\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\" _v-ecc3dad2=\"\"></span>\n\t\t</toolbar>\n\t\t<div class=\"page-content\" _v-ecc3dad2=\"\">\n\t\t\t<tabs :active-index.sync=\"index\" _v-ecc3dad2=\"\">\n\t\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" _v-ecc3dad2=\"\">\n\t\t\t\t\t<pull-list _v-ecc3dad2=\"\">\n\t\t\t\t\t\t<ul class=\"contentList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t<li v-for=\"subItem in item.infoList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t<div class=\"tab_info\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"left\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<img src=\"xxxHTMLLINKxxx0.88712395634502170.7200181013904512xxx\" alt=\"\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"content\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布时间:{{subItem.time}}</span>\n\t\t\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布人:{{subItem.subUser}}</span>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t{{subItem.content}}\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<i class=\"icon-chevron-right\" _v-ecc3dad2=\"\"></i>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</pull-list>\n\t\t\t\t</tab>\n\t\t\t</tabs>\n\t\t</div>\n\t</div>\n\t\t\n\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" _v-ecc3dad2=\"\">\n\t\t\n\t</sidebar>\n\n\t<loading :loading=\"isload\" _v-ecc3dad2=\"\"></loading>\n\n";
+	module.exports = "\n\t<div class=\"page\" _v-ecc3dad2=\"\">\n\t\t<toolbar :text=\"title\" _v-ecc3dad2=\"\">\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\" _v-ecc3dad2=\"\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\" _v-ecc3dad2=\"\"></span>\n\t\t</toolbar>\n\t\t<div class=\"page-content\" _v-ecc3dad2=\"\">\n\t\t\t<tabs :active-index.sync=\"index\" _v-ecc3dad2=\"\">\n\t\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" _v-ecc3dad2=\"\">\n\t\t\t\t\t<pull-list _v-ecc3dad2=\"\">\n\t\t\t\t\t\t<ul class=\"contentList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t<li v-for=\"subItem in item.infoList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t<div class=\"tab_info\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"left\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<img src=\"xxxHTMLLINKxxx0.160702590364962820.4573658949229866xxx\" alt=\"\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"content\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布时间:{{subItem.time}}</span>\n\t\t\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布人:{{subItem.subUser}}</span>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t{{subItem.content}}\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<i class=\"icon-chevron-right\" _v-ecc3dad2=\"\"></i>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</pull-list>\n\t\t\t\t</tab>\n\t\t\t</tabs>\n\t\t</div>\n\t</div>\n\t\t\n\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" _v-ecc3dad2=\"\">\n\t\t\n\t</sidebar>\n\n\t<loading :loading=\"isload\" _v-ecc3dad2=\"\"></loading>\n\n";
 
 /***/ },
 /* 53 */
@@ -21544,6 +21551,47 @@
 	
 	module.exports = _.resource = Resource;
 
+
+/***/ },
+/* 125 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var DateHelper = {
+		//获取档期的日期
+	
+		getCurrentDate: function getCurrentDate(formate) {
+			var date = new Date();
+			var year = date.getFullYear();
+			var month = parseInt(date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+			var day = date.getDate();
+			var hour = date.getHours();
+			var min = date.getMinutes();
+			var sec = date.getSeconds();
+			var result = "";
+			if (formate.indexOf("yyyy") >= 0) {
+				result = year;
+			}
+			if (formate.indexOf("MM") >= 0) {
+				result += "-" + month;
+			}
+			if (formate.indexOf("dd") >= 0) {
+				result += "-" + day;
+			}
+			if (formate.indexOf("HH") >= 0) {
+				result += "-" + hour;
+			}
+	
+			if (formate.indexOf("mm") >= 0) {
+				result += "-" + min;
+			}
+			if (formate.indexOf("ss") >= 0) {
+				result += "-" + sec;
+			}
+			return result;
+		}
+	};
 
 /***/ }
 /******/ ]);

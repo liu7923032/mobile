@@ -28,21 +28,42 @@
 </template>
 
 <script lang="babel">
+
+	import dateHelper from './utils/DateHelper.js'
+
 	export default {
 		data(){
 			return {
-				rlastTime:'2016-01-27',
-				mlastTime:'2015-02-22',
+				rlastTime:'',
+				mlastTime:'',
 				refreshText:'下拉刷新',
 				moreText:'加载更多',
+				//是否触发事件
 				isRefresh:false,
+				//是否显示底部加载更多
 				showfooter:false,
-				arrow:'down',//下拉和上拉的标识
-				top:0
+				//下拉和上拉的标识
+				arrow:'down',
+				//滚动条是否在顶部
+				top:0,
+				//滚动条是否在底部
+				isBottom:false,
+				//屏幕的高度
+				regionHeight:100,
+				//内容的高度
+				winHeight:100
 			}
 		},
+		ready(){
+			//得到对应的高度
+			this.regionHeight=this.$el.offsetHeight;
+			var listObj=this.$el.getElementsByTagName('ul')[0];
+			this.winHeight=listObj.offsetHeight;
+			console.log("可见区域的高度："+this.regionHeight+"-内容总高度:"+this.winHeight);
+
+		},
 		methods:{
-			
+
 			move(height){
 				var list=this.$el;
 				//获取角度
@@ -60,13 +81,17 @@
 					}
 				}
 			},
+			//检查是否滚动到底部,滚动到底部触发上拉加载更多的事件
 			scroll(e){
-				console.log(e);
 				this.top=e.target.scrollTop;
-				console.log("list集合的滚动"+e.target.scrollTop);
+				if(this.top+this.regionHeight>this.winHeight){
+					this.isBottom=true;
+				}else{
+					this.isBottom=false;
+				}
 			},
 			getCurTime(){
-				// var date=new Date();
+				 var date=new Date();
 				// return date.getFullYear()+""
 			},
 			panleave(e){
@@ -77,6 +102,7 @@
 					//得到当前的时间
 					if(this.isRefresh){
 						this.isRefresh=false;
+						this.rlastTime=dateHelper.getCurrentDate("yyyy-MM-dd HH:mm:ss");
 						this.$emit('reload');
 					}
 					// this.$broadcast('list-reload');
@@ -86,21 +112,10 @@
 					this.move(0)
 					if(this.isRefresh){
 						this.isRefresh=false;
+						this.mlastTime=dateHelper.getCurrentDate("yyyy-MM-dd HH:mm:ss");
 						this.$emit('loadmore');
 					}
 				}
-			},
-			getScrollTop(){
-				var scrollPos; 
-				if (window.pageYOffset) {
-					scrollPos = window.pageYOffset;
-				} 
-				else if (document.compatMode && document.compatMode != 'BackCompat') {
-				 scrollPos = document.documentElement.scrollTop;
-				} else if (document.body) { 
-					scrollPos = document.body.scrollTop;
-			    } 
-			    return scrollPos; 
 			},
 			// 下拉刷新事件
 			pullToRefresh(e){
@@ -116,23 +131,8 @@
 			},
 			//加载更多
 			loadMore(e){
-				//得到滚动的距离
-
-				var listObj=this.$el.getElementsByTagName('ul')[0];
-				// console.log(listObj);
-				//1:滚动的高度
-				// console.log(listObj);
-				var scrollHeight=this.top;
-				//2:可见区域的高度
-				var offsetHeight=document.body.offsetHeight;
-
-				//3:整个内容的高度
-				var winHeight=listObj.scrollHeight;
-
-				console.log("滚动条距离窗口的高度:"+scrollHeight+"-窗口的可见区域："+offsetHeight+"整个ul的高度:"+winHeight);
 				//判断滚动的距离+当前窗口的宽度是否
-				if((winHeight-5)<(scrollHeight+offsetHeight)){
-					console.log('触发加载更多事件')
+				if(this.isBottom){
 					this.showfooter=true;
 					this.arrow='up';
 					var distance=e.distance;
@@ -155,7 +155,7 @@
 	.pull-list{
 		display: flex;
 	   	flex-flow:column nowrap;
-	  	min-height: 35px;
+	  	min-height: 120px;
 	  	justify-content:flex-start;
 	  	flex:0 1 auto;
 	   	height: 100%;
@@ -165,7 +165,7 @@
 	.pull-header,.pull-footer{
 	     display: flex;
      	 flex-flow:row nowrap;
-	     min-height: 35px;
+	     min-height: 60px;
 	     height: 60px;
 	     justify-content:center;
 	     flex:0 1 auto;
@@ -177,6 +177,7 @@
 	    
 		margin-top: -60px;
 		border-bottom: 1px solid whitesmoke;
+
 	}
 	.pull-footer{
 		margin-bottom: -60px;
@@ -207,8 +208,8 @@
 	    -ms-flex: 0 1 auto;
 	    flex: 0 1 auto;
 	    margin-bottom: 10px;
-	   
+	    margin: 0px;
 	    flex-flow:column nowrap;
-	    padding: 5px;
+	    padding: 0px;
 	}
 </style>
