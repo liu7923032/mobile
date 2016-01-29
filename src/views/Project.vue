@@ -1,62 +1,60 @@
 <template>
 	<div class="page">
-		<toolbar text="我的项目">
+		<tool-bar text="我的项目">
 			<span class="icon-chevron-left" slot="leftBtn" v-touch:tap="back"></span>
 	        <span class="icon-refresh" slot="rightBtn" v-touch:tap="showSheet"></span>
-		</toolbar>
+		</tool-bar>
 		<div class="page-content" >
-			<pull-list v-on:reload="getInitData" v-on:loadmore="getMoreData">
-				<ul >
-					<li>asdffdddd;</li>
-					<li>asdfffffffffffffffffffffffffffffff;a</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff</li>
-					<li>asdfffffffffffffffffffffffffffffff</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff;a</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff</li>
-					<li>asdfffffffffffffffffffffffffffffff</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff;a</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff</li>
-					<li>asdfffffffffffffffffffffffffffffff</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff;a</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff</li>
-					<li>asdfffffffffffffffffffffffffffffff</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>顶顶顶 阿斯蒂芬;</li>
+			<list v-on:reload="getInitData" v-on:loadmore="getMoreData">
+				<li>asdffdddd;</li>
+				<li>asdfffffffffffffffffffffffffffffff;a</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff</li>
+				<li>asdfffffffffffffffffffffffffffffff</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff;a</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff</li>
+				<li>asdfffffffffffffffffffffffffffffff</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff;a</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff</li>
+				<li>asdfffffffffffffffffffffffffffffff</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff;a</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff</li>
+				<li>asdfffffffffffffffffffffffffffffff</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>顶顶顶 阿斯蒂芬;</li>
 
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff</li>
-					<li>asdfffffffffffffffffffffffffffffff</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>顶顶顶 阿斯蒂芬;</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff</li>
+				<li>asdfffffffffffffffffffffffffffffff</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>顶顶顶 阿斯蒂芬;</li>
 
-					<li>顶顶顶 阿斯蒂芬;</li>
+				<li>顶顶顶 阿斯蒂芬;</li>
 
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>asdfffffffffffffffffffffffffffffff</li>
-					<li>asdfffffffffffffffffffffffffffffff</li>
-					<li>asdfffffffffffffffffffffffffffffff;</li>
-					<li>顶顶顶 阿斯蒂芬;</li>
-				</ul>
-			</pull-list>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>asdfffffffffffffffffffffffffffffff</li>
+				<li>asdfffffffffffffffffffffffffffffff</li>
+				<li>asdfffffffffffffffffffffffffffffff;</li>
+				<li>顶顶顶 阿斯蒂芬;</li>
+			</list>
 		</div>
 	</div>
 	
@@ -66,7 +64,8 @@
 
 <script lang="babel">
 	import ToolBar from '../components/ToolBar.vue'
-	import PullList from '../components/PullList.vue'
+	import List from '../components/List.vue'
+	import Item from '../components/ListItem.vue'
 	import ActionSheet from '../components/ActionSheet.vue'
 	import Toast from '../components/Toast.vue'
 	export default {
@@ -95,10 +94,11 @@
 			}
 		},
 		components:{
-			toolbar:ToolBar,
-			PullList,
+			ToolBar,
+			List,
 			ActionSheet,
-			Toast
+			Toast,
+			Item
 		}
 	}
 </script>

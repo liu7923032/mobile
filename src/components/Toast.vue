@@ -89,7 +89,7 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		z-index: 10px;
+		z-index: 10;
 		height: 100%;
 		width: 100%;
 	}
@@ -104,7 +104,7 @@
 
 	.toast-content{
 		margin: 0 0 15px;
-		margin-top:10%;
+		margin-top:10px;
       	font-size:14px;
 	}
 

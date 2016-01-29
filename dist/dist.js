@@ -65,15 +65,15 @@
 	
 	var _routers2 = _interopRequireDefault(_routers);
 	
-	var _fastclick = __webpack_require__(92);
+	var _fastclick = __webpack_require__(97);
 	
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 	
-	var _vTouch = __webpack_require__(93);
+	var _vTouch = __webpack_require__(98);
 	
 	var _vTouch2 = _interopRequireDefault(_vTouch);
 	
-	var _vueResource = __webpack_require__(107);
+	var _vueResource = __webpack_require__(112);
 	
 	var _vueResource2 = _interopRequireDefault(_vueResource);
 	
@@ -12334,23 +12334,23 @@
 	        },
 	        '/worklog': {
 	            name: 'worklog',
-	            component: __webpack_require__(64)
+	            component: __webpack_require__(69)
 	        },
 	        '/userinfo': {
 	            name: 'userinfo',
-	            component: __webpack_require__(72)
+	            component: __webpack_require__(77)
 	        },
 	        '/workflow': {
 	            name: 'workflow',
-	            component: __webpack_require__(87)
+	            component: __webpack_require__(92)
 	        },
 	        '/login': {
 	            name: 'login',
-	            component: __webpack_require__(88)
+	            component: __webpack_require__(93)
 	        },
 	        '/comment': {
 	            name: 'comment',
-	            component: __webpack_require__(91)
+	            component: __webpack_require__(96)
 	        },
 	
 	        /* 404路由 */
@@ -12419,7 +12419,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.tab_info[_v-ecc3dad2]{\n\theight: 40px;\n\tpadding: 5px;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-flex-flow:row nowrap;\n\t    -ms-flex-flow:row nowrap;\n\t        flex-flow:row nowrap;\n\t-webkit-box-pack:justify;\n\t-webkit-justify-content:space-between;\n\t    -ms-flex-pack:justify;\n\t        justify-content:space-between;\n\t-webkit-box-align:center;\n\t-webkit-align-items:center;\n\t    -ms-flex-align:center;\n\t        align-items:center;\n\tbackground-color: white;\n}\n\n\n.tab_info>div[_v-ecc3dad2]:nth-child(2){\n\tmargin-right: 5px;\n\tcolor: #272822;\n}\n\n.left[_v-ecc3dad2]{\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-flex-flow:row nowrap;\n\t    -ms-flex-flow:row nowrap;\n\t        flex-flow:row nowrap;\n\t-webkit-box-pack:start;\n\t-webkit-justify-content:flex-start;\n\t    -ms-flex-pack:start;\n\t        justify-content:flex-start;\n\t-webkit-box-align:center;\n\t-webkit-align-items:center;\n\t    -ms-flex-align:center;\n\t        align-items:center;\n}\n.left>div[_v-ecc3dad2]{\n\tmargin-left: 10px;\n\n}\n\n.contentList[_v-ecc3dad2]{\n\tbackground-color: whitesmoke;\n}\n.contentList>li[_v-ecc3dad2]{\n\tborder-radius: 3px;\n\tlist-style-type: none;\n\tborder:1px solid whitesmoke;\n\tmargin-bottom:5px;\n}\n\n.contentList>li[_v-ecc3dad2]:hover{\n\tborder:1px solid gray;\n}\n\n.content>div[_v-ecc3dad2]:nth-child(1){\n\tfont-size: 12px;\n\tcolor: lightdark;\n\tmargin-bottom: 5px;\n}\n\n.content>div:nth-child(1)>span[_v-ecc3dad2]:nth-child(2){\n\tmargin-left: 10px;\n}\n\n.content>div[_v-ecc3dad2]:nth-child(2){\n\tfont-size: 14px;\n\t\n}\n\nimg[_v-ecc3dad2]{\n\twidth: 40px;\n\theight: 40px;\n\tborder-width: 0px;\n}\n", "", {"version":3,"sources":["/./src/views/Home.vue?78f2bf5c"],"names":[],"mappings":";AA4NA;CACA,aAAA;CACA,aAAA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,6BAAA;KAAA,yBAAA;SAAA,qBAAA;CACA,yBAAA;CAAA,sCAAA;KAAA,sBAAA;SAAA,8BAAA;CACA,yBAAA;CAAA,2BAAA;KAAA,sBAAA;SAAA,mBAAA;CACA,wBAAA;CACA;;;AAGA;CACA,kBAAA;CACA,eAAA;CACA;;AAEA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,6BAAA;KAAA,yBAAA;SAAA,qBAAA;CACA,uBAAA;CAAA,mCAAA;KAAA,oBAAA;SAAA,2BAAA;CACA,yBAAA;CAAA,2BAAA;KAAA,sBAAA;SAAA,mBAAA;CACA;AACA;CACA,kBAAA;;CAEA;;AAEA;CACA,6BAAA;CACA;AACA;CACA,mBAAA;CACA,sBAAA;CACA,4BAAA;CACA,kBAAA;CACA;;AAEA;CACA,sBAAA;CACA;;AAEA;CACA,gBAAA;CACA,iBAAA;CACA,mBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;AAEA;CACA,gBAAA;;CAEA;;AAEA;CACA,YAAA;CACA,aAAA;CACA,kBAAA;CACA","file":"Home.vue","sourcesContent":["<template>\r\n\t<div class=\"page\">\r\n\t\t<toolbar :text=\"title\">\r\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\"></span>\r\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\"></span>\r\n\t\t</toolbar>\r\n\t\t<div class=\"page-content\">\r\n\t\t\t<tabs :active-index.sync=\"index\" >\r\n\t\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" >\r\n\t\t\t\t\t<pull-list>\r\n\t\t\t\t\t\t<ul class=\"contentList\">\r\n\t\t\t\t\t\t\t<li v-for=\"subItem in item.infoList\" >\r\n\t\t\t\t\t\t\t\t<div class=\"tab_info\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t\t<img src=\"\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"content\">\r\n\t\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<span>发布时间:{{subItem.time}}</span>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<span>发布人:{{subItem.subUser}}</span>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t{{subItem.content}}\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t<i class=\"icon-chevron-right\"></i>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t</pull-list>\r\n\t\t\t\t</tab>\r\n\t\t\t</tabs>\r\n\t\t</div>\r\n\t</div>\r\n\t\t\r\n\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" >\r\n\t\t\r\n\t</sidebar>\r\n\r\n\t<loading :loading=\"isload\"></loading>\r\n\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\timport ToolBar from 'src/components/ToolBar.vue'\r\n    import SideBar from 'src/components/Sidebar.vue'\r\n    import Tabs from 'src/components/Tabs.vue'\r\n    import Tab from 'src/components/Tab.vue'\r\n    import Loading from 'src/components/Loading.vue'\r\n    import PullList from 'src/components/PullList.vue'\r\n\texport default \t{\r\n\t\tcreated(){\r\n\t\t\tconsole.log(\"home is created\")\r\n\t\t\t//计算tab的长度\r\n\t\t   // var width=\tdocument.body.offsetWidth-20;\r\n\t\t   // this.tabWidth=width/this.tabItems.length;\r\n\t\t},\r\n\t\tcomponents:{\r\n\t    \ttoolbar:ToolBar,\r\n            sidebar:SideBar,\r\n            tabs:Tabs,\r\n            tab:Tab,\r\n            loading:Loading,\r\n            PullList\r\n\t    },\r\n\t    props:{\r\n\t    \t\r\n\t    },\r\n\t\tdata() {\r\n\t\t\treturn {\r\n\t\t\t\ttitle:'首页',\r\n\t\t\t\tmenuItems:[{\r\n\t\t\t\t\ttext:'系统首页',\r\n\t\t\t\t\tlink:'home',\r\n\t\t\t\t\ticon:'icon-home'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'个人信息',\r\n\t\t\t\t\tlink:'userinfo',\r\n\t\t\t\t\ticon:'icon-user'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'我的项目',\r\n\t\t\t\t\tlink:'project',\r\n\t\t\t\t\ticon:'icon-tasks'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'工作日志',\r\n\t\t\t\t\tlink:'worklog',\r\n\t\t\t\t\ticon:'icon-calendar'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'流程信息',\r\n\t\t\t\t\tlink:'worklog',\r\n\t\t\t\t\ticon:'icon-exchange'\r\n\t\t\t\t}],\r\n\t\t\t\tindex:0,\r\n\t\t\t\tisload:false,\r\n\t\t\t\tshowMenu:false,\r\n\t\t\t\ttabItems:[{\r\n\t\t\t\t\ttitle:'通知',infoList:[{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂1'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-21',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂2'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t}]\r\n\t\t\t\t}]\r\n\t\t\t}\r\n\t\t},\r\n\t\troute:{\r\n\t\t\tdata(){\r\n\t\t\t\t//从服务器端加载数据\r\n\t\t\t\tconsole.log(\"home组件切入,加载初始数据\");\r\n\t\t\t\t//加载数据\r\n\t\t\t\tthis.isload=false;\r\n\t\t\t\tthis.$http.get(\"values\").then((response)=>{\r\n\t\t\t\t\tconsole.log(response.data);\r\n\t\t\t\t\tthis.isload=false;\r\n\t\t\t\t});\r\n\r\n\t\t\t},\r\n\t\t\tcanDeactivate(transition){\r\n\t\t\t\t//组件被切除\r\n\t\t\t\tconsole.log(\"组件被切出\")\r\n\t\t\t\tthis.showMenu=false;\r\n\t\t\t\ttransition.next();\r\n\t\t\t}\r\n\t\t},\r\n\t    methods: {\r\n\t        openMenu() {\r\n\t            this.showMenu = !this.showMenu;\r\n\t        },\r\n\t        refresh(){\r\n\t        \t//刷新当前页面\r\n\t        }\r\n\t    }\r\n\t}\r\n\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\t.tab_info{\r\n\t\theight: 40px;\r\n\t\tpadding: 5px;\r\n\t\tdisplay: flex;\r\n\t\tflex-flow:row nowrap;\r\n\t\tjustify-content:space-between;\r\n\t\talign-items:center;\r\n\t\tbackground-color: white;\r\n\t}\r\n\r\n\r\n\t.tab_info>div:nth-child(2){\r\n\t\tmargin-right: 5px;\r\n\t\tcolor: #272822;\r\n\t}\r\n\t\r\n\t.left{\r\n\t\tdisplay: flex;\r\n\t\tflex-flow:row nowrap;\r\n\t\tjustify-content:flex-start;\r\n\t\talign-items:center;\r\n\t}\r\n\t.left>div{\r\n\t\tmargin-left: 10px;\r\n\r\n\t}\r\n\r\n\t.contentList{\r\n\t\tbackground-color: whitesmoke;\r\n\t}\r\n\t.contentList>li{\r\n\t\tborder-radius: 3px;\r\n\t\tlist-style-type: none;\r\n\t\tborder:1px solid whitesmoke;\r\n\t\tmargin-bottom:5px;\r\n\t}\r\n\r\n\t.contentList>li:hover{\r\n\t\tborder:1px solid gray;\r\n\t}\r\n\r\n\t.content>div:nth-child(1){\r\n\t\tfont-size: 12px;\r\n\t\tcolor: lightdark;\r\n\t\tmargin-bottom: 5px;\r\n\t}\r\n\r\n\t.content>div:nth-child(1)>span:nth-child(2){\r\n\t\tmargin-left: 10px;\r\n\t}\r\n\r\n\t.content>div:nth-child(2){\r\n\t\tfont-size: 14px;\r\n\t\t\r\n\t}\r\n\r\n\timg{\r\n\t\twidth: 40px;\r\n\t\theight: 40px;\r\n\t\tborder-width: 0px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.tab_info[_v-ecc3dad2]{\n\theight: 40px;\n\tpadding: 5px;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-flex-flow:row nowrap;\n\t    -ms-flex-flow:row nowrap;\n\t        flex-flow:row nowrap;\n\t-webkit-box-pack:justify;\n\t-webkit-justify-content:space-between;\n\t    -ms-flex-pack:justify;\n\t        justify-content:space-between;\n\t-webkit-box-align:center;\n\t-webkit-align-items:center;\n\t    -ms-flex-align:center;\n\t        align-items:center;\n\tbackground-color: white;\n}\n\n\n.tab_info>div[_v-ecc3dad2]:nth-child(2){\n\tmargin-right: 5px;\n\tcolor: #272822;\n}\n\n.left[_v-ecc3dad2]{\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-flex-flow:row nowrap;\n\t    -ms-flex-flow:row nowrap;\n\t        flex-flow:row nowrap;\n\t-webkit-box-pack:start;\n\t-webkit-justify-content:flex-start;\n\t    -ms-flex-pack:start;\n\t        justify-content:flex-start;\n\t-webkit-box-align:center;\n\t-webkit-align-items:center;\n\t    -ms-flex-align:center;\n\t        align-items:center;\n}\n.left>div[_v-ecc3dad2]{\n\tmargin-left: 10px;\n}\n\n.contentList[_v-ecc3dad2]{\n\tbackground-color: whitesmoke;\n\twidth: 100%;\n}\n.contentList>li[_v-ecc3dad2]{\n\tborder-radius: 3px;\n\tlist-style-type: none;\n\tborder:1px solid whitesmoke;\n\tmargin-bottom:5px;\n}\n\n.contentList>li[_v-ecc3dad2]:hover{\n\tborder:1px solid gray;\n}\n\n.content>div[_v-ecc3dad2]:nth-child(1){\n\tfont-size: 12px;\n\tcolor: lightdark;\n\tmargin-bottom: 5px;\n}\n\n.content>div:nth-child(1)>span[_v-ecc3dad2]:nth-child(2){\n\tmargin-left: 10px;\n}\n\n.content>div[_v-ecc3dad2]:nth-child(2){\n\tfont-size: 14px;\n\t\n}\n\nimg[_v-ecc3dad2]{\n\twidth: 40px;\n\theight: 40px;\n\tborder-width: 0px;\n}\n", "", {"version":3,"sources":["/./src/views/Home.vue?3dabb88b"],"names":[],"mappings":";AAuOA;CACA,aAAA;CACA,aAAA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,6BAAA;KAAA,yBAAA;SAAA,qBAAA;CACA,yBAAA;CAAA,sCAAA;KAAA,sBAAA;SAAA,8BAAA;CACA,yBAAA;CAAA,2BAAA;KAAA,sBAAA;SAAA,mBAAA;CACA,wBAAA;CACA;;;AAGA;CACA,kBAAA;CACA,eAAA;CACA;;AAEA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,6BAAA;KAAA,yBAAA;SAAA,qBAAA;CACA,uBAAA;CAAA,mCAAA;KAAA,oBAAA;SAAA,2BAAA;CACA,yBAAA;CAAA,2BAAA;KAAA,sBAAA;SAAA,mBAAA;CACA;AACA;CACA,kBAAA;CACA;;AAEA;CACA,6BAAA;CACA,YAAA;CACA;AACA;CACA,mBAAA;CACA,sBAAA;CACA,4BAAA;CACA,kBAAA;CACA;;AAEA;CACA,sBAAA;CACA;;AAEA;CACA,gBAAA;CACA,iBAAA;CACA,mBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;AAEA;CACA,gBAAA;;CAEA;;AAEA;CACA,YAAA;CACA,aAAA;CACA,kBAAA;CACA","file":"Home.vue","sourcesContent":["<template>\r\n\t<div class=\"page\">\r\n\t\t<toolbar :text=\"title\">\r\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\"></span>\r\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\"></span>\r\n\t\t</toolbar>\r\n\t\t<div class=\"page-content\">\r\n\t\t\t<tabs :active-index.sync=\"index\" >\r\n\t\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" >\r\n\t\t\t\t\t<list>\r\n\t\t\t\t\t\t<li v-for=\"subItem in item.infoList\" >\r\n\t\t\t\t\t\t\t<div class=\"tab_info\">\r\n\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t<img src=\"\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"content\">\r\n\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t<span>发布时间:{{subItem.time}}</span>\r\n\t\t\t\t\t\t\t\t\t\t\t<span>发布人:{{subItem.subUser}}</span>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t{{subItem.content}}\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t<i class=\"icon-chevron-right\"></i>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t</list>\r\n\t\t\t\t</tab>\r\n\t\t\t</tabs>\r\n\t\t</div>\r\n\t</div>\r\n\t\t\r\n\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" >\r\n\t\t\r\n\t</sidebar>\r\n\r\n\t<loading :loading=\"isload\"></loading>\r\n\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\timport ToolBar from 'src/components/ToolBar.vue'\r\n    import SideBar from 'src/components/Sidebar.vue'\r\n    import Tabs from 'src/components/Tabs.vue'\r\n    import Tab from 'src/components/Tab.vue'\r\n    import Loading from 'src/components/Loading.vue'\r\n    import List from 'src/components/List.vue'\r\n     import ListItem from 'src/components/ListItem.vue'\r\n\texport default \t{\r\n\t\tcreated(){\r\n\t\t\tconsole.log(\"home is created\")\r\n\t\t\t//计算tab的长度\r\n\t\t   // var width=\tdocument.body.offsetWidth-20;\r\n\t\t   // this.tabWidth=width/this.tabItems.length;\r\n\t\t},\r\n\t\tcomponents:{\r\n\t    \ttoolbar:ToolBar,\r\n            sidebar:SideBar,\r\n            tabs:Tabs,\r\n            tab:Tab,\r\n            loading:Loading,\r\n            list:List,\r\n            listitem:ListItem\r\n\t    },\r\n\t    props:{\r\n\t    \t\r\n\t    },\r\n\t\tdata() {\r\n\t\t\treturn {\r\n\t\t\t\ttitle:'首页',\r\n\t\t\t\tmenuItems:[{\r\n\t\t\t\t\ttext:'系统首页',\r\n\t\t\t\t\tlink:'home',\r\n\t\t\t\t\ticon:'icon-home'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'个人信息',\r\n\t\t\t\t\tlink:'userinfo',\r\n\t\t\t\t\ticon:'icon-user'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'我的项目',\r\n\t\t\t\t\tlink:'project',\r\n\t\t\t\t\ticon:'icon-tasks'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'工作日志',\r\n\t\t\t\t\tlink:'worklog',\r\n\t\t\t\t\ticon:'icon-calendar'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'流程信息',\r\n\t\t\t\t\tlink:'worklog',\r\n\t\t\t\t\ticon:'icon-exchange'\r\n\t\t\t\t}],\r\n\t\t\t\tindex:0,\r\n\t\t\t\tisload:false,\r\n\t\t\t\tshowMenu:false,\r\n\t\t\t\ttabItems:[{\r\n\t\t\t\t\ttitle:'通知',infoList:[{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂1'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-21',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂2'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t}]\r\n\t\t\t\t},{\r\n\t\t\t\t\ttitle:'制度',infoList:[{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t}]\r\n\t\t\t\t}]\r\n\t\t\t}\r\n\t\t},\r\n\t\troute:{\r\n\t\t\tdata(){\r\n\t\t\t\t//从服务器端加载数据\r\n\t\t\t\tconsole.log(\"home组件切入,加载初始数据\");\r\n\t\t\t\t//加载数据\r\n\t\t\t\tthis.isload=false;\r\n\t\t\t\tthis.$http.get(\"values\").then((response)=>{\r\n\t\t\t\t\tconsole.log(response.data);\r\n\t\t\t\t\tthis.isload=false;\r\n\t\t\t\t});\r\n\r\n\t\t\t},\r\n\t\t\tcanDeactivate(transition){\r\n\t\t\t\t//组件被切除\r\n\t\t\t\tconsole.log(\"组件被切出\")\r\n\t\t\t\tthis.showMenu=false;\r\n\t\t\t\ttransition.next();\r\n\t\t\t}\r\n\t\t},\r\n\t    methods: {\r\n\t        openMenu() {\r\n\t            this.showMenu = !this.showMenu;\r\n\t        },\r\n\t        refresh(){\r\n\t        \t//刷新当前页面\r\n\t        }\r\n\t    }\r\n\t}\r\n\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\t.tab_info{\r\n\t\theight: 40px;\r\n\t\tpadding: 5px;\r\n\t\tdisplay: flex;\r\n\t\tflex-flow:row nowrap;\r\n\t\tjustify-content:space-between;\r\n\t\talign-items:center;\r\n\t\tbackground-color: white;\r\n\t}\r\n\r\n\r\n\t.tab_info>div:nth-child(2){\r\n\t\tmargin-right: 5px;\r\n\t\tcolor: #272822;\r\n\t}\r\n\t\r\n\t.left{\r\n\t\tdisplay: flex;\r\n\t\tflex-flow:row nowrap;\r\n\t\tjustify-content:flex-start;\r\n\t\talign-items:center;\r\n\t}\r\n\t.left>div{\r\n\t\tmargin-left: 10px;\r\n\t}\r\n\r\n\t.contentList{\r\n\t\tbackground-color: whitesmoke;\r\n\t\twidth: 100%;\r\n\t}\r\n\t.contentList>li{\r\n\t\tborder-radius: 3px;\r\n\t\tlist-style-type: none;\r\n\t\tborder:1px solid whitesmoke;\r\n\t\tmargin-bottom:5px;\r\n\t}\r\n\r\n\t.contentList>li:hover{\r\n\t\tborder:1px solid gray;\r\n\t}\r\n\r\n\t.content>div:nth-child(1){\r\n\t\tfont-size: 12px;\r\n\t\tcolor: lightdark;\r\n\t\tmargin-bottom: 5px;\r\n\t}\r\n\r\n\t.content>div:nth-child(1)>span:nth-child(2){\r\n\t\tmargin-left: 10px;\r\n\t}\r\n\r\n\t.content>div:nth-child(2){\r\n\t\tfont-size: 14px;\r\n\t\t\r\n\t}\r\n\r\n\timg{\r\n\t\twidth: 40px;\r\n\t\theight: 40px;\r\n\t\tborder-width: 0px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -12732,59 +12732,16 @@
 	
 	var _Loading2 = _interopRequireDefault(_Loading);
 	
-	var _PullList = __webpack_require__(45);
+	var _List = __webpack_require__(141);
 	
-	var _PullList2 = _interopRequireDefault(_PullList);
+	var _List2 = _interopRequireDefault(_List);
+	
+	var _ListItem = __webpack_require__(146);
+	
+	var _ListItem2 = _interopRequireDefault(_ListItem);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// <template>
-	// 	<div class="page">
-	// 		<toolbar :text="title">
-	// 			<span class="icon-reorder" slot="leftBtn" @click="openMenu"></span>
-	//             <span class="icon-refresh" slot="rightBtn" @click="refresh"></span>
-	// 		</toolbar>
-	// 		<div class="page-content">
-	// 			<tabs :active-index.sync="index" >
-	// 				<tab v-for="item in tabItems" :header="item.title" >
-	// 					<pull-list>
-	// 						<ul class="contentList">
-	// 							<li v-for="subItem in item.infoList" >
-	// 								<div class="tab_info">
-	// 									<div class="left">
-	// 										<img src="" alt="">
-	// 										<div class="content">
-	// 											<div>
-	// 												<span>发布时间:{{subItem.time}}</span>
-	// 												<span>发布人:{{subItem.subUser}}</span>
-	// 											</div>
-	// 											<div>
-	// 												{{subItem.content}}
-	// 											</div>
-	// 										</div>
-	// 									</div>
-	// 									<div>
-	// 										<i class="icon-chevron-right"></i>
-	// 									</div>
-	// 								</div>
-	
-	// 							</li>
-	// 						</ul>
-	// 					</pull-list>
-	// 				</tab>
-	// 			</tabs>
-	// 		</div>
-	// 	</div>
-	
-	// 	<sidebar :menu-items="menuItems" :show-menu.sync="showMenu" >
-	
-	// 	</sidebar>
-	
-	// 	<loading :loading="isload"></loading>
-	
-	// </template>
-	
-	// <script lang="babel">
 	exports.default = {
 		created: function created() {
 			console.log("home is created");
@@ -12799,7 +12756,8 @@
 			tabs: _Tabs2.default,
 			tab: _Tab2.default,
 			loading: _Loading2.default,
-			PullList: _PullList2.default
+			list: _List2.default,
+			listitem: _ListItem2.default
 		},
 		props: {},
 		data: function data() {
@@ -12916,6 +12874,18 @@
 						subUser: '张三',
 						content: '我的世界你不懂5'
 					}]
+				}, {
+					title: '制度', infoList: [{
+						imgUrl: '',
+						time: '2015-11-24',
+						subUser: '张三',
+						content: '我的世界你不懂5'
+					}, {
+						imgUrl: '',
+						time: '2015-11-24',
+						subUser: '张三',
+						content: '我的世界你不懂5'
+					}]
 				}]
 			};
 		},
@@ -12976,11 +12946,11 @@
 	// 	}
 	// 	.left>div{
 	// 		margin-left: 10px;
-
 	// 	}
 
 	// 	.contentList{
 	// 		background-color: whitesmoke;
+	// 		width: 100%;
 	// 	}
 	// 	.contentList>li{
 	// 		border-radius: 3px;
@@ -13014,6 +12984,50 @@
 	// 		border-width: 0px;
 	// 	}
 	// </style>
+	// <template>
+	// 	<div class="page">
+	// 		<toolbar :text="title">
+	// 			<span class="icon-reorder" slot="leftBtn" @click="openMenu"></span>
+	//             <span class="icon-refresh" slot="rightBtn" @click="refresh"></span>
+	// 		</toolbar>
+	// 		<div class="page-content">
+	// 			<tabs :active-index.sync="index" >
+	// 				<tab v-for="item in tabItems" :header="item.title" >
+	// 					<list>
+	// 						<li v-for="subItem in item.infoList" >
+	// 							<div class="tab_info">
+	// 								<div class="left">
+	// 									<img src="" alt="">
+	// 									<div class="content">
+	// 										<div>
+	// 											<span>发布时间:{{subItem.time}}</span>
+	// 											<span>发布人:{{subItem.subUser}}</span>
+	// 										</div>
+	// 										<div>
+	// 											{{subItem.content}}
+	// 										</div>
+	// 									</div>
+	// 								</div>
+	// 								<div>
+	// 									<i class="icon-chevron-right"></i>
+	// 								</div>
+	// 							</div>
+	// 						</li>
+	// 					</list>
+	// 				</tab>
+	// 			</tabs>
+	// 		</div>
+	// 	</div>
+
+	// 	<sidebar :menu-items="menuItems" :show-menu.sync="showMenu" >
+
+	// 	</sidebar>
+
+	// 	<loading :loading="isload"></loading>
+
+	// </template>
+
+	// <script lang="babel">
 
 /***/ },
 /* 12 */
@@ -13686,7 +13700,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n\n.tabs[_v-5d2ac0ac]{\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-flex-flow:column nowrap;\n        -ms-flex-flow:column nowrap;\n            flex-flow:column nowrap;\n    min-height: 35px;\n    -webkit-box-pack:start;\n    -webkit-justify-content:flex-start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    height: 100%;\n}\n\n.nav-tabs[_v-5d2ac0ac]{\n   display: -webkit-box;\n   display: -webkit-flex;\n   display: -ms-flexbox;\n   display: flex;\n   -webkit-flex-flow:column nowrap;\n       -ms-flex-flow:column nowrap;\n           flex-flow:column nowrap;\n   min-height: 35px;\n   height: 40px;\n   -webkit-box-pack:start;\n   -webkit-justify-content:flex-start;\n       -ms-flex-pack:start;\n           justify-content:flex-start;\n   -webkit-box-flex:0;\n   -webkit-flex:0 1 auto;\n       -ms-flex:0 1 auto;\n           flex:0 1 auto;\n}\n\n.tabs_title[_v-5d2ac0ac] {\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    display: -webkit-flex;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            -webkit-box-align: center;\n            align-items: center;\n    -webkit-align-content: center;\n        -ms-flex-line-pack: center;\n            align-content: center;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n\n    -webkit-justify-content: space-around;\n    -webkit-flex-flow: row nowrap;\n    -webkit-align-items: center;\n    -webkit-align-content: center;\n\n    list-style-type: none;\n    line-height: 35px;\n    border-bottom: 1px solid whitesmoke;\n    font-size: 14px;\n    font-weight: bold;\n    width: 100%;\n}\n\n\n.tabs_title>li[_v-5d2ac0ac] {\n  width: 100%;\n  min-width: 100px;\n  text-align: center;\n  vertical-align: middle;\n  cursor: pointer;\n}\n\n.nav_active[_v-5d2ac0ac] {\n  color: darkorange;\n}\n\n\n#tabs_line[_v-5d2ac0ac] {\n  height: 3px;\n  margin: 0px 10px;\n  margin-top: -3px;\n  background-color: darkorange;\n  -webkit-transition: -webkit-transform .3s ease;\n  transition: -webkit-transform .3s ease;\n  transition: transform .3s ease;\n  transition: transform .3s ease, -webkit-transform .3s ease;\n  -moz-transition: transform .3s ease;/* Firefox 4 */\n  -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n  -o-transition: transform .3s ease; /* Opera */\n  width: 0px;\n}\n\n.tab-content[_v-5d2ac0ac]{\n    overflow: auto;\n    -webkit-overflow-scrolling: touch;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    -webkit-flex: 0 1 auto;\n    -ms-flex: 0 1 auto;\n    -webkit-box-flex: 0;\n            flex: 0 1 auto;\n    margin-bottom: 0px;\n    height: 100%;\n    -webkit-flex-flow:column nowrap;\n        -ms-flex-flow:column nowrap;\n            flex-flow:column nowrap;\n}\n", "", {"version":3,"sources":["/./src/components/Tabs.vue?95e12948"],"names":[],"mappings":";;;AAiFA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,gCAAA;QAAA,4BAAA;YAAA,wBAAA;IACA,iBAAA;IACA,uBAAA;IAAA,mCAAA;QAAA,oBAAA;YAAA,2BAAA;IACA,aAAA;CACA;;AAEA;GACA,qBAAA;GAAA,sBAAA;GAAA,qBAAA;GAAA,cAAA;GACA,gCAAA;OAAA,4BAAA;WAAA,wBAAA;GACA,iBAAA;GACA,aAAA;GACA,uBAAA;GAAA,mCAAA;OAAA,oBAAA;WAAA,2BAAA;GACA,mBAAA;GAAA,sBAAA;OAAA,kBAAA;WAAA,cAAA;CACA;;AAEA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,sBAAA;IACA,8BAAA;QACA,0BAAA;YACA,sBAAA;IACA,4BAAA;QACA,uBAAA;YACA,0BAAA;YAAA,oBAAA;IACA,8BAAA;QACA,2BAAA;YACA,sBAAA;IACA,0BAAA;QACA,8BAAA;;IAEA,sCAAA;IACA,8BAAA;IACA,4BAAA;IACA,8BAAA;;IAEA,sBAAA;IACA,kBAAA;IACA,oCAAA;IACA,gBAAA;IACA,kBAAA;IACA,YAAA;CACA;;;AAGA;EACA,YAAA;EACA,iBAAA;EACA,mBAAA;EACA,uBAAA;EACA,gBAAA;CACA;;AAEA;EACA,kBAAA;CACA;;;AAGA;EACA,YAAA;EACA,iBAAA;EACA,iBAAA;EACA,6BAAA;EACA,+CAAA;EAAA,uCAAA;EAAA,+BAAA;EAAA,2DAAA;EACA,oCAAA,eAAA;EACA,uCAAA,CAAA,qBAAA;EACA,kCAAA,CAAA,WAAA;EACA,WAAA;CACA;;AAEA;IACA,eAAA;IACA,kCAAA;IACA,sBAAA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,uBAAA;IACA,mBAAA;IACA,oBAAA;YAAA,eAAA;IACA,mBAAA;IACA,aAAA;IACA,gCAAA;QAAA,4BAAA;YAAA,wBAAA;CACA","file":"Tabs.vue","sourcesContent":["<template>\r\n \r\n  <section class=\"tabs\" v-touch:swipeleft=\"swipeLeft\" v-touch:swiperight=\"swipeRight\" role=\"tablist\">\r\n    <div class=\"nav-tabs\">\r\n        <ul class=\"tabs_title\">\r\n            <li v-for=\"item in tabItems\"\r\n            :class=\"{'nav_active':activeIndex===$index}\" \r\n            v-touch:tap=\"switchTab($index)\" \r\n             >{{item.header}}</li>\r\n        </ul>\r\n        <div id=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\">\r\n        </div>\r\n    </div>\r\n      <!-- Tab panes -->\r\n    <div class=\"tab-content\">\r\n        <slot></slot>\r\n    </div>\r\n  </section>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    ready(){\r\n        var width=  document.body.offsetWidth-20;\r\n        this.underline=width/this.tabItems.length;\r\n        this.switchTab(this.activeIndex);\r\n    },\r\n    props:{\r\n      effect: {\r\n        type: String,\r\n        default: 'fadein'\r\n      },\r\n      activeIndex:{\r\n        type: Number,\r\n        default: 0\r\n      }\r\n    },\r\n    data(){\r\n      return {\r\n        //当前选中的tab页面\r\n        underline:100,\r\n        tabItems:[]\r\n      }\r\n    },\r\n    methods:{\r\n      //点击tabs\r\n      switchTab(index){\r\n\r\n        this.activeIndex=index;\r\n        var leftWidth=index*this.underline;\r\n        document.getElementById('tabs_line').style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n      },\r\n      swipeLeft(){\r\n         \r\n          var tempIndex=this.activeIndex;\r\n          var tabLength=this.tabItems.length-1;\r\n          if(tempIndex==tabLength){\r\n            tempIndex=tabLength;\r\n          }else{\r\n            tempIndex=this.activeIndex+1;\r\n          }\r\n          this.activeIndex=tempIndex;\r\n          this.switchTab(tempIndex);\r\n      },\r\n      swipeRight(){\r\n          var tempIndex=this.activeIndex;\r\n          var tempIndex=this.activeIndex-1;\r\n          if(tempIndex<0){\r\n            tempIndex=0;\r\n          }\r\n          this.activeIndex=tempIndex;\r\n          this.switchTab(tempIndex);\r\n      }\r\n    }\r\n  }\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" scoped>\r\n    \r\n\r\n    .tabs{\r\n        display: flex;\r\n        flex-flow:column nowrap;\r\n        min-height: 35px;\r\n        justify-content:flex-start;\r\n        height: 100%;\r\n    }\r\n\r\n    .nav-tabs{\r\n       display: flex;\r\n       flex-flow:column nowrap;\r\n       min-height: 35px;\r\n       height: 40px;\r\n       justify-content:flex-start;\r\n       flex:0 1 auto;\r\n    }\r\n    \r\n    .tabs_title {\r\n        display: -ms-flexbox;\r\n        display: flex;\r\n        display: -webkit-flex;\r\n        -webkit-flex-flow: row nowrap;\r\n            -ms-flex-flow: row nowrap;\r\n                flex-flow: row nowrap;\r\n        -webkit-align-items: center;\r\n            -ms-flex-align: center;\r\n                align-items: center;\r\n        -webkit-align-content: center;\r\n            -ms-flex-line-pack: center;\r\n                align-content: center;\r\n        -ms-flex-pack: distribute;\r\n            justify-content: space-around;\r\n\r\n        -webkit-justify-content: space-around;\r\n        -webkit-flex-flow: row nowrap;\r\n        -webkit-align-items: center;\r\n        -webkit-align-content: center;\r\n\r\n        list-style-type: none;\r\n        line-height: 35px;\r\n        border-bottom: 1px solid whitesmoke;\r\n        font-size: 14px;\r\n        font-weight: bold;\r\n        width: 100%;\r\n    }\r\n    \r\n    \r\n    .tabs_title>li {\r\n      width: 100%;\r\n      min-width: 100px;\r\n      text-align: center;\r\n      vertical-align: middle;\r\n      cursor: pointer;\r\n    }\r\n    \r\n    .nav_active {\r\n      color: darkorange;\r\n    }\r\n\r\n    \r\n    #tabs_line {\r\n      height: 3px;\r\n      margin: 0px 10px;\r\n      margin-top: -3px;\r\n      background-color: darkorange;\r\n      transition: transform .3s ease;\r\n      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n      -o-transition: transform .3s ease; /* Opera */\r\n      width: 0px;\r\n    }\r\n\r\n    .tab-content{\r\n        overflow: auto;\r\n        -webkit-overflow-scrolling: touch;\r\n        display: -webkit-flex;\r\n        display: -ms-flexbox;\r\n        display: flex;\r\n        -webkit-flex: 0 1 auto;\r\n        -ms-flex: 0 1 auto;\r\n        flex: 0 1 auto;\r\n        margin-bottom: 0px;\r\n        height: 100%;\r\n        flex-flow:column nowrap;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n.tabs[_v-5d2ac0ac]{\n    min-height: 35px;\n    height: 100%;\n    width: 100%;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n    -webkit-flex-direction:column;\n        -ms-flex-direction:column;\n            flex-direction:column;\n}\n\n.nav-tabs[_v-5d2ac0ac]{\n   min-height: 35px;\n   height: 35px;\n   width: 100%;\n}\n\n.tabs_title[_v-5d2ac0ac] {\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    display: -webkit-flex;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            -webkit-box-align: center;\n            align-items: center;\n    -webkit-align-content: center;\n        -ms-flex-line-pack: center;\n            align-content: center;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n\n    -webkit-justify-content: space-around;\n    -webkit-flex-flow: row nowrap;\n    -webkit-align-items: center;\n    -webkit-align-content: center;\n\n    list-style-type: none;\n    line-height: 35px;\n    border-bottom: 1px solid whitesmoke;\n    font-size: 14px;\n    font-weight: bold;\n    width: 100%;\n}\n\n\n.tabs_title>li[_v-5d2ac0ac] {\n  min-width: 100px;\n  text-align: center;\n  vertical-align: middle;\n  cursor: pointer;\n}\n\n.nav_active[_v-5d2ac0ac] {\n  color: darkorange;\n}\n\n\n#tabs_line[_v-5d2ac0ac] {\n  height: 3px;\n  margin: 0px 10px;\n  margin-top: -3px;\n  background-color: darkorange;\n  -webkit-transition: -webkit-transform .3s ease;\n  transition: -webkit-transform .3s ease;\n  transition: transform .3s ease;\n  transition: transform .3s ease, -webkit-transform .3s ease;\n  -moz-transition: transform .3s ease;/* Firefox 4 */\n  -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n  -o-transition: transform .3s ease; /* Opera */\n  width: 0px;\n}\n\n.tab-content[_v-5d2ac0ac]{\n    overflow: auto;\n    -webkit-overflow-scrolling: touch;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    -webkit-flex: 0 1 auto;\n    -ms-flex: 0 1 auto;\n    -webkit-box-flex: 0;\n            flex: 0 1 auto;\n    margin-bottom: 0px;\n    height: 100%;\n    -webkit-flex-flow:column nowrap;\n        -ms-flex-flow:column nowrap;\n            flex-flow:column nowrap;\n}\n", "", {"version":3,"sources":["/./src/components/Tabs.vue?3aa9e54c"],"names":[],"mappings":";;AAiFA;IACA,iBAAA;IACA,aAAA;IACA,YAAA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,4BAAA;IAAA,6BAAA;IAAA,8BAAA;QAAA,0BAAA;YAAA,sBAAA;CACA;;AAEA;GACA,iBAAA;GACA,aAAA;GACA,YAAA;CACA;;AAEA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,sBAAA;IACA,8BAAA;QACA,0BAAA;YACA,sBAAA;IACA,4BAAA;QACA,uBAAA;YACA,0BAAA;YAAA,oBAAA;IACA,8BAAA;QACA,2BAAA;YACA,sBAAA;IACA,0BAAA;QACA,8BAAA;;IAEA,sCAAA;IACA,8BAAA;IACA,4BAAA;IACA,8BAAA;;IAEA,sBAAA;IACA,kBAAA;IACA,oCAAA;IACA,gBAAA;IACA,kBAAA;IACA,YAAA;CACA;;;AAGA;EACA,iBAAA;EACA,mBAAA;EACA,uBAAA;EACA,gBAAA;CACA;;AAEA;EACA,kBAAA;CACA;;;AAGA;EACA,YAAA;EACA,iBAAA;EACA,iBAAA;EACA,6BAAA;EACA,+CAAA;EAAA,uCAAA;EAAA,+BAAA;EAAA,2DAAA;EACA,oCAAA,eAAA;EACA,uCAAA,CAAA,qBAAA;EACA,kCAAA,CAAA,WAAA;EACA,WAAA;CACA;;AAEA;IACA,eAAA;IACA,kCAAA;IACA,sBAAA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,uBAAA;IACA,mBAAA;IACA,oBAAA;YAAA,eAAA;IACA,mBAAA;IACA,aAAA;IACA,gCAAA;QAAA,4BAAA;YAAA,wBAAA;CACA","file":"Tabs.vue","sourcesContent":["<template>\r\n \r\n  <section class=\"tabs\" v-touch:swipeleft=\"swipeLeft\" v-touch:swiperight=\"swipeRight\" role=\"tablist\">\r\n    <section class=\"nav-tabs\">\r\n        <ul class=\"tabs_title\">\r\n            <li v-for=\"item in tabItems\" :style=\"{ width:underline+ 'px' }\"\r\n            :class=\"{'nav_active':activeIndex===$index}\" \r\n            v-touch:tap=\"switchTab($index)\" \r\n             >{{item.header}}</li>\r\n        </ul>\r\n        <section id=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\">\r\n        </section>\r\n    </section>\r\n      <!-- Tab panes -->\r\n    <section class=\"tab-content\">\r\n        <slot></slot>\r\n    </section>\r\n  </section>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    ready(){\r\n        var width=  document.body.offsetWidth-20;\r\n        this.underline=width/this.tabItems.length;\r\n        this.switchTab(this.activeIndex);\r\n    },\r\n    props:{\r\n      effect: {\r\n        type: String,\r\n        default: 'fadein'\r\n      },\r\n      activeIndex:{\r\n        type: Number,\r\n        default: 0\r\n      }\r\n    },\r\n    data(){\r\n      return {\r\n        //当前选中的tab页面\r\n        underline:100,\r\n        tabItems:[]\r\n      }\r\n    },\r\n    methods:{\r\n      //点击tabs\r\n      switchTab(index){\r\n\r\n        this.activeIndex=index;\r\n        var leftWidth=index*this.underline;\r\n        // this.$el.getElementById('tabs_line').style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n        document.getElementById('tabs_line').style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n      },\r\n      swipeLeft(){\r\n         \r\n          var tempIndex=this.activeIndex;\r\n          var tabLength=this.tabItems.length-1;\r\n          if(tempIndex==tabLength){\r\n            tempIndex=tabLength;\r\n          }else{\r\n            tempIndex=this.activeIndex+1;\r\n          }\r\n          this.activeIndex=tempIndex;\r\n          this.switchTab(tempIndex);\r\n      },\r\n      swipeRight(){\r\n          var tempIndex=this.activeIndex;\r\n          var tempIndex=this.activeIndex-1;\r\n          if(tempIndex<0){\r\n            tempIndex=0;\r\n          }\r\n          this.activeIndex=tempIndex;\r\n          this.switchTab(tempIndex);\r\n      }\r\n    }\r\n  }\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" scoped>\r\n    \r\n    .tabs{\r\n        min-height: 35px;\r\n        height: 100%;\r\n        width: 100%;\r\n        display: flex;\r\n        flex-direction:column;\r\n    }\r\n\r\n    .nav-tabs{\r\n       min-height: 35px;\r\n       height: 35px;\r\n       width: 100%;\r\n    }\r\n    \r\n    .tabs_title {\r\n        display: -ms-flexbox;\r\n        display: flex;\r\n        display: -webkit-flex;\r\n        -webkit-flex-flow: row nowrap;\r\n            -ms-flex-flow: row nowrap;\r\n                flex-flow: row nowrap;\r\n        -webkit-align-items: center;\r\n            -ms-flex-align: center;\r\n                align-items: center;\r\n        -webkit-align-content: center;\r\n            -ms-flex-line-pack: center;\r\n                align-content: center;\r\n        -ms-flex-pack: distribute;\r\n            justify-content: space-around;\r\n\r\n        -webkit-justify-content: space-around;\r\n        -webkit-flex-flow: row nowrap;\r\n        -webkit-align-items: center;\r\n        -webkit-align-content: center;\r\n\r\n        list-style-type: none;\r\n        line-height: 35px;\r\n        border-bottom: 1px solid whitesmoke;\r\n        font-size: 14px;\r\n        font-weight: bold;\r\n        width: 100%;\r\n    }\r\n    \r\n    \r\n    .tabs_title>li {\r\n      min-width: 100px;\r\n      text-align: center;\r\n      vertical-align: middle;\r\n      cursor: pointer;\r\n    }\r\n    \r\n    .nav_active {\r\n      color: darkorange;\r\n    }\r\n\r\n    \r\n    #tabs_line {\r\n      height: 3px;\r\n      margin: 0px 10px;\r\n      margin-top: -3px;\r\n      background-color: darkorange;\r\n      transition: transform .3s ease;\r\n      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n      -o-transition: transform .3s ease; /* Opera */\r\n      width: 0px;\r\n    }\r\n\r\n    .tab-content{\r\n        overflow: auto;\r\n        -webkit-overflow-scrolling: touch;\r\n        display: -webkit-flex;\r\n        display: -ms-flexbox;\r\n        display: flex;\r\n        -webkit-flex: 0 1 auto;\r\n        -ms-flex: 0 1 auto;\r\n        flex: 0 1 auto;\r\n        margin-bottom: 0px;\r\n        height: 100%;\r\n        flex-flow:column nowrap;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -13703,20 +13717,20 @@
 	// <template>
 	
 	//   <section class="tabs" v-touch:swipeleft="swipeLeft" v-touch:swiperight="swipeRight" role="tablist">
-	//     <div class="nav-tabs">
+	//     <section class="nav-tabs">
 	//         <ul class="tabs_title">
-	//             <li v-for="item in tabItems"
+	//             <li v-for="item in tabItems" :style="{ width:underline+ 'px' }"
 	//             :class="{'nav_active':activeIndex===$index}"
 	//             v-touch:tap="switchTab($index)"
 	//              >{{item.header}}</li>
 	//         </ul>
-	//         <div id="tabs_line" v-bind:style="{ width:underline+ 'px' }">
-	//         </div>
-	//     </div>
+	//         <section id="tabs_line" v-bind:style="{ width:underline+ 'px' }">
+	//         </section>
+	//     </section>
 	//       <!-- Tab panes -->
-	//     <div class="tab-content">
+	//     <section class="tab-content">
 	//         <slot></slot>
-	//     </div>
+	//     </section>
 	//   </section>
 	// </template>
 	
@@ -13753,6 +13767,7 @@
 	
 	      this.activeIndex = index;
 	      var leftWidth = index * this.underline;
+	      // this.$el.getElementById('tabs_line').style.transform="translateX("+leftWidth+"px)";
 	      document.getElementById('tabs_line').style.transform = "translateX(" + leftWidth + "px)";
 	    },
 	    swipeLeft: function swipeLeft() {
@@ -13783,20 +13798,17 @@
 	// <style type="text/css" scoped>
 
 	//     .tabs{
-	//         display: flex;
-	//         flex-flow:column nowrap;
 	//         min-height: 35px;
-	//         justify-content:flex-start;
 	//         height: 100%;
+	//         width: 100%;
+	//         display: flex;
+	//         flex-direction:column;
 	//     }
 
 	//     .nav-tabs{
-	//        display: flex;
-	//        flex-flow:column nowrap;
 	//        min-height: 35px;
-	//        height: 40px;
-	//        justify-content:flex-start;
-	//        flex:0 1 auto;
+	//        height: 35px;
+	//        width: 100%;
 	//     }
 
 	//     .tabs_title {
@@ -13829,7 +13841,6 @@
 	//     }
 
 	//     .tabs_title>li {
-	//       width: 100%;
 	//       min-width: 100px;
 	//       text-align: center;
 	//       vertical-align: middle;
@@ -13872,7 +13883,7 @@
 /* 34 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n<section class=\"tabs\" v-touch:swipeleft=\"swipeLeft\" v-touch:swiperight=\"swipeRight\" role=\"tablist\" _v-5d2ac0ac=\"\">\n  <div class=\"nav-tabs\" _v-5d2ac0ac=\"\">\n      <ul class=\"tabs_title\" _v-5d2ac0ac=\"\">\n          <li v-for=\"item in tabItems\" :class=\"{'nav_active':activeIndex===$index}\" v-touch:tap=\"switchTab($index)\" _v-5d2ac0ac=\"\">{{item.header}}</li>\n      </ul>\n      <div id=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\" _v-5d2ac0ac=\"\">\n      </div>\n  </div>\n    <!-- Tab panes -->\n  <div class=\"tab-content\" _v-5d2ac0ac=\"\">\n      <slot _v-5d2ac0ac=\"\"></slot>\n  </div>\n</section>\n";
+	module.exports = "\n\n<section class=\"tabs\" v-touch:swipeleft=\"swipeLeft\" v-touch:swiperight=\"swipeRight\" role=\"tablist\" _v-5d2ac0ac=\"\">\n  <section class=\"nav-tabs\" _v-5d2ac0ac=\"\">\n      <ul class=\"tabs_title\" _v-5d2ac0ac=\"\">\n          <li v-for=\"item in tabItems\" :style=\"{ width:underline+ 'px' }\" :class=\"{'nav_active':activeIndex===$index}\" v-touch:tap=\"switchTab($index)\" _v-5d2ac0ac=\"\">{{item.header}}</li>\n      </ul>\n      <section id=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\" _v-5d2ac0ac=\"\">\n      </section>\n  </section>\n    <!-- Tab panes -->\n  <section class=\"tab-content\" _v-5d2ac0ac=\"\">\n      <slot _v-5d2ac0ac=\"\"></slot>\n  </section>\n</section>\n";
 
 /***/ },
 /* 35 */
@@ -14214,296 +14225,10 @@
 	module.exports = "\n\t<div class=\"modal\" v-if=\"loading\" _v-33df34c0=\"\">\n        <div class=\"spinner\" _v-33df34c0=\"\">\n            <div class=\"spinnerBar1\" _v-33df34c0=\"\"></div>\n            <div class=\"spinnerBar2\" _v-33df34c0=\"\"></div>\n            <div class=\"spinnerBar3\" _v-33df34c0=\"\"></div>\n            <div class=\"spinnerBar4\" _v-33df34c0=\"\"></div>\n            <div class=\"spinnerBar5\" _v-33df34c0=\"\"></div>\n        </div>\n    </div>\n";
 
 /***/ },
-/* 45 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__webpack_require__(46)
-	__vue_script__ = __webpack_require__(48)
-	__vue_template__ = __webpack_require__(50)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\components\\PullList.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 46 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(47);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-50a8202f&file=PullList.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./PullList.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-50a8202f&file=PullList.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./PullList.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 47 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n\n\t/*list集合*/\n\t.pull-list{\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -webkit-flex;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t   \t-webkit-flex-flow:column nowrap;\n\t   \t    -ms-flex-flow:column nowrap;\n\t   \t        flex-flow:column nowrap;\n\t  \tmin-height: 120px;\n\t  \t-webkit-box-pack:start;\n\t  \t-webkit-justify-content:flex-start;\n\t  \t    -ms-flex-pack:start;\n\t  \t        justify-content:flex-start;\n\t  \t-webkit-box-flex:0;\n\t  \t-webkit-flex:0 1 auto;\n\t  \t    -ms-flex:0 1 auto;\n\t  \t        flex:0 1 auto;\n\t   \theight: 100%;\n\t}\n\n\t\n\t.pull-header,.pull-footer{\n\t     display: -webkit-box;\n\t     display: -webkit-flex;\n\t     display: -ms-flexbox;\n\t     display: flex;\n     \t -webkit-flex-flow:row nowrap;\n     \t     -ms-flex-flow:row nowrap;\n     \t         flex-flow:row nowrap;\n\t     min-height: 60px;\n\t     height: 60px;\n\t     -webkit-box-pack:center;\n\t     -webkit-justify-content:center;\n\t         -ms-flex-pack:center;\n\t             justify-content:center;\n\t     -webkit-box-flex:0;\n\t     -webkit-flex:0 1 auto;\n\t         -ms-flex:0 1 auto;\n\t             flex:0 1 auto;\n\t     -webkit-box-align:center;\n\t     -webkit-align-items:center;\n\t         -ms-flex-align:center;\n\t             align-items:center;\n\t     aiign-content:center;\n\t}\n\n\t.pull-header{\n\t    \n\t\tmargin-top: -60px;\n\t\tborder-bottom: 1px solid whitesmoke;\n\n\t}\n\t.pull-footer{\n\t\tmargin-bottom: -60px;\n\t\tborder-top: 1px solid whitesmoke;\n\t}\n\n\t.pull-header>img,.pull-footer>img{\n\t\t -webkit-transition: -webkit-transform .3s ease;\n\t\t transition: -webkit-transform .3s ease;\n\t\t transition: transform .3s ease;\n\t\t transition: transform .3s ease, -webkit-transform .3s ease;\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n\t      -o-transition: transform .3s ease; /* Opera */\n\t}\n\n\n\t.pull-header>div,.pull-footer>div{\n\t\tfont-size: 12px;\n\t\tmargin-left: 12px;\n\t}\n\t\n\n\t.pull-content{\n\t\toverflow: auto;\n\t    -webkit-overflow-scrolling: touch;\n\t    display: -webkit-flex;\n\t    display: -ms-flexbox;\n\t    display: -webkit-box;\n\t    display: flex;\n\t    -webkit-flex: 0 1 auto;\n\t    -ms-flex: 0 1 auto;\n\t    -webkit-box-flex: 0;\n\t            flex: 0 1 auto;\n\t    margin-bottom: 10px;\n\t    margin: 0px;\n\t    -webkit-flex-flow:column nowrap;\n\t        -ms-flex-flow:column nowrap;\n\t            flex-flow:column nowrap;\n\t    padding: 0px;\n\t}\n", "", {"version":3,"sources":["/./src/components/PullList.vue?43b1ca1c"],"names":[],"mappings":";;CAyJA,UAAA;CACA;EACA,qBAAA;EAAA,sBAAA;EAAA,qBAAA;EAAA,cAAA;KACA,gCAAA;SAAA,4BAAA;aAAA,wBAAA;IACA,kBAAA;IACA,uBAAA;IAAA,mCAAA;QAAA,oBAAA;YAAA,2BAAA;IACA,mBAAA;IAAA,sBAAA;QAAA,kBAAA;YAAA,cAAA;KACA,aAAA;EACA;;;CAGA;MACA,qBAAA;MAAA,sBAAA;MAAA,qBAAA;MAAA,cAAA;OACA,6BAAA;WAAA,yBAAA;eAAA,qBAAA;MACA,iBAAA;MACA,aAAA;MACA,wBAAA;MAAA,+BAAA;UAAA,qBAAA;cAAA,uBAAA;MACA,mBAAA;MAAA,sBAAA;UAAA,kBAAA;cAAA,cAAA;MACA,yBAAA;MAAA,2BAAA;UAAA,sBAAA;cAAA,mBAAA;MACA,qBAAA;EACA;;CAEA;;EAEA,kBAAA;EACA,oCAAA;;EAEA;CACA;EACA,qBAAA;EACA,iCAAA;EACA;;CAEA;GACA,+CAAA;GAAA,uCAAA;GAAA,+BAAA;GAAA,2DAAA;OACA,oCAAA,eAAA;OACA,uCAAA,CAAA,qBAAA;OACA,kCAAA,CAAA,WAAA;EACA;;;CAGA;EACA,gBAAA;EACA,kBAAA;EACA;;;CAGA;EACA,eAAA;KACA,kCAAA;KACA,sBAAA;KACA,qBAAA;KACA,qBAAA;KAAA,cAAA;KACA,uBAAA;KACA,mBAAA;KACA,oBAAA;aAAA,eAAA;KACA,oBAAA;KACA,YAAA;KACA,gCAAA;SAAA,4BAAA;aAAA,wBAAA;KACA,aAAA;EACA","file":"PullList.vue","sourcesContent":["<!-- 下拉刷新组件 -->\r\n\r\n<template>\r\n\t<section class=\"pull-list\" v-touch:pandown=\"pullToRefresh\" v-touch:panup=\"loadMore\" v-touch:panend=\"panleave\"   >\r\n\t\t<header class=\"pull-header\">\r\n\t\t\t<div>\r\n\t\t\t\t<img class=\"downImg\" src=\"../assets/images/components/icon-down.png\" alt=\"下拉\">\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<p>{{refreshText}}</p>\r\n\t\t\t\t<p>最后更新:{{rlastTime}}</p>\r\n\t\t\t</div>\r\n\t\t</header>\r\n\t\t<div class=\"pull-content\" v-on:scroll=\"scroll($event)\" v-el:listContent>\r\n\t\t\t<slot ></slot>\r\n\t\t</div>\r\n\t\t<footer class=\"pull-footer\" v-show=\"showfooter\">\r\n\t\t\t<div>\r\n\t\t\t\t<img class=\"upImg\" src=\"../assets/images/components/icon-up.png\" alt=\"上拉\">\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<p>{{moreText}}</p>\r\n\t\t\t\t<p>最后更新:{{mlastTime}}</p>\r\n\t\t\t</div>\r\n\t\t</footer>\r\n\t</section>\r\n\t\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\r\n\timport dateHelper from './utils/DateHelper.js'\r\n\r\n\texport default {\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\trlastTime:'',\r\n\t\t\t\tmlastTime:'',\r\n\t\t\t\trefreshText:'下拉刷新',\r\n\t\t\t\tmoreText:'加载更多',\r\n\t\t\t\t//是否触发事件\r\n\t\t\t\tisRefresh:false,\r\n\t\t\t\t//是否显示底部加载更多\r\n\t\t\t\tshowfooter:false,\r\n\t\t\t\t//下拉和上拉的标识\r\n\t\t\t\tarrow:'down',\r\n\t\t\t\t//滚动条是否在顶部\r\n\t\t\t\ttop:0,\r\n\t\t\t\t//滚动条是否在底部\r\n\t\t\t\tisBottom:false,\r\n\t\t\t\t//屏幕的高度\r\n\t\t\t\tregionHeight:100,\r\n\t\t\t\t//内容的高度\r\n\t\t\t\twinHeight:100\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\t//得到对应的高度\r\n\t\t\tthis.regionHeight=this.$el.offsetHeight;\r\n\t\t\tvar listObj=this.$el.getElementsByTagName('ul')[0];\r\n\t\t\tthis.winHeight=listObj.offsetHeight;\r\n\t\t\tconsole.log(\"可见区域的高度：\"+this.regionHeight+\"-内容总高度:\"+this.winHeight);\r\n\r\n\t\t},\r\n\t\tmethods:{\r\n\r\n\t\t\tmove(height){\r\n\t\t\t\tvar list=this.$el;\r\n\t\t\t\t//获取角度\r\n\t\t\t\tvar rotateHeight=height<90?height*2:180;\r\n\t\t\t\tif(this.arrow==\"down\"){\r\n\t\t\t\t\tlist.style.transform=\"translateY(\"+height+\"px)\";\r\n\t\t\t\t\tvar img=list.getElementsByTagName('header')[0].getElementsByTagName('img')[0];\r\n\t\t\t\t\timg.style.transform=\"rotate(\"+rotateHeight+\"deg)\"\r\n\t\t\t\t}else{\r\n\t\t\t\t\tlist.style.transform=\"translateY(-\"+height+\"px)\";\r\n\t\t\t\t\t//先检查底部的div是否显示出来,如果显示出来了,那么在找到对应的图标\r\n\t\t\t\t\tif(list.getElementsByTagName('footer')[0]){\r\n\t\t\t\t\t\tvar img=list.getElementsByTagName('footer')[0].getElementsByTagName('img')[0];\r\n\t\t\t\t\t\timg.style.transform=\"rotate(\"+rotateHeight+\"deg)\"\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t//检查是否滚动到底部,滚动到底部触发上拉加载更多的事件\r\n\t\t\tscroll(e){\r\n\t\t\t\tthis.top=e.target.scrollTop;\r\n\t\t\t\tif(this.top+this.regionHeight>this.winHeight){\r\n\t\t\t\t\tthis.isBottom=true;\r\n\t\t\t\t}else{\r\n\t\t\t\t\tthis.isBottom=false;\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\tgetCurTime(){\r\n\t\t\t\t var date=new Date();\r\n\t\t\t\t// return date.getFullYear()+\"\"\r\n\t\t\t},\r\n\t\t\tpanleave(e){\r\n\t\t\t\t\r\n\t\t\t\tif(this.arrow==\"down\"){\r\n\t\t\t\t\tthis.move(0)\r\n\t\t\t\t\tthis.refreshText=\"下拉刷新\";\r\n\t\t\t\t\t//得到当前的时间\r\n\t\t\t\t\tif(this.isRefresh){\r\n\t\t\t\t\t\tthis.isRefresh=false;\r\n\t\t\t\t\t\tthis.rlastTime=dateHelper.getNowDate(\"yyyy-MM-dd HH:mm:ss\");\r\n\t\t\t\t\t\tthis.$emit('reload');\r\n\t\t\t\t\t}\r\n\t\t\t\t\t// this.$broadcast('list-reload');\r\n\t\t\t\t}else if(this.arrow==\"up\"){\r\n\t\t\t\t\tthis.showfooter=false;\r\n\t\t\t\t\tthis.moreText=\"加载更多\";\r\n\t\t\t\t\tthis.move(0)\r\n\t\t\t\t\tif(this.isRefresh){\r\n\t\t\t\t\t\tthis.isRefresh=false;\r\n\t\t\t\t\t\tthis.mlastTime=dateHelper.getNowDate(\"yyyy-MM-dd HH:mm:ss\");\r\n\t\t\t\t\t\tthis.$emit('loadmore');\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t// 下拉刷新事件\r\n\t\t\tpullToRefresh(e){\r\n\t\t\t\tif(this.top==0){\r\n\t\t\t\t \tvar distance=e.distance;\r\n\t\t\t\t \tthis.arrow='down';\r\n\t\t\t\t \tthis.move(distance);\r\n\t\t\t\t \tif(distance>90){\r\n\t\t\t\t\t\tthis.refreshText=\"松开后刷新\";\r\n\t\t\t\t \t\tthis.isRefresh=true;\r\n\t\t\t\t \t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t//加载更多\r\n\t\t\tloadMore(e){\r\n\t\t\t\t//判断滚动的距离+当前窗口的宽度是否\r\n\t\t\t\tif(this.isBottom){\r\n\t\t\t\t\tthis.showfooter=true;\r\n\t\t\t\t\tthis.arrow='up';\r\n\t\t\t\t\tvar distance=e.distance;\r\n\t\t\t\t \t// console.log(\"拉动的距离\"+distance)\r\n\t\t\t\t \tthis.move(distance);\r\n\t\t\t\t \tif(distance>90){\r\n\t\t\t\t\t\tthis.moreText=\"松开后刷新\";\r\n\t\t\t\t \t\tthis.isRefresh=true;\r\n\t\t\t\t \t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style >\r\n\r\n\t/*list集合*/\r\n\t.pull-list{\r\n\t\tdisplay: flex;\r\n\t   \tflex-flow:column nowrap;\r\n\t  \tmin-height: 120px;\r\n\t  \tjustify-content:flex-start;\r\n\t  \tflex:0 1 auto;\r\n\t   \theight: 100%;\r\n\t}\r\n\r\n\t\r\n\t.pull-header,.pull-footer{\r\n\t     display: flex;\r\n     \t flex-flow:row nowrap;\r\n\t     min-height: 60px;\r\n\t     height: 60px;\r\n\t     justify-content:center;\r\n\t     flex:0 1 auto;\r\n\t     align-items:center;\r\n\t     aiign-content:center;\r\n\t}\r\n\r\n\t.pull-header{\r\n\t    \r\n\t\tmargin-top: -60px;\r\n\t\tborder-bottom: 1px solid whitesmoke;\r\n\r\n\t}\r\n\t.pull-footer{\r\n\t\tmargin-bottom: -60px;\r\n\t\tborder-top: 1px solid whitesmoke;\r\n\t}\r\n\r\n\t.pull-header>img,.pull-footer>img{\r\n\t\t transition: transform .3s ease;\r\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n\t      -o-transition: transform .3s ease; /* Opera */\r\n\t}\r\n\r\n\r\n\t.pull-header>div,.pull-footer>div{\r\n\t\tfont-size: 12px;\r\n\t\tmargin-left: 12px;\r\n\t}\r\n\t\r\n\r\n\t.pull-content{\r\n\t\toverflow: auto;\r\n\t    -webkit-overflow-scrolling: touch;\r\n\t    display: -webkit-flex;\r\n\t    display: -ms-flexbox;\r\n\t    display: flex;\r\n\t    -webkit-flex: 0 1 auto;\r\n\t    -ms-flex: 0 1 auto;\r\n\t    flex: 0 1 auto;\r\n\t    margin-bottom: 10px;\r\n\t    margin: 0px;\r\n\t    flex-flow:column nowrap;\r\n\t    padding: 0px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 48 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _DateHelper = __webpack_require__(49);
-	
-	var _DateHelper2 = _interopRequireDefault(_DateHelper);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-		data: function data() {
-			return {
-				rlastTime: '',
-				mlastTime: '',
-				refreshText: '下拉刷新',
-				moreText: '加载更多',
-				//是否触发事件
-				isRefresh: false,
-				//是否显示底部加载更多
-				showfooter: false,
-				//下拉和上拉的标识
-				arrow: 'down',
-				//滚动条是否在顶部
-				top: 0,
-				//滚动条是否在底部
-				isBottom: false,
-				//屏幕的高度
-				regionHeight: 100,
-				//内容的高度
-				winHeight: 100
-			};
-		},
-		ready: function ready() {
-			//得到对应的高度
-			this.regionHeight = this.$el.offsetHeight;
-			var listObj = this.$el.getElementsByTagName('ul')[0];
-			this.winHeight = listObj.offsetHeight;
-			console.log("可见区域的高度：" + this.regionHeight + "-内容总高度:" + this.winHeight);
-		},
-	
-		methods: {
-			move: function move(height) {
-				var list = this.$el;
-				//获取角度
-				var rotateHeight = height < 90 ? height * 2 : 180;
-				if (this.arrow == "down") {
-					list.style.transform = "translateY(" + height + "px)";
-					var img = list.getElementsByTagName('header')[0].getElementsByTagName('img')[0];
-					img.style.transform = "rotate(" + rotateHeight + "deg)";
-				} else {
-					list.style.transform = "translateY(-" + height + "px)";
-					//先检查底部的div是否显示出来,如果显示出来了,那么在找到对应的图标
-					if (list.getElementsByTagName('footer')[0]) {
-						var img = list.getElementsByTagName('footer')[0].getElementsByTagName('img')[0];
-						img.style.transform = "rotate(" + rotateHeight + "deg)";
-					}
-				}
-			},
-	
-			//检查是否滚动到底部,滚动到底部触发上拉加载更多的事件
-			scroll: function scroll(e) {
-				this.top = e.target.scrollTop;
-				if (this.top + this.regionHeight > this.winHeight) {
-					this.isBottom = true;
-				} else {
-					this.isBottom = false;
-				}
-			},
-			getCurTime: function getCurTime() {
-				var date = new Date();
-				// return date.getFullYear()+""
-			},
-			panleave: function panleave(e) {
-	
-				if (this.arrow == "down") {
-					this.move(0);
-					this.refreshText = "下拉刷新";
-					//得到当前的时间
-					if (this.isRefresh) {
-						this.isRefresh = false;
-						this.rlastTime = _DateHelper2.default.getNowDate("yyyy-MM-dd HH:mm:ss");
-						this.$emit('reload');
-					}
-					// this.$broadcast('list-reload');
-				} else if (this.arrow == "up") {
-						this.showfooter = false;
-						this.moreText = "加载更多";
-						this.move(0);
-						if (this.isRefresh) {
-							this.isRefresh = false;
-							this.mlastTime = _DateHelper2.default.getNowDate("yyyy-MM-dd HH:mm:ss");
-							this.$emit('loadmore');
-						}
-					}
-			},
-	
-			// 下拉刷新事件
-			pullToRefresh: function pullToRefresh(e) {
-				if (this.top == 0) {
-					var distance = e.distance;
-					this.arrow = 'down';
-					this.move(distance);
-					if (distance > 90) {
-						this.refreshText = "松开后刷新";
-						this.isRefresh = true;
-					}
-				}
-			},
-	
-			//加载更多
-			loadMore: function loadMore(e) {
-				//判断滚动的距离+当前窗口的宽度是否
-				if (this.isBottom) {
-					this.showfooter = true;
-					this.arrow = 'up';
-					var distance = e.distance;
-					// console.log("拉动的距离"+distance)
-					this.move(distance);
-					if (distance > 90) {
-						this.moreText = "松开后刷新";
-						this.isRefresh = true;
-					}
-				}
-			}
-		}
-	};
-	// </script>
-
-	// <style >
-
-	// 	/*list集合*/
-	// 	.pull-list{
-	// 		display: flex;
-	// 	   	flex-flow:column nowrap;
-	// 	  	min-height: 120px;
-	// 	  	justify-content:flex-start;
-	// 	  	flex:0 1 auto;
-	// 	   	height: 100%;
-	// 	}
-
-	// 	.pull-header,.pull-footer{
-	// 	     display: flex;
-	//      	 flex-flow:row nowrap;
-	// 	     min-height: 60px;
-	// 	     height: 60px;
-	// 	     justify-content:center;
-	// 	     flex:0 1 auto;
-	// 	     align-items:center;
-	// 	     aiign-content:center;
-	// 	}
-
-	// 	.pull-header{
-
-	// 		margin-top: -60px;
-	// 		border-bottom: 1px solid whitesmoke;
-
-	// 	}
-	// 	.pull-footer{
-	// 		margin-bottom: -60px;
-	// 		border-top: 1px solid whitesmoke;
-	// 	}
-
-	// 	.pull-header>img,.pull-footer>img{
-	// 		 transition: transform .3s ease;
-	// 	      -moz-transition: transform .3s ease;/* Firefox 4 */
-	// 	      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */
-	// 	      -o-transition: transform .3s ease; /* Opera */
-	// 	}
-
-	// 	.pull-header>div,.pull-footer>div{
-	// 		font-size: 12px;
-	// 		margin-left: 12px;
-	// 	}
-
-	// 	.pull-content{
-	// 		overflow: auto;
-	// 	    -webkit-overflow-scrolling: touch;
-	// 	    display: -webkit-flex;
-	// 	    display: -ms-flexbox;
-	// 	    display: flex;
-	// 	    -webkit-flex: 0 1 auto;
-	// 	    -ms-flex: 0 1 auto;
-	// 	    flex: 0 1 auto;
-	// 	    margin-bottom: 10px;
-	// 	    margin: 0px;
-	// 	    flex-flow:column nowrap;
-	// 	    padding: 0px;
-	// 	}
-	// </style>
-	// <!-- 下拉刷新组件 -->
-
-	// <template>
-	// 	<section class="pull-list" v-touch:pandown="pullToRefresh" v-touch:panup="loadMore" v-touch:panend="panleave"   >
-	// 		<header class="pull-header">
-	// 			<div>
-	// 				<img class="downImg" src="../assets/images/components/icon-down.png" alt="下拉">
-	// 			</div>
-	// 			<div>
-	// 				<p>{{refreshText}}</p>
-	// 				<p>最后更新:{{rlastTime}}</p>
-	// 			</div>
-	// 		</header>
-	// 		<div class="pull-content" v-on:scroll="scroll($event)" v-el:listContent>
-	// 			<slot ></slot>
-	// 		</div>
-	// 		<footer class="pull-footer" v-show="showfooter">
-	// 			<div>
-	// 				<img class="upImg" src="../assets/images/components/icon-up.png" alt="上拉">
-	// 			</div>
-	// 			<div>
-	// 				<p>{{moreText}}</p>
-	// 				<p>最后更新:{{mlastTime}}</p>
-	// 			</div>
-	// 		</footer>
-	// 	</section>
-
-	// </template>
-
-	// <script lang="babel">
-
-/***/ },
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
 /* 49 */
 /***/ function(module, exports) {
 
@@ -14550,12 +14275,7 @@
 	exports.default = DateHelper;
 
 /***/ },
-/* 50 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = "\n<section class=\"pull-list\" v-touch:pandown=\"pullToRefresh\" v-touch:panup=\"loadMore\" v-touch:panend=\"panleave\"   >\n\t<header class=\"pull-header\">\n\t\t<div>\n\t\t\t<img class=\"downImg\" src=\"" + __webpack_require__(51) + "\" alt=\"下拉\">\n\t\t</div>\n\t\t<div>\n\t\t\t<p>{{refreshText}}</p>\n\t\t\t<p>最后更新:{{rlastTime}}</p>\n\t\t</div>\n\t</header>\n\t<div class=\"pull-content\" v-on:scroll=\"scroll($event)\" v-el:listContent>\n\t\t<slot ></slot>\n\t</div>\n\t<footer class=\"pull-footer\" v-show=\"showfooter\">\n\t\t<div>\n\t\t\t<img class=\"upImg\" src=\"" + __webpack_require__(52) + "\" alt=\"上拉\">\n\t\t</div>\n\t\t<div>\n\t\t\t<p>{{moreText}}</p>\n\t\t\t<p>最后更新:{{mlastTime}}</p>\n\t\t</div>\n\t</footer>\n</section>\n\n";
-
-/***/ },
+/* 50 */,
 /* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -14571,7 +14291,7 @@
 /* 53 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t<div class=\"page\" _v-ecc3dad2=\"\">\n\t\t<toolbar :text=\"title\" _v-ecc3dad2=\"\">\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\" _v-ecc3dad2=\"\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\" _v-ecc3dad2=\"\"></span>\n\t\t</toolbar>\n\t\t<div class=\"page-content\" _v-ecc3dad2=\"\">\n\t\t\t<tabs :active-index.sync=\"index\" _v-ecc3dad2=\"\">\n\t\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" _v-ecc3dad2=\"\">\n\t\t\t\t\t<pull-list _v-ecc3dad2=\"\">\n\t\t\t\t\t\t<ul class=\"contentList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t<li v-for=\"subItem in item.infoList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t<div class=\"tab_info\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"left\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<img src=\"xxxHTMLLINKxxx0.140121794072911140.5722007197327912xxx\" alt=\"\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"content\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布时间:{{subItem.time}}</span>\n\t\t\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布人:{{subItem.subUser}}</span>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t{{subItem.content}}\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<i class=\"icon-chevron-right\" _v-ecc3dad2=\"\"></i>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</pull-list>\n\t\t\t\t</tab>\n\t\t\t</tabs>\n\t\t</div>\n\t</div>\n\t\t\n\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" _v-ecc3dad2=\"\">\n\t\t\n\t</sidebar>\n\n\t<loading :loading=\"isload\" _v-ecc3dad2=\"\"></loading>\n\n";
+	module.exports = "\n\t<div class=\"page\" _v-ecc3dad2=\"\">\n\t\t<toolbar :text=\"title\" _v-ecc3dad2=\"\">\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\" _v-ecc3dad2=\"\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\" _v-ecc3dad2=\"\"></span>\n\t\t</toolbar>\n\t\t<div class=\"page-content\" _v-ecc3dad2=\"\">\n\t\t\t<tabs :active-index.sync=\"index\" _v-ecc3dad2=\"\">\n\t\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" _v-ecc3dad2=\"\">\n\t\t\t\t\t<list _v-ecc3dad2=\"\">\n\t\t\t\t\t\t<li v-for=\"subItem in item.infoList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t<div class=\"tab_info\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t<div class=\"left\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t<img src=\"xxxHTMLLINKxxx0.213020581286400560.8911238322034478xxx\" alt=\"\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"content\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布时间:{{subItem.time}}</span>\n\t\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布人:{{subItem.subUser}}</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t{{subItem.content}}\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t<i class=\"icon-chevron-right\" _v-ecc3dad2=\"\"></i>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t</list>\n\t\t\t\t</tab>\n\t\t\t</tabs>\n\t\t</div>\n\t</div>\n\t\t\n\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" _v-ecc3dad2=\"\">\n\t\t\n\t</sidebar>\n\n\t<loading :loading=\"isload\" _v-ecc3dad2=\"\"></loading>\n\n";
 
 /***/ },
 /* 54 */
@@ -14580,7 +14300,7 @@
 	var __vue_script__, __vue_template__
 	__webpack_require__(55)
 	__vue_script__ = __webpack_require__(57)
-	__vue_template__ = __webpack_require__(63)
+	__vue_template__ = __webpack_require__(68)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14650,87 +14370,24 @@
 	
 	var _ToolBar2 = _interopRequireDefault(_ToolBar);
 	
-	var _PullList = __webpack_require__(45);
+	var _List = __webpack_require__(141);
 	
-	var _PullList2 = _interopRequireDefault(_PullList);
+	var _List2 = _interopRequireDefault(_List);
+	
+	var _ListItem = __webpack_require__(146);
+	
+	var _ListItem2 = _interopRequireDefault(_ListItem);
 	
 	var _ActionSheet = __webpack_require__(58);
 	
 	var _ActionSheet2 = _interopRequireDefault(_ActionSheet);
 	
-	var _Toast = __webpack_require__(131);
+	var _Toast = __webpack_require__(63);
 	
 	var _Toast2 = _interopRequireDefault(_Toast);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// <template>
-	// 	<div class="page">
-	// 		<toolbar text="我的项目">
-	// 			<span class="icon-chevron-left" slot="leftBtn" v-touch:tap="back"></span>
-	// 	        <span class="icon-refresh" slot="rightBtn" v-touch:tap="showSheet"></span>
-	// 		</toolbar>
-	// 		<div class="page-content" >
-	// 			<pull-list v-on:reload="getInitData" v-on:loadmore="getMoreData">
-	// 				<ul >
-	// 					<li>asdffdddd;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;a</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;a</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;a</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;a</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>顶顶顶 阿斯蒂芬;</li>
-	
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>顶顶顶 阿斯蒂芬;</li>
-	
-	// 					<li>顶顶顶 阿斯蒂芬;</li>
-	
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff</li>
-	// 					<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 					<li>顶顶顶 阿斯蒂芬;</li>
-	// 				</ul>
-	// 			</pull-list>
-	// 		</div>
-	// 	</div>
-	
-	// 	<toast :show="showToast"></toast>
-	// 	<action-sheet :showsheet.sync="showsheet"  :btn-items="btnItems" v-on:action-click="actionClick"></action-sheet>
-	// </template>
-	
-	// <script lang="babel">
 	exports.default = {
 		data: function data() {
 			return {
@@ -14758,10 +14415,11 @@
 			}
 		},
 		components: {
-			toolbar: _ToolBar2.default,
-			PullList: _PullList2.default,
+			ToolBar: _ToolBar2.default,
+			List: _List2.default,
 			ActionSheet: _ActionSheet2.default,
-			Toast: _Toast2.default
+			Toast: _Toast2.default,
+			Item: _ListItem2.default
 		}
 	};
 	// </script>
@@ -14769,6 +14427,71 @@
 	// <style scoped>
 
 	// </style>
+	// <template>
+	// 	<div class="page">
+	// 		<tool-bar text="我的项目">
+	// 			<span class="icon-chevron-left" slot="leftBtn" v-touch:tap="back"></span>
+	// 	        <span class="icon-refresh" slot="rightBtn" v-touch:tap="showSheet"></span>
+	// 		</tool-bar>
+	// 		<div class="page-content" >
+	// 			<list v-on:reload="getInitData" v-on:loadmore="getMoreData">
+	// 				<li>asdffdddd;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;a</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;a</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;a</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;a</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>顶顶顶 阿斯蒂芬;</li>
+
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>顶顶顶 阿斯蒂芬;</li>
+
+	// 				<li>顶顶顶 阿斯蒂芬;</li>
+
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>顶顶顶 阿斯蒂芬;</li>
+	// 			</list>
+	// 		</div>
+	// 	</div>
+
+	// 	<toast :show="showToast"></toast>
+	// 	<action-sheet :showsheet.sync="showsheet"  :btn-items="btnItems" v-on:action-click="actionClick"></action-sheet>
+	// </template>
+
+	// <script lang="babel">
 
 /***/ },
 /* 58 */
@@ -14828,7 +14551,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.actionsheet_wrap{\n\twidth: 100%;\n\tpadding: 0px;\n\tmargin: 0px;\n\theight: 100%;\n}\n\n.mask_transition{\n\tbackground: rgba(0, 0, 0, 0.6);\n\tposition:fixed;\n\tleft: 0;\n\ttop: 0;\n\theight: 100%;\n\twidth: 100%;\n\tz-index: 10;\n\t-webkit-transition: background .3s;\n\ttransition:background .3s;\n}\n\n.actionsheet{\n\t\t/*background-color:#EFEFF4;*/\n\tbackground-color:#D9D9D9;\n}\n\n.expand-transition{\n\n\t-webkit-transition: -webkit-transform .3s;\n\n\ttransition: -webkit-transform .3s;\n\n\ttransition: transform .3s;\n\n\ttransition:transform .3s, -webkit-transform .3s;\n\tposition: fixed;\n\tleft: 0;\n\tbottom: 0;\n\twidth: 100%;\n\t\n\tz-index: 20;\n\t-webkit-backface-visibility:hidden;\n\t        backface-visibility:hidden;\n}\n\n.expand-enter, .expand-leave {\n \t-webkit-transform:translate(0,100%);\n \t        transform:translate(0,100%);\n}\n\n.actionsheet_cell{\n\tposition: relative;\n    padding: 10px 0;\n    text-align: center;\n    font-size: 18px;\n    background-color: #fff;\n}\n\n.actionsheet_cell:before{\n\tcontent:'';\n\tborder-top:1px solid #D9D9D9;\n\tcolor:#D9D9D9;\n\tposition: absolute;\n\tleft: 0;\n\ttop: 0;\n\twidth: 100%;\n\theight: 1px;\n\t-webkit-transform:scaleY(0.5);\n\t        transform:scaleY(0.5);\n}\n\n.actionsheet_action{\n\tmargin-top:6px;\n\tbackground-color: #fff;\n\n}\n\n", "", {"version":3,"sources":["/./src/components/ActionSheet.vue?0dfccc3c"],"names":[],"mappings":";AAmDA;CACA,YAAA;CACA,aAAA;CACA,YAAA;CACA,aAAA;CACA;;AAEA;CACA,+BAAA;CACA,eAAA;CACA,QAAA;CACA,OAAA;CACA,aAAA;CACA,YAAA;CACA,YAAA;CACA,mCAAA;CAAA,0BAAA;CACA;;AAEA;EACA,6BAAA;CACA,yBAAA;CACA;;AAEA;;CAEA,0CAAA;;CAAA,kCAAA;;CAAA,0BAAA;;CAAA,gDAAA;CACA,gBAAA;CACA,QAAA;CACA,UAAA;CACA,YAAA;;CAEA,YAAA;CACA,mCAAA;SAAA,2BAAA;CACA;;AAEA;EACA,oCAAA;UAAA,4BAAA;CACA;;AAEA;CACA,mBAAA;IACA,gBAAA;IACA,mBAAA;IACA,gBAAA;IACA,uBAAA;CACA;;AAEA;CACA,WAAA;CACA,6BAAA;CACA,cAAA;CACA,mBAAA;CACA,QAAA;CACA,OAAA;CACA,YAAA;CACA,YAAA;CACA,8BAAA;SAAA,sBAAA;CACA;;AAEA;CACA,eAAA;CACA,uBAAA;;CAEA","file":"ActionSheet.vue","sourcesContent":["<template>\r\n\t<!--  -->\r\n    <section id=\"actionsheet_wrap\" >\r\n    \t<!--遮罩  -->\r\n    \t<div class=\"mask_transition\" v-show=\"showsheet\" v-touch:tap=\"close\"></div>\r\n    \t<!-- 按钮组 -->\r\n        <div class=\"actionsheet\" v-show=\"showsheet\" transition=\"expand\">\r\n        \t<ul class=\"actionsheet_menu\">\r\n        \t\t<li v-for=\"item in btnItems\" class=\"actionsheet_cell\" v-touch:tap=\"actionClick($index)\">\r\n        \t\t\t{{item}}\r\n        \t\t</li>\r\n        \t</ul>\r\n            <div class=\"actionsheet_action\">\r\n                <div class=\"actionsheet_cell\" v-touch:tap=\"close\">取消</div>\r\n            </div>\r\n        </div>\r\n    </section>\r\n    <!--END actionSheet-->\r\n</template>\r\n\r\n\r\n<script>\r\n\texport default {\r\n\t\tprops:{\r\n\t\t\t//按钮组\r\n\t\t\tbtnItems:{\r\n\t\t\t\ttype:Array,\r\n\t\t\t\tdefault:[]\r\n\t\t\t},\r\n\t\t\tshowsheet:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t}\r\n\t\t},\r\n\t\tcreated(){\r\n\t\t\tconsole.log(\"进入actionSheet:\"+this.showsheet);\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tactionClick(index){\r\n\t\t\t\tthis.$dispatch('action-click',index);\r\n\t\t\t},\r\n\t\t\tclose(){\r\n\t\t\t\tthis.showsheet=!this.showsheet;\r\n\t\t\t\tconsole.log(this.showsheet);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style>\r\n\t.actionsheet_wrap{\r\n\t\twidth: 100%;\r\n\t\tpadding: 0px;\r\n\t\tmargin: 0px;\r\n\t\theight: 100%;\r\n\t}\r\n\r\n\t.mask_transition{\r\n\t\tbackground: rgba(0, 0, 0, 0.6);\r\n\t\tposition:fixed;\r\n\t\tleft: 0;\r\n\t\ttop: 0;\r\n\t\theight: 100%;\r\n\t\twidth: 100%;\r\n\t\tz-index: 10;\r\n\t\ttransition:background .3s;\r\n\t}\r\n\t\r\n\t.actionsheet{\r\n\t\t\t/*background-color:#EFEFF4;*/\r\n\t\tbackground-color:#D9D9D9;\r\n\t}\r\n\r\n\t.expand-transition{\r\n\t\r\n\t\ttransition:transform .3s;\r\n\t\tposition: fixed;\r\n\t\tleft: 0;\r\n\t\tbottom: 0;\r\n\t\twidth: 100%;\r\n\t\t\r\n\t\tz-index: 20;\r\n\t\tbackface-visibility:hidden;\r\n\t}\r\n\r\n\t.expand-enter, .expand-leave {\r\n\t \ttransform:translate(0,100%);\r\n\t}\r\n\r\n\t.actionsheet_cell{\r\n\t\tposition: relative;\r\n\t    padding: 10px 0;\r\n\t    text-align: center;\r\n\t    font-size: 18px;\r\n\t    background-color: #fff;\r\n\t}\r\n\r\n\t.actionsheet_cell:before{\r\n\t\tcontent:'';\r\n\t\tborder-top:1px solid #D9D9D9;\r\n\t\tcolor:#D9D9D9;\r\n\t\tposition: absolute;\r\n\t\tleft: 0;\r\n\t\ttop: 0;\r\n\t\twidth: 100%;\r\n\t\theight: 1px;\r\n\t\ttransform:scaleY(0.5);\r\n\t}\r\n\r\n\t.actionsheet_action{\r\n\t\tmargin-top:6px;\r\n\t\tbackground-color: #fff;\r\n\r\n\t}\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.actionsheet_wrap{\n\twidth: 100%;\n\tpadding: 0px;\n\tmargin: 0px;\n\theight: 100%;\n}\n\n.mask-transition{\n\tbackground: rgba(0, 0, 0, 0.6);\n\tposition:fixed;\n\tleft: 0;\n\ttop: 0;\n\theight: 100%;\n\twidth: 100%;\n\tz-index: 10;\n\t-webkit-transition: background .3s;\n\ttransition:background .3s;\n}\n\n.mask-enter,.mask-leave{\n\tbackground: rgba(0, 0, 0, 0);\n}\n\n.actionsheet{\n\t\t/*background-color:#EFEFF4;*/\n\tbackground-color:#D9D9D9;\n}\n\n.expand-transition{\n\n\t-webkit-transition: -webkit-transform .3s;\n\n\ttransition: -webkit-transform .3s;\n\n\ttransition: transform .3s;\n\n\ttransition:transform .3s, -webkit-transform .3s;\n\tposition: fixed;\n\tleft: 0;\n\tbottom: 0;\n\twidth: 100%;\n\t\n\tz-index: 20;\n\t-webkit-backface-visibility:hidden;\n\t        backface-visibility:hidden;\n}\n\n.expand-enter, .expand-leave {\n \t-webkit-transform:translate(0,100%);\n \t        transform:translate(0,100%);\n}\n\n.actionsheet_cell{\n\tposition: relative;\n    padding: 10px 0;\n    text-align: center;\n    font-size: 18px;\n    background-color: #fff;\n}\n\n.actionsheet_cell:before{\n\tcontent:'';\n\tborder-top:1px solid #D9D9D9;\n\tcolor:#D9D9D9;\n\tposition: absolute;\n\tleft: 0;\n\ttop: 0;\n\twidth: 100%;\n\theight: 1px;\n\t-webkit-transform:scaleY(0.5);\n\t        transform:scaleY(0.5);\n}\n\n.actionsheet_action{\n\tmargin-top:6px;\n\tbackground-color: #fff;\n\n}\n\n", "", {"version":3,"sources":["/./src/components/ActionSheet.vue?e2b18064"],"names":[],"mappings":";AAmDA;CACA,YAAA;CACA,aAAA;CACA,YAAA;CACA,aAAA;CACA;;AAEA;CACA,+BAAA;CACA,eAAA;CACA,QAAA;CACA,OAAA;CACA,aAAA;CACA,YAAA;CACA,YAAA;CACA,mCAAA;CAAA,0BAAA;CACA;;AAEA;CACA,6BAAA;CACA;;AAEA;EACA,6BAAA;CACA,yBAAA;CACA;;AAEA;;CAEA,0CAAA;;CAAA,kCAAA;;CAAA,0BAAA;;CAAA,gDAAA;CACA,gBAAA;CACA,QAAA;CACA,UAAA;CACA,YAAA;;CAEA,YAAA;CACA,mCAAA;SAAA,2BAAA;CACA;;AAEA;EACA,oCAAA;UAAA,4BAAA;CACA;;AAEA;CACA,mBAAA;IACA,gBAAA;IACA,mBAAA;IACA,gBAAA;IACA,uBAAA;CACA;;AAEA;CACA,WAAA;CACA,6BAAA;CACA,cAAA;CACA,mBAAA;CACA,QAAA;CACA,OAAA;CACA,YAAA;CACA,YAAA;CACA,8BAAA;SAAA,sBAAA;CACA;;AAEA;CACA,eAAA;CACA,uBAAA;;CAEA","file":"ActionSheet.vue","sourcesContent":["<template>\r\n\t<!--  -->\r\n    <section id=\"actionsheet_wrap\" >\r\n    \t<!--遮罩  -->\r\n    \t<div class=\"mask_transition\" transition=\"mask\" v-show=\"showsheet\" v-touch:tap=\"close\"></div>\r\n    \t<!-- 按钮组 -->\r\n        <div class=\"actionsheet\" v-show=\"showsheet\" transition=\"expand\">\r\n        \t<ul class=\"actionsheet_menu\">\r\n        \t\t<li v-for=\"item in btnItems\" class=\"actionsheet_cell\" v-touch:tap=\"actionClick($index)\">\r\n        \t\t\t{{item}}\r\n        \t\t</li>\r\n        \t</ul>\r\n            <div class=\"actionsheet_action\">\r\n                <div class=\"actionsheet_cell\" v-touch:tap=\"close\">取消</div>\r\n            </div>\r\n        </div>\r\n    </section>\r\n    <!--END actionSheet-->\r\n</template>\r\n\r\n\r\n<script>\r\n\texport default {\r\n\t\tprops:{\r\n\t\t\t//按钮组\r\n\t\t\tbtnItems:{\r\n\t\t\t\ttype:Array,\r\n\t\t\t\tdefault:[]\r\n\t\t\t},\r\n\t\t\tshowsheet:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t}\r\n\t\t},\r\n\t\tcreated(){\r\n\t\t\tconsole.log(\"进入actionSheet:\"+this.showsheet);\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tactionClick(index){\r\n\t\t\t\tthis.$dispatch('action-click',index);\r\n\t\t\t},\r\n\t\t\tclose(){\r\n\t\t\t\tthis.showsheet=!this.showsheet;\r\n\t\t\t\tconsole.log(this.showsheet);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style>\r\n\t.actionsheet_wrap{\r\n\t\twidth: 100%;\r\n\t\tpadding: 0px;\r\n\t\tmargin: 0px;\r\n\t\theight: 100%;\r\n\t}\r\n\r\n\t.mask-transition{\r\n\t\tbackground: rgba(0, 0, 0, 0.6);\r\n\t\tposition:fixed;\r\n\t\tleft: 0;\r\n\t\ttop: 0;\r\n\t\theight: 100%;\r\n\t\twidth: 100%;\r\n\t\tz-index: 10;\r\n\t\ttransition:background .3s;\r\n\t}\r\n\t\r\n\t.mask-enter,.mask-leave{\r\n\t\tbackground: rgba(0, 0, 0, 0);\r\n\t}\r\n\t\r\n\t.actionsheet{\r\n\t\t\t/*background-color:#EFEFF4;*/\r\n\t\tbackground-color:#D9D9D9;\r\n\t}\r\n\r\n\t.expand-transition{\r\n\t\r\n\t\ttransition:transform .3s;\r\n\t\tposition: fixed;\r\n\t\tleft: 0;\r\n\t\tbottom: 0;\r\n\t\twidth: 100%;\r\n\t\t\r\n\t\tz-index: 20;\r\n\t\tbackface-visibility:hidden;\r\n\t}\r\n\r\n\t.expand-enter, .expand-leave {\r\n\t \ttransform:translate(0,100%);\r\n\t}\r\n\r\n\t.actionsheet_cell{\r\n\t\tposition: relative;\r\n\t    padding: 10px 0;\r\n\t    text-align: center;\r\n\t    font-size: 18px;\r\n\t    background-color: #fff;\r\n\t}\r\n\r\n\t.actionsheet_cell:before{\r\n\t\tcontent:'';\r\n\t\tborder-top:1px solid #D9D9D9;\r\n\t\tcolor:#D9D9D9;\r\n\t\tposition: absolute;\r\n\t\tleft: 0;\r\n\t\ttop: 0;\r\n\t\twidth: 100%;\r\n\t\theight: 1px;\r\n\t\ttransform:scaleY(0.5);\r\n\t}\r\n\r\n\t.actionsheet_action{\r\n\t\tmargin-top:6px;\r\n\t\tbackground-color: #fff;\r\n\r\n\t}\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -14846,7 +14569,7 @@
 	// 	<!--  -->
 	//     <section id="actionsheet_wrap" >
 	//     	<!--遮罩  -->
-	//     	<div class="mask_transition" v-show="showsheet" v-touch:tap="close"></div>
+	//     	<div class="mask_transition" transition="mask" v-show="showsheet" v-touch:tap="close"></div>
 	//     	<!-- 按钮组 -->
 	//         <div class="actionsheet" v-show="showsheet" transition="expand">
 	//         	<ul class="actionsheet_menu">
@@ -14899,7 +14622,7 @@
 	// 		height: 100%;
 	// 	}
 
-	// 	.mask_transition{
+	// 	.mask-transition{
 	// 		background: rgba(0, 0, 0, 0.6);
 	// 		position:fixed;
 	// 		left: 0;
@@ -14908,6 +14631,10 @@
 	// 		width: 100%;
 	// 		z-index: 10;
 	// 		transition:background .3s;
+	// 	}
+
+	// 	.mask-enter,.mask-leave{
+	// 		background: rgba(0, 0, 0, 0);
 	// 	}
 
 	// 	.actionsheet{
@@ -14964,21 +14691,394 @@
 /* 62 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t<!--  -->\n    <section id=\"actionsheet_wrap\" >\n    \t<!--遮罩  -->\n    \t<div class=\"mask_transition\" v-show=\"showsheet\" v-touch:tap=\"close\"></div>\n    \t<!-- 按钮组 -->\n        <div class=\"actionsheet\" v-show=\"showsheet\" transition=\"expand\">\n        \t<ul class=\"actionsheet_menu\">\n        \t\t<li v-for=\"item in btnItems\" class=\"actionsheet_cell\" v-touch:tap=\"actionClick($index)\">\n        \t\t\t{{item}}\n        \t\t</li>\n        \t</ul>\n            <div class=\"actionsheet_action\">\n                <div class=\"actionsheet_cell\" v-touch:tap=\"close\">取消</div>\n            </div>\n        </div>\n    </section>\n    <!--END actionSheet-->\n";
+	module.exports = "\n\t<!--  -->\n    <section id=\"actionsheet_wrap\" >\n    \t<!--遮罩  -->\n    \t<div class=\"mask_transition\" transition=\"mask\" v-show=\"showsheet\" v-touch:tap=\"close\"></div>\n    \t<!-- 按钮组 -->\n        <div class=\"actionsheet\" v-show=\"showsheet\" transition=\"expand\">\n        \t<ul class=\"actionsheet_menu\">\n        \t\t<li v-for=\"item in btnItems\" class=\"actionsheet_cell\" v-touch:tap=\"actionClick($index)\">\n        \t\t\t{{item}}\n        \t\t</li>\n        \t</ul>\n            <div class=\"actionsheet_action\">\n                <div class=\"actionsheet_cell\" v-touch:tap=\"close\">取消</div>\n            </div>\n        </div>\n    </section>\n    <!--END actionSheet-->\n";
 
 /***/ },
 /* 63 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "\n<div class=\"page\" _v-ba295ade=\"\">\n\t<toolbar text=\"我的项目\" _v-ba295ade=\"\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" v-touch:tap=\"back\" _v-ba295ade=\"\"></span>\n        <span class=\"icon-refresh\" slot=\"rightBtn\" v-touch:tap=\"showSheet\" _v-ba295ade=\"\"></span>\n\t</toolbar>\n\t<div class=\"page-content\" _v-ba295ade=\"\">\n\t\t<pull-list v-on:reload=\"getInitData\" v-on:loadmore=\"getMoreData\" _v-ba295ade=\"\">\n\t\t\t<ul _v-ba295ade=\"\">\n\t\t\t\t<li _v-ba295ade=\"\">asdffdddd;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\t\t\t</ul>\n\t\t</pull-list>\n\t</div>\n</div>\n\n<toast :show=\"showToast\" _v-ba295ade=\"\"></toast>\n<action-sheet :showsheet.sync=\"showsheet\" :btn-items=\"btnItems\" v-on:action-click=\"actionClick\" _v-ba295ade=\"\"></action-sheet>\n";
+	var __vue_script__, __vue_template__
+	__webpack_require__(64)
+	__vue_script__ = __webpack_require__(66)
+	__vue_template__ = __webpack_require__(67)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Toast.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
 
 /***/ },
 /* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(65);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-4de571aa&file=Toast.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Toast.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-4de571aa&file=Toast.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Toast.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 65 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, " \n\t\n\t.toast[_v-4de571aa]{\n\t\tposition: fixed;\n\t    z-index: 3;\n\t    width: 7.6em;\n\t    min-height: 7.6em;\n\t    top: 180px;\n\t    left: 50%;\n\t    margin-left: -3.8em;\n\t    background: rgba(40, 40, 40, 0.75);\n\t    text-align: center;\n\t    border-radius: 5px;\n\t    color: #FFFFFF;\n\t}\n\n\t/*遮罩*/\n\t.toast-mask[_v-4de571aa]{\n\t\tposition: fixed;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\tz-index: 10;\n\t\theight: 100%;\n\t\twidth: 100%;\n\t}\n\n\t.toast-bd>.loading[_v-4de571aa]{\n\t\tposition: absolute;\n\t    width: 0px;\n\t    z-index: 20;\n\t    left: 50%;\n\t    top: 38%;\n\t}\n\n\t.toast-content[_v-4de571aa]{\n\t\tmargin: 0 0 15px;\n\t\tmargin-top:10px;\n      \tfont-size:14px;\n\t}\n\n\t.loading_leaf[_v-4de571aa]{\n\t\tposition: absolute;\n\t    top: -1px;\n\t    opacity: 0.25;\n\t}\n\n\t.loading_leaf[_v-4de571aa]:before{\n\t\tcontent:\" \";\n        position: absolute;\n        width: 8.14px;\n        height: 3.08px;\n        background: rgb(209, 209, 213);\n        box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;\n        border-radius: 1px;\n        -webkit-transform-origin: left 50% 0px;\n                transform-origin: left 50% 0px;\n\t}\n\n\t.loading_leaf_0[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-0-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-0-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_0[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(0deg) translate(7.92px, 0px);\n\t\t        transform: rotate(0deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_1[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-1-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-1-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_1[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(30deg) translate(7.92px, 0px);\n\t\t        transform: rotate(30deg) translate(7.92px, 0px);\n\t}\n\n\n\t.loading_leaf_2[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-2-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-2-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_2[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(60deg) translate(7.92px, 0px);\n\t\t        transform: rotate(60deg) translate(7.92px, 0px);\n\t}\n\n\n\t.loading_leaf_3[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-3-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-3-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_3[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(90deg) translate(7.92px, 0px);\n\t\t        transform: rotate(90deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_4[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-4-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-4-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_4[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(120deg) translate(7.92px, 0px);\n\t\t        transform: rotate(120deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_5[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-5-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-5-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_5[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(150deg) translate(7.92px, 0px);\n\t\t        transform: rotate(150deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_6[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-6-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-6-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_6[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(180deg) translate(7.92px, 0px);\n\t\t        transform: rotate(180deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_7[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-7-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-7-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_7[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(210deg) translate(7.92px, 0px);\n\t\t        transform: rotate(210deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_8[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-8-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-8-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_8[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(240deg) translate(7.92px, 0px);\n\t\t        transform: rotate(240deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_9[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-9-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-9-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_9[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(270deg) translate(7.92px, 0px);\n\t\t        transform: rotate(270deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_10[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-10-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-10-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_10[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(300deg) translate(7.92px, 0px);\n\t\t        transform: rotate(300deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_11[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-11-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-11-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_11[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(330deg) translate(7.92px, 0px);\n\t\t        transform: rotate(330deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_12[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-12-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-12-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_12[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(360deg) translate(7.92px, 0px);\n\t\t        transform: rotate(360deg) translate(7.92px, 0px);\n\t}\n\n\n\t@-webkit-keyframes opacity-60-25-0-12 {\n\t  0% { opacity: 0.25; }\n\t  0.01% { opacity: 0.25; }\n\t  0.02% { opacity: 1; }\n\t  60.01% { opacity: 0.25; }\n\t  100% { opacity: 0.25; }\n\t}@-webkit-keyframes opacity-60-25-1-12 {\n\t  0% { opacity: 0.25; }\n\t  8.34333% { opacity: 0.25; }\n\t  8.35333% { opacity: 1; }\n\t  68.3433% { opacity: 0.25; }\n\t  100% { opacity: 0.25; }\n\t}@-webkit-keyframes opacity-60-25-2-12 {\n\t  0% { opacity: 0.25; }\n\t  16.6767% { opacity: 0.25; }\n\t  16.6867% { opacity: 1; }\n\t  76.6767% { opacity: 0.25; }\n\t  100% { opacity: 0.25; }\n\t}@-webkit-keyframes opacity-60-25-3-12 {\n\t  0% { opacity: 0.25; }\n\t  25.01% { opacity: 0.25; }\n\t  25.02% { opacity: 1; }\n\t  85.01% { opacity: 0.25; }\n\t  100% { opacity: 0.25; }\n\t}@-webkit-keyframes opacity-60-25-4-12 {\n\t  0% { opacity: 0.25; }\n\t  33.3433% { opacity: 0.25; }\n\t  33.3533% { opacity: 1; }\n\t  93.3433% { opacity: 0.25; }\n\t  100% { opacity: 0.25; }\n\t}@-webkit-keyframes opacity-60-25-5-12 {\n\t  0% { opacity: 0.270958333333333; }\n\t  41.6767% { opacity: 0.25; }\n\t  41.6867% { opacity: 1; }\n\t  1.67667% { opacity: 0.25; }\n\t  100% { opacity: 0.270958333333333; }\n\t}@-webkit-keyframes opacity-60-25-6-12 {\n\t  0% { opacity: 0.375125; }\n\t  50.01% { opacity: 0.25; }\n\t  50.02% { opacity: 1; }\n\t  10.01% { opacity: 0.25; }\n\t  100% { opacity: 0.375125; }\n\t}@-webkit-keyframes opacity-60-25-7-12 {\n\t  0% { opacity: 0.479291666666667; }\n\t  58.3433% { opacity: 0.25; }\n\t  58.3533% { opacity: 1; }\n\t  18.3433% { opacity: 0.25; }\n\t  100% { opacity: 0.479291666666667; }\n\t}@-webkit-keyframes opacity-60-25-8-12 {\n\t  0% { opacity: 0.583458333333333; }\n\t  66.6767% { opacity: 0.25; }\n\t  66.6867% { opacity: 1; }\n\t  26.6767% { opacity: 0.25; }\n\t  100% { opacity: 0.583458333333333; }\n\t}@-webkit-keyframes opacity-60-25-9-12 {\n\t  0% { opacity: 0.687625; }\n\t  75.01% { opacity: 0.25; }\n\t  75.02% { opacity: 1; }\n\t  35.01% { opacity: 0.25; }\n\t  100% { opacity: 0.687625; }\n\t}@-webkit-keyframes opacity-60-25-10-12 {\n\t  0% { opacity: 0.791791666666667; }\n\t  83.3433% { opacity: 0.25; }\n\t  83.3533% { opacity: 1; }\n\t  43.3433% { opacity: 0.25; }\n\t  100% { opacity: 0.791791666666667; }\n\t}@-webkit-keyframes opacity-60-25-11-12 {\n\t  0% { opacity: 0.895958333333333; }\n\t  91.6767% { opacity: 0.25; }\n\t  91.6867% { opacity: 1; }\n\t  51.6767% { opacity: 0.25; }\n\t  100% { opacity: 0.895958333333333; }\n\t}\n\n", "", {"version":3,"sources":["/./src/components/Toast.vue?307e43fc"],"names":[],"mappings":";;CAwEA;EACA,gBAAA;KACA,WAAA;KACA,aAAA;KACA,kBAAA;KACA,WAAA;KACA,UAAA;KACA,oBAAA;KACA,mCAAA;KACA,mBAAA;KACA,mBAAA;KACA,eAAA;EACA;;CAEA,MAAA;CACA;EACA,gBAAA;EACA,OAAA;EACA,QAAA;EACA,YAAA;EACA,aAAA;EACA,YAAA;EACA;;CAEA;EACA,mBAAA;KACA,WAAA;KACA,YAAA;KACA,UAAA;KACA,SAAA;EACA;;CAEA;EACA,iBAAA;EACA,gBAAA;OACA,eAAA;EACA;;CAEA;EACA,mBAAA;KACA,UAAA;KACA,cAAA;EACA;;CAEA;EACA,YAAA;QACA,mBAAA;QACA,cAAA;QACA,eAAA;QACA,+BAAA;QACA,iDAAA;QACA,mBAAA;QACA,uCAAA;gBAAA,+BAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,uDAAA;UAAA,+CAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,wDAAA;UAAA,gDAAA;EACA;;;CAGA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,wDAAA;UAAA,gDAAA;EACA;;;CAGA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,wDAAA;UAAA,gDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,6DAAA;UAAA,qDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,6DAAA;UAAA,qDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,6DAAA;UAAA,qDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;;CAGA;GACA,KAAA,cAAA,EAAA;GACA,QAAA,cAAA,EAAA;GACA,QAAA,WAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,OAAA,cAAA,EAAA;EACA;GACA,KAAA,cAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,cAAA,EAAA;EACA;GACA,KAAA,cAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,cAAA,EAAA;EACA;GACA,KAAA,cAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,SAAA,WAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,OAAA,cAAA,EAAA;EACA;GACA,KAAA,cAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,cAAA,EAAA;EACA;GACA,KAAA,2BAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,2BAAA,EAAA;EACA;GACA,KAAA,kBAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,SAAA,WAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,OAAA,kBAAA,EAAA;EACA;GACA,KAAA,2BAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,2BAAA,EAAA;EACA;GACA,KAAA,2BAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,2BAAA,EAAA;EACA;GACA,KAAA,kBAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,SAAA,WAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,OAAA,kBAAA,EAAA;EACA;GACA,KAAA,2BAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,2BAAA,EAAA;EACA;GACA,KAAA,2BAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,2BAAA,EAAA;EACA","file":"Toast.vue","sourcesContent":["<template>\r\n\t<section class=\"toast\" v-show=\"show\">\r\n\t\t<section class=\"toast-mask\"></section>\r\n\t\t<section class=\"toast-bd\">\r\n\t\t\t<section class=\"loading\" v-if=\"isload\">\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_0\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_1\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_2\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_3\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_4\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_5\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_6\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_7\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_8\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_9\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_10\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_11\"></div>\r\n\t\t\t</section>\r\n\t\t\t<section class=\"prompt\" v-else>\r\n\t\t\t\t<i class=\"weui_icon_toast\"></i>\r\n\t\t\t</section>\r\n\t\t\t<p class=\"toast-content\" >{{prompt}}</p>\r\n\t\t</section>\r\n\t</section>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n\t\tprops:{\r\n\t\t\tshow:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t},\r\n\t\t\t//显示的时常\r\n\t\t\tseconds:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:5\r\n\t\t\t},\r\n\t\t\tisload:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t},\r\n\t\t\tprompt:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:'已经完成'\r\n\t\t\t}\r\n\t\t},\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\tsec:0\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\tif(!this.isload){\r\n\t\t\t\tsetTimeout(()=>{\r\n\t\t\t\t\tthis.show=false;\r\n\t\t\t\t},this.seconds*1000);\r\n\t\t\t}\r\n\t\t},\r\n\t\tcreated(){\r\n\t\t\tif(this.isload){\r\n\t\t\t\tthis.prompt=\"正在加载中..\";\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" scoped> \r\n\t\r\n\t.toast{\r\n\t\tposition: fixed;\r\n\t    z-index: 3;\r\n\t    width: 7.6em;\r\n\t    min-height: 7.6em;\r\n\t    top: 180px;\r\n\t    left: 50%;\r\n\t    margin-left: -3.8em;\r\n\t    background: rgba(40, 40, 40, 0.75);\r\n\t    text-align: center;\r\n\t    border-radius: 5px;\r\n\t    color: #FFFFFF;\r\n\t}\r\n\r\n\t/*遮罩*/\r\n\t.toast-mask{\r\n\t\tposition: fixed;\r\n\t\ttop: 0;\r\n\t\tleft: 0;\r\n\t\tz-index: 10;\r\n\t\theight: 100%;\r\n\t\twidth: 100%;\r\n\t}\r\n\r\n\t.toast-bd>.loading{\r\n\t\tposition: absolute;\r\n\t    width: 0px;\r\n\t    z-index: 20;\r\n\t    left: 50%;\r\n\t    top: 38%;\r\n\t}\r\n\r\n\t.toast-content{\r\n\t\tmargin: 0 0 15px;\r\n\t\tmargin-top:10px;\r\n      \tfont-size:14px;\r\n\t}\r\n\r\n\t.loading_leaf{\r\n\t\tposition: absolute;\r\n\t    top: -1px;\r\n\t    opacity: 0.25;\r\n\t}\r\n\r\n\t.loading_leaf:before{\r\n\t\tcontent:\" \";\r\n        position: absolute;\r\n        width: 8.14px;\r\n        height: 3.08px;\r\n        background: rgb(209, 209, 213);\r\n        box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;\r\n        border-radius: 1px;\r\n        transform-origin: left 50% 0px;\r\n\t}\r\n\r\n\t.loading_leaf_0{\r\n\t\tanimation: opacity-60-25-0-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_0:before{\r\n\t\ttransform: rotate(0deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_1{\r\n\t\tanimation: opacity-60-25-1-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_1:before{\r\n\t\ttransform: rotate(30deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\r\n\t.loading_leaf_2{\r\n\t\tanimation: opacity-60-25-2-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_2:before{\r\n\t\ttransform: rotate(60deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\r\n\t.loading_leaf_3{\r\n\t\tanimation: opacity-60-25-3-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_3:before{\r\n\t\ttransform: rotate(90deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_4{\r\n\t\tanimation: opacity-60-25-4-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_4:before{\r\n\t\ttransform: rotate(120deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_5{\r\n\t\tanimation: opacity-60-25-5-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_5:before{\r\n\t\ttransform: rotate(150deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_6{\r\n\t\tanimation: opacity-60-25-6-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_6:before{\r\n\t\ttransform: rotate(180deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_7{\r\n\t\tanimation: opacity-60-25-7-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_7:before{\r\n\t\ttransform: rotate(210deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_8{\r\n\t\tanimation: opacity-60-25-8-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_8:before{\r\n\t\ttransform: rotate(240deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_9{\r\n\t\tanimation: opacity-60-25-9-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_9:before{\r\n\t\ttransform: rotate(270deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_10{\r\n\t\tanimation: opacity-60-25-10-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_10:before{\r\n\t\ttransform: rotate(300deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_11{\r\n\t\tanimation: opacity-60-25-11-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_11:before{\r\n\t\ttransform: rotate(330deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_12{\r\n\t\tanimation: opacity-60-25-12-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_12:before{\r\n\t\ttransform: rotate(360deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\r\n\t@-webkit-keyframes opacity-60-25-0-12 {\r\n\t  0% { opacity: 0.25; }\r\n\t  0.01% { opacity: 0.25; }\r\n\t  0.02% { opacity: 1; }\r\n\t  60.01% { opacity: 0.25; }\r\n\t  100% { opacity: 0.25; }\r\n\t}@-webkit-keyframes opacity-60-25-1-12 {\r\n\t  0% { opacity: 0.25; }\r\n\t  8.34333% { opacity: 0.25; }\r\n\t  8.35333% { opacity: 1; }\r\n\t  68.3433% { opacity: 0.25; }\r\n\t  100% { opacity: 0.25; }\r\n\t}@-webkit-keyframes opacity-60-25-2-12 {\r\n\t  0% { opacity: 0.25; }\r\n\t  16.6767% { opacity: 0.25; }\r\n\t  16.6867% { opacity: 1; }\r\n\t  76.6767% { opacity: 0.25; }\r\n\t  100% { opacity: 0.25; }\r\n\t}@-webkit-keyframes opacity-60-25-3-12 {\r\n\t  0% { opacity: 0.25; }\r\n\t  25.01% { opacity: 0.25; }\r\n\t  25.02% { opacity: 1; }\r\n\t  85.01% { opacity: 0.25; }\r\n\t  100% { opacity: 0.25; }\r\n\t}@-webkit-keyframes opacity-60-25-4-12 {\r\n\t  0% { opacity: 0.25; }\r\n\t  33.3433% { opacity: 0.25; }\r\n\t  33.3533% { opacity: 1; }\r\n\t  93.3433% { opacity: 0.25; }\r\n\t  100% { opacity: 0.25; }\r\n\t}@-webkit-keyframes opacity-60-25-5-12 {\r\n\t  0% { opacity: 0.270958333333333; }\r\n\t  41.6767% { opacity: 0.25; }\r\n\t  41.6867% { opacity: 1; }\r\n\t  1.67667% { opacity: 0.25; }\r\n\t  100% { opacity: 0.270958333333333; }\r\n\t}@-webkit-keyframes opacity-60-25-6-12 {\r\n\t  0% { opacity: 0.375125; }\r\n\t  50.01% { opacity: 0.25; }\r\n\t  50.02% { opacity: 1; }\r\n\t  10.01% { opacity: 0.25; }\r\n\t  100% { opacity: 0.375125; }\r\n\t}@-webkit-keyframes opacity-60-25-7-12 {\r\n\t  0% { opacity: 0.479291666666667; }\r\n\t  58.3433% { opacity: 0.25; }\r\n\t  58.3533% { opacity: 1; }\r\n\t  18.3433% { opacity: 0.25; }\r\n\t  100% { opacity: 0.479291666666667; }\r\n\t}@-webkit-keyframes opacity-60-25-8-12 {\r\n\t  0% { opacity: 0.583458333333333; }\r\n\t  66.6767% { opacity: 0.25; }\r\n\t  66.6867% { opacity: 1; }\r\n\t  26.6767% { opacity: 0.25; }\r\n\t  100% { opacity: 0.583458333333333; }\r\n\t}@-webkit-keyframes opacity-60-25-9-12 {\r\n\t  0% { opacity: 0.687625; }\r\n\t  75.01% { opacity: 0.25; }\r\n\t  75.02% { opacity: 1; }\r\n\t  35.01% { opacity: 0.25; }\r\n\t  100% { opacity: 0.687625; }\r\n\t}@-webkit-keyframes opacity-60-25-10-12 {\r\n\t  0% { opacity: 0.791791666666667; }\r\n\t  83.3433% { opacity: 0.25; }\r\n\t  83.3533% { opacity: 1; }\r\n\t  43.3433% { opacity: 0.25; }\r\n\t  100% { opacity: 0.791791666666667; }\r\n\t}@-webkit-keyframes opacity-60-25-11-12 {\r\n\t  0% { opacity: 0.895958333333333; }\r\n\t  91.6767% { opacity: 0.25; }\r\n\t  91.6867% { opacity: 1; }\r\n\t  51.6767% { opacity: 0.25; }\r\n\t  100% { opacity: 0.895958333333333; }\r\n\t}\r\n\r\n</style>\r\n\r\n\r\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 66 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// <template>
+	// 	<section class="toast" v-show="show">
+	// 		<section class="toast-mask"></section>
+	// 		<section class="toast-bd">
+	// 			<section class="loading" v-if="isload">
+	// 				<div class="loading_leaf loading_leaf_0"></div>
+	// 				<div class="loading_leaf loading_leaf_1"></div>
+	// 				<div class="loading_leaf loading_leaf_2"></div>
+	// 				<div class="loading_leaf loading_leaf_3"></div>
+	// 				<div class="loading_leaf loading_leaf_4"></div>
+	// 				<div class="loading_leaf loading_leaf_5"></div>
+	// 				<div class="loading_leaf loading_leaf_6"></div>
+	// 				<div class="loading_leaf loading_leaf_7"></div>
+	// 				<div class="loading_leaf loading_leaf_8"></div>
+	// 				<div class="loading_leaf loading_leaf_9"></div>
+	// 				<div class="loading_leaf loading_leaf_10"></div>
+	// 				<div class="loading_leaf loading_leaf_11"></div>
+	// 			</section>
+	// 			<section class="prompt" v-else>
+	// 				<i class="weui_icon_toast"></i>
+	// 			</section>
+	// 			<p class="toast-content" >{{prompt}}</p>
+	// 		</section>
+	// 	</section>
+	// </template>
+	
+	// <script lang="babel">
+	
+	exports.default = {
+		props: {
+			show: {
+				type: Boolean,
+				default: false
+			},
+			//显示的时常
+			seconds: {
+				type: Number,
+				default: 5
+			},
+			isload: {
+				type: Boolean,
+				default: false
+			},
+			prompt: {
+				type: String,
+				default: '已经完成'
+			}
+		},
+		data: function data() {
+			return {
+				sec: 0
+			};
+		},
+		ready: function ready() {
+			var _this = this;
+	
+			if (!this.isload) {
+				setTimeout(function () {
+					_this.show = false;
+				}, this.seconds * 1000);
+			}
+		},
+		created: function created() {
+			if (this.isload) {
+				this.prompt = "正在加载中..";
+			}
+		}
+	};
+	
+	// </script>
+
+	// <style type="text/css" scoped>
+
+	// 	.toast{
+	// 		position: fixed;
+	// 	    z-index: 3;
+	// 	    width: 7.6em;
+	// 	    min-height: 7.6em;
+	// 	    top: 180px;
+	// 	    left: 50%;
+	// 	    margin-left: -3.8em;
+	// 	    background: rgba(40, 40, 40, 0.75);
+	// 	    text-align: center;
+	// 	    border-radius: 5px;
+	// 	    color: #FFFFFF;
+	// 	}
+
+	// 	/*遮罩*/
+	// 	.toast-mask{
+	// 		position: fixed;
+	// 		top: 0;
+	// 		left: 0;
+	// 		z-index: 10;
+	// 		height: 100%;
+	// 		width: 100%;
+	// 	}
+
+	// 	.toast-bd>.loading{
+	// 		position: absolute;
+	// 	    width: 0px;
+	// 	    z-index: 20;
+	// 	    left: 50%;
+	// 	    top: 38%;
+	// 	}
+
+	// 	.toast-content{
+	// 		margin: 0 0 15px;
+	// 		margin-top:10px;
+	//       	font-size:14px;
+	// 	}
+
+	// 	.loading_leaf{
+	// 		position: absolute;
+	// 	    top: -1px;
+	// 	    opacity: 0.25;
+	// 	}
+
+	// 	.loading_leaf:before{
+	// 		content:" ";
+	//         position: absolute;
+	//         width: 8.14px;
+	//         height: 3.08px;
+	//         background: rgb(209, 209, 213);
+	//         box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;
+	//         border-radius: 1px;
+	//         transform-origin: left 50% 0px;
+	// 	}
+
+	// 	.loading_leaf_0{
+	// 		animation: opacity-60-25-0-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_0:before{
+	// 		transform: rotate(0deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_1{
+	// 		animation: opacity-60-25-1-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_1:before{
+	// 		transform: rotate(30deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_2{
+	// 		animation: opacity-60-25-2-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_2:before{
+	// 		transform: rotate(60deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_3{
+	// 		animation: opacity-60-25-3-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_3:before{
+	// 		transform: rotate(90deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_4{
+	// 		animation: opacity-60-25-4-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_4:before{
+	// 		transform: rotate(120deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_5{
+	// 		animation: opacity-60-25-5-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_5:before{
+	// 		transform: rotate(150deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_6{
+	// 		animation: opacity-60-25-6-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_6:before{
+	// 		transform: rotate(180deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_7{
+	// 		animation: opacity-60-25-7-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_7:before{
+	// 		transform: rotate(210deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_8{
+	// 		animation: opacity-60-25-8-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_8:before{
+	// 		transform: rotate(240deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_9{
+	// 		animation: opacity-60-25-9-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_9:before{
+	// 		transform: rotate(270deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_10{
+	// 		animation: opacity-60-25-10-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_10:before{
+	// 		transform: rotate(300deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_11{
+	// 		animation: opacity-60-25-11-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_11:before{
+	// 		transform: rotate(330deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	.loading_leaf_12{
+	// 		animation: opacity-60-25-12-12 1.25s linear infinite;
+	// 	}
+	// 	.loading_leaf_12:before{
+	// 		transform: rotate(360deg) translate(7.92px, 0px);
+	// 	}
+
+	// 	@-webkit-keyframes opacity-60-25-0-12 {
+	// 	  0% { opacity: 0.25; }
+	// 	  0.01% { opacity: 0.25; }
+	// 	  0.02% { opacity: 1; }
+	// 	  60.01% { opacity: 0.25; }
+	// 	  100% { opacity: 0.25; }
+	// 	}@-webkit-keyframes opacity-60-25-1-12 {
+	// 	  0% { opacity: 0.25; }
+	// 	  8.34333% { opacity: 0.25; }
+	// 	  8.35333% { opacity: 1; }
+	// 	  68.3433% { opacity: 0.25; }
+	// 	  100% { opacity: 0.25; }
+	// 	}@-webkit-keyframes opacity-60-25-2-12 {
+	// 	  0% { opacity: 0.25; }
+	// 	  16.6767% { opacity: 0.25; }
+	// 	  16.6867% { opacity: 1; }
+	// 	  76.6767% { opacity: 0.25; }
+	// 	  100% { opacity: 0.25; }
+	// 	}@-webkit-keyframes opacity-60-25-3-12 {
+	// 	  0% { opacity: 0.25; }
+	// 	  25.01% { opacity: 0.25; }
+	// 	  25.02% { opacity: 1; }
+	// 	  85.01% { opacity: 0.25; }
+	// 	  100% { opacity: 0.25; }
+	// 	}@-webkit-keyframes opacity-60-25-4-12 {
+	// 	  0% { opacity: 0.25; }
+	// 	  33.3433% { opacity: 0.25; }
+	// 	  33.3533% { opacity: 1; }
+	// 	  93.3433% { opacity: 0.25; }
+	// 	  100% { opacity: 0.25; }
+	// 	}@-webkit-keyframes opacity-60-25-5-12 {
+	// 	  0% { opacity: 0.270958333333333; }
+	// 	  41.6767% { opacity: 0.25; }
+	// 	  41.6867% { opacity: 1; }
+	// 	  1.67667% { opacity: 0.25; }
+	// 	  100% { opacity: 0.270958333333333; }
+	// 	}@-webkit-keyframes opacity-60-25-6-12 {
+	// 	  0% { opacity: 0.375125; }
+	// 	  50.01% { opacity: 0.25; }
+	// 	  50.02% { opacity: 1; }
+	// 	  10.01% { opacity: 0.25; }
+	// 	  100% { opacity: 0.375125; }
+	// 	}@-webkit-keyframes opacity-60-25-7-12 {
+	// 	  0% { opacity: 0.479291666666667; }
+	// 	  58.3433% { opacity: 0.25; }
+	// 	  58.3533% { opacity: 1; }
+	// 	  18.3433% { opacity: 0.25; }
+	// 	  100% { opacity: 0.479291666666667; }
+	// 	}@-webkit-keyframes opacity-60-25-8-12 {
+	// 	  0% { opacity: 0.583458333333333; }
+	// 	  66.6767% { opacity: 0.25; }
+	// 	  66.6867% { opacity: 1; }
+	// 	  26.6767% { opacity: 0.25; }
+	// 	  100% { opacity: 0.583458333333333; }
+	// 	}@-webkit-keyframes opacity-60-25-9-12 {
+	// 	  0% { opacity: 0.687625; }
+	// 	  75.01% { opacity: 0.25; }
+	// 	  75.02% { opacity: 1; }
+	// 	  35.01% { opacity: 0.25; }
+	// 	  100% { opacity: 0.687625; }
+	// 	}@-webkit-keyframes opacity-60-25-10-12 {
+	// 	  0% { opacity: 0.791791666666667; }
+	// 	  83.3433% { opacity: 0.25; }
+	// 	  83.3533% { opacity: 1; }
+	// 	  43.3433% { opacity: 0.25; }
+	// 	  100% { opacity: 0.791791666666667; }
+	// 	}@-webkit-keyframes opacity-60-25-11-12 {
+	// 	  0% { opacity: 0.895958333333333; }
+	// 	  91.6767% { opacity: 0.25; }
+	// 	  91.6867% { opacity: 1; }
+	// 	  51.6767% { opacity: 0.25; }
+	// 	  100% { opacity: 0.895958333333333; }
+	// 	}
+
+	// </style>
+
+/***/ },
+/* 67 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<section class=\"toast\" v-show=\"show\" _v-4de571aa=\"\">\n\t<section class=\"toast-mask\" _v-4de571aa=\"\"></section>\n\t<section class=\"toast-bd\" _v-4de571aa=\"\">\n\t\t<section class=\"loading\" v-if=\"isload\" _v-4de571aa=\"\">\n\t\t\t<div class=\"loading_leaf loading_leaf_0\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_1\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_2\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_3\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_4\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_5\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_6\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_7\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_8\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_9\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_10\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_11\" _v-4de571aa=\"\"></div>\n\t\t</section>\n\t\t<section class=\"prompt\" v-else=\"\" _v-4de571aa=\"\">\n\t\t\t<i class=\"weui_icon_toast\" _v-4de571aa=\"\"></i>\n\t\t</section>\n\t\t<p class=\"toast-content\" _v-4de571aa=\"\">{{prompt}}</p>\n\t</section>\n</section>\n";
+
+/***/ },
+/* 68 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"page\" _v-ba295ade=\"\">\n\t<tool-bar text=\"我的项目\" _v-ba295ade=\"\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" v-touch:tap=\"back\" _v-ba295ade=\"\"></span>\n        <span class=\"icon-refresh\" slot=\"rightBtn\" v-touch:tap=\"showSheet\" _v-ba295ade=\"\"></span>\n\t</tool-bar>\n\t<div class=\"page-content\" _v-ba295ade=\"\">\n\t\t<list v-on:reload=\"getInitData\" v-on:loadmore=\"getMoreData\" _v-ba295ade=\"\">\n\t\t\t<li _v-ba295ade=\"\">asdffdddd;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\t\t</list>\n\t</div>\n</div>\n\n<toast :show=\"showToast\" _v-ba295ade=\"\"></toast>\n<action-sheet :showsheet.sync=\"showsheet\" :btn-items=\"btnItems\" v-on:action-click=\"actionClick\" _v-ba295ade=\"\"></action-sheet>\n";
+
+/***/ },
+/* 69 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(65)
-	__vue_template__ = __webpack_require__(71)
+	__vue_script__ = __webpack_require__(70)
+	__vue_template__ = __webpack_require__(76)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -14995,7 +15095,7 @@
 	})()}
 
 /***/ },
-/* 65 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15008,7 +15108,7 @@
 	
 	var _ToolBar2 = _interopRequireDefault(_ToolBar);
 	
-	var _Calendar = __webpack_require__(66);
+	var _Calendar = __webpack_require__(71);
 	
 	var _Calendar2 = _interopRequireDefault(_Calendar);
 	
@@ -15049,13 +15149,13 @@
 	/* generated by vue-loader */
 
 /***/ },
-/* 66 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(67)
-	__vue_script__ = __webpack_require__(69)
-	__vue_template__ = __webpack_require__(70)
+	__webpack_require__(72)
+	__vue_script__ = __webpack_require__(74)
+	__vue_template__ = __webpack_require__(75)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -15072,13 +15172,13 @@
 	})()}
 
 /***/ },
-/* 67 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(68);
+	var content = __webpack_require__(73);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -15098,7 +15198,7 @@
 	}
 
 /***/ },
-/* 68 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -15112,7 +15212,7 @@
 
 
 /***/ },
-/* 69 */
+/* 74 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15643,25 +15743,25 @@
 	// </style>
 
 /***/ },
-/* 70 */
+/* 75 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"calendar\" _v-3d09c52c=\"\">\n    <div class=\"calenarDayView\" v-show=\"showDay\" _v-3d09c52c=\"\">\n        <div class=\"calendar-header\" _v-3d09c52c=\"\">\n            <div class=\"calendar-title\" _v-3d09c52c=\"\">\n                <div _v-3d09c52c=\"\">\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\" _v-3d09c52c=\"\"></span>\n                    <span class=\"icon-angle-left\" style=\"margin-left:20px;width:50px;\" @click=\"monthClick(0)\" _v-3d09c52c=\"\"></span>\n                </div>\n                <p _v-3d09c52c=\"\">\n                    <span @click=\"showYearView\" _v-3d09c52c=\"\">{{curYear}}年</span>\n                    <span @click=\"showMonthView\" _v-3d09c52c=\"\">{{curMonth}}月</span>\n                </p>\n                <div _v-3d09c52c=\"\">\n                     <span class=\"icon-angle-right\" style=\"margin-right:20px;\" @click=\"monthClick(1)\" _v-3d09c52c=\"\"></span>\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\" _v-3d09c52c=\"\"></span>\n                </div>\n            </div>\n            <div class=\"calendarDay-week\" _v-3d09c52c=\"\">\n                <ul _v-3d09c52c=\"\">\n                    <li v-for=\"(index,item) in weekRange\" :class=\"{'restDay':index==5||index==6}\" _v-3d09c52c=\"\">{{item}}</li>\n                </ul>\n            </div>\n        </div>\n        <div class=\"calendar-range\" v-touch:swipe=\"swipeMonth\" _v-3d09c52c=\"\">\n            <ul _v-3d09c52c=\"\">\n                <li v-for=\"item in dateRange\" class=\"calendarDay\" v-on:click=\"selectDay(item.day)\" _v-3d09c52c=\"\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('D',item.day),'restDay':item.isRestDay,'curMonth':item.isCur}\" _v-3d09c52c=\"\">{{item.day}}</span>\n                </li>\n            </ul>\n        </div>\n        <div class=\"calendarDay-footer\" _v-3d09c52c=\"\">\n            <span @click=\"today\" _v-3d09c52c=\"\">今天</span>\n        </div>\n    </div>\n    <div class=\"calendarMonthView\" v-show=\"showMonth\" _v-3d09c52c=\"\">\n        <div class=\"calendar-header\" _v-3d09c52c=\"\">\n            <div class=\"calendar-title\" _v-3d09c52c=\"\">\n                <div _v-3d09c52c=\"\">\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\" _v-3d09c52c=\"\"></span>\n                </div>\n                <p _v-3d09c52c=\"\">\n                    <span @click=\"showYearView\" _v-3d09c52c=\"\">{{curYear}}年</span>\n                </p>\n                <div _v-3d09c52c=\"\">\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\" _v-3d09c52c=\"\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"calendar-range\" _v-3d09c52c=\"\">\n            <ul _v-3d09c52c=\"\">\n                <li v-for=\"item in monthRange\" class=\"calendarMonth\" v-on:click=\"selectMonth(item.id)\" _v-3d09c52c=\"\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('M',item.id)}\" _v-3d09c52c=\"\">{{item.text}}</span>\n                </li>\n            </ul>\n        </div>\n    </div>\n    <div class=\"calendarYearView\" v-show=\"showYear\" _v-3d09c52c=\"\">\n        <div class=\"calendar-header\" _v-3d09c52c=\"\">\n            <div class=\"calendar-title\" _v-3d09c52c=\"\">\n                <div _v-3d09c52c=\"\">\n                    <span class=\"icon-double-angle-left\" @click=\"yearClick(0)\" _v-3d09c52c=\"\"></span>\n                </div>\n                <p _v-3d09c52c=\"\">\n                    <span @click=\"showYearView\" _v-3d09c52c=\"\">{{yearTitle}}</span>\n                </p>\n                <div _v-3d09c52c=\"\">\n                     <span class=\"icon-double-angle-right\" @click=\"yearClick(1)\" _v-3d09c52c=\"\"></span>\n                </div>\n            </div>\n        </div>\n        <div class=\"calendar-range\" _v-3d09c52c=\"\">\n            <ul _v-3d09c52c=\"\">\n                <li v-for=\"item in yearRange\" class=\"calendarMonth\" v-on:click=\"selectYear(item)\" _v-3d09c52c=\"\">\n                    <span v-bind:class=\"{'itemSelect':isCurSelect('Y',item)}\" _v-3d09c52c=\"\">{{item}}</span>\n                </li>\n            </ul>\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
-/* 71 */
+/* 76 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<toolbar :text=\"title\">\n\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back()\"></span>\n\t<span slot=\"rightBtn\"></span>\n</toolbar>\n<calendar v-on:item-click=\"selectDay\"></calendar>\n";
 
 /***/ },
-/* 72 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(73)
-	__vue_script__ = __webpack_require__(75)
-	__vue_template__ = __webpack_require__(86)
+	__webpack_require__(78)
+	__vue_script__ = __webpack_require__(80)
+	__vue_template__ = __webpack_require__(91)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -15678,13 +15778,13 @@
 	})()}
 
 /***/ },
-/* 73 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(74);
+	var content = __webpack_require__(79);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -15704,7 +15804,7 @@
 	}
 
 /***/ },
-/* 74 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -15718,7 +15818,7 @@
 
 
 /***/ },
-/* 75 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15735,11 +15835,11 @@
 	
 	var _Loading2 = _interopRequireDefault(_Loading);
 	
-	var _Dialog = __webpack_require__(76);
+	var _Dialog = __webpack_require__(81);
 	
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 	
-	var _DatePicker = __webpack_require__(81);
+	var _DatePicker = __webpack_require__(86);
 	
 	var _DatePicker2 = _interopRequireDefault(_DatePicker);
 	
@@ -15756,7 +15856,7 @@
 	// 	</section>
 	
 	// 	<loading :loading="isload"></loading>
-	// 	<dialog :show.sync="isShowDialog" :title="dialogTitle" :is-alert="isAlert" v-on:child-confirm="confirm">
+	// 	<dialog :show.sync="isShowDialog" :title="dialogTitle"  v-on:child-confirm="confirm">
 	// 		<div slot="dialog-bd">我的世界你不懂</div>
 	// 	</dialog>
 	// </template>
@@ -15821,13 +15921,13 @@
 	// </style>
 
 /***/ },
-/* 76 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(77)
-	__vue_script__ = __webpack_require__(79)
-	__vue_template__ = __webpack_require__(80)
+	__webpack_require__(82)
+	__vue_script__ = __webpack_require__(84)
+	__vue_template__ = __webpack_require__(85)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -15844,13 +15944,13 @@
 	})()}
 
 /***/ },
-/* 77 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(78);
+	var content = __webpack_require__(83);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -15870,7 +15970,7 @@
 	}
 
 /***/ },
-/* 78 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -15878,13 +15978,13 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n.dialog[_v-12989f74]{\n    padding: 0px;\n    margin: 0px;\n}\n\n/*遮罩层*/\n.dialog-mask[_v-12989f74]{\n    position: fixed;\n    left: 0;\n    top: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.6);\n    z-index: 10;\n}\n\n.dialog-content[_v-12989f74]{\n    position: fixed;\n    z-index: 20;\n    width: 85%;\n    top: 50%;\n    left: 50%;\n    max-width: 400px;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    background-color: #fff;\n    text-align: center;\n    border-radius: 3px;\n}\n\n.dialog-content>.dialog-hd[_v-12989f74]{\n    padding: 1.2em 20px .5em;\n    font-weight: 400;\n    font-size: 17px;\n}\n\n.dialog-content>.dialog-bd[_v-12989f74]{\n    text-align: left;\n     padding: 0 20px;\n    font-size: 15px;\n    color: #888;\n}\n\n.dialog-content>.dialog-ft[_v-12989f74]{\n    position: relative;\n    line-height: 42px;\n    margin-top: 20px;\n    font-size: 17px;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    display: flexbox;\n}\n\n.dialog-ft[_v-12989f74]:before{\n    content:\" \";\n    position: absolute;\n    width: 8.14px;\n    height: 1.08px;\n    background: rgb(209, 209, 213);\n    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;\n    border-radius: 1px;\n    -webkit-transform-origin: left 50% 0px;\n            transform-origin: left 50% 0px;\n    width: 100%;\n}\n\n.dialog-ft>a[_v-12989f74]{\n    -webkit-flex:1;\n        -ms-flex:1;\n            flex:1;\n    -webkit-box-flex:1;\n}\n\n\n\n\n", "", {"version":3,"sources":["/./src/components/Dialog.vue?6f807018"],"names":[],"mappings":";;AA4DA;IACA,aAAA;IACA,YAAA;CACA;;AAEA,OAAA;AACA;IACA,gBAAA;IACA,QAAA;IACA,OAAA;IACA,YAAA;IACA,aAAA;IACA,qCAAA;IACA,YAAA;CACA;;AAEA;IACA,gBAAA;IACA,YAAA;IACA,WAAA;IACA,SAAA;IACA,UAAA;IACA,iBAAA;IACA,yCAAA;YAAA,iCAAA;IACA,uBAAA;IACA,mBAAA;IACA,mBAAA;CACA;;AAEA;IACA,yBAAA;IACA,iBAAA;IACA,gBAAA;CACA;;AAEA;IACA,iBAAA;KACA,gBAAA;IACA,gBAAA;IACA,YAAA;CACA;;AAEA;IACA,mBAAA;IACA,kBAAA;IACA,iBAAA;IACA,gBAAA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,iBAAA;CACA;;AAEA;IACA,YAAA;IACA,mBAAA;IACA,cAAA;IACA,eAAA;IACA,+BAAA;IACA,iDAAA;IACA,mBAAA;IACA,uCAAA;YAAA,+BAAA;IACA,YAAA;CACA;;AAEA;IACA,eAAA;QAAA,WAAA;YAAA,OAAA;IACA,mBAAA;CACA","file":"Dialog.vue","sourcesContent":["<template>\r\n    <section class=\"dialog\"  v-show=\"show\">\r\n        <section class=\"dialog-mask\"></section>\r\n        <section class=\"dialog-content\">\r\n            <section class=\"dialog-hd\">{{title}}</section>\r\n            <section class=\"dialog-bd\">\r\n                <slot name=\"dialog-bd\"></slot>\r\n            </section>\r\n            <section class=\"dialog-ft\" v-if=\"isAlert\">\r\n            <!-- 判断类别,如果是 -->\r\n                <a href=\"javascript:;\" class=\"weui_btn_dialog primary\" v-touch:tap=\"close\">确定</a>\r\n            </section>\r\n            <section class=\"dialog-ft\" v-else>\r\n            <!-- 判断类别,如果是 -->\r\n                <a href=\"javascript:;\" class=\"weui_btn_dialog default\" v-touch:tap=\"close\">取消</a>\r\n                <a href=\"javascript:;\" class=\"weui_btn_dialog primary\" v-touch:tap=\"confirm\">确定</a>\r\n            </section>\r\n        </section>\r\n    </section>\r\n\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n\t\tmethods:{\r\n\t\t\t// 关闭dialog\r\n\t\t\tclose(){\r\n\t\t\t\tthis.show=!this.show;\r\n\t\t\t},\r\n\t\t\tconfirm(){\r\n\t\t\t\t//将事件派发到父组件中,在通过父组件进行监听该事件\r\n\t\t\t\tthis.$dispatch('child-confirm');\r\n\t\t\t}\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\tshow:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false,\r\n\t\t\t\trequire:true\r\n\t\t\t},\r\n            isAlert:{\r\n                type:Boolean,\r\n                default:false\r\n            },\r\n\t\t\t//显示效果\r\n\t\t\teffect:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:'fade'\r\n\t\t\t},\r\n\t\t\ttitle:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:''\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style  type=\"text/css\" scoped>\r\n\t\r\n    .dialog{\r\n        padding: 0px;\r\n        margin: 0px;\r\n    }\r\n\r\n    /*遮罩层*/\r\n    .dialog-mask{\r\n        position: fixed;\r\n        left: 0;\r\n        top: 0;\r\n        width: 100%;\r\n        height: 100%;\r\n        background-color: rgba(0, 0, 0, 0.6);\r\n        z-index: 10;\r\n    }\r\n    \r\n    .dialog-content{\r\n        position: fixed;\r\n        z-index: 20;\r\n        width: 85%;\r\n        top: 50%;\r\n        left: 50%;\r\n        max-width: 400px;\r\n        transform: translate(-50%, -50%);\r\n        background-color: #fff;\r\n        text-align: center;\r\n        border-radius: 3px;\r\n    }\r\n\r\n    .dialog-content>.dialog-hd{\r\n        padding: 1.2em 20px .5em;\r\n        font-weight: 400;\r\n        font-size: 17px;\r\n    }\r\n\r\n    .dialog-content>.dialog-bd{\r\n        text-align: left;\r\n         padding: 0 20px;\r\n        font-size: 15px;\r\n        color: #888;\r\n    }\r\n\r\n    .dialog-content>.dialog-ft{\r\n        position: relative;\r\n        line-height: 42px;\r\n        margin-top: 20px;\r\n        font-size: 17px;\r\n        display: flex;\r\n        display: flexbox;\r\n    }\r\n\r\n    .dialog-ft:before{\r\n        content:\" \";\r\n        position: absolute;\r\n        width: 8.14px;\r\n        height: 1.08px;\r\n        background: rgb(209, 209, 213);\r\n        box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;\r\n        border-radius: 1px;\r\n        transform-origin: left 50% 0px;\r\n        width: 100%;\r\n    }\r\n\r\n    .dialog-ft>a{\r\n        flex:1;\r\n        -webkit-box-flex:1;\r\n    }\r\n\r\n\r\n\r\n\t  \r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n .dialog[_v-12989f74]{\n     padding: 0px;\n     margin: 0px;\n }\n\n /*遮罩层*/\n .dialog-mask[_v-12989f74]{\n     position: fixed;\n     left: 0;\n     top: 0;\n     width: 100%;\n     height: 100%;\n     background-color: rgba(0, 0, 0, 0.6);\n     z-index: 10;\n }\n \n /*dialog的过度效果*/\n .dialog-transition[_v-12989f74]{\n     position: fixed;\n     z-index: 20;\n     width: 85%;\n     top: 50%;\n     left: 50%;\n     max-width: 400px;\n     -webkit-transform: translate(-50%, -50%);\n             transform: translate(-50%, -50%);\n     background-color: #fff;\n     text-align: center;\n     border-radius: 3px;\n     -webkit-transition: top .3s ease;\n     transition:top .3s ease;\n }\n\n .dialog-enter[_v-12989f74],.dialog-leave[_v-12989f74]{\n     top: 0;\n }\n\n/* .dialog-content{\n     position: fixed;\n     z-index: 20;\n     width: 85%;\n     top: 50%;\n     left: 50%;\n     max-width: 400px;\n     transform: translate(-50%, -50%);\n     background-color: #fff;\n     text-align: center;\n     border-radius: 3px;\n }*/\n\n \n .dialog-hd[_v-12989f74]{\n     padding: 1.2em 20px .5em;\n     font-weight: 400;\n     font-size: 17px;\n }\n\n .dialog-bd[_v-12989f74]{\n     text-align: left;\n      padding: 0 20px;\n     font-size: 15px;\n     color: #888;\n }\n\n .dialog-ft[_v-12989f74]{\n     position: relative;\n     line-height: 42px;\n     margin-top: 20px;\n     font-size: 17px;\n     display: -webkit-box;\n     display: -webkit-flex;\n     display: -ms-flexbox;\n     display: flex;\n     /*display: flexbox;*/\n }\n\n .dialog-ft[_v-12989f74]:after{\n     content: \" \";\n       position: absolute;\n       left: 0;\n       top: 0;\n       width: 100%;\n       height: 1px;\n       border-top: 1px solid #D5D5D6;\n       color: #D5D5D6;\n       -webkit-transform-origin: 0 0;\n       transform-origin: 0 0;\n       -webkit-transform: scaleY(0.5);\n       transform: scaleY(0.5);\n }\n\n .dialog-ft>a[_v-12989f74]{\n     -webkit-flex:1;\n         -ms-flex:1;\n             flex:1;\n     -webkit-box-flex:1;\n     text-decoration:none;\n     display: block;\n }\n\n \n .dialog-ft>a[_v-12989f74]:after{\n     border-left: 1px solid #D5D5D6;\n     color: #D5D5D6;\n     content:\" \";\n     width:1px;\n     height: 100%;\n     left: 50%;\n     top: 0;\n     position: absolute;\n     -webkit-transform:scaleX(0.5);\n             transform:scaleX(0.5);\n }\n\n .dialog-ft a[_v-12989f74]:nth-child(1):after{\n     display: none;\n }\n\n\n\n", "", {"version":3,"sources":["/./src/components/Dialog.vue?295fce60"],"names":[],"mappings":";;CA4DA;KACA,aAAA;KACA,YAAA;EACA;;CAEA,OAAA;CACA;KACA,gBAAA;KACA,QAAA;KACA,OAAA;KACA,YAAA;KACA,aAAA;KACA,qCAAA;KACA,YAAA;EACA;;CAEA,eAAA;CACA;KACA,gBAAA;KACA,YAAA;KACA,WAAA;KACA,SAAA;KACA,UAAA;KACA,iBAAA;KACA,yCAAA;aAAA,iCAAA;KACA,uBAAA;KACA,mBAAA;KACA,mBAAA;KACA,iCAAA;KAAA,wBAAA;EACA;;CAEA;KACA,OAAA;EACA;;AAEA;;;;;;;;;;;IAWA;;;CAGA;KACA,yBAAA;KACA,iBAAA;KACA,gBAAA;EACA;;CAEA;KACA,iBAAA;MACA,gBAAA;KACA,gBAAA;KACA,YAAA;EACA;;CAEA;KACA,mBAAA;KACA,kBAAA;KACA,iBAAA;KACA,gBAAA;KACA,qBAAA;KAAA,sBAAA;KAAA,qBAAA;KAAA,cAAA;KACA,qBAAA;EACA;;CAEA;KACA,aAAA;OACA,mBAAA;OACA,QAAA;OACA,OAAA;OACA,YAAA;OACA,YAAA;OACA,8BAAA;OACA,eAAA;OACA,8BAAA;OAEA,sBAAA;OACA,+BAAA;OAEA,uBAAA;EACA;;CAEA;KACA,eAAA;SAAA,WAAA;aAAA,OAAA;KACA,mBAAA;KACA,qBAAA;KACA,eAAA;EACA;;;CAGA;KACA,+BAAA;KACA,eAAA;KACA,YAAA;KACA,UAAA;KACA,aAAA;KACA,UAAA;KACA,OAAA;KACA,mBAAA;KACA,8BAAA;aAAA,sBAAA;EACA;;CAEA;KACA,cAAA;EACA","file":"Dialog.vue","sourcesContent":["<template>\r\n    <section class=\"dialog\"  v-show=\"show\">\r\n        <section class=\"dialog-mask\"></section>\r\n        <section class=\"dialog-content\" v-show=\"show\" transition=\"dialog\">\r\n            <section class=\"dialog-hd\">{{title}}</section>\r\n            <section class=\"dialog-bd\">\r\n                <slot name=\"dialog-bd\"></slot>\r\n            </section>\r\n            <section class=\"dialog-ft\" v-if=\"isAlert\">\r\n            <!-- 判断类别,如果是 -->\r\n                <a href=\"javascript:;\" class=\"weui_btn_dialog primary\" v-touch:tap=\"close\">确定</a>\r\n            </section>\r\n            <section class=\"dialog-ft\" v-else>\r\n            <!-- 判断类别,如果是 -->\r\n                <a href=\"javascript:;\" class=\"weui_btn_dialog default\" v-touch:tap=\"close\">取消</a>\r\n                <a href=\"javascript:;\" class=\"weui_btn_dialog primary\" v-touch:tap=\"confirm\">确定</a>\r\n            </section>\r\n        </section>\r\n    </section>\r\n\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n\t\tmethods:{\r\n\t\t\t// 关闭dialog\r\n\t\t\tclose(){\r\n\t\t\t\tthis.show=!this.show;\r\n\t\t\t},\r\n\t\t\tconfirm(){\r\n\t\t\t\t//将事件派发到父组件中,在通过父组件进行监听该事件\r\n\t\t\t\tthis.$dispatch('child-confirm');\r\n\t\t\t}\r\n\t\t},\r\n\t\tprops:{\r\n\t\t\tshow:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false,\r\n\t\t\t\trequire:true\r\n\t\t\t},\r\n            isAlert:{\r\n                type:Boolean,\r\n                default:false\r\n            },\r\n\t\t\t//显示效果\r\n\t\t\teffect:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:'fade'\r\n\t\t\t},\r\n\t\t\ttitle:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:''\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style  type=\"text/css\" scoped>\r\n\t\r\n    .dialog{\r\n        padding: 0px;\r\n        margin: 0px;\r\n    }\r\n\r\n    /*遮罩层*/\r\n    .dialog-mask{\r\n        position: fixed;\r\n        left: 0;\r\n        top: 0;\r\n        width: 100%;\r\n        height: 100%;\r\n        background-color: rgba(0, 0, 0, 0.6);\r\n        z-index: 10;\r\n    }\r\n    \r\n    /*dialog的过度效果*/\r\n    .dialog-transition{\r\n        position: fixed;\r\n        z-index: 20;\r\n        width: 85%;\r\n        top: 50%;\r\n        left: 50%;\r\n        max-width: 400px;\r\n        transform: translate(-50%, -50%);\r\n        background-color: #fff;\r\n        text-align: center;\r\n        border-radius: 3px;\r\n        transition:top .3s ease;\r\n    }\r\n\r\n    .dialog-enter,.dialog-leave{\r\n        top: 0;\r\n    }\r\n\r\n   /* .dialog-content{\r\n        position: fixed;\r\n        z-index: 20;\r\n        width: 85%;\r\n        top: 50%;\r\n        left: 50%;\r\n        max-width: 400px;\r\n        transform: translate(-50%, -50%);\r\n        background-color: #fff;\r\n        text-align: center;\r\n        border-radius: 3px;\r\n    }*/\r\n\r\n    \r\n    .dialog-hd{\r\n        padding: 1.2em 20px .5em;\r\n        font-weight: 400;\r\n        font-size: 17px;\r\n    }\r\n\r\n    .dialog-bd{\r\n        text-align: left;\r\n         padding: 0 20px;\r\n        font-size: 15px;\r\n        color: #888;\r\n    }\r\n\r\n    .dialog-ft{\r\n        position: relative;\r\n        line-height: 42px;\r\n        margin-top: 20px;\r\n        font-size: 17px;\r\n        display: flex;\r\n        /*display: flexbox;*/\r\n    }\r\n\r\n    .dialog-ft:after{\r\n        content: \" \";\r\n          position: absolute;\r\n          left: 0;\r\n          top: 0;\r\n          width: 100%;\r\n          height: 1px;\r\n          border-top: 1px solid #D5D5D6;\r\n          color: #D5D5D6;\r\n          -webkit-transform-origin: 0 0;\r\n          -ms-transform-origin: 0 0;\r\n          transform-origin: 0 0;\r\n          -webkit-transform: scaleY(0.5);\r\n          -ms-transform: scaleY(0.5);\r\n          transform: scaleY(0.5);\r\n    }\r\n\r\n    .dialog-ft>a{\r\n        flex:1;\r\n        -webkit-box-flex:1;\r\n        text-decoration:none;\r\n        display: block;\r\n    }\r\n\r\n    \r\n    .dialog-ft>a:after{\r\n        border-left: 1px solid #D5D5D6;\r\n        color: #D5D5D6;\r\n        content:\" \";\r\n        width:1px;\r\n        height: 100%;\r\n        left: 50%;\r\n        top: 0;\r\n        position: absolute;\r\n        transform:scaleX(0.5);\r\n    }\r\n\r\n    .dialog-ft a:nth-child(1):after{\r\n        display: none;\r\n    }\r\n\r\n  \r\n\t  \r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
-/* 79 */
+/* 84 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15895,7 +15995,7 @@
 	// <template>
 	//     <section class="dialog"  v-show="show">
 	//         <section class="dialog-mask"></section>
-	//         <section class="dialog-content">
+	//         <section class="dialog-content" v-show="show" transition="dialog">
 	//             <section class="dialog-hd">{{title}}</section>
 	//             <section class="dialog-bd">
 	//                 <slot name="dialog-bd"></slot>
@@ -15969,7 +16069,8 @@
 	//         z-index: 10;
 	//     }
 
-	//     .dialog-content{
+	//     /*dialog的过度效果*/
+	//     .dialog-transition{
 	//         position: fixed;
 	//         z-index: 20;
 	//         width: 85%;
@@ -15980,63 +16081,104 @@
 	//         background-color: #fff;
 	//         text-align: center;
 	//         border-radius: 3px;
+	//         transition:top .3s ease;
 	//     }
 
-	//     .dialog-content>.dialog-hd{
+	//     .dialog-enter,.dialog-leave{
+	//         top: 0;
+	//     }
+
+	//    /* .dialog-content{
+	//         position: fixed;
+	//         z-index: 20;
+	//         width: 85%;
+	//         top: 50%;
+	//         left: 50%;
+	//         max-width: 400px;
+	//         transform: translate(-50%, -50%);
+	//         background-color: #fff;
+	//         text-align: center;
+	//         border-radius: 3px;
+	//     }*/
+
+	//     .dialog-hd{
 	//         padding: 1.2em 20px .5em;
 	//         font-weight: 400;
 	//         font-size: 17px;
 	//     }
 
-	//     .dialog-content>.dialog-bd{
+	//     .dialog-bd{
 	//         text-align: left;
 	//          padding: 0 20px;
 	//         font-size: 15px;
 	//         color: #888;
 	//     }
 
-	//     .dialog-content>.dialog-ft{
+	//     .dialog-ft{
 	//         position: relative;
 	//         line-height: 42px;
 	//         margin-top: 20px;
 	//         font-size: 17px;
 	//         display: flex;
-	//         display: flexbox;
+	//         /*display: flexbox;*/
 	//     }
 
-	//     .dialog-ft:before{
-	//         content:" ";
-	//         position: absolute;
-	//         width: 8.14px;
-	//         height: 1.08px;
-	//         background: rgb(209, 209, 213);
-	//         box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;
-	//         border-radius: 1px;
-	//         transform-origin: left 50% 0px;
-	//         width: 100%;
+	//     .dialog-ft:after{
+	//         content: " ";
+	//           position: absolute;
+	//           left: 0;
+	//           top: 0;
+	//           width: 100%;
+	//           height: 1px;
+	//           border-top: 1px solid #D5D5D6;
+	//           color: #D5D5D6;
+	//           -webkit-transform-origin: 0 0;
+	//           -ms-transform-origin: 0 0;
+	//           transform-origin: 0 0;
+	//           -webkit-transform: scaleY(0.5);
+	//           -ms-transform: scaleY(0.5);
+	//           transform: scaleY(0.5);
 	//     }
 
 	//     .dialog-ft>a{
 	//         flex:1;
 	//         -webkit-box-flex:1;
+	//         text-decoration:none;
+	//         display: block;
+	//     }
+
+	//     .dialog-ft>a:after{
+	//         border-left: 1px solid #D5D5D6;
+	//         color: #D5D5D6;
+	//         content:" ";
+	//         width:1px;
+	//         height: 100%;
+	//         left: 50%;
+	//         top: 0;
+	//         position: absolute;
+	//         transform:scaleX(0.5);
+	//     }
+
+	//     .dialog-ft a:nth-child(1):after{
+	//         display: none;
 	//     }
 
 	// </style>
 
 /***/ },
-/* 80 */
+/* 85 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<section class=\"dialog\" v-show=\"show\" _v-12989f74=\"\">\n    <section class=\"dialog-mask\" _v-12989f74=\"\"></section>\n    <section class=\"dialog-content\" _v-12989f74=\"\">\n        <section class=\"dialog-hd\" _v-12989f74=\"\">{{title}}</section>\n        <section class=\"dialog-bd\" _v-12989f74=\"\">\n            <slot name=\"dialog-bd\" _v-12989f74=\"\"></slot>\n        </section>\n        <section class=\"dialog-ft\" v-if=\"isAlert\" _v-12989f74=\"\">\n        <!-- 判断类别,如果是 -->\n            <a href=\"javascript:;\" class=\"weui_btn_dialog primary\" v-touch:tap=\"close\" _v-12989f74=\"\">确定</a>\n        </section>\n        <section class=\"dialog-ft\" v-else=\"\" _v-12989f74=\"\">\n        <!-- 判断类别,如果是 -->\n            <a href=\"javascript:;\" class=\"weui_btn_dialog default\" v-touch:tap=\"close\" _v-12989f74=\"\">取消</a>\n            <a href=\"javascript:;\" class=\"weui_btn_dialog primary\" v-touch:tap=\"confirm\" _v-12989f74=\"\">确定</a>\n        </section>\n    </section>\n</section>\n\n";
+	module.exports = "\n<section class=\"dialog\" v-show=\"show\" _v-12989f74=\"\">\n    <section class=\"dialog-mask\" _v-12989f74=\"\"></section>\n    <section class=\"dialog-content\" v-show=\"show\" transition=\"dialog\" _v-12989f74=\"\">\n        <section class=\"dialog-hd\" _v-12989f74=\"\">{{title}}</section>\n        <section class=\"dialog-bd\" _v-12989f74=\"\">\n            <slot name=\"dialog-bd\" _v-12989f74=\"\"></slot>\n        </section>\n        <section class=\"dialog-ft\" v-if=\"isAlert\" _v-12989f74=\"\">\n        <!-- 判断类别,如果是 -->\n            <a href=\"javascript:;\" class=\"weui_btn_dialog primary\" v-touch:tap=\"close\" _v-12989f74=\"\">确定</a>\n        </section>\n        <section class=\"dialog-ft\" v-else=\"\" _v-12989f74=\"\">\n        <!-- 判断类别,如果是 -->\n            <a href=\"javascript:;\" class=\"weui_btn_dialog default\" v-touch:tap=\"close\" _v-12989f74=\"\">取消</a>\n            <a href=\"javascript:;\" class=\"weui_btn_dialog primary\" v-touch:tap=\"confirm\" _v-12989f74=\"\">确定</a>\n        </section>\n    </section>\n</section>\n\n";
 
 /***/ },
-/* 81 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(82)
-	__vue_script__ = __webpack_require__(84)
-	__vue_template__ = __webpack_require__(85)
+	__webpack_require__(87)
+	__vue_script__ = __webpack_require__(89)
+	__vue_template__ = __webpack_require__(90)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -16053,13 +16195,13 @@
 	})()}
 
 /***/ },
-/* 82 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(83);
+	var content = __webpack_require__(88);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -16079,7 +16221,7 @@
 	}
 
 /***/ },
-/* 83 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -16093,7 +16235,7 @@
 
 
 /***/ },
-/* 84 */
+/* 89 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16386,19 +16528,19 @@
 	// </style>
 
 /***/ },
-/* 85 */
+/* 90 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\n<div class=\"datepicker\" _v-e36f8ff0=\"\">\n    <section class=\"datepicker-header\" _v-e36f8ff0=\"\">\n      <div _v-e36f8ff0=\"\">年</div>\n      <div _v-e36f8ff0=\"\">月</div>\n      <div _v-e36f8ff0=\"\">日</div>\n    </section>\n    <section class=\"datepicker-body\" _v-e36f8ff0=\"\">\n        <div class=\"column datepicker-year\" _v-e36f8ff0=\"\">\n            <span class=\"datepicker-icon\" @click=\"add('Y')\" _v-e36f8ff0=\"\"><i class=\"icon-plus\" _v-e36f8ff0=\"\"></i></span>\n            <span class=\"datepicker-value\" _v-e36f8ff0=\"\">{{curYear}}</span>\n            <span class=\"datepicker-icon\" @click=\"minus('Y')\" _v-e36f8ff0=\"\"><i class=\"icon-minus\" _v-e36f8ff0=\"\"></i></span>\n        </div>\n        <div class=\"column datepicker-month\" _v-e36f8ff0=\"\">\n            <span class=\"datepicker-icon\" @click=\"add('M')\" _v-e36f8ff0=\"\"><i class=\"icon-plus\" _v-e36f8ff0=\"\"></i></span>\n            <span class=\"datepicker-value\" _v-e36f8ff0=\"\">{{curMonth&lt;10?(\"0\"+curMonth):curMonth}}</span>\n            <span class=\"datepicker-icon\" @click=\"minus('M')\" _v-e36f8ff0=\"\"><i class=\"icon-minus\" _v-e36f8ff0=\"\"></i></span>\n        </div>\n        <div class=\"column datepicker-day\" _v-e36f8ff0=\"\">\n            <span class=\"datepicker-icon\" @click=\"add('D')\" _v-e36f8ff0=\"\"><i class=\"icon-plus\" _v-e36f8ff0=\"\"></i></span>\n            <span class=\"datepicker-value\" _v-e36f8ff0=\"\">{{curDay&lt;10?(\"0\"+curDay):curDay}}</span>\n            <span class=\"datepicker-icon\" @click=\"minus('D')\" _v-e36f8ff0=\"\"><i class=\"icon-minus\" _v-e36f8ff0=\"\"></i></span>\n        </div>\n    </section> \n</div>\n  \n\n  <!--   <ul class=\"datepicker-hour\">\n        <li v-for=\"item in hourRange\">{{item}}</li>\n    </ul>\n    <ul class=\"datepicker-min\">\n        <li v-for=\"item in minRange\">{{item}}</li>\n    </ul>\n    <ul class=\"datepicker-sec\">\n        <li v-for=\"item in secRange\">{{item}}</li>\n    </ul> -->\n  \n";
 
 /***/ },
-/* 86 */
+/* 91 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<toolbar text=\"个人主页\" _v-61f407d1=\"\">\n\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back\" _v-61f407d1=\"\">返回</span>\n\t<span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"loadUserInfo\" _v-61f407d1=\"\"></span>\n</toolbar>\n<section _v-61f407d1=\"\">\n\t<input type=\"button\" @click=\"showDialog\" value=\"显示dialog\" _v-61f407d1=\"\">\n\t<datepicker _v-61f407d1=\"\"></datepicker>\n</section>\n\n<loading :loading=\"isload\" _v-61f407d1=\"\"></loading>\n<dialog :show.sync=\"isShowDialog\" :title=\"dialogTitle\" :is-alert=\"isAlert\" v-on:child-confirm=\"confirm\" _v-61f407d1=\"\">\n\t<div slot=\"dialog-bd\" _v-61f407d1=\"\">我的世界你不懂</div>\n</dialog>\n";
+	module.exports = "\n<toolbar text=\"个人主页\" _v-61f407d1=\"\">\n\t<span class=\"icon-chevron-left\" slot=\"leftBtn\" @click=\"back\" _v-61f407d1=\"\">返回</span>\n\t<span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"loadUserInfo\" _v-61f407d1=\"\"></span>\n</toolbar>\n<section _v-61f407d1=\"\">\n\t<input type=\"button\" @click=\"showDialog\" value=\"显示dialog\" _v-61f407d1=\"\">\n\t<datepicker _v-61f407d1=\"\"></datepicker>\n</section>\n\n<loading :loading=\"isload\" _v-61f407d1=\"\"></loading>\n<dialog :show.sync=\"isShowDialog\" :title=\"dialogTitle\" v-on:child-confirm=\"confirm\" _v-61f407d1=\"\">\n\t<div slot=\"dialog-bd\" _v-61f407d1=\"\">我的世界你不懂</div>\n</dialog>\n";
 
 /***/ },
-/* 87 */
+/* 92 */
 /***/ function(module, exports) {
 
 	var __vue_script__, __vue_template__
@@ -16408,12 +16550,12 @@
 
 
 /***/ },
-/* 88 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_script__ = __webpack_require__(89)
-	__vue_template__ = __webpack_require__(90)
+	__vue_script__ = __webpack_require__(94)
+	__vue_template__ = __webpack_require__(95)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -16430,7 +16572,7 @@
 	})()}
 
 /***/ },
-/* 89 */
+/* 94 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16467,13 +16609,13 @@
 	/* generated by vue-loader */
 
 /***/ },
-/* 90 */
+/* 95 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\n<div class=\"container\">\n\t<div >\n\t\t<input type=\"text\" name=\"\">\n\t</div>\n</div>\n";
 
 /***/ },
-/* 91 */
+/* 96 */
 /***/ function(module, exports) {
 
 	var __vue_script__, __vue_template__
@@ -16483,7 +16625,7 @@
 
 
 /***/ },
-/* 92 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
@@ -17330,19 +17472,19 @@
 
 
 /***/ },
-/* 93 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _keys = __webpack_require__(94);
+	var _keys = __webpack_require__(99);
 	
 	var _keys2 = _interopRequireDefault(_keys);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var vueTouch = {};
-	var Hammer =  true ? __webpack_require__(106) : window.Hammer;
+	var Hammer =  true ? __webpack_require__(111) : window.Hammer;
 	var gestures = ['tap', 'pan', 'pandown', 'panend', 'pinch', 'press', 'pressup', 'rotate', 'swipe', 'swipeleft', 'swiperight', 'swipeup', 'swipedown'];
 	var customeEvents = {};
 	
@@ -17441,43 +17583,43 @@
 	module.exports = vueTouch;
 
 /***/ },
-/* 94 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(95), __esModule: true };
+	module.exports = { "default": __webpack_require__(100), __esModule: true };
 
 /***/ },
-/* 95 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(96);
-	module.exports = __webpack_require__(102).Object.keys;
+	__webpack_require__(101);
+	module.exports = __webpack_require__(107).Object.keys;
 
 /***/ },
-/* 96 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(97);
+	var toObject = __webpack_require__(102);
 	
-	__webpack_require__(99)('keys', function($keys){
+	__webpack_require__(104)('keys', function($keys){
 	  return function keys(it){
 	    return $keys(toObject(it));
 	  };
 	});
 
 /***/ },
-/* 97 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
-	var defined = __webpack_require__(98);
+	var defined = __webpack_require__(103);
 	module.exports = function(it){
 	  return Object(defined(it));
 	};
 
 /***/ },
-/* 98 */
+/* 103 */
 /***/ function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -17487,13 +17629,13 @@
 	};
 
 /***/ },
-/* 99 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(100)
-	  , core    = __webpack_require__(102)
-	  , fails   = __webpack_require__(105);
+	var $export = __webpack_require__(105)
+	  , core    = __webpack_require__(107)
+	  , fails   = __webpack_require__(110);
 	module.exports = function(KEY, exec){
 	  var fn  = (core.Object || {})[KEY] || Object[KEY]
 	    , exp = {};
@@ -17502,12 +17644,12 @@
 	};
 
 /***/ },
-/* 100 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(101)
-	  , core      = __webpack_require__(102)
-	  , ctx       = __webpack_require__(103)
+	var global    = __webpack_require__(106)
+	  , core      = __webpack_require__(107)
+	  , ctx       = __webpack_require__(108)
 	  , PROTOTYPE = 'prototype';
 	
 	var $export = function(type, name, source){
@@ -17553,7 +17695,7 @@
 	module.exports = $export;
 
 /***/ },
-/* 101 */
+/* 106 */
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -17562,18 +17704,18 @@
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
-/* 102 */
+/* 107 */
 /***/ function(module, exports) {
 
 	var core = module.exports = {version: '1.2.6'};
 	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ },
-/* 103 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(104);
+	var aFunction = __webpack_require__(109);
 	module.exports = function(fn, that, length){
 	  aFunction(fn);
 	  if(that === undefined)return fn;
@@ -17594,7 +17736,7 @@
 	};
 
 /***/ },
-/* 104 */
+/* 109 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -17603,7 +17745,7 @@
 	};
 
 /***/ },
-/* 105 */
+/* 110 */
 /***/ function(module, exports) {
 
 	module.exports = function(exec){
@@ -17615,7 +17757,7 @@
 	};
 
 /***/ },
-/* 106 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.6 - 2015-12-23
@@ -20189,7 +20331,7 @@
 
 
 /***/ },
-/* 107 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -20198,16 +20340,16 @@
 	
 	function install(Vue) {
 	
-	    var _ = __webpack_require__(108);
+	    var _ = __webpack_require__(113);
 	
 	    _.config = Vue.config;
 	    _.warning = Vue.util.warn;
 	    _.nextTick = Vue.util.nextTick;
 	
-	    Vue.url = __webpack_require__(109);
-	    Vue.http = __webpack_require__(115);
-	    Vue.resource = __webpack_require__(130);
-	    Vue.Promise = __webpack_require__(117);
+	    Vue.url = __webpack_require__(114);
+	    Vue.http = __webpack_require__(120);
+	    Vue.resource = __webpack_require__(135);
+	    Vue.Promise = __webpack_require__(122);
 	
 	    Object.defineProperties(Vue.prototype, {
 	
@@ -20248,7 +20390,7 @@
 
 
 /***/ },
-/* 108 */
+/* 113 */
 /***/ function(module, exports) {
 
 	/**
@@ -20376,14 +20518,14 @@
 
 
 /***/ },
-/* 109 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for URL templating.
 	 */
 	
-	var _ = __webpack_require__(108);
+	var _ = __webpack_require__(113);
 	var ie = document.documentMode;
 	var el = document.createElement('a');
 	
@@ -20419,10 +20561,10 @@
 	 */
 	
 	Url.transforms = [
-	    __webpack_require__(110),
-	    __webpack_require__(112),
-	    __webpack_require__(113),
-	    __webpack_require__(114)
+	    __webpack_require__(115),
+	    __webpack_require__(117),
+	    __webpack_require__(118),
+	    __webpack_require__(119)
 	];
 	
 	/**
@@ -20512,14 +20654,14 @@
 
 
 /***/ },
-/* 110 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * URL Template (RFC 6570) Transform.
 	 */
 	
-	var UrlTemplate = __webpack_require__(111);
+	var UrlTemplate = __webpack_require__(116);
 	
 	module.exports = function (options) {
 	
@@ -20534,7 +20676,7 @@
 
 
 /***/ },
-/* 111 */
+/* 116 */
 /***/ function(module, exports) {
 
 	/**
@@ -20690,14 +20832,14 @@
 
 
 /***/ },
-/* 112 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Legacy Transform.
 	 */
 	
-	var _ = __webpack_require__(108);
+	var _ = __webpack_require__(113);
 	
 	module.exports = function (options, next) {
 	
@@ -20742,14 +20884,14 @@
 
 
 /***/ },
-/* 113 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Query Parameter Transform.
 	 */
 	
-	var _ = __webpack_require__(108);
+	var _ = __webpack_require__(113);
 	
 	module.exports = function (options, next) {
 	
@@ -20772,14 +20914,14 @@
 
 
 /***/ },
-/* 114 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Root Prefix Transform.
 	 */
 	
-	var _ = __webpack_require__(108);
+	var _ = __webpack_require__(113);
 	
 	module.exports = function (options, next) {
 	
@@ -20794,17 +20936,17 @@
 
 
 /***/ },
-/* 115 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for sending network requests.
 	 */
 	
-	var _ = __webpack_require__(108);
-	var Client = __webpack_require__(116);
-	var Promise = __webpack_require__(117);
-	var interceptor = __webpack_require__(120);
+	var _ = __webpack_require__(113);
+	var Client = __webpack_require__(121);
+	var Promise = __webpack_require__(122);
+	var interceptor = __webpack_require__(125);
 	var jsonType = {'Content-Type': 'application/json'};
 	
 	function Http(url, options) {
@@ -20856,13 +20998,13 @@
 	};
 	
 	Http.interceptors = [
-	    __webpack_require__(121),
-	    __webpack_require__(122),
-	    __webpack_require__(123),
-	    __webpack_require__(125),
 	    __webpack_require__(126),
 	    __webpack_require__(127),
-	    __webpack_require__(128)
+	    __webpack_require__(128),
+	    __webpack_require__(130),
+	    __webpack_require__(131),
+	    __webpack_require__(132),
+	    __webpack_require__(133)
 	];
 	
 	Http.headers = {
@@ -20897,16 +21039,16 @@
 
 
 /***/ },
-/* 116 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Base client.
 	 */
 	
-	var _ = __webpack_require__(108);
-	var Promise = __webpack_require__(117);
-	var xhrClient = __webpack_require__(119);
+	var _ = __webpack_require__(113);
+	var Promise = __webpack_require__(122);
+	var xhrClient = __webpack_require__(124);
 	
 	module.exports = function (request) {
 	
@@ -20968,15 +21110,15 @@
 
 
 /***/ },
-/* 117 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promise adapter.
 	 */
 	
-	var _ = __webpack_require__(108);
-	var PromiseObj = window.Promise || __webpack_require__(118);
+	var _ = __webpack_require__(113);
+	var PromiseObj = window.Promise || __webpack_require__(123);
 	
 	function Promise(executor, context) {
 	
@@ -21083,14 +21225,14 @@
 
 
 /***/ },
-/* 118 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promises/A+ polyfill v1.1.4 (https://github.com/bramstein/promis)
 	 */
 	
-	var _ = __webpack_require__(108);
+	var _ = __webpack_require__(113);
 	
 	var RESOLVED = 0;
 	var REJECTED = 1;
@@ -21268,15 +21410,15 @@
 
 
 /***/ },
-/* 119 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XMLHttp client.
 	 */
 	
-	var _ = __webpack_require__(108);
-	var Promise = __webpack_require__(117);
+	var _ = __webpack_require__(113);
+	var Promise = __webpack_require__(122);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -21317,15 +21459,15 @@
 
 
 /***/ },
-/* 120 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Interceptor factory.
 	 */
 	
-	var _ = __webpack_require__(108);
-	var Promise = __webpack_require__(117);
+	var _ = __webpack_require__(113);
+	var Promise = __webpack_require__(122);
 	
 	module.exports = function (handler, vm) {
 	
@@ -21368,14 +21510,14 @@
 
 
 /***/ },
-/* 121 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Before Interceptor.
 	 */
 	
-	var _ = __webpack_require__(108);
+	var _ = __webpack_require__(113);
 	
 	module.exports = {
 	
@@ -21392,7 +21534,7 @@
 
 
 /***/ },
-/* 122 */
+/* 127 */
 /***/ function(module, exports) {
 
 	/**
@@ -21428,14 +21570,14 @@
 
 
 /***/ },
-/* 123 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP Interceptor.
 	 */
 	
-	var jsonpClient = __webpack_require__(124);
+	var jsonpClient = __webpack_require__(129);
 	
 	module.exports = {
 	
@@ -21452,15 +21594,15 @@
 
 
 /***/ },
-/* 124 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP client.
 	 */
 	
-	var _ = __webpack_require__(108);
-	var Promise = __webpack_require__(117);
+	var _ = __webpack_require__(113);
+	var Promise = __webpack_require__(122);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -21506,7 +21648,7 @@
 
 
 /***/ },
-/* 125 */
+/* 130 */
 /***/ function(module, exports) {
 
 	/**
@@ -21529,14 +21671,14 @@
 
 
 /***/ },
-/* 126 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Mime Interceptor.
 	 */
 	
-	var _ = __webpack_require__(108);
+	var _ = __webpack_require__(113);
 	
 	module.exports = {
 	
@@ -21571,14 +21713,14 @@
 
 
 /***/ },
-/* 127 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Header Interceptor.
 	 */
 	
-	var _ = __webpack_require__(108);
+	var _ = __webpack_require__(113);
 	
 	module.exports = {
 	
@@ -21603,15 +21745,15 @@
 
 
 /***/ },
-/* 128 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * CORS Interceptor.
 	 */
 	
-	var _ = __webpack_require__(108);
-	var xdrClient = __webpack_require__(129);
+	var _ = __webpack_require__(113);
+	var xdrClient = __webpack_require__(134);
 	var xhrCors = 'withCredentials' in new XMLHttpRequest();
 	var originUrl = _.url.parse(location.href);
 	
@@ -21646,15 +21788,15 @@
 
 
 /***/ },
-/* 129 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XDomain client (Internet Explorer).
 	 */
 	
-	var _ = __webpack_require__(108);
-	var Promise = __webpack_require__(117);
+	var _ = __webpack_require__(113);
+	var Promise = __webpack_require__(122);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -21689,14 +21831,14 @@
 
 
 /***/ },
-/* 130 */
+/* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for interacting with RESTful services.
 	 */
 	
-	var _ = __webpack_require__(108);
+	var _ = __webpack_require__(113);
 	
 	function Resource(url, params, actions, options) {
 	
@@ -21805,13 +21947,18 @@
 
 
 /***/ },
-/* 131 */
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(132)
-	__vue_script__ = __webpack_require__(134)
-	__vue_template__ = __webpack_require__(135)
+	__webpack_require__(142)
+	__vue_script__ = __webpack_require__(144)
+	__vue_template__ = __webpack_require__(145)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -21819,7 +21966,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Toast.vue"
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\List.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -21828,13 +21975,13 @@
 	})()}
 
 /***/ },
-/* 132 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(133);
+	var content = __webpack_require__(143);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -21843,8 +21990,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-4de571aa&file=Toast.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Toast.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-4de571aa&file=Toast.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Toast.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-56a38cca&file=List.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./List.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-56a38cca&file=List.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./List.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -21854,7 +22001,7 @@
 	}
 
 /***/ },
-/* 133 */
+/* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -21862,320 +22009,367 @@
 	
 	
 	// module
-	exports.push([module.id, " \n\t\n\t.toast[_v-4de571aa]{\n\t\tposition: fixed;\n\t    z-index: 3;\n\t    width: 7.6em;\n\t    min-height: 7.6em;\n\t    top: 180px;\n\t    left: 50%;\n\t    margin-left: -3.8em;\n\t    background: rgba(40, 40, 40, 0.75);\n\t    text-align: center;\n\t    border-radius: 5px;\n\t    color: #FFFFFF;\n\t}\n\n\t/*遮罩*/\n\t.toast-mask[_v-4de571aa]{\n\t\tposition: fixed;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\tz-index: 10px;\n\t\theight: 100%;\n\t\twidth: 100%;\n\t}\n\n\t.toast-bd>.loading[_v-4de571aa]{\n\t\tposition: absolute;\n\t    width: 0px;\n\t    z-index: 20;\n\t    left: 50%;\n\t    top: 38%;\n\t}\n\n\t.toast-content[_v-4de571aa]{\n\t\tmargin: 0 0 15px;\n\t\tmargin-top:10%;\n      \tfont-size:14px;\n\t}\n\n\t.loading_leaf[_v-4de571aa]{\n\t\tposition: absolute;\n\t    top: -1px;\n\t    opacity: 0.25;\n\t}\n\n\t.loading_leaf[_v-4de571aa]:before{\n\t\tcontent:\" \";\n        position: absolute;\n        width: 8.14px;\n        height: 3.08px;\n        background: rgb(209, 209, 213);\n        box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;\n        border-radius: 1px;\n        -webkit-transform-origin: left 50% 0px;\n                transform-origin: left 50% 0px;\n\t}\n\n\t.loading_leaf_0[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-0-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-0-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_0[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(0deg) translate(7.92px, 0px);\n\t\t        transform: rotate(0deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_1[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-1-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-1-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_1[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(30deg) translate(7.92px, 0px);\n\t\t        transform: rotate(30deg) translate(7.92px, 0px);\n\t}\n\n\n\t.loading_leaf_2[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-2-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-2-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_2[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(60deg) translate(7.92px, 0px);\n\t\t        transform: rotate(60deg) translate(7.92px, 0px);\n\t}\n\n\n\t.loading_leaf_3[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-3-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-3-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_3[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(90deg) translate(7.92px, 0px);\n\t\t        transform: rotate(90deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_4[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-4-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-4-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_4[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(120deg) translate(7.92px, 0px);\n\t\t        transform: rotate(120deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_5[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-5-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-5-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_5[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(150deg) translate(7.92px, 0px);\n\t\t        transform: rotate(150deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_6[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-6-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-6-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_6[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(180deg) translate(7.92px, 0px);\n\t\t        transform: rotate(180deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_7[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-7-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-7-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_7[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(210deg) translate(7.92px, 0px);\n\t\t        transform: rotate(210deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_8[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-8-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-8-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_8[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(240deg) translate(7.92px, 0px);\n\t\t        transform: rotate(240deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_9[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-9-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-9-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_9[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(270deg) translate(7.92px, 0px);\n\t\t        transform: rotate(270deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_10[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-10-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-10-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_10[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(300deg) translate(7.92px, 0px);\n\t\t        transform: rotate(300deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_11[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-11-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-11-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_11[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(330deg) translate(7.92px, 0px);\n\t\t        transform: rotate(330deg) translate(7.92px, 0px);\n\t}\n\n\t.loading_leaf_12[_v-4de571aa]{\n\t\t-webkit-animation: opacity-60-25-12-12 1.25s linear infinite;\n\t\t        animation: opacity-60-25-12-12 1.25s linear infinite;\n\t}\n\t.loading_leaf_12[_v-4de571aa]:before{\n\t\t-webkit-transform: rotate(360deg) translate(7.92px, 0px);\n\t\t        transform: rotate(360deg) translate(7.92px, 0px);\n\t}\n\n\n\t@-webkit-keyframes opacity-60-25-0-12 {\n\t  0% { opacity: 0.25; }\n\t  0.01% { opacity: 0.25; }\n\t  0.02% { opacity: 1; }\n\t  60.01% { opacity: 0.25; }\n\t  100% { opacity: 0.25; }\n\t}@-webkit-keyframes opacity-60-25-1-12 {\n\t  0% { opacity: 0.25; }\n\t  8.34333% { opacity: 0.25; }\n\t  8.35333% { opacity: 1; }\n\t  68.3433% { opacity: 0.25; }\n\t  100% { opacity: 0.25; }\n\t}@-webkit-keyframes opacity-60-25-2-12 {\n\t  0% { opacity: 0.25; }\n\t  16.6767% { opacity: 0.25; }\n\t  16.6867% { opacity: 1; }\n\t  76.6767% { opacity: 0.25; }\n\t  100% { opacity: 0.25; }\n\t}@-webkit-keyframes opacity-60-25-3-12 {\n\t  0% { opacity: 0.25; }\n\t  25.01% { opacity: 0.25; }\n\t  25.02% { opacity: 1; }\n\t  85.01% { opacity: 0.25; }\n\t  100% { opacity: 0.25; }\n\t}@-webkit-keyframes opacity-60-25-4-12 {\n\t  0% { opacity: 0.25; }\n\t  33.3433% { opacity: 0.25; }\n\t  33.3533% { opacity: 1; }\n\t  93.3433% { opacity: 0.25; }\n\t  100% { opacity: 0.25; }\n\t}@-webkit-keyframes opacity-60-25-5-12 {\n\t  0% { opacity: 0.270958333333333; }\n\t  41.6767% { opacity: 0.25; }\n\t  41.6867% { opacity: 1; }\n\t  1.67667% { opacity: 0.25; }\n\t  100% { opacity: 0.270958333333333; }\n\t}@-webkit-keyframes opacity-60-25-6-12 {\n\t  0% { opacity: 0.375125; }\n\t  50.01% { opacity: 0.25; }\n\t  50.02% { opacity: 1; }\n\t  10.01% { opacity: 0.25; }\n\t  100% { opacity: 0.375125; }\n\t}@-webkit-keyframes opacity-60-25-7-12 {\n\t  0% { opacity: 0.479291666666667; }\n\t  58.3433% { opacity: 0.25; }\n\t  58.3533% { opacity: 1; }\n\t  18.3433% { opacity: 0.25; }\n\t  100% { opacity: 0.479291666666667; }\n\t}@-webkit-keyframes opacity-60-25-8-12 {\n\t  0% { opacity: 0.583458333333333; }\n\t  66.6767% { opacity: 0.25; }\n\t  66.6867% { opacity: 1; }\n\t  26.6767% { opacity: 0.25; }\n\t  100% { opacity: 0.583458333333333; }\n\t}@-webkit-keyframes opacity-60-25-9-12 {\n\t  0% { opacity: 0.687625; }\n\t  75.01% { opacity: 0.25; }\n\t  75.02% { opacity: 1; }\n\t  35.01% { opacity: 0.25; }\n\t  100% { opacity: 0.687625; }\n\t}@-webkit-keyframes opacity-60-25-10-12 {\n\t  0% { opacity: 0.791791666666667; }\n\t  83.3433% { opacity: 0.25; }\n\t  83.3533% { opacity: 1; }\n\t  43.3433% { opacity: 0.25; }\n\t  100% { opacity: 0.791791666666667; }\n\t}@-webkit-keyframes opacity-60-25-11-12 {\n\t  0% { opacity: 0.895958333333333; }\n\t  91.6767% { opacity: 0.25; }\n\t  91.6867% { opacity: 1; }\n\t  51.6767% { opacity: 0.25; }\n\t  100% { opacity: 0.895958333333333; }\n\t}\n\n", "", {"version":3,"sources":["/./src/components/Toast.vue?58bc00e3"],"names":[],"mappings":";;CAwEA;EACA,gBAAA;KACA,WAAA;KACA,aAAA;KACA,kBAAA;KACA,WAAA;KACA,UAAA;KACA,oBAAA;KACA,mCAAA;KACA,mBAAA;KACA,mBAAA;KACA,eAAA;EACA;;CAEA,MAAA;CACA;EACA,gBAAA;EACA,OAAA;EACA,QAAA;EACA,cAAA;EACA,aAAA;EACA,YAAA;EACA;;CAEA;EACA,mBAAA;KACA,WAAA;KACA,YAAA;KACA,UAAA;KACA,SAAA;EACA;;CAEA;EACA,iBAAA;EACA,eAAA;OACA,eAAA;EACA;;CAEA;EACA,mBAAA;KACA,UAAA;KACA,cAAA;EACA;;CAEA;EACA,YAAA;QACA,mBAAA;QACA,cAAA;QACA,eAAA;QACA,+BAAA;QACA,iDAAA;QACA,mBAAA;QACA,uCAAA;gBAAA,+BAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,uDAAA;UAAA,+CAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,wDAAA;UAAA,gDAAA;EACA;;;CAGA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,wDAAA;UAAA,gDAAA;EACA;;;CAGA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,wDAAA;UAAA,gDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,4DAAA;UAAA,oDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,6DAAA;UAAA,qDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,6DAAA;UAAA,qDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;CAEA;EACA,6DAAA;UAAA,qDAAA;EACA;CACA;EACA,yDAAA;UAAA,iDAAA;EACA;;;CAGA;GACA,KAAA,cAAA,EAAA;GACA,QAAA,cAAA,EAAA;GACA,QAAA,WAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,OAAA,cAAA,EAAA;EACA;GACA,KAAA,cAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,cAAA,EAAA;EACA;GACA,KAAA,cAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,cAAA,EAAA;EACA;GACA,KAAA,cAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,SAAA,WAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,OAAA,cAAA,EAAA;EACA;GACA,KAAA,cAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,cAAA,EAAA;EACA;GACA,KAAA,2BAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,2BAAA,EAAA;EACA;GACA,KAAA,kBAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,SAAA,WAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,OAAA,kBAAA,EAAA;EACA;GACA,KAAA,2BAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,2BAAA,EAAA;EACA;GACA,KAAA,2BAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,2BAAA,EAAA;EACA;GACA,KAAA,kBAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,SAAA,WAAA,EAAA;GACA,SAAA,cAAA,EAAA;GACA,OAAA,kBAAA,EAAA;EACA;GACA,KAAA,2BAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,2BAAA,EAAA;EACA;GACA,KAAA,2BAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,WAAA,WAAA,EAAA;GACA,WAAA,cAAA,EAAA;GACA,OAAA,2BAAA,EAAA;EACA","file":"Toast.vue","sourcesContent":["<template>\r\n\t<section class=\"toast\" v-show=\"show\">\r\n\t\t<section class=\"toast-mask\"></section>\r\n\t\t<section class=\"toast-bd\">\r\n\t\t\t<section class=\"loading\" v-if=\"isload\">\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_0\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_1\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_2\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_3\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_4\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_5\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_6\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_7\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_8\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_9\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_10\"></div>\r\n\t\t\t\t<div class=\"loading_leaf loading_leaf_11\"></div>\r\n\t\t\t</section>\r\n\t\t\t<section class=\"prompt\" v-else>\r\n\t\t\t\t<i class=\"weui_icon_toast\"></i>\r\n\t\t\t</section>\r\n\t\t\t<p class=\"toast-content\" >{{prompt}}</p>\r\n\t\t</section>\r\n\t</section>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\texport default {\r\n\t\tprops:{\r\n\t\t\tshow:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t},\r\n\t\t\t//显示的时常\r\n\t\t\tseconds:{\r\n\t\t\t\ttype:Number,\r\n\t\t\t\tdefault:5\r\n\t\t\t},\r\n\t\t\tisload:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t},\r\n\t\t\tprompt:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:'已经完成'\r\n\t\t\t}\r\n\t\t},\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\tsec:0\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\tif(!this.isload){\r\n\t\t\t\tsetTimeout(()=>{\r\n\t\t\t\t\tthis.show=false;\r\n\t\t\t\t},this.seconds*1000);\r\n\t\t\t}\r\n\t\t},\r\n\t\tcreated(){\r\n\t\t\tif(this.isload){\r\n\t\t\t\tthis.prompt=\"正在加载中..\";\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" scoped> \r\n\t\r\n\t.toast{\r\n\t\tposition: fixed;\r\n\t    z-index: 3;\r\n\t    width: 7.6em;\r\n\t    min-height: 7.6em;\r\n\t    top: 180px;\r\n\t    left: 50%;\r\n\t    margin-left: -3.8em;\r\n\t    background: rgba(40, 40, 40, 0.75);\r\n\t    text-align: center;\r\n\t    border-radius: 5px;\r\n\t    color: #FFFFFF;\r\n\t}\r\n\r\n\t/*遮罩*/\r\n\t.toast-mask{\r\n\t\tposition: fixed;\r\n\t\ttop: 0;\r\n\t\tleft: 0;\r\n\t\tz-index: 10px;\r\n\t\theight: 100%;\r\n\t\twidth: 100%;\r\n\t}\r\n\r\n\t.toast-bd>.loading{\r\n\t\tposition: absolute;\r\n\t    width: 0px;\r\n\t    z-index: 20;\r\n\t    left: 50%;\r\n\t    top: 38%;\r\n\t}\r\n\r\n\t.toast-content{\r\n\t\tmargin: 0 0 15px;\r\n\t\tmargin-top:10%;\r\n      \tfont-size:14px;\r\n\t}\r\n\r\n\t.loading_leaf{\r\n\t\tposition: absolute;\r\n\t    top: -1px;\r\n\t    opacity: 0.25;\r\n\t}\r\n\r\n\t.loading_leaf:before{\r\n\t\tcontent:\" \";\r\n        position: absolute;\r\n        width: 8.14px;\r\n        height: 3.08px;\r\n        background: rgb(209, 209, 213);\r\n        box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;\r\n        border-radius: 1px;\r\n        transform-origin: left 50% 0px;\r\n\t}\r\n\r\n\t.loading_leaf_0{\r\n\t\tanimation: opacity-60-25-0-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_0:before{\r\n\t\ttransform: rotate(0deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_1{\r\n\t\tanimation: opacity-60-25-1-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_1:before{\r\n\t\ttransform: rotate(30deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\r\n\t.loading_leaf_2{\r\n\t\tanimation: opacity-60-25-2-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_2:before{\r\n\t\ttransform: rotate(60deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\r\n\t.loading_leaf_3{\r\n\t\tanimation: opacity-60-25-3-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_3:before{\r\n\t\ttransform: rotate(90deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_4{\r\n\t\tanimation: opacity-60-25-4-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_4:before{\r\n\t\ttransform: rotate(120deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_5{\r\n\t\tanimation: opacity-60-25-5-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_5:before{\r\n\t\ttransform: rotate(150deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_6{\r\n\t\tanimation: opacity-60-25-6-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_6:before{\r\n\t\ttransform: rotate(180deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_7{\r\n\t\tanimation: opacity-60-25-7-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_7:before{\r\n\t\ttransform: rotate(210deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_8{\r\n\t\tanimation: opacity-60-25-8-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_8:before{\r\n\t\ttransform: rotate(240deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_9{\r\n\t\tanimation: opacity-60-25-9-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_9:before{\r\n\t\ttransform: rotate(270deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_10{\r\n\t\tanimation: opacity-60-25-10-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_10:before{\r\n\t\ttransform: rotate(300deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_11{\r\n\t\tanimation: opacity-60-25-11-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_11:before{\r\n\t\ttransform: rotate(330deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\t.loading_leaf_12{\r\n\t\tanimation: opacity-60-25-12-12 1.25s linear infinite;\r\n\t}\r\n\t.loading_leaf_12:before{\r\n\t\ttransform: rotate(360deg) translate(7.92px, 0px);\r\n\t}\r\n\r\n\r\n\t@-webkit-keyframes opacity-60-25-0-12 {\r\n\t  0% { opacity: 0.25; }\r\n\t  0.01% { opacity: 0.25; }\r\n\t  0.02% { opacity: 1; }\r\n\t  60.01% { opacity: 0.25; }\r\n\t  100% { opacity: 0.25; }\r\n\t}@-webkit-keyframes opacity-60-25-1-12 {\r\n\t  0% { opacity: 0.25; }\r\n\t  8.34333% { opacity: 0.25; }\r\n\t  8.35333% { opacity: 1; }\r\n\t  68.3433% { opacity: 0.25; }\r\n\t  100% { opacity: 0.25; }\r\n\t}@-webkit-keyframes opacity-60-25-2-12 {\r\n\t  0% { opacity: 0.25; }\r\n\t  16.6767% { opacity: 0.25; }\r\n\t  16.6867% { opacity: 1; }\r\n\t  76.6767% { opacity: 0.25; }\r\n\t  100% { opacity: 0.25; }\r\n\t}@-webkit-keyframes opacity-60-25-3-12 {\r\n\t  0% { opacity: 0.25; }\r\n\t  25.01% { opacity: 0.25; }\r\n\t  25.02% { opacity: 1; }\r\n\t  85.01% { opacity: 0.25; }\r\n\t  100% { opacity: 0.25; }\r\n\t}@-webkit-keyframes opacity-60-25-4-12 {\r\n\t  0% { opacity: 0.25; }\r\n\t  33.3433% { opacity: 0.25; }\r\n\t  33.3533% { opacity: 1; }\r\n\t  93.3433% { opacity: 0.25; }\r\n\t  100% { opacity: 0.25; }\r\n\t}@-webkit-keyframes opacity-60-25-5-12 {\r\n\t  0% { opacity: 0.270958333333333; }\r\n\t  41.6767% { opacity: 0.25; }\r\n\t  41.6867% { opacity: 1; }\r\n\t  1.67667% { opacity: 0.25; }\r\n\t  100% { opacity: 0.270958333333333; }\r\n\t}@-webkit-keyframes opacity-60-25-6-12 {\r\n\t  0% { opacity: 0.375125; }\r\n\t  50.01% { opacity: 0.25; }\r\n\t  50.02% { opacity: 1; }\r\n\t  10.01% { opacity: 0.25; }\r\n\t  100% { opacity: 0.375125; }\r\n\t}@-webkit-keyframes opacity-60-25-7-12 {\r\n\t  0% { opacity: 0.479291666666667; }\r\n\t  58.3433% { opacity: 0.25; }\r\n\t  58.3533% { opacity: 1; }\r\n\t  18.3433% { opacity: 0.25; }\r\n\t  100% { opacity: 0.479291666666667; }\r\n\t}@-webkit-keyframes opacity-60-25-8-12 {\r\n\t  0% { opacity: 0.583458333333333; }\r\n\t  66.6767% { opacity: 0.25; }\r\n\t  66.6867% { opacity: 1; }\r\n\t  26.6767% { opacity: 0.25; }\r\n\t  100% { opacity: 0.583458333333333; }\r\n\t}@-webkit-keyframes opacity-60-25-9-12 {\r\n\t  0% { opacity: 0.687625; }\r\n\t  75.01% { opacity: 0.25; }\r\n\t  75.02% { opacity: 1; }\r\n\t  35.01% { opacity: 0.25; }\r\n\t  100% { opacity: 0.687625; }\r\n\t}@-webkit-keyframes opacity-60-25-10-12 {\r\n\t  0% { opacity: 0.791791666666667; }\r\n\t  83.3433% { opacity: 0.25; }\r\n\t  83.3533% { opacity: 1; }\r\n\t  43.3433% { opacity: 0.25; }\r\n\t  100% { opacity: 0.791791666666667; }\r\n\t}@-webkit-keyframes opacity-60-25-11-12 {\r\n\t  0% { opacity: 0.895958333333333; }\r\n\t  91.6767% { opacity: 0.25; }\r\n\t  91.6867% { opacity: 1; }\r\n\t  51.6767% { opacity: 0.25; }\r\n\t  100% { opacity: 0.895958333333333; }\r\n\t}\r\n\r\n</style>\r\n\r\n\r\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n\t/*list集合*/\n\t.pull-list{\n\t  \tmin-height: 300px;\n\t   \theight: 100%;\n\t   \twidth: 100%;\n\t   \toverflow: auto;\n    \t-webkit-overflow-scrolling: touch;\n\t}\n\n\t.pull-content{\n\t\toverflow: auto;\n    \t-webkit-overflow-scrolling: touch;\n\t    height: 100%;\n\t    width: 100%;\n\t}\n\t\n\t.display-transition{\n\t    text-align: center;\n        /*margin: 10px 0px;*/\n        width: 100%;\n        vertical-align: middle;\n        /*padding: 10px 0px;*/\n\t}\n\n\t.display-enter,.display-leave{\n\t\theight: 0px;\n\t}\n\n\t\n\t.pull-header img,.pull-footer img{\n\t\t -webkit-transition: -webkit-transform .3s ease;\n\t\t transition: -webkit-transform .3s ease;\n\t\t transition: transform .3s ease;\n\t\t transition: transform .3s ease, -webkit-transform .3s ease;\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n\t      -o-transition: transform .3s ease; /* Opera */\n\t}\n\n\t.imgshow{\n        display: inline-block;\n    }\n    .content{\n        display: inline-block;\n        font-size: 12px;\n    }\n\n\t .content>p{\n            margin: 4px;\n    }\n\n\t\n", "", {"version":3,"sources":["/./src/components/List.vue?b209510c"],"names":[],"mappings":";;CA0JA,UAAA;CACA;IACA,kBAAA;KACA,aAAA;KACA,YAAA;KACA,eAAA;KACA,kCAAA;EACA;;CAEA;EACA,eAAA;KACA,kCAAA;KACA,aAAA;KACA,YAAA;EACA;;CAEA;KACA,mBAAA;QACA,qBAAA;QACA,YAAA;QACA,uBAAA;QACA,sBAAA;EACA;;CAEA;EACA,YAAA;EACA;;;CAGA;GACA,+CAAA;GAAA,uCAAA;GAAA,+BAAA;GAAA,2DAAA;OACA,oCAAA,eAAA;OACA,uCAAA,CAAA,qBAAA;OACA,kCAAA,CAAA,WAAA;EACA;;CAEA;QACA,sBAAA;KACA;IACA;QACA,sBAAA;QACA,gBAAA;KACA;;EAEA;YACA,YAAA;KACA","file":"List.vue","sourcesContent":["<!-- 下拉刷新组件 -->\r\n\r\n<template>\r\n\t<section class=\"pull-list\" v-touch:pandown=\"pullToRefresh\" v-touch:panup=\"loadMore\" v-touch:panend=\"panleave\"   >\r\n\t\t<header class=\"pull-header\" v-show=\"showheader\" transition=\"display\">\r\n\t\t\t<div class=\"imgshow\">\r\n                <img src=\"../assets/images/components/icon-down.png\" alt=\"下拉\">\r\n            </div>\r\n            <div class=\"content\">\r\n                <p>{{refreshText}}</p>\r\n                <p>最后更新:{{rlastTime}}</p>\r\n            </div>\r\n\t\t</header>\r\n\t\t<ul class=\"pull-content\" v-on:scroll=\"scroll($event)\" v-el:listContent>\r\n\t\t\t<slot ></slot>\r\n\t\t</ul>\r\n\t\t<footer class=\"pull-footer\" v-show=\"showfooter\"  transition=\"display\">\r\n\t\t\t<div class=\"imgshow\">\r\n                <img src=\"../assets/images/components/icon-up.png\" alt=\"上拉\">\r\n            </div>\r\n            <div class=\"content\">\r\n                <p>{{moreText}}</p>\r\n                <p>最后更新:{{mlastTime}}</p>\r\n            </div>\r\n\t\t</footer>\r\n\t</section>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\r\n\timport dateHelper from './utils/DateHelper.js'\r\n\r\n\texport default {\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\trlastTime:'',\r\n\t\t\t\tmlastTime:'',\r\n\t\t\t\trefreshText:'下拉刷新',\r\n\t\t\t\tmoreText:'加载更多',\r\n\t\t\t\t//是否触发事件\r\n\t\t\t\tisRefresh:false,\r\n\t\t\t\t//是否显示底部加载更多\r\n\t\t\t\tshowfooter:false,\r\n\t\t\t\tshowheader:false,\r\n\t\t\t\t//下拉和上拉的标识\r\n\t\t\t\tarrow:'down',\r\n\t\t\t\t//滚动条是否在顶部\r\n\t\t\t\ttop:0,\r\n\t\t\t\t//滚动条是否在底部\r\n\t\t\t\tisBottom:false,\r\n\t\t\t\t//屏幕的高度\r\n\t\t\t\tregionHeight:100,\r\n\t\t\t\t//内容的高度\r\n\t\t\t\twinHeight:100\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\t//得到对应的高度\r\n\t\t\tthis.regionHeight=this.$el.offsetHeight;\r\n\t\t\tconsole.log(\"当期list对象是:\"+this.$el);\r\n\t\t\tvar listObj=this.$el.getElementsByTagName('ul')[0];\r\n\t\t\tthis.winHeight=listObj.offsetHeight-120;\r\n\t\t\tconsole.log(\"可见区域的高度：\"+this.regionHeight+\"-内容总高度:\"+this.winHeight);\r\n\r\n\t\t},\r\n\t\tmethods:{\r\n\r\n\t\t\tmove(height){\r\n\t\t\t\tvar list=this.$el;\r\n\t\t\t\t//获取角度\r\n\t\t\t\tvar rotateHeight=height<90?height*2:180;\r\n\t\t\t\tif(this.arrow==\"down\"){\r\n\t\t\t\t\tlist.style.transform=\"translateY(\"+height+\"px)\";\r\n\t\t\t\t\tvar img=list.getElementsByTagName('header')[0].getElementsByTagName('img')[0];\r\n\t\t\t\t\timg.style.transform=\"rotate(\"+rotateHeight+\"deg)\"\r\n\t\t\t\t}else{\r\n\t\t\t\t\tlist.style.transform=\"translateY(-\"+height+\"px)\";\r\n\t\t\t\t\t//先检查底部的div是否显示出来,如果显示出来了,那么在找到对应的图标\r\n\t\t\t\t\tif(list.getElementsByTagName('footer')[0]){\r\n\t\t\t\t\t\tvar img=list.getElementsByTagName('footer')[0].getElementsByTagName('img')[0];\r\n\t\t\t\t\t\timg.style.transform=\"rotate(\"+rotateHeight+\"deg)\"\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t//检查是否滚动到底部,滚动到底部触发上拉加载更多的事件\r\n\t\t\tscroll(e){\r\n\t\t\t\tthis.top=e.target.scrollTop;\r\n\t\t\t\tconsole.log(e)\r\n\t\t\t\tif(this.top+this.regionHeight>this.winHeight){\r\n\t\t\t\t\tthis.isBottom=true;\r\n\t\t\t\t}else{\r\n\t\t\t\t\tthis.isBottom=false;\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\r\n\t\t\tpanleave(e){\r\n\t\t\t\t\r\n\t\t\t\tif(this.arrow==\"down\"){\r\n\t\t\t\t\tthis.move(0);\r\n\t\t\t\t\tthis.showheader=false;\r\n\t\t\t\t\tthis.refreshText=\"下拉刷新\";\r\n\t\t\t\t\t//得到当前的时间\r\n\t\t\t\t\tif(this.isRefresh){\r\n\t\t\t\t\t\tthis.isRefresh=false;\r\n\t\t\t\t\t\tthis.rlastTime=dateHelper.getNowDate(\"yyyy-MM-dd HH:mm:ss\");\r\n\t\t\t\t\t\tthis.$emit('reload');\r\n\t\t\t\t\t}\r\n\t\t\t\t\t// this.$broadcast('list-reload');\r\n\t\t\t\t}else if(this.arrow==\"up\"){\r\n\t\t\t\t\tthis.showfooter=false;\r\n\t\t\t\t\tthis.moreText=\"加载更多\";\r\n\t\t\t\t\tthis.move(0)\r\n\t\t\t\t\tif(this.isRefresh){\r\n\t\t\t\t\t\tthis.isRefresh=false;\r\n\t\t\t\t\t\tthis.mlastTime=dateHelper.getNowDate(\"yyyy-MM-dd HH:mm:ss\");\r\n\t\t\t\t\t\tthis.$emit('loadmore');\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t// 下拉刷新事件\r\n\t\t\tpullToRefresh(e){\r\n\t\t\t\tif(this.top==0){\r\n\t\t\t\t \tvar distance=e.distance;\r\n\t\t\t\t \tthis.showheader=true;\r\n\t\t\t\t \tthis.arrow='down';\r\n\t\t\t\t \tthis.move(distance);\r\n\t\t\t\t \tif(distance>90){\r\n\t\t\t\t\t\tthis.refreshText=\"松开后刷新\";\r\n\t\t\t\t \t\tthis.isRefresh=true;\r\n\t\t\t\t \t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t//加载更多\r\n\t\t\tloadMore(e){\r\n\t\t\t\t//判断滚动的距离+当前窗口的宽度是否\r\n\t\t\t\tif(this.isBottom){\r\n\t\t\t\t\tthis.showfooter=true;\r\n\t\t\t\t\tthis.arrow='up';\r\n\t\t\t\t\tvar distance=e.distance;\r\n\t\t\t\t \t// console.log(\"拉动的距离\"+distance)\r\n\t\t\t\t \tthis.move(distance);\r\n\t\t\t\t \tif(distance>90){\r\n\t\t\t\t\t\tthis.moreText=\"松开后刷新\";\r\n\t\t\t\t \t\tthis.isRefresh=true;\r\n\t\t\t\t \t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style >\r\n\r\n\t/*list集合*/\r\n\t.pull-list{\r\n\t  \tmin-height: 300px;\r\n\t   \theight: 100%;\r\n\t   \twidth: 100%;\r\n\t   \toverflow: auto;\r\n    \t-webkit-overflow-scrolling: touch;\r\n\t}\r\n\r\n\t.pull-content{\r\n\t\toverflow: auto;\r\n    \t-webkit-overflow-scrolling: touch;\r\n\t    height: 100%;\r\n\t    width: 100%;\r\n\t}\r\n\t\r\n\t.display-transition{\r\n\t    text-align: center;\r\n        /*margin: 10px 0px;*/\r\n        width: 100%;\r\n        vertical-align: middle;\r\n        /*padding: 10px 0px;*/\r\n\t}\r\n\r\n\t.display-enter,.display-leave{\r\n\t\theight: 0px;\r\n\t}\r\n\r\n\t\r\n\t.pull-header img,.pull-footer img{\r\n\t\t transition: transform .3s ease;\r\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n\t      -o-transition: transform .3s ease; /* Opera */\r\n\t}\r\n\r\n\t.imgshow{\r\n        display: inline-block;\r\n    }\r\n    .content{\r\n        display: inline-block;\r\n        font-size: 12px;\r\n    }\r\n\r\n\t .content>p{\r\n            margin: 4px;\r\n    }\r\n\r\n\t\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
-/* 134 */
+/* 144 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _DateHelper = __webpack_require__(49);
+	
+	var _DateHelper2 = _interopRequireDefault(_DateHelper);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+		data: function data() {
+			return {
+				rlastTime: '',
+				mlastTime: '',
+				refreshText: '下拉刷新',
+				moreText: '加载更多',
+				//是否触发事件
+				isRefresh: false,
+				//是否显示底部加载更多
+				showfooter: false,
+				showheader: false,
+				//下拉和上拉的标识
+				arrow: 'down',
+				//滚动条是否在顶部
+				top: 0,
+				//滚动条是否在底部
+				isBottom: false,
+				//屏幕的高度
+				regionHeight: 100,
+				//内容的高度
+				winHeight: 100
+			};
+		},
+		ready: function ready() {
+			//得到对应的高度
+			this.regionHeight = this.$el.offsetHeight;
+			console.log("当期list对象是:" + this.$el);
+			var listObj = this.$el.getElementsByTagName('ul')[0];
+			this.winHeight = listObj.offsetHeight - 120;
+			console.log("可见区域的高度：" + this.regionHeight + "-内容总高度:" + this.winHeight);
+		},
+	
+		methods: {
+			move: function move(height) {
+				var list = this.$el;
+				//获取角度
+				var rotateHeight = height < 90 ? height * 2 : 180;
+				if (this.arrow == "down") {
+					list.style.transform = "translateY(" + height + "px)";
+					var img = list.getElementsByTagName('header')[0].getElementsByTagName('img')[0];
+					img.style.transform = "rotate(" + rotateHeight + "deg)";
+				} else {
+					list.style.transform = "translateY(-" + height + "px)";
+					//先检查底部的div是否显示出来,如果显示出来了,那么在找到对应的图标
+					if (list.getElementsByTagName('footer')[0]) {
+						var img = list.getElementsByTagName('footer')[0].getElementsByTagName('img')[0];
+						img.style.transform = "rotate(" + rotateHeight + "deg)";
+					}
+				}
+			},
+	
+			//检查是否滚动到底部,滚动到底部触发上拉加载更多的事件
+			scroll: function scroll(e) {
+				this.top = e.target.scrollTop;
+				console.log(e);
+				if (this.top + this.regionHeight > this.winHeight) {
+					this.isBottom = true;
+				} else {
+					this.isBottom = false;
+				}
+			},
+			panleave: function panleave(e) {
+	
+				if (this.arrow == "down") {
+					this.move(0);
+					this.showheader = false;
+					this.refreshText = "下拉刷新";
+					//得到当前的时间
+					if (this.isRefresh) {
+						this.isRefresh = false;
+						this.rlastTime = _DateHelper2.default.getNowDate("yyyy-MM-dd HH:mm:ss");
+						this.$emit('reload');
+					}
+					// this.$broadcast('list-reload');
+				} else if (this.arrow == "up") {
+						this.showfooter = false;
+						this.moreText = "加载更多";
+						this.move(0);
+						if (this.isRefresh) {
+							this.isRefresh = false;
+							this.mlastTime = _DateHelper2.default.getNowDate("yyyy-MM-dd HH:mm:ss");
+							this.$emit('loadmore');
+						}
+					}
+			},
+	
+			// 下拉刷新事件
+			pullToRefresh: function pullToRefresh(e) {
+				if (this.top == 0) {
+					var distance = e.distance;
+					this.showheader = true;
+					this.arrow = 'down';
+					this.move(distance);
+					if (distance > 90) {
+						this.refreshText = "松开后刷新";
+						this.isRefresh = true;
+					}
+				}
+			},
+	
+			//加载更多
+			loadMore: function loadMore(e) {
+				//判断滚动的距离+当前窗口的宽度是否
+				if (this.isBottom) {
+					this.showfooter = true;
+					this.arrow = 'up';
+					var distance = e.distance;
+					// console.log("拉动的距离"+distance)
+					this.move(distance);
+					if (distance > 90) {
+						this.moreText = "松开后刷新";
+						this.isRefresh = true;
+					}
+				}
+			}
+		}
+	};
+	// </script>
+
+	// <style >
+
+	// 	/*list集合*/
+	// 	.pull-list{
+	// 	  	min-height: 300px;
+	// 	   	height: 100%;
+	// 	   	width: 100%;
+	// 	   	overflow: auto;
+	//     	-webkit-overflow-scrolling: touch;
+	// 	}
+
+	// 	.pull-content{
+	// 		overflow: auto;
+	//     	-webkit-overflow-scrolling: touch;
+	// 	    height: 100%;
+	// 	    width: 100%;
+	// 	}
+
+	// 	.display-transition{
+	// 	    text-align: center;
+	//         /*margin: 10px 0px;*/
+	//         width: 100%;
+	//         vertical-align: middle;
+	//         /*padding: 10px 0px;*/
+	// 	}
+
+	// 	.display-enter,.display-leave{
+	// 		height: 0px;
+	// 	}
+
+	// 	.pull-header img,.pull-footer img{
+	// 		 transition: transform .3s ease;
+	// 	      -moz-transition: transform .3s ease;/* Firefox 4 */
+	// 	      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */
+	// 	      -o-transition: transform .3s ease; /* Opera */
+	// 	}
+
+	// 	.imgshow{
+	//         display: inline-block;
+	//     }
+	//     .content{
+	//         display: inline-block;
+	//         font-size: 12px;
+	//     }
+
+	// 	 .content>p{
+	//             margin: 4px;
+	//     }
+
+	// </style>
+	// <!-- 下拉刷新组件 -->
+
+	// <template>
+	// 	<section class="pull-list" v-touch:pandown="pullToRefresh" v-touch:panup="loadMore" v-touch:panend="panleave"   >
+	// 		<header class="pull-header" v-show="showheader" transition="display">
+	// 			<div class="imgshow">
+	//                 <img src="../assets/images/components/icon-down.png" alt="下拉">
+	//             </div>
+	//             <div class="content">
+	//                 <p>{{refreshText}}</p>
+	//                 <p>最后更新:{{rlastTime}}</p>
+	//             </div>
+	// 		</header>
+	// 		<ul class="pull-content" v-on:scroll="scroll($event)" v-el:listContent>
+	// 			<slot ></slot>
+	// 		</ul>
+	// 		<footer class="pull-footer" v-show="showfooter"  transition="display">
+	// 			<div class="imgshow">
+	//                 <img src="../assets/images/components/icon-up.png" alt="上拉">
+	//             </div>
+	//             <div class="content">
+	//                 <p>{{moreText}}</p>
+	//                 <p>最后更新:{{mlastTime}}</p>
+	//             </div>
+	// 		</footer>
+	// 	</section>
+	// </template>
+
+	// <script lang="babel">
+
+/***/ },
+/* 145 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = "\n\t<section class=\"pull-list\" v-touch:pandown=\"pullToRefresh\" v-touch:panup=\"loadMore\" v-touch:panend=\"panleave\"   >\n\t\t<header class=\"pull-header\" v-show=\"showheader\" transition=\"display\">\n\t\t\t<div class=\"imgshow\">\n                <img src=\"" + __webpack_require__(51) + "\" alt=\"下拉\">\n            </div>\n            <div class=\"content\">\n                <p>{{refreshText}}</p>\n                <p>最后更新:{{rlastTime}}</p>\n            </div>\n\t\t</header>\n\t\t<ul class=\"pull-content\" v-on:scroll=\"scroll($event)\" v-el:listContent>\n\t\t\t<slot ></slot>\n\t\t</ul>\n\t\t<footer class=\"pull-footer\" v-show=\"showfooter\"  transition=\"display\">\n\t\t\t<div class=\"imgshow\">\n                <img src=\"" + __webpack_require__(52) + "\" alt=\"上拉\">\n            </div>\n            <div class=\"content\">\n                <p>{{moreText}}</p>\n                <p>最后更新:{{mlastTime}}</p>\n            </div>\n\t\t</footer>\n\t</section>\n";
+
+/***/ },
+/* 146 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(147)
+	__vue_script__ = __webpack_require__(149)
+	__vue_template__ = __webpack_require__(150)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\ListItem.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 147 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(148);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-7d49417d&file=ListItem.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ListItem.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-7d49417d&file=ListItem.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./ListItem.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 148 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\na span.check-mark {\n  position: absolute;\n  display: inline-block;\n  right: 15px;\n  margin-top: 5px;\n}\n", "", {"version":3,"sources":["/./src/components/ListItem.vue?f54032c0"],"names":[],"mappings":";AA8CA;EACA,mBAAA;EACA,sBAAA;EACA,YAAA;EACA,gBAAA;CACA","file":"ListItem.vue","sourcesContent":["<template>\r\n  <li style=\"position:relative\">\r\n    <a style=\"cursor:pointer\">\r\n      <slot></slot>\r\n      <slot name=\"span\">\r\n        {{value}}\r\n      </slot>\r\n      <!-- <span class=\"glyphicon glyphicon-ok check-mark\" v-show=\"chosen\"></span> -->\r\n    </a>\r\n  </li>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    props: {\r\n      value: {\r\n        type: String\r\n      }\r\n    },\r\n    data() {\r\n      return {\r\n        chosen: false\r\n      }\r\n    },\r\n    // computed: {\r\n    //   chosen() {\r\n    //     return this.$parent.value.indexOf(this.value) !== -1 ? true : false\r\n    //   }\r\n    // },\r\n    methods: {\r\n      handleClick() {\r\n        const parent = this.$parent\r\n        const index = parent.value.indexOf(this.value)\r\n        if (parent.multiple) {\r\n          index === -1 ? parent.value.push(this.value) : parent.value.splice(index, 1)\r\n        } else {\r\n          parent.value = []\r\n          parent.value.push(this.value)\r\n          parent.show = false\r\n        }\r\n      }\r\n    }\r\n  }\r\n</script>\r\n\r\n<style>\r\n  a span.check-mark {\r\n    position: absolute;\r\n    display: inline-block;\r\n    right: 15px;\r\n    margin-top: 5px;\r\n  }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 149 */
 /***/ function(module, exports) {
 
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	// <template>
-	// 	<section class="toast" v-show="show">
-	// 		<section class="toast-mask"></section>
-	// 		<section class="toast-bd">
-	// 			<section class="loading" v-if="isload">
-	// 				<div class="loading_leaf loading_leaf_0"></div>
-	// 				<div class="loading_leaf loading_leaf_1"></div>
-	// 				<div class="loading_leaf loading_leaf_2"></div>
-	// 				<div class="loading_leaf loading_leaf_3"></div>
-	// 				<div class="loading_leaf loading_leaf_4"></div>
-	// 				<div class="loading_leaf loading_leaf_5"></div>
-	// 				<div class="loading_leaf loading_leaf_6"></div>
-	// 				<div class="loading_leaf loading_leaf_7"></div>
-	// 				<div class="loading_leaf loading_leaf_8"></div>
-	// 				<div class="loading_leaf loading_leaf_9"></div>
-	// 				<div class="loading_leaf loading_leaf_10"></div>
-	// 				<div class="loading_leaf loading_leaf_11"></div>
-	// 			</section>
-	// 			<section class="prompt" v-else>
-	// 				<i class="weui_icon_toast"></i>
-	// 			</section>
-	// 			<p class="toast-content" >{{prompt}}</p>
-	// 		</section>
-	// 	</section>
+	//   <li style="position:relative">
+	//     <a style="cursor:pointer">
+	//       <slot></slot>
+	//       <slot name="span">
+	//         {{value}}
+	//       </slot>
+	//       <!-- <span class="glyphicon glyphicon-ok check-mark" v-show="chosen"></span> -->
+	//     </a>
+	//   </li>
 	// </template>
 	
-	// <script lang="babel">
-	
+	// <script>
 	exports.default = {
-		props: {
-			show: {
-				type: Boolean,
-				default: false
-			},
-			//显示的时常
-			seconds: {
-				type: Number,
-				default: 5
-			},
-			isload: {
-				type: Boolean,
-				default: false
-			},
-			prompt: {
-				type: String,
-				default: '已经完成'
-			}
-		},
-		data: function data() {
-			return {
-				sec: 0
-			};
-		},
-		ready: function ready() {
-			var _this = this;
+	  props: {
+	    value: {
+	      type: String
+	    }
+	  },
+	  data: function data() {
+	    return {
+	      chosen: false
+	    };
+	  },
 	
-			if (!this.isload) {
-				setTimeout(function () {
-					_this.show = false;
-				}, this.seconds * 1000);
-			}
-		},
-		created: function created() {
-			if (this.isload) {
-				this.prompt = "正在加载中..";
-			}
-		}
+	  // computed: {
+	  //   chosen() {
+	  //     return this.$parent.value.indexOf(this.value) !== -1 ? true : false
+	  //   }
+	  // },
+	  methods: {
+	    handleClick: function handleClick() {
+	      var parent = this.$parent;
+	      var index = parent.value.indexOf(this.value);
+	      if (parent.multiple) {
+	        index === -1 ? parent.value.push(this.value) : parent.value.splice(index, 1);
+	      } else {
+	        parent.value = [];
+	        parent.value.push(this.value);
+	        parent.show = false;
+	      }
+	    }
+	  }
 	};
-	
 	// </script>
 
-	// <style type="text/css" scoped>
-
-	// 	.toast{
-	// 		position: fixed;
-	// 	    z-index: 3;
-	// 	    width: 7.6em;
-	// 	    min-height: 7.6em;
-	// 	    top: 180px;
-	// 	    left: 50%;
-	// 	    margin-left: -3.8em;
-	// 	    background: rgba(40, 40, 40, 0.75);
-	// 	    text-align: center;
-	// 	    border-radius: 5px;
-	// 	    color: #FFFFFF;
-	// 	}
-
-	// 	/*遮罩*/
-	// 	.toast-mask{
-	// 		position: fixed;
-	// 		top: 0;
-	// 		left: 0;
-	// 		z-index: 10px;
-	// 		height: 100%;
-	// 		width: 100%;
-	// 	}
-
-	// 	.toast-bd>.loading{
-	// 		position: absolute;
-	// 	    width: 0px;
-	// 	    z-index: 20;
-	// 	    left: 50%;
-	// 	    top: 38%;
-	// 	}
-
-	// 	.toast-content{
-	// 		margin: 0 0 15px;
-	// 		margin-top:10%;
-	//       	font-size:14px;
-	// 	}
-
-	// 	.loading_leaf{
-	// 		position: absolute;
-	// 	    top: -1px;
-	// 	    opacity: 0.25;
-	// 	}
-
-	// 	.loading_leaf:before{
-	// 		content:" ";
-	//         position: absolute;
-	//         width: 8.14px;
-	//         height: 3.08px;
-	//         background: rgb(209, 209, 213);
-	//         box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;
-	//         border-radius: 1px;
-	//         transform-origin: left 50% 0px;
-	// 	}
-
-	// 	.loading_leaf_0{
-	// 		animation: opacity-60-25-0-12 1.25s linear infinite;
-	// 	}
-	// 	.loading_leaf_0:before{
-	// 		transform: rotate(0deg) translate(7.92px, 0px);
-	// 	}
-
-	// 	.loading_leaf_1{
-	// 		animation: opacity-60-25-1-12 1.25s linear infinite;
-	// 	}
-	// 	.loading_leaf_1:before{
-	// 		transform: rotate(30deg) translate(7.92px, 0px);
-	// 	}
-
-	// 	.loading_leaf_2{
-	// 		animation: opacity-60-25-2-12 1.25s linear infinite;
-	// 	}
-	// 	.loading_leaf_2:before{
-	// 		transform: rotate(60deg) translate(7.92px, 0px);
-	// 	}
-
-	// 	.loading_leaf_3{
-	// 		animation: opacity-60-25-3-12 1.25s linear infinite;
-	// 	}
-	// 	.loading_leaf_3:before{
-	// 		transform: rotate(90deg) translate(7.92px, 0px);
-	// 	}
-
-	// 	.loading_leaf_4{
-	// 		animation: opacity-60-25-4-12 1.25s linear infinite;
-	// 	}
-	// 	.loading_leaf_4:before{
-	// 		transform: rotate(120deg) translate(7.92px, 0px);
-	// 	}
-
-	// 	.loading_leaf_5{
-	// 		animation: opacity-60-25-5-12 1.25s linear infinite;
-	// 	}
-	// 	.loading_leaf_5:before{
-	// 		transform: rotate(150deg) translate(7.92px, 0px);
-	// 	}
-
-	// 	.loading_leaf_6{
-	// 		animation: opacity-60-25-6-12 1.25s linear infinite;
-	// 	}
-	// 	.loading_leaf_6:before{
-	// 		transform: rotate(180deg) translate(7.92px, 0px);
-	// 	}
-
-	// 	.loading_leaf_7{
-	// 		animation: opacity-60-25-7-12 1.25s linear infinite;
-	// 	}
-	// 	.loading_leaf_7:before{
-	// 		transform: rotate(210deg) translate(7.92px, 0px);
-	// 	}
-
-	// 	.loading_leaf_8{
-	// 		animation: opacity-60-25-8-12 1.25s linear infinite;
-	// 	}
-	// 	.loading_leaf_8:before{
-	// 		transform: rotate(240deg) translate(7.92px, 0px);
-	// 	}
-
-	// 	.loading_leaf_9{
-	// 		animation: opacity-60-25-9-12 1.25s linear infinite;
-	// 	}
-	// 	.loading_leaf_9:before{
-	// 		transform: rotate(270deg) translate(7.92px, 0px);
-	// 	}
-
-	// 	.loading_leaf_10{
-	// 		animation: opacity-60-25-10-12 1.25s linear infinite;
-	// 	}
-	// 	.loading_leaf_10:before{
-	// 		transform: rotate(300deg) translate(7.92px, 0px);
-	// 	}
-
-	// 	.loading_leaf_11{
-	// 		animation: opacity-60-25-11-12 1.25s linear infinite;
-	// 	}
-	// 	.loading_leaf_11:before{
-	// 		transform: rotate(330deg) translate(7.92px, 0px);
-	// 	}
-
-	// 	.loading_leaf_12{
-	// 		animation: opacity-60-25-12-12 1.25s linear infinite;
-	// 	}
-	// 	.loading_leaf_12:before{
-	// 		transform: rotate(360deg) translate(7.92px, 0px);
-	// 	}
-
-	// 	@-webkit-keyframes opacity-60-25-0-12 {
-	// 	  0% { opacity: 0.25; }
-	// 	  0.01% { opacity: 0.25; }
-	// 	  0.02% { opacity: 1; }
-	// 	  60.01% { opacity: 0.25; }
-	// 	  100% { opacity: 0.25; }
-	// 	}@-webkit-keyframes opacity-60-25-1-12 {
-	// 	  0% { opacity: 0.25; }
-	// 	  8.34333% { opacity: 0.25; }
-	// 	  8.35333% { opacity: 1; }
-	// 	  68.3433% { opacity: 0.25; }
-	// 	  100% { opacity: 0.25; }
-	// 	}@-webkit-keyframes opacity-60-25-2-12 {
-	// 	  0% { opacity: 0.25; }
-	// 	  16.6767% { opacity: 0.25; }
-	// 	  16.6867% { opacity: 1; }
-	// 	  76.6767% { opacity: 0.25; }
-	// 	  100% { opacity: 0.25; }
-	// 	}@-webkit-keyframes opacity-60-25-3-12 {
-	// 	  0% { opacity: 0.25; }
-	// 	  25.01% { opacity: 0.25; }
-	// 	  25.02% { opacity: 1; }
-	// 	  85.01% { opacity: 0.25; }
-	// 	  100% { opacity: 0.25; }
-	// 	}@-webkit-keyframes opacity-60-25-4-12 {
-	// 	  0% { opacity: 0.25; }
-	// 	  33.3433% { opacity: 0.25; }
-	// 	  33.3533% { opacity: 1; }
-	// 	  93.3433% { opacity: 0.25; }
-	// 	  100% { opacity: 0.25; }
-	// 	}@-webkit-keyframes opacity-60-25-5-12 {
-	// 	  0% { opacity: 0.270958333333333; }
-	// 	  41.6767% { opacity: 0.25; }
-	// 	  41.6867% { opacity: 1; }
-	// 	  1.67667% { opacity: 0.25; }
-	// 	  100% { opacity: 0.270958333333333; }
-	// 	}@-webkit-keyframes opacity-60-25-6-12 {
-	// 	  0% { opacity: 0.375125; }
-	// 	  50.01% { opacity: 0.25; }
-	// 	  50.02% { opacity: 1; }
-	// 	  10.01% { opacity: 0.25; }
-	// 	  100% { opacity: 0.375125; }
-	// 	}@-webkit-keyframes opacity-60-25-7-12 {
-	// 	  0% { opacity: 0.479291666666667; }
-	// 	  58.3433% { opacity: 0.25; }
-	// 	  58.3533% { opacity: 1; }
-	// 	  18.3433% { opacity: 0.25; }
-	// 	  100% { opacity: 0.479291666666667; }
-	// 	}@-webkit-keyframes opacity-60-25-8-12 {
-	// 	  0% { opacity: 0.583458333333333; }
-	// 	  66.6767% { opacity: 0.25; }
-	// 	  66.6867% { opacity: 1; }
-	// 	  26.6767% { opacity: 0.25; }
-	// 	  100% { opacity: 0.583458333333333; }
-	// 	}@-webkit-keyframes opacity-60-25-9-12 {
-	// 	  0% { opacity: 0.687625; }
-	// 	  75.01% { opacity: 0.25; }
-	// 	  75.02% { opacity: 1; }
-	// 	  35.01% { opacity: 0.25; }
-	// 	  100% { opacity: 0.687625; }
-	// 	}@-webkit-keyframes opacity-60-25-10-12 {
-	// 	  0% { opacity: 0.791791666666667; }
-	// 	  83.3433% { opacity: 0.25; }
-	// 	  83.3533% { opacity: 1; }
-	// 	  43.3433% { opacity: 0.25; }
-	// 	  100% { opacity: 0.791791666666667; }
-	// 	}@-webkit-keyframes opacity-60-25-11-12 {
-	// 	  0% { opacity: 0.895958333333333; }
-	// 	  91.6767% { opacity: 0.25; }
-	// 	  91.6867% { opacity: 1; }
-	// 	  51.6767% { opacity: 0.25; }
-	// 	  100% { opacity: 0.895958333333333; }
-	// 	}
-
+	// <style>
+	//   a span.check-mark {
+	//     position: absolute;
+	//     display: inline-block;
+	//     right: 15px;
+	//     margin-top: 5px;
+	//   }
 	// </style>
 
+	/* generated by vue-loader */
+
 /***/ },
-/* 135 */
+/* 150 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<section class=\"toast\" v-show=\"show\" _v-4de571aa=\"\">\n\t<section class=\"toast-mask\" _v-4de571aa=\"\"></section>\n\t<section class=\"toast-bd\" _v-4de571aa=\"\">\n\t\t<section class=\"loading\" v-if=\"isload\" _v-4de571aa=\"\">\n\t\t\t<div class=\"loading_leaf loading_leaf_0\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_1\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_2\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_3\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_4\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_5\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_6\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_7\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_8\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_9\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_10\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_11\" _v-4de571aa=\"\"></div>\n\t\t</section>\n\t\t<section class=\"prompt\" v-else=\"\" _v-4de571aa=\"\">\n\t\t\t<i class=\"weui_icon_toast\" _v-4de571aa=\"\"></i>\n\t\t</section>\n\t\t<p class=\"toast-content\" _v-4de571aa=\"\">{{prompt}}</p>\n\t</section>\n</section>\n";
+	module.exports = "\n<li style=\"position:relative\">\n  <a style=\"cursor:pointer\">\n    <slot></slot>\n    <slot name=\"span\">\n      {{value}}\n    </slot>\n    <!-- <span class=\"glyphicon glyphicon-ok check-mark\" v-show=\"chosen\"></span> -->\n  </a>\n</li>\n";
 
 /***/ }
 /******/ ]);

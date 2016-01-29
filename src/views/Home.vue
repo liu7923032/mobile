@@ -7,30 +7,27 @@
 		<div class="page-content">
 			<tabs :active-index.sync="index" >
 				<tab v-for="item in tabItems" :header="item.title" >
-					<pull-list>
-						<ul class="contentList">
-							<li v-for="subItem in item.infoList" >
-								<div class="tab_info">
-									<div class="left">
-										<img src="" alt="">
-										<div class="content">
-											<div>
-												<span>发布时间:{{subItem.time}}</span>
-												<span>发布人:{{subItem.subUser}}</span>
-											</div>
-											<div>
-												{{subItem.content}}
-											</div>
+					<list>
+						<li v-for="subItem in item.infoList" >
+							<div class="tab_info">
+								<div class="left">
+									<img src="" alt="">
+									<div class="content">
+										<div>
+											<span>发布时间:{{subItem.time}}</span>
+											<span>发布人:{{subItem.subUser}}</span>
+										</div>
+										<div>
+											{{subItem.content}}
 										</div>
 									</div>
-									<div>
-										<i class="icon-chevron-right"></i>
-									</div>
 								</div>
-								
-							</li>
-						</ul>
-					</pull-list>
+								<div>
+									<i class="icon-chevron-right"></i>
+								</div>
+							</div>
+						</li>
+					</list>
 				</tab>
 			</tabs>
 		</div>
@@ -50,7 +47,8 @@
     import Tabs from 'src/components/Tabs.vue'
     import Tab from 'src/components/Tab.vue'
     import Loading from 'src/components/Loading.vue'
-    import PullList from 'src/components/PullList.vue'
+    import List from 'src/components/List.vue'
+     import ListItem from 'src/components/ListItem.vue'
 	export default 	{
 		created(){
 			console.log("home is created")
@@ -64,7 +62,8 @@
             tabs:Tabs,
             tab:Tab,
             loading:Loading,
-            PullList
+            list:List,
+            listitem:ListItem
 	    },
 	    props:{
 	    	
@@ -183,6 +182,18 @@
 						subUser:'张三',
 						content:'我的世界你不懂5'
 					}]
+				},{
+					title:'制度',infoList:[{
+						imgUrl:'',
+						time:'2015-11-24',
+						subUser:'张三',
+						content:'我的世界你不懂5'
+					},{
+						imgUrl:'',
+						time:'2015-11-24',
+						subUser:'张三',
+						content:'我的世界你不懂5'
+					}]
 				}]
 			}
 		},
@@ -242,11 +253,11 @@
 	}
 	.left>div{
 		margin-left: 10px;
-
 	}
 
 	.contentList{
 		background-color: whitesmoke;
+		width: 100%;
 	}
 	.contentList>li{
 		border-radius: 3px;

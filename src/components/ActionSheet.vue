@@ -2,7 +2,7 @@
 	<!--  -->
     <section id="actionsheet_wrap" >
     	<!--遮罩  -->
-    	<div class="mask_transition" v-show="showsheet" v-touch:tap="close"></div>
+    	<div class="mask_transition" transition="mask" v-show="showsheet" v-touch:tap="close"></div>
     	<!-- 按钮组 -->
         <div class="actionsheet" v-show="showsheet" transition="expand">
         	<ul class="actionsheet_menu">
@@ -56,7 +56,7 @@
 		height: 100%;
 	}
 
-	.mask_transition{
+	.mask-transition{
 		background: rgba(0, 0, 0, 0.6);
 		position:fixed;
 		left: 0;
@@ -65,6 +65,10 @@
 		width: 100%;
 		z-index: 10;
 		transition:background .3s;
+	}
+	
+	.mask-enter,.mask-leave{
+		background: rgba(0, 0, 0, 0);
 	}
 	
 	.actionsheet{

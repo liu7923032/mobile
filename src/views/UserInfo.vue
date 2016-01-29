@@ -9,7 +9,7 @@
 	</section>
 
 	<loading :loading="isload"></loading>
-	<dialog :show.sync="isShowDialog" :title="dialogTitle" :is-alert="isAlert" v-on:child-confirm="confirm">
+	<dialog :show.sync="isShowDialog" :title="dialogTitle"  v-on:child-confirm="confirm">
 		<div slot="dialog-bd">我的世界你不懂</div>
 	</dialog>
 </template>

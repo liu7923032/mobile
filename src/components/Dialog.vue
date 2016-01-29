@@ -1,7 +1,7 @@
 <template>
     <section class="dialog"  v-show="show">
         <section class="dialog-mask"></section>
-        <section class="dialog-content">
+        <section class="dialog-content" v-show="show" transition="dialog">
             <section class="dialog-hd">{{title}}</section>
             <section class="dialog-bd">
                 <slot name="dialog-bd"></slot>
@@ -74,7 +74,8 @@
         z-index: 10;
     }
     
-    .dialog-content{
+    /*dialog的过度效果*/
+    .dialog-transition{
         position: fixed;
         z-index: 20;
         width: 85%;
@@ -85,48 +86,90 @@
         background-color: #fff;
         text-align: center;
         border-radius: 3px;
+        transition:top .3s ease;
     }
 
-    .dialog-content>.dialog-hd{
+    .dialog-enter,.dialog-leave{
+        top: 0;
+    }
+
+   /* .dialog-content{
+        position: fixed;
+        z-index: 20;
+        width: 85%;
+        top: 50%;
+        left: 50%;
+        max-width: 400px;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        text-align: center;
+        border-radius: 3px;
+    }*/
+
+    
+    .dialog-hd{
         padding: 1.2em 20px .5em;
         font-weight: 400;
         font-size: 17px;
     }
 
-    .dialog-content>.dialog-bd{
+    .dialog-bd{
         text-align: left;
          padding: 0 20px;
         font-size: 15px;
         color: #888;
     }
 
-    .dialog-content>.dialog-ft{
+    .dialog-ft{
         position: relative;
         line-height: 42px;
         margin-top: 20px;
         font-size: 17px;
         display: flex;
-        display: flexbox;
+        /*display: flexbox;*/
     }
 
-    .dialog-ft:before{
-        content:" ";
-        position: absolute;
-        width: 8.14px;
-        height: 1.08px;
-        background: rgb(209, 209, 213);
-        box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px;
-        border-radius: 1px;
-        transform-origin: left 50% 0px;
-        width: 100%;
+    .dialog-ft:after{
+        content: " ";
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 1px;
+          border-top: 1px solid #D5D5D6;
+          color: #D5D5D6;
+          -webkit-transform-origin: 0 0;
+          -ms-transform-origin: 0 0;
+          transform-origin: 0 0;
+          -webkit-transform: scaleY(0.5);
+          -ms-transform: scaleY(0.5);
+          transform: scaleY(0.5);
     }
 
     .dialog-ft>a{
         flex:1;
         -webkit-box-flex:1;
+        text-decoration:none;
+        display: block;
     }
 
+    
+    .dialog-ft>a:after{
+        border-left: 1px solid #D5D5D6;
+        color: #D5D5D6;
+        content:" ";
+        width:1px;
+        height: 100%;
+        left: 50%;
+        top: 0;
+        position: absolute;
+        transform:scaleX(0.5);
+    }
 
+    .dialog-ft a:nth-child(1):after{
+        display: none;
+    }
 
+  
 	  
 </style>

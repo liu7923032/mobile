@@ -1,20 +1,20 @@
 <template>
  
   <section class="tabs" v-touch:swipeleft="swipeLeft" v-touch:swiperight="swipeRight" role="tablist">
-    <div class="nav-tabs">
+    <section class="nav-tabs">
         <ul class="tabs_title">
-            <li v-for="item in tabItems"
+            <li v-for="item in tabItems" :style="{ width:underline+ 'px' }"
             :class="{'nav_active':activeIndex===$index}" 
             v-touch:tap="switchTab($index)" 
              >{{item.header}}</li>
         </ul>
-        <div id="tabs_line" v-bind:style="{ width:underline+ 'px' }">
-        </div>
-    </div>
+        <section id="tabs_line" v-bind:style="{ width:underline+ 'px' }">
+        </section>
+    </section>
       <!-- Tab panes -->
-    <div class="tab-content">
+    <section class="tab-content">
         <slot></slot>
-    </div>
+    </section>
   </section>
 </template>
 
@@ -48,6 +48,7 @@
 
         this.activeIndex=index;
         var leftWidth=index*this.underline;
+        // this.$el.getElementById('tabs_line').style.transform="translateX("+leftWidth+"px)";
         document.getElementById('tabs_line').style.transform="translateX("+leftWidth+"px)";
       },
       swipeLeft(){
@@ -78,22 +79,18 @@
 
 <style type="text/css" scoped>
     
-
     .tabs{
-        display: flex;
-        flex-flow:column nowrap;
         min-height: 35px;
-        justify-content:flex-start;
         height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction:column;
     }
 
     .nav-tabs{
-       display: flex;
-       flex-flow:column nowrap;
        min-height: 35px;
-       height: 40px;
-       justify-content:flex-start;
-       flex:0 1 auto;
+       height: 35px;
+       width: 100%;
     }
     
     .tabs_title {
@@ -127,7 +124,6 @@
     
     
     .tabs_title>li {
-      width: 100%;
       min-width: 100px;
       text-align: center;
       vertical-align: middle;
