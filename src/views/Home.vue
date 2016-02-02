@@ -4,7 +4,7 @@
 			<span class="icon-reorder" slot="leftBtn" @click="openMenu"></span>
             <span class="icon-refresh" slot="rightBtn" @click="refresh"></span>
 		</toolbar>
-		<div class="page-content">
+		<div class="page-bd">
 			<tabs :active-index.sync="index" >
 				<tab v-for="item in tabItems" :header="item.title" >
 					<list>

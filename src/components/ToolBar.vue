@@ -27,8 +27,8 @@
         display: flex;
         display: -webkit-flex;
         background-color: rgba(255, 255, 255, 255);
-        height: 44px;
-        min-height: 44px;
+        height: 42px;
+        min-height: 42px;
         -webkit-flex-flow: row nowrap;
         -ms-flex-flow: row nowrap;
                 flex-flow: row nowrap;

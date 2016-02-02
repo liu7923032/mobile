@@ -1,6 +1,6 @@
 <template>
  
-  <section class="tabs" v-touch:swipeleft="swipeLeft" v-touch:swiperight="swipeRight" role="tablist">
+  <section class="tabs" v-touch:swipeleft.stop.prevent="swipeLeft" v-touch:swiperight.stop.prevent="swipeRight()" role="tablist">
     <section class="nav-tabs">
         <ul class="tabs_title">
             <li v-for="item in tabItems" :style="{ width:underline+ 'px' }"
@@ -148,16 +148,10 @@
     }
 
     .tab-content{
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
-        display: -webkit-flex;
-        display: -ms-flexbox;
+        overflow: hidden;
+        /*-webkit-overflow-scrolling: touch;*/
         display: flex;
-        -webkit-flex: 0 1 auto;
-        -ms-flex: 0 1 auto;
-        flex: 0 1 auto;
-        margin-bottom: 0px;
         height: 100%;
-        flex-flow:column nowrap;
+        flex-flow:row nowrap;
     }
 </style>

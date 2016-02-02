@@ -8,10 +8,12 @@ import FastClick from 'fastclick'
 //加载触摸插件
 import VueTouch from './plugns/vTouch'
 
+
 //加载数据请求组件
 import VueResource from 'vue-resource'
 
-//加载weui
+//
+import App from './views/App.vue'
 
     // 1:创建启动的版本
 
@@ -19,18 +21,6 @@ import VueResource from 'vue-resource'
 Vue.use(Router)
 Vue.use(VueTouch)
 Vue.use(VueResource)
-
-var router = new Router({
-        hashbang: true,
-        // root:'/home',
-        // history:true,
-        saveScrollPosition:true
-})
-    // 路由器需要一个根组件。
-    // 出于演示的目的，这里使用一个空的组件，直接使用 HTML 作为应用的模板
-var App = Vue.extend({
-    
-});
 
 //设置访问的地址
 Vue.http.options.root = 'http://ht.mdsd.cn:9000/api';
@@ -45,6 +35,7 @@ Vue.http.options.root = 'http://ht.mdsd.cn:9000/api';
 // 创建的组件构造函数，也可以是一个组件选项对象。
 // 稍后我们会讲解嵌套路由
 //注册路由
+var router = new Router();
 routerMap(router);
 
 // router.redirect({

@@ -31,6 +31,8 @@ module.exports = {
             test: /\.js$/,
             exclude: /node_modules|vue\/dist/,
             loader: 'babel'
+        },{ 
+            test: /\.css$/, loader: 'style!css'
         }]
     },
     // example: if you wish to apply custom babel options

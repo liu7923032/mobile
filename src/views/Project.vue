@@ -1,10 +1,10 @@
 <template>
-	<div class="page">
-		<tool-bar text="我的项目">
-			<span class="icon-chevron-left" slot="leftBtn" v-touch:tap="back"></span>
-	        <span class="icon-refresh" slot="rightBtn" v-touch:tap="showSheet"></span>
-		</tool-bar>
-		<div class="page-content" >
+	<div class="page" >
+		<nav-bar text="我的项目">
+			<span class="icon-chevron-left" slot="leftBar" v-touch:tap="back"></span>
+	        <span class="icon-refresh" slot="rightBar" v-touch:tap="showSheet"></span>
+		</nav-bar>
+		<div class="page-bd" >
 			<list v-on:reload="getInitData" v-on:loadmore="getMoreData">
 				<li>asdffdddd;</li>
 				<li>asdfffffffffffffffffffffffffffffff;a</li>
@@ -56,24 +56,27 @@
 				<li>顶顶顶 阿斯蒂芬;</li>
 			</list>
 		</div>
+
+		<toast :show="showToast"></toast>
+		<actionsheet :show.sync="showsheet"  :menus="menuItems" :actions="actionItems" v-on:weui-menu-click="actionClick"></actionsheet>
 	</div>
-	
-	<toast :show="showToast"></toast>
-	<action-sheet :showsheet.sync="showsheet"  :btn-items="btnItems" v-on:action-click="actionClick"></action-sheet>
 </template>
 
 <script lang="babel">
-	import ToolBar from '../components/ToolBar.vue'
+	import NavBar from '../components/NavBar.vue'
 	import List from '../components/List.vue'
+	import { Actionsheet } from 'vue-weui'
 	import Item from '../components/ListItem.vue'
-	import ActionSheet from '../components/ActionSheet.vue'
+	// import ActionSheet from '../components/ActionSheet.vue'
 	import Toast from '../components/Toast.vue'
 	export default {
+		name:'Project',
 		data(){
 			return {
 				showsheet:false,
-				btnItems:['手机拍照','选择照片'],
-				showToast:true
+				menuItems:{camaer:'拍照',img:'选择图片'},
+				actionItems:{text:'取消'},
+				showToast:false
 			}
 		},
 		methods:{
@@ -94,9 +97,9 @@
 			}
 		},
 		components:{
-			ToolBar,
+			NavBar,
 			List,
-			ActionSheet,
+			Actionsheet,
 			Toast,
 			Item
 		}

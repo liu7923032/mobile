@@ -1,4 +1,17 @@
+<template>
+  <div class="container js_container">
+      <!-- main view -->
+      <router-view
+        class="view"
+        keep-alive
+        transition="slide">
+      </router-view>
+  </div>
+</template>
 
+
+<style type="text/css">
+	
 /*当你设置一个元素为 box-sizing: border-box; 时，此元素的内边距和边框不再会增加它的宽度*/
 * {
   -webkit-box-sizing: border-box;
@@ -12,7 +25,9 @@
 html, body {
     height: 100%;
     -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
 }
+
 
 body, .page {
     background-color: #FBF9FE;
@@ -36,9 +51,20 @@ body, .page {
     bottom: 0;
     left: 0;
     overflow: hidden;
-    
 }
 
+.space{
+	padding: 5px 15px;
+}
+
+
+.page.slideIn {
+    animation: slideIn .2s forwards;
+}
+
+.page.slideOut {
+    animation: slideOut .2s forwards;
+}
 
 /*页面切换动画*/
 @keyframes slideIn {
@@ -59,19 +85,6 @@ body, .page {
     }
 }
 
-.page.slideIn {
-    animation: slideIn .2s forwards;
-}
-
-.page.slideOut {
-    animation: slideOut .2s forwards;
-}
-
-
-
-body {
-  overflow-x: hidden;
-}
 
 .slide-transition {
   transition: left 0.3s ease;
@@ -100,8 +113,11 @@ body {
 .page-bd {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
-
     width: 100%;
     height: 100%;
+    padding-top: 4px;
 }
 
+
+
+</style>

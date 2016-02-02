@@ -1,10 +1,13 @@
 'use strict'
 
+import Project from './views/Project.vue'
+import Index from './views/Index.vue'
+
 export default function(router){
     router.map({
         '/':{				//首页
-            name:'home',
-            component:require('./views/Home.vue')
+            name:'index',
+            component:Index
         },
         '/home':{
             name:'home',
@@ -12,7 +15,7 @@ export default function(router){
         },
         '/project':{
             name:'project',
-            component:require('./views/Project.vue')
+            component:Project
         },
         '/worklog':{
             name:'worklog',
@@ -37,7 +40,8 @@ export default function(router){
 
         /* 404路由 */
         '*': {
-            component: require('./views/Home.vue')
+            name:'index',
+            component:Index
         }
         
     })
