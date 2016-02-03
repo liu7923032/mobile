@@ -1,6 +1,6 @@
 <!-- 下拉刷新组件 -->
 <template>
-	<section class="pull-list" v-touch:pandown.stop.prevent="pullToRefresh"  v-touch:panend="panleave"   >
+	<section class="pull-list" v-touch:pandown="pullToRefresh"  v-touch:panend="panleave"   >
 		<header class="pull-header" v-show="showheader" transition="display">
 			<div class="imgshow">
                 <img src="../assets/images/components/icon-down.png" alt="下拉">
@@ -10,11 +10,11 @@
                 <p>最后更新:{{rlastTime}}</p>
             </div>
 		</header>
-		<ul class="pull-content"  v-on:scroll.stop.prevent="scroll($event)" v-el:listContent>
+		<ul class="pull-content"  v-el:listContent>
 			<slot></slot>
 		</ul>
-		<footer class="pull-footer" v-show="showfooter">
-			<div @click="loadMore($event)" >点击加载更多</div>
+		<footer class="pull-footer" @click="loadMore($event)" >
+			点击加载更多
 		</footer>
 	</section>
 </template>
@@ -37,27 +37,20 @@
 				top:0
 			}
 		},
+		events:{
+			//监听父窗体的的滚动事件
+			"scroll":"onScroll"
+		},
 		methods:{
 
 			move(height){
 				var list=this.$el;
 				//获取角度
 				var rotateHeight=height<60?height*3:180;
+				
 				list.style.transform="translateY("+height+"px)";
 				var img=list.querySelectorAll('header')[0].querySelectorAll('img')[0];
 				img.style.transform="rotate("+rotateHeight+"deg)"
-			},
-			//检查是否滚动到底部,滚动到底部触发上拉加载更多的事件
-			scroll(e){
-
-				this.top=e.target.scrollTop;
-				console.log("可见区域的高度："+this.regionHeight+"-总高度："+this.winHeight);
-				console.log("滚动的高度:"+this.top);
-				if(this.top+this.regionHeight>=this.winHeight){
-					this.isBottom=true;
-				}else{
-					this.isBottom=false;
-				}
 			},
 			panleave(e){
 				this.move(0);
@@ -68,6 +61,15 @@
 					this.isRefresh=false;
 					this.rlastTime=dateHelper.getNowDate("yyyy-MM-dd HH:mm:ss");
 					this.$emit('reload');
+				}
+			},
+			onScroll(e){
+				this.top=e.target.scrollTop;
+				console.log("滚动的高度:"+this.top);
+				if(this.top+this.regionHeight>=this.winHeight){
+					this.isBottom=true;
+				}else{
+					this.isBottom=false;
 				}
 			},
 			// 下拉刷新事件
@@ -97,19 +99,20 @@
 	/*list集合*/
 	.pull-list{
 	  	/*min-height: 300px;*/
-	   	/*height: 100%;*/
-        height: 100%;
+	   	height: 100%;
         width: 100%;
         padding: 0px 0px;
         background-color: whitesmoke;
+        margin-bottom: 47px;
+        overflow: auto;
+        position: relative;
+    	-webkit-overflow-scrolling: touch;
 	}
 
 	.pull-content{
-		overflow: auto;
-    	-webkit-overflow-scrolling: touch;
-	    height: 100%;
 	    padding: 0px;
 	    margin: 0px;
+	    height: 100%;
 	    background-color: white;
 	    /*width: 100%;*/
 	}
@@ -149,5 +152,12 @@
             margin: 4px;
     }
 
+    .pull-footer{
+    	height: 50px;
+    	padding: 10px;
+		border-radius: 5px;
+    	text-align: center;
+    }
+	
 	
 </style>

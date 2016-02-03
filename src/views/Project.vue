@@ -4,7 +4,7 @@
 			<span class="icon-chevron-left" slot="leftBar" v-touch:tap="back"></span>
 	        <span class="icon-refresh" slot="rightBar" v-touch:tap="showSheet"></span>
 		</nav-bar>
-		<div class="page-bd" >
+		<page-body>
 			<list v-on:reload="getInitData" v-on:loadmore="getMoreData">
 				<li>asdffdddd;</li>
 				<li>asdfffffffffffffffffffffffffffffff;a</li>
@@ -55,7 +55,7 @@
 				<li>asdfffffffffffffffffffffffffffffff;</li>
 				<li>顶顶顶 阿斯蒂芬;</li>
 			</list>
-		</div>
+		</page-body>
 
 		<toast :show="showToast"></toast>
 		<actionsheet :show.sync="showsheet"  :menus="menuItems" :actions="actionItems" v-on:weui-menu-click="actionClick"></actionsheet>
@@ -67,6 +67,7 @@
 	import List from '../components/List.vue'
 	import { Actionsheet } from 'vue-weui'
 	import Item from '../components/ListItem.vue'
+	import PageBody from '../components/PageBody.vue'
 	// import ActionSheet from '../components/ActionSheet.vue'
 	import Toast from '../components/Toast.vue'
 	export default {
@@ -101,7 +102,8 @@
 			List,
 			Actionsheet,
 			Toast,
-			Item
+			Item,
+			PageBody
 		}
 	}
 </script>

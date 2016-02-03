@@ -29,69 +29,39 @@ export default {
     return {
       items: [{
         link: 'project',
+        image:'',
         text: '项目',
       }, {
         link: 'cell',
+        image:'',
         text: '日志'
       }, {
         link: 'toast',
+        image:'',
         text: '流程'
       }, {
         link: 'dialog',
+        image:'',
         text: '个人'
       }, {
         link: 'progress',
+        image:'',
         text: 'Progress'
       }, {
         link: 'login',
+        image:'',
         text: '登陆'
       }, {
         link: 'article',
+        image:'',
         text: 'Article'
       }, {
         link: 'actionsheet',
+        image:'',
         text: 'ActionSheet'
       }, {
         link: 'icons',
-        text: 'Icons'
-      }, {
-        link: 'dialog',
-        text: 'Dialog'
-      }, {
-        link: 'progress',
-        text: 'Progress'
-      }, {
-        link: 'msg',
-        text: 'Msg'
-      }, {
-        link: 'article',
-        text: 'Article'
-      }, {
-        link: 'actionsheet',
-        text: 'ActionSheet'
-      }, {
-        link: 'icons',
-        text: 'Icons'
-      }, {
-        link: 'icons',
-        text: 'Icons'
-      }, {
-        link: 'dialog',
-        text: 'Dialog'
-      }, {
-        link: 'progress',
-        text: 'Progress'
-      }, {
-        link: 'msg',
-        text: 'Msg'
-      }, {
-        link: 'article',
-        text: 'Article'
-      }, {
-        link: 'actionsheet',
-        text: 'ActionSheet'
-      }, {
-        link: 'icons',
+        image:'',
         text: 'Icons'
       }]
     }

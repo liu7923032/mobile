@@ -12,6 +12,7 @@ import VueTouch from './plugns/vTouch'
 //加载数据请求组件
 import VueResource from 'vue-resource'
 
+import auth from './views/utils/auth.js'
 //
 import App from './views/App.vue'
 
@@ -24,7 +25,7 @@ Vue.use(VueResource)
 
 //设置访问的地址
 Vue.http.options.root = 'http://ht.mdsd.cn:9000/api';
-
+// Vue.http.options.root = 'http://localhost:8000/api';
 
 // 创建一个路由器实例
 // 创建实例时可以传入配置参数进行定制，为保持简单，这里使用默认配置
@@ -51,7 +52,9 @@ router.beforeEach(transition => {
     FastClick.attach(document.body);
 
     if (transition.to.auth) {
-        if (localStorage.userId) {
+        console.log("要访问的路径:"+transition.to.path);
+        if (auth.isLogin()) {
+        // if(true){
             transition.next();
         } else {
             var redirect = encodeURIComponent(transition.to.path);

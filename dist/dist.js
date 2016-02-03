@@ -65,19 +65,23 @@
 	
 	var _routers2 = _interopRequireDefault(_routers);
 	
-	var _fastclick = __webpack_require__(107);
+	var _fastclick = __webpack_require__(110);
 	
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 	
-	var _vTouch = __webpack_require__(108);
+	var _vTouch = __webpack_require__(111);
 	
 	var _vTouch2 = _interopRequireDefault(_vTouch);
 	
-	var _vueResource = __webpack_require__(122);
+	var _vueResource = __webpack_require__(125);
 	
 	var _vueResource2 = _interopRequireDefault(_vueResource);
 	
-	var _App = __webpack_require__(146);
+	var _auth = __webpack_require__(156);
+	
+	var _auth2 = _interopRequireDefault(_auth);
+	
+	var _App = __webpack_require__(149);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
@@ -85,20 +89,20 @@
 	
 	// 1:创建启动的版本
 	
-	//加载数据请求组件
-	_vue2.default.use(_vueRouter2.default);
-	
-	//
-	
 	//加载触摸插件
 	
 	//配置路由规则
+	_vue2.default.use(_vueRouter2.default);
+	//
+	
+	//加载数据请求组件
 	
 	_vue2.default.use(_vTouch2.default);
 	_vue2.default.use(_vueResource2.default);
 	
 	//设置访问的地址
 	_vue2.default.http.options.root = 'http://ht.mdsd.cn:9000/api';
+	// Vue.http.options.root = 'http://localhost:8000/api';
 	
 	// 创建一个路由器实例
 	// 创建实例时可以传入配置参数进行定制，为保持简单，这里使用默认配置
@@ -122,7 +126,9 @@
 	    _fastclick2.default.attach(document.body);
 	
 	    if (transition.to.auth) {
-	        if (localStorage.userId) {
+	        console.log("要访问的路径:" + transition.to.path);
+	        if (_auth2.default.isLogin()) {
+	            // if(true){
 	            transition.next();
 	        } else {
 	            var redirect = encodeURIComponent(transition.to.path);
@@ -12317,120 +12323,73 @@
 	    router.map({
 	        '/': { //首页
 	            name: 'index',
+	            auth: true,
 	            component: _Index2.default
 	        },
-	        '/home': {
-	            name: 'home',
-	            component: __webpack_require__(6)
+	        // 首页
+	        '/index': {
+	            name: 'index',
+	            auth: true,
+	            component: _Index2.default
 	        },
+	        // 项目
 	        '/project': {
 	            name: 'project',
+	            auth: true,
 	            component: _Project2.default
 	        },
+	        // 工作日志
 	        '/worklog': {
 	            name: 'worklog',
+	            auth: true,
 	            component: __webpack_require__(58)
 	        },
+	        // 个人信息
 	        '/userinfo': {
 	            name: 'userinfo',
+	            auth: true,
 	            component: __webpack_require__(66)
 	        },
+	        // 流程信息
 	        '/workflow': {
 	            name: 'workflow',
+	            auth: true,
 	            component: __webpack_require__(81)
 	        },
+	        // 登陆页面
 	        '/login': {
 	            name: 'login',
 	            component: __webpack_require__(82)
 	        },
-	        '/comment': {
+	        // 知识分享
+	        '/knownledge': {
 	            name: 'comment',
-	            component: __webpack_require__(85)
+	            component: __webpack_require__(94)
 	        },
-	
 	        /* 404路由 */
 	        '*': {
 	            name: 'index',
+	            auth: true,
 	            component: _Index2.default
 	        }
 	
 	    });
 	};
 	
-	var _Project = __webpack_require__(86);
+	var _Project = __webpack_require__(95);
 
 	var _Project2 = _interopRequireDefault(_Project);
 
-	var _Index = __webpack_require__(102);
+	var _Index = __webpack_require__(105);
 
 	var _Index2 = _interopRequireDefault(_Index);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__webpack_require__(7)
-	__vue_script__ = __webpack_require__(11)
-	__vue_template__ = __webpack_require__(57)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\views\\Home.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(8);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ecc3dad2&file=Home.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ecc3dad2&file=Home.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Home.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n.tab_info[_v-ecc3dad2]{\n\theight: 40px;\n\tpadding: 5px;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-flex-flow:row nowrap;\n\t    -ms-flex-flow:row nowrap;\n\t        flex-flow:row nowrap;\n\t-webkit-box-pack:justify;\n\t-webkit-justify-content:space-between;\n\t    -ms-flex-pack:justify;\n\t        justify-content:space-between;\n\t-webkit-box-align:center;\n\t-webkit-align-items:center;\n\t    -ms-flex-align:center;\n\t        align-items:center;\n\tbackground-color: white;\n}\n\n\n.tab_info>div[_v-ecc3dad2]:nth-child(2){\n\tmargin-right: 5px;\n\tcolor: #272822;\n}\n\n.left[_v-ecc3dad2]{\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-flex-flow:row nowrap;\n\t    -ms-flex-flow:row nowrap;\n\t        flex-flow:row nowrap;\n\t-webkit-box-pack:start;\n\t-webkit-justify-content:flex-start;\n\t    -ms-flex-pack:start;\n\t        justify-content:flex-start;\n\t-webkit-box-align:center;\n\t-webkit-align-items:center;\n\t    -ms-flex-align:center;\n\t        align-items:center;\n}\n.left>div[_v-ecc3dad2]{\n\tmargin-left: 10px;\n}\n\n.contentList[_v-ecc3dad2]{\n\tbackground-color: whitesmoke;\n\twidth: 100%;\n}\n.contentList>li[_v-ecc3dad2]{\n\tborder-radius: 3px;\n\tlist-style-type: none;\n\tborder:1px solid whitesmoke;\n\tmargin-bottom:5px;\n}\n\n.contentList>li[_v-ecc3dad2]:hover{\n\tborder:1px solid gray;\n}\n\n.content>div[_v-ecc3dad2]:nth-child(1){\n\tfont-size: 12px;\n\tcolor: lightdark;\n\tmargin-bottom: 5px;\n}\n\n.content>div:nth-child(1)>span[_v-ecc3dad2]:nth-child(2){\n\tmargin-left: 10px;\n}\n\n.content>div[_v-ecc3dad2]:nth-child(2){\n\tfont-size: 14px;\n\t\n}\n\nimg[_v-ecc3dad2]{\n\twidth: 40px;\n\theight: 40px;\n\tborder-width: 0px;\n}\n", "", {"version":3,"sources":["/./src/views/Home.vue?0bb0e06c"],"names":[],"mappings":";AAuOA;CACA,aAAA;CACA,aAAA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,6BAAA;KAAA,yBAAA;SAAA,qBAAA;CACA,yBAAA;CAAA,sCAAA;KAAA,sBAAA;SAAA,8BAAA;CACA,yBAAA;CAAA,2BAAA;KAAA,sBAAA;SAAA,mBAAA;CACA,wBAAA;CACA;;;AAGA;CACA,kBAAA;CACA,eAAA;CACA;;AAEA;CACA,qBAAA;CAAA,sBAAA;CAAA,qBAAA;CAAA,cAAA;CACA,6BAAA;KAAA,yBAAA;SAAA,qBAAA;CACA,uBAAA;CAAA,mCAAA;KAAA,oBAAA;SAAA,2BAAA;CACA,yBAAA;CAAA,2BAAA;KAAA,sBAAA;SAAA,mBAAA;CACA;AACA;CACA,kBAAA;CACA;;AAEA;CACA,6BAAA;CACA,YAAA;CACA;AACA;CACA,mBAAA;CACA,sBAAA;CACA,4BAAA;CACA,kBAAA;CACA;;AAEA;CACA,sBAAA;CACA;;AAEA;CACA,gBAAA;CACA,iBAAA;CACA,mBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;AAEA;CACA,gBAAA;;CAEA;;AAEA;CACA,YAAA;CACA,aAAA;CACA,kBAAA;CACA","file":"Home.vue","sourcesContent":["<template>\r\n\t<div class=\"page\">\r\n\t\t<toolbar :text=\"title\">\r\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\"></span>\r\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\"></span>\r\n\t\t</toolbar>\r\n\t\t<div class=\"page-bd\">\r\n\t\t\t<tabs :active-index.sync=\"index\" >\r\n\t\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" >\r\n\t\t\t\t\t<list>\r\n\t\t\t\t\t\t<li v-for=\"subItem in item.infoList\" >\r\n\t\t\t\t\t\t\t<div class=\"tab_info\">\r\n\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t<img src=\"\" alt=\"\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"content\">\r\n\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t<span>发布时间:{{subItem.time}}</span>\r\n\t\t\t\t\t\t\t\t\t\t\t<span>发布人:{{subItem.subUser}}</span>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t{{subItem.content}}\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t<i class=\"icon-chevron-right\"></i>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t</list>\r\n\t\t\t\t</tab>\r\n\t\t\t</tabs>\r\n\t\t</div>\r\n\t</div>\r\n\t\t\r\n\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" >\r\n\t\t\r\n\t</sidebar>\r\n\r\n\t<loading :loading=\"isload\"></loading>\r\n\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\timport ToolBar from 'src/components/ToolBar.vue'\r\n    import SideBar from 'src/components/Sidebar.vue'\r\n    import Tabs from 'src/components/Tabs.vue'\r\n    import Tab from 'src/components/Tab.vue'\r\n    import Loading from 'src/components/Loading.vue'\r\n    import List from 'src/components/List.vue'\r\n     import ListItem from 'src/components/ListItem.vue'\r\n\texport default \t{\r\n\t\tcreated(){\r\n\t\t\tconsole.log(\"home is created\")\r\n\t\t\t//计算tab的长度\r\n\t\t   // var width=\tdocument.body.offsetWidth-20;\r\n\t\t   // this.tabWidth=width/this.tabItems.length;\r\n\t\t},\r\n\t\tcomponents:{\r\n\t    \ttoolbar:ToolBar,\r\n            sidebar:SideBar,\r\n            tabs:Tabs,\r\n            tab:Tab,\r\n            loading:Loading,\r\n            list:List,\r\n            listitem:ListItem\r\n\t    },\r\n\t    props:{\r\n\t    \t\r\n\t    },\r\n\t\tdata() {\r\n\t\t\treturn {\r\n\t\t\t\ttitle:'首页',\r\n\t\t\t\tmenuItems:[{\r\n\t\t\t\t\ttext:'系统首页',\r\n\t\t\t\t\tlink:'home',\r\n\t\t\t\t\ticon:'icon-home'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'个人信息',\r\n\t\t\t\t\tlink:'userinfo',\r\n\t\t\t\t\ticon:'icon-user'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'我的项目',\r\n\t\t\t\t\tlink:'project',\r\n\t\t\t\t\ticon:'icon-tasks'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'工作日志',\r\n\t\t\t\t\tlink:'worklog',\r\n\t\t\t\t\ticon:'icon-calendar'\r\n\t\t\t\t},{\r\n\t\t\t\t\ttext:'流程信息',\r\n\t\t\t\t\tlink:'worklog',\r\n\t\t\t\t\ticon:'icon-exchange'\r\n\t\t\t\t}],\r\n\t\t\t\tindex:0,\r\n\t\t\t\tisload:false,\r\n\t\t\t\tshowMenu:false,\r\n\t\t\t\ttabItems:[{\r\n\t\t\t\t\ttitle:'通知',infoList:[{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-20',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂1'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-21',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂2'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-22',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂3'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-23',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂4'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t}]\r\n\t\t\t\t},{\r\n\t\t\t\t\ttitle:'制度',infoList:[{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t},{\r\n\t\t\t\t\t\timgUrl:'',\r\n\t\t\t\t\t\ttime:'2015-11-24',\r\n\t\t\t\t\t\tsubUser:'张三',\r\n\t\t\t\t\t\tcontent:'我的世界你不懂5'\r\n\t\t\t\t\t}]\r\n\t\t\t\t}]\r\n\t\t\t}\r\n\t\t},\r\n\t\troute:{\r\n\t\t\tdata(){\r\n\t\t\t\t//从服务器端加载数据\r\n\t\t\t\tconsole.log(\"home组件切入,加载初始数据\");\r\n\t\t\t\t//加载数据\r\n\t\t\t\tthis.isload=false;\r\n\t\t\t\tthis.$http.get(\"values\").then((response)=>{\r\n\t\t\t\t\tconsole.log(response.data);\r\n\t\t\t\t\tthis.isload=false;\r\n\t\t\t\t});\r\n\r\n\t\t\t},\r\n\t\t\tcanDeactivate(transition){\r\n\t\t\t\t//组件被切除\r\n\t\t\t\tconsole.log(\"组件被切出\")\r\n\t\t\t\tthis.showMenu=false;\r\n\t\t\t\ttransition.next();\r\n\t\t\t}\r\n\t\t},\r\n\t    methods: {\r\n\t        openMenu() {\r\n\t            this.showMenu = !this.showMenu;\r\n\t        },\r\n\t        refresh(){\r\n\t        \t//刷新当前页面\r\n\t        }\r\n\t    }\r\n\t}\r\n\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\t.tab_info{\r\n\t\theight: 40px;\r\n\t\tpadding: 5px;\r\n\t\tdisplay: flex;\r\n\t\tflex-flow:row nowrap;\r\n\t\tjustify-content:space-between;\r\n\t\talign-items:center;\r\n\t\tbackground-color: white;\r\n\t}\r\n\r\n\r\n\t.tab_info>div:nth-child(2){\r\n\t\tmargin-right: 5px;\r\n\t\tcolor: #272822;\r\n\t}\r\n\t\r\n\t.left{\r\n\t\tdisplay: flex;\r\n\t\tflex-flow:row nowrap;\r\n\t\tjustify-content:flex-start;\r\n\t\talign-items:center;\r\n\t}\r\n\t.left>div{\r\n\t\tmargin-left: 10px;\r\n\t}\r\n\r\n\t.contentList{\r\n\t\tbackground-color: whitesmoke;\r\n\t\twidth: 100%;\r\n\t}\r\n\t.contentList>li{\r\n\t\tborder-radius: 3px;\r\n\t\tlist-style-type: none;\r\n\t\tborder:1px solid whitesmoke;\r\n\t\tmargin-bottom:5px;\r\n\t}\r\n\r\n\t.contentList>li:hover{\r\n\t\tborder:1px solid gray;\r\n\t}\r\n\r\n\t.content>div:nth-child(1){\r\n\t\tfont-size: 12px;\r\n\t\tcolor: lightdark;\r\n\t\tmargin-bottom: 5px;\r\n\t}\r\n\r\n\t.content>div:nth-child(1)>span:nth-child(2){\r\n\t\tmargin-left: 10px;\r\n\t}\r\n\r\n\t.content>div:nth-child(2){\r\n\t\tfont-size: 14px;\r\n\t\t\r\n\t}\r\n\r\n\timg{\r\n\t\twidth: 40px;\r\n\t\theight: 40px;\r\n\t\tborder-width: 0px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
+/* 6 */,
+/* 7 */,
+/* 8 */,
 /* 9 */
 /***/ function(module, exports) {
 
@@ -12709,333 +12668,7 @@
 
 
 /***/ },
-/* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _ToolBar = __webpack_require__(12);
-	
-	var _ToolBar2 = _interopRequireDefault(_ToolBar);
-	
-	var _Sidebar = __webpack_require__(17);
-	
-	var _Sidebar2 = _interopRequireDefault(_Sidebar);
-	
-	var _Tabs = __webpack_require__(30);
-	
-	var _Tabs2 = _interopRequireDefault(_Tabs);
-	
-	var _Tab = __webpack_require__(35);
-	
-	var _Tab2 = _interopRequireDefault(_Tab);
-	
-	var _Loading = __webpack_require__(40);
-	
-	var _Loading2 = _interopRequireDefault(_Loading);
-	
-	var _List = __webpack_require__(45);
-	
-	var _List2 = _interopRequireDefault(_List);
-	
-	var _ListItem = __webpack_require__(52);
-	
-	var _ListItem2 = _interopRequireDefault(_ListItem);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-		created: function created() {
-			console.log("home is created");
-			//计算tab的长度
-			// var width=	document.body.offsetWidth-20;
-			// this.tabWidth=width/this.tabItems.length;
-		},
-	
-		components: {
-			toolbar: _ToolBar2.default,
-			sidebar: _Sidebar2.default,
-			tabs: _Tabs2.default,
-			tab: _Tab2.default,
-			loading: _Loading2.default,
-			list: _List2.default,
-			listitem: _ListItem2.default
-		},
-		props: {},
-		data: function data() {
-			return {
-				title: '首页',
-				menuItems: [{
-					text: '系统首页',
-					link: 'home',
-					icon: 'icon-home'
-				}, {
-					text: '个人信息',
-					link: 'userinfo',
-					icon: 'icon-user'
-				}, {
-					text: '我的项目',
-					link: 'project',
-					icon: 'icon-tasks'
-				}, {
-					text: '工作日志',
-					link: 'worklog',
-					icon: 'icon-calendar'
-				}, {
-					text: '流程信息',
-					link: 'worklog',
-					icon: 'icon-exchange'
-				}],
-				index: 0,
-				isload: false,
-				showMenu: false,
-				tabItems: [{
-					title: '通知', infoList: [{
-						imgUrl: '',
-						time: '2015-11-20',
-						subUser: '张三',
-						content: '我的世界你不懂1'
-					}, {
-						imgUrl: '',
-						time: '2015-11-21',
-						subUser: '张三',
-						content: '我的世界你不懂2'
-					}, {
-						imgUrl: '',
-						time: '2015-11-22',
-						subUser: '张三',
-						content: '我的世界你不懂3'
-					}, {
-						imgUrl: '',
-						time: '2015-11-23',
-						subUser: '张三',
-						content: '我的世界你不懂4'
-					}, {
-						imgUrl: '',
-						time: '2015-11-24',
-						subUser: '张三',
-						content: '我的世界你不懂5'
-					}, {
-						imgUrl: '',
-						time: '2015-11-22',
-						subUser: '张三',
-						content: '我的世界你不懂3'
-					}, {
-						imgUrl: '',
-						time: '2015-11-23',
-						subUser: '张三',
-						content: '我的世界你不懂4'
-					}, {
-						imgUrl: '',
-						time: '2015-11-24',
-						subUser: '张三',
-						content: '我的世界你不懂5'
-					}, {
-						imgUrl: '',
-						time: '2015-11-22',
-						subUser: '张三',
-						content: '我的世界你不懂3'
-					}, {
-						imgUrl: '',
-						time: '2015-11-23',
-						subUser: '张三',
-						content: '我的世界你不懂4'
-					}, {
-						imgUrl: '',
-						time: '2015-11-24',
-						subUser: '张三',
-						content: '我的世界你不懂5'
-					}, {
-						imgUrl: '',
-						time: '2015-11-22',
-						subUser: '张三',
-						content: '我的世界你不懂3'
-					}, {
-						imgUrl: '',
-						time: '2015-11-23',
-						subUser: '张三',
-						content: '我的世界你不懂4'
-					}, {
-						imgUrl: '',
-						time: '2015-11-24',
-						subUser: '张三',
-						content: '我的世界你不懂5'
-					}, {
-						imgUrl: '',
-						time: '2015-11-22',
-						subUser: '张三',
-						content: '我的世界你不懂3'
-					}, {
-						imgUrl: '',
-						time: '2015-11-23',
-						subUser: '张三',
-						content: '我的世界你不懂4'
-					}, {
-						imgUrl: '',
-						time: '2015-11-24',
-						subUser: '张三',
-						content: '我的世界你不懂5'
-					}]
-				}, {
-					title: '制度', infoList: [{
-						imgUrl: '',
-						time: '2015-11-24',
-						subUser: '张三',
-						content: '我的世界你不懂5'
-					}, {
-						imgUrl: '',
-						time: '2015-11-24',
-						subUser: '张三',
-						content: '我的世界你不懂5'
-					}]
-				}]
-			};
-		},
-	
-		route: {
-			data: function data() {
-				var _this = this;
-	
-				//从服务器端加载数据
-				console.log("home组件切入,加载初始数据");
-				//加载数据
-				this.isload = false;
-				this.$http.get("values").then(function (response) {
-					console.log(response.data);
-					_this.isload = false;
-				});
-			},
-			canDeactivate: function canDeactivate(transition) {
-				//组件被切除
-				console.log("组件被切出");
-				this.showMenu = false;
-				transition.next();
-			}
-		},
-		methods: {
-			openMenu: function openMenu() {
-				this.showMenu = !this.showMenu;
-			},
-			refresh: function refresh() {
-				//刷新当前页面
-			}
-		}
-	};
-	
-	// </script>
-
-	// <style type="text/css" scoped>
-	// 	.tab_info{
-	// 		height: 40px;
-	// 		padding: 5px;
-	// 		display: flex;
-	// 		flex-flow:row nowrap;
-	// 		justify-content:space-between;
-	// 		align-items:center;
-	// 		background-color: white;
-	// 	}
-
-	// 	.tab_info>div:nth-child(2){
-	// 		margin-right: 5px;
-	// 		color: #272822;
-	// 	}
-
-	// 	.left{
-	// 		display: flex;
-	// 		flex-flow:row nowrap;
-	// 		justify-content:flex-start;
-	// 		align-items:center;
-	// 	}
-	// 	.left>div{
-	// 		margin-left: 10px;
-	// 	}
-
-	// 	.contentList{
-	// 		background-color: whitesmoke;
-	// 		width: 100%;
-	// 	}
-	// 	.contentList>li{
-	// 		border-radius: 3px;
-	// 		list-style-type: none;
-	// 		border:1px solid whitesmoke;
-	// 		margin-bottom:5px;
-	// 	}
-
-	// 	.contentList>li:hover{
-	// 		border:1px solid gray;
-	// 	}
-
-	// 	.content>div:nth-child(1){
-	// 		font-size: 12px;
-	// 		color: lightdark;
-	// 		margin-bottom: 5px;
-	// 	}
-
-	// 	.content>div:nth-child(1)>span:nth-child(2){
-	// 		margin-left: 10px;
-	// 	}
-
-	// 	.content>div:nth-child(2){
-	// 		font-size: 14px;
-
-	// 	}
-
-	// 	img{
-	// 		width: 40px;
-	// 		height: 40px;
-	// 		border-width: 0px;
-	// 	}
-	// </style>
-	// <template>
-	// 	<div class="page">
-	// 		<toolbar :text="title">
-	// 			<span class="icon-reorder" slot="leftBtn" @click="openMenu"></span>
-	//             <span class="icon-refresh" slot="rightBtn" @click="refresh"></span>
-	// 		</toolbar>
-	// 		<div class="page-bd">
-	// 			<tabs :active-index.sync="index" >
-	// 				<tab v-for="item in tabItems" :header="item.title" >
-	// 					<list>
-	// 						<li v-for="subItem in item.infoList" >
-	// 							<div class="tab_info">
-	// 								<div class="left">
-	// 									<img src="" alt="">
-	// 									<div class="content">
-	// 										<div>
-	// 											<span>发布时间:{{subItem.time}}</span>
-	// 											<span>发布人:{{subItem.subUser}}</span>
-	// 										</div>
-	// 										<div>
-	// 											{{subItem.content}}
-	// 										</div>
-	// 									</div>
-	// 								</div>
-	// 								<div>
-	// 									<i class="icon-chevron-right"></i>
-	// 								</div>
-	// 							</div>
-	// 						</li>
-	// 					</list>
-	// 				</tab>
-	// 			</tabs>
-	// 		</div>
-	// 	</div>
-
-	// 	<sidebar :menu-items="menuItems" :show-menu.sync="showMenu" >
-
-	// 	</sidebar>
-
-	// 	<loading :loading="isload"></loading>
-
-	// </template>
-
-	// <script lang="babel">
-
-/***/ },
+/* 11 */,
 /* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -13187,859 +12820,29 @@
 	module.exports = "\n <header class=\"toolbar\" >\n    <slot name=\"leftBtn\" ></slot>\n    <div class=\"text-title item\">{{text}}</div>\n    <slot name=\"rightBtn\" ></slot>\n</header>\n";
 
 /***/ },
-/* 17 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__webpack_require__(18)
-	__vue_script__ = __webpack_require__(20)
-	__vue_template__ = __webpack_require__(29)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Sidebar.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(19);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-29364ee0&file=Sidebar.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Sidebar.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-29364ee0&file=Sidebar.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Sidebar.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n\n\n\tul[_v-29364ee0]{\n\t\tpadding: 0px;\n\t\tmargin: 0px;\n\t}\n\t.page-cover[_v-29364ee0] {\n\t  \n\t}\n\t.nav-list[_v-29364ee0]{\n\t\tposition: fixed;\n\t    top: 0;\n\t    bottom: 0;\n\t    left: -200px;\n\t    width: 200px;\n\t    background-color: #fff;\n\t    color: #313131;\n\t    -webkit-transition: all .3s ease;\n\t    transition: all .3s ease;\n\t    z-index: 99;\n\n\t}\n\t.showside[_v-29364ee0] {\n\t   -webkit-transform: translateX(200px);\n\t           transform: translateX(200px);\n\t}\n\t\n\n\n\t/*侧边栏列表*/\n\t.list-ul[_v-29364ee0],.loginout[_v-29364ee0]{\n\t    margin: 0 24px;\n\t    border-top: 1px solid #d4d4d4;\n\t    overflow: hidden;\n\t    padding-top: 9%;\n\t    list-style-type: none;\n\t    \n\t}\n\n\t.list-ul>li[_v-29364ee0],.loginout>li[_v-29364ee0] {\n        font-size: 14px;\n        font-weight: 200;\n        padding: 9% 0;\n        text-align: left;\n        text-indent: 1px;\n        line-height: 15px;\n        color: #7f8c8d;\n        display: block;\n        cursor: pointer;\n    }\n\n    .list-ul>li[_v-29364ee0]:active,.loginout>li[_v-29364ee0]:active {\n       background-color: darkorange;\n       color: red;\n    }\n\n\n\t .list-ul>li[_v-29364ee0]:before,.loginout>li[_v-29364ee0]:before{\n        color: #2c3e50;\n        margin: 0 20px;\n        font-size: 14px;\n    }\n\n    .list-ul>li[_v-29364ee0]:last-child {\n        margin-bottom: 50px;\n    }\n\n    .list-ul>.line[_v-29364ee0]{\n        border-top: 1px solid #d4d4d4;\n    }\n    .list-ul>a[_v-29364ee0] {\n        display: block;\n        color: #313131;\n    }\n", "", {"version":3,"sources":["/./src/components/Sidebar.vue?ffe35228"],"names":[],"mappings":";;;CAqDA;EACA,aAAA;EACA,YAAA;EACA;CACA;;EAEA;CACA;EACA,gBAAA;KACA,OAAA;KACA,UAAA;KACA,aAAA;KACA,aAAA;KACA,uBAAA;KACA,eAAA;KACA,iCAAA;KAAA,yBAAA;KACA,YAAA;;EAEA;CACA;IACA,qCAAA;YAAA,6BAAA;EACA;;;;CAIA,SAAA;CACA;KACA,eAAA;KACA,8BAAA;KACA,iBAAA;KACA,gBAAA;KACA,sBAAA;;EAEA;;CAEA;QACA,gBAAA;QACA,iBAAA;QACA,cAAA;QACA,iBAAA;QACA,iBAAA;QACA,kBAAA;QACA,eAAA;QACA,eAAA;QACA,gBAAA;KACA;;IAEA;OACA,6BAAA;OACA,WAAA;KACA;;;EAGA;QACA,eAAA;QACA,eAAA;QACA,gBAAA;KACA;;IAEA;QACA,oBAAA;KACA;;IAEA;QACA,8BAAA;KACA;IACA;QACA,eAAA;QACA,eAAA;KACA","file":"Sidebar.vue","sourcesContent":["<template>\r\n\t<div class=\"page-cover\" v-if=\"showMenu\" @click=\"showCover\">\r\n\t</div>\r\n\r\n\t <section id=\"sideBar\" class=\"nav-list\" :class=\"{'showside':showMenu}\" >\r\n\t    <userheader></userheader>\r\n        <ul class=\"list-ul\">\r\n        \t<li v-for=\"item in menuItems\"  :class=\"item.icon\" v-link=\"{'name':item.link}\" >{{item.text}}</li>\r\n        </ul>\r\n        <ul class=\"loginout\">\r\n        \t<li   class=\"icon-comments\" v-link=\"{'name':comment}\" >问题反馈</li>\r\n        \t<li   class=\"icon-off\" @click=\"loginOut\">退出系统</li>\r\n        </ul>\r\n    </section>\r\n</template>\r\n\r\n<script type=\"text/javascript\">\r\n\r\n\timport UserHeader from './UserHeader.vue';\r\n\timport EventListener from './utils/EventListener.js'\r\n\texport default {\r\n\t\tcreated(){\r\n\t\t\tconsole.log(\"进入sidebar\");\r\n\r\n\t\t},\r\n\t\treplace:true,\r\n\t\tprops:{\r\n\t\t\tmenuItems:{\r\n\t\t\t\ttype:Array,\r\n\t\t\t\tdefault:[]\r\n\t\t\t},\r\n\t\t\tshowMenu:{\r\n\t\t\t\ttype:Boolean,\r\n\t\t\t\tdefault:false\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tshowCover(){\r\n\t\t\t\tthis.showMenu=!this.showMenu;\r\n\t\t\t},\r\n\t\t\tloginOut(){\r\n\t\t\t\t//系统退出\r\n\t\t\t}\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tuserheader:UserHeader\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\r\n\r\n\tul{\r\n\t\tpadding: 0px;\r\n\t\tmargin: 0px;\r\n\t}\r\n\t.page-cover {\r\n\t  \r\n\t}\r\n\t.nav-list{\r\n\t\tposition: fixed;\r\n\t    top: 0;\r\n\t    bottom: 0;\r\n\t    left: -200px;\r\n\t    width: 200px;\r\n\t    background-color: #fff;\r\n\t    color: #313131;\r\n\t    transition: all .3s ease;\r\n\t    z-index: 99;\r\n\r\n\t}\r\n\t.showside {\r\n\t   transform: translateX(200px);\r\n\t}\r\n\t\r\n\r\n\r\n\t/*侧边栏列表*/\r\n\t.list-ul,.loginout{\r\n\t    margin: 0 24px;\r\n\t    border-top: 1px solid #d4d4d4;\r\n\t    overflow: hidden;\r\n\t    padding-top: 9%;\r\n\t    list-style-type: none;\r\n\t    \r\n\t}\r\n\r\n\t.list-ul>li,.loginout>li {\r\n        font-size: 14px;\r\n        font-weight: 200;\r\n        padding: 9% 0;\r\n        text-align: left;\r\n        text-indent: 1px;\r\n        line-height: 15px;\r\n        color: #7f8c8d;\r\n        display: block;\r\n        cursor: pointer;\r\n    }\r\n\r\n    .list-ul>li:active,.loginout>li:active {\r\n       background-color: darkorange;\r\n       color: red;\r\n    }\r\n\r\n\r\n\t .list-ul>li:before,.loginout>li:before{\r\n        color: #2c3e50;\r\n        margin: 0 20px;\r\n        font-size: 14px;\r\n    }\r\n\r\n    .list-ul>li:last-child {\r\n        margin-bottom: 50px;\r\n    }\r\n\r\n    .list-ul>.line{\r\n        border-top: 1px solid #d4d4d4;\r\n    }\r\n    .list-ul>a {\r\n        display: block;\r\n        color: #313131;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 20 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _UserHeader = __webpack_require__(21);
-	
-	var _UserHeader2 = _interopRequireDefault(_UserHeader);
-	
-	var _EventListener = __webpack_require__(28);
-	
-	var _EventListener2 = _interopRequireDefault(_EventListener);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// <template>
-	// 	<div class="page-cover" v-if="showMenu" @click="showCover">
-	// 	</div>
-	
-	// 	 <section id="sideBar" class="nav-list" :class="{'showside':showMenu}" >
-	// 	    <userheader></userheader>
-	//         <ul class="list-ul">
-	//         	<li v-for="item in menuItems"  :class="item.icon" v-link="{'name':item.link}" >{{item.text}}</li>
-	//         </ul>
-	//         <ul class="loginout">
-	//         	<li   class="icon-comments" v-link="{'name':comment}" >问题反馈</li>
-	//         	<li   class="icon-off" @click="loginOut">退出系统</li>
-	//         </ul>
-	//     </section>
-	// </template>
-	
-	// <script type="text/javascript">
-	
-	exports.default = {
-		created: function created() {
-			console.log("进入sidebar");
-		},
-	
-		replace: true,
-		props: {
-			menuItems: {
-				type: Array,
-				default: []
-			},
-			showMenu: {
-				type: Boolean,
-				default: false
-			}
-		},
-		methods: {
-			showCover: function showCover() {
-				this.showMenu = !this.showMenu;
-			},
-			loginOut: function loginOut() {
-				//系统退出
-			}
-		},
-		components: {
-			userheader: _UserHeader2.default
-		}
-	};
-	// </script>
-
-	// <style type="text/css" scoped>
-
-	// 	ul{
-	// 		padding: 0px;
-	// 		margin: 0px;
-	// 	}
-	// 	.page-cover {
-
-	// 	}
-	// 	.nav-list{
-	// 		position: fixed;
-	// 	    top: 0;
-	// 	    bottom: 0;
-	// 	    left: -200px;
-	// 	    width: 200px;
-	// 	    background-color: #fff;
-	// 	    color: #313131;
-	// 	    transition: all .3s ease;
-	// 	    z-index: 99;
-
-	// 	}
-	// 	.showside {
-	// 	   transform: translateX(200px);
-	// 	}
-
-	// 	/*侧边栏列表*/
-	// 	.list-ul,.loginout{
-	// 	    margin: 0 24px;
-	// 	    border-top: 1px solid #d4d4d4;
-	// 	    overflow: hidden;
-	// 	    padding-top: 9%;
-	// 	    list-style-type: none;
-
-	// 	}
-
-	// 	.list-ul>li,.loginout>li {
-	//         font-size: 14px;
-	//         font-weight: 200;
-	//         padding: 9% 0;
-	//         text-align: left;
-	//         text-indent: 1px;
-	//         line-height: 15px;
-	//         color: #7f8c8d;
-	//         display: block;
-	//         cursor: pointer;
-	//     }
-
-	//     .list-ul>li:active,.loginout>li:active {
-	//        background-color: darkorange;
-	//        color: red;
-	//     }
-
-	// 	 .list-ul>li:before,.loginout>li:before{
-	//         color: #2c3e50;
-	//         margin: 0 20px;
-	//         font-size: 14px;
-	//     }
-
-	//     .list-ul>li:last-child {
-	//         margin-bottom: 50px;
-	//     }
-
-	//     .list-ul>.line{
-	//         border-top: 1px solid #d4d4d4;
-	//     }
-	//     .list-ul>a {
-	//         display: block;
-	//         color: #313131;
-	//     }
-	// </style>
-	/* generated by vue-loader */
-
-/***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__webpack_require__(22)
-	__vue_script__ = __webpack_require__(26)
-	__vue_template__ = __webpack_require__(27)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\components\\UserHeader.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 22 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(23);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3a023664&file=UserHeader.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./UserHeader.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3a023664&file=UserHeader.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./UserHeader.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 23 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n    /*侧边栏用户信息区域*/\n    .user-info[_v-3a023664] {\n        padding: 10px;\n        font-size: 15px;\n        color: #313131;\n    }\n\n\t.nologin[_v-3a023664]{\n\t\tline-height: 30px;\n        padding-left: 10px;\n        display: -webkit-box;\n        display: -webkit-flex;\n        display: -ms-flexbox;\n        display: flex;\n        display: -webkit-flexbox;\n        -webkit-flex-flow:row nowrap;\n            -ms-flex-flow:row nowrap;\n                flex-flow:row nowrap;\n        -webkit-box-pack:justify;\n        -webkit-justify-content:space-between;\n            -ms-flex-pack:justify;\n                justify-content:space-between;\n        margin: 0px 20px;\n        -webkit-box-align:center;\n        -webkit-align-items:center;\n            -ms-flex-align:center;\n                align-items:center;\n\t}\n\n\t.nologin>span[_v-3a023664]:first-child{\n\t\twidth: 24px;\n        height: 24px;\n        content: '';\n        background: url(" + __webpack_require__(24) + ") no-repeat left center;\n      \tbackground-size: 24px 24px;\n\t}\n\n\n\n    /*//已登录*/\n    .login[_v-3a023664] {\n    \tline-height: 30px;\n        padding-left: 10px;\n        display: -webkit-box;\n        display: -webkit-flex;\n        display: -ms-flexbox;\n        display: flex;\n        display: -webkit-flexbox;\n        -webkit-flex-flow:row nowrap;\n            -ms-flex-flow:row nowrap;\n                flex-flow:row nowrap;\n        -webkit-box-pack:justify;\n        -webkit-justify-content:space-between;\n            -ms-flex-pack:justify;\n                justify-content:space-between;\n        margin: 0px 20px;\n        -webkit-box-align:center;\n        -webkit-align-items:center;\n            -ms-flex-align:center;\n                align-items:center;\n        cursor: pointer;\n    }\n\n \t.login>.avertar[_v-3a023664] {\n        width: 40px;\n        height: 40px;\n        background: url(" + __webpack_require__(25) + ") no-repeat center center;\n        background-size: 40px 40px;\n        border-radius: 20px;\n        overflow: hidden;\n    }\n\n\t.login>.avertar>img[_v-3a023664] {\n        width: 40px;\n        height: 40px;\n    }\n\n    .login>.info[_v-3a023664] {\n        margin-left: 10px;\n        overflow: hidden;\n    }\n    .login>span[_v-3a023664] {\n        width: 85px;\n        overflow: hidden;\n        white-space: nowrap;\n        text-overflow: ellipsis;\n        font-size: 12px;\n        line-height: 12px;\n        line-height: 40px;\n        \n    }\n    \n    .login>span>.lh20[_v-3a023664] {\n        line-height: 20px;\n     }\n    /*.login-yes:after {\n        display: block;\n        background: url(\"../assets/images/components/go_icon.png\") no-repeat center right;\n        background-size: 7px 7px;\n    }*/\n", "", {"version":3,"sources":["/./src/components/UserHeader.vue?8fdb6e68"],"names":[],"mappings":";IA2CA,aAAA;IACA;QACA,cAAA;QACA,gBAAA;QACA,eAAA;KACA;;CAEA;EACA,kBAAA;QACA,mBAAA;QACA,qBAAA;QAAA,sBAAA;QAAA,qBAAA;QAAA,cAAA;QACA,yBAAA;QACA,6BAAA;YAAA,yBAAA;gBAAA,qBAAA;QACA,yBAAA;QAAA,sCAAA;YAAA,sBAAA;gBAAA,8BAAA;QACA,iBAAA;QACA,yBAAA;QAAA,2BAAA;YAAA,sBAAA;gBAAA,mBAAA;EACA;;CAEA;EACA,YAAA;QACA,aAAA;QACA,YAAA;QACA,gEAAA;OACA,2BAAA;EACA;;;;IAIA,SAAA;IACA;KACA,kBAAA;QACA,mBAAA;QACA,qBAAA;QAAA,sBAAA;QAAA,qBAAA;QAAA,cAAA;QACA,yBAAA;QACA,6BAAA;YAAA,yBAAA;gBAAA,qBAAA;QACA,yBAAA;QAAA,sCAAA;YAAA,sBAAA;gBAAA,8BAAA;QACA,iBAAA;QACA,yBAAA;QAAA,2BAAA;YAAA,sBAAA;gBAAA,mBAAA;QACA,gBAAA;KACA;;EAEA;QACA,YAAA;QACA,aAAA;QACA,kEAAA;QACA,2BAAA;QACA,oBAAA;QACA,iBAAA;KACA;;CAEA;QACA,YAAA;QACA,aAAA;KACA;;IAEA;QACA,kBAAA;QACA,iBAAA;KACA;IACA;QACA,YAAA;QACA,iBAAA;QACA,oBAAA;QACA,wBAAA;QACA,gBAAA;QACA,kBAAA;QACA,kBAAA;;KAEA;;IAEA;QACA,kBAAA;MACA;IACA;;;;OAIA","file":"UserHeader.vue","sourcesContent":["<template>\r\n    <div class=\"user-info\">\r\n        <!-- 未登录 -->\r\n        <div class=\"nologin\" v-if=\"!loginname\">\r\n            <span ></span>\r\n            <span  @click=\"goEnter\"><a >登录</a></span>\r\n        </div>\r\n        <!-- 已登录 -->\r\n        <div class=\"login\" v-if=\"loginname\" @click=\"goUser\">\r\n            <div class=\"avertar\">\r\n            \t<img v-if=\"avatar_url\" :src=\"avatar_url\">\r\n            </div>\r\n            <div class=\"info\">\r\n                <span v-if=\"loginname\" v-text=\"loginname\"></span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    export default {\r\n        replace:true,\r\n        data () {\r\n            return {\r\n                // loginname: localStorage.loginname || \"\",\r\n                // avatar_url: localStorage.avatar_url || \"\"\r\n                loginname:\"张三\",\r\n                avatar_url:''\r\n            }\r\n        },\r\n        methods:{\r\n            goEnter (){\r\n                var link = '/login?redirect='+ encodeURIComponent(this.$route.path);\r\n                this.$route.router.go(link);\r\n            },\r\n            goUser (){\r\n                this.$route.router.go({name:'userinfo',params:{loginname:this.loginname}});\r\n            }\r\n        }\r\n    }\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n    /*侧边栏用户信息区域*/\r\n    .user-info {\r\n        padding: 10px;\r\n        font-size: 15px;\r\n        color: #313131;\r\n    }\r\n\r\n\t.nologin{\r\n\t\tline-height: 30px;\r\n        padding-left: 10px;\r\n        display: flex;\r\n        display: -webkit-flexbox;\r\n        flex-flow:row nowrap;\r\n        justify-content:space-between;\r\n        margin: 0px 20px;\r\n        align-items:center;\r\n\t}\r\n\r\n\t.nologin>span:first-child{\r\n\t\twidth: 24px;\r\n        height: 24px;\r\n        content: '';\r\n        background: url(\"../assets/images/components/login_icon.png\") no-repeat left center;\r\n      \tbackground-size: 24px 24px;\r\n\t}\r\n\r\n\r\n\r\n    /*//已登录*/\r\n    .login {\r\n    \tline-height: 30px;\r\n        padding-left: 10px;\r\n        display: flex;\r\n        display: -webkit-flexbox;\r\n        flex-flow:row nowrap;\r\n        justify-content:space-between;\r\n        margin: 0px 20px;\r\n        align-items:center;\r\n        cursor: pointer;\r\n    }\r\n\r\n \t.login>.avertar {\r\n        width: 40px;\r\n        height: 40px;\r\n        background: url(\"../assets/images/components/user.png\") no-repeat center center;\r\n        background-size: 40px 40px;\r\n        border-radius: 20px;\r\n        overflow: hidden;\r\n    }\r\n\r\n\t.login>.avertar>img {\r\n        width: 40px;\r\n        height: 40px;\r\n    }\r\n\r\n    .login>.info {\r\n        margin-left: 10px;\r\n        overflow: hidden;\r\n    }\r\n    .login>span {\r\n        width: 85px;\r\n        overflow: hidden;\r\n        white-space: nowrap;\r\n        text-overflow: ellipsis;\r\n        font-size: 12px;\r\n        line-height: 12px;\r\n        line-height: 40px;\r\n        \r\n    }\r\n    \r\n    .login>span>.lh20 {\r\n        line-height: 20px;\r\n     }\r\n    /*.login-yes:after {\r\n        display: block;\r\n        background: url(\"../assets/images/components/go_icon.png\") no-repeat center right;\r\n        background-size: 7px 7px;\r\n    }*/\r\n</style>"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 24 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "login_icon.png?76c0f3299044482b9c022de20671e5a5";
-
-/***/ },
-/* 25 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "user.png?f95d81473c5e661b988fb30f31e36621";
-
-/***/ },
-/* 26 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	// <template>
-	//     <div class="user-info">
-	//         <!-- 未登录 -->
-	//         <div class="nologin" v-if="!loginname">
-	//             <span ></span>
-	//             <span  @click="goEnter"><a >登录</a></span>
-	//         </div>
-	//         <!-- 已登录 -->
-	//         <div class="login" v-if="loginname" @click="goUser">
-	//             <div class="avertar">
-	//             	<img v-if="avatar_url" :src="avatar_url">
-	//             </div>
-	//             <div class="info">
-	//                 <span v-if="loginname" v-text="loginname"></span>
-	//             </div>
-	//         </div>
-	//     </div>
-	// </template>
-	
-	// <script>
-	exports.default = {
-	    replace: true,
-	    data: function data() {
-	        return {
-	            // loginname: localStorage.loginname || "",
-	            // avatar_url: localStorage.avatar_url || ""
-	            loginname: "张三",
-	            avatar_url: ''
-	        };
-	    },
-	
-	    methods: {
-	        goEnter: function goEnter() {
-	            var link = '/login?redirect=' + encodeURIComponent(this.$route.path);
-	            this.$route.router.go(link);
-	        },
-	        goUser: function goUser() {
-	            this.$route.router.go({ name: 'userinfo', params: { loginname: this.loginname } });
-	        }
-	    }
-	};
-	// </script>
-
-	// <style type="text/css" scoped>
-	//     /*侧边栏用户信息区域*/
-	//     .user-info {
-	//         padding: 10px;
-	//         font-size: 15px;
-	//         color: #313131;
-	//     }
-
-	// 	.nologin{
-	// 		line-height: 30px;
-	//         padding-left: 10px;
-	//         display: flex;
-	//         display: -webkit-flexbox;
-	//         flex-flow:row nowrap;
-	//         justify-content:space-between;
-	//         margin: 0px 20px;
-	//         align-items:center;
-	// 	}
-
-	// 	.nologin>span:first-child{
-	// 		width: 24px;
-	//         height: 24px;
-	//         content: '';
-	//         background: url("../assets/images/components/login_icon.png") no-repeat left center;
-	//       	background-size: 24px 24px;
-	// 	}
-
-	//     /*//已登录*/
-	//     .login {
-	//     	line-height: 30px;
-	//         padding-left: 10px;
-	//         display: flex;
-	//         display: -webkit-flexbox;
-	//         flex-flow:row nowrap;
-	//         justify-content:space-between;
-	//         margin: 0px 20px;
-	//         align-items:center;
-	//         cursor: pointer;
-	//     }
-
-	//  	.login>.avertar {
-	//         width: 40px;
-	//         height: 40px;
-	//         background: url("../assets/images/components/user.png") no-repeat center center;
-	//         background-size: 40px 40px;
-	//         border-radius: 20px;
-	//         overflow: hidden;
-	//     }
-
-	// 	.login>.avertar>img {
-	//         width: 40px;
-	//         height: 40px;
-	//     }
-
-	//     .login>.info {
-	//         margin-left: 10px;
-	//         overflow: hidden;
-	//     }
-	//     .login>span {
-	//         width: 85px;
-	//         overflow: hidden;
-	//         white-space: nowrap;
-	//         text-overflow: ellipsis;
-	//         font-size: 12px;
-	//         line-height: 12px;
-	//         line-height: 40px;
-
-	//     }
-
-	//     .login>span>.lh20 {
-	//         line-height: 20px;
-	//      }
-	//     /*.login-yes:after {
-	//         display: block;
-	//         background: url("../assets/images/components/go_icon.png") no-repeat center right;
-	//         background-size: 7px 7px;
-	//     }*/
-	// </style>
-	/* generated by vue-loader */
-
-/***/ },
-/* 27 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<div class=\"user-info\" _v-3a023664=\"\">\n    <!-- 未登录 -->\n    <div class=\"nologin\" v-if=\"!loginname\" _v-3a023664=\"\">\n        <span _v-3a023664=\"\"></span>\n        <span @click=\"goEnter\" _v-3a023664=\"\"><a _v-3a023664=\"\">登录</a></span>\n    </div>\n    <!-- 已登录 -->\n    <div class=\"login\" v-if=\"loginname\" @click=\"goUser\" _v-3a023664=\"\">\n        <div class=\"avertar\" _v-3a023664=\"\">\n        \t<img v-if=\"avatar_url\" :src=\"avatar_url\" _v-3a023664=\"\">\n        </div>\n        <div class=\"info\" _v-3a023664=\"\">\n            <span v-if=\"loginname\" v-text=\"loginname\" _v-3a023664=\"\"></span>\n        </div>\n    </div>\n</div>\n";
-
-/***/ },
-/* 28 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var EventListener = {
-	  /**
-	   * Listen to DOM events during the bubble phase.
-	   *
-	   * @param {DOMEventTarget} target DOM element to register listener on.
-	   * @param {string} eventType Event type, e.g. 'click' or 'mouseover'.
-	   * @param {function} callback Callback function.
-	   * @return {object} Object with a `remove` method.
-	   */
-	
-	  listen: function listen(target, eventType, callback) {
-	    if (target.addEventListener) {
-	      target.addEventListener(eventType, callback, false);
-	      return {
-	        remove: function remove() {
-	          target.removeEventListener(eventType, callback, false);
-	        }
-	      };
-	    } else if (target.attachEvent) {
-	      target.attachEvent('on' + eventType, callback);
-	      return {
-	        remove: function remove() {
-	          target.detachEvent('on' + eventType, callback);
-	        }
-	      };
-	    }
-	  }
-	};
-	
-	exports.default = EventListener;
-
-/***/ },
-/* 29 */
-/***/ function(module, exports) {
-
-	module.exports = "\n\t<div class=\"page-cover\" v-if=\"showMenu\" @click=\"showCover\" _v-29364ee0=\"\">\n\t</div>\n\n\t <section id=\"sideBar\" class=\"nav-list\" :class=\"{'showside':showMenu}\" _v-29364ee0=\"\">\n\t    <userheader _v-29364ee0=\"\"></userheader>\n        <ul class=\"list-ul\" _v-29364ee0=\"\">\n        \t<li v-for=\"item in menuItems\" :class=\"item.icon\" v-link=\"{'name':item.link}\" _v-29364ee0=\"\">{{item.text}}</li>\n        </ul>\n        <ul class=\"loginout\" _v-29364ee0=\"\">\n        \t<li class=\"icon-comments\" v-link=\"{'name':comment}\" _v-29364ee0=\"\">问题反馈</li>\n        \t<li class=\"icon-off\" @click=\"loginOut\" _v-29364ee0=\"\">退出系统</li>\n        </ul>\n    </section>\n";
-
-/***/ },
-/* 30 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__webpack_require__(31)
-	__vue_script__ = __webpack_require__(33)
-	__vue_template__ = __webpack_require__(34)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Tabs.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 31 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(32);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-5d2ac0ac&file=Tabs.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tabs.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-5d2ac0ac&file=Tabs.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tabs.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 32 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n\n.tabs[_v-5d2ac0ac]{\n    min-height: 35px;\n    height: 100%;\n    width: 100%;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n    -webkit-flex-direction:column;\n        -ms-flex-direction:column;\n            flex-direction:column;\n}\n\n.nav-tabs[_v-5d2ac0ac]{\n   min-height: 35px;\n   height: 35px;\n   width: 100%;\n}\n\n.tabs_title[_v-5d2ac0ac] {\n    display: -ms-flexbox;\n    display: -webkit-box;\n    display: flex;\n    display: -webkit-flex;\n    -webkit-flex-flow: row nowrap;\n        -ms-flex-flow: row nowrap;\n            flex-flow: row nowrap;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            -webkit-box-align: center;\n            align-items: center;\n    -webkit-align-content: center;\n        -ms-flex-line-pack: center;\n            align-content: center;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n\n    -webkit-justify-content: space-around;\n    -webkit-flex-flow: row nowrap;\n    -webkit-align-items: center;\n    -webkit-align-content: center;\n\n    list-style-type: none;\n    line-height: 35px;\n    border-bottom: 1px solid whitesmoke;\n    font-size: 14px;\n    font-weight: bold;\n    width: 100%;\n}\n\n\n.tabs_title>li[_v-5d2ac0ac] {\n  min-width: 100px;\n  text-align: center;\n  vertical-align: middle;\n  cursor: pointer;\n}\n\n.nav_active[_v-5d2ac0ac] {\n  color: darkorange;\n}\n\n\n#tabs_line[_v-5d2ac0ac] {\n  height: 3px;\n  margin: 0px 10px;\n  margin-top: -3px;\n  background-color: darkorange;\n  -webkit-transition: -webkit-transform .3s ease;\n  transition: -webkit-transform .3s ease;\n  transition: transform .3s ease;\n  transition: transform .3s ease, -webkit-transform .3s ease;\n  -moz-transition: transform .3s ease;/* Firefox 4 */\n  -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n  -o-transition: transform .3s ease; /* Opera */\n  width: 0px;\n}\n\n.tab-content[_v-5d2ac0ac]{\n    overflow: hidden;\n    /*-webkit-overflow-scrolling: touch;*/\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    height: 100%;\n    -webkit-flex-flow:row nowrap;\n        -ms-flex-flow:row nowrap;\n            flex-flow:row nowrap;\n}\n", "", {"version":3,"sources":["/./src/components/Tabs.vue?318da3e0"],"names":[],"mappings":";;AAiFA;IACA,iBAAA;IACA,aAAA;IACA,YAAA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,4BAAA;IAAA,6BAAA;IAAA,8BAAA;QAAA,0BAAA;YAAA,sBAAA;CACA;;AAEA;GACA,iBAAA;GACA,aAAA;GACA,YAAA;CACA;;AAEA;IACA,qBAAA;IACA,qBAAA;IAAA,cAAA;IACA,sBAAA;IACA,8BAAA;QACA,0BAAA;YACA,sBAAA;IACA,4BAAA;QACA,uBAAA;YACA,0BAAA;YAAA,oBAAA;IACA,8BAAA;QACA,2BAAA;YACA,sBAAA;IACA,0BAAA;QACA,8BAAA;;IAEA,sCAAA;IACA,8BAAA;IACA,4BAAA;IACA,8BAAA;;IAEA,sBAAA;IACA,kBAAA;IACA,oCAAA;IACA,gBAAA;IACA,kBAAA;IACA,YAAA;CACA;;;AAGA;EACA,iBAAA;EACA,mBAAA;EACA,uBAAA;EACA,gBAAA;CACA;;AAEA;EACA,kBAAA;CACA;;;AAGA;EACA,YAAA;EACA,iBAAA;EACA,iBAAA;EACA,6BAAA;EACA,+CAAA;EAAA,uCAAA;EAAA,+BAAA;EAAA,2DAAA;EACA,oCAAA,eAAA;EACA,uCAAA,CAAA,qBAAA;EACA,kCAAA,CAAA,WAAA;EACA,WAAA;CACA;;AAEA;IACA,iBAAA;IACA,sCAAA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,aAAA;IACA,6BAAA;QAAA,yBAAA;YAAA,qBAAA;CACA","file":"Tabs.vue","sourcesContent":["<template>\r\n \r\n  <section class=\"tabs\" v-touch:swipeleft.stop.prevent=\"swipeLeft\" v-touch:swiperight.stop.prevent=\"swipeRight()\" role=\"tablist\">\r\n    <section class=\"nav-tabs\">\r\n        <ul class=\"tabs_title\">\r\n            <li v-for=\"item in tabItems\" :style=\"{ width:underline+ 'px' }\"\r\n            :class=\"{'nav_active':activeIndex===$index}\" \r\n            v-touch:tap=\"switchTab($index)\" \r\n             >{{item.header}}</li>\r\n        </ul>\r\n        <section id=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\">\r\n        </section>\r\n    </section>\r\n      <!-- Tab panes -->\r\n    <section class=\"tab-content\">\r\n        <slot></slot>\r\n    </section>\r\n  </section>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    ready(){\r\n        var width=  document.body.offsetWidth-20;\r\n        this.underline=width/this.tabItems.length;\r\n        this.switchTab(this.activeIndex);\r\n    },\r\n    props:{\r\n      effect: {\r\n        type: String,\r\n        default: 'fadein'\r\n      },\r\n      activeIndex:{\r\n        type: Number,\r\n        default: 0\r\n      }\r\n    },\r\n    data(){\r\n      return {\r\n        //当前选中的tab页面\r\n        underline:100,\r\n        tabItems:[]\r\n      }\r\n    },\r\n    methods:{\r\n      //点击tabs\r\n      switchTab(index){\r\n\r\n        this.activeIndex=index;\r\n        var leftWidth=index*this.underline;\r\n        // this.$el.getElementById('tabs_line').style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n        document.getElementById('tabs_line').style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n      },\r\n      swipeLeft(){\r\n         \r\n          var tempIndex=this.activeIndex;\r\n          var tabLength=this.tabItems.length-1;\r\n          if(tempIndex==tabLength){\r\n            tempIndex=tabLength;\r\n          }else{\r\n            tempIndex=this.activeIndex+1;\r\n          }\r\n          this.activeIndex=tempIndex;\r\n          this.switchTab(tempIndex);\r\n      },\r\n      swipeRight(){\r\n          var tempIndex=this.activeIndex;\r\n          var tempIndex=this.activeIndex-1;\r\n          if(tempIndex<0){\r\n            tempIndex=0;\r\n          }\r\n          this.activeIndex=tempIndex;\r\n          this.switchTab(tempIndex);\r\n      }\r\n    }\r\n  }\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" scoped>\r\n    \r\n    .tabs{\r\n        min-height: 35px;\r\n        height: 100%;\r\n        width: 100%;\r\n        display: flex;\r\n        flex-direction:column;\r\n    }\r\n\r\n    .nav-tabs{\r\n       min-height: 35px;\r\n       height: 35px;\r\n       width: 100%;\r\n    }\r\n    \r\n    .tabs_title {\r\n        display: -ms-flexbox;\r\n        display: flex;\r\n        display: -webkit-flex;\r\n        -webkit-flex-flow: row nowrap;\r\n            -ms-flex-flow: row nowrap;\r\n                flex-flow: row nowrap;\r\n        -webkit-align-items: center;\r\n            -ms-flex-align: center;\r\n                align-items: center;\r\n        -webkit-align-content: center;\r\n            -ms-flex-line-pack: center;\r\n                align-content: center;\r\n        -ms-flex-pack: distribute;\r\n            justify-content: space-around;\r\n\r\n        -webkit-justify-content: space-around;\r\n        -webkit-flex-flow: row nowrap;\r\n        -webkit-align-items: center;\r\n        -webkit-align-content: center;\r\n\r\n        list-style-type: none;\r\n        line-height: 35px;\r\n        border-bottom: 1px solid whitesmoke;\r\n        font-size: 14px;\r\n        font-weight: bold;\r\n        width: 100%;\r\n    }\r\n    \r\n    \r\n    .tabs_title>li {\r\n      min-width: 100px;\r\n      text-align: center;\r\n      vertical-align: middle;\r\n      cursor: pointer;\r\n    }\r\n    \r\n    .nav_active {\r\n      color: darkorange;\r\n    }\r\n\r\n    \r\n    #tabs_line {\r\n      height: 3px;\r\n      margin: 0px 10px;\r\n      margin-top: -3px;\r\n      background-color: darkorange;\r\n      transition: transform .3s ease;\r\n      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n      -o-transition: transform .3s ease; /* Opera */\r\n      width: 0px;\r\n    }\r\n\r\n    .tab-content{\r\n        overflow: hidden;\r\n        /*-webkit-overflow-scrolling: touch;*/\r\n        display: flex;\r\n        height: 100%;\r\n        flex-flow:row nowrap;\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 33 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	// <template>
-	
-	//   <section class="tabs" v-touch:swipeleft.stop.prevent="swipeLeft" v-touch:swiperight.stop.prevent="swipeRight()" role="tablist">
-	//     <section class="nav-tabs">
-	//         <ul class="tabs_title">
-	//             <li v-for="item in tabItems" :style="{ width:underline+ 'px' }"
-	//             :class="{'nav_active':activeIndex===$index}"
-	//             v-touch:tap="switchTab($index)"
-	//              >{{item.header}}</li>
-	//         </ul>
-	//         <section id="tabs_line" v-bind:style="{ width:underline+ 'px' }">
-	//         </section>
-	//     </section>
-	//       <!-- Tab panes -->
-	//     <section class="tab-content">
-	//         <slot></slot>
-	//     </section>
-	//   </section>
-	// </template>
-	
-	// <script>
-	exports.default = {
-	  ready: function ready() {
-	    var width = document.body.offsetWidth - 20;
-	    this.underline = width / this.tabItems.length;
-	    this.switchTab(this.activeIndex);
-	  },
-	
-	  props: {
-	    effect: {
-	      type: String,
-	      default: 'fadein'
-	    },
-	    activeIndex: {
-	      type: Number,
-	      default: 0
-	    }
-	  },
-	  data: function data() {
-	    return {
-	      //当前选中的tab页面
-	      underline: 100,
-	      tabItems: []
-	    };
-	  },
-	
-	  methods: {
-	    //点击tabs
-	
-	    switchTab: function switchTab(index) {
-	
-	      this.activeIndex = index;
-	      var leftWidth = index * this.underline;
-	      // this.$el.getElementById('tabs_line').style.transform="translateX("+leftWidth+"px)";
-	      document.getElementById('tabs_line').style.transform = "translateX(" + leftWidth + "px)";
-	    },
-	    swipeLeft: function swipeLeft() {
-	
-	      var tempIndex = this.activeIndex;
-	      var tabLength = this.tabItems.length - 1;
-	      if (tempIndex == tabLength) {
-	        tempIndex = tabLength;
-	      } else {
-	        tempIndex = this.activeIndex + 1;
-	      }
-	      this.activeIndex = tempIndex;
-	      this.switchTab(tempIndex);
-	    },
-	    swipeRight: function swipeRight() {
-	      var tempIndex = this.activeIndex;
-	      var tempIndex = this.activeIndex - 1;
-	      if (tempIndex < 0) {
-	        tempIndex = 0;
-	      }
-	      this.activeIndex = tempIndex;
-	      this.switchTab(tempIndex);
-	    }
-	  }
-	};
-	// </script>
-
-	// <style type="text/css" scoped>
-
-	//     .tabs{
-	//         min-height: 35px;
-	//         height: 100%;
-	//         width: 100%;
-	//         display: flex;
-	//         flex-direction:column;
-	//     }
-
-	//     .nav-tabs{
-	//        min-height: 35px;
-	//        height: 35px;
-	//        width: 100%;
-	//     }
-
-	//     .tabs_title {
-	//         display: -ms-flexbox;
-	//         display: flex;
-	//         display: -webkit-flex;
-	//         -webkit-flex-flow: row nowrap;
-	//             -ms-flex-flow: row nowrap;
-	//                 flex-flow: row nowrap;
-	//         -webkit-align-items: center;
-	//             -ms-flex-align: center;
-	//                 align-items: center;
-	//         -webkit-align-content: center;
-	//             -ms-flex-line-pack: center;
-	//                 align-content: center;
-	//         -ms-flex-pack: distribute;
-	//             justify-content: space-around;
-
-	//         -webkit-justify-content: space-around;
-	//         -webkit-flex-flow: row nowrap;
-	//         -webkit-align-items: center;
-	//         -webkit-align-content: center;
-
-	//         list-style-type: none;
-	//         line-height: 35px;
-	//         border-bottom: 1px solid whitesmoke;
-	//         font-size: 14px;
-	//         font-weight: bold;
-	//         width: 100%;
-	//     }
-
-	//     .tabs_title>li {
-	//       min-width: 100px;
-	//       text-align: center;
-	//       vertical-align: middle;
-	//       cursor: pointer;
-	//     }
-
-	//     .nav_active {
-	//       color: darkorange;
-	//     }
-
-	//     #tabs_line {
-	//       height: 3px;
-	//       margin: 0px 10px;
-	//       margin-top: -3px;
-	//       background-color: darkorange;
-	//       transition: transform .3s ease;
-	//       -moz-transition: transform .3s ease;/* Firefox 4 */
-	//       -webkit-transition: transform .3s ease; /* Safari 和 Chrome */
-	//       -o-transition: transform .3s ease; /* Opera */
-	//       width: 0px;
-	//     }
-
-	//     .tab-content{
-	//         overflow: hidden;
-	//         /*-webkit-overflow-scrolling: touch;*/
-	//         display: flex;
-	//         height: 100%;
-	//         flex-flow:row nowrap;
-	//     }
-	// </style>
-	/* generated by vue-loader */
-
-/***/ },
-/* 34 */
-/***/ function(module, exports) {
-
-	module.exports = "\n\n<section class=\"tabs\" v-touch:swipeleft.stop.prevent=\"swipeLeft\" v-touch:swiperight.stop.prevent=\"swipeRight()\" role=\"tablist\" _v-5d2ac0ac=\"\">\n  <section class=\"nav-tabs\" _v-5d2ac0ac=\"\">\n      <ul class=\"tabs_title\" _v-5d2ac0ac=\"\">\n          <li v-for=\"item in tabItems\" :style=\"{ width:underline+ 'px' }\" :class=\"{'nav_active':activeIndex===$index}\" v-touch:tap=\"switchTab($index)\" _v-5d2ac0ac=\"\">{{item.header}}</li>\n      </ul>\n      <section id=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\" _v-5d2ac0ac=\"\">\n      </section>\n  </section>\n    <!-- Tab panes -->\n  <section class=\"tab-content\" _v-5d2ac0ac=\"\">\n      <slot _v-5d2ac0ac=\"\"></slot>\n  </section>\n</section>\n";
-
-/***/ },
-/* 35 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__webpack_require__(36)
-	__vue_script__ = __webpack_require__(38)
-	__vue_template__ = __webpack_require__(39)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Tab.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 36 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(37);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-48b39499&file=Tab.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tab.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-48b39499&file=Tab.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tab.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 37 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n.tab-content > .tab-pane[_v-48b39499] {\n   overflow: auto;\n  -webkit-overflow-scrolling: touch;\n \n  display: -webkit-box;\n \n  display: -webkit-flex;\n \n  display: -ms-flexbox;\n \n  display: flex;\n \n  -webkit-box-flex: 0;\n \n  -webkit-flex: 0 1 auto;\n \n      -ms-flex: 0 1 auto;\n \n          flex: 0 1 auto;\n  margin: 0px;\n  padding: 0px;\n  width: 100%;\n  /*height: 100%;*/\n\n  -webkit-flex-flow: column nowrap;\n\n      -ms-flex-flow: column nowrap;\n\n          flex-flow: column nowrap;\n  /*flex-flow:column nowrap;*/\n}\n", "", {"version":3,"sources":["/./src/components/Tab.vue?3d19d7ed"],"names":[],"mappings":";AA0DA;GACA,eAAA;EACA,kCAAA;;EAEA,qBAAA;;EAAA,sBAAA;;EAAA,qBAAA;;EAAA,cAAA;;EAEA,oBAAA;;EAAA,uBAAA;;MAAA,mBAAA;;UAAA,eAAA;EACA,YAAA;EACA,aAAA;EACA,YAAA;EACA,iBAAA;;EAEA,iCAAA;;MAAA,6BAAA;;UAAA,yBAAA;EACA,4BAAA;CACA","file":"Tab.vue","sourcesContent":["<template>\r\n    <div role=\"tabpanel\" class=\"tab-pane\"\r\n        v-bind:class=\"{hide:!show}\"\r\n        v-show=\"show\"\r\n        :transition=\"transition\"\r\n    >\r\n    <slot></slot>\r\n  </div>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    props: {\r\n      header: {\r\n        type: String\r\n      },\r\n      disabled: {\r\n        type: Boolean,\r\n        default: false\r\n      }\r\n    },\r\n    data() {\r\n      return {\r\n        index: 0,\r\n        show: false\r\n      }\r\n    },\r\n    computed: {\r\n      show() {\r\n        return (this.$parent.activeIndex == this.index);\r\n      },\r\n      transition() {\r\n        return this.$parent.effect\r\n      }\r\n    },\r\n    created() {\r\n       console.log(\"进入tabItem created\")\r\n      \r\n        this.$parent.tabItems.push({\r\n          header: this.header,\r\n          disabled: this.disabled\r\n        })\r\n    },\r\n    ready() {\r\n       console.log(\"进入tabItem ready\")\r\n        for (var c in this.$parent.$children)\r\n        {\r\n            if (this.$parent.$children[c].$el == this.$el)\r\n            {\r\n                this.index= c;\r\n                break;\r\n            }\r\n        }\r\n    }\r\n  }\r\n</script>\r\n\r\n<style scoped>\r\n  .tab-content > .tab-pane {\r\n     overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n   \r\n    display: flex;\r\n   \r\n    flex: 0 1 auto;\r\n    margin: 0px;\r\n    padding: 0px;\r\n    width: 100%;\r\n    /*height: 100%;*/\r\n\r\n    flex-flow: column nowrap;\r\n    /*flex-flow:column nowrap;*/\r\n  }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 38 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	// <template>
-	//     <div role="tabpanel" class="tab-pane"
-	//         v-bind:class="{hide:!show}"
-	//         v-show="show"
-	//         :transition="transition"
-	//     >
-	//     <slot></slot>
-	//   </div>
-	// </template>
-	
-	// <script>
-	exports.default = {
-	  props: {
-	    header: {
-	      type: String
-	    },
-	    disabled: {
-	      type: Boolean,
-	      default: false
-	    }
-	  },
-	  data: function data() {
-	    return {
-	      index: 0,
-	      show: false
-	    };
-	  },
-	
-	  computed: {
-	    show: function show() {
-	      return this.$parent.activeIndex == this.index;
-	    },
-	    transition: function transition() {
-	      return this.$parent.effect;
-	    }
-	  },
-	  created: function created() {
-	    console.log("进入tabItem created");
-	
-	    this.$parent.tabItems.push({
-	      header: this.header,
-	      disabled: this.disabled
-	    });
-	  },
-	  ready: function ready() {
-	    console.log("进入tabItem ready");
-	    for (var c in this.$parent.$children) {
-	      if (this.$parent.$children[c].$el == this.$el) {
-	        this.index = c;
-	        break;
-	      }
-	    }
-	  }
-	};
-	// </script>
-
-	// <style scoped>
-	//   .tab-content > .tab-pane {
-	//      overflow: auto;
-	//     -webkit-overflow-scrolling: touch;
-
-	//     display: flex;
-
-	//     flex: 0 1 auto;
-	//     margin: 0px;
-	//     padding: 0px;
-	//     width: 100%;
-	//     /*height: 100%;*/
-
-	//     flex-flow: column nowrap;
-	//     /*flex-flow:column nowrap;*/
-	//   }
-	// </style>
-
-	/* generated by vue-loader */
-
-/***/ },
-/* 39 */
-/***/ function(module, exports) {
-
-	module.exports = "\n  <div role=\"tabpanel\" class=\"tab-pane\" v-bind:class=\"{hide:!show}\" v-show=\"show\" :transition=\"transition\" _v-48b39499=\"\">\n  <slot _v-48b39499=\"\"></slot>\n</div>\n";
-
-/***/ },
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
 /* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -14283,7 +13086,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n\t/*list集合*/\n\t.pull-list{\n\t  \t/*min-height: 300px;*/\n\t   \t/*height: 100%;*/\n        height: 100%;\n        width: 100%;\n        padding: 0px 0px;\n        background-color: whitesmoke;\n\t}\n\n\t.pull-content{\n\t\toverflow: auto;\n    \t-webkit-overflow-scrolling: touch;\n\t    height: 100%;\n\t    padding: 0px;\n\t    margin: 0px;\n\t    background-color: white;\n\t    /*width: 100%;*/\n\t}\n\t\n\t.display-transition{\n\t    text-align: center;\n        /*margin: 10px 0px;*/\n        width: 100%;\n        vertical-align: middle;\n        height: 60px;\n        /*transform:translateY(100px);*/\n        /*padding: 10px 0px;*/\n\t}\n\n\t.display-enter,.display-leave{\n\t\theight:0px;\n\t}\n\n\t\n\t.pull-header img\n\t{\n\t\t -webkit-transition: -webkit-transform .3s ease;\n\t\t transition: -webkit-transform .3s ease;\n\t\t transition: transform .3s ease;\n\t\t transition: transform .3s ease, -webkit-transform .3s ease;\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n\t      -o-transition: transform .3s ease; /* Opera */\n\t}\n\n\t.imgshow{\n        display: inline-block;\n    }\n    .content{\n        display: inline-block;\n        font-size: 12px;\n    }\n\n\t .content>p{\n            margin: 4px;\n    }\n\n\t\n", "", {"version":3,"sources":["/./src/components/List.vue?7986d34a"],"names":[],"mappings":";;CAgGA,UAAA;CACA;IACA,sBAAA;KACA,iBAAA;QACA,aAAA;QACA,YAAA;QACA,iBAAA;QACA,6BAAA;EACA;;CAEA;EACA,eAAA;KACA,kCAAA;KACA,aAAA;KACA,aAAA;KACA,YAAA;KACA,wBAAA;KACA,gBAAA;EACA;;CAEA;KACA,mBAAA;QACA,qBAAA;QACA,YAAA;QACA,uBAAA;QACA,aAAA;QACA,gCAAA;QACA,sBAAA;EACA;;CAEA;EACA,WAAA;EACA;;;CAGA;;GAEA,+CAAA;GAAA,uCAAA;GAAA,+BAAA;GAAA,2DAAA;OACA,oCAAA,eAAA;OACA,uCAAA,CAAA,qBAAA;OACA,kCAAA,CAAA,WAAA;EACA;;CAEA;QACA,sBAAA;KACA;IACA;QACA,sBAAA;QACA,gBAAA;KACA;;EAEA;YACA,YAAA;KACA","file":"List.vue","sourcesContent":["<!-- 下拉刷新组件 -->\r\n<template>\r\n\t<section class=\"pull-list\" v-touch:pandown.stop.prevent=\"pullToRefresh\"  v-touch:panend=\"panleave\"   >\r\n\t\t<header class=\"pull-header\" v-show=\"showheader\" transition=\"display\">\r\n\t\t\t<div class=\"imgshow\">\r\n                <img src=\"../assets/images/components/icon-down.png\" alt=\"下拉\">\r\n            </div>\r\n            <div class=\"content\">\r\n                <p>{{refreshText}}</p>\r\n                <p>最后更新:{{rlastTime}}</p>\r\n            </div>\r\n\t\t</header>\r\n\t\t<ul class=\"pull-content\"  v-on:scroll.stop.prevent=\"scroll($event)\" v-el:listContent>\r\n\t\t\t<slot></slot>\r\n\t\t</ul>\r\n\t\t<footer class=\"pull-footer\" v-show=\"showfooter\">\r\n\t\t\t<div @click=\"loadMore($event)\" >点击加载更多</div>\r\n\t\t</footer>\r\n\t</section>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\r\n\timport dateHelper from './utils/DateHelper.js'\r\n\r\n\texport default {\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\trlastTime:'',\r\n\t\t\t\trefreshText:'下拉刷新',\r\n\t\t\t\t//是否触发事件\r\n\t\t\t\tisRefresh:false,\r\n\t\t\t\t//是否显示底部加载更多\r\n\t\t\t\tshowheader:false,\r\n\t\t\t\tshowfooter:false,\r\n\t\t\t\t//滚动条是否在顶部\r\n\t\t\t\ttop:0\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\r\n\t\t\tmove(height){\r\n\t\t\t\tvar list=this.$el;\r\n\t\t\t\t//获取角度\r\n\t\t\t\tvar rotateHeight=height<60?height*3:180;\r\n\t\t\t\tlist.style.transform=\"translateY(\"+height+\"px)\";\r\n\t\t\t\tvar img=list.querySelectorAll('header')[0].querySelectorAll('img')[0];\r\n\t\t\t\timg.style.transform=\"rotate(\"+rotateHeight+\"deg)\"\r\n\t\t\t},\r\n\t\t\t//检查是否滚动到底部,滚动到底部触发上拉加载更多的事件\r\n\t\t\tscroll(e){\r\n\r\n\t\t\t\tthis.top=e.target.scrollTop;\r\n\t\t\t\tconsole.log(\"可见区域的高度：\"+this.regionHeight+\"-总高度：\"+this.winHeight);\r\n\t\t\t\tconsole.log(\"滚动的高度:\"+this.top);\r\n\t\t\t\tif(this.top+this.regionHeight>=this.winHeight){\r\n\t\t\t\t\tthis.isBottom=true;\r\n\t\t\t\t}else{\r\n\t\t\t\t\tthis.isBottom=false;\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\tpanleave(e){\r\n\t\t\t\tthis.move(0);\r\n\t\t\t\tthis.showheader=false;\r\n\t\t\t\tthis.refreshText=\"下拉刷新\";\r\n\t\t\t\t//得到当前的时间\r\n\t\t\t\tif(this.isRefresh){\r\n\t\t\t\t\tthis.isRefresh=false;\r\n\t\t\t\t\tthis.rlastTime=dateHelper.getNowDate(\"yyyy-MM-dd HH:mm:ss\");\r\n\t\t\t\t\tthis.$emit('reload');\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t// 下拉刷新事件\r\n\t\t\tpullToRefresh(e){\r\n\t\t\t\tif(this.top==0){\r\n\t\t\t\t\te.preventDefault();\r\n\t\t\t\t \tvar distance=e.distance;\r\n\t\t\t\t \tthis.showheader=true;\r\n\t\t\t\t \tthis.move(distance);\r\n\t\t\t\t \tif(distance>90){\r\n\t\t\t\t\t\tthis.refreshText=\"松开后刷新\";\r\n\t\t\t\t \t\tthis.isRefresh=true;\r\n\t\t\t\t \t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t//加载更多\r\n\t\t\tloadMore(e){\r\n\t\t\t\tthis.$dispatch('loadmore',e);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style >\r\n\r\n\t/*list集合*/\r\n\t.pull-list{\r\n\t  \t/*min-height: 300px;*/\r\n\t   \t/*height: 100%;*/\r\n        height: 100%;\r\n        width: 100%;\r\n        padding: 0px 0px;\r\n        background-color: whitesmoke;\r\n\t}\r\n\r\n\t.pull-content{\r\n\t\toverflow: auto;\r\n    \t-webkit-overflow-scrolling: touch;\r\n\t    height: 100%;\r\n\t    padding: 0px;\r\n\t    margin: 0px;\r\n\t    background-color: white;\r\n\t    /*width: 100%;*/\r\n\t}\r\n\t\r\n\t.display-transition{\r\n\t    text-align: center;\r\n        /*margin: 10px 0px;*/\r\n        width: 100%;\r\n        vertical-align: middle;\r\n        height: 60px;\r\n        /*transform:translateY(100px);*/\r\n        /*padding: 10px 0px;*/\r\n\t}\r\n\r\n\t.display-enter,.display-leave{\r\n\t\theight:0px;\r\n\t}\r\n\r\n\t\r\n\t.pull-header img\r\n\t{\r\n\t\t transition: transform .3s ease;\r\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n\t      -o-transition: transform .3s ease; /* Opera */\r\n\t}\r\n\r\n\t.imgshow{\r\n        display: inline-block;\r\n    }\r\n    .content{\r\n        display: inline-block;\r\n        font-size: 12px;\r\n    }\r\n\r\n\t .content>p{\r\n            margin: 4px;\r\n    }\r\n\r\n\t\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n\t/*list集合*/\n\t.pull-list{\n\t  \t/*min-height: 300px;*/\n\t   \theight: 100%;\n        width: 100%;\n        padding: 0px 0px;\n        background-color: whitesmoke;\n        margin-bottom: 47px;\n        overflow: auto;\n        position: relative;\n    \t-webkit-overflow-scrolling: touch;\n\t}\n\n\t.pull-content{\n\t    padding: 0px;\n\t    margin: 0px;\n\t    height: 100%;\n\t    background-color: white;\n\t    /*width: 100%;*/\n\t}\n\t\n\t.display-transition{\n\t    text-align: center;\n        /*margin: 10px 0px;*/\n        width: 100%;\n        vertical-align: middle;\n        height: 60px;\n        /*transform:translateY(100px);*/\n        /*padding: 10px 0px;*/\n\t}\n\n\t.display-enter,.display-leave{\n\t\theight:0px;\n\t}\n\n\t\n\t.pull-header img\n\t{\n\t\t -webkit-transition: -webkit-transform .3s ease;\n\t\t transition: -webkit-transform .3s ease;\n\t\t transition: transform .3s ease;\n\t\t transition: transform .3s ease, -webkit-transform .3s ease;\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n\t      -o-transition: transform .3s ease; /* Opera */\n\t}\n\n\t.imgshow{\n        display: inline-block;\n    }\n    .content{\n        display: inline-block;\n        font-size: 12px;\n    }\n\n\t .content>p{\n            margin: 4px;\n    }\n\n    .pull-footer{\n    \theight: 50px;\n    \tpadding: 10px;\n\t\tborder-radius: 5px;\n    \ttext-align: center;\n    }\n\t\n\t\n", "", {"version":3,"sources":["/./src/components/List.vue?247b1e2e"],"names":[],"mappings":";;CAkGA,UAAA;CACA;IACA,sBAAA;KACA,aAAA;QACA,YAAA;QACA,iBAAA;QACA,6BAAA;QACA,oBAAA;QACA,eAAA;QACA,mBAAA;KACA,kCAAA;EACA;;CAEA;KACA,aAAA;KACA,YAAA;KACA,aAAA;KACA,wBAAA;KACA,gBAAA;EACA;;CAEA;KACA,mBAAA;QACA,qBAAA;QACA,YAAA;QACA,uBAAA;QACA,aAAA;QACA,gCAAA;QACA,sBAAA;EACA;;CAEA;EACA,WAAA;EACA;;;CAGA;;GAEA,+CAAA;GAAA,uCAAA;GAAA,+BAAA;GAAA,2DAAA;OACA,oCAAA,eAAA;OACA,uCAAA,CAAA,qBAAA;OACA,kCAAA,CAAA,WAAA;EACA;;CAEA;QACA,sBAAA;KACA;IACA;QACA,sBAAA;QACA,gBAAA;KACA;;EAEA;YACA,YAAA;KACA;;IAEA;KACA,aAAA;KACA,cAAA;EACA,mBAAA;KACA,mBAAA;KACA","file":"List.vue","sourcesContent":["<!-- 下拉刷新组件 -->\r\n<template>\r\n\t<section class=\"pull-list\" v-touch:pandown=\"pullToRefresh\"  v-touch:panend=\"panleave\"   >\r\n\t\t<header class=\"pull-header\" v-show=\"showheader\" transition=\"display\">\r\n\t\t\t<div class=\"imgshow\">\r\n                <img src=\"../assets/images/components/icon-down.png\" alt=\"下拉\">\r\n            </div>\r\n            <div class=\"content\">\r\n                <p>{{refreshText}}</p>\r\n                <p>最后更新:{{rlastTime}}</p>\r\n            </div>\r\n\t\t</header>\r\n\t\t<ul class=\"pull-content\"  v-el:listContent>\r\n\t\t\t<slot></slot>\r\n\t\t</ul>\r\n\t\t<footer class=\"pull-footer\" @click=\"loadMore($event)\" >\r\n\t\t\t点击加载更多\r\n\t\t</footer>\r\n\t</section>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\r\n\timport dateHelper from './utils/DateHelper.js'\r\n\r\n\texport default {\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\trlastTime:'',\r\n\t\t\t\trefreshText:'下拉刷新',\r\n\t\t\t\t//是否触发事件\r\n\t\t\t\tisRefresh:false,\r\n\t\t\t\t//是否显示底部加载更多\r\n\t\t\t\tshowheader:false,\r\n\t\t\t\tshowfooter:false,\r\n\t\t\t\t//滚动条是否在顶部\r\n\t\t\t\ttop:0\r\n\t\t\t}\r\n\t\t},\r\n\t\tevents:{\r\n\t\t\t//监听父窗体的的滚动事件\r\n\t\t\t\"scroll\":\"onScroll\"\r\n\t\t},\r\n\t\tmethods:{\r\n\r\n\t\t\tmove(height){\r\n\t\t\t\tvar list=this.$el;\r\n\t\t\t\t//获取角度\r\n\t\t\t\tvar rotateHeight=height<60?height*3:180;\r\n\t\t\t\t\r\n\t\t\t\tlist.style.transform=\"translateY(\"+height+\"px)\";\r\n\t\t\t\tvar img=list.querySelectorAll('header')[0].querySelectorAll('img')[0];\r\n\t\t\t\timg.style.transform=\"rotate(\"+rotateHeight+\"deg)\"\r\n\t\t\t},\r\n\t\t\tpanleave(e){\r\n\t\t\t\tthis.move(0);\r\n\t\t\t\tthis.showheader=false;\r\n\t\t\t\tthis.refreshText=\"下拉刷新\";\r\n\t\t\t\t//得到当前的时间\r\n\t\t\t\tif(this.isRefresh){\r\n\t\t\t\t\tthis.isRefresh=false;\r\n\t\t\t\t\tthis.rlastTime=dateHelper.getNowDate(\"yyyy-MM-dd HH:mm:ss\");\r\n\t\t\t\t\tthis.$emit('reload');\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\tonScroll(e){\r\n\t\t\t\tthis.top=e.target.scrollTop;\r\n\t\t\t\tconsole.log(\"滚动的高度:\"+this.top);\r\n\t\t\t\tif(this.top+this.regionHeight>=this.winHeight){\r\n\t\t\t\t\tthis.isBottom=true;\r\n\t\t\t\t}else{\r\n\t\t\t\t\tthis.isBottom=false;\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t// 下拉刷新事件\r\n\t\t\tpullToRefresh(e){\r\n\t\t\t\tif(this.top==0){\r\n\t\t\t\t\te.preventDefault();\r\n\t\t\t\t \tvar distance=e.distance;\r\n\t\t\t\t \tthis.showheader=true;\r\n\t\t\t\t \tthis.move(distance);\r\n\t\t\t\t \tif(distance>90){\r\n\t\t\t\t\t\tthis.refreshText=\"松开后刷新\";\r\n\t\t\t\t \t\tthis.isRefresh=true;\r\n\t\t\t\t \t}\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t//加载更多\r\n\t\t\tloadMore(e){\r\n\t\t\t\tthis.$dispatch('loadmore',e);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style >\r\n\r\n\t/*list集合*/\r\n\t.pull-list{\r\n\t  \t/*min-height: 300px;*/\r\n\t   \theight: 100%;\r\n        width: 100%;\r\n        padding: 0px 0px;\r\n        background-color: whitesmoke;\r\n        margin-bottom: 47px;\r\n        overflow: auto;\r\n        position: relative;\r\n    \t-webkit-overflow-scrolling: touch;\r\n\t}\r\n\r\n\t.pull-content{\r\n\t    padding: 0px;\r\n\t    margin: 0px;\r\n\t    height: 100%;\r\n\t    background-color: white;\r\n\t    /*width: 100%;*/\r\n\t}\r\n\t\r\n\t.display-transition{\r\n\t    text-align: center;\r\n        /*margin: 10px 0px;*/\r\n        width: 100%;\r\n        vertical-align: middle;\r\n        height: 60px;\r\n        /*transform:translateY(100px);*/\r\n        /*padding: 10px 0px;*/\r\n\t}\r\n\r\n\t.display-enter,.display-leave{\r\n\t\theight:0px;\r\n\t}\r\n\r\n\t\r\n\t.pull-header img\r\n\t{\r\n\t\t transition: transform .3s ease;\r\n\t      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n\t      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n\t      -o-transition: transform .3s ease; /* Opera */\r\n\t}\r\n\r\n\t.imgshow{\r\n        display: inline-block;\r\n    }\r\n    .content{\r\n        display: inline-block;\r\n        font-size: 12px;\r\n    }\r\n\r\n\t .content>p{\r\n            margin: 4px;\r\n    }\r\n\r\n    .pull-footer{\r\n    \theight: 50px;\r\n    \tpadding: 10px;\r\n\t\tborder-radius: 5px;\r\n    \ttext-align: center;\r\n    }\r\n\t\r\n\t\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -14319,27 +13122,19 @@
 			};
 		},
 	
+		events: {
+			//监听父窗体的的滚动事件
+			"scroll": "onScroll"
+		},
 		methods: {
 			move: function move(height) {
 				var list = this.$el;
 				//获取角度
 				var rotateHeight = height < 60 ? height * 3 : 180;
+	
 				list.style.transform = "translateY(" + height + "px)";
 				var img = list.querySelectorAll('header')[0].querySelectorAll('img')[0];
 				img.style.transform = "rotate(" + rotateHeight + "deg)";
-			},
-	
-			//检查是否滚动到底部,滚动到底部触发上拉加载更多的事件
-			scroll: function scroll(e) {
-	
-				this.top = e.target.scrollTop;
-				console.log("可见区域的高度：" + this.regionHeight + "-总高度：" + this.winHeight);
-				console.log("滚动的高度:" + this.top);
-				if (this.top + this.regionHeight >= this.winHeight) {
-					this.isBottom = true;
-				} else {
-					this.isBottom = false;
-				}
 			},
 			panleave: function panleave(e) {
 				this.move(0);
@@ -14350,6 +13145,15 @@
 					this.isRefresh = false;
 					this.rlastTime = _DateHelper2.default.getNowDate("yyyy-MM-dd HH:mm:ss");
 					this.$emit('reload');
+				}
+			},
+			onScroll: function onScroll(e) {
+				this.top = e.target.scrollTop;
+				console.log("滚动的高度:" + this.top);
+				if (this.top + this.regionHeight >= this.winHeight) {
+					this.isBottom = true;
+				} else {
+					this.isBottom = false;
 				}
 			},
 	
@@ -14380,19 +13184,20 @@
 	// 	/*list集合*/
 	// 	.pull-list{
 	// 	  	/*min-height: 300px;*/
-	// 	   	/*height: 100%;*/
-	//         height: 100%;
+	// 	   	height: 100%;
 	//         width: 100%;
 	//         padding: 0px 0px;
 	//         background-color: whitesmoke;
+	//         margin-bottom: 47px;
+	//         overflow: auto;
+	//         position: relative;
+	//     	-webkit-overflow-scrolling: touch;
 	// 	}
 
 	// 	.pull-content{
-	// 		overflow: auto;
-	//     	-webkit-overflow-scrolling: touch;
-	// 	    height: 100%;
 	// 	    padding: 0px;
 	// 	    margin: 0px;
+	// 	    height: 100%;
 	// 	    background-color: white;
 	// 	    /*width: 100%;*/
 	// 	}
@@ -14431,10 +13236,17 @@
 	//             margin: 4px;
 	//     }
 
+	//     .pull-footer{
+	//     	height: 50px;
+	//     	padding: 10px;
+	// 		border-radius: 5px;
+	//     	text-align: center;
+	//     }
+
 	// </style>
 	// <!-- 下拉刷新组件 -->
 	// <template>
-	// 	<section class="pull-list" v-touch:pandown.stop.prevent="pullToRefresh"  v-touch:panend="panleave"   >
+	// 	<section class="pull-list" v-touch:pandown="pullToRefresh"  v-touch:panend="panleave"   >
 	// 		<header class="pull-header" v-show="showheader" transition="display">
 	// 			<div class="imgshow">
 	//                 <img src="../assets/images/components/icon-down.png" alt="下拉">
@@ -14444,11 +13256,11 @@
 	//                 <p>最后更新:{{rlastTime}}</p>
 	//             </div>
 	// 		</header>
-	// 		<ul class="pull-content"  v-on:scroll.stop.prevent="scroll($event)" v-el:listContent>
+	// 		<ul class="pull-content"  v-el:listContent>
 	// 			<slot></slot>
 	// 		</ul>
-	// 		<footer class="pull-footer" v-show="showfooter">
-	// 			<div @click="loadMore($event)" >点击加载更多</div>
+	// 		<footer class="pull-footer" @click="loadMore($event)" >
+	// 			点击加载更多
 	// 		</footer>
 	// 	</section>
 	// </template>
@@ -14505,7 +13317,7 @@
 /* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "\n\t<section class=\"pull-list\" v-touch:pandown.stop.prevent=\"pullToRefresh\"  v-touch:panend=\"panleave\"   >\n\t\t<header class=\"pull-header\" v-show=\"showheader\" transition=\"display\">\n\t\t\t<div class=\"imgshow\">\n                <img src=\"" + __webpack_require__(51) + "\" alt=\"下拉\">\n            </div>\n            <div class=\"content\">\n                <p>{{refreshText}}</p>\n                <p>最后更新:{{rlastTime}}</p>\n            </div>\n\t\t</header>\n\t\t<ul class=\"pull-content\"  v-on:scroll.stop.prevent=\"scroll($event)\" v-el:listContent>\n\t\t\t<slot></slot>\n\t\t</ul>\n\t\t<footer class=\"pull-footer\" v-show=\"showfooter\">\n\t\t\t<div @click=\"loadMore($event)\" >点击加载更多</div>\n\t\t</footer>\n\t</section>\n";
+	module.exports = "\n\t<section class=\"pull-list\" v-touch:pandown=\"pullToRefresh\"  v-touch:panend=\"panleave\"   >\n\t\t<header class=\"pull-header\" v-show=\"showheader\" transition=\"display\">\n\t\t\t<div class=\"imgshow\">\n                <img src=\"" + __webpack_require__(51) + "\" alt=\"下拉\">\n            </div>\n            <div class=\"content\">\n                <p>{{refreshText}}</p>\n                <p>最后更新:{{rlastTime}}</p>\n            </div>\n\t\t</header>\n\t\t<ul class=\"pull-content\"  v-el:listContent>\n\t\t\t<slot></slot>\n\t\t</ul>\n\t\t<footer class=\"pull-footer\" @click=\"loadMore($event)\" >\n\t\t\t点击加载更多\n\t\t</footer>\n\t</section>\n";
 
 /***/ },
 /* 51 */
@@ -14649,12 +13461,7 @@
 	module.exports = "\n<li style=\"position:relative\">\n  <a style=\"cursor:pointer\">\n    <slot></slot>\n    <slot name=\"span\">\n      {{value}}\n    </slot>\n    <!-- <span class=\"glyphicon glyphicon-ok check-mark\" v-show=\"chosen\"></span> -->\n  </a>\n</li>\n";
 
 /***/ },
-/* 57 */
-/***/ function(module, exports) {
-
-	module.exports = "\n\t<div class=\"page\" _v-ecc3dad2=\"\">\n\t\t<toolbar :text=\"title\" _v-ecc3dad2=\"\">\n\t\t\t<span class=\"icon-reorder\" slot=\"leftBtn\" @click=\"openMenu\" _v-ecc3dad2=\"\"></span>\n            <span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"refresh\" _v-ecc3dad2=\"\"></span>\n\t\t</toolbar>\n\t\t<div class=\"page-bd\" _v-ecc3dad2=\"\">\n\t\t\t<tabs :active-index.sync=\"index\" _v-ecc3dad2=\"\">\n\t\t\t\t<tab v-for=\"item in tabItems\" :header=\"item.title\" _v-ecc3dad2=\"\">\n\t\t\t\t\t<list _v-ecc3dad2=\"\">\n\t\t\t\t\t\t<li v-for=\"subItem in item.infoList\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t<div class=\"tab_info\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t<div class=\"left\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t<img src=\"xxxHTMLLINKxxx0.33433311269618570.9894315176643431xxx\" alt=\"\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"content\" _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布时间:{{subItem.time}}</span>\n\t\t\t\t\t\t\t\t\t\t\t<span _v-ecc3dad2=\"\">发布人:{{subItem.subUser}}</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t\t\t{{subItem.content}}\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div _v-ecc3dad2=\"\">\n\t\t\t\t\t\t\t\t\t<i class=\"icon-chevron-right\" _v-ecc3dad2=\"\"></i>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t</list>\n\t\t\t\t</tab>\n\t\t\t</tabs>\n\t\t</div>\n\t</div>\n\t\t\n\t<sidebar :menu-items=\"menuItems\" :show-menu.sync=\"showMenu\" _v-ecc3dad2=\"\">\n\t\t\n\t</sidebar>\n\n\t<loading :loading=\"isload\" _v-ecc3dad2=\"\"></loading>\n\n";
-
-/***/ },
+/* 57 */,
 /* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -16137,7 +14944,7 @@
 
 	var __vue_script__, __vue_template__
 	__webpack_require__(153)
-	__vue_script__ = __webpack_require__(83)
+	__vue_script__ = __webpack_require__(85)
 	__vue_template__ = __webpack_require__(155)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
@@ -16155,7 +14962,9 @@
 	})()}
 
 /***/ },
-/* 83 */
+/* 83 */,
+/* 84 */,
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16164,102 +14973,171 @@
 		value: true
 	});
 	
-	var _NavBar = __webpack_require__(90);
+	var _NavBar = __webpack_require__(86);
 	
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 	
-	var _vueWeui = __webpack_require__(95);
+	var _auth = __webpack_require__(156);
+	
+	var _auth2 = _interopRequireDefault(_auth);
+	
+	var _vueWeui = __webpack_require__(91);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	exports.default = {
+		data: function data() {
+			return {
+				account: 'M0679',
+				pwd: '000',
+				isremeber: true,
+				isPrompt: false,
+				isloading: false,
+				errorMsg: '错误了',
+				device: '',
+				redirectUrl: ''
+			};
+		},
+		ready: function ready() {
+			// this.account="M";
+			// console.log(this.$refs.account)
+			// this.$els.account.focus();
+		},
+	
+		components: {
+			NavBar: _NavBar2.default,
+			ButtonArea: _vueWeui.ButtonArea,
+			Button: _vueWeui.Button,
+			CheckboxCell: _vueWeui.CheckboxCell,
+			Cells: _vueWeui.Cells,
+			Cell: _vueWeui.Cell,
+			Dialog: _vueWeui.Dialog,
+			Toast: _vueWeui.Toast,
+			InputCell: _vueWeui.InputCell
+		},
+	
+		methods: {
+			confirmDlg: function confirmDlg() {
+				this.isPrompt = false;
+			},
+			showDialog: function showDialog(errorMsg) {
+				this.errorMsg = errorMsg;
+				this.isPrompt = true;
+			},
+			login: function login() {
+				var _this = this;
+	
+				//向服务器发起请登录请求
+				if (this.account.length != 5) {
+					// this.errorMsg="账号必须是五位";
+					// this.isPrompt=true;
+					this.showDialog("账号必须是五位");
+					return;
+				}
+				if (this.pwd.length < 3) {
+					// this.errorMsg="密码最小长度是三位:"+this.getVersion().android;
+					this.showDialog("密码最小长度是三位");
+					return;
+				}
+	
+				//向服务器发起请求
+				this.isloading = true;
+				this.$http.get("auth", { "account": this.account, "passwd": this.pwd, "device": this.device }).then(function (response) {
+					_this.isloading = false;
+					var data = response.data;
+					console.log(data);
+					if (data.Statu == "Y") {
+						_auth2.default.setUser(_this.account, _this.password, _this.isremeber);
+						//跳转到首页
+						// console.log("我的测试:"+this.$route);
+						if (_this.redirectUrl && _this.redirectUrl.length > 0) {
+							_this.$route.router.go(_this.redirectUrl);
+						} else {
+							_this.$route.router.go("index");
+						}
+					} else {
+						_this.showDialog(data.Msg);
+					}
+				}, function (error) {
+					_this.isloading = false;
+				});
+				console.log("账号:" + this.account + "-密码是:" + this.pwd + "-记住密码:" + this.isremeber);
+			},
+			getVersion: function getVersion() {
+				var u = navigator.userAgent,
+				    app = navigator.appVersion;
+				return { //移动终端浏览器版本信息
+					ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+					android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
+					iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+					iPad: u.indexOf('iPad') > -1 };
+			}
+		},
+		//是否iPad
+		ready: function ready() {
+			// var tmpDevice=""
+			// if(this.getVersion().ios){
+			// 	this.device="ios";
+			// }else if(this.getVersion().android){
+			// 	this.device= "android";
+			// }else if(this.getVersion().iPhone){
+			// 	this.device= "iPhone";
+			// }else if(this.getVersion().iPad){
+			// 	this.device="iPad";
+			// }else{
+			// 	this.device="web";
+			// }
+	
+			//得到重定向的url
+			this.redirectUrl = decodeURIComponent(this.$route.query.redirect || '/');
+			console.log("原来的路径：" + this.redirectUrl);
+		}
+	};
+	// </script>
+
+	// <style type="text/css" >
+	// 	.login .loginUrl{
+	// 		text-align: center;
+	// 		margin: 10px 5px;
+	// 	}
+
+	// 	.login p{
+	// 		font-size: 13px;
+	// 	}
+	// </style>
+	/* generated by vue-loader */
 	// <template>
-	// 	<div class="page">
+	// 	<div class="page login">
 	// 		<nav-bar text="登录页"></nav-bar>
 	// 		<div class="page-bd">
 	// 			<div class="loginUrl">
 	// 				<img src="../assets/images/login/login.png" alt="用户">
 	// 			</div>
-	// 			<div class="weui_cells weui_cells_form">
-	// 				<div class="weui_cell">
-	// 	                <div class="weui_cell_hd"><label class="weui_label">账号</label></div>
-	// 	                <div class="weui_cell_bd weui_cell_primary">
-	// 	                    <input class="weui_input" type="text" v-el:account v-model="account"  placeholder="请输入账号">
-	// 	                </div>
-	// 	            </div>
-	// 	            <div class="weui_cell">
-	// 	                <div class="weui_cell_hd"><label class="weui_label">密码</label></div>
-	// 	                <div class="weui_cell_bd weui_cell_primary">
-	// 	                    <input class="weui_input" type="password"  v-model="pwd" placeholder="请输入密码">
-	// 	                </div>
-	// 	            </div>
-	// 			</div>
-	
-	// 			<div class="weui_cells weui_cells_checkbox">
-	// 				<label  class="weui_cell weui_check_label" for="ck_remeber">
-	// 					<div class="weui_cell_hd">
-	// 						<input type="checkbox" class="weui_check" name="isremeber" id="ck_remeber" >
-	// 						<i class="weui_icon_checked"></i>
-	// 					</div>
-	// 					<div class="weui_cell_bd weui_cell_primary">
-	// 						<p>是否记忆密码</p>
-	// 					</div>
-	// 				</label>
-	// 			</div>
-	// 			<div class="weui_btn_area">
-	// 				<a href="javascript:" class="weui_btn weui_btn_primary" @click="login">登录</a>
-	// 			</div>
+
+	// 			<cells type="form">
+	// 				<input-cell label="账号" placeholder="工号：M0XXX" :value.sync="account" v-ref:account></input-cell>
+	// 				<input-cell label="密码" placeholder="密码" type="password" :value.sync="pwd" ></input-cell>
+	// 			</cells>
+
+	// 			<cells type="checkbox">
+	// 				<checkbox-cell name="isremeber" :checked.sync="isremeber" label="<p>是否记忆密码</p>" ></checkbox-cell>
+	// 			</cells>
+
+	// 			<cells>
+	// 			<button-area>
+	// 				<button @click="login">登录</button>
+	// 			</button-area>
 	// 		</div>
+	// 		<dialog v-show="isPrompt" title="错误提示" @weui-dialog-confirm="confirmDlg">
+	// 			<p>{{errorMsg}}</p>
+	// 		</dialog>
+	// 		<toast v-show="isloading" type="loading">
+	// 			登录中..
+	// 		</toast>
 	// 	</div>
 	// </template>
-	
+
 	// <script>
-	exports.default = {
-		data: function data() {
-			return {
-				account: 'M',
-				pwd: ''
-			};
-		},
-		ready: function ready() {
-			this.account = "M";
-			console.log(this.$els.account);
-			this.$els.account.focus();
-		},
-	
-		components: {
-			NavBar: _NavBar2.default
-		},
-		methods: {
-			login: function login() {
-				//向服务器发起请登录请求
-				alert("你好登陆");
-			}
-		}
-	};
-	// </script>
-
-	// <style type="text/css" scoped>
-	// 	.loginUrl{
-	// 		text-align: center;
-	// 		margin: 10px 5px;
-	// 	}
-
-	// 	.weui_cell_primary>p{
-	// 		font-size: 13px;
-	// 	}
-	// </style>
-	/* generated by vue-loader */
-
-/***/ },
-/* 84 */,
-/* 85 */
-/***/ function(module, exports) {
-
-	var __vue_script__, __vue_template__
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-
 
 /***/ },
 /* 86 */
@@ -16268,7 +15146,7 @@
 	var __vue_script__, __vue_template__
 	__webpack_require__(87)
 	__vue_script__ = __webpack_require__(89)
-	__vue_template__ = __webpack_require__(101)
+	__vue_template__ = __webpack_require__(90)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -16276,7 +15154,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), true)
 	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\views\\Project.vue"
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\NavBar.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -16300,8 +15178,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ba295ade&file=Project.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Project.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ba295ade&file=Project.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Project.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-88849bc8&file=NavBar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./NavBar.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-88849bc8&file=NavBar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./NavBar.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -16319,215 +15197,13 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Project.vue","sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 89 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _NavBar = __webpack_require__(90);
-	
-	var _NavBar2 = _interopRequireDefault(_NavBar);
-	
-	var _List = __webpack_require__(45);
-	
-	var _List2 = _interopRequireDefault(_List);
-	
-	var _vueWeui = __webpack_require__(95);
-	
-	var _ListItem = __webpack_require__(52);
-	
-	var _ListItem2 = _interopRequireDefault(_ListItem);
-	
-	var _Toast = __webpack_require__(96);
-	
-	var _Toast2 = _interopRequireDefault(_Toast);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-		name: 'Project',
-		data: function data() {
-			return {
-				showsheet: false,
-				menuItems: { camaer: '拍照', img: '选择图片' },
-				actionItems: { text: '取消' },
-				showToast: false
-			};
-		},
-	
-		methods: {
-			back: function back() {
-				history.back();
-			},
-			showSheet: function showSheet() {
-				this.showsheet = !this.showsheet;
-			},
-			actionClick: function actionClick(index) {
-				alert(index);
-			},
-			getInitData: function getInitData() {
-				alert('集合刷新');
-			},
-			getMoreData: function getMoreData() {
-				alert("集合加载更多");
-			}
-		},
-		components: {
-			NavBar: _NavBar2.default,
-			List: _List2.default,
-			Actionsheet: _vueWeui.Actionsheet,
-			Toast: _Toast2.default,
-			Item: _ListItem2.default
-		}
-	};
-	// </script>
-
-	// <style scoped>
-
-	// </style>
-
-	// import ActionSheet from '../components/ActionSheet.vue'
-	// <template>
-	// 	<div class="page" >
-	// 		<nav-bar text="我的项目">
-	// 			<span class="icon-chevron-left" slot="leftBar" v-touch:tap="back"></span>
-	// 	        <span class="icon-refresh" slot="rightBar" v-touch:tap="showSheet"></span>
-	// 		</nav-bar>
-	// 		<div class="page-bd" >
-	// 			<list v-on:reload="getInitData" v-on:loadmore="getMoreData">
-	// 				<li>asdffdddd;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;a</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;a</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;a</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;a</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>顶顶顶 阿斯蒂芬;</li>
-
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>顶顶顶 阿斯蒂芬;</li>
-
-	// 				<li>顶顶顶 阿斯蒂芬;</li>
-
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>顶顶顶 阿斯蒂芬;</li>
-	// 			</list>
-	// 		</div>
-
-	// 		<toast :show="showToast"></toast>
-	// 		<actionsheet :show.sync="showsheet"  :menus="menuItems" :actions="actionItems" v-on:weui-menu-click="actionClick"></actionsheet>
-	// 	</div>
-	// </template>
-
-	// <script lang="babel">
-
-/***/ },
-/* 90 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__webpack_require__(91)
-	__vue_script__ = __webpack_require__(93)
-	__vue_template__ = __webpack_require__(94)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\components\\NavBar.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 91 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(92);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-88849bc8&file=NavBar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./NavBar.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-88849bc8&file=NavBar.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./NavBar.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 92 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
 	exports.push([module.id, "\n\t   .page-hd {\n            width: 100%;\n            height: 44px;\n            background-color: white;\n            line-height: 44px;\n            padding: 0px 15px;\n            position: relative;\n\t\t\tbox-shadow: 0px 1px 3px lightblue;\n\t\t\toverflow: hidden;\n            font-size: 17px;\n        }\n        /*按钮的层*/\n        .page-hd>div {\n            position: absolute;\n            left: 0;\n            top: 0;\n            z-index: 15;\n            width: 100%;\n            padding: 0px 15px;\n        }\n        \n        /*标题*/\n        .page-hd>p {\n            text-align: center;\n            margin: 0px;\n            vertical-align: middle;\n            position: absolute;\n            width: 100%;\n            left: 0;\n            top: 0;\n        }\n        \n        .page-hd .left {\n            float: left;\n        }\n        \n        .page-hd .right {\n            float: right;\n        }\n", "", {"version":3,"sources":["/./src/components/NavBar.vue?68585118"],"names":[],"mappings":";IA2BA;YACA,YAAA;YACA,aAAA;YACA,wBAAA;YACA,kBAAA;YACA,kBAAA;YACA,mBAAA;GACA,kCAAA;GACA,iBAAA;YACA,gBAAA;SACA;QACA,QAAA;QACA;YACA,mBAAA;YACA,QAAA;YACA,OAAA;YACA,YAAA;YACA,YAAA;YACA,kBAAA;SACA;;QAEA,MAAA;QACA;YACA,mBAAA;YACA,YAAA;YACA,uBAAA;YACA,mBAAA;YACA,YAAA;YACA,QAAA;YACA,OAAA;SACA;;QAEA;YACA,YAAA;SACA;;QAEA;YACA,aAAA;SACA","file":"NavBar.vue","sourcesContent":["<template>\r\n\t<header class=\"page-hd\">\r\n        <p>{{text}}</p>\r\n        <div>\r\n            <div class=\"left\">\r\n                <slot name=\"leftBar\"></slot>\r\n            </div>\r\n            <div class=\"right\">\r\n                <slot name=\"rightBar\"></slot>\r\n            </div>\r\n        </div>\r\n    </header>\r\n</template>\r\n\r\n\r\n<script lang=\"babel\"> \r\n\texport default {\r\n\t\tprops:{\r\n\t\t\ttext:{\r\n\t\t\t\ttype:String,\r\n\t\t\t\tdefault:\"\"\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\">\r\n\t   .page-hd {\r\n            width: 100%;\r\n            height: 44px;\r\n            background-color: white;\r\n            line-height: 44px;\r\n            padding: 0px 15px;\r\n            position: relative;\r\n\t\t\tbox-shadow: 0px 1px 3px lightblue;\r\n\t\t\toverflow: hidden;\r\n            font-size: 17px;\r\n        }\r\n        /*按钮的层*/\r\n        .page-hd>div {\r\n            position: absolute;\r\n            left: 0;\r\n            top: 0;\r\n            z-index: 15;\r\n            width: 100%;\r\n            padding: 0px 15px;\r\n        }\r\n        \r\n        /*标题*/\r\n        .page-hd>p {\r\n            text-align: center;\r\n            margin: 0px;\r\n            vertical-align: middle;\r\n            position: absolute;\r\n            width: 100%;\r\n            left: 0;\r\n            top: 0;\r\n        }\r\n        \r\n        .page-hd .left {\r\n            float: left;\r\n        }\r\n        \r\n        .page-hd .right {\r\n            float: right;\r\n        }\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
-/* 93 */
+/* 89 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16603,13 +15279,13 @@
 	// </style>
 
 /***/ },
-/* 94 */
+/* 90 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\t<header class=\"page-hd\">\n        <p>{{text}}</p>\n        <div>\n            <div class=\"left\">\n                <slot name=\"leftBar\"></slot>\n            </div>\n            <div class=\"right\">\n                <slot name=\"rightBar\"></slot>\n            </div>\n        </div>\n    </header>\n";
 
 /***/ },
-/* 95 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -19237,13 +17913,237 @@
 	//# sourceMappingURL=vue-weui.js.map
 
 /***/ },
-/* 96 */
+/* 92 */,
+/* 93 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "login.png?4d9e2ecdf5aeef51c8ba1e7eabf9715f";
+
+/***/ },
+/* 94 */
+/***/ function(module, exports) {
+
+	var __vue_script__, __vue_template__
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+
+
+/***/ },
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(97)
-	__vue_script__ = __webpack_require__(99)
-	__vue_template__ = __webpack_require__(100)
+	__webpack_require__(96)
+	__vue_script__ = __webpack_require__(98)
+	__vue_template__ = __webpack_require__(104)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\views\\Project.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 96 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(97);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ba295ade&file=Project.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Project.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ba295ade&file=Project.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Project.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 97 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Project.vue","sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 98 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _NavBar = __webpack_require__(86);
+	
+	var _NavBar2 = _interopRequireDefault(_NavBar);
+	
+	var _List = __webpack_require__(45);
+	
+	var _List2 = _interopRequireDefault(_List);
+	
+	var _vueWeui = __webpack_require__(91);
+	
+	var _ListItem = __webpack_require__(52);
+	
+	var _ListItem2 = _interopRequireDefault(_ListItem);
+	
+	var _PageBody = __webpack_require__(159);
+	
+	var _PageBody2 = _interopRequireDefault(_PageBody);
+	
+	var _Toast = __webpack_require__(99);
+	
+	var _Toast2 = _interopRequireDefault(_Toast);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// <template>
+	// 	<div class="page" >
+	// 		<nav-bar text="我的项目">
+	// 			<span class="icon-chevron-left" slot="leftBar" v-touch:tap="back"></span>
+	// 	        <span class="icon-refresh" slot="rightBar" v-touch:tap="showSheet"></span>
+	// 		</nav-bar>
+	// 		<page-body>
+	// 			<list v-on:reload="getInitData" v-on:loadmore="getMoreData">
+	// 				<li>asdffdddd;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;a</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;a</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;a</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;a</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>顶顶顶 阿斯蒂芬;</li>
+	
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>顶顶顶 阿斯蒂芬;</li>
+	
+	// 				<li>顶顶顶 阿斯蒂芬;</li>
+	
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff</li>
+	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
+	// 				<li>顶顶顶 阿斯蒂芬;</li>
+	// 			</list>
+	// 		</page-body>
+	
+	// 		<toast :show="showToast"></toast>
+	// 		<actionsheet :show.sync="showsheet"  :menus="menuItems" :actions="actionItems" v-on:weui-menu-click="actionClick"></actionsheet>
+	// 	</div>
+	// </template>
+	
+	// <script lang="babel">
+	exports.default = {
+		name: 'Project',
+		data: function data() {
+			return {
+				showsheet: false,
+				menuItems: { camaer: '拍照', img: '选择图片' },
+				actionItems: { text: '取消' },
+				showToast: false
+			};
+		},
+	
+		methods: {
+			back: function back() {
+				history.back();
+			},
+			showSheet: function showSheet() {
+				this.showsheet = !this.showsheet;
+			},
+			actionClick: function actionClick(index) {
+				alert(index);
+			},
+			getInitData: function getInitData() {
+				alert('集合刷新');
+			},
+			getMoreData: function getMoreData() {
+				alert("集合加载更多");
+			}
+		},
+		components: {
+			NavBar: _NavBar2.default,
+			List: _List2.default,
+			Actionsheet: _vueWeui.Actionsheet,
+			Toast: _Toast2.default,
+			Item: _ListItem2.default,
+			PageBody: _PageBody2.default
+		}
+	};
+	// </script>
+
+	// <style scoped>
+
+	// </style>
+
+	// import ActionSheet from '../components/ActionSheet.vue'
+
+/***/ },
+/* 99 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(100)
+	__vue_script__ = __webpack_require__(102)
+	__vue_template__ = __webpack_require__(103)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -19260,13 +18160,13 @@
 	})()}
 
 /***/ },
-/* 97 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(98);
+	var content = __webpack_require__(101);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -19286,7 +18186,7 @@
 	}
 
 /***/ },
-/* 98 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -19300,7 +18200,7 @@
 
 
 /***/ },
-/* 99 */
+/* 102 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -19604,25 +18504,25 @@
 	// </style>
 
 /***/ },
-/* 100 */
+/* 103 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<section class=\"toast\" v-show=\"show\" _v-4de571aa=\"\">\n\t<section class=\"toast-mask\" _v-4de571aa=\"\"></section>\n\t<section class=\"toast-bd\" _v-4de571aa=\"\">\n\t\t<section class=\"loading\" v-if=\"isload\" _v-4de571aa=\"\">\n\t\t\t<div class=\"loading_leaf loading_leaf_0\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_1\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_2\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_3\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_4\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_5\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_6\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_7\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_8\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_9\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_10\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_11\" _v-4de571aa=\"\"></div>\n\t\t</section>\n\t\t<section class=\"prompt\" v-else=\"\" _v-4de571aa=\"\">\n\t\t\t<i class=\"weui_icon_toast\" _v-4de571aa=\"\"></i>\n\t\t</section>\n\t\t<p class=\"toast-content\" _v-4de571aa=\"\">{{prompt}}</p>\n\t</section>\n</section>\n";
 
 /***/ },
-/* 101 */
+/* 104 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"page\" _v-ba295ade=\"\">\n\t<nav-bar text=\"我的项目\" _v-ba295ade=\"\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" v-touch:tap=\"back\" _v-ba295ade=\"\"></span>\n        <span class=\"icon-refresh\" slot=\"rightBar\" v-touch:tap=\"showSheet\" _v-ba295ade=\"\"></span>\n\t</nav-bar>\n\t<div class=\"page-bd\" _v-ba295ade=\"\">\n\t\t<list v-on:reload=\"getInitData\" v-on:loadmore=\"getMoreData\" _v-ba295ade=\"\">\n\t\t\t<li _v-ba295ade=\"\">asdffdddd;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\t\t</list>\n\t</div>\n\n\t<toast :show=\"showToast\" _v-ba295ade=\"\"></toast>\n\t<actionsheet :show.sync=\"showsheet\" :menus=\"menuItems\" :actions=\"actionItems\" v-on:weui-menu-click=\"actionClick\" _v-ba295ade=\"\"></actionsheet>\n</div>\n";
+	module.exports = "\n<div class=\"page\" _v-ba295ade=\"\">\n\t<nav-bar text=\"我的项目\" _v-ba295ade=\"\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" v-touch:tap=\"back\" _v-ba295ade=\"\"></span>\n        <span class=\"icon-refresh\" slot=\"rightBar\" v-touch:tap=\"showSheet\" _v-ba295ade=\"\"></span>\n\t</nav-bar>\n\t<page-body _v-ba295ade=\"\">\n\t\t<list v-on:reload=\"getInitData\" v-on:loadmore=\"getMoreData\" _v-ba295ade=\"\">\n\t\t\t<li _v-ba295ade=\"\">asdffdddd;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\t\t</list>\n\t</page-body>\n\n\t<toast :show=\"showToast\" _v-ba295ade=\"\"></toast>\n\t<actionsheet :show.sync=\"showsheet\" :menus=\"menuItems\" :actions=\"actionItems\" v-on:weui-menu-click=\"actionClick\" _v-ba295ade=\"\"></actionsheet>\n</div>\n";
 
 /***/ },
-/* 102 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(103)
-	__vue_script__ = __webpack_require__(105)
-	__vue_template__ = __webpack_require__(106)
+	__webpack_require__(106)
+	__vue_script__ = __webpack_require__(108)
+	__vue_template__ = __webpack_require__(109)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -19639,13 +18539,13 @@
 	})()}
 
 /***/ },
-/* 103 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(104);
+	var content = __webpack_require__(107);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -19665,7 +18565,7 @@
 	}
 
 /***/ },
-/* 104 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -19673,13 +18573,13 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.page-bd>.title{\n  width: 100%;\n  text-align: center;\n  margin: 10px 0px;\n}\n\n.title>p{\n  font-size: 12px;\n}\n", "", {"version":3,"sources":["/./src/views/Index.vue?166d8720"],"names":[],"mappings":";AA8HA;EACA,YAAA;EACA,mBAAA;EACA,iBAAA;CACA;;AAEA;EACA,gBAAA;CACA","file":"Index.vue","sourcesContent":["<template>\r\n  <div class=\"page\" transition=\"app\">\r\n    <nav-bar text=\"首页\"></nav-bar>\r\n    \r\n    <div class=\"page-bd space\">\r\n      <div class=\"title\">\r\n        <h3>信息管理系统移动版</h3>\r\n        <p>麦迪斯顿医疗科技</p>\r\n      </div>\r\n      <grids>\r\n          <grid v-for=\"item in items\" :router-link=\"{path: '/' + item.link}\" :image-url=\"item.image\" :label=\"item.text\"></grid>\r\n      </grids>\r\n    </div>\r\n</div>\r\n</template>\r\n\r\n<script>\r\nimport NavBar from '../components/NavBar.vue'\r\nimport {Grids,Grid} from 'vue-weui'\r\n\r\nexport default {\r\n  name: 'index',\r\n  components: {\r\n    NavBar,\r\n    Grids,\r\n    Grid\r\n  },\r\n  data () {\r\n    return {\r\n      items: [{\r\n        link: 'project',\r\n        text: '项目',\r\n      }, {\r\n        link: 'cell',\r\n        text: '日志'\r\n      }, {\r\n        link: 'toast',\r\n        text: '流程'\r\n      }, {\r\n        link: 'dialog',\r\n        text: '个人'\r\n      }, {\r\n        link: 'progress',\r\n        text: 'Progress'\r\n      }, {\r\n        link: 'login',\r\n        text: '登陆'\r\n      }, {\r\n        link: 'article',\r\n        text: 'Article'\r\n      }, {\r\n        link: 'actionsheet',\r\n        text: 'ActionSheet'\r\n      }, {\r\n        link: 'icons',\r\n        text: 'Icons'\r\n      }, {\r\n        link: 'dialog',\r\n        text: 'Dialog'\r\n      }, {\r\n        link: 'progress',\r\n        text: 'Progress'\r\n      }, {\r\n        link: 'msg',\r\n        text: 'Msg'\r\n      }, {\r\n        link: 'article',\r\n        text: 'Article'\r\n      }, {\r\n        link: 'actionsheet',\r\n        text: 'ActionSheet'\r\n      }, {\r\n        link: 'icons',\r\n        text: 'Icons'\r\n      }, {\r\n        link: 'icons',\r\n        text: 'Icons'\r\n      }, {\r\n        link: 'dialog',\r\n        text: 'Dialog'\r\n      }, {\r\n        link: 'progress',\r\n        text: 'Progress'\r\n      }, {\r\n        link: 'msg',\r\n        text: 'Msg'\r\n      }, {\r\n        link: 'article',\r\n        text: 'Article'\r\n      }, {\r\n        link: 'actionsheet',\r\n        text: 'ActionSheet'\r\n      }, {\r\n        link: 'icons',\r\n        text: 'Icons'\r\n      }]\r\n    }\r\n  },\r\n\r\n  route: {\r\n    data ({ to }) {\r\n    }\r\n  },\r\n\r\n  created () {\r\n    // store.on('topstories-updated', this.update)\r\n  },\r\n\r\n  destroyed () {\r\n    // store.removeListener('topstories-updated', this.update)\r\n  },\r\n\r\n  methods: {\r\n    update () {\r\n      // store.fetchItemsByPage(this.page).then(items => {\r\n      //   this.items = items\r\n      // })\r\n    }\r\n  },\r\n\r\n  filters: {\r\n  }\r\n}\r\n</script>\r\n\r\n<style >\r\n  .page-bd>.title{\r\n    width: 100%;\r\n    text-align: center;\r\n    margin: 10px 0px;\r\n  }\r\n\r\n  .title>p{\r\n    font-size: 12px;\r\n  }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.page-bd>.title{\n  width: 100%;\n  text-align: center;\n  margin: 10px 0px;\n}\n\n.title>p{\n  font-size: 12px;\n}\n", "", {"version":3,"sources":["/./src/views/Index.vue?57b827c4"],"names":[],"mappings":";AAgGA;EACA,YAAA;EACA,mBAAA;EACA,iBAAA;CACA;;AAEA;EACA,gBAAA;CACA","file":"Index.vue","sourcesContent":["<template>\r\n  <div class=\"page\" transition=\"app\">\r\n    <nav-bar text=\"首页\"></nav-bar>\r\n    \r\n    <div class=\"page-bd space\">\r\n      <div class=\"title\">\r\n        <h3>信息管理系统移动版</h3>\r\n        <p>麦迪斯顿医疗科技</p>\r\n      </div>\r\n      <grids>\r\n          <grid v-for=\"item in items\" :router-link=\"{path: '/' + item.link}\" :image-url=\"item.image\" :label=\"item.text\"></grid>\r\n      </grids>\r\n    </div>\r\n</div>\r\n</template>\r\n\r\n<script>\r\nimport NavBar from '../components/NavBar.vue'\r\nimport {Grids,Grid} from 'vue-weui'\r\n\r\nexport default {\r\n  name: 'index',\r\n  components: {\r\n    NavBar,\r\n    Grids,\r\n    Grid\r\n  },\r\n  data () {\r\n    return {\r\n      items: [{\r\n        link: 'project',\r\n        image:'',\r\n        text: '项目',\r\n      }, {\r\n        link: 'cell',\r\n        image:'',\r\n        text: '日志'\r\n      }, {\r\n        link: 'toast',\r\n        image:'',\r\n        text: '流程'\r\n      }, {\r\n        link: 'dialog',\r\n        image:'',\r\n        text: '个人'\r\n      }, {\r\n        link: 'progress',\r\n        image:'',\r\n        text: 'Progress'\r\n      }, {\r\n        link: 'login',\r\n        image:'',\r\n        text: '登陆'\r\n      }, {\r\n        link: 'article',\r\n        image:'',\r\n        text: 'Article'\r\n      }, {\r\n        link: 'actionsheet',\r\n        image:'',\r\n        text: 'ActionSheet'\r\n      }, {\r\n        link: 'icons',\r\n        image:'',\r\n        text: 'Icons'\r\n      }]\r\n    }\r\n  },\r\n\r\n  route: {\r\n    data ({ to }) {\r\n    }\r\n  },\r\n\r\n  created () {\r\n    // store.on('topstories-updated', this.update)\r\n  },\r\n\r\n  destroyed () {\r\n    // store.removeListener('topstories-updated', this.update)\r\n  },\r\n\r\n  methods: {\r\n    update () {\r\n      // store.fetchItemsByPage(this.page).then(items => {\r\n      //   this.items = items\r\n      // })\r\n    }\r\n  },\r\n\r\n  filters: {\r\n  }\r\n}\r\n</script>\r\n\r\n<style >\r\n  .page-bd>.title{\r\n    width: 100%;\r\n    text-align: center;\r\n    margin: 10px 0px;\r\n  }\r\n\r\n  .title>p{\r\n    font-size: 12px;\r\n  }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
-/* 105 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19688,11 +18588,11 @@
 	  value: true
 	});
 	
-	var _NavBar = __webpack_require__(90);
+	var _NavBar = __webpack_require__(86);
 	
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 	
-	var _vueWeui = __webpack_require__(95);
+	var _vueWeui = __webpack_require__(91);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -19724,69 +18624,39 @@
 	    return {
 	      items: [{
 	        link: 'project',
+	        image: '',
 	        text: '项目'
 	      }, {
 	        link: 'cell',
+	        image: '',
 	        text: '日志'
 	      }, {
 	        link: 'toast',
+	        image: '',
 	        text: '流程'
 	      }, {
 	        link: 'dialog',
+	        image: '',
 	        text: '个人'
 	      }, {
 	        link: 'progress',
+	        image: '',
 	        text: 'Progress'
 	      }, {
 	        link: 'login',
+	        image: '',
 	        text: '登陆'
 	      }, {
 	        link: 'article',
+	        image: '',
 	        text: 'Article'
 	      }, {
 	        link: 'actionsheet',
+	        image: '',
 	        text: 'ActionSheet'
 	      }, {
 	        link: 'icons',
-	        text: 'Icons'
-	      }, {
-	        link: 'dialog',
-	        text: 'Dialog'
-	      }, {
-	        link: 'progress',
-	        text: 'Progress'
-	      }, {
-	        link: 'msg',
-	        text: 'Msg'
-	      }, {
-	        link: 'article',
-	        text: 'Article'
-	      }, {
-	        link: 'actionsheet',
-	        text: 'ActionSheet'
-	      }, {
-	        link: 'icons',
-	        text: 'Icons'
-	      }, {
-	        link: 'icons',
-	        text: 'Icons'
-	      }, {
-	        link: 'dialog',
-	        text: 'Dialog'
-	      }, {
-	        link: 'progress',
-	        text: 'Progress'
-	      }, {
-	        link: 'msg',
-	        text: 'Msg'
-	      }, {
-	        link: 'article',
-	        text: 'Article'
-	      }, {
-	        link: 'actionsheet',
-	        text: 'ActionSheet'
-	      }, {
-	        link: 'icons',
+	        image: '',
 	        text: 'Icons'
 	      }]
 	    };
@@ -19832,13 +18702,13 @@
 	/* generated by vue-loader */
 
 /***/ },
-/* 106 */
+/* 109 */
 /***/ function(module, exports) {
 
 	module.exports = "\n  <div class=\"page\" transition=\"app\">\n    <nav-bar text=\"首页\"></nav-bar>\n    \n    <div class=\"page-bd space\">\n      <div class=\"title\">\n        <h3>信息管理系统移动版</h3>\n        <p>麦迪斯顿医疗科技</p>\n      </div>\n      <grids>\n          <grid v-for=\"item in items\" :router-link=\"{path: '/' + item.link}\" :image-url=\"item.image\" :label=\"item.text\"></grid>\n      </grids>\n    </div>\n</div>\n";
 
 /***/ },
-/* 107 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
@@ -20685,19 +19555,19 @@
 
 
 /***/ },
-/* 108 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _keys = __webpack_require__(109);
+	var _keys = __webpack_require__(112);
 	
 	var _keys2 = _interopRequireDefault(_keys);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var vueTouch = {};
-	var Hammer =  true ? __webpack_require__(121) : window.Hammer;
+	var Hammer =  true ? __webpack_require__(124) : window.Hammer;
 	var gestures = ['tap', 'pan', 'pandown', 'panend', 'pinch', 'press', 'pressup', 'rotate', 'swipe', 'swipeleft', 'swiperight', 'swipeup', 'swipedown'];
 	var customeEvents = {};
 	
@@ -20796,43 +19666,43 @@
 	module.exports = vueTouch;
 
 /***/ },
-/* 109 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(110), __esModule: true };
+	module.exports = { "default": __webpack_require__(113), __esModule: true };
 
 /***/ },
-/* 110 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(111);
-	module.exports = __webpack_require__(117).Object.keys;
+	__webpack_require__(114);
+	module.exports = __webpack_require__(120).Object.keys;
 
 /***/ },
-/* 111 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(112);
+	var toObject = __webpack_require__(115);
 	
-	__webpack_require__(114)('keys', function($keys){
+	__webpack_require__(117)('keys', function($keys){
 	  return function keys(it){
 	    return $keys(toObject(it));
 	  };
 	});
 
 /***/ },
-/* 112 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
-	var defined = __webpack_require__(113);
+	var defined = __webpack_require__(116);
 	module.exports = function(it){
 	  return Object(defined(it));
 	};
 
 /***/ },
-/* 113 */
+/* 116 */
 /***/ function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -20842,13 +19712,13 @@
 	};
 
 /***/ },
-/* 114 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(115)
-	  , core    = __webpack_require__(117)
-	  , fails   = __webpack_require__(120);
+	var $export = __webpack_require__(118)
+	  , core    = __webpack_require__(120)
+	  , fails   = __webpack_require__(123);
 	module.exports = function(KEY, exec){
 	  var fn  = (core.Object || {})[KEY] || Object[KEY]
 	    , exp = {};
@@ -20857,12 +19727,12 @@
 	};
 
 /***/ },
-/* 115 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(116)
-	  , core      = __webpack_require__(117)
-	  , ctx       = __webpack_require__(118)
+	var global    = __webpack_require__(119)
+	  , core      = __webpack_require__(120)
+	  , ctx       = __webpack_require__(121)
 	  , PROTOTYPE = 'prototype';
 	
 	var $export = function(type, name, source){
@@ -20908,7 +19778,7 @@
 	module.exports = $export;
 
 /***/ },
-/* 116 */
+/* 119 */
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -20917,18 +19787,18 @@
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
-/* 117 */
+/* 120 */
 /***/ function(module, exports) {
 
 	var core = module.exports = {version: '1.2.6'};
 	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ },
-/* 118 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(119);
+	var aFunction = __webpack_require__(122);
 	module.exports = function(fn, that, length){
 	  aFunction(fn);
 	  if(that === undefined)return fn;
@@ -20949,7 +19819,7 @@
 	};
 
 /***/ },
-/* 119 */
+/* 122 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -20958,7 +19828,7 @@
 	};
 
 /***/ },
-/* 120 */
+/* 123 */
 /***/ function(module, exports) {
 
 	module.exports = function(exec){
@@ -20970,7 +19840,7 @@
 	};
 
 /***/ },
-/* 121 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.6 - 2015-12-23
@@ -23544,7 +22414,7 @@
 
 
 /***/ },
-/* 122 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -23553,16 +22423,16 @@
 	
 	function install(Vue) {
 	
-	    var _ = __webpack_require__(123);
+	    var _ = __webpack_require__(126);
 	
 	    _.config = Vue.config;
 	    _.warning = Vue.util.warn;
 	    _.nextTick = Vue.util.nextTick;
 	
-	    Vue.url = __webpack_require__(124);
-	    Vue.http = __webpack_require__(130);
-	    Vue.resource = __webpack_require__(145);
-	    Vue.Promise = __webpack_require__(132);
+	    Vue.url = __webpack_require__(127);
+	    Vue.http = __webpack_require__(133);
+	    Vue.resource = __webpack_require__(148);
+	    Vue.Promise = __webpack_require__(135);
 	
 	    Object.defineProperties(Vue.prototype, {
 	
@@ -23603,7 +22473,7 @@
 
 
 /***/ },
-/* 123 */
+/* 126 */
 /***/ function(module, exports) {
 
 	/**
@@ -23731,14 +22601,14 @@
 
 
 /***/ },
-/* 124 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for URL templating.
 	 */
 	
-	var _ = __webpack_require__(123);
+	var _ = __webpack_require__(126);
 	var ie = document.documentMode;
 	var el = document.createElement('a');
 	
@@ -23774,10 +22644,10 @@
 	 */
 	
 	Url.transforms = [
-	    __webpack_require__(125),
-	    __webpack_require__(127),
 	    __webpack_require__(128),
-	    __webpack_require__(129)
+	    __webpack_require__(130),
+	    __webpack_require__(131),
+	    __webpack_require__(132)
 	];
 	
 	/**
@@ -23867,14 +22737,14 @@
 
 
 /***/ },
-/* 125 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * URL Template (RFC 6570) Transform.
 	 */
 	
-	var UrlTemplate = __webpack_require__(126);
+	var UrlTemplate = __webpack_require__(129);
 	
 	module.exports = function (options) {
 	
@@ -23889,7 +22759,7 @@
 
 
 /***/ },
-/* 126 */
+/* 129 */
 /***/ function(module, exports) {
 
 	/**
@@ -24045,14 +22915,14 @@
 
 
 /***/ },
-/* 127 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Legacy Transform.
 	 */
 	
-	var _ = __webpack_require__(123);
+	var _ = __webpack_require__(126);
 	
 	module.exports = function (options, next) {
 	
@@ -24097,14 +22967,14 @@
 
 
 /***/ },
-/* 128 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Query Parameter Transform.
 	 */
 	
-	var _ = __webpack_require__(123);
+	var _ = __webpack_require__(126);
 	
 	module.exports = function (options, next) {
 	
@@ -24127,14 +22997,14 @@
 
 
 /***/ },
-/* 129 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Root Prefix Transform.
 	 */
 	
-	var _ = __webpack_require__(123);
+	var _ = __webpack_require__(126);
 	
 	module.exports = function (options, next) {
 	
@@ -24149,17 +23019,17 @@
 
 
 /***/ },
-/* 130 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for sending network requests.
 	 */
 	
-	var _ = __webpack_require__(123);
-	var Client = __webpack_require__(131);
-	var Promise = __webpack_require__(132);
-	var interceptor = __webpack_require__(135);
+	var _ = __webpack_require__(126);
+	var Client = __webpack_require__(134);
+	var Promise = __webpack_require__(135);
+	var interceptor = __webpack_require__(138);
 	var jsonType = {'Content-Type': 'application/json'};
 	
 	function Http(url, options) {
@@ -24211,13 +23081,13 @@
 	};
 	
 	Http.interceptors = [
-	    __webpack_require__(136),
-	    __webpack_require__(137),
-	    __webpack_require__(138),
+	    __webpack_require__(139),
 	    __webpack_require__(140),
 	    __webpack_require__(141),
-	    __webpack_require__(142),
-	    __webpack_require__(143)
+	    __webpack_require__(143),
+	    __webpack_require__(144),
+	    __webpack_require__(145),
+	    __webpack_require__(146)
 	];
 	
 	Http.headers = {
@@ -24252,16 +23122,16 @@
 
 
 /***/ },
-/* 131 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Base client.
 	 */
 	
-	var _ = __webpack_require__(123);
-	var Promise = __webpack_require__(132);
-	var xhrClient = __webpack_require__(134);
+	var _ = __webpack_require__(126);
+	var Promise = __webpack_require__(135);
+	var xhrClient = __webpack_require__(137);
 	
 	module.exports = function (request) {
 	
@@ -24323,15 +23193,15 @@
 
 
 /***/ },
-/* 132 */
+/* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promise adapter.
 	 */
 	
-	var _ = __webpack_require__(123);
-	var PromiseObj = window.Promise || __webpack_require__(133);
+	var _ = __webpack_require__(126);
+	var PromiseObj = window.Promise || __webpack_require__(136);
 	
 	function Promise(executor, context) {
 	
@@ -24438,14 +23308,14 @@
 
 
 /***/ },
-/* 133 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promises/A+ polyfill v1.1.4 (https://github.com/bramstein/promis)
 	 */
 	
-	var _ = __webpack_require__(123);
+	var _ = __webpack_require__(126);
 	
 	var RESOLVED = 0;
 	var REJECTED = 1;
@@ -24623,15 +23493,15 @@
 
 
 /***/ },
-/* 134 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XMLHttp client.
 	 */
 	
-	var _ = __webpack_require__(123);
-	var Promise = __webpack_require__(132);
+	var _ = __webpack_require__(126);
+	var Promise = __webpack_require__(135);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -24672,15 +23542,15 @@
 
 
 /***/ },
-/* 135 */
+/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Interceptor factory.
 	 */
 	
-	var _ = __webpack_require__(123);
-	var Promise = __webpack_require__(132);
+	var _ = __webpack_require__(126);
+	var Promise = __webpack_require__(135);
 	
 	module.exports = function (handler, vm) {
 	
@@ -24723,14 +23593,14 @@
 
 
 /***/ },
-/* 136 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Before Interceptor.
 	 */
 	
-	var _ = __webpack_require__(123);
+	var _ = __webpack_require__(126);
 	
 	module.exports = {
 	
@@ -24747,7 +23617,7 @@
 
 
 /***/ },
-/* 137 */
+/* 140 */
 /***/ function(module, exports) {
 
 	/**
@@ -24783,14 +23653,14 @@
 
 
 /***/ },
-/* 138 */
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP Interceptor.
 	 */
 	
-	var jsonpClient = __webpack_require__(139);
+	var jsonpClient = __webpack_require__(142);
 	
 	module.exports = {
 	
@@ -24807,15 +23677,15 @@
 
 
 /***/ },
-/* 139 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP client.
 	 */
 	
-	var _ = __webpack_require__(123);
-	var Promise = __webpack_require__(132);
+	var _ = __webpack_require__(126);
+	var Promise = __webpack_require__(135);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -24861,7 +23731,7 @@
 
 
 /***/ },
-/* 140 */
+/* 143 */
 /***/ function(module, exports) {
 
 	/**
@@ -24884,14 +23754,14 @@
 
 
 /***/ },
-/* 141 */
+/* 144 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Mime Interceptor.
 	 */
 	
-	var _ = __webpack_require__(123);
+	var _ = __webpack_require__(126);
 	
 	module.exports = {
 	
@@ -24926,14 +23796,14 @@
 
 
 /***/ },
-/* 142 */
+/* 145 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Header Interceptor.
 	 */
 	
-	var _ = __webpack_require__(123);
+	var _ = __webpack_require__(126);
 	
 	module.exports = {
 	
@@ -24958,15 +23828,15 @@
 
 
 /***/ },
-/* 143 */
+/* 146 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * CORS Interceptor.
 	 */
 	
-	var _ = __webpack_require__(123);
-	var xdrClient = __webpack_require__(144);
+	var _ = __webpack_require__(126);
+	var xdrClient = __webpack_require__(147);
 	var xhrCors = 'withCredentials' in new XMLHttpRequest();
 	var originUrl = _.url.parse(location.href);
 	
@@ -25001,15 +23871,15 @@
 
 
 /***/ },
-/* 144 */
+/* 147 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XDomain client (Internet Explorer).
 	 */
 	
-	var _ = __webpack_require__(123);
-	var Promise = __webpack_require__(132);
+	var _ = __webpack_require__(126);
+	var Promise = __webpack_require__(135);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -25044,14 +23914,14 @@
 
 
 /***/ },
-/* 145 */
+/* 148 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for interacting with RESTful services.
 	 */
 	
-	var _ = __webpack_require__(123);
+	var _ = __webpack_require__(126);
 	
 	function Resource(url, params, actions, options) {
 	
@@ -25160,12 +24030,12 @@
 
 
 /***/ },
-/* 146 */
+/* 149 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(147)
-	__vue_template__ = __webpack_require__(149)
+	__webpack_require__(150)
+	__vue_template__ = __webpack_require__(152)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -25182,13 +24052,13 @@
 	})()}
 
 /***/ },
-/* 147 */
+/* 150 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(148);
+	var content = __webpack_require__(151);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -25208,7 +24078,7 @@
 	}
 
 /***/ },
-/* 148 */
+/* 151 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -25216,24 +24086,16 @@
 	
 	
 	// module
-	exports.push([module.id, "\r\n\t\r\n/*当你设置一个元素为 box-sizing: border-box; 时，此元素的内边距和边框不再会增加它的宽度*/\r\n* {\r\n  box-sizing: border-box;\r\n}\r\n\r\n\r\n/*单页面的布局*/\r\n\r\nhtml, body {\r\n    height: 100%;\r\n    -webkit-tap-highlight-color: transparent;\r\n    overflow-x: hidden;\r\n}\r\n\r\n\r\nbody, .page {\r\n    background-color: #FBF9FE;\r\n}\r\n\r\n/*最底层布局*/\r\n.container {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n/*页面的布局*/\r\n.page {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n.space{\r\n\tpadding: 5px 15px;\r\n}\r\n\r\n\r\n.page.slideIn {\r\n    -webkit-animation: slideIn .2s forwards;\r\n            animation: slideIn .2s forwards;\r\n}\r\n\r\n.page.slideOut {\r\n    -webkit-animation: slideOut .2s forwards;\r\n            animation: slideOut .2s forwards;\r\n}\r\n\r\n/*页面切换动画*/\r\n@-webkit-keyframes slideIn {\r\n    from {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n@keyframes slideIn {\r\n    from {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n\r\n@-webkit-keyframes slideOut {\r\n    from {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n@keyframes slideOut {\r\n    from {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n\r\n.slide-transition {\r\n  -webkit-transition: left 0.3s ease;\r\n  transition: left 0.3s ease;\r\n  width: 100%;\r\n}\r\n\r\n.slide-enter, .slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.app-transition {\r\n  -webkit-transition: opacity 0.3s ease;\r\n  transition: opacity 0.3s ease;\r\n}\r\n\r\n.app-enter, .app-leave {\r\n  opacity: 0;\r\n}\r\n\r\n\r\n/*内容的布局*/\r\n\r\n.page-bd {\r\n    overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding-top: 4px;\r\n}\r\n\r\n\r\n\r\n", "", {"version":3,"sources":["/./src/views/App.vue?08871156"],"names":[],"mappings":";;AAcA,2DAAA;AACA;EAGA,uBAAA;CACA;;;AAGA,UAAA;;AAEA;IACA,aAAA;IACA,yCAAA;IACA,mBAAA;CACA;;;AAGA;IACA,0BAAA;CACA;;AAEA,SAAA;AACA;IACA,mBAAA;IACA,OAAA;IACA,SAAA;IACA,UAAA;IACA,QAAA;IACA,iBAAA;CACA;;AAEA,SAAA;AACA;IACA,mBAAA;IACA,OAAA;IACA,SAAA;IACA,UAAA;IACA,QAAA;IACA,iBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;;AAGA;IACA,wCAAA;YAAA,gCAAA;CACA;;AAEA;IACA,yCAAA;YAAA,iCAAA;CACA;;AAEA,UAAA;AACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;CACA;AAPA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;CACA;;AAEA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;CACA;;AAPA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;CACA;;;AAGA;EACA,mCAAA;EAAA,2BAAA;EACA,YAAA;CACA;;AAEA;EACA,WAAA;CACA;;AAEA;EACA,WAAA;CACA;;AAEA;EACA,sCAAA;EAAA,8BAAA;CACA;;AAEA;EACA,WAAA;CACA;;;AAGA,SAAA;;AAEA;IACA,eAAA;IACA,kCAAA;IACA,YAAA;IACA,aAAA;IACA,iBAAA;CACA","file":"App.vue","sourcesContent":["<template>\r\n  <div class=\"container js_container\">\r\n      <!-- main view -->\r\n      <router-view\r\n        class=\"view\"\r\n        keep-alive\r\n        transition=\"slide\">\r\n      </router-view>\r\n  </div>\r\n</template>\r\n\r\n\r\n<style type=\"text/css\">\r\n\t\r\n/*当你设置一个元素为 box-sizing: border-box; 时，此元素的内边距和边框不再会增加它的宽度*/\r\n* {\r\n  -webkit-box-sizing: border-box;\r\n     -moz-box-sizing: border-box;\r\n          box-sizing: border-box;\r\n}\r\n\r\n\r\n/*单页面的布局*/\r\n\r\nhtml, body {\r\n    height: 100%;\r\n    -webkit-tap-highlight-color: transparent;\r\n    overflow-x: hidden;\r\n}\r\n\r\n\r\nbody, .page {\r\n    background-color: #FBF9FE;\r\n}\r\n\r\n/*最底层布局*/\r\n.container {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n/*页面的布局*/\r\n.page {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n.space{\r\n\tpadding: 5px 15px;\r\n}\r\n\r\n\r\n.page.slideIn {\r\n    animation: slideIn .2s forwards;\r\n}\r\n\r\n.page.slideOut {\r\n    animation: slideOut .2s forwards;\r\n}\r\n\r\n/*页面切换动画*/\r\n@keyframes slideIn {\r\n    from {\r\n        transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n\r\n@keyframes slideOut {\r\n    from {\r\n        transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n\r\n.slide-transition {\r\n  transition: left 0.3s ease;\r\n  width: 100%;\r\n}\r\n\r\n.slide-enter, .slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.app-transition {\r\n  transition: opacity 0.3s ease;\r\n}\r\n\r\n.app-enter, .app-leave {\r\n  opacity: 0;\r\n}\r\n\r\n\r\n/*内容的布局*/\r\n\r\n.page-bd {\r\n    overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding-top: 4px;\r\n}\r\n\r\n\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\r\n\t\r\n/*当你设置一个元素为 box-sizing: border-box; 时，此元素的内边距和边框不再会增加它的宽度*/\r\n* {\r\n  box-sizing: border-box;\r\n}\r\n\r\n\r\n/*单页面的布局*/\r\n\r\nhtml, body {\r\n    -webkit-tap-highlight-color: transparent;\r\n    overflow-x: hidden;\r\n}\r\n\r\n\r\nbody, .page {\r\n    background-color: #FBF9FE;\r\n}\r\n\r\n/*最底层布局*/\r\n.container {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n/*页面的布局*/\r\n.page {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n.space{\r\n\tpadding: 5px 15px;\r\n}\r\n\r\n\r\n.page.slideIn {\r\n    -webkit-animation: slideIn .2s forwards;\r\n            animation: slideIn .2s forwards;\r\n}\r\n\r\n.page.slideOut {\r\n    -webkit-animation: slideOut .2s forwards;\r\n            animation: slideOut .2s forwards;\r\n}\r\n\r\n/*页面切换动画*/\r\n@-webkit-keyframes slideIn {\r\n    from {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n@keyframes slideIn {\r\n    from {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n\r\n@-webkit-keyframes slideOut {\r\n    from {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n@keyframes slideOut {\r\n    from {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n\r\n.slide-transition {\r\n  -webkit-transition: left 0.3s ease;\r\n  transition: left 0.3s ease;\r\n  width: 100%;\r\n}\r\n\r\n.slide-enter, .slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.app-transition {\r\n  -webkit-transition: opacity 0.3s ease;\r\n  transition: opacity 0.3s ease;\r\n}\r\n\r\n.app-enter, .app-leave {\r\n  opacity: 0;\r\n}\r\n\r\n\r\n/*内容的布局*/\r\n\r\n.page-bd {\r\n    overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding-top: 4px;\r\n}\r\n\r\n\r\n\r\n", "", {"version":3,"sources":["/./src/views/App.vue?411f5060"],"names":[],"mappings":";;AAcA,2DAAA;AACA;EAGA,uBAAA;CACA;;;AAGA,UAAA;;AAEA;IACA,yCAAA;IACA,mBAAA;CACA;;;AAGA;IACA,0BAAA;CACA;;AAEA,SAAA;AACA;IACA,mBAAA;IACA,OAAA;IACA,SAAA;IACA,UAAA;IACA,QAAA;IACA,iBAAA;CACA;;AAEA,SAAA;AACA;IACA,mBAAA;IACA,OAAA;IACA,SAAA;IACA,UAAA;IACA,QAAA;IACA,iBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;;AAGA;IACA,wCAAA;YAAA,gCAAA;CACA;;AAEA;IACA,yCAAA;YAAA,iCAAA;CACA;;AAEA,UAAA;AACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;CACA;AAPA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;CACA;;AAEA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;CACA;;AAPA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;CACA;;;AAGA;EACA,mCAAA;EAAA,2BAAA;EACA,YAAA;CACA;;AAEA;EACA,WAAA;CACA;;AAEA;EACA,WAAA;CACA;;AAEA;EACA,sCAAA;EAAA,8BAAA;CACA;;AAEA;EACA,WAAA;CACA;;;AAGA,SAAA;;AAEA;IACA,eAAA;IACA,kCAAA;IACA,YAAA;IACA,aAAA;IACA,iBAAA;CACA","file":"App.vue","sourcesContent":["<template>\r\n  <div class=\"container js_container\">\r\n      <!-- main view -->\r\n      <router-view\r\n        class=\"view\"\r\n        keep-alive\r\n        transition=\"slide\">\r\n      </router-view>\r\n  </div>\r\n</template>\r\n\r\n\r\n<style type=\"text/css\">\r\n\t\r\n/*当你设置一个元素为 box-sizing: border-box; 时，此元素的内边距和边框不再会增加它的宽度*/\r\n* {\r\n  -webkit-box-sizing: border-box;\r\n     -moz-box-sizing: border-box;\r\n          box-sizing: border-box;\r\n}\r\n\r\n\r\n/*单页面的布局*/\r\n\r\nhtml, body {\r\n    -webkit-tap-highlight-color: transparent;\r\n    overflow-x: hidden;\r\n}\r\n\r\n\r\nbody, .page {\r\n    background-color: #FBF9FE;\r\n}\r\n\r\n/*最底层布局*/\r\n.container {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n/*页面的布局*/\r\n.page {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n.space{\r\n\tpadding: 5px 15px;\r\n}\r\n\r\n\r\n.page.slideIn {\r\n    animation: slideIn .2s forwards;\r\n}\r\n\r\n.page.slideOut {\r\n    animation: slideOut .2s forwards;\r\n}\r\n\r\n/*页面切换动画*/\r\n@keyframes slideIn {\r\n    from {\r\n        transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n\r\n@keyframes slideOut {\r\n    from {\r\n        transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n\r\n.slide-transition {\r\n  transition: left 0.3s ease;\r\n  width: 100%;\r\n}\r\n\r\n.slide-enter, .slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.app-transition {\r\n  transition: opacity 0.3s ease;\r\n}\r\n\r\n.app-enter, .app-leave {\r\n  opacity: 0;\r\n}\r\n\r\n\r\n/*内容的布局*/\r\n\r\n.page-bd {\r\n    overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding-top: 4px;\r\n}\r\n\r\n\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
-/* 149 */
+/* 152 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"container js_container\">\n    <!-- main view -->\n    <router-view\n      class=\"view\"\n      keep-alive\n      transition=\"slide\">\n    </router-view>\n</div>\n";
-
-/***/ },
-/* 150 */,
-/* 151 */,
-/* 152 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "login.png?4d9e2ecdf5aeef51c8ba1e7eabf9715f";
 
 /***/ },
 /* 153 */
@@ -25251,8 +24113,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6fedb23e&file=Login.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Login.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6fedb23e&file=Login.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Login.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6fedb23e&file=Login.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Login.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6fedb23e&file=Login.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Login.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -25270,7 +24132,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.loginUrl[_v-6fedb23e]{\n\ttext-align: center;\n\tmargin: 10px 5px;\n}\n\n\n.weui_cell_primary>p[_v-6fedb23e]{\n\tfont-size: 13px;\n}\n", "", {"version":3,"sources":["/./src/views/Login.vue?62212e6f"],"names":[],"mappings":";AAsEA;CACA,mBAAA;CACA,iBAAA;CACA;;;AAGA;CACA,gBAAA;CACA","file":"Login.vue","sourcesContent":["<template>\r\n\t<div class=\"page\">\r\n\t\t<nav-bar text=\"登录页\"></nav-bar>\r\n\t\t<div class=\"page-bd\">\r\n\t\t\t<div class=\"loginUrl\"> \r\n\t\t\t\t<img src=\"../assets/images/login/login.png\" alt=\"用户\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"weui_cells weui_cells_form\">\r\n\t\t\t\t<div class=\"weui_cell\">\r\n\t                <div class=\"weui_cell_hd\"><label class=\"weui_label\">账号</label></div>\r\n\t                <div class=\"weui_cell_bd weui_cell_primary\">\r\n\t                    <input class=\"weui_input\" type=\"text\" v-el:account v-model=\"account\"  placeholder=\"请输入账号\">\r\n\t                </div>\r\n\t            </div>\r\n\t            <div class=\"weui_cell\">\r\n\t                <div class=\"weui_cell_hd\"><label class=\"weui_label\">密码</label></div>\r\n\t                <div class=\"weui_cell_bd weui_cell_primary\">\r\n\t                    <input class=\"weui_input\" type=\"password\"  v-model=\"pwd\" placeholder=\"请输入密码\">\r\n\t                </div>\r\n\t            </div>\r\n\t\t\t</div>\r\n\t\t\r\n\t\t\t<div class=\"weui_cells weui_cells_checkbox\">\r\n\t\t\t\t<label  class=\"weui_cell weui_check_label\" for=\"ck_remeber\">\r\n\t\t\t\t\t<div class=\"weui_cell_hd\">\r\n\t\t\t\t\t\t<input type=\"checkbox\" class=\"weui_check\" name=\"isremeber\" id=\"ck_remeber\" >\r\n\t\t\t\t\t\t<i class=\"weui_icon_checked\"></i>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"weui_cell_bd weui_cell_primary\">\r\n\t\t\t\t\t\t<p>是否记忆密码</p>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</label>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"weui_btn_area\">\r\n\t\t\t\t<a href=\"javascript:\" class=\"weui_btn weui_btn_primary\" @click=\"login\">登录</a>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n\r\n\r\n<script>\r\n\timport NavBar from '../components/NavBar.vue'\r\n\timport {Button} from 'vue-weui'\r\n\texport default {\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\taccount:'M',\r\n\t\t\t\tpwd:''\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\tthis.account=\"M\";\r\n\t\t\tconsole.log(this.$els.account)\r\n\t\t\tthis.$els.account.focus();\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tNavBar\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tlogin(){\r\n\t\t\t\t//向服务器发起请登录请求\r\n\t\t\t\talert(\"你好登陆\")\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" scoped>\r\n\t.loginUrl{\r\n\t\ttext-align: center;\r\n\t\tmargin: 10px 5px;\r\n\t}\r\n\r\n\r\n\t.weui_cell_primary>p{\r\n\t\tfont-size: 13px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.login .loginUrl{\n\ttext-align: center;\n\tmargin: 10px 5px;\n}\n\n\n.login p{\n\tfont-size: 13px;\n}\n", "", {"version":3,"sources":["/./src/views/Login.vue?45fb6970"],"names":[],"mappings":";AAqJA;CACA,mBAAA;CACA,iBAAA;CACA;;;AAGA;CACA,gBAAA;CACA","file":"Login.vue","sourcesContent":["<template>\r\n\t<div class=\"page login\">\r\n\t\t<nav-bar text=\"登录页\"></nav-bar>\r\n\t\t<div class=\"page-bd\">\r\n\t\t\t<div class=\"loginUrl\"> \r\n\t\t\t\t<img src=\"../assets/images/login/login.png\" alt=\"用户\">\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<cells type=\"form\">\r\n\t\t\t\t<input-cell label=\"账号\" placeholder=\"工号：M0XXX\" :value.sync=\"account\" v-ref:account></input-cell>\r\n\t\t\t\t<input-cell label=\"密码\" placeholder=\"密码\" type=\"password\" :value.sync=\"pwd\" ></input-cell>\r\n\t\t\t</cells>\r\n\t\t\t\r\n\t\t\t<cells type=\"checkbox\">\r\n\t\t\t\t<checkbox-cell name=\"isremeber\" :checked.sync=\"isremeber\" label=\"<p>是否记忆密码</p>\" ></checkbox-cell>\r\n\t\t\t</cells>\r\n\t\t\t\r\n\t\t\t<cells>\r\n\t\t\t<button-area>\r\n\t\t\t\t<button @click=\"login\">登录</button>\r\n\t\t\t</button-area>\r\n\t\t</div>\r\n\t\t<dialog v-show=\"isPrompt\" title=\"错误提示\" @weui-dialog-confirm=\"confirmDlg\">\r\n\t\t\t<p>{{errorMsg}}</p>\r\n\t\t</dialog>\r\n\t\t<toast v-show=\"isloading\" type=\"loading\">\r\n\t\t\t登录中..\r\n\t\t</toast>\r\n\t</div>\r\n</template>\r\n\r\n\r\n<script>\r\n\timport NavBar from '../components/NavBar.vue'\r\n\timport auth from './utils/auth.js'\r\n\timport {ButtonArea,Button,Cells,Cell,CheckboxCell,InputCell,Dialog,Toast} from 'vue-weui'\r\n\texport default {\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\taccount:'M0679',\r\n\t\t\t\tpwd:'000',\r\n\t\t\t\tisremeber:true,\r\n\t\t\t\tisPrompt:false,\r\n\t\t\t\tisloading:false,\r\n\t\t\t\terrorMsg:'错误了',\r\n\t\t\t\tdevice:'',\r\n\t\t\t\tredirectUrl:''\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\t// this.account=\"M\";\r\n\t\t\t// console.log(this.$refs.account)\r\n\t\t\t// this.$els.account.focus();\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tNavBar,\r\n\t\t\tButtonArea,\r\n\t\t\tButton,\r\n\t\t\tCheckboxCell,\r\n\t\t\tCells,\r\n\t\t\tCell,\r\n\t\t\tDialog,\r\n\t\t\tToast,\r\n\t\t\tInputCell\r\n\t\t},\r\n\t\t\r\n\t\tmethods:{\r\n\t\t\tconfirmDlg(){\r\n\t\t\t\tthis.isPrompt=false;\r\n\t\t\t},\r\n\t\t\tshowDialog(errorMsg){\r\n\t\t\t\tthis.errorMsg=errorMsg;\r\n\t\t\t\tthis.isPrompt=true;\r\n\t\t\t},\r\n\t\t\tlogin(){\r\n\t\t\t\t//向服务器发起请登录请求\r\n\t\t\t\tif(this.account.length!=5){\r\n\t\t\t\t\t// this.errorMsg=\"账号必须是五位\";\r\n\t\t\t\t\t// this.isPrompt=true;\r\n\t\t\t\t\tthis.showDialog(\"账号必须是五位\");\r\n\t\t\t\t\treturn;\r\n\t\t\t\t}\r\n\t\t\t\tif(this.pwd.length<3){\r\n\t\t\t\t\t// this.errorMsg=\"密码最小长度是三位:\"+this.getVersion().android;\r\n\t\t\t\t\tthis.showDialog(\"密码最小长度是三位\");\r\n\t\t\t\t\treturn;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t//向服务器发起请求\r\n\t\t\t\tthis.isloading=true;\r\n\t\t\t\tthis.$http.get(\"auth\",{\"account\":this.account,\"passwd\":this.pwd,\"device\":this.device}).then((response)=>{\r\n\t\t\t\t\tthis.isloading=false;\r\n\t\t\t\t\tvar data=response.data;\r\n\t\t\t\t\tconsole.log(data);\r\n\t\t\t\t\tif(data.Statu==\"Y\"){\r\n\t\t\t\t\t\tauth.setUser(this.account,this.password,this.isremeber);\r\n\t\t\t\t\t\t//跳转到首页\r\n\t\t\t\t\t\t// console.log(\"我的测试:\"+this.$route);\r\n\t\t\t\t\t\tif(this.redirectUrl&&this.redirectUrl.length>0){\r\n\t\t\t\t\t\t\tthis.$route.router.go(this.redirectUrl);\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t\telse{\r\n\t\t\t\t\t\t\tthis.$route.router.go(\"index\");\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t}else{\r\n\t\t\t\t\t\tthis.showDialog(data.Msg);\r\n\t\t\t\t\t}\r\n\t\t\t\t\t\r\n\t\t\t\t},(error)=>{\r\n\t\t\t\t\tthis.isloading=false;\r\n\t\t\t\t});\r\n\t\t\t\tconsole.log(\"账号:\"+this.account+\"-密码是:\"+this.pwd+\"-记住密码:\"+this.isremeber)\r\n\t\t\t},\r\n\t\t\tgetVersion(){\r\n           \t\t let u = navigator.userAgent,\r\n                app = navigator.appVersion;\r\n\t            return { //移动终端浏览器版本信息\r\n\t                ios: !!u.match(/\\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端\r\n\t                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器\r\n\t                iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器\r\n\t                iPad: u.indexOf('iPad') > -1, //是否iPad\r\n\t            };\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\t// var tmpDevice=\"\"\r\n\t\t\t// if(this.getVersion().ios){\r\n\t\t\t// \tthis.device=\"ios\";\r\n\t\t\t// }else if(this.getVersion().android){\r\n\t\t\t// \tthis.device= \"android\";\r\n\t\t\t// }else if(this.getVersion().iPhone){\r\n\t\t\t// \tthis.device= \"iPhone\";\r\n\t\t\t// }else if(this.getVersion().iPad){\r\n\t\t\t// \tthis.device=\"iPad\";\r\n\t\t\t// }else{\r\n\t\t\t// \tthis.device=\"web\";\r\n\t\t\t// }\r\n\t\t\t\r\n\r\n\t\t\t//得到重定向的url\r\n\t\t\tthis.redirectUrl= decodeURIComponent(this.$route.query.redirect || '/');\r\n\t\t\tconsole.log(\"原来的路径：\"+this.redirectUrl);\r\n\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" >\r\n\t.login .loginUrl{\r\n\t\ttext-align: center;\r\n\t\tmargin: 10px 5px;\r\n\t}\r\n\r\n\r\n\t.login p{\r\n\t\tfont-size: 13px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -25279,7 +24141,151 @@
 /* 155 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "\n<div class=\"page\" _v-6fedb23e=\"\">\n\t<nav-bar text=\"登录页\" _v-6fedb23e=\"\"></nav-bar>\n\t<div class=\"page-bd\" _v-6fedb23e=\"\">\n\t\t<div class=\"loginUrl\" _v-6fedb23e=\"\"> \n\t\t\t<img src=\"" + __webpack_require__(152) + "\" alt=\"用户\" _v-6fedb23e=\"\">\n\t\t</div>\n\t\t<div class=\"weui_cells weui_cells_form\" _v-6fedb23e=\"\">\n\t\t\t<div class=\"weui_cell\" _v-6fedb23e=\"\">\n                <div class=\"weui_cell_hd\" _v-6fedb23e=\"\"><label class=\"weui_label\" _v-6fedb23e=\"\">账号</label></div>\n                <div class=\"weui_cell_bd weui_cell_primary\" _v-6fedb23e=\"\">\n                    <input class=\"weui_input\" type=\"text\" v-el:account=\"\" v-model=\"account\" placeholder=\"请输入账号\" _v-6fedb23e=\"\">\n                </div>\n            </div>\n            <div class=\"weui_cell\" _v-6fedb23e=\"\">\n                <div class=\"weui_cell_hd\" _v-6fedb23e=\"\"><label class=\"weui_label\" _v-6fedb23e=\"\">密码</label></div>\n                <div class=\"weui_cell_bd weui_cell_primary\" _v-6fedb23e=\"\">\n                    <input class=\"weui_input\" type=\"password\" v-model=\"pwd\" placeholder=\"请输入密码\" _v-6fedb23e=\"\">\n                </div>\n            </div>\n\t\t</div>\n\t\n\t\t<div class=\"weui_cells weui_cells_checkbox\" _v-6fedb23e=\"\">\n\t\t\t<label class=\"weui_cell weui_check_label\" for=\"ck_remeber\" _v-6fedb23e=\"\">\n\t\t\t\t<div class=\"weui_cell_hd\" _v-6fedb23e=\"\">\n\t\t\t\t\t<input type=\"checkbox\" class=\"weui_check\" name=\"isremeber\" id=\"ck_remeber\" _v-6fedb23e=\"\">\n\t\t\t\t\t<i class=\"weui_icon_checked\" _v-6fedb23e=\"\"></i>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"weui_cell_bd weui_cell_primary\" _v-6fedb23e=\"\">\n\t\t\t\t\t<p _v-6fedb23e=\"\">是否记忆密码</p>\n\t\t\t\t</div>\n\t\t\t</label>\n\t\t</div>\n\t\t<div class=\"weui_btn_area\" _v-6fedb23e=\"\">\n\t\t\t<a href=\"javascript:\" class=\"weui_btn weui_btn_primary\" @click=\"login\" _v-6fedb23e=\"\">登录</a>\n\t\t</div>\n\t</div>\n</div>\n";
+	module.exports = "\n<div class=\"page login\">\n\t<nav-bar text=\"登录页\"></nav-bar>\n\t<div class=\"page-bd\">\n\t\t<div class=\"loginUrl\"> \n\t\t\t<img src=\"" + __webpack_require__(93) + "\" alt=\"用户\">\n\t\t</div>\n\t\t\n\t\t<cells type=\"form\">\n\t\t\t<input-cell label=\"账号\" placeholder=\"工号：M0XXX\" :value.sync=\"account\" v-ref:account></input-cell>\n\t\t\t<input-cell label=\"密码\" placeholder=\"密码\" type=\"password\" :value.sync=\"pwd\" ></input-cell>\n\t\t</cells>\n\t\t\n\t\t<cells type=\"checkbox\">\n\t\t\t<checkbox-cell name=\"isremeber\" :checked.sync=\"isremeber\" label=\"<p>是否记忆密码</p>\" ></checkbox-cell>\n\t\t</cells>\n\t\t\n\t\t<cells>\n\t\t<button-area>\n\t\t\t<button @click=\"login\">登录</button>\n\t\t</button-area>\n\t</div>\n\t<dialog v-show=\"isPrompt\" title=\"错误提示\" @weui-dialog-confirm=\"confirmDlg\">\n\t\t<p>{{errorMsg}}</p>\n\t</dialog>\n\t<toast v-show=\"isloading\" type=\"loading\">\n\t\t登录中..\n\t</toast>\n</div>\n";
+
+/***/ },
+/* 156 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	var auth = {
+		// 设置人员
+	
+		setUser: function setUser(account, pwd, isAway) {
+			var user = {
+				account: account,
+				pwd: pwd,
+				isAway: isAway
+			};
+			if (isAway) {
+				localStorage.user = user;
+			} else {
+				sessionStorage.user = user;
+			}
+		},
+	
+		//检查该对象是否存在
+		isLogin: function isLogin() {
+			return localStorage.user || sessionStorage.user;
+		},
+	
+		//获取用户
+		getUser: function getUser() {
+			var user = localStorage.user || sessionStorage.user;
+			if (user) {
+				return user;
+			} else {
+				return false;
+			}
+		}
+	};
+	
+	exports.default = auth;
+
+/***/ },
+/* 157 */,
+/* 158 */,
+/* 159 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(160)
+	__vue_script__ = __webpack_require__(162)
+	__vue_template__ = __webpack_require__(163)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\PageBody.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(161);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-1e795d06&file=PageBody.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./PageBody.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-1e795d06&file=PageBody.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./PageBody.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"PageBody.vue","sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 162 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// <template>
+	// 	<div class="page-bd" v-on:scroll.prevent="scroll($event)">
+	// 		<slot></slot>	
+	// 	</div>
+	// </template>
+	
+	// <script>
+	exports.default = {
+		methods: {
+			scroll: function scroll(e) {
+				this.$broadcast("scroll", e);
+			}
+		}
+	};
+	// </script>
+
+	// <style>
+
+	// </style>
+	/* generated by vue-loader */
+
+/***/ },
+/* 163 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"page-bd\" v-on:scroll.prevent=\"scroll($event)\">\n\t<slot></slot>\t\n</div>\n";
 
 /***/ }
 /******/ ]);
