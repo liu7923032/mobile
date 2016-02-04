@@ -43,13 +43,12 @@ routerMap(router);
 // 	"*":'/home'
 // })
 
-
+FastClick.attach(document.body);
 
 //权限检查
 router.beforeEach(transition => {
     //处理左侧滚动不影响右边
     // $("html, body, #page").removeClass("scroll-hide");
-    FastClick.attach(document.body);
 
     if (transition.to.auth) {
         console.log("要访问的路径:"+transition.to.path);

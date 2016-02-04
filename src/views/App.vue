@@ -109,14 +109,14 @@ body, .page {
 
 /*内容的布局*/
 
-.page-bd {
+/*.page-bd {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     width: 100%;
     height: 100%;
     padding-top: 4px;
 }
-
+*/
 
 
 </style>

@@ -1,6 +1,6 @@
 <!-- 下拉刷新组件 -->
 <template>
-	<section class="pull-list" v-touch:pandown="pullToRefresh"  v-touch:panend="panleave"   >
+	<section class="pull-list" >
 		<header class="pull-header" v-show="showheader" transition="display">
 			<div class="imgshow">
                 <img src="../assets/images/components/icon-down.png" alt="下拉">
@@ -21,7 +21,7 @@
 
 <script lang="babel">
 
-	import dateHelper from './utils/DateHelper.js'
+	import dateHelper from '../public/js/DateHelper.js'
 
 	export default {
 		data(){
@@ -53,6 +53,7 @@
 				img.style.transform="rotate("+rotateHeight+"deg)"
 			},
 			panleave(e){
+				console.log("离开屏幕");
 				this.move(0);
 				this.showheader=false;
 				this.refreshText="下拉刷新";
@@ -74,6 +75,7 @@
 			},
 			// 下拉刷新事件
 			pullToRefresh(e){
+				console.log("下拉刷新");
 				if(this.top==0){
 					e.preventDefault();
 				 	var distance=e.distance;
@@ -99,20 +101,20 @@
 	/*list集合*/
 	.pull-list{
 	  	/*min-height: 300px;*/
-	   	height: 100%;
+	   /*	height: auto;
         width: 100%;
+        height: 100%;
         padding: 0px 0px;
         background-color: whitesmoke;
-        margin-bottom: 47px;
-        overflow: auto;
         position: relative;
-    	-webkit-overflow-scrolling: touch;
+         overflow: auto;
+    	-webkit-overflow-scrolling: touch;*/
 	}
 
 	.pull-content{
 	    padding: 0px;
 	    margin: 0px;
-	    height: 100%;
+	    /*height: 100%;*/
 	    background-color: white;
 	    /*width: 100%;*/
 	}
@@ -153,7 +155,7 @@
     }
 
     .pull-footer{
-    	height: 50px;
+    	height: 40px;
     	padding: 10px;
 		border-radius: 5px;
     	text-align: center;

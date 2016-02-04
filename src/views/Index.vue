@@ -32,7 +32,7 @@ export default {
         image:'',
         text: '项目',
       }, {
-        link: 'cell',
+        link: 'worklog',
         image:'',
         text: '日志'
       }, {
@@ -40,7 +40,7 @@ export default {
         image:'',
         text: '流程'
       }, {
-        link: 'dialog',
+        link: 'userinfo',
         image:'',
         text: '个人'
       }, {

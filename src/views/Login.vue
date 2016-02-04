@@ -51,6 +51,20 @@
 			// this.account="M";
 			// console.log(this.$refs.account)
 			// this.$els.account.focus();
+			var tmpDevice=""
+			if(this.getVersion().ios){
+				this.device="ios";
+			}else if(this.getVersion().android){
+				this.device= "android";
+			}else if(this.getVersion().iPhone){
+				this.device= "iPhone";
+			}else if(this.getVersion().iPad){
+				this.device="iPad";
+			}else{
+				this.device="web";
+			}
+			//得到重定向的url
+			 this.redirectUrl= decodeURIComponent(this.$route.query.redirect || '/');
 		},
 		components:{
 			NavBar,
@@ -121,26 +135,6 @@
 	                iPad: u.indexOf('iPad') > -1, //是否iPad
 	            };
 			}
-		},
-		ready(){
-			// var tmpDevice=""
-			// if(this.getVersion().ios){
-			// 	this.device="ios";
-			// }else if(this.getVersion().android){
-			// 	this.device= "android";
-			// }else if(this.getVersion().iPhone){
-			// 	this.device= "iPhone";
-			// }else if(this.getVersion().iPad){
-			// 	this.device="iPad";
-			// }else{
-			// 	this.device="web";
-			// }
-			
-
-			//得到重定向的url
-			this.redirectUrl= decodeURIComponent(this.$route.query.redirect || '/');
-			console.log("原来的路径："+this.redirectUrl);
-
 		}
 	}
 </script>
