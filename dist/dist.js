@@ -65,23 +65,23 @@
 	
 	var _routers2 = _interopRequireDefault(_routers);
 	
-	var _fastclick = __webpack_require__(88);
+	var _fastclick = __webpack_require__(65);
 	
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 	
-	var _vTouch = __webpack_require__(89);
+	var _vTouch = __webpack_require__(66);
 	
 	var _vTouch2 = _interopRequireDefault(_vTouch);
 	
-	var _vueResource = __webpack_require__(103);
+	var _vueResource = __webpack_require__(80);
 	
 	var _vueResource2 = _interopRequireDefault(_vueResource);
 	
-	var _auth = __webpack_require__(51);
+	var _auth = __webpack_require__(35);
 	
 	var _auth2 = _interopRequireDefault(_auth);
 	
-	var _App = __webpack_require__(127);
+	var _App = __webpack_require__(104);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
@@ -12343,29 +12343,38 @@
 	        '/worklog': {
 	            name: 'worklog',
 	            auth: true,
-	            component: __webpack_require__(6)
+	            component: __webpack_require__(6),
+	            subRoutes: {}
+	        },
+	        '/loginfo/:date': {
+	            name: 'loginfo',
+	            component: _LogInfo2.default
+	        },
+	        '/logdetail/:date/:type': {
+	            name: 'logdetail',
+	            component: _LogDetail2.default
 	        },
 	        // 个人信息
 	        '/userinfo': {
 	            name: 'userinfo',
 	            auth: true,
-	            component: __webpack_require__(21)
+	            component: __webpack_require__(25)
 	        },
 	        // 流程信息
 	        '/workflow': {
 	            name: 'workflow',
 	            auth: true,
-	            component: __webpack_require__(41)
+	            component: __webpack_require__(30)
 	        },
 	        // 登陆页面
 	        '/login': {
 	            name: 'login',
-	            component: __webpack_require__(42)
+	            component: __webpack_require__(31)
 	        },
 	        // 知识分享
 	        '/knownledge': {
 	            name: 'comment',
-	            component: __webpack_require__(55)
+	            component: __webpack_require__(38)
 	        },
 	        /* 404路由 */
 	        '*': {
@@ -12377,13 +12386,21 @@
 	    });
 	};
 	
-	var _Project = __webpack_require__(56);
+	var _Project = __webpack_require__(39);
 
 	var _Project2 = _interopRequireDefault(_Project);
 
-	var _Index = __webpack_require__(83);
+	var _Index = __webpack_require__(60);
 
 	var _Index2 = _interopRequireDefault(_Index);
+
+	var _LogInfo = __webpack_require__(108);
+
+	var _LogInfo2 = _interopRequireDefault(_LogInfo);
+
+	var _LogDetail = __webpack_require__(113);
+
+	var _LogDetail2 = _interopRequireDefault(_LogDetail);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12392,9 +12409,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(134)
-	__vue_script__ = __webpack_require__(7)
-	__vue_template__ = __webpack_require__(136)
+	__webpack_require__(7)
+	__vue_script__ = __webpack_require__(11)
+	__vue_template__ = __webpack_require__(24)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -12414,130 +12431,44 @@
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _NavBar = __webpack_require__(46);
-	
-	var _NavBar2 = _interopRequireDefault(_NavBar);
-	
-	var _PageBody = __webpack_require__(72);
-	
-	var _PageBody2 = _interopRequireDefault(_PageBody);
-	
-	var _vueWeui = __webpack_require__(52);
-	
-	var _DateHelper = __webpack_require__(137);
-	
-	var _DateHelper2 = _interopRequireDefault(_DateHelper);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// <template>
-	// 	<div class="page worklog">
-	// 		<nav-bar text="工作日志">
-	// 			<span class="icon-chevron-left" slot="leftBar" @click="back()"></span>
-	// 			<span slot="rightBtn"></span>
-	// 		</nav-bar>
-	// 		<page-body>
-	// 			<cells-title>
-	// 				<div>开始:{{startDay}} 结束:{{endDay}}</div>
-	// 			</cells-title>
-	// 			<cells type="access">
-	// 				<link-cell v-for="item in dateRange">
-	// 					<div slot="header">{{ getZNWeek($index) }}</div>
-	// 					<div slot="body">
-	// 						<div>
-	// 							{{item}}
-	// 						</div>
-	// 					</div>
-	// 				</link-cell>
-	// 			</cells>
-	// 		</page-body>
-	// 	</div>
-	
-	// </template>
-	
-	// <script>
-	exports.default = {
-		data: function data() {
-			return {
-				title: '工作日志',
-				startDay: '',
-				endDay: '',
-				dateRange: []
-			};
-		},
-		ready: function ready() {
-			this.startDay = _DateHelper2.default.weekFirstDay();
-			console.log(this.startDay);
-			this.endDay = _DateHelper2.default.weekLastDay();
-			this.dateRange = this.getDateRange();
-		},
-	
-		methods: {
-			back: function back() {
-				history.back();
-			},
-	
-			//子控件触发事件后执行的方法
-			selectDay: function selectDay(day) {
-				alert(day);
-			},
-			getDateRange: function getDateRange() {
-				var tempRange = [];
-				//1:得到当前月份的天数
-				var date = new Date();
-				var month = date.getMonth() + 1;
-				var year = date.getFullYear();
-				var days = _DateHelper2.default.dayNumOfMonth(year, month);
-				//2:得到
-				var firstDay = parseInt(this.startDay.split('-')[2]);
-				if (firstDay + 7 > days) {} else {
-					for (var i = firstDay, length = firstDay + 7; i < length; i++) {
-						var tempDate = new Date(year + "/" + month + "/" + i);
-						tempRange.push(_DateHelper2.default.formate(tempDate, "yyyy-MM-dd"));
-					};
-				}
-				return tempRange;
-			},
-			getZNWeek: function getZNWeek(flag) {
-				var array = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
-				return array[flag];
-			}
-		},
-		components: {
-			NavBar: _NavBar2.default,
-			PageBody: _PageBody2.default,
-			Cells: _vueWeui.Cells,
-			Cell: _vueWeui.Cell,
-			CellsTitle: _vueWeui.CellsTitle,
-			LinkCell: _vueWeui.LinkCell
+	// load the styles
+	var content = __webpack_require__(8);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3374ee2a&file=WorkLog.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./WorkLog.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3374ee2a&file=WorkLog.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./WorkLog.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
 		}
-	};
-	// </script>
-
-	// <style scoped>
-	// 	.weui_cells_title>div{
-	// 		text-align: center;
-	// 		font-size: 17px;
-	// 		margin-bottom: 10px;
-	// 	}
-
-	// 	.weui_cell_bd>div{
-	// 		padding-left: 10px;
-	// 	}
-	// </style>
-	/* generated by vue-loader */
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
 
 /***/ },
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n.weui_cells_title>div[_v-3374ee2a]{\n\ttext-align: center;\n\tfont-size: 17px;\n\tmargin-bottom: 10px;\n}\n\n.weui_cell_bd>div[_v-3374ee2a]{\n\tpadding-left: 10px;\n}\n\n.time[_v-3374ee2a]{\n\t\n}\n", "", {"version":3,"sources":["/./src/views/WorkLog.vue?42dafae5"],"names":[],"mappings":";AA6FA;CACA,mBAAA;CACA,gBAAA;CACA,oBAAA;CACA;;AAEA;CACA,mBAAA;CACA;;AAEA;;CAEA","file":"WorkLog.vue","sourcesContent":["<template>\r\n\t<div class=\"page worklog\">\r\n\t\t<nav-bar text=\"工作日志\">\r\n\t\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\"></span>\r\n\t\t\t<span slot=\"rightBtn\"></span>\r\n\t\t</nav-bar>\r\n\t\t<page-body>\r\n\t\t\t<cells-title>\r\n\t\t\t\t<div>开始:{{startDay}} 结束:{{endDay}}</div>\r\n\t\t\t</cells-title>\r\n\t\t\t<cells type=\"access\">\r\n\t\t\t\t<link-cell v-for=\"item in dateRange\" :router-link=\"{ name: 'loginfo', params: { date: item }}\">\r\n\t\t\t\t\t<div slot=\"header\">{{ getZNWeek($index) }}</div>\r\n\t\t\t\t\t<div slot=\"body\">\r\n\t\t\t\t\t\t<div class=\"time\">\r\n\t\t\t\t\t\t\t{{item}}\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</link-cell>\r\n\t\t\t</cells>\r\n\t\t</page-body>\r\n\t</div>\r\n\t\r\n</template>\r\n\r\n<script>\r\n\timport NavBar from '../components/NavBar.vue';\r\n\timport PageBody from '../components/PageBody.vue'\r\n\timport {Cells,Cell,CellsTitle,LinkCell} from 'vue-weui'\r\n\timport DateHelper from '../public/js/DateHelper.js'\r\n\r\n\texport default {\r\n\t\tname:'worklog',\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\ttitle:'工作日志',\r\n\t\t\t\tstartDay:'',\r\n\t\t\t\tendDay:'',\r\n\t\t\t\tdateRange:[]\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\tthis.startDay=DateHelper.weekFirstDay();\r\n\t\t\tconsole.log(this.startDay);\r\n\t\t\tthis.endDay=DateHelper.weekLastDay();\r\n\t\t\tthis.dateRange=this.getDateRange();\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tback(){\r\n\t\t\t\thistory.back();\r\n\t\t\t},\r\n\t\t\t//子控件触发事件后执行的方法\r\n\t\t\tselectDay(day){\r\n\t\t\t\talert(day);\r\n\t\t\t},\r\n\t\t\tgetDateRange(){\r\n\t\t\t\tvar tempRange=[];\r\n\t\t\t\t//1:得到当前月份的天数\r\n\t\t\t\tvar date=new Date();\r\n\t\t\t\tvar month=date.getMonth()+1;\r\n\t\t\t\tvar year=date.getFullYear();\r\n\t\t\t\tvar days=DateHelper.dayNumOfMonth(year,month);\r\n\t\t\t\t//2:得到\r\n\t\t\t\tvar firstDay=parseInt(this.startDay.split('-')[2]);\r\n\t\t\t\tif(firstDay+7>days){\r\n\r\n\t\t\t\t}else{\r\n\t\t\t\t\tfor (var i = firstDay,length=firstDay+7; i <length; i++) {\r\n\t\t\t\t\t\tvar tempDate=new Date(year+\"/\"+month+\"/\"+i);\r\n\t\t\t\t\t\ttempRange.push(\r\n\t\t\t\t\t\t\tDateHelper.formate(tempDate,\"yyyy-MM-dd\")\r\n\t\t\t\t\t\t);\r\n\t\t\t\t\t};\r\n\t\t\t\t}\r\n\t\t\t\treturn tempRange;\r\n\t\t\t},\r\n\t\t\tgetZNWeek(flag){\r\n\t\t\t\tvar array=[\"周一\",\"周二\",\"周三\",\"周四\",\"周五\",\"周六\",\"周日\"];\r\n\t\t\t\treturn array[flag];\r\n\t\t\t}\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tNavBar,\r\n\t\t\tPageBody,\r\n\t\t\tCells,\r\n\t\t\tCell,\r\n\t\t\tCellsTitle,\r\n\t\t\tLinkCell\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style scoped>\r\n\t.weui_cells_title>div{\r\n\t\ttext-align: center;\r\n\t\tfont-size: 17px;\r\n\t\tmargin-bottom: 10px;\r\n\t}\r\n\r\n\t.weui_cell_bd>div{\r\n\t\tpadding-left: 10px;\r\n\t}\r\n\r\n\t.time{\r\n\t\t\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 9 */
 /***/ function(module, exports) {
 
 	/*
@@ -12593,7 +12524,7 @@
 
 
 /***/ },
-/* 12 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -12815,78 +12746,7 @@
 
 
 /***/ },
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__webpack_require__(22)
-	__vue_script__ = __webpack_require__(24)
-	__vue_template__ = __webpack_require__(40)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\views\\UserInfo.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 22 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(23);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(12)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-61f407d1&file=UserInfo.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./UserInfo.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-61f407d1&file=UserInfo.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./UserInfo.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 23 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(11)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"UserInfo.vue","sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 24 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12895,397 +12755,132 @@
 		value: true
 	});
 	
-	var _NavBar = __webpack_require__(46);
+	var _NavBar = __webpack_require__(12);
 	
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 	
-	var _PageBody = __webpack_require__(72);
+	var _PageBody = __webpack_require__(17);
 	
 	var _PageBody2 = _interopRequireDefault(_PageBody);
 	
-	var _vueWeui = __webpack_require__(52);
+	var _vueWeui = __webpack_require__(22);
+	
+	var _DateHelper = __webpack_require__(23);
+	
+	var _DateHelper2 = _interopRequireDefault(_DateHelper);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = {
-		created: function created() {
-			var _this = this;
+	// <template>
+	// 	<div class="page worklog">
+	// 		<nav-bar text="工作日志">
+	// 			<span class="icon-chevron-left" slot="leftBar" @click="back()"></span>
+	// 			<span slot="rightBtn"></span>
+	// 		</nav-bar>
+	// 		<page-body>
+	// 			<cells-title>
+	// 				<div>开始:{{startDay}} 结束:{{endDay}}</div>
+	// 			</cells-title>
+	// 			<cells type="access">
+	// 				<link-cell v-for="item in dateRange" :router-link="{ name: 'loginfo', params: { date: item }}">
+	// 					<div slot="header">{{ getZNWeek($index) }}</div>
+	// 					<div slot="body">
+	// 						<div class="time">
+	// 							{{item}}
+	// 						</div>
+	// 					</div>
+	// 				</link-cell>
+	// 			</cells>
+	// 		</page-body>
+	// 	</div>
 	
-			//加载远程数据
-			//1:显示加载动画
-			setTimeout(function () {
-				_this.isload = false;
-			}, 1000);
+	// </template>
+	
+	// <script>
+	exports.default = {
+		name: 'worklog',
+		data: function data() {
+			return {
+				title: '工作日志',
+				startDay: '',
+				endDay: '',
+				dateRange: []
+			};
+		},
+		ready: function ready() {
+			this.startDay = _DateHelper2.default.weekFirstDay();
+			console.log(this.startDay);
+			this.endDay = _DateHelper2.default.weekLastDay();
+			this.dateRange = this.getDateRange();
 		},
 	
-		props: {},
 		methods: {
-			test: function test(e) {
-				console.log('11');
-			},
 			back: function back() {
 				history.back();
 			},
 	
-			//加载用户信息
-			loadUserInfo: function loadUserInfo() {
-				var _this2 = this;
-	
-				this.isload = true;
-				setTimeout(function () {
-					_this2.isload = false;
-				}, 1000);
+			//子控件触发事件后执行的方法
+			selectDay: function selectDay(day) {
+				alert(day);
 			},
-			showDialog: function showDialog() {
-				this.isShowDialog = !this.isShowDialog;
+			getDateRange: function getDateRange() {
+				var tempRange = [];
+				//1:得到当前月份的天数
+				var date = new Date();
+				var month = date.getMonth() + 1;
+				var year = date.getFullYear();
+				var days = _DateHelper2.default.dayNumOfMonth(year, month);
+				//2:得到
+				var firstDay = parseInt(this.startDay.split('-')[2]);
+				if (firstDay + 7 > days) {} else {
+					for (var i = firstDay, length = firstDay + 7; i < length; i++) {
+						var tempDate = new Date(year + "/" + month + "/" + i);
+						tempRange.push(_DateHelper2.default.formate(tempDate, "yyyy-MM-dd"));
+					};
+				}
+				return tempRange;
 			},
-			confirm: function confirm() {
-				alert("子组件触发了事件");
+			getZNWeek: function getZNWeek(flag) {
+				var array = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
+				return array[flag];
 			}
 		},
-		data: function data() {
-			return {
-				isload: true,
-				isShowDialog: false,
-				dialogTitle: '测试',
-				isAlert: true
-			};
-		},
-	
 		components: {
 			NavBar: _NavBar2.default,
 			PageBody: _PageBody2.default,
 			Cells: _vueWeui.Cells,
 			Cell: _vueWeui.Cell,
-			CellsTitle: _vueWeui.CellsTitle
-		}
-	
-	};
-	
-	// </script>
-
-	// <style type="text/css" scoped>
-
-	// </style>
-	// <template>
-	// 	<div class="page userinfo">
-	// 		<nav-bar text="个人主页">
-	// 			<span class="icon-chevron-left" slot="leftBar" @click="back">返回</span>
-	// 			<span class="icon-refresh" slot="rightBtn" @click="loadUserInfo"></span>
-	// 		</nav-bar>
-	// 		<page-body>
-	// 			<div class="cell">
-
-	// 			</div>
-	// 			<cells-title>
-	// 				个人基本信息
-	// 			</cells-title>
-	// 			<cells >
-	// 				<cell>
-	// 					<div slot="body">姓名</div>
-	// 					<div slot="footer">刘克志</div>
-	// 				</cell>
-	// 				<cell>
-	// 					<div slot="body">部门<span></span></div>
-	// 					<div slot="footer">信息管理中心</div>
-	// 				</cell>
-	// 				<cell>
-	// 					<div slot="body">岗位:<span></span></div>
-	// 					<div slot="footer">工程师</div>
-	// 				</cell>
-	// 				<cell>
-	// 					<div slot="body">年假结余:<span></span></div>
-	// 					<div slot="footer">3天</div>
-	// 				</cell>
-	// 				<cell>
-	// 					<div slot="body">福利假:<span></span></div>
-	// 					<div slot="footer">1天</div>
-	// 				</cell>
-	// 				<cell>
-	// 					<div slot="body">探亲假:<span></span></div>
-	// 					<div slot="footer">1天</div>
-	// 				</cell>
-	// 			</cells>
-	// 		</page-body>
-	// 	</div>
-
-	// </template>
-
-	// <script lang="babel">
-
-/***/ },
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<div class=\"page userinfo\" _v-61f407d1=\"\">\n\t<nav-bar text=\"个人主页\" _v-61f407d1=\"\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back\" _v-61f407d1=\"\">返回</span>\n\t\t<span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"loadUserInfo\" _v-61f407d1=\"\"></span>\n\t</nav-bar>\n\t<page-body _v-61f407d1=\"\">\n\t\t<div class=\"cell\" _v-61f407d1=\"\">\n\t\t\t\n\t\t</div>\n\t\t<cells-title _v-61f407d1=\"\">\n\t\t\t个人基本信息\n\t\t</cells-title>\n\t\t<cells _v-61f407d1=\"\">\n\t\t\t<cell _v-61f407d1=\"\">\n\t\t\t\t<div slot=\"body\" _v-61f407d1=\"\">姓名</div>\n\t\t\t\t<div slot=\"footer\" _v-61f407d1=\"\">刘克志</div>\n\t\t\t</cell>\n\t\t\t<cell _v-61f407d1=\"\">\n\t\t\t\t<div slot=\"body\" _v-61f407d1=\"\">部门<span _v-61f407d1=\"\"></span></div>\n\t\t\t\t<div slot=\"footer\" _v-61f407d1=\"\">信息管理中心</div>\n\t\t\t</cell>\n\t\t\t<cell _v-61f407d1=\"\">\n\t\t\t\t<div slot=\"body\" _v-61f407d1=\"\">岗位:<span _v-61f407d1=\"\"></span></div>\n\t\t\t\t<div slot=\"footer\" _v-61f407d1=\"\">工程师</div>\n\t\t\t</cell>\n\t\t\t<cell _v-61f407d1=\"\">\n\t\t\t\t<div slot=\"body\" _v-61f407d1=\"\">年假结余:<span _v-61f407d1=\"\"></span></div>\n\t\t\t\t<div slot=\"footer\" _v-61f407d1=\"\">3天</div>\n\t\t\t</cell>\n\t\t\t<cell _v-61f407d1=\"\">\n\t\t\t\t<div slot=\"body\" _v-61f407d1=\"\">福利假:<span _v-61f407d1=\"\"></span></div>\n\t\t\t\t<div slot=\"footer\" _v-61f407d1=\"\">1天</div>\n\t\t\t</cell>\n\t\t\t<cell _v-61f407d1=\"\">\n\t\t\t\t<div slot=\"body\" _v-61f407d1=\"\">探亲假:<span _v-61f407d1=\"\"></span></div>\n\t\t\t\t<div slot=\"footer\" _v-61f407d1=\"\">1天</div>\n\t\t\t</cell>\n\t\t</cells>\n\t</page-body>\n</div>\n\n";
-
-/***/ },
-/* 41 */
-/***/ function(module, exports) {
-
-	var __vue_script__, __vue_template__
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-
-
-/***/ },
-/* 42 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__webpack_require__(43)
-	__vue_script__ = __webpack_require__(45)
-	__vue_template__ = __webpack_require__(53)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\views\\Login.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 43 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(44);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(12)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6fedb23e&file=Login.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Login.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6fedb23e&file=Login.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Login.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 44 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(11)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n.login .loginUrl{\n\ttext-align: center;\n\tmargin: 10px 5px;\n}\n\n\n.login p{\n\tfont-size: 13px;\n}\n", "", {"version":3,"sources":["/./src/views/Login.vue?27502018"],"names":[],"mappings":";AA+IA;CACA,mBAAA;CACA,iBAAA;CACA;;;AAGA;CACA,gBAAA;CACA","file":"Login.vue","sourcesContent":["<template>\r\n\t<div class=\"page login\">\r\n\t\t<nav-bar text=\"登录页\"></nav-bar>\r\n\t\t<div class=\"page-bd\">\r\n\t\t\t<div class=\"loginUrl\"> \r\n\t\t\t\t<img src=\"../assets/images/login/login.png\" alt=\"用户\">\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<cells type=\"form\">\r\n\t\t\t\t<input-cell label=\"账号\" placeholder=\"工号：M0XXX\" :value.sync=\"account\" v-ref:account></input-cell>\r\n\t\t\t\t<input-cell label=\"密码\" placeholder=\"密码\" type=\"password\" :value.sync=\"pwd\" ></input-cell>\r\n\t\t\t</cells>\r\n\t\t\t\r\n\t\t\t<cells type=\"checkbox\">\r\n\t\t\t\t<checkbox-cell name=\"isremeber\" :checked.sync=\"isremeber\" label=\"<p>是否记忆密码</p>\" ></checkbox-cell>\r\n\t\t\t</cells>\r\n\t\t\t\r\n\t\t\t<cells>\r\n\t\t\t<button-area>\r\n\t\t\t\t<button @click=\"login\">登录</button>\r\n\t\t\t</button-area>\r\n\t\t</div>\r\n\t\t<dialog v-show=\"isPrompt\" title=\"错误提示\" @weui-dialog-confirm=\"confirmDlg\">\r\n\t\t\t<p>{{errorMsg}}</p>\r\n\t\t</dialog>\r\n\t\t<toast v-show=\"isloading\" type=\"loading\">\r\n\t\t\t登录中..\r\n\t\t</toast>\r\n\t</div>\r\n</template>\r\n\r\n\r\n<script>\r\n\timport NavBar from '../components/NavBar.vue'\r\n\timport auth from './utils/auth.js'\r\n\timport {ButtonArea,Button,Cells,Cell,CheckboxCell,InputCell,Dialog,Toast} from 'vue-weui'\r\n\texport default {\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\taccount:'M0679',\r\n\t\t\t\tpwd:'000',\r\n\t\t\t\tisremeber:true,\r\n\t\t\t\tisPrompt:false,\r\n\t\t\t\tisloading:false,\r\n\t\t\t\terrorMsg:'错误了',\r\n\t\t\t\tdevice:'',\r\n\t\t\t\tredirectUrl:''\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\t// this.account=\"M\";\r\n\t\t\t// console.log(this.$refs.account)\r\n\t\t\t// this.$els.account.focus();\r\n\t\t\tvar tmpDevice=\"\"\r\n\t\t\tif(this.getVersion().ios){\r\n\t\t\t\tthis.device=\"ios\";\r\n\t\t\t}else if(this.getVersion().android){\r\n\t\t\t\tthis.device= \"android\";\r\n\t\t\t}else if(this.getVersion().iPhone){\r\n\t\t\t\tthis.device= \"iPhone\";\r\n\t\t\t}else if(this.getVersion().iPad){\r\n\t\t\t\tthis.device=\"iPad\";\r\n\t\t\t}else{\r\n\t\t\t\tthis.device=\"web\";\r\n\t\t\t}\r\n\t\t\t//得到重定向的url\r\n\t\t\t this.redirectUrl= decodeURIComponent(this.$route.query.redirect || '/');\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tNavBar,\r\n\t\t\tButtonArea,\r\n\t\t\tButton,\r\n\t\t\tCheckboxCell,\r\n\t\t\tCells,\r\n\t\t\tCell,\r\n\t\t\tDialog,\r\n\t\t\tToast,\r\n\t\t\tInputCell\r\n\t\t},\r\n\t\t\r\n\t\tmethods:{\r\n\t\t\tconfirmDlg(){\r\n\t\t\t\tthis.isPrompt=false;\r\n\t\t\t},\r\n\t\t\tshowDialog(errorMsg){\r\n\t\t\t\tthis.errorMsg=errorMsg;\r\n\t\t\t\tthis.isPrompt=true;\r\n\t\t\t},\r\n\t\t\tlogin(){\r\n\t\t\t\t//向服务器发起请登录请求\r\n\t\t\t\tif(this.account.length!=5){\r\n\t\t\t\t\t// this.errorMsg=\"账号必须是五位\";\r\n\t\t\t\t\t// this.isPrompt=true;\r\n\t\t\t\t\tthis.showDialog(\"账号必须是五位\");\r\n\t\t\t\t\treturn;\r\n\t\t\t\t}\r\n\t\t\t\tif(this.pwd.length<3){\r\n\t\t\t\t\t// this.errorMsg=\"密码最小长度是三位:\"+this.getVersion().android;\r\n\t\t\t\t\tthis.showDialog(\"密码最小长度是三位\");\r\n\t\t\t\t\treturn;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t//向服务器发起请求\r\n\t\t\t\tthis.isloading=true;\r\n\t\t\t\tthis.$http.get(\"auth\",{\"account\":this.account,\"passwd\":this.pwd,\"device\":this.device}).then((response)=>{\r\n\t\t\t\t\tthis.isloading=false;\r\n\t\t\t\t\tvar data=response.data;\r\n\t\t\t\t\tconsole.log(data);\r\n\t\t\t\t\tif(data.Statu==\"Y\"){\r\n\t\t\t\t\t\tauth.setUser(this.account,this.password,this.isremeber);\r\n\t\t\t\t\t\t//跳转到首页\r\n\t\t\t\t\t\t// console.log(\"我的测试:\"+this.$route);\r\n\t\t\t\t\t\tif(this.redirectUrl&&this.redirectUrl.length>0){\r\n\t\t\t\t\t\t\tthis.$route.router.go(this.redirectUrl);\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t\telse{\r\n\t\t\t\t\t\t\tthis.$route.router.go(\"index\");\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t}else{\r\n\t\t\t\t\t\tthis.showDialog(data.Msg);\r\n\t\t\t\t\t}\r\n\t\t\t\t\t\r\n\t\t\t\t},(error)=>{\r\n\t\t\t\t\tthis.isloading=false;\r\n\t\t\t\t});\r\n\t\t\t\tconsole.log(\"账号:\"+this.account+\"-密码是:\"+this.pwd+\"-记住密码:\"+this.isremeber)\r\n\t\t\t},\r\n\t\t\tgetVersion(){\r\n           \t\t let u = navigator.userAgent,\r\n                app = navigator.appVersion;\r\n\t            return { //移动终端浏览器版本信息\r\n\t                ios: !!u.match(/\\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端\r\n\t                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器\r\n\t                iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器\r\n\t                iPad: u.indexOf('iPad') > -1, //是否iPad\r\n\t            };\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" >\r\n\t.login .loginUrl{\r\n\t\ttext-align: center;\r\n\t\tmargin: 10px 5px;\r\n\t}\r\n\r\n\r\n\t.login p{\r\n\t\tfont-size: 13px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 45 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _NavBar = __webpack_require__(46);
-	
-	var _NavBar2 = _interopRequireDefault(_NavBar);
-	
-	var _auth = __webpack_require__(51);
-	
-	var _auth2 = _interopRequireDefault(_auth);
-	
-	var _vueWeui = __webpack_require__(52);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-		data: function data() {
-			return {
-				account: 'M0679',
-				pwd: '000',
-				isremeber: true,
-				isPrompt: false,
-				isloading: false,
-				errorMsg: '错误了',
-				device: '',
-				redirectUrl: ''
-			};
-		},
-		ready: function ready() {
-			// this.account="M";
-			// console.log(this.$refs.account)
-			// this.$els.account.focus();
-			var tmpDevice = "";
-			if (this.getVersion().ios) {
-				this.device = "ios";
-			} else if (this.getVersion().android) {
-				this.device = "android";
-			} else if (this.getVersion().iPhone) {
-				this.device = "iPhone";
-			} else if (this.getVersion().iPad) {
-				this.device = "iPad";
-			} else {
-				this.device = "web";
-			}
-			//得到重定向的url
-			this.redirectUrl = decodeURIComponent(this.$route.query.redirect || '/');
-		},
-	
-		components: {
-			NavBar: _NavBar2.default,
-			ButtonArea: _vueWeui.ButtonArea,
-			Button: _vueWeui.Button,
-			CheckboxCell: _vueWeui.CheckboxCell,
-			Cells: _vueWeui.Cells,
-			Cell: _vueWeui.Cell,
-			Dialog: _vueWeui.Dialog,
-			Toast: _vueWeui.Toast,
-			InputCell: _vueWeui.InputCell
-		},
-	
-		methods: {
-			confirmDlg: function confirmDlg() {
-				this.isPrompt = false;
-			},
-			showDialog: function showDialog(errorMsg) {
-				this.errorMsg = errorMsg;
-				this.isPrompt = true;
-			},
-			login: function login() {
-				var _this = this;
-	
-				//向服务器发起请登录请求
-				if (this.account.length != 5) {
-					// this.errorMsg="账号必须是五位";
-					// this.isPrompt=true;
-					this.showDialog("账号必须是五位");
-					return;
-				}
-				if (this.pwd.length < 3) {
-					// this.errorMsg="密码最小长度是三位:"+this.getVersion().android;
-					this.showDialog("密码最小长度是三位");
-					return;
-				}
-	
-				//向服务器发起请求
-				this.isloading = true;
-				this.$http.get("auth", { "account": this.account, "passwd": this.pwd, "device": this.device }).then(function (response) {
-					_this.isloading = false;
-					var data = response.data;
-					console.log(data);
-					if (data.Statu == "Y") {
-						_auth2.default.setUser(_this.account, _this.password, _this.isremeber);
-						//跳转到首页
-						// console.log("我的测试:"+this.$route);
-						if (_this.redirectUrl && _this.redirectUrl.length > 0) {
-							_this.$route.router.go(_this.redirectUrl);
-						} else {
-							_this.$route.router.go("index");
-						}
-					} else {
-						_this.showDialog(data.Msg);
-					}
-				}, function (error) {
-					_this.isloading = false;
-				});
-				console.log("账号:" + this.account + "-密码是:" + this.pwd + "-记住密码:" + this.isremeber);
-			},
-			getVersion: function getVersion() {
-				var u = navigator.userAgent,
-				    app = navigator.appVersion;
-				return { //移动终端浏览器版本信息
-					ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-					android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
-					iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
-					iPad: u.indexOf('iPad') > -1 };
-			}
+			CellsTitle: _vueWeui.CellsTitle,
+			LinkCell: _vueWeui.LinkCell
 		}
 	};
 	// </script>
 
-	// <style type="text/css" >
-	// 	.login .loginUrl{
+	// <style scoped>
+	// 	.weui_cells_title>div{
 	// 		text-align: center;
-	// 		margin: 10px 5px;
+	// 		font-size: 17px;
+	// 		margin-bottom: 10px;
 	// 	}
 
-	// 	.login p{
-	// 		font-size: 13px;
+	// 	.weui_cell_bd>div{
+	// 		padding-left: 10px;
+	// 	}
+
+	// 	.time{
+
 	// 	}
 	// </style>
 	/* generated by vue-loader */
-	// <template>
-	// 	<div class="page login">
-	// 		<nav-bar text="登录页"></nav-bar>
-	// 		<div class="page-bd">
-	// 			<div class="loginUrl">
-	// 				<img src="../assets/images/login/login.png" alt="用户">
-	// 			</div>
-
-	// 			<cells type="form">
-	// 				<input-cell label="账号" placeholder="工号：M0XXX" :value.sync="account" v-ref:account></input-cell>
-	// 				<input-cell label="密码" placeholder="密码" type="password" :value.sync="pwd" ></input-cell>
-	// 			</cells>
-
-	// 			<cells type="checkbox">
-	// 				<checkbox-cell name="isremeber" :checked.sync="isremeber" label="<p>是否记忆密码</p>" ></checkbox-cell>
-	// 			</cells>
-
-	// 			<cells>
-	// 			<button-area>
-	// 				<button @click="login">登录</button>
-	// 			</button-area>
-	// 		</div>
-	// 		<dialog v-show="isPrompt" title="错误提示" @weui-dialog-confirm="confirmDlg">
-	// 			<p>{{errorMsg}}</p>
-	// 		</dialog>
-	// 		<toast v-show="isloading" type="loading">
-	// 			登录中..
-	// 		</toast>
-	// 	</div>
-	// </template>
-
-	// <script>
 
 /***/ },
-/* 46 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(47)
-	__vue_script__ = __webpack_require__(49)
-	__vue_template__ = __webpack_require__(50)
+	__webpack_require__(13)
+	__vue_script__ = __webpack_require__(15)
+	__vue_template__ = __webpack_require__(16)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -13302,16 +12897,16 @@
 	})()}
 
 /***/ },
-/* 47 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(48);
+	var content = __webpack_require__(14);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(12)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -13328,10 +12923,10 @@
 	}
 
 /***/ },
-/* 48 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(11)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 	
 	
@@ -13342,7 +12937,7 @@
 
 
 /***/ },
-/* 49 */
+/* 15 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -13418,13 +13013,76 @@
 	// </style>
 
 /***/ },
-/* 50 */
+/* 16 */
 /***/ function(module, exports) {
 
 	module.exports = "\n\t<header class=\"page-hd\">\n        <p>{{text}}</p>\n        <div>\n            <div class=\"left\">\n                <slot name=\"leftBar\"></slot>\n            </div>\n            <div class=\"right\">\n                <slot name=\"rightBar\"></slot>\n            </div>\n        </div>\n    </header>\n";
 
 /***/ },
-/* 51 */
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(18)
+	__vue_script__ = __webpack_require__(20)
+	__vue_template__ = __webpack_require__(21)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\PageBody.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(19);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-1e795d06&file=PageBody.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./PageBody.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-1e795d06&file=PageBody.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./PageBody.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\t.page-bd[_v-1e795d06] {\n\t    overflow: auto;\n\t    -webkit-overflow-scrolling: touch;\n\t    width: 100%;\n\t    height: 100%;\n\t    padding-top: 4px;\n\t    position: absolute;\n        left: 0;\n\t}\n", "", {"version":3,"sources":["/./src/components/PageBody.vue?700cc40a"],"names":[],"mappings":";CAiBA;KACA,eAAA;KACA,kCAAA;KACA,YAAA;KACA,aAAA;KACA,iBAAA;KACA,mBAAA;QACA,QAAA;EACA","file":"PageBody.vue","sourcesContent":["<template>\r\n\t<div class=\"page-bd\" @scroll=\"scroll($event)\" >\r\n\t\t<slot></slot>\t\r\n\t</div>\r\n</template>\r\n\r\n<script>\r\n\texport default {\r\n\t\tmethods:{\r\n\t\t\tscroll(e){\r\n\t\t\t\tthis.$broadcast(\"scroll\",e);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\t.page-bd {\r\n\t    overflow: auto;\r\n\t    -webkit-overflow-scrolling: touch;\r\n\t    width: 100%;\r\n\t    height: 100%;\r\n\t    padding-top: 4px;\r\n\t    position: absolute;\r\n        left: 0;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 20 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -13432,42 +13090,43 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	var auth = {
-		// 设置人员
+	// <template>
+	// 	<div class="page-bd" @scroll="scroll($event)" >
+	// 		<slot></slot>	
+	// 	</div>
+	// </template>
 	
-		setUser: function setUser(account, pwd, isAway) {
-			var user = {
-				account: account,
-				pwd: pwd,
-				isAway: isAway
-			};
-			if (isAway) {
-				localStorage.user = user;
-			} else {
-				sessionStorage.user = user;
-			}
-		},
-	
-		//检查该对象是否存在
-		isLogin: function isLogin() {
-			return localStorage.user || sessionStorage.user;
-		},
-	
-		//获取用户
-		getUser: function getUser() {
-			var user = localStorage.user || sessionStorage.user;
-			if (user) {
-				return user;
-			} else {
-				return false;
+	// <script>
+	exports.default = {
+		methods: {
+			scroll: function scroll(e) {
+				this.$broadcast("scroll", e);
 			}
 		}
 	};
-	
-	exports.default = auth;
+	// </script>
+
+	// <style type="text/css" scoped>
+	// 	.page-bd {
+	// 	    overflow: auto;
+	// 	    -webkit-overflow-scrolling: touch;
+	// 	    width: 100%;
+	// 	    height: 100%;
+	// 	    padding-top: 4px;
+	// 	    position: absolute;
+	//         left: 0;
+	// 	}
+	// </style>
+	/* generated by vue-loader */
 
 /***/ },
-/* 52 */
+/* 21 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"page-bd\" @scroll=\"scroll($event)\" _v-1e795d06=\"\">\n\t<slot _v-1e795d06=\"\"></slot>\t\n</div>\n";
+
+/***/ },
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -16095,19 +15754,395 @@
 	//# sourceMappingURL=vue-weui.js.map
 
 /***/ },
-/* 53 */
-/***/ function(module, exports, __webpack_require__) {
+/* 23 */
+/***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"page login\">\n\t<nav-bar text=\"登录页\"></nav-bar>\n\t<div class=\"page-bd\">\n\t\t<div class=\"loginUrl\"> \n\t\t\t<img src=\"" + __webpack_require__(54) + "\" alt=\"用户\">\n\t\t</div>\n\t\t\n\t\t<cells type=\"form\">\n\t\t\t<input-cell label=\"账号\" placeholder=\"工号：M0XXX\" :value.sync=\"account\" v-ref:account></input-cell>\n\t\t\t<input-cell label=\"密码\" placeholder=\"密码\" type=\"password\" :value.sync=\"pwd\" ></input-cell>\n\t\t</cells>\n\t\t\n\t\t<cells type=\"checkbox\">\n\t\t\t<checkbox-cell name=\"isremeber\" :checked.sync=\"isremeber\" label=\"<p>是否记忆密码</p>\" ></checkbox-cell>\n\t\t</cells>\n\t\t\n\t\t<cells>\n\t\t<button-area>\n\t\t\t<button @click=\"login\">登录</button>\n\t\t</button-area>\n\t</div>\n\t<dialog v-show=\"isPrompt\" title=\"错误提示\" @weui-dialog-confirm=\"confirmDlg\">\n\t\t<p>{{errorMsg}}</p>\n\t</dialog>\n\t<toast v-show=\"isloading\" type=\"loading\">\n\t\t登录中..\n\t</toast>\n</div>\n";
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	var DateHelper = {
+		//获取档期的日期
+	
+		getNowDate: function getNowDate(formate) {
+			var date = new Date();
+			return DateHelper.formate(date);
+		},
+		formate: function formate(date, _formate) {
+			var year = date.getFullYear();
+			var month = parseInt(date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+			var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+			var hour = date.getHours();
+			var min = date.getMinutes();
+			var sec = date.getSeconds();
+			var result = "";
+			if (_formate.indexOf("yyyy") >= 0) {
+				result = year;
+			}
+			if (_formate.indexOf("MM") >= 0) {
+				result += "-" + month;
+			}
+			if (_formate.indexOf("dd") >= 0) {
+				result += "-" + day;
+			}
+			if (_formate.indexOf("HH") >= 0) {
+				result += " " + hour;
+			}
+	
+			if (_formate.indexOf("mm") >= 0) {
+				result += ":" + min;
+			}
+			if (_formate.indexOf("ss") >= 0) {
+				result += ":" + sec;
+			}
+			return result;
+		},
+	
+		//是否闰年
+		isLeaf: function isLeaf(date) {
+			if (typeof date == "String") {
+				date = new Date();
+			}
+			var date = new Date();
+			return 0 == date.getYear() % 4 && (date.getYear() % 100 != 0 || date.getYear() % 400 == 0);
+		},
+	
+		//获取当前天是全年的第几天
+		daysOfYear: function daysOfYear(date) {
+			//获取第几个月
+			var month = date.getMonth();
+			var days = 0;
+			//获取该天是第几周
+			for (var i = 1; i <= month; i++) {
+				days += dayNumOfMonth(i);
+			}
+			return days + date.getDate();
+		},
+	
+		//通过日期来获取当期星期几
+		dayOfWeek: function dayOfWeek(date) {
+			var week = new Date(date).getDay();
+			if (week == 0) {
+				return 7;
+			} else {
+				return week;
+			}
+		},
+		//通过年月来获取月份的天数
+		dayNumOfMonth: function dayNumOfMonth(year, month) {
+			var d = new Date(year, month, 0);
+			return d.getDate();
+		},
+		//获取当前周的星期一
+		weekFirstDay: function weekFirstDay() {
+			var currentDay = new Date();
+			var cYear = currentDay.getFullYear();
+			var cMonth = currentDay.getMonth() + 1;
+			var day = currentDay.getDate();
+			var startDay = day - parseInt(currentDay.getDay() == 0 ? 6 : currentDay.getDay() - 1);
+			//检查是否跨月
+	
+			if (startDay < 1) {
+				//如果跨月情况
+				var month = GetDaysByMonth(parseInt(currentDay.getMonth()) - 1); //原 var month = GetDaysByMonth(parseInt(currentDay.getMonth()))
+				var nowDay = month - Math.abs(startDay); //  原var nowDay = month - startDay
+				return cYear + "-" + (currentDay.getMonth() < 10 ? "0" + currentDay.getMonth() : currentDay.getMonth()) + "-" + nowDay;
+			}
+			return DateHelper.formate(currentDay, "yyyy-MM") + '-' + (parseInt(startDay) < 10 ? "0" + startDay : startDay);
+		},
+	
+		//当前走的最后一天
+		weekLastDay: function weekLastDay() {
+			var currentDay = new Date();
+			//返回的是当前月的天数
+	
+			var cYear = currentDay.getFullYear();
+			var cMonth = currentDay.getMonth() + 1;
+			var days = DateHelper.dayNumOfMonth(cYear, cMonth);
+			var day = currentDay.getDate();
+			var endDay = day + (7 - currentDay.getDay());
+			if (endDay > days) {
+				//如果跨月的情况
+				var newDay = endDay - days + 1;
+				if (newDay < 10) {
+					newDay = "0" + newDay;
+				}
+				return cYear + "-" + (cMonth + 1 < 10 ? "0" + (cMonth + 1) : cMonth + 1) + "-" + newDay;
+			}
+			return DateHelper.formate(currentDay, "yyyy-MM") + '-' + (endDay < 10 ? "0" + endDay : endDay);
+		},
+		monthFirstDay: function monthFirstDay() {
+			return getNowDate("yyyy-MM") + "-01";
+		},
+	
+		//获取当前月的最后一天
+		monthLastDay: function monthLastDay() {
+			var date = new Date();
+			var lastDay = DateHelper.dayNumOfMonth(date.getFullYear(), date.getMonth() + 1);
+			return getNowDate("yyyy-MM") + (lastDay < 10 ? "0" + lastDay : lastDay);
+		},
+	
+		//日期比较,返回差值
+		dateDiff: function dateDiff(sDate, eDate, strInterval) {
+	
+			if (typeof sDate == 'string') //如果是字符串转换为日期型 
+				{
+					sDate = new Date(sDate);
+				}
+			if (typeof eDate == 'string') //如果是字符串转换为日期型 
+				{
+					eDate = new Date(eDate);
+				}
+			switch (strInterval) {
+				case 's':
+					return parseInt((eDate - sDate) / 1000);
+				case 'n':
+					return parseInt((eDate - sDate) / 60000);
+				case 'h':
+					return parseInt((eDate - sDate) / 3600000);
+				case 'd':
+					return parseInt((eDate - sDate) / 86400000);
+				case 'w':
+					return parseInt((eDate - sDate) / (86400000 * 7));
+				case 'm':
+					return eDate.getMonth() + 1 + (eDate.getFullYear() - sDate.getFullYear()) * 12 - (sDate.getMonth() + 1);
+				case 'y':
+					return eDate.getFullYear() - sDate.getFullYear();
+			}
+		},
+	
+		//日期相加
+		dateAdd: function dateAdd(sDate, strInterval, num) {
+			var dtTmp = sDate;
+			switch (strInterval) {
+				case 's':
+					return new Date(Date.parse(dtTmp.toDateString()) + 1000 * num);
+				case 'n':
+					return new Date(Date.parse(dtTmp.toDateString()) + 60000 * num);
+				case 'h':
+					return new Date(Date.parse(dtTmp.toDateString()) + 3600000 * num);
+				case 'd':
+					return new Date(Date.parse(dtTmp.toDateString()) + 86400000 * num);
+				case 'w':
+					return new Date(Date.parse(dtTmp.toDateString()) + 86400000 * 7 * num);
+				case 'q':
+					return new Date(dtTmp.getFullYear(), dtTmp.getMonth() + num * 3, dtTmp.getDate(), dtTmp.getHours(), dtTmp.getMinutes(), dtTmp.getSeconds());
+				case 'm':
+					return new Date(dtTmp.getFullYear(), dtTmp.getMonth() + num, dtTmp.getDate(), dtTmp.getHours(), dtTmp.getMinutes(), dtTmp.getSeconds());
+				case 'y':
+					return new Date(dtTmp.getFullYear() + num, dtTmp.getMonth(), dtTmp.getDate(), dtTmp.getHours(), dtTmp.getMinutes(), dtTmp.getSeconds());
+			}
+		}
+	};
+	
+	exports.default = DateHelper;
 
 /***/ },
-/* 54 */
-/***/ function(module, exports, __webpack_require__) {
+/* 24 */
+/***/ function(module, exports) {
 
-	module.exports = __webpack_require__.p + "login.png?4d9e2ecdf5aeef51c8ba1e7eabf9715f";
+	module.exports = "\n<div class=\"page worklog\" _v-3374ee2a=\"\">\n\t<nav-bar text=\"工作日志\" _v-3374ee2a=\"\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\" _v-3374ee2a=\"\"></span>\n\t\t<span slot=\"rightBtn\" _v-3374ee2a=\"\"></span>\n\t</nav-bar>\n\t<page-body _v-3374ee2a=\"\">\n\t\t<cells-title _v-3374ee2a=\"\">\n\t\t\t<div _v-3374ee2a=\"\">开始:{{startDay}} 结束:{{endDay}}</div>\n\t\t</cells-title>\n\t\t<cells type=\"access\" _v-3374ee2a=\"\">\n\t\t\t<link-cell v-for=\"item in dateRange\" :router-link=\"{ name: 'loginfo', params: { date: item }}\" _v-3374ee2a=\"\">\n\t\t\t\t<div slot=\"header\" _v-3374ee2a=\"\">{{ getZNWeek($index) }}</div>\n\t\t\t\t<div slot=\"body\" _v-3374ee2a=\"\">\n\t\t\t\t\t<div class=\"time\" _v-3374ee2a=\"\">\n\t\t\t\t\t\t{{item}}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</link-cell>\n\t\t</cells>\n\t</page-body>\n</div>\n\n";
 
 /***/ },
-/* 55 */
+/* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(26)
+	__vue_script__ = __webpack_require__(28)
+	__vue_template__ = __webpack_require__(29)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\views\\UserInfo.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(27);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-61f407d1&file=UserInfo.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./UserInfo.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-61f407d1&file=UserInfo.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./UserInfo.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 27 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"UserInfo.vue","sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 28 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _NavBar = __webpack_require__(12);
+	
+	var _NavBar2 = _interopRequireDefault(_NavBar);
+	
+	var _PageBody = __webpack_require__(17);
+	
+	var _PageBody2 = _interopRequireDefault(_PageBody);
+	
+	var _vueWeui = __webpack_require__(22);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+		created: function created() {
+			var _this = this;
+	
+			//加载远程数据
+			//1:显示加载动画
+			setTimeout(function () {
+				_this.isload = false;
+			}, 1000);
+		},
+	
+		props: {},
+		methods: {
+			test: function test(e) {
+				console.log('11');
+			},
+			back: function back() {
+				history.back();
+			},
+	
+			//加载用户信息
+			loadUserInfo: function loadUserInfo() {
+				var _this2 = this;
+	
+				this.isload = true;
+				setTimeout(function () {
+					_this2.isload = false;
+				}, 1000);
+			},
+			showDialog: function showDialog() {
+				this.isShowDialog = !this.isShowDialog;
+			},
+			confirm: function confirm() {
+				alert("子组件触发了事件");
+			}
+		},
+		data: function data() {
+			return {
+				isload: true,
+				isShowDialog: false,
+				dialogTitle: '测试',
+				isAlert: true
+			};
+		},
+	
+		components: {
+			NavBar: _NavBar2.default,
+			PageBody: _PageBody2.default,
+			Cells: _vueWeui.Cells,
+			Cell: _vueWeui.Cell,
+			CellsTitle: _vueWeui.CellsTitle
+		}
+	
+	};
+	
+	// </script>
+
+	// <style type="text/css" scoped>
+
+	// </style>
+	// <template>
+	// 	<div class="page userinfo">
+	// 		<nav-bar text="个人主页">
+	// 			<span class="icon-chevron-left" slot="leftBar" @click="back">返回</span>
+	// 			<span class="icon-refresh" slot="rightBtn" @click="loadUserInfo"></span>
+	// 		</nav-bar>
+	// 		<page-body>
+	// 			<div class="cell">
+
+	// 			</div>
+	// 			<cells-title>
+	// 				个人基本信息
+	// 			</cells-title>
+	// 			<cells >
+	// 				<cell>
+	// 					<div slot="body">姓名</div>
+	// 					<div slot="footer">刘克志</div>
+	// 				</cell>
+	// 				<cell>
+	// 					<div slot="body">部门<span></span></div>
+	// 					<div slot="footer">信息管理中心</div>
+	// 				</cell>
+	// 				<cell>
+	// 					<div slot="body">岗位:<span></span></div>
+	// 					<div slot="footer">工程师</div>
+	// 				</cell>
+	// 				<cell>
+	// 					<div slot="body">年假结余:<span></span></div>
+	// 					<div slot="footer">3天</div>
+	// 				</cell>
+	// 				<cell>
+	// 					<div slot="body">福利假:<span></span></div>
+	// 					<div slot="footer">1天</div>
+	// 				</cell>
+	// 				<cell>
+	// 					<div slot="body">探亲假:<span></span></div>
+	// 					<div slot="footer">1天</div>
+	// 				</cell>
+	// 			</cells>
+	// 		</page-body>
+	// 	</div>
+
+	// </template>
+
+	// <script lang="babel">
+
+/***/ },
+/* 29 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"page userinfo\" _v-61f407d1=\"\">\n\t<nav-bar text=\"个人主页\" _v-61f407d1=\"\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back\" _v-61f407d1=\"\">返回</span>\n\t\t<span class=\"icon-refresh\" slot=\"rightBtn\" @click=\"loadUserInfo\" _v-61f407d1=\"\"></span>\n\t</nav-bar>\n\t<page-body _v-61f407d1=\"\">\n\t\t<div class=\"cell\" _v-61f407d1=\"\">\n\t\t\t\n\t\t</div>\n\t\t<cells-title _v-61f407d1=\"\">\n\t\t\t个人基本信息\n\t\t</cells-title>\n\t\t<cells _v-61f407d1=\"\">\n\t\t\t<cell _v-61f407d1=\"\">\n\t\t\t\t<div slot=\"body\" _v-61f407d1=\"\">姓名</div>\n\t\t\t\t<div slot=\"footer\" _v-61f407d1=\"\">刘克志</div>\n\t\t\t</cell>\n\t\t\t<cell _v-61f407d1=\"\">\n\t\t\t\t<div slot=\"body\" _v-61f407d1=\"\">部门<span _v-61f407d1=\"\"></span></div>\n\t\t\t\t<div slot=\"footer\" _v-61f407d1=\"\">信息管理中心</div>\n\t\t\t</cell>\n\t\t\t<cell _v-61f407d1=\"\">\n\t\t\t\t<div slot=\"body\" _v-61f407d1=\"\">岗位:<span _v-61f407d1=\"\"></span></div>\n\t\t\t\t<div slot=\"footer\" _v-61f407d1=\"\">工程师</div>\n\t\t\t</cell>\n\t\t\t<cell _v-61f407d1=\"\">\n\t\t\t\t<div slot=\"body\" _v-61f407d1=\"\">年假结余:<span _v-61f407d1=\"\"></span></div>\n\t\t\t\t<div slot=\"footer\" _v-61f407d1=\"\">3天</div>\n\t\t\t</cell>\n\t\t\t<cell _v-61f407d1=\"\">\n\t\t\t\t<div slot=\"body\" _v-61f407d1=\"\">福利假:<span _v-61f407d1=\"\"></span></div>\n\t\t\t\t<div slot=\"footer\" _v-61f407d1=\"\">1天</div>\n\t\t\t</cell>\n\t\t\t<cell _v-61f407d1=\"\">\n\t\t\t\t<div slot=\"body\" _v-61f407d1=\"\">探亲假:<span _v-61f407d1=\"\"></span></div>\n\t\t\t\t<div slot=\"footer\" _v-61f407d1=\"\">1天</div>\n\t\t\t</cell>\n\t\t</cells>\n\t</page-body>\n</div>\n\n";
+
+/***/ },
+/* 30 */
 /***/ function(module, exports) {
 
 	var __vue_script__, __vue_template__
@@ -16117,13 +16152,312 @@
 
 
 /***/ },
-/* 56 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(57)
-	__vue_script__ = __webpack_require__(59)
-	__vue_template__ = __webpack_require__(82)
+	__webpack_require__(32)
+	__vue_script__ = __webpack_require__(34)
+	__vue_template__ = __webpack_require__(36)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\views\\Login.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(33);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6fedb23e&file=Login.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Login.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6fedb23e&file=Login.vue!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Login.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n.login .loginUrl{\n\ttext-align: center;\n\tmargin: 10px 5px;\n}\n\n\n.login p{\n\tfont-size: 13px;\n}\n", "", {"version":3,"sources":["/./src/views/Login.vue?27502018"],"names":[],"mappings":";AA+IA;CACA,mBAAA;CACA,iBAAA;CACA;;;AAGA;CACA,gBAAA;CACA","file":"Login.vue","sourcesContent":["<template>\r\n\t<div class=\"page login\">\r\n\t\t<nav-bar text=\"登录页\"></nav-bar>\r\n\t\t<div class=\"page-bd\">\r\n\t\t\t<div class=\"loginUrl\"> \r\n\t\t\t\t<img src=\"../assets/images/login/login.png\" alt=\"用户\">\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<cells type=\"form\">\r\n\t\t\t\t<input-cell label=\"账号\" placeholder=\"工号：M0XXX\" :value.sync=\"account\" v-ref:account></input-cell>\r\n\t\t\t\t<input-cell label=\"密码\" placeholder=\"密码\" type=\"password\" :value.sync=\"pwd\" ></input-cell>\r\n\t\t\t</cells>\r\n\t\t\t\r\n\t\t\t<cells type=\"checkbox\">\r\n\t\t\t\t<checkbox-cell name=\"isremeber\" :checked.sync=\"isremeber\" label=\"<p>是否记忆密码</p>\" ></checkbox-cell>\r\n\t\t\t</cells>\r\n\t\t\t\r\n\t\t\t<cells>\r\n\t\t\t<button-area>\r\n\t\t\t\t<button @click=\"login\">登录</button>\r\n\t\t\t</button-area>\r\n\t\t</div>\r\n\t\t<dialog v-show=\"isPrompt\" title=\"错误提示\" @weui-dialog-confirm=\"confirmDlg\">\r\n\t\t\t<p>{{errorMsg}}</p>\r\n\t\t</dialog>\r\n\t\t<toast v-show=\"isloading\" type=\"loading\">\r\n\t\t\t登录中..\r\n\t\t</toast>\r\n\t</div>\r\n</template>\r\n\r\n\r\n<script>\r\n\timport NavBar from '../components/NavBar.vue'\r\n\timport auth from './utils/auth.js'\r\n\timport {ButtonArea,Button,Cells,Cell,CheckboxCell,InputCell,Dialog,Toast} from 'vue-weui'\r\n\texport default {\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\taccount:'M0679',\r\n\t\t\t\tpwd:'000',\r\n\t\t\t\tisremeber:true,\r\n\t\t\t\tisPrompt:false,\r\n\t\t\t\tisloading:false,\r\n\t\t\t\terrorMsg:'错误了',\r\n\t\t\t\tdevice:'',\r\n\t\t\t\tredirectUrl:''\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\t// this.account=\"M\";\r\n\t\t\t// console.log(this.$refs.account)\r\n\t\t\t// this.$els.account.focus();\r\n\t\t\tvar tmpDevice=\"\"\r\n\t\t\tif(this.getVersion().ios){\r\n\t\t\t\tthis.device=\"ios\";\r\n\t\t\t}else if(this.getVersion().android){\r\n\t\t\t\tthis.device= \"android\";\r\n\t\t\t}else if(this.getVersion().iPhone){\r\n\t\t\t\tthis.device= \"iPhone\";\r\n\t\t\t}else if(this.getVersion().iPad){\r\n\t\t\t\tthis.device=\"iPad\";\r\n\t\t\t}else{\r\n\t\t\t\tthis.device=\"web\";\r\n\t\t\t}\r\n\t\t\t//得到重定向的url\r\n\t\t\t this.redirectUrl= decodeURIComponent(this.$route.query.redirect || '/');\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tNavBar,\r\n\t\t\tButtonArea,\r\n\t\t\tButton,\r\n\t\t\tCheckboxCell,\r\n\t\t\tCells,\r\n\t\t\tCell,\r\n\t\t\tDialog,\r\n\t\t\tToast,\r\n\t\t\tInputCell\r\n\t\t},\r\n\t\t\r\n\t\tmethods:{\r\n\t\t\tconfirmDlg(){\r\n\t\t\t\tthis.isPrompt=false;\r\n\t\t\t},\r\n\t\t\tshowDialog(errorMsg){\r\n\t\t\t\tthis.errorMsg=errorMsg;\r\n\t\t\t\tthis.isPrompt=true;\r\n\t\t\t},\r\n\t\t\tlogin(){\r\n\t\t\t\t//向服务器发起请登录请求\r\n\t\t\t\tif(this.account.length!=5){\r\n\t\t\t\t\t// this.errorMsg=\"账号必须是五位\";\r\n\t\t\t\t\t// this.isPrompt=true;\r\n\t\t\t\t\tthis.showDialog(\"账号必须是五位\");\r\n\t\t\t\t\treturn;\r\n\t\t\t\t}\r\n\t\t\t\tif(this.pwd.length<3){\r\n\t\t\t\t\t// this.errorMsg=\"密码最小长度是三位:\"+this.getVersion().android;\r\n\t\t\t\t\tthis.showDialog(\"密码最小长度是三位\");\r\n\t\t\t\t\treturn;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t//向服务器发起请求\r\n\t\t\t\tthis.isloading=true;\r\n\t\t\t\tthis.$http.get(\"auth\",{\"account\":this.account,\"passwd\":this.pwd,\"device\":this.device}).then((response)=>{\r\n\t\t\t\t\tthis.isloading=false;\r\n\t\t\t\t\tvar data=response.data;\r\n\t\t\t\t\tconsole.log(data);\r\n\t\t\t\t\tif(data.Statu==\"Y\"){\r\n\t\t\t\t\t\tauth.setUser(this.account,this.password,this.isremeber);\r\n\t\t\t\t\t\t//跳转到首页\r\n\t\t\t\t\t\t// console.log(\"我的测试:\"+this.$route);\r\n\t\t\t\t\t\tif(this.redirectUrl&&this.redirectUrl.length>0){\r\n\t\t\t\t\t\t\tthis.$route.router.go(this.redirectUrl);\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t\telse{\r\n\t\t\t\t\t\t\tthis.$route.router.go(\"index\");\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t}else{\r\n\t\t\t\t\t\tthis.showDialog(data.Msg);\r\n\t\t\t\t\t}\r\n\t\t\t\t\t\r\n\t\t\t\t},(error)=>{\r\n\t\t\t\t\tthis.isloading=false;\r\n\t\t\t\t});\r\n\t\t\t\tconsole.log(\"账号:\"+this.account+\"-密码是:\"+this.pwd+\"-记住密码:\"+this.isremeber)\r\n\t\t\t},\r\n\t\t\tgetVersion(){\r\n           \t\t let u = navigator.userAgent,\r\n                app = navigator.appVersion;\r\n\t            return { //移动终端浏览器版本信息\r\n\t                ios: !!u.match(/\\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端\r\n\t                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器\r\n\t                iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器\r\n\t                iPad: u.indexOf('iPad') > -1, //是否iPad\r\n\t            };\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" >\r\n\t.login .loginUrl{\r\n\t\ttext-align: center;\r\n\t\tmargin: 10px 5px;\r\n\t}\r\n\r\n\r\n\t.login p{\r\n\t\tfont-size: 13px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _NavBar = __webpack_require__(12);
+	
+	var _NavBar2 = _interopRequireDefault(_NavBar);
+	
+	var _auth = __webpack_require__(35);
+	
+	var _auth2 = _interopRequireDefault(_auth);
+	
+	var _vueWeui = __webpack_require__(22);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+		data: function data() {
+			return {
+				account: 'M0679',
+				pwd: '000',
+				isremeber: true,
+				isPrompt: false,
+				isloading: false,
+				errorMsg: '错误了',
+				device: '',
+				redirectUrl: ''
+			};
+		},
+		ready: function ready() {
+			// this.account="M";
+			// console.log(this.$refs.account)
+			// this.$els.account.focus();
+			var tmpDevice = "";
+			if (this.getVersion().ios) {
+				this.device = "ios";
+			} else if (this.getVersion().android) {
+				this.device = "android";
+			} else if (this.getVersion().iPhone) {
+				this.device = "iPhone";
+			} else if (this.getVersion().iPad) {
+				this.device = "iPad";
+			} else {
+				this.device = "web";
+			}
+			//得到重定向的url
+			this.redirectUrl = decodeURIComponent(this.$route.query.redirect || '/');
+		},
+	
+		components: {
+			NavBar: _NavBar2.default,
+			ButtonArea: _vueWeui.ButtonArea,
+			Button: _vueWeui.Button,
+			CheckboxCell: _vueWeui.CheckboxCell,
+			Cells: _vueWeui.Cells,
+			Cell: _vueWeui.Cell,
+			Dialog: _vueWeui.Dialog,
+			Toast: _vueWeui.Toast,
+			InputCell: _vueWeui.InputCell
+		},
+	
+		methods: {
+			confirmDlg: function confirmDlg() {
+				this.isPrompt = false;
+			},
+			showDialog: function showDialog(errorMsg) {
+				this.errorMsg = errorMsg;
+				this.isPrompt = true;
+			},
+			login: function login() {
+				var _this = this;
+	
+				//向服务器发起请登录请求
+				if (this.account.length != 5) {
+					// this.errorMsg="账号必须是五位";
+					// this.isPrompt=true;
+					this.showDialog("账号必须是五位");
+					return;
+				}
+				if (this.pwd.length < 3) {
+					// this.errorMsg="密码最小长度是三位:"+this.getVersion().android;
+					this.showDialog("密码最小长度是三位");
+					return;
+				}
+	
+				//向服务器发起请求
+				this.isloading = true;
+				this.$http.get("auth", { "account": this.account, "passwd": this.pwd, "device": this.device }).then(function (response) {
+					_this.isloading = false;
+					var data = response.data;
+					console.log(data);
+					if (data.Statu == "Y") {
+						_auth2.default.setUser(_this.account, _this.password, _this.isremeber);
+						//跳转到首页
+						// console.log("我的测试:"+this.$route);
+						if (_this.redirectUrl && _this.redirectUrl.length > 0) {
+							_this.$route.router.go(_this.redirectUrl);
+						} else {
+							_this.$route.router.go("index");
+						}
+					} else {
+						_this.showDialog(data.Msg);
+					}
+				}, function (error) {
+					_this.isloading = false;
+				});
+				console.log("账号:" + this.account + "-密码是:" + this.pwd + "-记住密码:" + this.isremeber);
+			},
+			getVersion: function getVersion() {
+				var u = navigator.userAgent,
+				    app = navigator.appVersion;
+				return { //移动终端浏览器版本信息
+					ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+					android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
+					iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+					iPad: u.indexOf('iPad') > -1 };
+			}
+		}
+	};
+	// </script>
+
+	// <style type="text/css" >
+	// 	.login .loginUrl{
+	// 		text-align: center;
+	// 		margin: 10px 5px;
+	// 	}
+
+	// 	.login p{
+	// 		font-size: 13px;
+	// 	}
+	// </style>
+	/* generated by vue-loader */
+	// <template>
+	// 	<div class="page login">
+	// 		<nav-bar text="登录页"></nav-bar>
+	// 		<div class="page-bd">
+	// 			<div class="loginUrl">
+	// 				<img src="../assets/images/login/login.png" alt="用户">
+	// 			</div>
+
+	// 			<cells type="form">
+	// 				<input-cell label="账号" placeholder="工号：M0XXX" :value.sync="account" v-ref:account></input-cell>
+	// 				<input-cell label="密码" placeholder="密码" type="password" :value.sync="pwd" ></input-cell>
+	// 			</cells>
+
+	// 			<cells type="checkbox">
+	// 				<checkbox-cell name="isremeber" :checked.sync="isremeber" label="<p>是否记忆密码</p>" ></checkbox-cell>
+	// 			</cells>
+
+	// 			<cells>
+	// 			<button-area>
+	// 				<button @click="login">登录</button>
+	// 			</button-area>
+	// 		</div>
+	// 		<dialog v-show="isPrompt" title="错误提示" @weui-dialog-confirm="confirmDlg">
+	// 			<p>{{errorMsg}}</p>
+	// 		</dialog>
+	// 		<toast v-show="isloading" type="loading">
+	// 			登录中..
+	// 		</toast>
+	// 	</div>
+	// </template>
+
+	// <script>
+
+/***/ },
+/* 35 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	var auth = {
+		// 设置人员
+	
+		setUser: function setUser(account, pwd, isAway) {
+			var user = {
+				account: account,
+				pwd: pwd,
+				isAway: isAway
+			};
+			if (isAway) {
+				localStorage.user = user;
+			} else {
+				sessionStorage.user = user;
+			}
+		},
+	
+		//检查该对象是否存在
+		isLogin: function isLogin() {
+			return localStorage.user || sessionStorage.user;
+		},
+	
+		//获取用户
+		getUser: function getUser() {
+			var user = localStorage.user || sessionStorage.user;
+			if (user) {
+				return user;
+			} else {
+				return false;
+			}
+		}
+	};
+	
+	exports.default = auth;
+
+/***/ },
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = "\n<div class=\"page login\">\n\t<nav-bar text=\"登录页\"></nav-bar>\n\t<div class=\"page-bd\">\n\t\t<div class=\"loginUrl\"> \n\t\t\t<img src=\"" + __webpack_require__(37) + "\" alt=\"用户\">\n\t\t</div>\n\t\t\n\t\t<cells type=\"form\">\n\t\t\t<input-cell label=\"账号\" placeholder=\"工号：M0XXX\" :value.sync=\"account\" v-ref:account></input-cell>\n\t\t\t<input-cell label=\"密码\" placeholder=\"密码\" type=\"password\" :value.sync=\"pwd\" ></input-cell>\n\t\t</cells>\n\t\t\n\t\t<cells type=\"checkbox\">\n\t\t\t<checkbox-cell name=\"isremeber\" :checked.sync=\"isremeber\" label=\"<p>是否记忆密码</p>\" ></checkbox-cell>\n\t\t</cells>\n\t\t\n\t\t<cells>\n\t\t<button-area>\n\t\t\t<button @click=\"login\">登录</button>\n\t\t</button-area>\n\t</div>\n\t<dialog v-show=\"isPrompt\" title=\"错误提示\" @weui-dialog-confirm=\"confirmDlg\">\n\t\t<p>{{errorMsg}}</p>\n\t</dialog>\n\t<toast v-show=\"isloading\" type=\"loading\">\n\t\t登录中..\n\t</toast>\n</div>\n";
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "login.png?4d9e2ecdf5aeef51c8ba1e7eabf9715f";
+
+/***/ },
+/* 38 */
+/***/ function(module, exports) {
+
+	var __vue_script__, __vue_template__
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+
+
+/***/ },
+/* 39 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(40)
+	__vue_script__ = __webpack_require__(42)
+	__vue_template__ = __webpack_require__(59)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -16140,16 +16474,16 @@
 	})()}
 
 /***/ },
-/* 57 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(58);
+	var content = __webpack_require__(41);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(12)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -16166,10 +16500,10 @@
 	}
 
 /***/ },
-/* 58 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(11)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 	
 	
@@ -16180,7 +16514,7 @@
 
 
 /***/ },
-/* 59 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16189,25 +16523,25 @@
 		value: true
 	});
 	
-	var _NavBar = __webpack_require__(46);
+	var _NavBar = __webpack_require__(12);
 	
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 	
-	var _List = __webpack_require__(60);
+	var _List = __webpack_require__(43);
 	
 	var _List2 = _interopRequireDefault(_List);
 	
-	var _vueWeui = __webpack_require__(52);
+	var _vueWeui = __webpack_require__(22);
 	
-	var _ListItem = __webpack_require__(67);
+	var _ListItem = __webpack_require__(49);
 	
 	var _ListItem2 = _interopRequireDefault(_ListItem);
 	
-	var _PageBody = __webpack_require__(72);
+	var _PageBody = __webpack_require__(17);
 	
 	var _PageBody2 = _interopRequireDefault(_PageBody);
 	
-	var _Toast = __webpack_require__(77);
+	var _Toast = __webpack_require__(54);
 	
 	var _Toast2 = _interopRequireDefault(_Toast);
 	
@@ -16324,13 +16658,13 @@
 	// import ActionSheet from '../components/ActionSheet.vue'
 
 /***/ },
-/* 60 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(61)
-	__vue_script__ = __webpack_require__(63)
-	__vue_template__ = __webpack_require__(65)
+	__webpack_require__(44)
+	__vue_script__ = __webpack_require__(46)
+	__vue_template__ = __webpack_require__(47)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -16347,16 +16681,16 @@
 	})()}
 
 /***/ },
-/* 61 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(62);
+	var content = __webpack_require__(45);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(12)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -16373,10 +16707,10 @@
 	}
 
 /***/ },
-/* 62 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(11)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 	
 	
@@ -16387,7 +16721,7 @@
 
 
 /***/ },
-/* 63 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16396,7 +16730,7 @@
 		value: true
 	});
 	
-	var _DateHelper = __webpack_require__(137);
+	var _DateHelper = __webpack_require__(23);
 	
 	var _DateHelper2 = _interopRequireDefault(_DateHelper);
 	
@@ -16565,26 +16899,25 @@
 	// <script lang="babel">
 
 /***/ },
-/* 64 */,
-/* 65 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "\n\t<section class=\"pull-list\" >\n\t\t<header class=\"pull-header\" v-show=\"showheader\" transition=\"display\">\n\t\t\t<div class=\"imgshow\">\n                <img src=\"" + __webpack_require__(66) + "\" alt=\"下拉\">\n            </div>\n            <div class=\"content\">\n                <p>{{refreshText}}</p>\n                <p>最后更新:{{rlastTime}}</p>\n            </div>\n\t\t</header>\n\t\t<ul class=\"pull-content\"  v-el:listContent>\n\t\t\t<slot></slot>\n\t\t</ul>\n\t\t<footer class=\"pull-footer\" @click=\"loadMore($event)\" >\n\t\t\t点击加载更多\n\t\t</footer>\n\t</section>\n";
+	module.exports = "\n\t<section class=\"pull-list\" >\n\t\t<header class=\"pull-header\" v-show=\"showheader\" transition=\"display\">\n\t\t\t<div class=\"imgshow\">\n                <img src=\"" + __webpack_require__(48) + "\" alt=\"下拉\">\n            </div>\n            <div class=\"content\">\n                <p>{{refreshText}}</p>\n                <p>最后更新:{{rlastTime}}</p>\n            </div>\n\t\t</header>\n\t\t<ul class=\"pull-content\"  v-el:listContent>\n\t\t\t<slot></slot>\n\t\t</ul>\n\t\t<footer class=\"pull-footer\" @click=\"loadMore($event)\" >\n\t\t\t点击加载更多\n\t\t</footer>\n\t</section>\n";
 
 /***/ },
-/* 66 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "icon-down.png?02ed8a17fc4b37001e3f4ed24ea2d91e";
 
 /***/ },
-/* 67 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(68)
-	__vue_script__ = __webpack_require__(70)
-	__vue_template__ = __webpack_require__(71)
+	__webpack_require__(50)
+	__vue_script__ = __webpack_require__(52)
+	__vue_template__ = __webpack_require__(53)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -16601,16 +16934,16 @@
 	})()}
 
 /***/ },
-/* 68 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(69);
+	var content = __webpack_require__(51);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(12)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -16627,10 +16960,10 @@
 	}
 
 /***/ },
-/* 69 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(11)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 	
 	
@@ -16641,7 +16974,7 @@
 
 
 /***/ },
-/* 70 */
+/* 52 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16707,83 +17040,19 @@
 	/* generated by vue-loader */
 
 /***/ },
-/* 71 */
+/* 53 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<li style=\"position:relative\">\n  <a style=\"cursor:pointer\">\n    <slot></slot>\n    <slot name=\"span\">\n      {{value}}\n    </slot>\n    <!-- <span class=\"glyphicon glyphicon-ok check-mark\" v-show=\"chosen\"></span> -->\n  </a>\n</li>\n";
 
 /***/ },
-/* 72 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(131)
-	__vue_script__ = __webpack_require__(75)
-	__vue_template__ = __webpack_require__(133)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\components\\PageBody.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 73 */,
-/* 74 */,
-/* 75 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	// <template>
-	// 	<div class="page-bd" @scroll="scroll($event)" >
-	// 		<slot></slot>	
-	// 	</div>
-	// </template>
-	
-	// <script>
-	exports.default = {
-		methods: {
-			scroll: function scroll(e) {
-				this.$broadcast("scroll", e);
-			}
-		}
-	};
-	// </script>
-
-	// <style type="text/css" scoped>
-	// 	.page-bd {
-	// 	    overflow: auto;
-	// 	    -webkit-overflow-scrolling: touch;
-	// 	    width: 100%;
-	// 	    height: 100%;
-	// 	    padding-top: 4px;
-	// 	    position: absolute;
-	//         left: 0;
-	// 	}
-	// </style>
-	/* generated by vue-loader */
-
-/***/ },
-/* 76 */,
-/* 77 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__webpack_require__(78)
-	__vue_script__ = __webpack_require__(80)
-	__vue_template__ = __webpack_require__(81)
+	__webpack_require__(55)
+	__vue_script__ = __webpack_require__(57)
+	__vue_template__ = __webpack_require__(58)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -16800,16 +17069,16 @@
 	})()}
 
 /***/ },
-/* 78 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(79);
+	var content = __webpack_require__(56);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(12)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -16826,10 +17095,10 @@
 	}
 
 /***/ },
-/* 79 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(11)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 	
 	
@@ -16840,7 +17109,7 @@
 
 
 /***/ },
-/* 80 */
+/* 57 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -17144,25 +17413,25 @@
 	// </style>
 
 /***/ },
-/* 81 */
+/* 58 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<section class=\"toast\" v-show=\"show\" _v-4de571aa=\"\">\n\t<section class=\"toast-mask\" _v-4de571aa=\"\"></section>\n\t<section class=\"toast-bd\" _v-4de571aa=\"\">\n\t\t<section class=\"loading\" v-if=\"isload\" _v-4de571aa=\"\">\n\t\t\t<div class=\"loading_leaf loading_leaf_0\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_1\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_2\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_3\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_4\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_5\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_6\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_7\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_8\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_9\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_10\" _v-4de571aa=\"\"></div>\n\t\t\t<div class=\"loading_leaf loading_leaf_11\" _v-4de571aa=\"\"></div>\n\t\t</section>\n\t\t<section class=\"prompt\" v-else=\"\" _v-4de571aa=\"\">\n\t\t\t<i class=\"weui_icon_toast\" _v-4de571aa=\"\"></i>\n\t\t</section>\n\t\t<p class=\"toast-content\" _v-4de571aa=\"\">{{prompt}}</p>\n\t</section>\n</section>\n";
 
 /***/ },
-/* 82 */
+/* 59 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"page\" _v-ba295ade=\"\">\n\t<nav-bar text=\"我的项目\" _v-ba295ade=\"\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" v-touch:tap=\"back\" _v-ba295ade=\"\"></span>\n        <span class=\"icon-refresh\" slot=\"rightBar\" v-touch:tap=\"showSheet\" _v-ba295ade=\"\"></span>\n\t</nav-bar>\n\t<page-body _v-ba295ade=\"\">\n\t\t<list v-on:reload=\"getInitData\" v-on:loadmore=\"getMoreData\" _v-ba295ade=\"\">\n\t\t\t<li _v-ba295ade=\"\">asdffdddd;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\t\t</list>\n\t</page-body>\n\n\t<toast :show=\"showToast\" _v-ba295ade=\"\"></toast>\n\t<actionsheet :show.sync=\"showsheet\" :menus=\"menuItems\" :actions=\"actionItems\" v-on:weui-menu-click=\"actionClick\" _v-ba295ade=\"\"></actionsheet>\n</div>\n";
 
 /***/ },
-/* 83 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(84)
-	__vue_script__ = __webpack_require__(86)
-	__vue_template__ = __webpack_require__(87)
+	__webpack_require__(61)
+	__vue_script__ = __webpack_require__(63)
+	__vue_template__ = __webpack_require__(64)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -17179,16 +17448,16 @@
 	})()}
 
 /***/ },
-/* 84 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(85);
+	var content = __webpack_require__(62);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(12)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -17205,10 +17474,10 @@
 	}
 
 /***/ },
-/* 85 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(11)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 	
 	
@@ -17219,7 +17488,7 @@
 
 
 /***/ },
-/* 86 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17228,11 +17497,11 @@
 	  value: true
 	});
 	
-	var _NavBar = __webpack_require__(46);
+	var _NavBar = __webpack_require__(12);
 	
 	var _NavBar2 = _interopRequireDefault(_NavBar);
 	
-	var _vueWeui = __webpack_require__(52);
+	var _vueWeui = __webpack_require__(22);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -17342,13 +17611,13 @@
 	/* generated by vue-loader */
 
 /***/ },
-/* 87 */
+/* 64 */
 /***/ function(module, exports) {
 
 	module.exports = "\n  <div class=\"page\" transition=\"app\">\n    <nav-bar text=\"首页\"></nav-bar>\n    \n    <div class=\"page-bd space\">\n      <div class=\"title\">\n        <h3>信息管理系统移动版</h3>\n        <p>麦迪斯顿医疗科技</p>\n      </div>\n      <grids>\n          <grid v-for=\"item in items\" :router-link=\"{path: '/' + item.link}\" :image-url=\"item.image\" :label=\"item.text\"></grid>\n      </grids>\n    </div>\n</div>\n";
 
 /***/ },
-/* 88 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
@@ -18195,19 +18464,19 @@
 
 
 /***/ },
-/* 89 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _keys = __webpack_require__(90);
+	var _keys = __webpack_require__(67);
 	
 	var _keys2 = _interopRequireDefault(_keys);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var vueTouch = {};
-	var Hammer =  true ? __webpack_require__(102) : window.Hammer;
+	var Hammer =  true ? __webpack_require__(79) : window.Hammer;
 	var gestures = ['tap', 'pan', 'pandown', 'panend', 'pinch', 'press', 'pressup', 'rotate', 'swipe', 'swipeleft', 'swiperight', 'swipeup', 'swipedown'];
 	var customeEvents = {};
 	
@@ -18306,43 +18575,43 @@
 	module.exports = vueTouch;
 
 /***/ },
-/* 90 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(91), __esModule: true };
+	module.exports = { "default": __webpack_require__(68), __esModule: true };
 
 /***/ },
-/* 91 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(92);
-	module.exports = __webpack_require__(98).Object.keys;
+	__webpack_require__(69);
+	module.exports = __webpack_require__(75).Object.keys;
 
 /***/ },
-/* 92 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(93);
+	var toObject = __webpack_require__(70);
 	
-	__webpack_require__(95)('keys', function($keys){
+	__webpack_require__(72)('keys', function($keys){
 	  return function keys(it){
 	    return $keys(toObject(it));
 	  };
 	});
 
 /***/ },
-/* 93 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
-	var defined = __webpack_require__(94);
+	var defined = __webpack_require__(71);
 	module.exports = function(it){
 	  return Object(defined(it));
 	};
 
 /***/ },
-/* 94 */
+/* 71 */
 /***/ function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -18352,13 +18621,13 @@
 	};
 
 /***/ },
-/* 95 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(96)
-	  , core    = __webpack_require__(98)
-	  , fails   = __webpack_require__(101);
+	var $export = __webpack_require__(73)
+	  , core    = __webpack_require__(75)
+	  , fails   = __webpack_require__(78);
 	module.exports = function(KEY, exec){
 	  var fn  = (core.Object || {})[KEY] || Object[KEY]
 	    , exp = {};
@@ -18367,12 +18636,12 @@
 	};
 
 /***/ },
-/* 96 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(97)
-	  , core      = __webpack_require__(98)
-	  , ctx       = __webpack_require__(99)
+	var global    = __webpack_require__(74)
+	  , core      = __webpack_require__(75)
+	  , ctx       = __webpack_require__(76)
 	  , PROTOTYPE = 'prototype';
 	
 	var $export = function(type, name, source){
@@ -18418,7 +18687,7 @@
 	module.exports = $export;
 
 /***/ },
-/* 97 */
+/* 74 */
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -18427,18 +18696,18 @@
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
-/* 98 */
+/* 75 */
 /***/ function(module, exports) {
 
 	var core = module.exports = {version: '1.2.6'};
 	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ },
-/* 99 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(100);
+	var aFunction = __webpack_require__(77);
 	module.exports = function(fn, that, length){
 	  aFunction(fn);
 	  if(that === undefined)return fn;
@@ -18459,7 +18728,7 @@
 	};
 
 /***/ },
-/* 100 */
+/* 77 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -18468,7 +18737,7 @@
 	};
 
 /***/ },
-/* 101 */
+/* 78 */
 /***/ function(module, exports) {
 
 	module.exports = function(exec){
@@ -18480,7 +18749,7 @@
 	};
 
 /***/ },
-/* 102 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.6 - 2015-12-23
@@ -21054,7 +21323,7 @@
 
 
 /***/ },
-/* 103 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -21063,16 +21332,16 @@
 	
 	function install(Vue) {
 	
-	    var _ = __webpack_require__(104);
+	    var _ = __webpack_require__(81);
 	
 	    _.config = Vue.config;
 	    _.warning = Vue.util.warn;
 	    _.nextTick = Vue.util.nextTick;
 	
-	    Vue.url = __webpack_require__(105);
-	    Vue.http = __webpack_require__(111);
-	    Vue.resource = __webpack_require__(126);
-	    Vue.Promise = __webpack_require__(113);
+	    Vue.url = __webpack_require__(82);
+	    Vue.http = __webpack_require__(88);
+	    Vue.resource = __webpack_require__(103);
+	    Vue.Promise = __webpack_require__(90);
 	
 	    Object.defineProperties(Vue.prototype, {
 	
@@ -21113,7 +21382,7 @@
 
 
 /***/ },
-/* 104 */
+/* 81 */
 /***/ function(module, exports) {
 
 	/**
@@ -21241,14 +21510,14 @@
 
 
 /***/ },
-/* 105 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for URL templating.
 	 */
 	
-	var _ = __webpack_require__(104);
+	var _ = __webpack_require__(81);
 	var ie = document.documentMode;
 	var el = document.createElement('a');
 	
@@ -21284,10 +21553,10 @@
 	 */
 	
 	Url.transforms = [
-	    __webpack_require__(106),
-	    __webpack_require__(108),
-	    __webpack_require__(109),
-	    __webpack_require__(110)
+	    __webpack_require__(83),
+	    __webpack_require__(85),
+	    __webpack_require__(86),
+	    __webpack_require__(87)
 	];
 	
 	/**
@@ -21377,14 +21646,14 @@
 
 
 /***/ },
-/* 106 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * URL Template (RFC 6570) Transform.
 	 */
 	
-	var UrlTemplate = __webpack_require__(107);
+	var UrlTemplate = __webpack_require__(84);
 	
 	module.exports = function (options) {
 	
@@ -21399,7 +21668,7 @@
 
 
 /***/ },
-/* 107 */
+/* 84 */
 /***/ function(module, exports) {
 
 	/**
@@ -21555,14 +21824,14 @@
 
 
 /***/ },
-/* 108 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Legacy Transform.
 	 */
 	
-	var _ = __webpack_require__(104);
+	var _ = __webpack_require__(81);
 	
 	module.exports = function (options, next) {
 	
@@ -21607,14 +21876,14 @@
 
 
 /***/ },
-/* 109 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Query Parameter Transform.
 	 */
 	
-	var _ = __webpack_require__(104);
+	var _ = __webpack_require__(81);
 	
 	module.exports = function (options, next) {
 	
@@ -21637,14 +21906,14 @@
 
 
 /***/ },
-/* 110 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Root Prefix Transform.
 	 */
 	
-	var _ = __webpack_require__(104);
+	var _ = __webpack_require__(81);
 	
 	module.exports = function (options, next) {
 	
@@ -21659,17 +21928,17 @@
 
 
 /***/ },
-/* 111 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for sending network requests.
 	 */
 	
-	var _ = __webpack_require__(104);
-	var Client = __webpack_require__(112);
-	var Promise = __webpack_require__(113);
-	var interceptor = __webpack_require__(116);
+	var _ = __webpack_require__(81);
+	var Client = __webpack_require__(89);
+	var Promise = __webpack_require__(90);
+	var interceptor = __webpack_require__(93);
 	var jsonType = {'Content-Type': 'application/json'};
 	
 	function Http(url, options) {
@@ -21721,13 +21990,13 @@
 	};
 	
 	Http.interceptors = [
-	    __webpack_require__(117),
-	    __webpack_require__(118),
-	    __webpack_require__(119),
-	    __webpack_require__(121),
-	    __webpack_require__(122),
-	    __webpack_require__(123),
-	    __webpack_require__(124)
+	    __webpack_require__(94),
+	    __webpack_require__(95),
+	    __webpack_require__(96),
+	    __webpack_require__(98),
+	    __webpack_require__(99),
+	    __webpack_require__(100),
+	    __webpack_require__(101)
 	];
 	
 	Http.headers = {
@@ -21762,16 +22031,16 @@
 
 
 /***/ },
-/* 112 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Base client.
 	 */
 	
-	var _ = __webpack_require__(104);
-	var Promise = __webpack_require__(113);
-	var xhrClient = __webpack_require__(115);
+	var _ = __webpack_require__(81);
+	var Promise = __webpack_require__(90);
+	var xhrClient = __webpack_require__(92);
 	
 	module.exports = function (request) {
 	
@@ -21833,15 +22102,15 @@
 
 
 /***/ },
-/* 113 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promise adapter.
 	 */
 	
-	var _ = __webpack_require__(104);
-	var PromiseObj = window.Promise || __webpack_require__(114);
+	var _ = __webpack_require__(81);
+	var PromiseObj = window.Promise || __webpack_require__(91);
 	
 	function Promise(executor, context) {
 	
@@ -21948,14 +22217,14 @@
 
 
 /***/ },
-/* 114 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promises/A+ polyfill v1.1.4 (https://github.com/bramstein/promis)
 	 */
 	
-	var _ = __webpack_require__(104);
+	var _ = __webpack_require__(81);
 	
 	var RESOLVED = 0;
 	var REJECTED = 1;
@@ -22133,15 +22402,15 @@
 
 
 /***/ },
-/* 115 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XMLHttp client.
 	 */
 	
-	var _ = __webpack_require__(104);
-	var Promise = __webpack_require__(113);
+	var _ = __webpack_require__(81);
+	var Promise = __webpack_require__(90);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -22182,15 +22451,15 @@
 
 
 /***/ },
-/* 116 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Interceptor factory.
 	 */
 	
-	var _ = __webpack_require__(104);
-	var Promise = __webpack_require__(113);
+	var _ = __webpack_require__(81);
+	var Promise = __webpack_require__(90);
 	
 	module.exports = function (handler, vm) {
 	
@@ -22233,14 +22502,14 @@
 
 
 /***/ },
-/* 117 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Before Interceptor.
 	 */
 	
-	var _ = __webpack_require__(104);
+	var _ = __webpack_require__(81);
 	
 	module.exports = {
 	
@@ -22257,7 +22526,7 @@
 
 
 /***/ },
-/* 118 */
+/* 95 */
 /***/ function(module, exports) {
 
 	/**
@@ -22293,14 +22562,14 @@
 
 
 /***/ },
-/* 119 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP Interceptor.
 	 */
 	
-	var jsonpClient = __webpack_require__(120);
+	var jsonpClient = __webpack_require__(97);
 	
 	module.exports = {
 	
@@ -22317,15 +22586,15 @@
 
 
 /***/ },
-/* 120 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP client.
 	 */
 	
-	var _ = __webpack_require__(104);
-	var Promise = __webpack_require__(113);
+	var _ = __webpack_require__(81);
+	var Promise = __webpack_require__(90);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -22371,7 +22640,7 @@
 
 
 /***/ },
-/* 121 */
+/* 98 */
 /***/ function(module, exports) {
 
 	/**
@@ -22394,14 +22663,14 @@
 
 
 /***/ },
-/* 122 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Mime Interceptor.
 	 */
 	
-	var _ = __webpack_require__(104);
+	var _ = __webpack_require__(81);
 	
 	module.exports = {
 	
@@ -22436,14 +22705,14 @@
 
 
 /***/ },
-/* 123 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Header Interceptor.
 	 */
 	
-	var _ = __webpack_require__(104);
+	var _ = __webpack_require__(81);
 	
 	module.exports = {
 	
@@ -22468,15 +22737,15 @@
 
 
 /***/ },
-/* 124 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * CORS Interceptor.
 	 */
 	
-	var _ = __webpack_require__(104);
-	var xdrClient = __webpack_require__(125);
+	var _ = __webpack_require__(81);
+	var xdrClient = __webpack_require__(102);
 	var xhrCors = 'withCredentials' in new XMLHttpRequest();
 	var originUrl = _.url.parse(location.href);
 	
@@ -22511,15 +22780,15 @@
 
 
 /***/ },
-/* 125 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XDomain client (Internet Explorer).
 	 */
 	
-	var _ = __webpack_require__(104);
-	var Promise = __webpack_require__(113);
+	var _ = __webpack_require__(81);
+	var Promise = __webpack_require__(90);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -22554,14 +22823,14 @@
 
 
 /***/ },
-/* 126 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for interacting with RESTful services.
 	 */
 	
-	var _ = __webpack_require__(104);
+	var _ = __webpack_require__(81);
 	
 	function Resource(url, params, actions, options) {
 	
@@ -22670,12 +22939,12 @@
 
 
 /***/ },
-/* 127 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(128)
-	__vue_template__ = __webpack_require__(130)
+	__webpack_require__(105)
+	__vue_template__ = __webpack_require__(107)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -22692,16 +22961,16 @@
 	})()}
 
 /***/ },
-/* 128 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(129);
+	var content = __webpack_require__(106);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(12)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22718,301 +22987,300 @@
 	}
 
 /***/ },
-/* 129 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(11)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, "\r\n\t\r\n/*当你设置一个元素为 box-sizing: border-box; 时，此元素的内边距和边框不再会增加它的宽度*/\r\n* {\r\n  box-sizing: border-box;\r\n}\r\n\r\n\r\n/*单页面的布局*/\r\n\r\nhtml, body {\r\n    -webkit-tap-highlight-color: transparent;\r\n    overflow-x: hidden;\r\n}\r\n\r\n\r\nbody, .page {\r\n    background-color: #FBF9FE;\r\n}\r\n\r\n/*最底层布局*/\r\n.container {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n/*页面的布局*/\r\n.page {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n.space{\r\n\tpadding: 5px 15px;\r\n}\r\n\r\n\r\n.page.slideIn {\r\n    -webkit-animation: slideIn .2s forwards;\r\n            animation: slideIn .2s forwards;\r\n}\r\n\r\n.page.slideOut {\r\n    -webkit-animation: slideOut .2s forwards;\r\n            animation: slideOut .2s forwards;\r\n}\r\n\r\n/*页面切换动画*/\r\n@-webkit-keyframes slideIn {\r\n    from {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n@keyframes slideIn {\r\n    from {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n\r\n@-webkit-keyframes slideOut {\r\n    from {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n@keyframes slideOut {\r\n    from {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n\r\n.slide-transition {\r\n  -webkit-transition: left 0.3s ease;\r\n  transition: left 0.3s ease;\r\n  width: 100%;\r\n}\r\n\r\n.slide-enter, .slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.app-transition {\r\n  -webkit-transition: opacity 0.3s ease;\r\n  transition: opacity 0.3s ease;\r\n}\r\n\r\n.app-enter, .app-leave {\r\n  opacity: 0;\r\n}\r\n\r\n\r\n/*内容的布局*/\r\n\r\n/*.page-bd {\r\n    overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding-top: 4px;\r\n}\r\n*/\r\n\r\n\r\n", "", {"version":3,"sources":["/./src/views/App.vue?6efe0940"],"names":[],"mappings":";;AAcA,2DAAA;AACA;EAGA,uBAAA;CACA;;;AAGA,UAAA;;AAEA;IACA,yCAAA;IACA,mBAAA;CACA;;;AAGA;IACA,0BAAA;CACA;;AAEA,SAAA;AACA;IACA,mBAAA;IACA,OAAA;IACA,SAAA;IACA,UAAA;IACA,QAAA;IACA,iBAAA;CACA;;AAEA,SAAA;AACA;IACA,mBAAA;IACA,OAAA;IACA,SAAA;IACA,UAAA;IACA,QAAA;IACA,iBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;;AAGA;IACA,wCAAA;YAAA,gCAAA;CACA;;AAEA;IACA,yCAAA;YAAA,iCAAA;CACA;;AAEA,UAAA;AACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;CACA;AAPA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;CACA;;AAEA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;CACA;;AAPA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;CACA;;;AAGA;EACA,mCAAA;EAAA,2BAAA;EACA,YAAA;CACA;;AAEA;EACA,WAAA;CACA;;AAEA;EACA,WAAA;CACA;;AAEA;EACA,sCAAA;EAAA,8BAAA;CACA;;AAEA;EACA,WAAA;CACA;;;AAGA,SAAA;;AAEA;;;;;;;EAOA","file":"App.vue","sourcesContent":["<template>\r\n  <div class=\"container js_container\">\r\n      <!-- main view -->\r\n      <router-view\r\n        class=\"view\"\r\n        keep-alive\r\n        transition=\"slide\">\r\n      </router-view>\r\n  </div>\r\n</template>\r\n\r\n\r\n<style type=\"text/css\">\r\n\t\r\n/*当你设置一个元素为 box-sizing: border-box; 时，此元素的内边距和边框不再会增加它的宽度*/\r\n* {\r\n  -webkit-box-sizing: border-box;\r\n     -moz-box-sizing: border-box;\r\n          box-sizing: border-box;\r\n}\r\n\r\n\r\n/*单页面的布局*/\r\n\r\nhtml, body {\r\n    -webkit-tap-highlight-color: transparent;\r\n    overflow-x: hidden;\r\n}\r\n\r\n\r\nbody, .page {\r\n    background-color: #FBF9FE;\r\n}\r\n\r\n/*最底层布局*/\r\n.container {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n/*页面的布局*/\r\n.page {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n.space{\r\n\tpadding: 5px 15px;\r\n}\r\n\r\n\r\n.page.slideIn {\r\n    animation: slideIn .2s forwards;\r\n}\r\n\r\n.page.slideOut {\r\n    animation: slideOut .2s forwards;\r\n}\r\n\r\n/*页面切换动画*/\r\n@keyframes slideIn {\r\n    from {\r\n        transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n\r\n@keyframes slideOut {\r\n    from {\r\n        transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n\r\n.slide-transition {\r\n  transition: left 0.3s ease;\r\n  width: 100%;\r\n}\r\n\r\n.slide-enter, .slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.app-transition {\r\n  transition: opacity 0.3s ease;\r\n}\r\n\r\n.app-enter, .app-leave {\r\n  opacity: 0;\r\n}\r\n\r\n\r\n/*内容的布局*/\r\n\r\n/*.page-bd {\r\n    overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding-top: 4px;\r\n}\r\n*/\r\n\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\r\n\t\r\n/*当你设置一个元素为 box-sizing: border-box; 时，此元素的内边距和边框不再会增加它的宽度*/\r\n* {\r\n  box-sizing: border-box;\r\n}\r\n\r\n\r\n/*单页面的布局*/\r\n\r\nhtml, body {\r\n    -webkit-tap-highlight-color: transparent;\r\n    overflow-x: hidden;\r\n}\r\n\r\n\r\nbody, .page {\r\n    background-color: #FBF9FE;\r\n    /*background-color: #F5E1BA;*/\r\n}\r\n\r\n/*最底层布局*/\r\n.container {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n/*页面的布局*/\r\n.page {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n.space{\r\n\tpadding: 5px 15px;\r\n}\r\n\r\n\r\n.page.slideIn {\r\n    -webkit-animation: slideIn .2s forwards;\r\n            animation: slideIn .2s forwards;\r\n}\r\n\r\n.page.slideOut {\r\n    -webkit-animation: slideOut .2s forwards;\r\n            animation: slideOut .2s forwards;\r\n}\r\n\r\n/*页面切换动画*/\r\n@-webkit-keyframes slideIn {\r\n    from {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n@keyframes slideIn {\r\n    from {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n\r\n@-webkit-keyframes slideOut {\r\n    from {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n@keyframes slideOut {\r\n    from {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n\r\n.slide-transition {\r\n  -webkit-transition: left 0.3s ease;\r\n  transition: left 0.3s ease;\r\n  width: 100%;\r\n}\r\n\r\n.slide-enter, .slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.app-transition {\r\n  -webkit-transition: opacity 0.3s ease;\r\n  transition: opacity 0.3s ease;\r\n}\r\n\r\n.app-enter, .app-leave {\r\n  opacity: 0;\r\n}\r\n\r\n\r\n/*内容的布局*/\r\n\r\n/*.page-bd {\r\n    overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding-top: 4px;\r\n}\r\n*/\r\n\r\n/*改变weui的背景色*/\r\n.weui_cell{\r\n  /*background-color: #FFF2D9;*/\r\n}\r\n\r\n\r\n", "", {"version":3,"sources":["/./src/views/App.vue?13aed620"],"names":[],"mappings":";;AAcA,2DAAA;AACA;EAGA,uBAAA;CACA;;;AAGA,UAAA;;AAEA;IACA,yCAAA;IACA,mBAAA;CACA;;;AAGA;IACA,0BAAA;IACA,8BAAA;CACA;;AAEA,SAAA;AACA;IACA,mBAAA;IACA,OAAA;IACA,SAAA;IACA,UAAA;IACA,QAAA;IACA,iBAAA;CACA;;AAEA,SAAA;AACA;IACA,mBAAA;IACA,OAAA;IACA,SAAA;IACA,UAAA;IACA,QAAA;IACA,iBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;;AAGA;IACA,wCAAA;YAAA,gCAAA;CACA;;AAEA;IACA,yCAAA;YAAA,iCAAA;CACA;;AAEA,UAAA;AACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;CACA;AAPA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;CACA;;AAEA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;CACA;;AAPA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;CACA;;;AAGA;EACA,mCAAA;EAAA,2BAAA;EACA,YAAA;CACA;;AAEA;EACA,WAAA;CACA;;AAEA;EACA,WAAA;CACA;;AAEA;EACA,sCAAA;EAAA,8BAAA;CACA;;AAEA;EACA,WAAA;CACA;;;AAGA,SAAA;;AAEA;;;;;;;EAOA;;AAEA,cAAA;AACA;EACA,8BAAA;CACA","file":"App.vue","sourcesContent":["<template>\r\n  <div class=\"container js_container\">\r\n      <!-- main view -->\r\n      <router-view\r\n        class=\"view\"\r\n        keep-alive\r\n        transition=\"slide\">\r\n      </router-view>\r\n  </div>\r\n</template>\r\n\r\n\r\n<style type=\"text/css\">\r\n\t\r\n/*当你设置一个元素为 box-sizing: border-box; 时，此元素的内边距和边框不再会增加它的宽度*/\r\n* {\r\n  -webkit-box-sizing: border-box;\r\n     -moz-box-sizing: border-box;\r\n          box-sizing: border-box;\r\n}\r\n\r\n\r\n/*单页面的布局*/\r\n\r\nhtml, body {\r\n    -webkit-tap-highlight-color: transparent;\r\n    overflow-x: hidden;\r\n}\r\n\r\n\r\nbody, .page {\r\n    background-color: #FBF9FE;\r\n    /*background-color: #F5E1BA;*/\r\n}\r\n\r\n/*最底层布局*/\r\n.container {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n/*页面的布局*/\r\n.page {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n.space{\r\n\tpadding: 5px 15px;\r\n}\r\n\r\n\r\n.page.slideIn {\r\n    animation: slideIn .2s forwards;\r\n}\r\n\r\n.page.slideOut {\r\n    animation: slideOut .2s forwards;\r\n}\r\n\r\n/*页面切换动画*/\r\n@keyframes slideIn {\r\n    from {\r\n        transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n\r\n@keyframes slideOut {\r\n    from {\r\n        transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n\r\n.slide-transition {\r\n  transition: left 0.3s ease;\r\n  width: 100%;\r\n}\r\n\r\n.slide-enter, .slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.app-transition {\r\n  transition: opacity 0.3s ease;\r\n}\r\n\r\n.app-enter, .app-leave {\r\n  opacity: 0;\r\n}\r\n\r\n\r\n/*内容的布局*/\r\n\r\n/*.page-bd {\r\n    overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding-top: 4px;\r\n}\r\n*/\r\n\r\n/*改变weui的背景色*/\r\n.weui_cell{\r\n  /*background-color: #FFF2D9;*/\r\n}\r\n\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
-/* 130 */
+/* 107 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"container js_container\">\n    <!-- main view -->\n    <router-view\n      class=\"view\"\n      keep-alive\n      transition=\"slide\">\n    </router-view>\n</div>\n";
 
 /***/ },
-/* 131 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(132);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(12)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-1e795d06&file=PageBody.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./PageBody.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-1e795d06&file=PageBody.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./PageBody.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	var __vue_script__, __vue_template__
+	__webpack_require__(111)
+	__vue_script__ = __webpack_require__(109)
+	__vue_template__ = __webpack_require__(110)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\views\\worklog\\LogInfo.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
 
 /***/ },
-/* 132 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(11)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n\t.page-bd[_v-1e795d06] {\n\t    overflow: auto;\n\t    -webkit-overflow-scrolling: touch;\n\t    width: 100%;\n\t    height: 100%;\n\t    padding-top: 4px;\n\t    position: absolute;\n        left: 0;\n\t}\n", "", {"version":3,"sources":["/./src/components/PageBody.vue?700cc40a"],"names":[],"mappings":";CAiBA;KACA,eAAA;KACA,kCAAA;KACA,YAAA;KACA,aAAA;KACA,iBAAA;KACA,mBAAA;QACA,QAAA;EACA","file":"PageBody.vue","sourcesContent":["<template>\r\n\t<div class=\"page-bd\" @scroll=\"scroll($event)\" >\r\n\t\t<slot></slot>\t\r\n\t</div>\r\n</template>\r\n\r\n<script>\r\n\texport default {\r\n\t\tmethods:{\r\n\t\t\tscroll(e){\r\n\t\t\t\tthis.$broadcast(\"scroll\",e);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\" scoped>\r\n\t.page-bd {\r\n\t    overflow: auto;\r\n\t    -webkit-overflow-scrolling: touch;\r\n\t    width: 100%;\r\n\t    height: 100%;\r\n\t    padding-top: 4px;\r\n\t    position: absolute;\r\n        left: 0;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 133 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<div class=\"page-bd\" @scroll=\"scroll($event)\" _v-1e795d06=\"\">\n\t<slot _v-1e795d06=\"\"></slot>\t\n</div>\n";
-
-/***/ },
-/* 134 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(135);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(12)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3374ee2a&file=WorkLog.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./WorkLog.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-3374ee2a&file=WorkLog.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./WorkLog.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 135 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(11)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n.weui_cells_title>div[_v-3374ee2a]{\n\ttext-align: center;\n\tfont-size: 17px;\n\tmargin-bottom: 10px;\n}\n\n.weui_cell_bd>div[_v-3374ee2a]{\n\tpadding-left: 10px;\n}\n", "", {"version":3,"sources":["/./src/views/WorkLog.vue?15025a90"],"names":[],"mappings":";AA4FA;CACA,mBAAA;CACA,gBAAA;CACA,oBAAA;CACA;;AAEA;CACA,mBAAA;CACA","file":"WorkLog.vue","sourcesContent":["<template>\r\n\t<div class=\"page worklog\">\r\n\t\t<nav-bar text=\"工作日志\">\r\n\t\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\"></span>\r\n\t\t\t<span slot=\"rightBtn\"></span>\r\n\t\t</nav-bar>\r\n\t\t<page-body>\r\n\t\t\t<cells-title>\r\n\t\t\t\t<div>开始:{{startDay}} 结束:{{endDay}}</div>\r\n\t\t\t</cells-title>\r\n\t\t\t<cells type=\"access\">\r\n\t\t\t\t<link-cell v-for=\"item in dateRange\">\r\n\t\t\t\t\t<div slot=\"header\">{{ getZNWeek($index) }}</div>\r\n\t\t\t\t\t<div slot=\"body\">\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t{{item}}\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</link-cell>\r\n\t\t\t</cells>\r\n\t\t</page-body>\r\n\t</div>\r\n\t\r\n</template>\r\n\r\n<script>\r\n\timport NavBar from '../components/NavBar.vue';\r\n\timport PageBody from '../components/PageBody.vue'\r\n\timport {Cells,Cell,CellsTitle,LinkCell} from 'vue-weui'\r\n\timport DateHelper from '../public/js/DateHelper.js'\r\n\r\n\texport default {\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\ttitle:'工作日志',\r\n\t\t\t\tstartDay:'',\r\n\t\t\t\tendDay:'',\r\n\t\t\t\tdateRange:[]\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\tthis.startDay=DateHelper.weekFirstDay();\r\n\t\t\tconsole.log(this.startDay);\r\n\t\t\tthis.endDay=DateHelper.weekLastDay();\r\n\t\t\tthis.dateRange=this.getDateRange();\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tback(){\r\n\t\t\t\thistory.back();\r\n\t\t\t},\r\n\t\t\t//子控件触发事件后执行的方法\r\n\t\t\tselectDay(day){\r\n\t\t\t\talert(day);\r\n\t\t\t},\r\n\t\t\tgetDateRange(){\r\n\t\t\t\tvar tempRange=[];\r\n\t\t\t\t//1:得到当前月份的天数\r\n\t\t\t\tvar date=new Date();\r\n\t\t\t\tvar month=date.getMonth()+1;\r\n\t\t\t\tvar year=date.getFullYear();\r\n\t\t\t\tvar days=DateHelper.dayNumOfMonth(year,month);\r\n\t\t\t\t//2:得到\r\n\t\t\t\tvar firstDay=parseInt(this.startDay.split('-')[2]);\r\n\t\t\t\tif(firstDay+7>days){\r\n\r\n\t\t\t\t}else{\r\n\t\t\t\t\tfor (var i = firstDay,length=firstDay+7; i <length; i++) {\r\n\t\t\t\t\t\tvar tempDate=new Date(year+\"/\"+month+\"/\"+i);\r\n\t\t\t\t\t\ttempRange.push(\r\n\t\t\t\t\t\t\tDateHelper.formate(tempDate,\"yyyy-MM-dd\")\r\n\t\t\t\t\t\t);\r\n\t\t\t\t\t};\r\n\t\t\t\t}\r\n\t\t\t\treturn tempRange;\r\n\t\t\t},\r\n\t\t\tgetZNWeek(flag){\r\n\t\t\t\tvar array=[\"周一\",\"周二\",\"周三\",\"周四\",\"周五\",\"周六\",\"周日\"];\r\n\t\t\t\treturn array[flag];\r\n\t\t\t}\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tNavBar,\r\n\t\t\tPageBody,\r\n\t\t\tCells,\r\n\t\t\tCell,\r\n\t\t\tCellsTitle,\r\n\t\t\tLinkCell\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style scoped>\r\n\t.weui_cells_title>div{\r\n\t\ttext-align: center;\r\n\t\tfont-size: 17px;\r\n\t\tmargin-bottom: 10px;\r\n\t}\r\n\r\n\t.weui_cell_bd>div{\r\n\t\tpadding-left: 10px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 136 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<div class=\"page worklog\" _v-3374ee2a=\"\">\n\t<nav-bar text=\"工作日志\" _v-3374ee2a=\"\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\" _v-3374ee2a=\"\"></span>\n\t\t<span slot=\"rightBtn\" _v-3374ee2a=\"\"></span>\n\t</nav-bar>\n\t<page-body _v-3374ee2a=\"\">\n\t\t<cells-title _v-3374ee2a=\"\">\n\t\t\t<div _v-3374ee2a=\"\">开始:{{startDay}} 结束:{{endDay}}</div>\n\t\t</cells-title>\n\t\t<cells type=\"access\" _v-3374ee2a=\"\">\n\t\t\t<link-cell v-for=\"item in dateRange\" _v-3374ee2a=\"\">\n\t\t\t\t<div slot=\"header\" _v-3374ee2a=\"\">{{ getZNWeek($index) }}</div>\n\t\t\t\t<div slot=\"body\" _v-3374ee2a=\"\">\n\t\t\t\t\t<div _v-3374ee2a=\"\">\n\t\t\t\t\t\t{{item}}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</link-cell>\n\t\t</cells>\n\t</page-body>\n</div>\n\n";
-
-/***/ },
-/* 137 */
-/***/ function(module, exports) {
-
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	var DateHelper = {
-		//获取档期的日期
 	
-		getNowDate: function getNowDate(formate) {
-			var date = new Date();
-			return DateHelper.formate(date);
-		},
-		formate: function formate(date, _formate) {
-			var year = date.getFullYear();
-			var month = parseInt(date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-			var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-			var hour = date.getHours();
-			var min = date.getMinutes();
-			var sec = date.getSeconds();
-			var result = "";
-			if (_formate.indexOf("yyyy") >= 0) {
-				result = year;
-			}
-			if (_formate.indexOf("MM") >= 0) {
-				result += "-" + month;
-			}
-			if (_formate.indexOf("dd") >= 0) {
-				result += "-" + day;
-			}
-			if (_formate.indexOf("HH") >= 0) {
-				result += " " + hour;
-			}
+	var _NavBar = __webpack_require__(12);
 	
-			if (_formate.indexOf("mm") >= 0) {
-				result += ":" + min;
-			}
-			if (_formate.indexOf("ss") >= 0) {
-				result += ":" + sec;
-			}
-			return result;
+	var _NavBar2 = _interopRequireDefault(_NavBar);
+	
+	var _PageBody = __webpack_require__(17);
+	
+	var _PageBody2 = _interopRequireDefault(_PageBody);
+	
+	var _vueWeui = __webpack_require__(22);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+		name: 'loginfo',
+		data: function data() {
+			return {
+				curDay: ''
+			};
 		},
 	
-		//是否闰年
-		isLeaf: function isLeaf(date) {
-			if (typeof date == "String") {
-				date = new Date();
-			}
-			var date = new Date();
-			return 0 == date.getYear() % 4 && (date.getYear() % 100 != 0 || date.getYear() % 400 == 0);
-		},
+		route: {
+			//加载数
 	
-		//获取当前天是全年的第几天
-		daysOfYear: function daysOfYear(date) {
-			//获取第几个月
-			var month = date.getMonth();
-			var days = 0;
-			//获取该天是第几周
-			for (var i = 1; i <= month; i++) {
-				days += dayNumOfMonth(i);
-			}
-			return days + date.getDate();
-		},
-	
-		//通过日期来获取当期星期几
-		dayOfWeek: function dayOfWeek(date) {
-			var week = new Date(date).getDay();
-			if (week == 0) {
-				return 7;
-			} else {
-				return week;
+			data: function data(transition) {
+				console.log(transition);
+				//加载数据
+				this.curDay = transition.to.params.date;
 			}
 		},
-		//通过年月来获取月份的天数
-		dayNumOfMonth: function dayNumOfMonth(year, month) {
-			var d = new Date(year, month, 0);
-			return d.getDate();
+		components: {
+			NavBar: _NavBar2.default,
+			PageBody: _PageBody2.default
 		},
-		//获取当前周的星期一
-		weekFirstDay: function weekFirstDay() {
-			var currentDay = new Date();
-			var cYear = currentDay.getFullYear();
-			var cMonth = currentDay.getMonth() + 1;
-			var day = currentDay.getDate();
-			var startDay = day - parseInt(currentDay.getDay() == 0 ? 6 : currentDay.getDay() - 1);
-			//检查是否跨月
-	
-			if (startDay < 1) {
-				//如果跨月情况
-				var month = GetDaysByMonth(parseInt(currentDay.getMonth()) - 1); //原 var month = GetDaysByMonth(parseInt(currentDay.getMonth()))
-				var nowDay = month - Math.abs(startDay); //  原var nowDay = month - startDay
-				return cYear + "-" + (currentDay.getMonth() < 10 ? "0" + currentDay.getMonth() : currentDay.getMonth()) + "-" + nowDay;
-			}
-			return DateHelper.formate(currentDay, "yyyy-MM") + '-' + (parseInt(startDay) < 10 ? "0" + startDay : startDay);
-		},
-	
-		//当前走的最后一天
-		weekLastDay: function weekLastDay() {
-			var currentDay = new Date();
-			//返回的是当前月的天数
-	
-			var cYear = currentDay.getFullYear();
-			var cMonth = currentDay.getMonth() + 1;
-			var days = DateHelper.dayNumOfMonth(cYear, cMonth);
-			var day = currentDay.getDate();
-			var endDay = day + (7 - currentDay.getDay());
-			if (endDay > days) {
-				//如果跨月的情况
-				var newDay = endDay - days + 1;
-				if (newDay < 10) {
-					newDay = "0" + newDay;
-				}
-				return cYear + "-" + (cMonth + 1 < 10 ? "0" + (cMonth + 1) : cMonth + 1) + "-" + newDay;
-			}
-			return DateHelper.formate(currentDay, "yyyy-MM") + '-' + (endDay < 10 ? "0" + endDay : endDay);
-		},
-		monthFirstDay: function monthFirstDay() {
-			return getNowDate("yyyy-MM") + "-01";
-		},
-	
-		//获取当前月的最后一天
-		monthLastDay: function monthLastDay() {
-			var date = new Date();
-			var lastDay = DateHelper.dayNumOfMonth(date.getFullYear(), date.getMonth() + 1);
-			return getNowDate("yyyy-MM") + (lastDay < 10 ? "0" + lastDay : lastDay);
-		},
-	
-		//日期比较,返回差值
-		dateDiff: function dateDiff(sDate, eDate, strInterval) {
-	
-			if (typeof sDate == 'string') //如果是字符串转换为日期型 
-				{
-					sDate = new Date(sDate);
-				}
-			if (typeof eDate == 'string') //如果是字符串转换为日期型 
-				{
-					eDate = new Date(eDate);
-				}
-			switch (strInterval) {
-				case 's':
-					return parseInt((eDate - sDate) / 1000);
-				case 'n':
-					return parseInt((eDate - sDate) / 60000);
-				case 'h':
-					return parseInt((eDate - sDate) / 3600000);
-				case 'd':
-					return parseInt((eDate - sDate) / 86400000);
-				case 'w':
-					return parseInt((eDate - sDate) / (86400000 * 7));
-				case 'm':
-					return eDate.getMonth() + 1 + (eDate.getFullYear() - sDate.getFullYear()) * 12 - (sDate.getMonth() + 1);
-				case 'y':
-					return eDate.getFullYear() - sDate.getFullYear();
-			}
-		},
-	
-		//日期相加
-		dateAdd: function dateAdd(sDate, strInterval, num) {
-			var dtTmp = sDate;
-			switch (strInterval) {
-				case 's':
-					return new Date(Date.parse(dtTmp.toDateString()) + 1000 * num);
-				case 'n':
-					return new Date(Date.parse(dtTmp.toDateString()) + 60000 * num);
-				case 'h':
-					return new Date(Date.parse(dtTmp.toDateString()) + 3600000 * num);
-				case 'd':
-					return new Date(Date.parse(dtTmp.toDateString()) + 86400000 * num);
-				case 'w':
-					return new Date(Date.parse(dtTmp.toDateString()) + 86400000 * 7 * num);
-				case 'q':
-					return new Date(dtTmp.getFullYear(), dtTmp.getMonth() + num * 3, dtTmp.getDate(), dtTmp.getHours(), dtTmp.getMinutes(), dtTmp.getSeconds());
-				case 'm':
-					return new Date(dtTmp.getFullYear(), dtTmp.getMonth() + num, dtTmp.getDate(), dtTmp.getHours(), dtTmp.getMinutes(), dtTmp.getSeconds());
-				case 'y':
-					return new Date(dtTmp.getFullYear() + num, dtTmp.getMonth(), dtTmp.getDate(), dtTmp.getHours(), dtTmp.getMinutes(), dtTmp.getSeconds());
+		methods: {
+			back: function back() {
+				history.back();
+			},
+			addTask: function addTask() {
+				this.$route.router.go({ name: 'logdetail', params: { date: this.curDay, type: 'add' } });
 			}
 		}
 	};
+	// </script>
+
+	// <style type="text/css">
+
+	// </style>
+	// <template>
+	// 	<div class="page logInfo">
+	// 		<nav-bar :text="curDay">
+	// 			<span class="icon-chevron-left" slot="leftBar" @click="back()"></span>
+	// 			<span class="icon-plus" slot="rightBar" @click="addTask"></span>
+	// 		</nav-bar>	
+	// 		<page-body>
+
+	// 		</page-body>
+	// 	</div>
+	// </template>
+
+	// <script lang="babel">
+
+/***/ },
+/* 110 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"page logInfo\">\n\t<nav-bar :text=\"curDay\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\"></span>\n\t\t<span class=\"icon-plus\" slot=\"rightBar\" @click=\"addTask\"></span>\n\t</nav-bar>\t\n\t<page-body>\n\t\n\t</page-body>\n</div>\n";
+
+/***/ },
+/* 111 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
-	exports.default = DateHelper;
+	// load the styles
+	var content = __webpack_require__(112);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ad38057e&file=LogInfo.vue!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./LogInfo.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ad38057e&file=LogInfo.vue!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./LogInfo.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 112 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"LogInfo.vue","sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 113 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(114)
+	__vue_script__ = __webpack_require__(116)
+	__vue_template__ = __webpack_require__(117)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\views\\worklog\\LogDetail.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 114 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(115);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-123cd4a4&file=LogDetail.vue!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./LogDetail.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-123cd4a4&file=LogDetail.vue!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./LogDetail.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 115 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"LogDetail.vue","sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 116 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _NavBar = __webpack_require__(12);
+	
+	var _NavBar2 = _interopRequireDefault(_NavBar);
+	
+	var _PageBody = __webpack_require__(17);
+	
+	var _PageBody2 = _interopRequireDefault(_PageBody);
+	
+	var _vueWeui = __webpack_require__(22);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+		name: 'logdetail',
+		data: function data() {
+			return {
+				curDay: ''
+			};
+		},
+	
+		route: {
+			//加载数
+	
+			data: function data(transition) {
+				console.log(transition);
+				//加载数据
+				this.curDay = transition.to.params.date;
+			}
+		},
+		components: {
+			NavBar: _NavBar2.default,
+			PageBody: _PageBody2.default
+		},
+		methods: {
+			back: function back() {
+				history.back();
+			}
+		}
+	};
+	// </script>
+
+	// <style type="text/css">
+
+	// </style>
+	// <template>
+	// 	<div class="page logDetail">
+	// 		<nav-bar :text="curDay">
+	// 			<span class="icon-chevron-left" slot="leftBar" @click="back()">返回</span>
+	// 		</nav-bar>	
+	// 		<page-body>
+
+	// 		</page-body>
+	// 	</div>
+	// </template>
+
+	// <script lang="babel">
+
+/***/ },
+/* 117 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"page logDetail\">\n\t<nav-bar :text=\"curDay\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\">返回</span>\n\t</nav-bar>\t\n\t<page-body>\n\t\n\t</page-body>\n</div>\n";
 
 /***/ }
 /******/ ]);

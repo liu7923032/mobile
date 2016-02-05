@@ -9,10 +9,10 @@
 				<div>开始:{{startDay}} 结束:{{endDay}}</div>
 			</cells-title>
 			<cells type="access">
-				<link-cell v-for="item in dateRange">
+				<link-cell v-for="item in dateRange" :router-link="{ name: 'loginfo', params: { date: item }}">
 					<div slot="header">{{ getZNWeek($index) }}</div>
 					<div slot="body">
-						<div>
+						<div class="time">
 							{{item}}
 						</div>
 					</div>
@@ -30,6 +30,7 @@
 	import DateHelper from '../public/js/DateHelper.js'
 
 	export default {
+		name:'worklog',
 		data(){
 			return {
 				title:'工作日志',
@@ -98,5 +99,9 @@
 
 	.weui_cell_bd>div{
 		padding-left: 10px;
+	}
+
+	.time{
+		
 	}
 </style>

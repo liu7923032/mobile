@@ -30,6 +30,7 @@ html, body {
 
 body, .page {
     background-color: #FBF9FE;
+    /*background-color: #F5E1BA;*/
 }
 
 /*最底层布局*/
@@ -117,6 +118,11 @@ body, .page {
     padding-top: 4px;
 }
 */
+
+/*改变weui的背景色*/
+.weui_cell{
+  /*background-color: #FFF2D9;*/
+}
 
 
 </style>
