@@ -10,6 +10,19 @@
 </template>
 
 
+<script lang="babel">
+    import auth from './utils/auth.js'
+    export default {
+      data(){
+        userId:0
+      },
+      created(){
+        this.userId=auth.getUser().userId||0;
+        console.log("App.vue当前的登陆人是:"+this.userId);
+      }
+    }
+</script>
+
 <style type="text/css">
 	
 /*当你设置一个元素为 box-sizing: border-box; 时，此元素的内边距和边框不再会增加它的宽度*/

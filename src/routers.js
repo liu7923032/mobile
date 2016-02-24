@@ -33,10 +33,12 @@ export default function(router) {
         },
         '/loginfo/:date':{
             name:'loginfo',
+            auth: true,
             component: LogInfo
         },
         '/logdetail/:date/:type':{
             name:'logdetail',
+            auth: true,
             component: LogDetail
         },
         // 个人信息

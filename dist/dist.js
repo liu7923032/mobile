@@ -65,15 +65,15 @@
 	
 	var _routers2 = _interopRequireDefault(_routers);
 	
-	var _fastclick = __webpack_require__(65);
+	var _fastclick = __webpack_require__(71);
 	
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 	
-	var _vTouch = __webpack_require__(66);
+	var _vTouch = __webpack_require__(72);
 	
 	var _vTouch2 = _interopRequireDefault(_vTouch);
 	
-	var _vueResource = __webpack_require__(80);
+	var _vueResource = __webpack_require__(86);
 	
 	var _vueResource2 = _interopRequireDefault(_vueResource);
 	
@@ -81,7 +81,7 @@
 	
 	var _auth2 = _interopRequireDefault(_auth);
 	
-	var _App = __webpack_require__(104);
+	var _App = __webpack_require__(110);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
@@ -12348,10 +12348,12 @@
 	        },
 	        '/loginfo/:date': {
 	            name: 'loginfo',
+	            auth: true,
 	            component: _LogInfo2.default
 	        },
 	        '/logdetail/:date/:type': {
 	            name: 'logdetail',
+	            auth: true,
 	            component: _LogDetail2.default
 	        },
 	        // 个人信息
@@ -12394,11 +12396,11 @@
 
 	var _Index2 = _interopRequireDefault(_Index);
 
-	var _LogInfo = __webpack_require__(108);
+	var _LogInfo = __webpack_require__(65);
 
 	var _LogInfo2 = _interopRequireDefault(_LogInfo);
 
-	var _LogDetail = __webpack_require__(113);
+	var _LogDetail = __webpack_require__(66);
 
 	var _LogDetail2 = _interopRequireDefault(_LogDetail);
 
@@ -16209,7 +16211,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.login .loginUrl{\n\ttext-align: center;\n\tmargin: 10px 5px;\n}\n\n\n.login p{\n\tfont-size: 13px;\n}\n", "", {"version":3,"sources":["/./src/views/Login.vue?27502018"],"names":[],"mappings":";AA+IA;CACA,mBAAA;CACA,iBAAA;CACA;;;AAGA;CACA,gBAAA;CACA","file":"Login.vue","sourcesContent":["<template>\r\n\t<div class=\"page login\">\r\n\t\t<nav-bar text=\"登录页\"></nav-bar>\r\n\t\t<div class=\"page-bd\">\r\n\t\t\t<div class=\"loginUrl\"> \r\n\t\t\t\t<img src=\"../assets/images/login/login.png\" alt=\"用户\">\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<cells type=\"form\">\r\n\t\t\t\t<input-cell label=\"账号\" placeholder=\"工号：M0XXX\" :value.sync=\"account\" v-ref:account></input-cell>\r\n\t\t\t\t<input-cell label=\"密码\" placeholder=\"密码\" type=\"password\" :value.sync=\"pwd\" ></input-cell>\r\n\t\t\t</cells>\r\n\t\t\t\r\n\t\t\t<cells type=\"checkbox\">\r\n\t\t\t\t<checkbox-cell name=\"isremeber\" :checked.sync=\"isremeber\" label=\"<p>是否记忆密码</p>\" ></checkbox-cell>\r\n\t\t\t</cells>\r\n\t\t\t\r\n\t\t\t<cells>\r\n\t\t\t<button-area>\r\n\t\t\t\t<button @click=\"login\">登录</button>\r\n\t\t\t</button-area>\r\n\t\t</div>\r\n\t\t<dialog v-show=\"isPrompt\" title=\"错误提示\" @weui-dialog-confirm=\"confirmDlg\">\r\n\t\t\t<p>{{errorMsg}}</p>\r\n\t\t</dialog>\r\n\t\t<toast v-show=\"isloading\" type=\"loading\">\r\n\t\t\t登录中..\r\n\t\t</toast>\r\n\t</div>\r\n</template>\r\n\r\n\r\n<script>\r\n\timport NavBar from '../components/NavBar.vue'\r\n\timport auth from './utils/auth.js'\r\n\timport {ButtonArea,Button,Cells,Cell,CheckboxCell,InputCell,Dialog,Toast} from 'vue-weui'\r\n\texport default {\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\taccount:'M0679',\r\n\t\t\t\tpwd:'000',\r\n\t\t\t\tisremeber:true,\r\n\t\t\t\tisPrompt:false,\r\n\t\t\t\tisloading:false,\r\n\t\t\t\terrorMsg:'错误了',\r\n\t\t\t\tdevice:'',\r\n\t\t\t\tredirectUrl:''\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\t// this.account=\"M\";\r\n\t\t\t// console.log(this.$refs.account)\r\n\t\t\t// this.$els.account.focus();\r\n\t\t\tvar tmpDevice=\"\"\r\n\t\t\tif(this.getVersion().ios){\r\n\t\t\t\tthis.device=\"ios\";\r\n\t\t\t}else if(this.getVersion().android){\r\n\t\t\t\tthis.device= \"android\";\r\n\t\t\t}else if(this.getVersion().iPhone){\r\n\t\t\t\tthis.device= \"iPhone\";\r\n\t\t\t}else if(this.getVersion().iPad){\r\n\t\t\t\tthis.device=\"iPad\";\r\n\t\t\t}else{\r\n\t\t\t\tthis.device=\"web\";\r\n\t\t\t}\r\n\t\t\t//得到重定向的url\r\n\t\t\t this.redirectUrl= decodeURIComponent(this.$route.query.redirect || '/');\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tNavBar,\r\n\t\t\tButtonArea,\r\n\t\t\tButton,\r\n\t\t\tCheckboxCell,\r\n\t\t\tCells,\r\n\t\t\tCell,\r\n\t\t\tDialog,\r\n\t\t\tToast,\r\n\t\t\tInputCell\r\n\t\t},\r\n\t\t\r\n\t\tmethods:{\r\n\t\t\tconfirmDlg(){\r\n\t\t\t\tthis.isPrompt=false;\r\n\t\t\t},\r\n\t\t\tshowDialog(errorMsg){\r\n\t\t\t\tthis.errorMsg=errorMsg;\r\n\t\t\t\tthis.isPrompt=true;\r\n\t\t\t},\r\n\t\t\tlogin(){\r\n\t\t\t\t//向服务器发起请登录请求\r\n\t\t\t\tif(this.account.length!=5){\r\n\t\t\t\t\t// this.errorMsg=\"账号必须是五位\";\r\n\t\t\t\t\t// this.isPrompt=true;\r\n\t\t\t\t\tthis.showDialog(\"账号必须是五位\");\r\n\t\t\t\t\treturn;\r\n\t\t\t\t}\r\n\t\t\t\tif(this.pwd.length<3){\r\n\t\t\t\t\t// this.errorMsg=\"密码最小长度是三位:\"+this.getVersion().android;\r\n\t\t\t\t\tthis.showDialog(\"密码最小长度是三位\");\r\n\t\t\t\t\treturn;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t//向服务器发起请求\r\n\t\t\t\tthis.isloading=true;\r\n\t\t\t\tthis.$http.get(\"auth\",{\"account\":this.account,\"passwd\":this.pwd,\"device\":this.device}).then((response)=>{\r\n\t\t\t\t\tthis.isloading=false;\r\n\t\t\t\t\tvar data=response.data;\r\n\t\t\t\t\tconsole.log(data);\r\n\t\t\t\t\tif(data.Statu==\"Y\"){\r\n\t\t\t\t\t\tauth.setUser(this.account,this.password,this.isremeber);\r\n\t\t\t\t\t\t//跳转到首页\r\n\t\t\t\t\t\t// console.log(\"我的测试:\"+this.$route);\r\n\t\t\t\t\t\tif(this.redirectUrl&&this.redirectUrl.length>0){\r\n\t\t\t\t\t\t\tthis.$route.router.go(this.redirectUrl);\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t\telse{\r\n\t\t\t\t\t\t\tthis.$route.router.go(\"index\");\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t}else{\r\n\t\t\t\t\t\tthis.showDialog(data.Msg);\r\n\t\t\t\t\t}\r\n\t\t\t\t\t\r\n\t\t\t\t},(error)=>{\r\n\t\t\t\t\tthis.isloading=false;\r\n\t\t\t\t});\r\n\t\t\t\tconsole.log(\"账号:\"+this.account+\"-密码是:\"+this.pwd+\"-记住密码:\"+this.isremeber)\r\n\t\t\t},\r\n\t\t\tgetVersion(){\r\n           \t\t let u = navigator.userAgent,\r\n                app = navigator.appVersion;\r\n\t            return { //移动终端浏览器版本信息\r\n\t                ios: !!u.match(/\\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端\r\n\t                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器\r\n\t                iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器\r\n\t                iPad: u.indexOf('iPad') > -1, //是否iPad\r\n\t            };\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" >\r\n\t.login .loginUrl{\r\n\t\ttext-align: center;\r\n\t\tmargin: 10px 5px;\r\n\t}\r\n\r\n\r\n\t.login p{\r\n\t\tfont-size: 13px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.login .loginUrl{\n\ttext-align: center;\n\tmargin: 10px 5px;\n}\n\n\n.login p{\n\tfont-size: 13px;\n}\n", "", {"version":3,"sources":["/./src/views/Login.vue?85b292d4"],"names":[],"mappings":";AA+IA;CACA,mBAAA;CACA,iBAAA;CACA;;;AAGA;CACA,gBAAA;CACA","file":"Login.vue","sourcesContent":["<template>\r\n\t<div class=\"page login\">\r\n\t\t<nav-bar text=\"登录页\"></nav-bar>\r\n\t\t<div class=\"page-bd\">\r\n\t\t\t<div class=\"loginUrl\"> \r\n\t\t\t\t<img src=\"../assets/images/login/login.png\" alt=\"用户\">\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t\t<cells type=\"form\">\r\n\t\t\t\t<input-cell label=\"账号\" placeholder=\"工号：M0XXX\" :value.sync=\"account\" v-ref:account></input-cell>\r\n\t\t\t\t<input-cell label=\"密码\" placeholder=\"密码\" type=\"password\" :value.sync=\"pwd\" ></input-cell>\r\n\t\t\t</cells>\r\n\t\t\t\r\n\t\t\t<cells type=\"checkbox\">\r\n\t\t\t\t<checkbox-cell name=\"isremeber\" :checked.sync=\"isremeber\" label=\"<p>是否记忆密码</p>\" ></checkbox-cell>\r\n\t\t\t</cells>\r\n\t\t\t\r\n\t\t\t<cells>\r\n\t\t\t<button-area>\r\n\t\t\t\t<button @click=\"login\">登录</button>\r\n\t\t\t</button-area>\r\n\t\t</div>\r\n\t\t<dialog v-show=\"isPrompt\" title=\"错误提示\" @weui-dialog-confirm=\"confirmDlg\">\r\n\t\t\t<p>{{errorMsg}}</p>\r\n\t\t</dialog>\r\n\t\t<toast v-show=\"isloading\" type=\"loading\">\r\n\t\t\t登录中..\r\n\t\t</toast>\r\n\t</div>\r\n</template>\r\n\r\n\r\n<script>\r\n\timport NavBar from '../components/NavBar.vue'\r\n\timport auth from './utils/auth.js'\r\n\timport {ButtonArea,Button,Cells,Cell,CheckboxCell,InputCell,Dialog,Toast} from 'vue-weui'\r\n\texport default {\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\taccount:'M0679',\r\n\t\t\t\tpwd:'000',\r\n\t\t\t\tisremeber:true,\r\n\t\t\t\tisPrompt:false,\r\n\t\t\t\tisloading:false,\r\n\t\t\t\terrorMsg:'错误了',\r\n\t\t\t\tdevice:'',\r\n\t\t\t\tredirectUrl:''\r\n\t\t\t}\r\n\t\t},\r\n\t\tready(){\r\n\t\t\t// this.account=\"M\";\r\n\t\t\t// console.log(this.$refs.account)\r\n\t\t\t// this.$els.account.focus();\r\n\t\t\tvar tmpDevice=\"\"\r\n\t\t\tif(this.getVersion().ios){\r\n\t\t\t\tthis.device=\"ios\";\r\n\t\t\t}else if(this.getVersion().android){\r\n\t\t\t\tthis.device= \"android\";\r\n\t\t\t}else if(this.getVersion().iPhone){\r\n\t\t\t\tthis.device= \"iPhone\";\r\n\t\t\t}else if(this.getVersion().iPad){\r\n\t\t\t\tthis.device=\"iPad\";\r\n\t\t\t}else{\r\n\t\t\t\tthis.device=\"web\";\r\n\t\t\t}\r\n\t\t\t//得到重定向的url\r\n\t\t\t this.redirectUrl= decodeURIComponent(this.$route.query.redirect || '/');\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tNavBar,\r\n\t\t\tButtonArea,\r\n\t\t\tButton,\r\n\t\t\tCheckboxCell,\r\n\t\t\tCells,\r\n\t\t\tCell,\r\n\t\t\tDialog,\r\n\t\t\tToast,\r\n\t\t\tInputCell\r\n\t\t},\r\n\t\t\r\n\t\tmethods:{\r\n\t\t\tconfirmDlg(){\r\n\t\t\t\tthis.isPrompt=false;\r\n\t\t\t},\r\n\t\t\tshowDialog(errorMsg){\r\n\t\t\t\tthis.errorMsg=errorMsg;\r\n\t\t\t\tthis.isPrompt=true;\r\n\t\t\t},\r\n\t\t\tlogin(){\r\n\t\t\t\t//向服务器发起请登录请求\r\n\t\t\t\tif(this.account.length!=5){\r\n\t\t\t\t\t// this.errorMsg=\"账号必须是五位\";\r\n\t\t\t\t\t// this.isPrompt=true;\r\n\t\t\t\t\tthis.showDialog(\"账号必须是五位\");\r\n\t\t\t\t\treturn;\r\n\t\t\t\t}\r\n\t\t\t\tif(this.pwd.length<3){\r\n\t\t\t\t\t// this.errorMsg=\"密码最小长度是三位:\"+this.getVersion().android;\r\n\t\t\t\t\tthis.showDialog(\"密码最小长度是三位\");\r\n\t\t\t\t\treturn;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t//向服务器发起请求\r\n\t\t\t\tthis.isloading=true;\r\n\t\t\t\tthis.$http.get(\"auth\",{\"account\":this.account,\"passwd\":this.pwd,\"device\":this.device}).then((response)=>{\r\n\t\t\t\t\tthis.isloading=false;\r\n\t\t\t\t\tvar data=response.data;\r\n\t\t\t\t\tconsole.log(data);\r\n\t\t\t\t\tif(data.Statu==\"Y\"){\r\n\t\t\t\t\t\tauth.setUser(this.account,this.password,this.isremeber,data.Data);\r\n\t\t\t\t\t\t//跳转到首页\r\n\t\t\t\t\t\t// console.log(\"我的测试:\"+this.$route);\r\n\t\t\t\t\t\tif(this.redirectUrl&&this.redirectUrl.length>0){\r\n\t\t\t\t\t\t\tthis.$route.router.go(this.redirectUrl);\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t\telse{\r\n\t\t\t\t\t\t\tthis.$route.router.go(\"index\");\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t}else{\r\n\t\t\t\t\t\tthis.showDialog(data.Msg);\r\n\t\t\t\t\t}\r\n\t\t\t\t\t\r\n\t\t\t\t},(error)=>{\r\n\t\t\t\t\tthis.isloading=false;\r\n\t\t\t\t});\r\n\t\t\t\tconsole.log(\"账号:\"+this.account+\"-密码是:\"+this.pwd+\"-记住密码:\"+this.isremeber)\r\n\t\t\t},\r\n\t\t\tgetVersion(){\r\n           \t\t let u = navigator.userAgent,\r\n                app = navigator.appVersion;\r\n\t            return { //移动终端浏览器版本信息\r\n\t                ios: !!u.match(/\\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端\r\n\t                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器\r\n\t                iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器\r\n\t                iPad: u.indexOf('iPad') > -1, //是否iPad\r\n\t            };\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" >\r\n\t.login .loginUrl{\r\n\t\ttext-align: center;\r\n\t\tmargin: 10px 5px;\r\n\t}\r\n\r\n\r\n\t.login p{\r\n\t\tfont-size: 13px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -16312,7 +16314,7 @@
 					var data = response.data;
 					console.log(data);
 					if (data.Statu == "Y") {
-						_auth2.default.setUser(_this.account, _this.password, _this.isremeber);
+						_auth2.default.setUser(_this.account, _this.password, _this.isremeber, data.Data);
 						//跳转到首页
 						// console.log("我的测试:"+this.$route);
 						if (_this.redirectUrl && _this.redirectUrl.length > 0) {
@@ -16397,10 +16399,11 @@
 	var auth = {
 		// 设置人员
 	
-		setUser: function setUser(account, pwd, isAway) {
+		setUser: function setUser(account, pwd, isAway, userId) {
 			var user = {
 				account: account,
 				pwd: pwd,
+				userId: userId || 0,
 				isAway: isAway
 			};
 			if (isAway) {
@@ -16412,6 +16415,7 @@
 	
 		//检查该对象是否存在
 		isLogin: function isLogin() {
+			console.log("人员是否登陆:" + localStorage.user || sessionStorage.user);
 			return localStorage.user || sessionStorage.user;
 		},
 	
@@ -17620,6 +17624,171 @@
 /* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var __vue_script__, __vue_template__
+	__webpack_require__(115)
+	__vue_script__ = __webpack_require__(117)
+	__vue_template__ = __webpack_require__(118)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\views\\worklog\\LogInfo.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 66 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(67)
+	__vue_script__ = __webpack_require__(69)
+	__vue_template__ = __webpack_require__(70)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\views\\worklog\\LogDetail.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 67 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(68);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-123cd4a4&file=LogDetail.vue!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./LogDetail.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-123cd4a4&file=LogDetail.vue!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./LogDetail.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 68 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"LogDetail.vue","sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 69 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _NavBar = __webpack_require__(12);
+	
+	var _NavBar2 = _interopRequireDefault(_NavBar);
+	
+	var _PageBody = __webpack_require__(17);
+	
+	var _PageBody2 = _interopRequireDefault(_PageBody);
+	
+	var _vueWeui = __webpack_require__(22);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+		name: 'logdetail',
+		data: function data() {
+			return {
+				curDay: '',
+				type: ''
+			};
+		},
+	
+		route: {
+			//加载数
+	
+			data: function data(transition) {
+				console.log(transition);
+				//加载数据
+				this.curDay = transition.to.params.date;
+			}
+		},
+		components: {
+			NavBar: _NavBar2.default,
+			PageBody: _PageBody2.default
+		},
+		methods: {
+			back: function back() {
+				history.back();
+			}
+		},
+		route: {
+			data: function data() {
+				//1：获取传递过来的参数
+			}
+		}
+	};
+	// </script>
+
+	// <style type="text/css">
+
+	// </style>
+	// <template>
+	// 	<div class="page logDetail">
+	// 		<nav-bar :text="curDay">
+	// 			<span class="icon-chevron-left" slot="leftBar" @click="back()">返回</span>
+	// 		</nav-bar>	
+	// 		<page-body>
+
+	// 		</page-body>
+	// 	</div>
+	// </template>
+
+	// <script lang="babel">
+
+/***/ },
+/* 70 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"page logDetail\">\n\t<nav-bar :text=\"curDay\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\">返回</span>\n\t</nav-bar>\t\n\t<page-body>\n\t\t\n\t</page-body>\n</div>\n";
+
+/***/ },
+/* 71 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
 		'use strict';
 	
@@ -18464,19 +18633,19 @@
 
 
 /***/ },
-/* 66 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _keys = __webpack_require__(67);
+	var _keys = __webpack_require__(73);
 	
 	var _keys2 = _interopRequireDefault(_keys);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var vueTouch = {};
-	var Hammer =  true ? __webpack_require__(79) : window.Hammer;
+	var Hammer =  true ? __webpack_require__(85) : window.Hammer;
 	var gestures = ['tap', 'pan', 'pandown', 'panend', 'pinch', 'press', 'pressup', 'rotate', 'swipe', 'swipeleft', 'swiperight', 'swipeup', 'swipedown'];
 	var customeEvents = {};
 	
@@ -18575,43 +18744,43 @@
 	module.exports = vueTouch;
 
 /***/ },
-/* 67 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(68), __esModule: true };
+	module.exports = { "default": __webpack_require__(74), __esModule: true };
 
 /***/ },
-/* 68 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(69);
-	module.exports = __webpack_require__(75).Object.keys;
+	__webpack_require__(75);
+	module.exports = __webpack_require__(81).Object.keys;
 
 /***/ },
-/* 69 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(70);
+	var toObject = __webpack_require__(76);
 	
-	__webpack_require__(72)('keys', function($keys){
+	__webpack_require__(78)('keys', function($keys){
 	  return function keys(it){
 	    return $keys(toObject(it));
 	  };
 	});
 
 /***/ },
-/* 70 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
-	var defined = __webpack_require__(71);
+	var defined = __webpack_require__(77);
 	module.exports = function(it){
 	  return Object(defined(it));
 	};
 
 /***/ },
-/* 71 */
+/* 77 */
 /***/ function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -18621,13 +18790,13 @@
 	};
 
 /***/ },
-/* 72 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(73)
-	  , core    = __webpack_require__(75)
-	  , fails   = __webpack_require__(78);
+	var $export = __webpack_require__(79)
+	  , core    = __webpack_require__(81)
+	  , fails   = __webpack_require__(84);
 	module.exports = function(KEY, exec){
 	  var fn  = (core.Object || {})[KEY] || Object[KEY]
 	    , exp = {};
@@ -18636,12 +18805,12 @@
 	};
 
 /***/ },
-/* 73 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(74)
-	  , core      = __webpack_require__(75)
-	  , ctx       = __webpack_require__(76)
+	var global    = __webpack_require__(80)
+	  , core      = __webpack_require__(81)
+	  , ctx       = __webpack_require__(82)
 	  , PROTOTYPE = 'prototype';
 	
 	var $export = function(type, name, source){
@@ -18687,7 +18856,7 @@
 	module.exports = $export;
 
 /***/ },
-/* 74 */
+/* 80 */
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -18696,18 +18865,18 @@
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
-/* 75 */
+/* 81 */
 /***/ function(module, exports) {
 
 	var core = module.exports = {version: '1.2.6'};
 	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ },
-/* 76 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(77);
+	var aFunction = __webpack_require__(83);
 	module.exports = function(fn, that, length){
 	  aFunction(fn);
 	  if(that === undefined)return fn;
@@ -18728,7 +18897,7 @@
 	};
 
 /***/ },
-/* 77 */
+/* 83 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -18737,7 +18906,7 @@
 	};
 
 /***/ },
-/* 78 */
+/* 84 */
 /***/ function(module, exports) {
 
 	module.exports = function(exec){
@@ -18749,7 +18918,7 @@
 	};
 
 /***/ },
-/* 79 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.6 - 2015-12-23
@@ -21323,7 +21492,7 @@
 
 
 /***/ },
-/* 80 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -21332,16 +21501,16 @@
 	
 	function install(Vue) {
 	
-	    var _ = __webpack_require__(81);
+	    var _ = __webpack_require__(87);
 	
 	    _.config = Vue.config;
 	    _.warning = Vue.util.warn;
 	    _.nextTick = Vue.util.nextTick;
 	
-	    Vue.url = __webpack_require__(82);
-	    Vue.http = __webpack_require__(88);
-	    Vue.resource = __webpack_require__(103);
-	    Vue.Promise = __webpack_require__(90);
+	    Vue.url = __webpack_require__(88);
+	    Vue.http = __webpack_require__(94);
+	    Vue.resource = __webpack_require__(109);
+	    Vue.Promise = __webpack_require__(96);
 	
 	    Object.defineProperties(Vue.prototype, {
 	
@@ -21382,7 +21551,7 @@
 
 
 /***/ },
-/* 81 */
+/* 87 */
 /***/ function(module, exports) {
 
 	/**
@@ -21510,14 +21679,14 @@
 
 
 /***/ },
-/* 82 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for URL templating.
 	 */
 	
-	var _ = __webpack_require__(81);
+	var _ = __webpack_require__(87);
 	var ie = document.documentMode;
 	var el = document.createElement('a');
 	
@@ -21553,10 +21722,10 @@
 	 */
 	
 	Url.transforms = [
-	    __webpack_require__(83),
-	    __webpack_require__(85),
-	    __webpack_require__(86),
-	    __webpack_require__(87)
+	    __webpack_require__(89),
+	    __webpack_require__(91),
+	    __webpack_require__(92),
+	    __webpack_require__(93)
 	];
 	
 	/**
@@ -21646,14 +21815,14 @@
 
 
 /***/ },
-/* 83 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * URL Template (RFC 6570) Transform.
 	 */
 	
-	var UrlTemplate = __webpack_require__(84);
+	var UrlTemplate = __webpack_require__(90);
 	
 	module.exports = function (options) {
 	
@@ -21668,7 +21837,7 @@
 
 
 /***/ },
-/* 84 */
+/* 90 */
 /***/ function(module, exports) {
 
 	/**
@@ -21824,14 +21993,14 @@
 
 
 /***/ },
-/* 85 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Legacy Transform.
 	 */
 	
-	var _ = __webpack_require__(81);
+	var _ = __webpack_require__(87);
 	
 	module.exports = function (options, next) {
 	
@@ -21876,14 +22045,14 @@
 
 
 /***/ },
-/* 86 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Query Parameter Transform.
 	 */
 	
-	var _ = __webpack_require__(81);
+	var _ = __webpack_require__(87);
 	
 	module.exports = function (options, next) {
 	
@@ -21906,14 +22075,14 @@
 
 
 /***/ },
-/* 87 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Root Prefix Transform.
 	 */
 	
-	var _ = __webpack_require__(81);
+	var _ = __webpack_require__(87);
 	
 	module.exports = function (options, next) {
 	
@@ -21928,17 +22097,17 @@
 
 
 /***/ },
-/* 88 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for sending network requests.
 	 */
 	
-	var _ = __webpack_require__(81);
-	var Client = __webpack_require__(89);
-	var Promise = __webpack_require__(90);
-	var interceptor = __webpack_require__(93);
+	var _ = __webpack_require__(87);
+	var Client = __webpack_require__(95);
+	var Promise = __webpack_require__(96);
+	var interceptor = __webpack_require__(99);
 	var jsonType = {'Content-Type': 'application/json'};
 	
 	function Http(url, options) {
@@ -21990,13 +22159,13 @@
 	};
 	
 	Http.interceptors = [
-	    __webpack_require__(94),
-	    __webpack_require__(95),
-	    __webpack_require__(96),
-	    __webpack_require__(98),
-	    __webpack_require__(99),
 	    __webpack_require__(100),
-	    __webpack_require__(101)
+	    __webpack_require__(101),
+	    __webpack_require__(102),
+	    __webpack_require__(104),
+	    __webpack_require__(105),
+	    __webpack_require__(106),
+	    __webpack_require__(107)
 	];
 	
 	Http.headers = {
@@ -22031,16 +22200,16 @@
 
 
 /***/ },
-/* 89 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Base client.
 	 */
 	
-	var _ = __webpack_require__(81);
-	var Promise = __webpack_require__(90);
-	var xhrClient = __webpack_require__(92);
+	var _ = __webpack_require__(87);
+	var Promise = __webpack_require__(96);
+	var xhrClient = __webpack_require__(98);
 	
 	module.exports = function (request) {
 	
@@ -22102,15 +22271,15 @@
 
 
 /***/ },
-/* 90 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promise adapter.
 	 */
 	
-	var _ = __webpack_require__(81);
-	var PromiseObj = window.Promise || __webpack_require__(91);
+	var _ = __webpack_require__(87);
+	var PromiseObj = window.Promise || __webpack_require__(97);
 	
 	function Promise(executor, context) {
 	
@@ -22217,14 +22386,14 @@
 
 
 /***/ },
-/* 91 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promises/A+ polyfill v1.1.4 (https://github.com/bramstein/promis)
 	 */
 	
-	var _ = __webpack_require__(81);
+	var _ = __webpack_require__(87);
 	
 	var RESOLVED = 0;
 	var REJECTED = 1;
@@ -22402,15 +22571,15 @@
 
 
 /***/ },
-/* 92 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XMLHttp client.
 	 */
 	
-	var _ = __webpack_require__(81);
-	var Promise = __webpack_require__(90);
+	var _ = __webpack_require__(87);
+	var Promise = __webpack_require__(96);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -22451,15 +22620,15 @@
 
 
 /***/ },
-/* 93 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Interceptor factory.
 	 */
 	
-	var _ = __webpack_require__(81);
-	var Promise = __webpack_require__(90);
+	var _ = __webpack_require__(87);
+	var Promise = __webpack_require__(96);
 	
 	module.exports = function (handler, vm) {
 	
@@ -22502,14 +22671,14 @@
 
 
 /***/ },
-/* 94 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Before Interceptor.
 	 */
 	
-	var _ = __webpack_require__(81);
+	var _ = __webpack_require__(87);
 	
 	module.exports = {
 	
@@ -22526,7 +22695,7 @@
 
 
 /***/ },
-/* 95 */
+/* 101 */
 /***/ function(module, exports) {
 
 	/**
@@ -22562,14 +22731,14 @@
 
 
 /***/ },
-/* 96 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP Interceptor.
 	 */
 	
-	var jsonpClient = __webpack_require__(97);
+	var jsonpClient = __webpack_require__(103);
 	
 	module.exports = {
 	
@@ -22586,15 +22755,15 @@
 
 
 /***/ },
-/* 97 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP client.
 	 */
 	
-	var _ = __webpack_require__(81);
-	var Promise = __webpack_require__(90);
+	var _ = __webpack_require__(87);
+	var Promise = __webpack_require__(96);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -22640,7 +22809,7 @@
 
 
 /***/ },
-/* 98 */
+/* 104 */
 /***/ function(module, exports) {
 
 	/**
@@ -22663,14 +22832,14 @@
 
 
 /***/ },
-/* 99 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Mime Interceptor.
 	 */
 	
-	var _ = __webpack_require__(81);
+	var _ = __webpack_require__(87);
 	
 	module.exports = {
 	
@@ -22705,14 +22874,14 @@
 
 
 /***/ },
-/* 100 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Header Interceptor.
 	 */
 	
-	var _ = __webpack_require__(81);
+	var _ = __webpack_require__(87);
 	
 	module.exports = {
 	
@@ -22737,15 +22906,15 @@
 
 
 /***/ },
-/* 101 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * CORS Interceptor.
 	 */
 	
-	var _ = __webpack_require__(81);
-	var xdrClient = __webpack_require__(102);
+	var _ = __webpack_require__(87);
+	var xdrClient = __webpack_require__(108);
 	var xhrCors = 'withCredentials' in new XMLHttpRequest();
 	var originUrl = _.url.parse(location.href);
 	
@@ -22780,15 +22949,15 @@
 
 
 /***/ },
-/* 102 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XDomain client (Internet Explorer).
 	 */
 	
-	var _ = __webpack_require__(81);
-	var Promise = __webpack_require__(90);
+	var _ = __webpack_require__(87);
+	var Promise = __webpack_require__(96);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -22823,14 +22992,14 @@
 
 
 /***/ },
-/* 103 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for interacting with RESTful services.
 	 */
 	
-	var _ = __webpack_require__(81);
+	var _ = __webpack_require__(87);
 	
 	function Resource(url, params, actions, options) {
 	
@@ -22939,12 +23108,13 @@
 
 
 /***/ },
-/* 104 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(105)
-	__vue_template__ = __webpack_require__(107)
+	__webpack_require__(111)
+	__vue_script__ = __webpack_require__(113)
+	__vue_template__ = __webpack_require__(114)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -22961,13 +23131,13 @@
 	})()}
 
 /***/ },
-/* 105 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(106);
+	var content = __webpack_require__(112);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -22987,7 +23157,7 @@
 	}
 
 /***/ },
-/* 106 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -22995,42 +23165,209 @@
 	
 	
 	// module
-	exports.push([module.id, "\r\n\t\r\n/*当你设置一个元素为 box-sizing: border-box; 时，此元素的内边距和边框不再会增加它的宽度*/\r\n* {\r\n  box-sizing: border-box;\r\n}\r\n\r\n\r\n/*单页面的布局*/\r\n\r\nhtml, body {\r\n    -webkit-tap-highlight-color: transparent;\r\n    overflow-x: hidden;\r\n}\r\n\r\n\r\nbody, .page {\r\n    background-color: #FBF9FE;\r\n    /*background-color: #F5E1BA;*/\r\n}\r\n\r\n/*最底层布局*/\r\n.container {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n/*页面的布局*/\r\n.page {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n.space{\r\n\tpadding: 5px 15px;\r\n}\r\n\r\n\r\n.page.slideIn {\r\n    -webkit-animation: slideIn .2s forwards;\r\n            animation: slideIn .2s forwards;\r\n}\r\n\r\n.page.slideOut {\r\n    -webkit-animation: slideOut .2s forwards;\r\n            animation: slideOut .2s forwards;\r\n}\r\n\r\n/*页面切换动画*/\r\n@-webkit-keyframes slideIn {\r\n    from {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n@keyframes slideIn {\r\n    from {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n\r\n@-webkit-keyframes slideOut {\r\n    from {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n@keyframes slideOut {\r\n    from {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n\r\n.slide-transition {\r\n  -webkit-transition: left 0.3s ease;\r\n  transition: left 0.3s ease;\r\n  width: 100%;\r\n}\r\n\r\n.slide-enter, .slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.app-transition {\r\n  -webkit-transition: opacity 0.3s ease;\r\n  transition: opacity 0.3s ease;\r\n}\r\n\r\n.app-enter, .app-leave {\r\n  opacity: 0;\r\n}\r\n\r\n\r\n/*内容的布局*/\r\n\r\n/*.page-bd {\r\n    overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding-top: 4px;\r\n}\r\n*/\r\n\r\n/*改变weui的背景色*/\r\n.weui_cell{\r\n  /*background-color: #FFF2D9;*/\r\n}\r\n\r\n\r\n", "", {"version":3,"sources":["/./src/views/App.vue?13aed620"],"names":[],"mappings":";;AAcA,2DAAA;AACA;EAGA,uBAAA;CACA;;;AAGA,UAAA;;AAEA;IACA,yCAAA;IACA,mBAAA;CACA;;;AAGA;IACA,0BAAA;IACA,8BAAA;CACA;;AAEA,SAAA;AACA;IACA,mBAAA;IACA,OAAA;IACA,SAAA;IACA,UAAA;IACA,QAAA;IACA,iBAAA;CACA;;AAEA,SAAA;AACA;IACA,mBAAA;IACA,OAAA;IACA,SAAA;IACA,UAAA;IACA,QAAA;IACA,iBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;;AAGA;IACA,wCAAA;YAAA,gCAAA;CACA;;AAEA;IACA,yCAAA;YAAA,iCAAA;CACA;;AAEA,UAAA;AACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;CACA;AAPA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;CACA;;AAEA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;CACA;;AAPA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;CACA;;;AAGA;EACA,mCAAA;EAAA,2BAAA;EACA,YAAA;CACA;;AAEA;EACA,WAAA;CACA;;AAEA;EACA,WAAA;CACA;;AAEA;EACA,sCAAA;EAAA,8BAAA;CACA;;AAEA;EACA,WAAA;CACA;;;AAGA,SAAA;;AAEA;;;;;;;EAOA;;AAEA,cAAA;AACA;EACA,8BAAA;CACA","file":"App.vue","sourcesContent":["<template>\r\n  <div class=\"container js_container\">\r\n      <!-- main view -->\r\n      <router-view\r\n        class=\"view\"\r\n        keep-alive\r\n        transition=\"slide\">\r\n      </router-view>\r\n  </div>\r\n</template>\r\n\r\n\r\n<style type=\"text/css\">\r\n\t\r\n/*当你设置一个元素为 box-sizing: border-box; 时，此元素的内边距和边框不再会增加它的宽度*/\r\n* {\r\n  -webkit-box-sizing: border-box;\r\n     -moz-box-sizing: border-box;\r\n          box-sizing: border-box;\r\n}\r\n\r\n\r\n/*单页面的布局*/\r\n\r\nhtml, body {\r\n    -webkit-tap-highlight-color: transparent;\r\n    overflow-x: hidden;\r\n}\r\n\r\n\r\nbody, .page {\r\n    background-color: #FBF9FE;\r\n    /*background-color: #F5E1BA;*/\r\n}\r\n\r\n/*最底层布局*/\r\n.container {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n/*页面的布局*/\r\n.page {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n.space{\r\n\tpadding: 5px 15px;\r\n}\r\n\r\n\r\n.page.slideIn {\r\n    animation: slideIn .2s forwards;\r\n}\r\n\r\n.page.slideOut {\r\n    animation: slideOut .2s forwards;\r\n}\r\n\r\n/*页面切换动画*/\r\n@keyframes slideIn {\r\n    from {\r\n        transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n\r\n@keyframes slideOut {\r\n    from {\r\n        transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n\r\n.slide-transition {\r\n  transition: left 0.3s ease;\r\n  width: 100%;\r\n}\r\n\r\n.slide-enter, .slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.app-transition {\r\n  transition: opacity 0.3s ease;\r\n}\r\n\r\n.app-enter, .app-leave {\r\n  opacity: 0;\r\n}\r\n\r\n\r\n/*内容的布局*/\r\n\r\n/*.page-bd {\r\n    overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding-top: 4px;\r\n}\r\n*/\r\n\r\n/*改变weui的背景色*/\r\n.weui_cell{\r\n  /*background-color: #FFF2D9;*/\r\n}\r\n\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\r\n\t\r\n/*当你设置一个元素为 box-sizing: border-box; 时，此元素的内边距和边框不再会增加它的宽度*/\r\n* {\r\n  box-sizing: border-box;\r\n}\r\n\r\n\r\n/*单页面的布局*/\r\n\r\nhtml, body {\r\n    -webkit-tap-highlight-color: transparent;\r\n    overflow-x: hidden;\r\n}\r\n\r\n\r\nbody, .page {\r\n    background-color: #FBF9FE;\r\n    /*background-color: #F5E1BA;*/\r\n}\r\n\r\n/*最底层布局*/\r\n.container {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n/*页面的布局*/\r\n.page {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n.space{\r\n\tpadding: 5px 15px;\r\n}\r\n\r\n\r\n.page.slideIn {\r\n    -webkit-animation: slideIn .2s forwards;\r\n            animation: slideIn .2s forwards;\r\n}\r\n\r\n.page.slideOut {\r\n    -webkit-animation: slideOut .2s forwards;\r\n            animation: slideOut .2s forwards;\r\n}\r\n\r\n/*页面切换动画*/\r\n@-webkit-keyframes slideIn {\r\n    from {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n@keyframes slideIn {\r\n    from {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n\r\n@-webkit-keyframes slideOut {\r\n    from {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n@keyframes slideOut {\r\n    from {\r\n        -webkit-transform: translate3d(0, 0, 0);\r\n                transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        -webkit-transform: translate3d(100%, 0, 0);\r\n                transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n\r\n.slide-transition {\r\n  -webkit-transition: left 0.3s ease;\r\n  transition: left 0.3s ease;\r\n  width: 100%;\r\n}\r\n\r\n.slide-enter, .slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.app-transition {\r\n  -webkit-transition: opacity 0.3s ease;\r\n  transition: opacity 0.3s ease;\r\n}\r\n\r\n.app-enter, .app-leave {\r\n  opacity: 0;\r\n}\r\n\r\n\r\n/*内容的布局*/\r\n\r\n/*.page-bd {\r\n    overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding-top: 4px;\r\n}\r\n*/\r\n\r\n/*改变weui的背景色*/\r\n.weui_cell{\r\n  /*background-color: #FFF2D9;*/\r\n}\r\n\r\n\r\n", "", {"version":3,"sources":["/./src/views/App.vue?1e34b18e"],"names":[],"mappings":";;AA2BA,2DAAA;AACA;EAGA,uBAAA;CACA;;;AAGA,UAAA;;AAEA;IACA,yCAAA;IACA,mBAAA;CACA;;;AAGA;IACA,0BAAA;IACA,8BAAA;CACA;;AAEA,SAAA;AACA;IACA,mBAAA;IACA,OAAA;IACA,SAAA;IACA,UAAA;IACA,QAAA;IACA,iBAAA;CACA;;AAEA,SAAA;AACA;IACA,mBAAA;IACA,OAAA;IACA,SAAA;IACA,UAAA;IACA,QAAA;IACA,iBAAA;CACA;;AAEA;CACA,kBAAA;CACA;;;AAGA;IACA,wCAAA;YAAA,gCAAA;CACA;;AAEA;IACA,yCAAA;YAAA,iCAAA;CACA;;AAEA,UAAA;AACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;CACA;AAPA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;CACA;;AAEA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;CACA;;AAPA;IACA;QACA,wCAAA;gBAAA,gCAAA;KACA;IACA;QACA,2CAAA;gBAAA,mCAAA;KACA;CACA;;;AAGA;EACA,mCAAA;EAAA,2BAAA;EACA,YAAA;CACA;;AAEA;EACA,WAAA;CACA;;AAEA;EACA,WAAA;CACA;;AAEA;EACA,sCAAA;EAAA,8BAAA;CACA;;AAEA;EACA,WAAA;CACA;;;AAGA,SAAA;;AAEA;;;;;;;EAOA;;AAEA,cAAA;AACA;EACA,8BAAA;CACA","file":"App.vue","sourcesContent":["<template>\r\n  <div class=\"container js_container\">\r\n      <!-- main view -->\r\n      <router-view\r\n        class=\"view\"\r\n        keep-alive\r\n        transition=\"slide\">\r\n      </router-view>\r\n  </div>\r\n</template>\r\n\r\n\r\n<script lang=\"babel\">\r\n    import auth from './utils/auth.js'\r\n    export default {\r\n      data(){\r\n        userId:0\r\n      },\r\n      created(){\r\n        this.userId=auth.getUser().userId||0;\r\n        console.log(\"App.vue当前的登陆人是:\"+this.userId);\r\n      }\r\n    }\r\n</script>\r\n\r\n<style type=\"text/css\">\r\n\t\r\n/*当你设置一个元素为 box-sizing: border-box; 时，此元素的内边距和边框不再会增加它的宽度*/\r\n* {\r\n  -webkit-box-sizing: border-box;\r\n     -moz-box-sizing: border-box;\r\n          box-sizing: border-box;\r\n}\r\n\r\n\r\n/*单页面的布局*/\r\n\r\nhtml, body {\r\n    -webkit-tap-highlight-color: transparent;\r\n    overflow-x: hidden;\r\n}\r\n\r\n\r\nbody, .page {\r\n    background-color: #FBF9FE;\r\n    /*background-color: #F5E1BA;*/\r\n}\r\n\r\n/*最底层布局*/\r\n.container {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n/*页面的布局*/\r\n.page {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n.space{\r\n\tpadding: 5px 15px;\r\n}\r\n\r\n\r\n.page.slideIn {\r\n    animation: slideIn .2s forwards;\r\n}\r\n\r\n.page.slideOut {\r\n    animation: slideOut .2s forwards;\r\n}\r\n\r\n/*页面切换动画*/\r\n@keyframes slideIn {\r\n    from {\r\n        transform: translate3d(100%, 0, 0);\r\n    }\r\n    to {\r\n        transform: translate3d(0, 0, 0);\r\n    }\r\n}\r\n\r\n@keyframes slideOut {\r\n    from {\r\n        transform: translate3d(0, 0, 0);\r\n    }\r\n    to {\r\n        transform: translate3d(100%, 0, 0);\r\n    }\r\n}\r\n\r\n\r\n.slide-transition {\r\n  transition: left 0.3s ease;\r\n  width: 100%;\r\n}\r\n\r\n.slide-enter, .slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.slide-leave {\r\n  left: 100%;\r\n}\r\n\r\n.app-transition {\r\n  transition: opacity 0.3s ease;\r\n}\r\n\r\n.app-enter, .app-leave {\r\n  opacity: 0;\r\n}\r\n\r\n\r\n/*内容的布局*/\r\n\r\n/*.page-bd {\r\n    overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding-top: 4px;\r\n}\r\n*/\r\n\r\n/*改变weui的背景色*/\r\n.weui_cell{\r\n  /*background-color: #FFF2D9;*/\r\n}\r\n\r\n\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
-/* 107 */
+/* 113 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _auth = __webpack_require__(35);
+	
+	var _auth2 = _interopRequireDefault(_auth);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  data: function data() {
+	    userId: 0;
+	  },
+	  created: function created() {
+	    this.userId = _auth2.default.getUser().userId || 0;
+	    console.log("App.vue当前的登陆人是:" + this.userId);
+	  }
+	};
+	// </script>
+
+	// <style type="text/css">
+
+	// /*当你设置一个元素为 box-sizing: border-box; 时，此元素的内边距和边框不再会增加它的宽度*/
+	// * {
+	//   -webkit-box-sizing: border-box;
+	//      -moz-box-sizing: border-box;
+	//           box-sizing: border-box;
+	// }
+
+	// /*单页面的布局*/
+
+	// html, body {
+	//     -webkit-tap-highlight-color: transparent;
+	//     overflow-x: hidden;
+	// }
+
+	// body, .page {
+	//     background-color: #FBF9FE;
+	//     /*background-color: #F5E1BA;*/
+	// }
+
+	// /*最底层布局*/
+	// .container {
+	//     position: absolute;
+	//     top: 0;
+	//     right: 0;
+	//     bottom: 0;
+	//     left: 0;
+	//     overflow: hidden;
+	// }
+
+	// /*页面的布局*/
+	// .page {
+	//     position: absolute;
+	//     top: 0;
+	//     right: 0;
+	//     bottom: 0;
+	//     left: 0;
+	//     overflow: hidden;
+	// }
+
+	// .space{
+	// 	padding: 5px 15px;
+	// }
+
+	// .page.slideIn {
+	//     animation: slideIn .2s forwards;
+	// }
+
+	// .page.slideOut {
+	//     animation: slideOut .2s forwards;
+	// }
+
+	// /*页面切换动画*/
+	// @keyframes slideIn {
+	//     from {
+	//         transform: translate3d(100%, 0, 0);
+	//     }
+	//     to {
+	//         transform: translate3d(0, 0, 0);
+	//     }
+	// }
+
+	// @keyframes slideOut {
+	//     from {
+	//         transform: translate3d(0, 0, 0);
+	//     }
+	//     to {
+	//         transform: translate3d(100%, 0, 0);
+	//     }
+	// }
+
+	// .slide-transition {
+	//   transition: left 0.3s ease;
+	//   width: 100%;
+	// }
+
+	// .slide-enter, .slide-leave {
+	//   left: 100%;
+	// }
+
+	// .slide-leave {
+	//   left: 100%;
+	// }
+
+	// .app-transition {
+	//   transition: opacity 0.3s ease;
+	// }
+
+	// .app-enter, .app-leave {
+	//   opacity: 0;
+	// }
+
+	// /*内容的布局*/
+
+	// /*.page-bd {
+	//     overflow: auto;
+	//     -webkit-overflow-scrolling: touch;
+	//     width: 100%;
+	//     height: 100%;
+	//     padding-top: 4px;
+	// }
+	// */
+
+	// /*改变weui的背景色*/
+	// .weui_cell{
+	//   /*background-color: #FFF2D9;*/
+	// }
+
+	// </style>
+	// <template>
+	//   <div class="container js_container">
+	//       <!-- main view -->
+	//       <router-view
+	//         class="view"
+	//         keep-alive
+	//         transition="slide">
+	//       </router-view>
+	//   </div>
+	// </template>
+
+	// <script lang="babel">
+
+/***/ },
+/* 114 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"container js_container\">\n    <!-- main view -->\n    <router-view\n      class=\"view\"\n      keep-alive\n      transition=\"slide\">\n    </router-view>\n</div>\n";
 
 /***/ },
-/* 108 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __vue_script__, __vue_template__
-	__webpack_require__(111)
-	__vue_script__ = __webpack_require__(109)
-	__vue_template__ = __webpack_require__(110)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\views\\worklog\\LogInfo.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(116);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ad38057e&file=LogInfo.vue!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./LogInfo.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ad38057e&file=LogInfo.vue!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./LogInfo.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
 
 /***/ },
-/* 109 */
+/* 116 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n.log{\n\twidth: 100%;\n}\n\n.log>td{\n\tpadding: 5px;\n}\n.tdLabel{\n\twidth: 100px;\n}\n", "", {"version":3,"sources":["/./src/views/worklog/LogInfo.vue?1b6f4352"],"names":[],"mappings":";AAuGA;CACA,YAAA;CACA;;AAEA;CACA,aAAA;CACA;AACA;CACA,aAAA;CACA","file":"LogInfo.vue","sourcesContent":["<template>\r\n\t<div class=\"page logInfo\">\r\n\t\t<nav-bar :text=\"curDay\">\r\n\t\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\"></span>\r\n\t\t\t<span class=\"icon-plus\" slot=\"rightBar\" @click=\"addTask\"></span>\r\n\t\t</nav-bar>\t\r\n\t\t<page-body>\r\n\t\t\t<cells>\r\n\t\t\t\t<link-cell v-for=\"item in logInfo\">\r\n\t\t\t\t\t<div slot=\"body\">\r\n\t\t\t\t\t\t<table class=\"log\">\r\n\t\t\t\t\t\t\t<tbody>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td class=\"tdLabel\">日志名称</td>\r\n\t\t\t\t\t\t\t\t\t<td>{{item.LogTitle}}</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td class=\"tdLabel\">开始时间</td>\r\n\t\t\t\t\t\t\t\t\t<td>{{item.SDate}}</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td class=\"tdLabel\">结束时间</td>\r\n\t\t\t\t\t\t\t\t\t<td>{{item.EDate}}</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td class=\"tdLabel\">工作类型</td>\r\n\t\t\t\t\t\t\t\t\t<td >{{item.WType}}</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t<tr v-for=\"subItem in item.SubItems\">\r\n\t\t\t\t\t\t\t\t\t<td class=\"tdLabel\">{{subItem.SubType}}</td>\r\n\t\t\t\t\t\t\t\t\t<td>{{subItem.SubContent}}</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t</tbody>\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</link-cell>\r\n\t\t\t</cells>\r\n\t\t</page-body>\r\n\r\n\t\t<Toast type=\"loading\" v-show=\"isloading\"></Toast>\r\n\t</div>\r\n</template>\r\n\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\timport NavBar from '../../components/NavBar.vue'\r\n\timport PageBody from '../../components/PageBody.vue'\r\n\timport {Toast,Cells,LinkCell} from 'vue-weui'\r\n\r\n\texport default {\r\n\t\tname:'loginfo',\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\tcurDay:'',\r\n\t\t\t\tlogInfo:[],\r\n\t\t\t\tuserId:0,\r\n\t\t\t\tisloading:false\r\n\t\t\t}\r\n\t\t},\r\n\r\n\t\troute:{\r\n\t\t\t//加载数\r\n\t\t\tdata(transition){\r\n\t\t\t\tconsole.log(transition);\r\n\t\t\t\t//加载数据\r\n\t\t\t  this.curDay=transition.to.params.date;\r\n\t\t\t  this.userId=this.$root.userId;\r\n\t\t\t  console.log(\"loginfo-\"+this.userId);\r\n\t\t\t  this.isloading=true;\r\n\t\t\t  var rUrl='WorkLog/'+this.curDay+\"/10685\";\r\n\r\n\t\t\t  this.$http.get(rUrl).then((response)=>{\r\n\t\t\t  \tthis.isloading=false;\r\n\r\n\t\t\t  \tthis.logInfo=response.data;\r\n\t\t\t  \tconsole.log(this.logInfo)\r\n\t\t\t  },(error)=>{\r\n\t\t\t  \tthis.isloading=false;\r\n\t\t\t  });\r\n\t\t\t}\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tNavBar,\r\n\t\t\tPageBody,\r\n\t\t\tCells,\r\n\t\t\tLinkCell,\r\n\t\t\tToast\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tback(){\r\n\t\t\t\thistory.back();\r\n\t\t\t},\r\n\t\t\taddTask(){\r\n\t\t\t\tthis.$route.router.go({name:'logdetail',params:{date:this.curDay,type:'add'}});\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\">\r\n\t.log{\r\n\t\twidth: 100%;\r\n\t}\r\n\r\n\t.log>td{\r\n\t\tpadding: 5px;\r\n\t}\r\n\t.tdLabel{\r\n\t\twidth: 100px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23055,7 +23392,10 @@
 		name: 'loginfo',
 		data: function data() {
 			return {
-				curDay: ''
+				curDay: '',
+				logInfo: [],
+				userId: 0,
+				isloading: false
 			};
 		},
 	
@@ -23063,14 +23403,32 @@
 			//加载数
 	
 			data: function data(transition) {
+				var _this = this;
+	
 				console.log(transition);
 				//加载数据
 				this.curDay = transition.to.params.date;
+				this.userId = this.$root.userId;
+				console.log("loginfo-" + this.userId);
+				this.isloading = true;
+				var rUrl = 'WorkLog/' + this.curDay + "/10685";
+	
+				this.$http.get(rUrl).then(function (response) {
+					_this.isloading = false;
+	
+					_this.logInfo = response.data;
+					console.log(_this.logInfo);
+				}, function (error) {
+					_this.isloading = false;
+				});
 			}
 		},
 		components: {
 			NavBar: _NavBar2.default,
-			PageBody: _PageBody2.default
+			PageBody: _PageBody2.default,
+			Cells: _vueWeui.Cells,
+			LinkCell: _vueWeui.LinkCell,
+			Toast: _vueWeui.Toast
 		},
 		methods: {
 			back: function back() {
@@ -23084,7 +23442,16 @@
 	// </script>
 
 	// <style type="text/css">
+	// 	.log{
+	// 		width: 100%;
+	// 	}
 
+	// 	.log>td{
+	// 		padding: 5px;
+	// 	}
+	// 	.tdLabel{
+	// 		width: 100px;
+	// 	}
 	// </style>
 	// <template>
 	// 	<div class="page logInfo">
@@ -23093,194 +23460,51 @@
 	// 			<span class="icon-plus" slot="rightBar" @click="addTask"></span>
 	// 		</nav-bar>	
 	// 		<page-body>
+	// 			<cells>
+	// 				<link-cell v-for="item in logInfo">
+	// 					<div slot="body">
+	// 						<table class="log">
+	// 							<tbody>
+	// 								<tr>
+	// 									<td class="tdLabel">日志名称</td>
+	// 									<td>{{item.LogTitle}}</td>
+	// 								</tr>
 
+	// 								<tr>
+	// 									<td class="tdLabel">开始时间</td>
+	// 									<td>{{item.SDate}}</td>
+	// 								</tr>
+	// 								<tr>
+	// 									<td class="tdLabel">结束时间</td>
+	// 									<td>{{item.EDate}}</td>
+	// 								</tr>
+	// 								<tr>
+	// 									<td class="tdLabel">工作类型</td>
+	// 									<td >{{item.WType}}</td>
+	// 								</tr>
+
+	// 								<tr v-for="subItem in item.SubItems">
+	// 									<td class="tdLabel">{{subItem.SubType}}</td>
+	// 									<td>{{subItem.SubContent}}</td>
+	// 								</tr>
+	// 							</tbody>
+	// 						</table>
+	// 					</div>
+	// 				</link-cell>
+	// 			</cells>
 	// 		</page-body>
+
+	// 		<Toast type="loading" v-show="isloading"></Toast>
 	// 	</div>
 	// </template>
 
 	// <script lang="babel">
 
 /***/ },
-/* 110 */
+/* 118 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"page logInfo\">\n\t<nav-bar :text=\"curDay\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\"></span>\n\t\t<span class=\"icon-plus\" slot=\"rightBar\" @click=\"addTask\"></span>\n\t</nav-bar>\t\n\t<page-body>\n\t\n\t</page-body>\n</div>\n";
-
-/***/ },
-/* 111 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(112);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ad38057e&file=LogInfo.vue!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./LogInfo.vue", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ad38057e&file=LogInfo.vue!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./LogInfo.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 112 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"LogInfo.vue","sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 113 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__webpack_require__(114)
-	__vue_script__ = __webpack_require__(116)
-	__vue_template__ = __webpack_require__(117)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
-	if (false) {(function () {  module.hot.accept()
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), true)
-	  if (!hotAPI.compatible) return
-	  var id = "E:\\workspace\\mobile-dev\\src\\views\\worklog\\LogDetail.vue"
-	  if (!module.hot.data) {
-	    hotAPI.createRecord(id, module.exports)
-	  } else {
-	    hotAPI.update(id, module.exports, __vue_template__)
-	  }
-	})()}
-
-/***/ },
-/* 114 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(115);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(10)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-123cd4a4&file=LogDetail.vue!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./LogDetail.vue", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-123cd4a4&file=LogDetail.vue!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./LogDetail.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 115 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(9)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"LogDetail.vue","sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 116 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _NavBar = __webpack_require__(12);
-	
-	var _NavBar2 = _interopRequireDefault(_NavBar);
-	
-	var _PageBody = __webpack_require__(17);
-	
-	var _PageBody2 = _interopRequireDefault(_PageBody);
-	
-	var _vueWeui = __webpack_require__(22);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-		name: 'logdetail',
-		data: function data() {
-			return {
-				curDay: ''
-			};
-		},
-	
-		route: {
-			//加载数
-	
-			data: function data(transition) {
-				console.log(transition);
-				//加载数据
-				this.curDay = transition.to.params.date;
-			}
-		},
-		components: {
-			NavBar: _NavBar2.default,
-			PageBody: _PageBody2.default
-		},
-		methods: {
-			back: function back() {
-				history.back();
-			}
-		}
-	};
-	// </script>
-
-	// <style type="text/css">
-
-	// </style>
-	// <template>
-	// 	<div class="page logDetail">
-	// 		<nav-bar :text="curDay">
-	// 			<span class="icon-chevron-left" slot="leftBar" @click="back()">返回</span>
-	// 		</nav-bar>	
-	// 		<page-body>
-
-	// 		</page-body>
-	// 	</div>
-	// </template>
-
-	// <script lang="babel">
-
-/***/ },
-/* 117 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<div class=\"page logDetail\">\n\t<nav-bar :text=\"curDay\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\">返回</span>\n\t</nav-bar>\t\n\t<page-body>\n\t\n\t</page-body>\n</div>\n";
+	module.exports = "\n<div class=\"page logInfo\">\n\t<nav-bar :text=\"curDay\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\"></span>\n\t\t<span class=\"icon-plus\" slot=\"rightBar\" @click=\"addTask\"></span>\n\t</nav-bar>\t\n\t<page-body>\n\t\t<cells>\n\t\t\t<link-cell v-for=\"item in logInfo\">\n\t\t\t\t<div slot=\"body\">\n\t\t\t\t\t<table class=\"log\">\n\t\t\t\t\t\t<tbody>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"tdLabel\">日志名称</td>\n\t\t\t\t\t\t\t\t<td>{{item.LogTitle}}</td>\n\t\t\t\t\t\t\t</tr>\n\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"tdLabel\">开始时间</td>\n\t\t\t\t\t\t\t\t<td>{{item.SDate}}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"tdLabel\">结束时间</td>\n\t\t\t\t\t\t\t\t<td>{{item.EDate}}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"tdLabel\">工作类型</td>\n\t\t\t\t\t\t\t\t<td >{{item.WType}}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tr v-for=\"subItem in item.SubItems\">\n\t\t\t\t\t\t\t\t<td class=\"tdLabel\">{{subItem.SubType}}</td>\n\t\t\t\t\t\t\t\t<td>{{subItem.SubContent}}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</link-cell>\n\t\t</cells>\n\t</page-body>\n\n\t<Toast type=\"loading\" v-show=\"isloading\"></Toast>\n</div>\n";
 
 /***/ }
 /******/ ]);

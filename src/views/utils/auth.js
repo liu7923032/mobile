@@ -1,9 +1,10 @@
 const auth={
 	// 设置人员
-	setUser(account,pwd,isAway){
+	setUser(account,pwd,isAway,userId){
 		var user={
 			account:account,
 			pwd:pwd,
+			userId:userId||0,
 			isAway:isAway
 		}
 		if(isAway){
@@ -14,6 +15,7 @@ const auth={
 	},
 	//检查该对象是否存在
 	isLogin(){
+		console.log("人员是否登陆:"+localStorage.user||sessionStorage.user);
 		return localStorage.user||sessionStorage.user;
 	},
 	//获取用户

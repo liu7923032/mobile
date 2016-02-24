@@ -4,7 +4,7 @@
 			<span class="icon-chevron-left" slot="leftBar" @click="back()">返回</span>
 		</nav-bar>	
 		<page-body>
-		
+			
 		</page-body>
 	</div>
 </template>
@@ -20,7 +20,8 @@
 		name:'logdetail',
 		data(){
 			return {
-				curDay:''
+				curDay:'',
+				type:''
 			}
 		},
 
@@ -40,7 +41,12 @@
 			back(){
 				history.back();
 			}
-			
+
+		},
+		route:{
+			data(){
+				//1：获取传递过来的参数
+			}
 		}
 	}
 </script>

@@ -107,7 +107,7 @@
 					var data=response.data;
 					console.log(data);
 					if(data.Statu=="Y"){
-						auth.setUser(this.account,this.password,this.isremeber);
+						auth.setUser(this.account,this.password,this.isremeber,data.Data);
 						//跳转到首页
 						// console.log("我的测试:"+this.$route);
 						if(this.redirectUrl&&this.redirectUrl.length>0){
