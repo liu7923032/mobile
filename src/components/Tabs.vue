@@ -1,5 +1,4 @@
 <template>
- 
   <section class="tabs" v-touch:swipeleft.stop.prevent="swipeLeft" v-touch:swiperight.stop.prevent="swipeRight()" role="tablist">
     <section class="nav-tabs">
         <ul class="tabs_title">
@@ -83,17 +82,32 @@
         min-height: 35px;
         height: 100%;
         width: 100%;
-        display: flex;
-        flex-direction:column;
+        position: relative;
+      
+        margin-top: 5px;
     }
 
     .nav-tabs{
        min-height: 35px;
        height: 35px;
        width: 100%;
+       border-bottom: 2px solid whitesmoke;
+       background-color: white;
+    }
+
+    .tabs_title{
+      margin: 0;
+      padding: 5px 10px;
+
+    }
+
+    .tabs_title>li{
+      float: left;
+      list-style-type: none;
+      text-align: center;
     }
     
-    .tabs_title {
+  /*  .tabs_title {
         display: -ms-flexbox;
         display: flex;
         display: -webkit-flex;
@@ -128,7 +142,8 @@
       text-align: center;
       vertical-align: middle;
       cursor: pointer;
-    }
+
+    }*/
     
     .nav_active {
       color: darkorange;
@@ -138,20 +153,21 @@
     #tabs_line {
       height: 3px;
       margin: 0px 10px;
-      margin-top: -3px;
+      margin-top: 2px;
       background-color: darkorange;
       transition: transform .3s ease;
       -moz-transition: transform .3s ease;/* Firefox 4 */
       -webkit-transition: transform .3s ease; /* Safari 和 Chrome */
       -o-transition: transform .3s ease; /* Opera */
       width: 0px;
+      float: left;
     }
 
     .tab-content{
         overflow: hidden;
         /*-webkit-overflow-scrolling: touch;*/
-        display: flex;
+        /*display: flex;*/
         height: 100%;
-        flex-flow:row nowrap;
+        /*flex-flow:row nowrap;*/
     }
 </style>

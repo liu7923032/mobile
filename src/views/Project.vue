@@ -4,58 +4,43 @@
 			<span class="icon-chevron-left" slot="leftBar" v-touch:tap="back"></span>
 	        <span class="icon-refresh" slot="rightBar" v-touch:tap="showSheet"></span>
 		</nav-bar>
-		<page-body>
-			<list v-on:reload="getInitData" v-on:loadmore="getMoreData">
-				<li>asdffdddd;</li>
-				<li>asdfffffffffffffffffffffffffffffff;a</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff</li>
-				<li>asdfffffffffffffffffffffffffffffff</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff;a</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff</li>
-				<li>asdfffffffffffffffffffffffffffffff</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff;a</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff</li>
-				<li>asdfffffffffffffffffffffffffffffff</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff;a</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff</li>
-				<li>asdfffffffffffffffffffffffffffffff</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>顶顶顶 阿斯蒂芬;</li>
-
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff</li>
-				<li>asdfffffffffffffffffffffffffffffff</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>顶顶顶 阿斯蒂芬;</li>
-
-				<li>顶顶顶 阿斯蒂芬;</li>
-
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>asdfffffffffffffffffffffffffffffff</li>
-				<li>asdfffffffffffffffffffffffffffffff</li>
-				<li>asdfffffffffffffffffffffffffffffff;</li>
-				<li>顶顶顶 阿斯蒂芬;</li>
-			</list>
-		</page-body>
+		<tabs>
+			<tab header="主导项目">
+				<page-body>
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项顶顶顶目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项目<br />
+					我主导的项顶顶顶目<br />
+				</page-body>
+				
+			</tab>
+			<tab header="参与项目">
+				我参与的木
+			</tab>
+		</tabs>
+	
 
 		<toast :show="showToast"></toast>
 		<actionsheet :show.sync="showsheet"  :menus="menuItems" :actions="actionItems" v-on:weui-menu-click="actionClick"></actionsheet>
@@ -70,6 +55,8 @@
 	import PageBody from '../components/PageBody.vue'
 	// import ActionSheet from '../components/ActionSheet.vue'
 	import Toast from '../components/Toast.vue'
+	import Tabs from '../components/Tabs.vue'
+	import Tab from '../components/Tab.vue'
 	export default {
 		name:'Project',
 		data(){
@@ -103,12 +90,16 @@
 			Actionsheet,
 			Toast,
 			Item,
-			PageBody
+			PageBody,
+			Tabs,
+			Tab
 		}
 	}
 </script>
 
 
 <style scoped>
-	
+	.page-bd{
+		padding-bottom: 85px;
+	}
 </style>

@@ -16,12 +16,17 @@ import auth from './views/utils/auth.js'
 //
 import App from './views/App.vue'
 
+import filters from './filters';
+
     // 1:创建启动的版本
 
 
 Vue.use(Router)
 Vue.use(VueTouch)
 Vue.use(VueResource)
+
+// 初始化过滤器
+Object.keys(filters).forEach(k => Vue.filter(k, filters[k]))
 
 //设置访问的地址
 Vue.http.options.root = 'http://ht.mdsd.cn:9000/api';

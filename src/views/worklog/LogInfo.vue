@@ -30,7 +30,7 @@
 								
 								<tr v-for="subItem in item.SubItems">
 									<td class="tdLabel">{{subItem.SubType}}</td>
-									<td>{{subItem.SubContent}}</td>
+									<td>{{{ subItem.SubContent | replace '\n' '&lt;br /&gt;' }}}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -101,11 +101,19 @@
 </script>
 
 <style type="text/css">
-	.log{
+	.logInfo table{
 		width: 100%;
+		border-collapse:collapse;
+		border-spacing:0;
+	}
+	.logInfo tr{
+		border-bottom:1px dashed lightblue;
+	}
+	.logInfo tr:last-child{
+		 border-bottom: none;
 	}
 
-	.log>td{
+	.logInfo td{
 		padding: 5px;
 	}
 	.tdLabel{

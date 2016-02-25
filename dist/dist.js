@@ -53,6 +53,10 @@
 
 	'use strict';
 	
+	var _keys = __webpack_require__(77);
+	
+	var _keys2 = _interopRequireDefault(_keys);
+	
 	var _vue = __webpack_require__(2);
 	
 	var _vue2 = _interopRequireDefault(_vue);
@@ -65,15 +69,15 @@
 	
 	var _routers2 = _interopRequireDefault(_routers);
 	
-	var _fastclick = __webpack_require__(71);
+	var _fastclick = __webpack_require__(75);
 	
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 	
-	var _vTouch = __webpack_require__(72);
+	var _vTouch = __webpack_require__(76);
 	
 	var _vTouch2 = _interopRequireDefault(_vTouch);
 	
-	var _vueResource = __webpack_require__(86);
+	var _vueResource = __webpack_require__(90);
 	
 	var _vueResource2 = _interopRequireDefault(_vueResource);
 	
@@ -81,24 +85,33 @@
 	
 	var _auth2 = _interopRequireDefault(_auth);
 	
-	var _App = __webpack_require__(110);
+	var _App = __webpack_require__(114);
 	
 	var _App2 = _interopRequireDefault(_App);
+	
+	var _filters = __webpack_require__(119);
+	
+	var _filters2 = _interopRequireDefault(_filters);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// 1:创建启动的版本
 	
-	//加载触摸插件
-	
-	//配置路由规则
-	_vue2.default.use(_vueRouter2.default);
 	//
 	
 	//加载数据请求组件
+	_vue2.default.use(_vueRouter2.default);
+	//加载触摸插件
+	
+	//配置路由规则
 	
 	_vue2.default.use(_vTouch2.default);
 	_vue2.default.use(_vueResource2.default);
+	
+	// 初始化过滤器
+	(0, _keys2.default)(_filters2.default).forEach(function (k) {
+	    return _vue2.default.filter(k, _filters2.default[k]);
+	});
 	
 	//设置访问的地址
 	_vue2.default.http.options.root = 'http://ht.mdsd.cn:9000/api';
@@ -12400,7 +12413,7 @@
 
 	var _LogInfo2 = _interopRequireDefault(_LogInfo);
 
-	var _LogDetail = __webpack_require__(66);
+	var _LogDetail = __webpack_require__(70);
 
 	var _LogDetail2 = _interopRequireDefault(_LogDetail);
 
@@ -16512,7 +16525,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Project.vue","sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.page-bd[_v-ba295ade]{\n\tpadding-bottom: 85px;\n}\n", "", {"version":3,"sources":["/./src/views/Project.vue?606d3e6c"],"names":[],"mappings":";AAqGA;CACA,qBAAA;CACA","file":"Project.vue","sourcesContent":["<template>\r\n\t<div class=\"page\" >\r\n\t\t<nav-bar text=\"我的项目\">\r\n\t\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" v-touch:tap=\"back\"></span>\r\n\t        <span class=\"icon-refresh\" slot=\"rightBar\" v-touch:tap=\"showSheet\"></span>\r\n\t\t</nav-bar>\r\n\t\t<tabs>\r\n\t\t\t<tab header=\"主导项目\">\r\n\t\t\t\t<page-body>\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项顶顶顶目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项目<br />\r\n\t\t\t\t\t我主导的项顶顶顶目<br />\r\n\t\t\t\t</page-body>\r\n\t\t\t\t\r\n\t\t\t</tab>\r\n\t\t\t<tab header=\"参与项目\">\r\n\t\t\t\t我参与的木\r\n\t\t\t</tab>\r\n\t\t</tabs>\r\n\t\r\n\r\n\t\t<toast :show=\"showToast\"></toast>\r\n\t\t<actionsheet :show.sync=\"showsheet\"  :menus=\"menuItems\" :actions=\"actionItems\" v-on:weui-menu-click=\"actionClick\"></actionsheet>\r\n\t</div>\r\n</template>\r\n\r\n<script lang=\"babel\">\r\n\timport NavBar from '../components/NavBar.vue'\r\n\timport List from '../components/List.vue'\r\n\timport { Actionsheet } from 'vue-weui'\r\n\timport Item from '../components/ListItem.vue'\r\n\timport PageBody from '../components/PageBody.vue'\r\n\t// import ActionSheet from '../components/ActionSheet.vue'\r\n\timport Toast from '../components/Toast.vue'\r\n\timport Tabs from '../components/Tabs.vue'\r\n\timport Tab from '../components/Tab.vue'\r\n\texport default {\r\n\t\tname:'Project',\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\tshowsheet:false,\r\n\t\t\t\tmenuItems:{camaer:'拍照',img:'选择图片'},\r\n\t\t\t\tactionItems:{text:'取消'},\r\n\t\t\t\tshowToast:false\r\n\t\t\t}\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tback(){\r\n\t\t\t\thistory.back();\r\n\t\t\t},\r\n\t\t\tshowSheet(){\r\n\t\t\t\tthis.showsheet=!this.showsheet;\r\n\t\t\t},\r\n\t\t\tactionClick(index){\r\n\t\t\t\talert(index);\r\n\t\t\t},\r\n\t\t\tgetInitData(){\r\n\t\t\t\talert('集合刷新');\r\n\t\t\t},\r\n\t\t\tgetMoreData(){\r\n\t\t\t\talert(\"集合加载更多\")\r\n\t\t\t}\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tNavBar,\r\n\t\t\tList,\r\n\t\t\tActionsheet,\r\n\t\t\tToast,\r\n\t\t\tItem,\r\n\t\t\tPageBody,\r\n\t\t\tTabs,\r\n\t\t\tTab\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n\r\n<style scoped>\r\n\t.page-bd{\r\n\t\tpadding-bottom: 85px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -16549,6 +16562,14 @@
 	
 	var _Toast2 = _interopRequireDefault(_Toast);
 	
+	var _Tabs = __webpack_require__(120);
+	
+	var _Tabs2 = _interopRequireDefault(_Tabs);
+	
+	var _Tab = __webpack_require__(125);
+	
+	var _Tab2 = _interopRequireDefault(_Tab);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// <template>
@@ -16557,58 +16578,42 @@
 	// 			<span class="icon-chevron-left" slot="leftBar" v-touch:tap="back"></span>
 	// 	        <span class="icon-refresh" slot="rightBar" v-touch:tap="showSheet"></span>
 	// 		</nav-bar>
-	// 		<page-body>
-	// 			<list v-on:reload="getInitData" v-on:loadmore="getMoreData">
-	// 				<li>asdffdddd;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;a</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;a</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;a</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;a</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>顶顶顶 阿斯蒂芬;</li>
+	// 		<tabs>
+	// 			<tab header="主导项目">
+	// 				<page-body>
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项顶顶顶目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项目<br />
+	// 					我主导的项顶顶顶目<br />
+	// 				</page-body>
 	
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>顶顶顶 阿斯蒂芬;</li>
-	
-	// 				<li>顶顶顶 阿斯蒂芬;</li>
-	
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff</li>
-	// 				<li>asdfffffffffffffffffffffffffffffff;</li>
-	// 				<li>顶顶顶 阿斯蒂芬;</li>
-	// 			</list>
-	// 		</page-body>
+	// 			</tab>
+	// 			<tab header="参与项目">
+	// 				我参与的木
+	// 			</tab>
+	// 		</tabs>
 	
 	// 		<toast :show="showToast"></toast>
 	// 		<actionsheet :show.sync="showsheet"  :menus="menuItems" :actions="actionItems" v-on:weui-menu-click="actionClick"></actionsheet>
@@ -16650,13 +16655,17 @@
 			Actionsheet: _vueWeui.Actionsheet,
 			Toast: _Toast2.default,
 			Item: _ListItem2.default,
-			PageBody: _PageBody2.default
+			PageBody: _PageBody2.default,
+			Tabs: _Tabs2.default,
+			Tab: _Tab2.default
 		}
 	};
 	// </script>
 
 	// <style scoped>
-
+	// 	.page-bd{
+	// 		padding-bottom: 85px;
+	// 	}
 	// </style>
 
 	// import ActionSheet from '../components/ActionSheet.vue'
@@ -17426,7 +17435,7 @@
 /* 59 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"page\" _v-ba295ade=\"\">\n\t<nav-bar text=\"我的项目\" _v-ba295ade=\"\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" v-touch:tap=\"back\" _v-ba295ade=\"\"></span>\n        <span class=\"icon-refresh\" slot=\"rightBar\" v-touch:tap=\"showSheet\" _v-ba295ade=\"\"></span>\n\t</nav-bar>\n\t<page-body _v-ba295ade=\"\">\n\t\t<list v-on:reload=\"getInitData\" v-on:loadmore=\"getMoreData\" _v-ba295ade=\"\">\n\t\t\t<li _v-ba295ade=\"\">asdffdddd;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;a</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff</li>\n\t\t\t<li _v-ba295ade=\"\">asdfffffffffffffffffffffffffffffff;</li>\n\t\t\t<li _v-ba295ade=\"\">顶顶顶 阿斯蒂芬;</li>\n\t\t</list>\n\t</page-body>\n\n\t<toast :show=\"showToast\" _v-ba295ade=\"\"></toast>\n\t<actionsheet :show.sync=\"showsheet\" :menus=\"menuItems\" :actions=\"actionItems\" v-on:weui-menu-click=\"actionClick\" _v-ba295ade=\"\"></actionsheet>\n</div>\n";
+	module.exports = "\n<div class=\"page\" _v-ba295ade=\"\">\n\t<nav-bar text=\"我的项目\" _v-ba295ade=\"\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" v-touch:tap=\"back\" _v-ba295ade=\"\"></span>\n        <span class=\"icon-refresh\" slot=\"rightBar\" v-touch:tap=\"showSheet\" _v-ba295ade=\"\"></span>\n\t</nav-bar>\n\t<tabs _v-ba295ade=\"\">\n\t\t<tab header=\"主导项目\" _v-ba295ade=\"\">\n\t\t\t<page-body _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项顶顶顶目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项目<br _v-ba295ade=\"\">\n\t\t\t\t我主导的项顶顶顶目<br _v-ba295ade=\"\">\n\t\t\t</page-body>\n\t\t\t\n\t\t</tab>\n\t\t<tab header=\"参与项目\" _v-ba295ade=\"\">\n\t\t\t我参与的木\n\t\t</tab>\n\t</tabs>\n\n\n\t<toast :show=\"showToast\" _v-ba295ade=\"\"></toast>\n\t<actionsheet :show.sync=\"showsheet\" :menus=\"menuItems\" :actions=\"actionItems\" v-on:weui-menu-click=\"actionClick\" _v-ba295ade=\"\"></actionsheet>\n</div>\n";
 
 /***/ },
 /* 60 */
@@ -17625,9 +17634,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(115)
-	__vue_script__ = __webpack_require__(117)
-	__vue_template__ = __webpack_require__(118)
+	__webpack_require__(66)
+	__vue_script__ = __webpack_require__(68)
+	__vue_template__ = __webpack_require__(69)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -17647,10 +17656,198 @@
 /* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(67);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ad38057e&file=LogInfo.vue!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./LogInfo.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ad38057e&file=LogInfo.vue!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./LogInfo.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 67 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n.logInfo table{\n\twidth: 100%;\n\tborder-collapse:collapse;\n\tborder-spacing:0;\n}\n.logInfo tr{\n\tborder-bottom:1px dashed lightblue;\n}\n.logInfo tr:last-child{\n\t border-bottom: none;\n}\n\n.logInfo td{\n\tpadding: 5px;\n}\n.tdLabel{\n\twidth: 100px;\n}\n", "", {"version":3,"sources":["/./src/views/worklog/LogInfo.vue?3a3a1eb9"],"names":[],"mappings":";AAuGA;CACA,YAAA;CACA,yBAAA;CACA,iBAAA;CACA;AACA;CACA,mCAAA;CACA;AACA;EACA,oBAAA;CACA;;AAEA;CACA,aAAA;CACA;AACA;CACA,aAAA;CACA","file":"LogInfo.vue","sourcesContent":["<template>\r\n\t<div class=\"page logInfo\">\r\n\t\t<nav-bar :text=\"curDay\">\r\n\t\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\"></span>\r\n\t\t\t<span class=\"icon-plus\" slot=\"rightBar\" @click=\"addTask\"></span>\r\n\t\t</nav-bar>\t\r\n\t\t<page-body>\r\n\t\t\t<cells>\r\n\t\t\t\t<link-cell v-for=\"item in logInfo\">\r\n\t\t\t\t\t<div slot=\"body\">\r\n\t\t\t\t\t\t<table class=\"log\">\r\n\t\t\t\t\t\t\t<tbody>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td class=\"tdLabel\">日志名称</td>\r\n\t\t\t\t\t\t\t\t\t<td>{{item.LogTitle}}</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td class=\"tdLabel\">开始时间</td>\r\n\t\t\t\t\t\t\t\t\t<td>{{item.SDate}}</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td class=\"tdLabel\">结束时间</td>\r\n\t\t\t\t\t\t\t\t\t<td>{{item.EDate}}</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td class=\"tdLabel\">工作类型</td>\r\n\t\t\t\t\t\t\t\t\t<td >{{item.WType}}</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t<tr v-for=\"subItem in item.SubItems\">\r\n\t\t\t\t\t\t\t\t\t<td class=\"tdLabel\">{{subItem.SubType}}</td>\r\n\t\t\t\t\t\t\t\t\t<td>{{{ subItem.SubContent | replace '\\n' '&lt;br /&gt;' }}}</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t</tbody>\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</link-cell>\r\n\t\t\t</cells>\r\n\t\t</page-body>\r\n\r\n\t\t<Toast type=\"loading\" v-show=\"isloading\"></Toast>\r\n\t</div>\r\n</template>\r\n\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\timport NavBar from '../../components/NavBar.vue'\r\n\timport PageBody from '../../components/PageBody.vue'\r\n\timport {Toast,Cells,LinkCell} from 'vue-weui'\r\n\r\n\texport default {\r\n\t\tname:'loginfo',\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\tcurDay:'',\r\n\t\t\t\tlogInfo:[],\r\n\t\t\t\tuserId:0,\r\n\t\t\t\tisloading:false\r\n\t\t\t}\r\n\t\t},\r\n\r\n\t\troute:{\r\n\t\t\t//加载数\r\n\t\t\tdata(transition){\r\n\t\t\t\tconsole.log(transition);\r\n\t\t\t\t//加载数据\r\n\t\t\t  this.curDay=transition.to.params.date;\r\n\t\t\t  this.userId=this.$root.userId;\r\n\t\t\t  console.log(\"loginfo-\"+this.userId);\r\n\t\t\t  this.isloading=true;\r\n\t\t\t  var rUrl='WorkLog/'+this.curDay+\"/10685\";\r\n\r\n\t\t\t  this.$http.get(rUrl).then((response)=>{\r\n\t\t\t  \tthis.isloading=false;\r\n\r\n\t\t\t  \tthis.logInfo=response.data;\r\n\t\t\t  \tconsole.log(this.logInfo)\r\n\t\t\t  },(error)=>{\r\n\t\t\t  \tthis.isloading=false;\r\n\t\t\t  });\r\n\t\t\t}\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tNavBar,\r\n\t\t\tPageBody,\r\n\t\t\tCells,\r\n\t\t\tLinkCell,\r\n\t\t\tToast\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tback(){\r\n\t\t\t\thistory.back();\r\n\t\t\t},\r\n\t\t\taddTask(){\r\n\t\t\t\tthis.$route.router.go({name:'logdetail',params:{date:this.curDay,type:'add'}});\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\">\r\n\t.logInfo table{\r\n\t\twidth: 100%;\r\n\t\tborder-collapse:collapse;\r\n\t\tborder-spacing:0;\r\n\t}\r\n\t.logInfo tr{\r\n\t\tborder-bottom:1px dashed lightblue;\r\n\t}\r\n\t.logInfo tr:last-child{\r\n\t\t border-bottom: none;\r\n\t}\r\n\r\n\t.logInfo td{\r\n\t\tpadding: 5px;\r\n\t}\r\n\t.tdLabel{\r\n\t\twidth: 100px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 68 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _NavBar = __webpack_require__(12);
+	
+	var _NavBar2 = _interopRequireDefault(_NavBar);
+	
+	var _PageBody = __webpack_require__(17);
+	
+	var _PageBody2 = _interopRequireDefault(_PageBody);
+	
+	var _vueWeui = __webpack_require__(22);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+		name: 'loginfo',
+		data: function data() {
+			return {
+				curDay: '',
+				logInfo: [],
+				userId: 0,
+				isloading: false
+			};
+		},
+	
+		route: {
+			//加载数
+	
+			data: function data(transition) {
+				var _this = this;
+	
+				console.log(transition);
+				//加载数据
+				this.curDay = transition.to.params.date;
+				this.userId = this.$root.userId;
+				console.log("loginfo-" + this.userId);
+				this.isloading = true;
+				var rUrl = 'WorkLog/' + this.curDay + "/10685";
+	
+				this.$http.get(rUrl).then(function (response) {
+					_this.isloading = false;
+	
+					_this.logInfo = response.data;
+					console.log(_this.logInfo);
+				}, function (error) {
+					_this.isloading = false;
+				});
+			}
+		},
+		components: {
+			NavBar: _NavBar2.default,
+			PageBody: _PageBody2.default,
+			Cells: _vueWeui.Cells,
+			LinkCell: _vueWeui.LinkCell,
+			Toast: _vueWeui.Toast
+		},
+		methods: {
+			back: function back() {
+				history.back();
+			},
+			addTask: function addTask() {
+				this.$route.router.go({ name: 'logdetail', params: { date: this.curDay, type: 'add' } });
+			}
+		}
+	};
+	// </script>
+
+	// <style type="text/css">
+	// 	.logInfo table{
+	// 		width: 100%;
+	// 		border-collapse:collapse;
+	// 		border-spacing:0;
+	// 	}
+	// 	.logInfo tr{
+	// 		border-bottom:1px dashed lightblue;
+	// 	}
+	// 	.logInfo tr:last-child{
+	// 		 border-bottom: none;
+	// 	}
+
+	// 	.logInfo td{
+	// 		padding: 5px;
+	// 	}
+	// 	.tdLabel{
+	// 		width: 100px;
+	// 	}
+	// </style>
+	// <template>
+	// 	<div class="page logInfo">
+	// 		<nav-bar :text="curDay">
+	// 			<span class="icon-chevron-left" slot="leftBar" @click="back()"></span>
+	// 			<span class="icon-plus" slot="rightBar" @click="addTask"></span>
+	// 		</nav-bar>	
+	// 		<page-body>
+	// 			<cells>
+	// 				<link-cell v-for="item in logInfo">
+	// 					<div slot="body">
+	// 						<table class="log">
+	// 							<tbody>
+	// 								<tr>
+	// 									<td class="tdLabel">日志名称</td>
+	// 									<td>{{item.LogTitle}}</td>
+	// 								</tr>
+
+	// 								<tr>
+	// 									<td class="tdLabel">开始时间</td>
+	// 									<td>{{item.SDate}}</td>
+	// 								</tr>
+	// 								<tr>
+	// 									<td class="tdLabel">结束时间</td>
+	// 									<td>{{item.EDate}}</td>
+	// 								</tr>
+	// 								<tr>
+	// 									<td class="tdLabel">工作类型</td>
+	// 									<td >{{item.WType}}</td>
+	// 								</tr>
+
+	// 								<tr v-for="subItem in item.SubItems">
+	// 									<td class="tdLabel">{{subItem.SubType}}</td>
+	// 									<td>{{{ subItem.SubContent | replace '\n' '&lt;br /&gt;' }}}</td>
+	// 								</tr>
+	// 							</tbody>
+	// 						</table>
+	// 					</div>
+	// 				</link-cell>
+	// 			</cells>
+	// 		</page-body>
+
+	// 		<Toast type="loading" v-show="isloading"></Toast>
+	// 	</div>
+	// </template>
+
+	// <script lang="babel">
+
+/***/ },
+/* 69 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"page logInfo\">\n\t<nav-bar :text=\"curDay\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\"></span>\n\t\t<span class=\"icon-plus\" slot=\"rightBar\" @click=\"addTask\"></span>\n\t</nav-bar>\t\n\t<page-body>\n\t\t<cells>\n\t\t\t<link-cell v-for=\"item in logInfo\">\n\t\t\t\t<div slot=\"body\">\n\t\t\t\t\t<table class=\"log\">\n\t\t\t\t\t\t<tbody>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"tdLabel\">日志名称</td>\n\t\t\t\t\t\t\t\t<td>{{item.LogTitle}}</td>\n\t\t\t\t\t\t\t</tr>\n\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"tdLabel\">开始时间</td>\n\t\t\t\t\t\t\t\t<td>{{item.SDate}}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"tdLabel\">结束时间</td>\n\t\t\t\t\t\t\t\t<td>{{item.EDate}}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"tdLabel\">工作类型</td>\n\t\t\t\t\t\t\t\t<td >{{item.WType}}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tr v-for=\"subItem in item.SubItems\">\n\t\t\t\t\t\t\t\t<td class=\"tdLabel\">{{subItem.SubType}}</td>\n\t\t\t\t\t\t\t\t<td>{{{ subItem.SubContent | replace '\\n' '&lt;br /&gt;' }}}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</link-cell>\n\t\t</cells>\n\t</page-body>\n\n\t<Toast type=\"loading\" v-show=\"isloading\"></Toast>\n</div>\n";
+
+/***/ },
+/* 70 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var __vue_script__, __vue_template__
-	__webpack_require__(67)
-	__vue_script__ = __webpack_require__(69)
-	__vue_template__ = __webpack_require__(70)
+	__webpack_require__(71)
+	__vue_script__ = __webpack_require__(73)
+	__vue_template__ = __webpack_require__(74)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -17667,13 +17864,13 @@
 	})()}
 
 /***/ },
-/* 67 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(68);
+	var content = __webpack_require__(72);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -17693,7 +17890,7 @@
 	}
 
 /***/ },
-/* 68 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -17701,13 +17898,13 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"LogDetail.vue","sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n\n.weui_label{\n\twidth: 4em;\n}\n\n.logDetail .page-bd{\n\tpadding-bottom: 30px;\n}\n", "", {"version":3,"sources":["/./src/views/worklog/LogDetail.vue?8451e9f0"],"names":[],"mappings":";;AA0IA;CACA,WAAA;CACA;;AAEA;CACA,qBAAA;CACA","file":"LogDetail.vue","sourcesContent":["<template>\r\n\t<div class=\"page logDetail\">\r\n\t\t<nav-bar :text=\"curDay\">\r\n\t\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\">返回</span>\r\n\t\t</nav-bar>\t\r\n\t\t<page-body >\r\n\t\t\t<cells type=\"form\">\r\n\t\t\t\t<input-cell type=\"text\" name=\"SubTitle\" placeholder=\"输入标题\" label=\"日志标题\" :value.sync=\"title\" :warn=\"ckTitle\">\r\n\t\t\t\t</input-cell>\r\n\t\t\t\t<input-cell type=\"time\" name=\"StartTime\"  label=\"开始时间\" placeholder=\"开始时间\" value=\"08:50\">\r\n\t\t\t\t</input-cell>\r\n\t\t\t\t<input-cell type=\"time\" name=\"EndTime\"  label=\"结束时间\" placeholder=\"结束时间\" value=\"17:00\">\r\n\t\t\t\t</input-cell>\r\n\t\t\t\t<select-cell\r\n\t\t\t\t  :after=\"true\"\r\n\t\t\t\t  :options=\"['中国', '美国', '英国']\"\r\n\t\t\t\t  :selected.sync=\"wType\">\r\n\t\t\t\t  <span slot=\"header\">工作类型</span>\r\n\t\t\t\t</select-cell>\r\n\t\t\t\t<link-cell>\r\n\t\t\t\t\t<div slot=\"header\">选择项目</div>\r\n\t\t\t\t\t<div slot=\"body\">\r\n\t\t\t\t\t\t<input type=\"hidden\" >\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<span slot=\"footer\">\r\n\t\t\t\t\t</span>\r\n\t\t\t\t</link-cell>\r\n\t\t\t\t<select-cell\r\n\t\t\t\t  :after=\"true\"\r\n\t\t\t\t   :options=\"['项目工作', '研发工作', '合同处理']\"\r\n\t\t\t\t  :selected.sync=\"subType\">\r\n\t\t\t\t  <span slot=\"header\">工作类型</span>\r\n\t\t\t\t</select-cell>\r\n\t\t\t\t<input-cell type=\"textarea\" :value.sync=\"memo\" :warn=\"ckMemo\" :rows=\"textRows\" placeholder=\"日志类容\" slot=\"body\"></input-cell>\r\n\t\t\t</cells>\r\n\t\t\t<button-area>\r\n\t\t\t\t<button @click=\"saveLog\">\r\n\t\t\t\t\t提交\r\n\t\t\t\t</button>\r\n\t\t\t</button-area>\r\n\t\t\t<cells type=\"form\">\r\n\t\t\t\t\r\n\t\t\t</cells>\t\t\r\n\t\t</page-body>\r\n\r\n\t\t<toast type=\"loading\" v-show=\"isloading\">\r\n\t\t\t保存中。。\r\n\t\t</toast>\r\n\t</div>\r\n</template>\r\n\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\timport NavBar from '../../components/NavBar.vue'\r\n\timport PageBody from '../../components/PageBody.vue'\r\n\timport {Toast,Cells,CellHeader,CellBody,InputCell,SelectCell,Cell,LinkCell,ButtonArea,Button,Icon} from 'vue-weui'\r\n\r\n\texport default {\r\n\t\tname:'logdetail',\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\tcurDay:'',\r\n\t\t\t\ttype:'',\r\n\t\t\t\ttypeOptions:[{id:'XMGZLB',text:\"项目工作类别\"},\r\n\t\t\t\t\t\t  {id:'RCGZLB',text:\"日常工作类别\"},\r\n\t\t\t\t\t\t  {id:'SHGZLB',text:\"售后工作类别\"}],\r\n\t\t\t\ttextRows:5,\r\n\t\t\t\twType:'XMGZLB',\r\n\t\t\t\tsubType:'',\r\n\t\t\t\ttitle:'',\r\n\t\t\t\tmemo:'',\r\n\t\t\t\tsubTypeData:[],\r\n\t\t\t\tProjectCode:'',\r\n\t\t\t\tisloading:false\r\n\t\t\t}\r\n\t\t},\r\n\t\troute:{\r\n\t\t\t//加载数\r\n\t\t\tdata(transition){\r\n\t\t\t\tconsole.log(transition);\r\n\t\t\t\t//加载数据\r\n\t\t\t  this.curDay=transition.to.params.date;\r\n\t\t\t  this.type=transition.to.params.type==\"add\"||'edit';\r\n\t\t\t  \r\n\t\t\t}\r\n\t\t},\r\n\t\tcomputed:{\r\n\t\t\tckTitle:function () {\r\n\t\t\t\treturn this.title.length==0;\r\n\t\t\t},\r\n\t\t\tckMemo:function(){\r\n\t\t\t\treturn this.memo.length==0;\r\n\t\t\t}\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tNavBar,\r\n\t\t\tPageBody,\r\n\t\t\tToast,\r\n\t\t\tCells,\r\n\t\t\tCellHeader,\r\n\t\t\tCellBody,\r\n\t\t\tCell,\r\n\t\t\tInputCell,\r\n\t\t\tSelectCell,\r\n\t\t\tButton,\r\n\t\t\tLinkCell,\r\n\t\t\tIcon,\r\n\t\t\tButtonArea\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tback(){\r\n\t\t\t\thistory.back();\r\n\t\t\t},\r\n\t\t\tsaveLog(){\r\n\t\t\t\t//1:提交表单内容\r\n\t\t\t\tvar postData={\r\n\t\t\t\t\tSubTitle:this.title,\r\n\t\t\t\t\tStartTime:this.curDay+\" \"+this.sTime,\r\n\t\t\t\t\tEndTime:this.curDay+\" \"+this.eTime,\r\n\t\t\t\t\tWorkType:this.wType,\r\n\t\t\t\t\tProjectCode:this.ProjectCode,\r\n\t\t\t\t\tActionUser:this.$root.userId,\r\n\t\t\t\t\tSubItem:this.subType+\"-\"+this.memo\r\n\t\t\t\t};\r\n\t\t\t\tthis.isloading=true;\r\n\t\t\t\tthis.$http.post(\"WorkLog\",postData).then((success)=>{\r\n\t\t\t\t\tthis.isloading=false;\r\n\t\t\t\t},(error)=>{\r\n\t\t\t\t\tthis.isloading=false;\r\n\t\t\t\t});\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\">\r\n\t\r\n\t.weui_label{\r\n\t\twidth: 4em;\r\n\t}\r\n\r\n\t.logDetail .page-bd{\r\n\t\tpadding-bottom: 30px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
-/* 69 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17733,7 +17930,16 @@
 		data: function data() {
 			return {
 				curDay: '',
-				type: ''
+				type: '',
+				typeOptions: [{ id: 'XMGZLB', text: "项目工作类别" }, { id: 'RCGZLB', text: "日常工作类别" }, { id: 'SHGZLB', text: "售后工作类别" }],
+				textRows: 5,
+				wType: 'XMGZLB',
+				subType: '',
+				title: '',
+				memo: '',
+				subTypeData: [],
+				ProjectCode: '',
+				isloading: false
 			};
 		},
 	
@@ -17744,20 +17950,55 @@
 				console.log(transition);
 				//加载数据
 				this.curDay = transition.to.params.date;
+				this.type = transition.to.params.type == "add" || 'edit';
+			}
+		},
+		computed: {
+			ckTitle: function ckTitle() {
+				return this.title.length == 0;
+			},
+			ckMemo: function ckMemo() {
+				return this.memo.length == 0;
 			}
 		},
 		components: {
 			NavBar: _NavBar2.default,
-			PageBody: _PageBody2.default
+			PageBody: _PageBody2.default,
+			Toast: _vueWeui.Toast,
+			Cells: _vueWeui.Cells,
+			CellHeader: _vueWeui.CellHeader,
+			CellBody: _vueWeui.CellBody,
+			Cell: _vueWeui.Cell,
+			InputCell: _vueWeui.InputCell,
+			SelectCell: _vueWeui.SelectCell,
+			Button: _vueWeui.Button,
+			LinkCell: _vueWeui.LinkCell,
+			Icon: _vueWeui.Icon,
+			ButtonArea: _vueWeui.ButtonArea
 		},
 		methods: {
 			back: function back() {
 				history.back();
-			}
-		},
-		route: {
-			data: function data() {
-				//1：获取传递过来的参数
+			},
+			saveLog: function saveLog() {
+				var _this = this;
+	
+				//1:提交表单内容
+				var postData = {
+					SubTitle: this.title,
+					StartTime: this.curDay + " " + this.sTime,
+					EndTime: this.curDay + " " + this.eTime,
+					WorkType: this.wType,
+					ProjectCode: this.ProjectCode,
+					ActionUser: this.$root.userId,
+					SubItem: this.subType + "-" + this.memo
+				};
+				this.isloading = true;
+				this.$http.post("WorkLog", postData).then(function (success) {
+					_this.isloading = false;
+				}, function (error) {
+					_this.isloading = false;
+				});
 			}
 		}
 	};
@@ -17765,28 +18006,75 @@
 
 	// <style type="text/css">
 
+	// 	.weui_label{
+	// 		width: 4em;
+	// 	}
+
+	// 	.logDetail .page-bd{
+	// 		padding-bottom: 30px;
+	// 	}
 	// </style>
 	// <template>
 	// 	<div class="page logDetail">
 	// 		<nav-bar :text="curDay">
 	// 			<span class="icon-chevron-left" slot="leftBar" @click="back()">返回</span>
 	// 		</nav-bar>	
-	// 		<page-body>
+	// 		<page-body >
+	// 			<cells type="form">
+	// 				<input-cell type="text" name="SubTitle" placeholder="输入标题" label="日志标题" :value.sync="title" :warn="ckTitle">
+	// 				</input-cell>
+	// 				<input-cell type="time" name="StartTime"  label="开始时间" placeholder="开始时间" value="08:50">
+	// 				</input-cell>
+	// 				<input-cell type="time" name="EndTime"  label="结束时间" placeholder="结束时间" value="17:00">
+	// 				</input-cell>
+	// 				<select-cell
+	// 				  :after="true"
+	// 				  :options="['中国', '美国', '英国']"
+	// 				  :selected.sync="wType">
+	// 				  <span slot="header">工作类型</span>
+	// 				</select-cell>
+	// 				<link-cell>
+	// 					<div slot="header">选择项目</div>
+	// 					<div slot="body">
+	// 						<input type="hidden" >
+	// 					</div>
+	// 					<span slot="footer">
+	// 					</span>
+	// 				</link-cell>
+	// 				<select-cell
+	// 				  :after="true"
+	// 				   :options="['项目工作', '研发工作', '合同处理']"
+	// 				  :selected.sync="subType">
+	// 				  <span slot="header">工作类型</span>
+	// 				</select-cell>
+	// 				<input-cell type="textarea" :value.sync="memo" :warn="ckMemo" :rows="textRows" placeholder="日志类容" slot="body"></input-cell>
+	// 			</cells>
+	// 			<button-area>
+	// 				<button @click="saveLog">
+	// 					提交
+	// 				</button>
+	// 			</button-area>
+	// 			<cells type="form">
 
+	// 			</cells>		
 	// 		</page-body>
+
+	// 		<toast type="loading" v-show="isloading">
+	// 			保存中。。
+	// 		</toast>
 	// 	</div>
 	// </template>
 
 	// <script lang="babel">
 
 /***/ },
-/* 70 */
+/* 74 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"page logDetail\">\n\t<nav-bar :text=\"curDay\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\">返回</span>\n\t</nav-bar>\t\n\t<page-body>\n\t\t\n\t</page-body>\n</div>\n";
+	module.exports = "\n<div class=\"page logDetail\">\n\t<nav-bar :text=\"curDay\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\">返回</span>\n\t</nav-bar>\t\n\t<page-body >\n\t\t<cells type=\"form\">\n\t\t\t<input-cell type=\"text\" name=\"SubTitle\" placeholder=\"输入标题\" label=\"日志标题\" :value.sync=\"title\" :warn=\"ckTitle\">\n\t\t\t</input-cell>\n\t\t\t<input-cell type=\"time\" name=\"StartTime\"  label=\"开始时间\" placeholder=\"开始时间\" value=\"08:50\">\n\t\t\t</input-cell>\n\t\t\t<input-cell type=\"time\" name=\"EndTime\"  label=\"结束时间\" placeholder=\"结束时间\" value=\"17:00\">\n\t\t\t</input-cell>\n\t\t\t<select-cell\n\t\t\t  :after=\"true\"\n\t\t\t  :options=\"['中国', '美国', '英国']\"\n\t\t\t  :selected.sync=\"wType\">\n\t\t\t  <span slot=\"header\">工作类型</span>\n\t\t\t</select-cell>\n\t\t\t<link-cell>\n\t\t\t\t<div slot=\"header\">选择项目</div>\n\t\t\t\t<div slot=\"body\">\n\t\t\t\t\t<input type=\"hidden\" >\n\t\t\t\t</div>\n\t\t\t\t<span slot=\"footer\">\n\t\t\t\t</span>\n\t\t\t</link-cell>\n\t\t\t<select-cell\n\t\t\t  :after=\"true\"\n\t\t\t   :options=\"['项目工作', '研发工作', '合同处理']\"\n\t\t\t  :selected.sync=\"subType\">\n\t\t\t  <span slot=\"header\">工作类型</span>\n\t\t\t</select-cell>\n\t\t\t<input-cell type=\"textarea\" :value.sync=\"memo\" :warn=\"ckMemo\" :rows=\"textRows\" placeholder=\"日志类容\" slot=\"body\"></input-cell>\n\t\t</cells>\n\t\t<button-area>\n\t\t\t<button @click=\"saveLog\">\n\t\t\t\t提交\n\t\t\t</button>\n\t\t</button-area>\n\t\t<cells type=\"form\">\n\t\t\t\n\t\t</cells>\t\t\n\t</page-body>\n\n\t<toast type=\"loading\" v-show=\"isloading\">\n\t\t保存中。。\n\t</toast>\n</div>\n";
 
 /***/ },
-/* 71 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
@@ -18633,19 +18921,19 @@
 
 
 /***/ },
-/* 72 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _keys = __webpack_require__(73);
+	var _keys = __webpack_require__(77);
 	
 	var _keys2 = _interopRequireDefault(_keys);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var vueTouch = {};
-	var Hammer =  true ? __webpack_require__(85) : window.Hammer;
+	var Hammer =  true ? __webpack_require__(89) : window.Hammer;
 	var gestures = ['tap', 'pan', 'pandown', 'panend', 'pinch', 'press', 'pressup', 'rotate', 'swipe', 'swipeleft', 'swiperight', 'swipeup', 'swipedown'];
 	var customeEvents = {};
 	
@@ -18744,43 +19032,43 @@
 	module.exports = vueTouch;
 
 /***/ },
-/* 73 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(74), __esModule: true };
+	module.exports = { "default": __webpack_require__(78), __esModule: true };
 
 /***/ },
-/* 74 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(75);
-	module.exports = __webpack_require__(81).Object.keys;
+	__webpack_require__(79);
+	module.exports = __webpack_require__(85).Object.keys;
 
 /***/ },
-/* 75 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(76);
+	var toObject = __webpack_require__(80);
 	
-	__webpack_require__(78)('keys', function($keys){
+	__webpack_require__(82)('keys', function($keys){
 	  return function keys(it){
 	    return $keys(toObject(it));
 	  };
 	});
 
 /***/ },
-/* 76 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
-	var defined = __webpack_require__(77);
+	var defined = __webpack_require__(81);
 	module.exports = function(it){
 	  return Object(defined(it));
 	};
 
 /***/ },
-/* 77 */
+/* 81 */
 /***/ function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -18790,13 +19078,13 @@
 	};
 
 /***/ },
-/* 78 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(79)
-	  , core    = __webpack_require__(81)
-	  , fails   = __webpack_require__(84);
+	var $export = __webpack_require__(83)
+	  , core    = __webpack_require__(85)
+	  , fails   = __webpack_require__(88);
 	module.exports = function(KEY, exec){
 	  var fn  = (core.Object || {})[KEY] || Object[KEY]
 	    , exp = {};
@@ -18805,12 +19093,12 @@
 	};
 
 /***/ },
-/* 79 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(80)
-	  , core      = __webpack_require__(81)
-	  , ctx       = __webpack_require__(82)
+	var global    = __webpack_require__(84)
+	  , core      = __webpack_require__(85)
+	  , ctx       = __webpack_require__(86)
 	  , PROTOTYPE = 'prototype';
 	
 	var $export = function(type, name, source){
@@ -18856,7 +19144,7 @@
 	module.exports = $export;
 
 /***/ },
-/* 80 */
+/* 84 */
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -18865,18 +19153,18 @@
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
-/* 81 */
+/* 85 */
 /***/ function(module, exports) {
 
 	var core = module.exports = {version: '1.2.6'};
 	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ },
-/* 82 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(83);
+	var aFunction = __webpack_require__(87);
 	module.exports = function(fn, that, length){
 	  aFunction(fn);
 	  if(that === undefined)return fn;
@@ -18897,7 +19185,7 @@
 	};
 
 /***/ },
-/* 83 */
+/* 87 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -18906,7 +19194,7 @@
 	};
 
 /***/ },
-/* 84 */
+/* 88 */
 /***/ function(module, exports) {
 
 	module.exports = function(exec){
@@ -18918,7 +19206,7 @@
 	};
 
 /***/ },
-/* 85 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.6 - 2015-12-23
@@ -21492,7 +21780,7 @@
 
 
 /***/ },
-/* 86 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -21501,16 +21789,16 @@
 	
 	function install(Vue) {
 	
-	    var _ = __webpack_require__(87);
+	    var _ = __webpack_require__(91);
 	
 	    _.config = Vue.config;
 	    _.warning = Vue.util.warn;
 	    _.nextTick = Vue.util.nextTick;
 	
-	    Vue.url = __webpack_require__(88);
-	    Vue.http = __webpack_require__(94);
-	    Vue.resource = __webpack_require__(109);
-	    Vue.Promise = __webpack_require__(96);
+	    Vue.url = __webpack_require__(92);
+	    Vue.http = __webpack_require__(98);
+	    Vue.resource = __webpack_require__(113);
+	    Vue.Promise = __webpack_require__(100);
 	
 	    Object.defineProperties(Vue.prototype, {
 	
@@ -21551,7 +21839,7 @@
 
 
 /***/ },
-/* 87 */
+/* 91 */
 /***/ function(module, exports) {
 
 	/**
@@ -21679,14 +21967,14 @@
 
 
 /***/ },
-/* 88 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for URL templating.
 	 */
 	
-	var _ = __webpack_require__(87);
+	var _ = __webpack_require__(91);
 	var ie = document.documentMode;
 	var el = document.createElement('a');
 	
@@ -21722,10 +22010,10 @@
 	 */
 	
 	Url.transforms = [
-	    __webpack_require__(89),
-	    __webpack_require__(91),
-	    __webpack_require__(92),
-	    __webpack_require__(93)
+	    __webpack_require__(93),
+	    __webpack_require__(95),
+	    __webpack_require__(96),
+	    __webpack_require__(97)
 	];
 	
 	/**
@@ -21815,14 +22103,14 @@
 
 
 /***/ },
-/* 89 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * URL Template (RFC 6570) Transform.
 	 */
 	
-	var UrlTemplate = __webpack_require__(90);
+	var UrlTemplate = __webpack_require__(94);
 	
 	module.exports = function (options) {
 	
@@ -21837,7 +22125,7 @@
 
 
 /***/ },
-/* 90 */
+/* 94 */
 /***/ function(module, exports) {
 
 	/**
@@ -21993,14 +22281,14 @@
 
 
 /***/ },
-/* 91 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Legacy Transform.
 	 */
 	
-	var _ = __webpack_require__(87);
+	var _ = __webpack_require__(91);
 	
 	module.exports = function (options, next) {
 	
@@ -22045,14 +22333,14 @@
 
 
 /***/ },
-/* 92 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Query Parameter Transform.
 	 */
 	
-	var _ = __webpack_require__(87);
+	var _ = __webpack_require__(91);
 	
 	module.exports = function (options, next) {
 	
@@ -22075,14 +22363,14 @@
 
 
 /***/ },
-/* 93 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Root Prefix Transform.
 	 */
 	
-	var _ = __webpack_require__(87);
+	var _ = __webpack_require__(91);
 	
 	module.exports = function (options, next) {
 	
@@ -22097,17 +22385,17 @@
 
 
 /***/ },
-/* 94 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for sending network requests.
 	 */
 	
-	var _ = __webpack_require__(87);
-	var Client = __webpack_require__(95);
-	var Promise = __webpack_require__(96);
-	var interceptor = __webpack_require__(99);
+	var _ = __webpack_require__(91);
+	var Client = __webpack_require__(99);
+	var Promise = __webpack_require__(100);
+	var interceptor = __webpack_require__(103);
 	var jsonType = {'Content-Type': 'application/json'};
 	
 	function Http(url, options) {
@@ -22159,13 +22447,13 @@
 	};
 	
 	Http.interceptors = [
-	    __webpack_require__(100),
-	    __webpack_require__(101),
-	    __webpack_require__(102),
 	    __webpack_require__(104),
 	    __webpack_require__(105),
 	    __webpack_require__(106),
-	    __webpack_require__(107)
+	    __webpack_require__(108),
+	    __webpack_require__(109),
+	    __webpack_require__(110),
+	    __webpack_require__(111)
 	];
 	
 	Http.headers = {
@@ -22200,16 +22488,16 @@
 
 
 /***/ },
-/* 95 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Base client.
 	 */
 	
-	var _ = __webpack_require__(87);
-	var Promise = __webpack_require__(96);
-	var xhrClient = __webpack_require__(98);
+	var _ = __webpack_require__(91);
+	var Promise = __webpack_require__(100);
+	var xhrClient = __webpack_require__(102);
 	
 	module.exports = function (request) {
 	
@@ -22271,15 +22559,15 @@
 
 
 /***/ },
-/* 96 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promise adapter.
 	 */
 	
-	var _ = __webpack_require__(87);
-	var PromiseObj = window.Promise || __webpack_require__(97);
+	var _ = __webpack_require__(91);
+	var PromiseObj = window.Promise || __webpack_require__(101);
 	
 	function Promise(executor, context) {
 	
@@ -22386,14 +22674,14 @@
 
 
 /***/ },
-/* 97 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Promises/A+ polyfill v1.1.4 (https://github.com/bramstein/promis)
 	 */
 	
-	var _ = __webpack_require__(87);
+	var _ = __webpack_require__(91);
 	
 	var RESOLVED = 0;
 	var REJECTED = 1;
@@ -22571,15 +22859,15 @@
 
 
 /***/ },
-/* 98 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XMLHttp client.
 	 */
 	
-	var _ = __webpack_require__(87);
-	var Promise = __webpack_require__(96);
+	var _ = __webpack_require__(91);
+	var Promise = __webpack_require__(100);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -22620,15 +22908,15 @@
 
 
 /***/ },
-/* 99 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Interceptor factory.
 	 */
 	
-	var _ = __webpack_require__(87);
-	var Promise = __webpack_require__(96);
+	var _ = __webpack_require__(91);
+	var Promise = __webpack_require__(100);
 	
 	module.exports = function (handler, vm) {
 	
@@ -22671,14 +22959,14 @@
 
 
 /***/ },
-/* 100 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Before Interceptor.
 	 */
 	
-	var _ = __webpack_require__(87);
+	var _ = __webpack_require__(91);
 	
 	module.exports = {
 	
@@ -22695,7 +22983,7 @@
 
 
 /***/ },
-/* 101 */
+/* 105 */
 /***/ function(module, exports) {
 
 	/**
@@ -22731,14 +23019,14 @@
 
 
 /***/ },
-/* 102 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP Interceptor.
 	 */
 	
-	var jsonpClient = __webpack_require__(103);
+	var jsonpClient = __webpack_require__(107);
 	
 	module.exports = {
 	
@@ -22755,15 +23043,15 @@
 
 
 /***/ },
-/* 103 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * JSONP client.
 	 */
 	
-	var _ = __webpack_require__(87);
-	var Promise = __webpack_require__(96);
+	var _ = __webpack_require__(91);
+	var Promise = __webpack_require__(100);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -22809,7 +23097,7 @@
 
 
 /***/ },
-/* 104 */
+/* 108 */
 /***/ function(module, exports) {
 
 	/**
@@ -22832,14 +23120,14 @@
 
 
 /***/ },
-/* 105 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Mime Interceptor.
 	 */
 	
-	var _ = __webpack_require__(87);
+	var _ = __webpack_require__(91);
 	
 	module.exports = {
 	
@@ -22874,14 +23162,14 @@
 
 
 /***/ },
-/* 106 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Header Interceptor.
 	 */
 	
-	var _ = __webpack_require__(87);
+	var _ = __webpack_require__(91);
 	
 	module.exports = {
 	
@@ -22906,15 +23194,15 @@
 
 
 /***/ },
-/* 107 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * CORS Interceptor.
 	 */
 	
-	var _ = __webpack_require__(87);
-	var xdrClient = __webpack_require__(108);
+	var _ = __webpack_require__(91);
+	var xdrClient = __webpack_require__(112);
 	var xhrCors = 'withCredentials' in new XMLHttpRequest();
 	var originUrl = _.url.parse(location.href);
 	
@@ -22949,15 +23237,15 @@
 
 
 /***/ },
-/* 108 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * XDomain client (Internet Explorer).
 	 */
 	
-	var _ = __webpack_require__(87);
-	var Promise = __webpack_require__(96);
+	var _ = __webpack_require__(91);
+	var Promise = __webpack_require__(100);
 	
 	module.exports = function (request) {
 	    return new Promise(function (resolve) {
@@ -22992,14 +23280,14 @@
 
 
 /***/ },
-/* 109 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Service for interacting with RESTful services.
 	 */
 	
-	var _ = __webpack_require__(87);
+	var _ = __webpack_require__(91);
 	
 	function Resource(url, params, actions, options) {
 	
@@ -23108,13 +23396,13 @@
 
 
 /***/ },
-/* 110 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(111)
-	__vue_script__ = __webpack_require__(113)
-	__vue_template__ = __webpack_require__(114)
+	__webpack_require__(115)
+	__vue_script__ = __webpack_require__(117)
+	__vue_template__ = __webpack_require__(118)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -23131,13 +23419,13 @@
 	})()}
 
 /***/ },
-/* 111 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(112);
+	var content = __webpack_require__(116);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -23157,7 +23445,7 @@
 	}
 
 /***/ },
-/* 112 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -23171,7 +23459,7 @@
 
 
 /***/ },
-/* 113 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -23321,19 +23609,59 @@
 	// <script lang="babel">
 
 /***/ },
-/* 114 */
+/* 118 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"container js_container\">\n    <!-- main view -->\n    <router-view\n      class=\"view\"\n      keep-alive\n      transition=\"slide\">\n    </router-view>\n</div>\n";
 
 /***/ },
-/* 115 */
+/* 119 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	/**
+	 * 字符串替换过滤器
+	 * data 字符串
+	 * src 要替换的字符
+	 * dest 最终要换的字符
+	 */
+	exports.replace = function (data, src, dest) {
+	  var reg = new RegExp(src, "g");
+	  return data.replace(reg, dest);
+	};
+
+/***/ },
+/* 120 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(121)
+	__vue_script__ = __webpack_require__(123)
+	__vue_template__ = __webpack_require__(124)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Tabs.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(116);
+	var content = __webpack_require__(122);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(10)(content, {});
@@ -23342,8 +23670,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ad38057e&file=LogInfo.vue!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./LogInfo.vue", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ad38057e&file=LogInfo.vue!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./LogInfo.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-5d2ac0ac&file=Tabs.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tabs.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-5d2ac0ac&file=Tabs.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tabs.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -23353,7 +23681,7 @@
 	}
 
 /***/ },
-/* 116 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
@@ -23361,150 +23689,353 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.log{\n\twidth: 100%;\n}\n\n.log>td{\n\tpadding: 5px;\n}\n.tdLabel{\n\twidth: 100px;\n}\n", "", {"version":3,"sources":["/./src/views/worklog/LogInfo.vue?1b6f4352"],"names":[],"mappings":";AAuGA;CACA,YAAA;CACA;;AAEA;CACA,aAAA;CACA;AACA;CACA,aAAA;CACA","file":"LogInfo.vue","sourcesContent":["<template>\r\n\t<div class=\"page logInfo\">\r\n\t\t<nav-bar :text=\"curDay\">\r\n\t\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\"></span>\r\n\t\t\t<span class=\"icon-plus\" slot=\"rightBar\" @click=\"addTask\"></span>\r\n\t\t</nav-bar>\t\r\n\t\t<page-body>\r\n\t\t\t<cells>\r\n\t\t\t\t<link-cell v-for=\"item in logInfo\">\r\n\t\t\t\t\t<div slot=\"body\">\r\n\t\t\t\t\t\t<table class=\"log\">\r\n\t\t\t\t\t\t\t<tbody>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td class=\"tdLabel\">日志名称</td>\r\n\t\t\t\t\t\t\t\t\t<td>{{item.LogTitle}}</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td class=\"tdLabel\">开始时间</td>\r\n\t\t\t\t\t\t\t\t\t<td>{{item.SDate}}</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td class=\"tdLabel\">结束时间</td>\r\n\t\t\t\t\t\t\t\t\t<td>{{item.EDate}}</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td class=\"tdLabel\">工作类型</td>\r\n\t\t\t\t\t\t\t\t\t<td >{{item.WType}}</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t<tr v-for=\"subItem in item.SubItems\">\r\n\t\t\t\t\t\t\t\t\t<td class=\"tdLabel\">{{subItem.SubType}}</td>\r\n\t\t\t\t\t\t\t\t\t<td>{{subItem.SubContent}}</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t</tbody>\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</link-cell>\r\n\t\t\t</cells>\r\n\t\t</page-body>\r\n\r\n\t\t<Toast type=\"loading\" v-show=\"isloading\"></Toast>\r\n\t</div>\r\n</template>\r\n\r\n\r\n<script lang=\"babel\">\r\n\t\r\n\timport NavBar from '../../components/NavBar.vue'\r\n\timport PageBody from '../../components/PageBody.vue'\r\n\timport {Toast,Cells,LinkCell} from 'vue-weui'\r\n\r\n\texport default {\r\n\t\tname:'loginfo',\r\n\t\tdata(){\r\n\t\t\treturn {\r\n\t\t\t\tcurDay:'',\r\n\t\t\t\tlogInfo:[],\r\n\t\t\t\tuserId:0,\r\n\t\t\t\tisloading:false\r\n\t\t\t}\r\n\t\t},\r\n\r\n\t\troute:{\r\n\t\t\t//加载数\r\n\t\t\tdata(transition){\r\n\t\t\t\tconsole.log(transition);\r\n\t\t\t\t//加载数据\r\n\t\t\t  this.curDay=transition.to.params.date;\r\n\t\t\t  this.userId=this.$root.userId;\r\n\t\t\t  console.log(\"loginfo-\"+this.userId);\r\n\t\t\t  this.isloading=true;\r\n\t\t\t  var rUrl='WorkLog/'+this.curDay+\"/10685\";\r\n\r\n\t\t\t  this.$http.get(rUrl).then((response)=>{\r\n\t\t\t  \tthis.isloading=false;\r\n\r\n\t\t\t  \tthis.logInfo=response.data;\r\n\t\t\t  \tconsole.log(this.logInfo)\r\n\t\t\t  },(error)=>{\r\n\t\t\t  \tthis.isloading=false;\r\n\t\t\t  });\r\n\t\t\t}\r\n\t\t},\r\n\t\tcomponents:{\r\n\t\t\tNavBar,\r\n\t\t\tPageBody,\r\n\t\t\tCells,\r\n\t\t\tLinkCell,\r\n\t\t\tToast\r\n\t\t},\r\n\t\tmethods:{\r\n\t\t\tback(){\r\n\t\t\t\thistory.back();\r\n\t\t\t},\r\n\t\t\taddTask(){\r\n\t\t\t\tthis.$route.router.go({name:'logdetail',params:{date:this.curDay,type:'add'}});\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<style type=\"text/css\">\r\n\t.log{\r\n\t\twidth: 100%;\r\n\t}\r\n\r\n\t.log>td{\r\n\t\tpadding: 5px;\r\n\t}\r\n\t.tdLabel{\r\n\t\twidth: 100px;\r\n\t}\r\n</style>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n  \n  .tabs[_v-5d2ac0ac]{\n      min-height: 35px;\n      height: 100%;\n      width: 100%;\n      position: relative;\n    \n      margin-top: 5px;\n  }\n\n  .nav-tabs[_v-5d2ac0ac]{\n     min-height: 35px;\n     height: 35px;\n     width: 100%;\n     border-bottom: 2px solid whitesmoke;\n     background-color: white;\n  }\n\n  .tabs_title[_v-5d2ac0ac]{\n    margin: 0;\n    padding: 5px 10px;\n\n  }\n\n  .tabs_title>li[_v-5d2ac0ac]{\n    float: left;\n    list-style-type: none;\n    text-align: center;\n  }\n  \n/*  .tabs_title {\n      display: -ms-flexbox;\n      display: flex;\n      display: -webkit-flex;\n      -webkit-flex-flow: row nowrap;\n          -ms-flex-flow: row nowrap;\n              flex-flow: row nowrap;\n      -webkit-align-items: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-align-content: center;\n          -ms-flex-line-pack: center;\n              align-content: center;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n\n      -webkit-justify-content: space-around;\n      -webkit-flex-flow: row nowrap;\n      -webkit-align-items: center;\n      -webkit-align-content: center;\n\n      list-style-type: none;\n      line-height: 35px;\n      border-bottom: 1px solid whitesmoke;\n      font-size: 14px;\n      font-weight: bold;\n      width: 100%;\n  }\n  \n  \n  .tabs_title>li {\n    min-width: 100px;\n    text-align: center;\n    vertical-align: middle;\n    cursor: pointer;\n\n  }*/\n  \n  .nav_active[_v-5d2ac0ac] {\n    color: darkorange;\n  }\n\n  \n  #tabs_line[_v-5d2ac0ac] {\n    height: 3px;\n    margin: 0px 10px;\n    margin-top: 2px;\n    background-color: darkorange;\n    -webkit-transition: -webkit-transform .3s ease;\n    transition: -webkit-transform .3s ease;\n    transition: transform .3s ease;\n    transition: transform .3s ease, -webkit-transform .3s ease;\n    -moz-transition: transform .3s ease;/* Firefox 4 */\n    -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\n    -o-transition: transform .3s ease; /* Opera */\n    width: 0px;\n    float: left;\n  }\n\n  .tab-content[_v-5d2ac0ac]{\n      overflow: hidden;\n      /*-webkit-overflow-scrolling: touch;*/\n      /*display: flex;*/\n      height: 100%;\n      /*flex-flow:row nowrap;*/\n  }\n", "", {"version":3,"sources":["/./src/components/Tabs.vue?76cc66c9"],"names":[],"mappings":";;EAgFA;MACA,iBAAA;MACA,aAAA;MACA,YAAA;MACA,mBAAA;;MAEA,gBAAA;GACA;;EAEA;KACA,iBAAA;KACA,aAAA;KACA,YAAA;KACA,oCAAA;KACA,wBAAA;GACA;;EAEA;IACA,UAAA;IACA,kBAAA;;GAEA;;EAEA;IACA,YAAA;IACA,sBAAA;IACA,mBAAA;GACA;;AAEA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;KAoCA;;EAEA;IACA,kBAAA;GACA;;;EAGA;IACA,YAAA;IACA,iBAAA;IACA,gBAAA;IACA,6BAAA;IACA,+CAAA;IAAA,uCAAA;IAAA,+BAAA;IAAA,2DAAA;IACA,oCAAA,eAAA;IACA,uCAAA,CAAA,qBAAA;IACA,kCAAA,CAAA,WAAA;IACA,WAAA;IACA,YAAA;GACA;;EAEA;MACA,iBAAA;MACA,sCAAA;MACA,kBAAA;MACA,aAAA;MACA,yBAAA;GACA","file":"Tabs.vue","sourcesContent":["<template>\r\n  <section class=\"tabs\" v-touch:swipeleft.stop.prevent=\"swipeLeft\" v-touch:swiperight.stop.prevent=\"swipeRight()\" role=\"tablist\">\r\n    <section class=\"nav-tabs\">\r\n        <ul class=\"tabs_title\">\r\n            <li v-for=\"item in tabItems\" :style=\"{ width:underline+ 'px' }\"\r\n            :class=\"{'nav_active':activeIndex===$index}\" \r\n            v-touch:tap=\"switchTab($index)\" \r\n             >{{item.header}}</li>\r\n        </ul>\r\n        <section id=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\">\r\n        </section>\r\n    </section>\r\n      <!-- Tab panes -->\r\n    <section class=\"tab-content\">\r\n        <slot></slot>\r\n    </section>\r\n  </section>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    ready(){\r\n        var width=  document.body.offsetWidth-20;\r\n        this.underline=width/this.tabItems.length;\r\n        this.switchTab(this.activeIndex);\r\n    },\r\n    props:{\r\n      effect: {\r\n        type: String,\r\n        default: 'fadein'\r\n      },\r\n      activeIndex:{\r\n        type: Number,\r\n        default: 0\r\n      }\r\n    },\r\n    data(){\r\n      return {\r\n        //当前选中的tab页面\r\n        underline:100,\r\n        tabItems:[]\r\n      }\r\n    },\r\n    methods:{\r\n      //点击tabs\r\n      switchTab(index){\r\n\r\n        this.activeIndex=index;\r\n        var leftWidth=index*this.underline;\r\n        // this.$el.getElementById('tabs_line').style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n        document.getElementById('tabs_line').style.transform=\"translateX(\"+leftWidth+\"px)\";\r\n      },\r\n      swipeLeft(){\r\n         \r\n          var tempIndex=this.activeIndex;\r\n          var tabLength=this.tabItems.length-1;\r\n          if(tempIndex==tabLength){\r\n            tempIndex=tabLength;\r\n          }else{\r\n            tempIndex=this.activeIndex+1;\r\n          }\r\n          this.activeIndex=tempIndex;\r\n          this.switchTab(tempIndex);\r\n      },\r\n      swipeRight(){\r\n          var tempIndex=this.activeIndex;\r\n          var tempIndex=this.activeIndex-1;\r\n          if(tempIndex<0){\r\n            tempIndex=0;\r\n          }\r\n          this.activeIndex=tempIndex;\r\n          this.switchTab(tempIndex);\r\n      }\r\n    }\r\n  }\r\n</script>\r\n\r\n\r\n<style type=\"text/css\" scoped>\r\n    \r\n    .tabs{\r\n        min-height: 35px;\r\n        height: 100%;\r\n        width: 100%;\r\n        position: relative;\r\n      \r\n        margin-top: 5px;\r\n    }\r\n\r\n    .nav-tabs{\r\n       min-height: 35px;\r\n       height: 35px;\r\n       width: 100%;\r\n       border-bottom: 2px solid whitesmoke;\r\n       background-color: white;\r\n    }\r\n\r\n    .tabs_title{\r\n      margin: 0;\r\n      padding: 5px 10px;\r\n\r\n    }\r\n\r\n    .tabs_title>li{\r\n      float: left;\r\n      list-style-type: none;\r\n      text-align: center;\r\n    }\r\n    \r\n  /*  .tabs_title {\r\n        display: -ms-flexbox;\r\n        display: flex;\r\n        display: -webkit-flex;\r\n        -webkit-flex-flow: row nowrap;\r\n            -ms-flex-flow: row nowrap;\r\n                flex-flow: row nowrap;\r\n        -webkit-align-items: center;\r\n            -ms-flex-align: center;\r\n                align-items: center;\r\n        -webkit-align-content: center;\r\n            -ms-flex-line-pack: center;\r\n                align-content: center;\r\n        -ms-flex-pack: distribute;\r\n            justify-content: space-around;\r\n\r\n        -webkit-justify-content: space-around;\r\n        -webkit-flex-flow: row nowrap;\r\n        -webkit-align-items: center;\r\n        -webkit-align-content: center;\r\n\r\n        list-style-type: none;\r\n        line-height: 35px;\r\n        border-bottom: 1px solid whitesmoke;\r\n        font-size: 14px;\r\n        font-weight: bold;\r\n        width: 100%;\r\n    }\r\n    \r\n    \r\n    .tabs_title>li {\r\n      min-width: 100px;\r\n      text-align: center;\r\n      vertical-align: middle;\r\n      cursor: pointer;\r\n\r\n    }*/\r\n    \r\n    .nav_active {\r\n      color: darkorange;\r\n    }\r\n\r\n    \r\n    #tabs_line {\r\n      height: 3px;\r\n      margin: 0px 10px;\r\n      margin-top: 2px;\r\n      background-color: darkorange;\r\n      transition: transform .3s ease;\r\n      -moz-transition: transform .3s ease;/* Firefox 4 */\r\n      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */\r\n      -o-transition: transform .3s ease; /* Opera */\r\n      width: 0px;\r\n      float: left;\r\n    }\r\n\r\n    .tab-content{\r\n        overflow: hidden;\r\n        /*-webkit-overflow-scrolling: touch;*/\r\n        /*display: flex;*/\r\n        height: 100%;\r\n        /*flex-flow:row nowrap;*/\r\n    }\r\n</style>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
-/* 117 */
-/***/ function(module, exports, __webpack_require__) {
+/* 123 */
+/***/ function(module, exports) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
+	// <template>
+	//   <section class="tabs" v-touch:swipeleft.stop.prevent="swipeLeft" v-touch:swiperight.stop.prevent="swipeRight()" role="tablist">
+	//     <section class="nav-tabs">
+	//         <ul class="tabs_title">
+	//             <li v-for="item in tabItems" :style="{ width:underline+ 'px' }"
+	//             :class="{'nav_active':activeIndex===$index}"
+	//             v-touch:tap="switchTab($index)"
+	//              >{{item.header}}</li>
+	//         </ul>
+	//         <section id="tabs_line" v-bind:style="{ width:underline+ 'px' }">
+	//         </section>
+	//     </section>
+	//       <!-- Tab panes -->
+	//     <section class="tab-content">
+	//         <slot></slot>
+	//     </section>
+	//   </section>
+	// </template>
 	
-	var _NavBar = __webpack_require__(12);
-	
-	var _NavBar2 = _interopRequireDefault(_NavBar);
-	
-	var _PageBody = __webpack_require__(17);
-	
-	var _PageBody2 = _interopRequireDefault(_PageBody);
-	
-	var _vueWeui = __webpack_require__(22);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
+	// <script>
 	exports.default = {
-		name: 'loginfo',
-		data: function data() {
-			return {
-				curDay: '',
-				logInfo: [],
-				userId: 0,
-				isloading: false
-			};
-		},
+	  ready: function ready() {
+	    var width = document.body.offsetWidth - 20;
+	    this.underline = width / this.tabItems.length;
+	    this.switchTab(this.activeIndex);
+	  },
 	
-		route: {
-			//加载数
+	  props: {
+	    effect: {
+	      type: String,
+	      default: 'fadein'
+	    },
+	    activeIndex: {
+	      type: Number,
+	      default: 0
+	    }
+	  },
+	  data: function data() {
+	    return {
+	      //当前选中的tab页面
+	      underline: 100,
+	      tabItems: []
+	    };
+	  },
 	
-			data: function data(transition) {
-				var _this = this;
+	  methods: {
+	    //点击tabs
 	
-				console.log(transition);
-				//加载数据
-				this.curDay = transition.to.params.date;
-				this.userId = this.$root.userId;
-				console.log("loginfo-" + this.userId);
-				this.isloading = true;
-				var rUrl = 'WorkLog/' + this.curDay + "/10685";
+	    switchTab: function switchTab(index) {
 	
-				this.$http.get(rUrl).then(function (response) {
-					_this.isloading = false;
+	      this.activeIndex = index;
+	      var leftWidth = index * this.underline;
+	      // this.$el.getElementById('tabs_line').style.transform="translateX("+leftWidth+"px)";
+	      document.getElementById('tabs_line').style.transform = "translateX(" + leftWidth + "px)";
+	    },
+	    swipeLeft: function swipeLeft() {
 	
-					_this.logInfo = response.data;
-					console.log(_this.logInfo);
-				}, function (error) {
-					_this.isloading = false;
-				});
-			}
-		},
-		components: {
-			NavBar: _NavBar2.default,
-			PageBody: _PageBody2.default,
-			Cells: _vueWeui.Cells,
-			LinkCell: _vueWeui.LinkCell,
-			Toast: _vueWeui.Toast
-		},
-		methods: {
-			back: function back() {
-				history.back();
-			},
-			addTask: function addTask() {
-				this.$route.router.go({ name: 'logdetail', params: { date: this.curDay, type: 'add' } });
-			}
-		}
+	      var tempIndex = this.activeIndex;
+	      var tabLength = this.tabItems.length - 1;
+	      if (tempIndex == tabLength) {
+	        tempIndex = tabLength;
+	      } else {
+	        tempIndex = this.activeIndex + 1;
+	      }
+	      this.activeIndex = tempIndex;
+	      this.switchTab(tempIndex);
+	    },
+	    swipeRight: function swipeRight() {
+	      var tempIndex = this.activeIndex;
+	      var tempIndex = this.activeIndex - 1;
+	      if (tempIndex < 0) {
+	        tempIndex = 0;
+	      }
+	      this.activeIndex = tempIndex;
+	      this.switchTab(tempIndex);
+	    }
+	  }
 	};
 	// </script>
 
-	// <style type="text/css">
-	// 	.log{
-	// 		width: 100%;
-	// 	}
+	// <style type="text/css" scoped>
 
-	// 	.log>td{
-	// 		padding: 5px;
-	// 	}
-	// 	.tdLabel{
-	// 		width: 100px;
-	// 	}
+	//     .tabs{
+	//         min-height: 35px;
+	//         height: 100%;
+	//         width: 100%;
+	//         position: relative;
+
+	//         margin-top: 5px;
+	//     }
+
+	//     .nav-tabs{
+	//        min-height: 35px;
+	//        height: 35px;
+	//        width: 100%;
+	//        border-bottom: 2px solid whitesmoke;
+	//        background-color: white;
+	//     }
+
+	//     .tabs_title{
+	//       margin: 0;
+	//       padding: 5px 10px;
+
+	//     }
+
+	//     .tabs_title>li{
+	//       float: left;
+	//       list-style-type: none;
+	//       text-align: center;
+	//     }
+
+	//   /*  .tabs_title {
+	//         display: -ms-flexbox;
+	//         display: flex;
+	//         display: -webkit-flex;
+	//         -webkit-flex-flow: row nowrap;
+	//             -ms-flex-flow: row nowrap;
+	//                 flex-flow: row nowrap;
+	//         -webkit-align-items: center;
+	//             -ms-flex-align: center;
+	//                 align-items: center;
+	//         -webkit-align-content: center;
+	//             -ms-flex-line-pack: center;
+	//                 align-content: center;
+	//         -ms-flex-pack: distribute;
+	//             justify-content: space-around;
+
+	//         -webkit-justify-content: space-around;
+	//         -webkit-flex-flow: row nowrap;
+	//         -webkit-align-items: center;
+	//         -webkit-align-content: center;
+
+	//         list-style-type: none;
+	//         line-height: 35px;
+	//         border-bottom: 1px solid whitesmoke;
+	//         font-size: 14px;
+	//         font-weight: bold;
+	//         width: 100%;
+	//     }
+
+	//     .tabs_title>li {
+	//       min-width: 100px;
+	//       text-align: center;
+	//       vertical-align: middle;
+	//       cursor: pointer;
+
+	//     }*/
+
+	//     .nav_active {
+	//       color: darkorange;
+	//     }
+
+	//     #tabs_line {
+	//       height: 3px;
+	//       margin: 0px 10px;
+	//       margin-top: 2px;
+	//       background-color: darkorange;
+	//       transition: transform .3s ease;
+	//       -moz-transition: transform .3s ease;/* Firefox 4 */
+	//       -webkit-transition: transform .3s ease; /* Safari 和 Chrome */
+	//       -o-transition: transform .3s ease; /* Opera */
+	//       width: 0px;
+	//       float: left;
+	//     }
+
+	//     .tab-content{
+	//         overflow: hidden;
+	//         /*-webkit-overflow-scrolling: touch;*/
+	//         /*display: flex;*/
+	//         height: 100%;
+	//         /*flex-flow:row nowrap;*/
+	//     }
 	// </style>
-	// <template>
-	// 	<div class="page logInfo">
-	// 		<nav-bar :text="curDay">
-	// 			<span class="icon-chevron-left" slot="leftBar" @click="back()"></span>
-	// 			<span class="icon-plus" slot="rightBar" @click="addTask"></span>
-	// 		</nav-bar>	
-	// 		<page-body>
-	// 			<cells>
-	// 				<link-cell v-for="item in logInfo">
-	// 					<div slot="body">
-	// 						<table class="log">
-	// 							<tbody>
-	// 								<tr>
-	// 									<td class="tdLabel">日志名称</td>
-	// 									<td>{{item.LogTitle}}</td>
-	// 								</tr>
-
-	// 								<tr>
-	// 									<td class="tdLabel">开始时间</td>
-	// 									<td>{{item.SDate}}</td>
-	// 								</tr>
-	// 								<tr>
-	// 									<td class="tdLabel">结束时间</td>
-	// 									<td>{{item.EDate}}</td>
-	// 								</tr>
-	// 								<tr>
-	// 									<td class="tdLabel">工作类型</td>
-	// 									<td >{{item.WType}}</td>
-	// 								</tr>
-
-	// 								<tr v-for="subItem in item.SubItems">
-	// 									<td class="tdLabel">{{subItem.SubType}}</td>
-	// 									<td>{{subItem.SubContent}}</td>
-	// 								</tr>
-	// 							</tbody>
-	// 						</table>
-	// 					</div>
-	// 				</link-cell>
-	// 			</cells>
-	// 		</page-body>
-
-	// 		<Toast type="loading" v-show="isloading"></Toast>
-	// 	</div>
-	// </template>
-
-	// <script lang="babel">
+	/* generated by vue-loader */
 
 /***/ },
-/* 118 */
+/* 124 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"page logInfo\">\n\t<nav-bar :text=\"curDay\">\n\t\t<span class=\"icon-chevron-left\" slot=\"leftBar\" @click=\"back()\"></span>\n\t\t<span class=\"icon-plus\" slot=\"rightBar\" @click=\"addTask\"></span>\n\t</nav-bar>\t\n\t<page-body>\n\t\t<cells>\n\t\t\t<link-cell v-for=\"item in logInfo\">\n\t\t\t\t<div slot=\"body\">\n\t\t\t\t\t<table class=\"log\">\n\t\t\t\t\t\t<tbody>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"tdLabel\">日志名称</td>\n\t\t\t\t\t\t\t\t<td>{{item.LogTitle}}</td>\n\t\t\t\t\t\t\t</tr>\n\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"tdLabel\">开始时间</td>\n\t\t\t\t\t\t\t\t<td>{{item.SDate}}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"tdLabel\">结束时间</td>\n\t\t\t\t\t\t\t\t<td>{{item.EDate}}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"tdLabel\">工作类型</td>\n\t\t\t\t\t\t\t\t<td >{{item.WType}}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tr v-for=\"subItem in item.SubItems\">\n\t\t\t\t\t\t\t\t<td class=\"tdLabel\">{{subItem.SubType}}</td>\n\t\t\t\t\t\t\t\t<td>{{subItem.SubContent}}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</link-cell>\n\t\t</cells>\n\t</page-body>\n\n\t<Toast type=\"loading\" v-show=\"isloading\"></Toast>\n</div>\n";
+	module.exports = "\n<section class=\"tabs\" v-touch:swipeleft.stop.prevent=\"swipeLeft\" v-touch:swiperight.stop.prevent=\"swipeRight()\" role=\"tablist\" _v-5d2ac0ac=\"\">\n  <section class=\"nav-tabs\" _v-5d2ac0ac=\"\">\n      <ul class=\"tabs_title\" _v-5d2ac0ac=\"\">\n          <li v-for=\"item in tabItems\" :style=\"{ width:underline+ 'px' }\" :class=\"{'nav_active':activeIndex===$index}\" v-touch:tap=\"switchTab($index)\" _v-5d2ac0ac=\"\">{{item.header}}</li>\n      </ul>\n      <section id=\"tabs_line\" v-bind:style=\"{ width:underline+ 'px' }\" _v-5d2ac0ac=\"\">\n      </section>\n  </section>\n    <!-- Tab panes -->\n  <section class=\"tab-content\" _v-5d2ac0ac=\"\">\n      <slot _v-5d2ac0ac=\"\"></slot>\n  </section>\n</section>\n";
+
+/***/ },
+/* 125 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(126)
+	__vue_script__ = __webpack_require__(128)
+	__vue_template__ = __webpack_require__(129)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\workspace\\mobile-dev\\src\\components\\Tab.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 126 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(127);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(10)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-48b39499&file=Tab.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tab.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-48b39499&file=Tab.vue&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Tab.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 127 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(9)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n.tab-content > .tab-pane[_v-48b39499] {\n   overflow: auto;\n  -webkit-overflow-scrolling: touch;\n \n  /*display: flex;*/\n \n  /*flex: 0 1 auto;*/\n  margin: 0px;\n  padding: 0px;\n  width: 100%;\n  height: 100%;\n  /*flex-flow: column nowrap;*/\n  /*flex-flow:column nowrap;*/\n}\n", "", {"version":3,"sources":["/./src/components/Tab.vue?5eb321b4"],"names":[],"mappings":";AA0DA;GACA,eAAA;EACA,kCAAA;;EAEA,kBAAA;;EAEA,mBAAA;EACA,YAAA;EACA,aAAA;EACA,YAAA;EACA,aAAA;EACA,6BAAA;EACA,4BAAA;CACA","file":"Tab.vue","sourcesContent":["<template>\r\n    <div role=\"tabpanel\" class=\"tab-pane\"\r\n        v-bind:class=\"{hide:!show}\"\r\n        v-show=\"show\"\r\n        :transition=\"transition\"\r\n    >\r\n    <slot></slot>\r\n  </div>\r\n</template>\r\n\r\n<script>\r\n  export default {\r\n    props: {\r\n      header: {\r\n        type: String\r\n      },\r\n      disabled: {\r\n        type: Boolean,\r\n        default: false\r\n      }\r\n    },\r\n    data() {\r\n      return {\r\n        index: 0,\r\n        show: false\r\n      }\r\n    },\r\n    computed: {\r\n      show() {\r\n        return (this.$parent.activeIndex == this.index);\r\n      },\r\n      transition() {\r\n        return this.$parent.effect\r\n      }\r\n    },\r\n    created() {\r\n       console.log(\"进入tabItem created\")\r\n      \r\n        this.$parent.tabItems.push({\r\n          header: this.header,\r\n          disabled: this.disabled\r\n        })\r\n    },\r\n    ready() {\r\n       console.log(\"进入tabItem ready\")\r\n        for (var c in this.$parent.$children)\r\n        {\r\n            if (this.$parent.$children[c].$el == this.$el)\r\n            {\r\n                this.index= c;\r\n                break;\r\n            }\r\n        }\r\n    }\r\n  }\r\n</script>\r\n\r\n<style scoped>\r\n  .tab-content > .tab-pane {\r\n     overflow: auto;\r\n    -webkit-overflow-scrolling: touch;\r\n   \r\n    /*display: flex;*/\r\n   \r\n    /*flex: 0 1 auto;*/\r\n    margin: 0px;\r\n    padding: 0px;\r\n    width: 100%;\r\n    height: 100%;\r\n    /*flex-flow: column nowrap;*/\r\n    /*flex-flow:column nowrap;*/\r\n  }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 128 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	// <template>
+	//     <div role="tabpanel" class="tab-pane"
+	//         v-bind:class="{hide:!show}"
+	//         v-show="show"
+	//         :transition="transition"
+	//     >
+	//     <slot></slot>
+	//   </div>
+	// </template>
+	
+	// <script>
+	exports.default = {
+	  props: {
+	    header: {
+	      type: String
+	    },
+	    disabled: {
+	      type: Boolean,
+	      default: false
+	    }
+	  },
+	  data: function data() {
+	    return {
+	      index: 0,
+	      show: false
+	    };
+	  },
+	
+	  computed: {
+	    show: function show() {
+	      return this.$parent.activeIndex == this.index;
+	    },
+	    transition: function transition() {
+	      return this.$parent.effect;
+	    }
+	  },
+	  created: function created() {
+	    console.log("进入tabItem created");
+	
+	    this.$parent.tabItems.push({
+	      header: this.header,
+	      disabled: this.disabled
+	    });
+	  },
+	  ready: function ready() {
+	    console.log("进入tabItem ready");
+	    for (var c in this.$parent.$children) {
+	      if (this.$parent.$children[c].$el == this.$el) {
+	        this.index = c;
+	        break;
+	      }
+	    }
+	  }
+	};
+	// </script>
+
+	// <style scoped>
+	//   .tab-content > .tab-pane {
+	//      overflow: auto;
+	//     -webkit-overflow-scrolling: touch;
+
+	//     /*display: flex;*/
+
+	//     /*flex: 0 1 auto;*/
+	//     margin: 0px;
+	//     padding: 0px;
+	//     width: 100%;
+	//     height: 100%;
+	//     /*flex-flow: column nowrap;*/
+	//     /*flex-flow:column nowrap;*/
+	//   }
+	// </style>
+
+	/* generated by vue-loader */
+
+/***/ },
+/* 129 */
+/***/ function(module, exports) {
+
+	module.exports = "\n  <div role=\"tabpanel\" class=\"tab-pane\" v-bind:class=\"{hide:!show}\" v-show=\"show\" :transition=\"transition\" _v-48b39499=\"\">\n  <slot _v-48b39499=\"\"></slot>\n</div>\n";
 
 /***/ }
 /******/ ]);
