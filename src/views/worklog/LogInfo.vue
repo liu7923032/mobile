@@ -38,8 +38,9 @@
 				</link-cell>
 			</cells>
 		</page-body>
-
-		<Toast type="loading" v-show="isloading"></Toast>
+		<Toast type="loading" v-show="isloading">
+			加载中..
+		</Toast>
 	</div>
 </template>
 

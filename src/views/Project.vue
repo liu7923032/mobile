@@ -1,8 +1,8 @@
 <template>
 	<div class="page" >
 		<nav-bar text="我的项目">
-			<span class="icon-chevron-left" slot="leftBar" v-touch:tap="back"></span>
-	        <span class="icon-refresh" slot="rightBar" v-touch:tap="showSheet"></span>
+			<span class="icon-chevron-left" slot="leftBar" @click="back"></span>
+	        <span class="icon-refresh" slot="rightBar" @click="showSheet"></span>
 		</nav-bar>
 		<tabs>
 			<tab header="主导项目">

@@ -7,7 +7,7 @@
             v-touch:tap="switchTab($index)" 
              >{{item.header}}</li>
         </ul>
-        <section id="tabs_line" v-bind:style="{ width:underline+ 'px' }">
+        <section id="tabs_line" v-bind:style="{ width:underline+ 'px' }" transition="move">
         </section>
     </section>
       <!-- Tab panes -->
@@ -155,13 +155,21 @@
       margin: 0px 10px;
       margin-top: 2px;
       background-color: darkorange;
-      transition: transform .3s ease;
-      -moz-transition: transform .3s ease;/* Firefox 4 */
-      -webkit-transition: transform .3s ease; /* Safari 和 Chrome */
-      -o-transition: transform .3s ease; /* Opera */
       width: 0px;
       float: left;
     }
+
+
+
+
+    .move-transition {
+      transition: transform 0.3s ease;
+    }
+
+    .move-enter, .slide-leave {
+      transform: translateX(10px);
+    }
+
 
     .tab-content{
         overflow: hidden;
